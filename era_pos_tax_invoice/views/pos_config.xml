@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <template id="assets_for_pos" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/era_pos_tax_invoice/static/src/js/qrcode.js"></script>
+                <script type="text/javascript" src="/era_pos_tax_invoice/static/src/js/pos.js"></script>
+            </xpath>
+        </template>
+
+       <record id="allow_print_qr_code_form_view_inherit" model="ir.ui.view">
+           <field name="name">allow.print.qr.code.form.view.inherit</field>
+           <field name="model">pos.config</field>
+           <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+           <field name="arch" type="xml">
+               <xpath expr="//div[@id='pricing']" position="inside">
+                   <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="allow_qr_code"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="allow_qr_code"/>
+                            <div class="text-muted">
+                                Allow Print Receipt with VAT QR Code
+                            </div>
+                        </div>
+                    </div>
+               </xpath>
+
+           </field>
+       </record>
+
+    </data>
+</odoo>
