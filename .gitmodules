@@ -1,0 +1,4 @@
+[submodule "othmancs/alomransa"]
+	path = othmancs/alomransa
+	url = git@github.com:othmancs/alomransa.git
+	branch = as
