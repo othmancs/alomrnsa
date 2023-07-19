@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+    	<record id="bi_sale_order_pricelist_wizard_view" model="ir.ui.view">
+			<field name="name">bi_sale_order_pricelist_wizard_view</field>
+			<field name="model">sale.order.pricelist.wizard</field>
+			<field name="arch" type="xml">
+				<form>
+				<sheet>
+					<notebook>
+						<page string="Select Pricelist">
+							<field name="pricelist_line" readonly="1">
+								<tree editable="bottom" create="0" edit="0" delete="0">
+									<field name="bi_pricelist_id"/>			
+									<field name="bi_unit_measure"/>
+									<field name="bi_unit_price"/>
+									<field name="bi_unit_cost"/>
+									<field name="bi_margin"/>
+									<field name="bi_margin_per"/>
+									<field name="line_id" invisible="1"/>
+									<button name="update_sale_line_unit_price" string="Apply" type="object"/>
+								</tree>	
+							</field>
+						</page>
+					</notebook>
+				</sheet>			
+			</form>
+			</field>
+		</record>
+
+		<record id="action_pricelist_wizard" model="ir.actions.act_window">
+			<field name="name">Pricelist Wizard</field>
+			<field name="res_model">sale.order.pricelist.wizard</field>
+			<field name="view_id" ref="bi_sale_order_pricelist_wizard_view" />
+			<field name="target">new</field>
+		</record>
+ 	</data>
+
+ 	<!-- <menuitem id="sh_pricelist_wizard_id" name="Pricelist Wizard" parent="sale.product_menu_catalog"
+ 		action="action_quick_product_wizard" groups="" sequence="100"/>   -->       
+         
+ </odoo>	
