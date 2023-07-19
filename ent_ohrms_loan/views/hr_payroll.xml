@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_payslip_form_inherit_view" model="ir.ui.view">
+        <field name="name">hr.payslip.inherit.form1</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='input_line_ids']//tree//field[@name='sequence']" position="after">
+                <field name="loan_line_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_salary_rule_form_inherit_ent_ohrms_loan">
+        <field name="name">hr.salary.rule.form.inherit.ent.ohrms.loan</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" invisible="1"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_hr_employee_grade_form_inherit_ent_ohrms_loan">
+        <field name="name">hr.payroll.structure.form.inherit.ent.ohrms.loan</field>
+        <field name="model">hr.payroll.structure</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_employee_grade_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_id']" position="after">
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" invisible="1"/>
+            </xpath>
+            <!--            <field name="country_id" position="after">-->
+            <!--                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" invisible="1"/>-->
+            <!--            </field>-->
+        </field>
+    </record>
+</odoo>
