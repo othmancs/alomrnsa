@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_product_wareouse_quantity" model="ir.ui.view">
+            <field name="name">Sales Product Warehouse Quantity</field>
+            <field name="model">sale.product.warehouse.quantity</field>
+            <field name="arch" type="xml">
+                <form string="Sales Product Warehouse Quantity">
+                    <group>
+                        <field name="warehouse_quantity"/>
+                    </group>
+                    <footer>
+                        <button string="Done" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_warehouse_quantity" model="ir.actions.act_window">
+            <field name="name">Sale Product Warehouse Quantity</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.product.warehouse.quantity</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+</odoo>

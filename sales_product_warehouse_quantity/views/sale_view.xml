@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>  
+
+       <!-- Extended the sale order line view for get sales warehouse quantity -->
+       <record id="view_sale_order_line_inherit_sale_warehouse_quantity" model="ir.ui.view">
+            <field name="name">view.sale.order.line.inherit.sale.warehouse.quantity</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml"> 
+		        <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after"> 
+		            <button name="%(action_view_warehouse_quantity)d" string="Quantity in Warehouse" type="action" icon="fa-list"/>
+		        </xpath>
+		        <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after"> 
+		            <field name="warehouse_quantity" invisible="1"/>
+		        </xpath>
+		        <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after"> 
+		            <field name="warehouse_quantity" invisible="1"/>
+		        </xpath>
+	        </field>
+	   </record>
+
+</odoo>
