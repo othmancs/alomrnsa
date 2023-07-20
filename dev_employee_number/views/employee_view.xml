@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+  <record id="employee_inherited_sequence_view" model="ir.ui.view">
+	 <field name="name">employee.inherited.sequence.view</field>
+	 <field name="model">hr.employee</field>
+	 <field name="inherit_id" ref="hr.view_employee_form"/>
+	 <field name="arch" type="xml">
+		 <xpath expr="//h1[@class='d-flex']" position="before">
+		 	<div class="oe_title">
+               <h1><field name="emp_seq"/></h1>
+            </div>
+		 </xpath>
+	</field>
+ </record>
+</odoo>

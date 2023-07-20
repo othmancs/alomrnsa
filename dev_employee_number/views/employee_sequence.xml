@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <data noupdate="1">
+        <record id="view_employee_sequence" model="ir.sequence">
+            <field name="name">employee_sequence</field>
+            <field name="code">hr.employee</field>
+            <field name="prefix">EMP/</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
