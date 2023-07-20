@@ -1,0 +1,7 @@
+<odoo>
+	<data>
+		<menuitem id="einv_sa_top_menu" name="e_inv" sequence="20" web_icon="einv_sa,static/description/icon.png" />
+		<menuitem id="einv_sa_sub_menu" name="Operations" sequence="40" parent="einv_sa_top_menu" />
+		<menuitem id="einv_sa_config_menu" name="Configurations" sequence="50" parent="einv_sa_top_menu" />
+	</data>
+</odoo>

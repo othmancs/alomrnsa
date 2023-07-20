@@ -1,0 +1,66 @@
+
+.page{
+  /*  margin-top:-50px !important; */
+font-family: 'Almarai','Lato' !important;   /* Arabic Font Almarai --install module  [nati_arabic_font]*/
+}
+body .header {
+font-family: 'Almarai','Lato' !important;   /* Arabic Font Almarai --install module  [nati_arabic_font]*/
+}
+
+
+
+
+tr.no_border td {
+  border: 0;
+}
+
+.invoice_main_body tr td{
+  border: 0;
+}
+
+
+.invoice_main_header tr{
+background-color: #eaeaea;
+}
+.bg-header{
+background-color: #eaeaea;
+}
+.bg-light {
+    background-color: #f6f6f6;
+}
+.inv_border{
+
+}
+
+
+
+.flex-between {
+    display: -webkit-box; /* wkhtmltopdf uses this one */
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify; /* wkhtmltopdf uses this one */
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+}
+.flex-end {
+    display: -webkit-box; /* wkhtmltopdf uses this one */
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: end; /* wkhtmltopdf uses this one */
+    -webkit-justify-content: end;
+            justify-content: end;
+}
+.flex-between .lbl-left{
+  /*  width:200px;*/
+}
+.flex-between .lbl-right{
+    text-align: right;
+    /*  width:200px;*/
+}
+.flex-between .lbl-center{
+    text-align: right;
+      /*  width:200px;*/
+}
+.flex-betweenxx :last-child{
+    text-align: right;
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <!--         <span t-field="company.report_footer"/>-->
+        <template id="financial_layout_row">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row  mx-1 border-bottom">
+                        <div class="col-3 px-0 text-left">CR No:</div>
+                        <div class="col-4 px-0 "><span t-field="company.company_registry"></span></div>
+                        <div class="col-5 px-0  text-right">:رقم سجل الشركة</div>
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+                    <div class="row  mx-1 border-bottom">
+                        <div class="col-4 px-0  text-left">Vat No:</div>
+                        <div class="col-4 px-0 "><span t-field="company.vat"></span></div>
+                        <div class="col-4 px-0  text-right">:الرقم الضريبي</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </template>
+
+        <template id="financial_layout_row_ul">
+            <ul class="list-inline mb4">
+                <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                     adding d-inline class fixes the problem-->
+                <li t-if="company.company_registry" class="list-inline-item d-inline mx-2">
+                    <span>CR No:</span>
+                    <span t-field="company.company_registry"></span>
+                    <span>:رقم سجل الشركة</span>
+                </li>
+
+                <li t-if="company.vat" class="list-inline-item d-inline">
+                    <span>Vat No:</span>
+                    <span t-field="company.vat"></span>
+                    <span>:الرقم الضريبي</span>
+                </li>
+
+            </ul>
+
+        </template>
+
+        <template id="einv_external_layout_standard"
+                  inherit_id="web.external_layout_standard">
+            <xpath expr="//div[contains(@t-attf-class,'footer')]/div/ul" position="before">
+                <div t-call="einv_sa.financial_layout_row">
+                </div>
+
+            </xpath>
+            <!--            <xpath expr="//li[@t-if='company.vat']" position="replace">-->
+
+            <!--            </xpath>-->
+        </template>
+
+        <template id="einv_external_layout_boxed"
+                  inherit_id="web.external_layout_boxed">
+            <xpath expr="//div[contains(@t-attf-class,'footer')]/div" position="before">
+                <div t-call="einv_sa.financial_layout_row">
+                </div>
+
+            </xpath>
+            <!--            <xpath expr="//li[@t-if='company.vat']" position="replace">-->
+
+            <!--            </xpath>-->
+        </template>
+
+        <template id="einv_external_layout_bold"
+                  inherit_id="web.external_layout_bold">
+            <xpath expr="//div[contains(@t-attf-class,'footer')]/div" position="before">
+                <div t-call="einv_sa.financial_layout_row">
+                </div>
+
+            </xpath>
+
+        </template>
+
+        <template id="einv_external_layout_striped"
+                  inherit_id="web.external_layout_striped">
+            <xpath expr="//div[contains(@t-attf-class,'footer')]/div/ul/div" position="before">
+                <div t-call="einv_sa.financial_layout_row">
+                </div>
+
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>
