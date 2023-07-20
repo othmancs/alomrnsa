@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_product_template_code_form" model="ir.ui.view">
+            <field name="name">product.template.code.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="priority">26</field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name='default_code' position='after'>
+                        <field name="product_code" readonly="1"/>
+                        <button string="Set product code"
+                                type="object" name="action_set_product_code"
+                                attrs="{'invisible':[('product_code','!=', False)]}"
+                                class="oe_link"
+                                colspan="2"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_product_code_form" model="ir.ui.view">
+            <field name="name">product.code.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="priority">26</field>
+            <field name="arch" type="xml">
+                <data>
+                    <field name='default_code' position='after'>
+                        <field name="product_code" readonly="1"/>
+                        <button string="Set product code"
+                                type="object" name="action_set_product_code"
+                                attrs="{'invisible':['|', ('product_code','!=', False), ('product_variant_count', '&gt;', 1)]}"
+                                class="oe_link"
+                                colspan="2"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+
+        <record id="seq_product_code" model="ir.sequence">
+            <field name="name">Product Code</field>
+            <field name="code">product.code</field>
+            <field name="prefix">T-</field>
+            <field name="padding">8</field>
+        </record>
+</odoo>
+
