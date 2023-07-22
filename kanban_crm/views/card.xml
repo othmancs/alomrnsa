@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="base.res_partner_kanban_view">
+            <field name="name">res.partner</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban row" sample="1">
+                    <field name="id"/>
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="title"/>
+                    <field name="email"/>
+                    <field name="parent_id"/>
+                    <field name="is_company"/>
+                    <field name="function"/>
+                    <field name="phone"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="mobile"/>
+                    <field name="state_id"/>
+                    <field name="category_id"/>
+                    <field name="avatar_128"/>
+                    <field name="type"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="col-lg-3 col-md-4 col-sm-6 p-0 oe_kanban_global_click o_res_partner_kanban">
+                                <div class="profile-card card rounded-lg shadow h-100 p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+                                    <div class="banner"></div>
+                                    <img t-att-src="kanban_image('res.partner', 'image_128', record.id.raw_value)" alt="" class="img-circle mx-auto mb-3"/>
+                                    <h2 class="mb-4"><field name="display_name"/></h2>
+                                    <div class="card-details text-left mb-4">
+                                        <p class="mb-2"><i class="fa fa-envelope mr-3"></i><field name="email"/></p>
+                                        <p class="mb-2"><i class="fa fa-phone mr-3"></i><field name="phone"/></p>
+                                        <p class="mb-2"><i class="fa fa-globe mr-3"></i><field name="website"/></p>
+                                        <p class="mb-2"><i class="fa fa-map-marker mr-3"></i><field name="street"/></p>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left"/>
+                                        <div class="oe_kanban_bottom_right"/>
+                                    </div>
+                                    <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                    <div class="o_row">
+                                        <span class="oe_kanban_partner_links"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</odoo>
