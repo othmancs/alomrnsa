@@ -1,0 +1,31 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* oi_hr_employee_no
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0-20191028\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-03 12:29+0000\n"
+"PO-Revision-Date: 2019-11-03 12:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: oi_hr_employee_no
+#: model:ir.model,name:oi_hr_employee_no.model_hr_employee
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: oi_hr_employee_no
+#: model:ir.model.fields,field_description:oi_hr_employee_no.field_hr_employee__employee_no
+msgid "Employee Company ID"
+msgstr "رقم الموظف"
+
+#. module: oi_hr_employee_no
+#: model:ir.model.constraint,message:oi_hr_employee_no.constraint_hr_employee_employee_no_unqiue
+msgid "Employee Company ID must be unique!"
+msgstr ""

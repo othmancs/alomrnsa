@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="seq_hr_oi_hr_employee_no" model="ir.sequence" forcecreate="False">
+		<field name="name">Employee NO</field>
+		<field name="code">hr.employee</field>
+		<field name="padding">4</field>
+		<field name="company_id" eval="False" />
+	</record>
+	
+</odoo>
