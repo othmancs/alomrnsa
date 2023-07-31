@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="contribution_register_gosi" model="res.partner">
+            <field name="name">GOSI Contribution For Saudi Employee</field>
+        </record>
+
+        <record id="contribution_register_gosicompany" model="res.partner">
+            <field name="name">GOSI Company Contribution For Saudi Employee
+            </field>
+        </record>
+
+        <record id="GOSI" model="hr.salary.rule.category">
+            <field name="name">GOSI</field>
+            <field name="code">GOSI</field>
+        </record>
+
+        <record id="structure_003" model="hr.payroll.structure">
+            <field name="name">Base Salary Structure For Saudi Workers</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+            <field name="unpaid_work_entry_type_ids"
+                   eval="[(4, ref('hr_work_entry_contract.work_entry_type_unpaid_leave'))]"/>
+            <field name="country_id" eval="False"/>
+        </record>
+
+        <record id="hr_contract.structure_type_employee" model="hr.payroll.structure.type">
+            <field name="default_struct_id" ref="structure_003"/>
+        </record>
+
+        <record id="hr_rule_gosi" model="hr.salary.rule">
+            <field name="name">GOSI Contribution For Saudi Employee</field>
+            <field name="code">GOSI</field>
+            <field name="sequence" eval="150"/>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="partner_id" ref="contribution_register_gosi"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -((contract.wage+(contract.wage*3/12))*9/100)</field>
+            <field name="struct_id" ref="structure_003"/>
+        </record>
+
+        <record id="hr_rule_gosi_comp" model="hr.salary.rule">
+            <field name="name">GOSI Company Contribution For Saudi Employee</field>
+            <field name="code">GOSI_COMP</field>
+            <field name="sequence" eval="99"/>
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="partner_id" ref="contribution_register_gosicompany"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (((contract.wage+(contract.wage*3/12))*9/100)+(contract.wage*2/100))</field>
+            <field name="struct_id" ref="structure_003"/>
+        </record>
+
+
+    </data>
+</odoo>
