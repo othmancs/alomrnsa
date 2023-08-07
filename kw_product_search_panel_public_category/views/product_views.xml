@@ -1,0 +1,12 @@
+<odoo>
+    <record id="kw_product_search_panel_public_category_product_template_search" model="ir.ui.view">
+        <field name="name">product.template.search (kw_product_search_panel_public_category)</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <searchpanel position="inside">
+                <field name="public_categ_ids" select="multi" enable_counters="1"/>
+            </searchpanel>
+        </field>
+    </record>
+</odoo>

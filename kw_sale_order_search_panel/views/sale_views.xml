@@ -1,0 +1,15 @@
+<odoo>
+    <record id="kw_sale_order_search_panel_sale_order_search" model="ir.ui.view">
+        <field name="name">sale.order.search (kw_sale_order_search_panel)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <searchpanel>
+                    <field name="state" enable_counters="1"/>
+                    <field name="invoice_status" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+</odoo>
