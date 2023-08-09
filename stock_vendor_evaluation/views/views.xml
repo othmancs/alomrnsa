@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_tree" model="ir.ui.view">
+    <field name="name">stock_vendor_evaluation.view_tree</field>
+    <field name="model">evaluation.criteria</field>
+    <field name="arch" type="xml">
+      <tree editable="bottom">
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
+        <field name="description"/>
+        <field name="value"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_parnter_pivot" model="ir.ui.view">
+    <field name="name">stock_vendor_evaluation.view_parnter_pivot</field>
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+      <pivot>
+        <field name="name" type="row" />
+        <field name="vendor_rating" type="measure"/>
+      </pivot>
+    </field>
+  </record>
+
+  <record id="view_picking_pivot" model="ir.ui.view">
+    <field name="name">stock_vendor_evaluation.view_picking_pivot</field>
+    <field name="model">stock.picking</field>
+    <field name="arch" type="xml">
+      <pivot>
+        <field name="partner_id" type="row" />
+        <field name="evaluation_value" type="measure"/>
+      </pivot>
+    </field>
+  </record>
+
+  <record id="open_view_tree" model="ir.actions.act_window">
+    <field name="name">Evaluation Criterias</field>
+    <field name="res_model">evaluation.criteria</field>
+    <field name="view_mode">tree</field>
+  </record>
+
+  <menuitem name="Evaluation"
+    id="menu_stock_evaluation_settings"
+    parent="stock.menu_stock_config_settings"
+    sequence="2" />
+
+  <menuitem name="Vendor Evaluation Criterias"
+    id="menu_evaulation_criteria"
+    parent="menu_stock_evaluation_settings"
+    sequence="2"
+    action="stock_vendor_evaluation.open_view_tree"/>
+
+  <!-- <menuitem name="Evaluation Criterias"
+    id="menu_evaulation_criteria"
+    parent="purchase.menu_purchase_config"
+    sequence="2"
+    action="stock_vendor_evaluation.open_view_tree"/> -->
+
+  <record id="open_view_picking_pivot" model="ir.actions.act_window">
+    <field name="name">Vendor Rating</field>
+    <field name="res_model">stock.picking</field>
+    <field name="view_mode">pivot</field>
+    <field name="domain">[('picking_type_code', '=', 'incoming'),
+    ('evaluation_id', '!=', False),
+    ('state', 'not in', ['draft', 'waiting', 'cancel'])]</field>
+  </record>
+
+  <menuitem name="Vendor Rating"
+    id="menu_picking_vendor_rating"
+    parent="stock.menu_warehouse_report"
+    sequence="20"
+    action="stock_vendor_evaluation.open_view_picking_pivot"/>
+
+  <record id="open_view_partner_pivot" model="ir.actions.act_window">
+    <field name="name">Vendor Rating</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">pivot</field>
+    <field name="domain">[('vendor_rating', '>', 0)]</field>
+  </record>
+
+  <menuitem name="Vendor Rating"
+    id="menu_patner_vendor_rating"
+    parent="purchase.purchase_report_main"
+    sequence="1"
+    action="stock_vendor_evaluation.open_view_partner_pivot"/>
+
+</odoo>

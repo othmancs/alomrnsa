@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_vendor_evaluation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-23 21:11+0000\n"
+"PO-Revision-Date: 2022-05-23 21:11+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_stock_picking__evaluation_value
+msgid "Average"
+msgstr "Durchschnitt"
+
+#. module: stock_vendor_evaluation
+#: model:ir.model,name:stock_vendor_evaluation.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__description
+msgid "Description"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_stock_picking__evaluation_id
+#: model:ir.ui.menu,name:stock_vendor_evaluation.menu_stock_evaluation_settings
+msgid "Evaluation"
+msgstr "Bewertung"
+
+#. module: stock_vendor_evaluation
+#: model:ir.model,name:stock_vendor_evaluation.model_evaluation_criteria
+msgid "Evaluation Criteria"
+msgstr "Bewertungskriterium"
+
+#. module: stock_vendor_evaluation
+#: model:ir.actions.act_window,name:stock_vendor_evaluation.open_view_tree
+msgid "Evaluation Criterias"
+msgstr "Bewertungskriterien"
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__id
+msgid "ID"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__name
+msgid "Name"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__sequence
+msgid "Sequence"
+msgstr "Sequenz"
+
+#. module: stock_vendor_evaluation
+#: model:ir.model,name:stock_vendor_evaluation.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: stock_vendor_evaluation
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_evaluation_criteria__value
+msgid "Value"
+msgstr "Wert"
+
+#. module: stock_vendor_evaluation
+#: model:ir.ui.menu,name:stock_vendor_evaluation.menu_evaulation_criteria
+msgid "Vendor Evaluation Criterias"
+msgstr "Lieferantenbewertung Kriterien"
+
+#. module: stock_vendor_evaluation
+#: model:ir.actions.act_window,name:stock_vendor_evaluation.open_view_partner_pivot
+#: model:ir.actions.act_window,name:stock_vendor_evaluation.open_view_picking_pivot
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_res_partner__vendor_rating
+#: model:ir.model.fields,field_description:stock_vendor_evaluation.field_res_users__vendor_rating
+#: model:ir.ui.menu,name:stock_vendor_evaluation.menu_patner_vendor_rating
+#: model:ir.ui.menu,name:stock_vendor_evaluation.menu_picking_vendor_rating
+msgid "Vendor Rating"
+msgstr "Lieferantenbewertung"
