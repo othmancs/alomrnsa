@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee.iqama_base.group_user,hr.employee.iqama Internal User,hr_employee_iqama.model_hr_employee_iqama,base.group_user,1,1,1,1
+access_hr_employee.iqama_hr.group_hr_user,hr.employee.iqama Employees Officer,hr_employee_iqama.model_hr_employee_iqama,hr.group_hr_user,1,1,1,1
+access_hr_employee.iqama_dashboard_hr.group_hr_user,hr.employee.iqama dashboard Employees Officer,hr_employee_iqama.model_hr_employee_iqama_dashboard,hr.group_hr_user,1,1,1,1
+

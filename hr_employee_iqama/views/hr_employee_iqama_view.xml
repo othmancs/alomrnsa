@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_tree_employee_iqama_details" model="ir.ui.view">
+        <field name="name">hr.employee.iqama.tree</field>
+        <field name="model">hr.employee.iqama</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0" edit="0">
+                <field name="employee_id"/>
+                <field name="relation"/>
+                <field name="iqama_number"/>
+                <field name="description"/>
+                <field name="issue_place"/>
+                <field name="expiry_date"/>
+                <field name="expiry_date_hijri"/>
+                <field name="state"/>
+                <button name="open_edit_employee" type="object" string="Edit" icon="fa-user"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_employee_iqama_details" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.iqama</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_employee_iqama_details" name="IQAMA Details" parent="hr.menu_hr_employee_payroll" action="action_employee_iqama_details" sequence="4"/>
+
+
+</odoo>

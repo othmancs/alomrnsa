@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_form_employee_iqama_dashboard" model="ir.ui.view">
+        <field name="name">hr.employee.iqama.dashboard.form</field>
+        <field name="model">hr.employee.iqama.dashboard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="result_without_expiry" invisible="1"/>
+                <field name="result_to_be_expired" invisible="1"/>
+
+                <group>
+                    <field name="date_mode" widget="radio" options="{'horizontal': True}" string="Calendar"/>
+                </group>
+                <group>
+                    <group>
+                        <field name="date_from" attrs="{'invisible':[('date_mode','!=','gregorian')],'required':[('date_mode','=','gregorian')]}" string="From"/>
+                        <field name="date_from_hijri" attrs="{'invisible':[('date_mode','!=','hijri')],'required':[('date_mode','=','hijri')]}"  widget="date_hijri" string="From"/>
+                        <field name="date_to" attrs="{'invisible':[('date_mode','!=','gregorian')],'required':[('date_mode','=','gregorian')]}" string="To"/>
+                        <field name="date_to_hijri" attrs="{'invisible':[('date_mode','!=','hijri')],'required':[('date_mode','=','hijri')]}"  widget="date_hijri" string="To"/>
+                    </group>
+                    <group>
+
+                    </group>
+                </group>
+
+                <button name="button_search" type="object" string="Search" class="oe_highlight" icon="fa-search" style="border-radius: 0; background: #0088a7; font-weight: bold;"/>
+                <br/><br/>
+
+
+                <button name="open_iqama_list" context="{'mode':'to_be_expired'}" type="object" class="oe_link"><field name="result_to_be_expired_count" readonly="1"/>&#160;IQAMA</button>are going to be expired during the selected period.<br/>
+                <span attrs="{'invisible':[('result_without_expiry_count','=',0)]}">
+                    <button name="open_iqama_list" context="{'mode':'without_expiry'}" type="object" class="oe_link"><field name="result_without_expiry_count" readonly="1"/>&#160;IQAMA</button>hasn't expiry date configured.
+                </span>
+
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_iqama_dashboard" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.iqama.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_employee_iqama_dashboard" name="IQAMA Check Expiry" parent="hr.menu_hr_employee_payroll" action="action_employee_iqama_dashboard" sequence="5"/>
+
+
+</odoo>

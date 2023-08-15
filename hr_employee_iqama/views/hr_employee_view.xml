@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Employee -->
+    <record id="view_employee_form_iqama" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.hr.iqama</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='mobile_phone']" position="before">
+                <field name="iqama_number"/>
+            </xpath>
+            <xpath expr="//page[@name='public']" position="after">
+                <page string="Iqama Details">
+                    <field name="iqama_ids">
+                        <tree>
+                            <field name="relation"/>
+                            <field name="iqama_number"/>
+                            <field name="description"/>
+                            <field name="issue_place"/>
+                            <field name="expiry_date"/>
+                            <field name="expiry_date_hijri"/>
+                            <field name="state"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="relation"/>
+                                    <field name="iqama_number"/>
+                                    <field name="description"/>
+                                </group>
+                                <group>
+                                    <field name="issue_place"/>
+                                    <field name="expiry_date"/>
+                                    <field name="expiry_date_hijri" widget="date_hijri" readonly="0"/>
+                                    <field name="state"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+
+    </record>
+
+</odoo>
