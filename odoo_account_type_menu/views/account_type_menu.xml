@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--account type menu-->
+    <menuitem
+            id="account_type_menu"
+            name="Account Type"
+            parent="account.account_account_menu"
+            action="account.action_account_type_form"
+            sequence="100"/>
+
+    <!--account account type form view inherit-->
+    <record id="view_account_type_from" model="ir.ui.view">
+        <field name="name">view.account.type.form</field>
+        <field name="model">account.account.type</field>
+        <field name="inherit_id" ref="account.view_account_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='include_initial_balance']" position="after">
+                <field name="internal_group"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
