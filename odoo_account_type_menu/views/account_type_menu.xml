@@ -6,7 +6,8 @@
             name="Account Type"
             parent="account.account_account_menu"
             action="account.action_account_type_form"
-            sequence="100"/>
+<!--             sequence="100" -->
+        />
 
     <!--account account type form view inherit-->
     <record id="view_account_type_from" model="ir.ui.view">
