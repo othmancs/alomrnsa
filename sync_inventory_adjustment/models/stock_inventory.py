@@ -443,7 +443,7 @@ class InventoryLine(models.Model):
     product_uom_id = fields.Many2one(
         'uom.uom', 'Product Unit of Measure',
         required=True)
-    product_uom_category_id = fields.Many2many(string='Uom category', related='product_uom_id.category_id', readonly=True)
+    product_uom_category_id = fields.Many2one(string='Uom category', related='product_uom_id.category_id', readonly=True)
     product_qty = fields.Float(
         'Checked Quantity',
         digits='Product Unit of Measure', default=0)
