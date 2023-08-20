@@ -38,11 +38,11 @@
     # 'currency': 'EUR',
     'depends': [
         'account',
-        # 'l10n_cn_standard_latest',
+        'l10n_cn_standard_latest',
     ],
     'images': ['static/description/banner.gif'],
     'data': [
-        # 'views/account_account_views.xml',
+        'views/account_account_views.xml',
     ],
     'demo': [
     ],
