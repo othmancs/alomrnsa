@@ -18,10 +18,10 @@
 {
     'name': "App Account Multi Level Chart, parent children tree",
     'version': '16.23.03.01',
-    'author': 'odooai.cn',
+    # 'author': 'odooai.cn',
     'category': 'Base',
-    'website': 'https://www.odooai.cn',
-    'live_test_url': 'https://demo.odooapp.cn',
+    # 'website': 'https://www.odooai.cn',
+    # 'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 2,
     'summary': """
@@ -35,10 +35,10 @@
     超级方便的查询，树状视图。
     """,
     'price': 0.00,
-    'currency': 'EUR',
+    # 'currency': 'EUR',
     'depends': [
         'account',
-        'l10n_cn_standard_latest',
+        # 'l10n_cn_standard_latest',
     ],
     'images': ['static/description/banner.gif'],
     'data': [
