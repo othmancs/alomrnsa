@@ -38,7 +38,7 @@
     # 'currency': 'EUR',
     'depends': [
         'account',
-        # 'l10n_cn_standard_latest',
+        'l10n_cn_standard_latest',
     ],
     'images': ['static/description/banner.gif'],
     'data': [
