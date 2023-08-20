@@ -9,7 +9,7 @@
             sequence="100"/>
  -->
     <!--account account type form view inherit-->
-    <record id="view_account_type_from" model="ir.ui.view">
+<!--     <record id="view_account_type_from" model="ir.ui.view">
         <field name="name">view.account.type.form</field>
         <field name="model">account.account.type</field>
         <field name="inherit_id" ref="account.view_account_type_form"/>
@@ -18,6 +18,17 @@
                 <field name="internal_group"/>
             </xpath>
         </field>
-    </record>
+    </record> -->
+    		 <record model="ir.ui.view" id="view_account_form_inherited">
+            <field name="name">skit.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form" />
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='user_type_id']" position="replace"/>
+             	<xpath expr="//field[@name='name']" position="after">
+            		<field name="user_type_id"/>
+            	</xpath> 
+            </field>
+        </record> 
 
 </odoo>
