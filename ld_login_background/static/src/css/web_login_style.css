@@ -1,0 +1,55 @@
+.container{
+    max-width: 100%;
+}
+.background{
+    height:100%;
+    display: block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	-webkit-filter: blur(0px);
+	z-index: -1;
+}
+.body_login {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    opacity:0.7;
+}
+#mcard{
+    margin-top: 7%;
+    padding: 3%;
+    max-width:350px
+}
+
+#bcard{
+    padding: 3%;
+    height: 100%;
+}
+
+.body_login input,
+.body_login select {
+	background-color: transparent !important;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 1px solid #FED766;
+	border-radius: 0px;
+	color: black;
+	font-size: 18px;
+	font-weight: 300;
+	transition: border-color 0.7s ease;
+	box-shadow: none!important;
+	text-align: center;
+}
+.effect:hover{
+    box-shadow: 5px 5px 5px black;
+}

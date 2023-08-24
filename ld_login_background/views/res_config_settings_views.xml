@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record
+                id="res_config_settings_view_form_login_background"
+                model="ir.ui.view">
+            <field name="name">res.config.settings.form.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='companies']" position="after">
+                    <div>
+                        <h2>Login Background</h2>
+                        <div class="row mt16 o_settings_container"
+                             name="default_taxes_setting_container">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                 id="default_taxes">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <div class="content-group">
+                                        <div class="row mt16">
+                                            <label string="Style" for="style" class="col-lg-3 o_light_label"/>
+                                            <field name="style"/>
+                                            <label string="Background" for="background" class="col-lg-3 o_light_label"
+                                                   attrs="{'invisible': [('style','in',['default',False])]}"/>
+                                            <field name="background"
+                                                   attrs="{'invisible': [('style','in',['default',False])]}"/>
+                                            <label string="Image" for="background_image" class="col-lg-3 o_light_label"
+                                                   attrs="{'invisible': [('background','!=','image')]}"/>
+                                            <field name="background_image" options="{'no_create': True}"
+                                                   attrs="{'invisible': [('background','!=','image')], 'required':[('background', '=', 'image')]}"/>
+                                            <label string="Color" for="color" class="col-lg-3 o_light_label"
+                                                   attrs="{'invisible': [('background','!=','color')]}"/>
+                                            <field name="color" widget="color" attrs="{'invisible': [('background','!=','color')]}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
