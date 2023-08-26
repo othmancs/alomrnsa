@@ -33,10 +33,10 @@ class ProductTemplate(models.Model):
             rec.qr_code_img = qr_code_image
 
     @api.model
-    def _name_search(self, default_code, args=None, operator='like', limit=100):
+    def _name_search(self, default_code, args=None, operator='ilike', limit=100):
         domain = args or []
         if default_code:
-            pattern = re.compile('d'.format(re.escape(default_code)), re.IGNORECASE)
+            pattern = re.compile('\d'.format(re.escape(default_code)), re.IGNORECASE)
              # pattern = re.compile(r"^\d{}")
             filtered_ids = [record.id for record in self.search(domain, limit=limit) if pattern.match(record.default_code)]
             domain = [('id', 'in', filtered_ids)]
