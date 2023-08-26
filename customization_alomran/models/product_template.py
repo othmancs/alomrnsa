@@ -32,12 +32,12 @@ class ProductTemplate(models.Model):
             qr_code_image = base64.b64encode(temp.getvalue())
             rec.qr_code_img = qr_code_image
 
-    @api.model
-    def _name_search(self, default_code, args=None, operator='like', limit=100):
-        domain = args or []
-        if default_code:
-            pattern = re.compile(r'^\d+,?\s*(.*)|^(.*?)\s+No\s*\d+'.format(re.escape(default_code)), re.IGNORECASE)
-             # pattern = re.compile(r"^\d{}")
-            filtered_ids = [record.id for record in self.search(domain, limit=limit) if pattern.match(record.default_code)]
-            domain = [('id', 'in', filtered_ids)]
-        return super(ProductTemplate, self)._name_search(default_code, args=domain, operator=operator, limit=limit)
+    # @api.model
+    # def _name_search(self, default_code, args=None, operator='like', limit=100):
+    #     domain = args or []
+    #     if default_code:
+    #         pattern = re.compile(r'^\d+,?\s*(.*)|^(.*?)\s+No\s*\d+'.format(re.escape(default_code)), re.IGNORECASE)
+    #          # pattern = re.compile(r"^\d{}")
+    #         filtered_ids = [record.id for record in self.search(domain, limit=limit) if pattern.match(record.default_code)]
+    #         domain = [('id', 'in', filtered_ids)]
+    #     return super(ProductTemplate, self)._name_search(default_code, args=domain, operator=operator, limit=limit)
