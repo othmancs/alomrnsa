@@ -36,7 +36,8 @@ class ProductTemplate(models.Model):
     def _name_search(self, default_code, args=None, operator='like', limit=100):
         domain = args or []
         if default_code:
-            pattern = re.compile('^{}'.format(re.escape(default_code)), re.IGNORECASE)
+            # pattern = re.compile('^{}'.format(re.escape(default_code)), re.IGNORECASE)
+             pattern = re.compile('^{}')
             filtered_ids = [record.id for record in self.search(domain, limit=limit) if pattern.match(record.default_code)]
             domain = [('id', 'in', filtered_ids)]
         return super(ProductTemplate, self)._name_search(default_code, args=domain, operator=operator, limit=limit)
