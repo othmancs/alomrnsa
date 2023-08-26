@@ -35,7 +35,7 @@ class ProductTemplate(models.Model):
     @api.model
     def _name_search(self, default_code, args=None, operator='like', limit=100):
         domain = args or []
-        if name:
+        if default_code:
             pattern = re.compile('^{}'.format(re.escape(default_code)), re.IGNORECASE)
             filtered_ids = [record.id for record in self.search(domain, limit=limit) if pattern.match(record.default_code)]
             domain = [('id', 'in', filtered_ids)]
