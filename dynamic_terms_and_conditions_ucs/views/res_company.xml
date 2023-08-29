@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_base_company_form_view" model="ir.ui.view">
+        <field name="name">res.company.view.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Term &#38; Conditions">
+                    <group>
+                        <field name="dynamic_sale_terms" widget="html"/>
+                        <field name="is_same" />
+                        <field name="dynamic_purchase_terms" attrs="{'readonly': [('is_same', '=', True)]}" widget="html"/>
+                        <field name="dynamic_invoice_terms" attrs="{'readonly': [('is_same', '=', True)]}" widget="html"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

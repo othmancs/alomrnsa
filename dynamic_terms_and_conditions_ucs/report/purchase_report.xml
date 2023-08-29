@@ -1,0 +1,65 @@
+<odoo>
+
+    <template id="uncanny_report_purchaseorder" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//div[@id='total']" position="after">
+            <t t-if="o.company_id.is_global">
+                <div class="mt8" t-if="o.company_id.dynamic_purchase_terms" style="page-break-inside: avoid;">
+                    <h6 t-if="o.company_id.dynamic_purchase_terms">Terms &#38; Conditions: </h6>
+                    <p t-if="o.company_id.dynamic_purchase_terms" name="standard_terms">
+                        <span t-field="o.company_id.dynamic_purchase_terms"/>
+                    </p>
+                </div>
+            </t>
+            <t t-else="">
+                <t t-if="o.partner_id.country_id and o.partner_id.country_id.dynamic_sale_terms">
+                    <div class="mt8" style="page-break-inside: avoid;">
+                        <h6>Terms &#38; Conditions: </h6>
+                        <p name="standard_terms">
+                            <span t-field="o.partner_id.country_id.dynamic_sale_terms"/>
+                        </p>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="mt8" t-if="o.company_id.dynamic_purchase_terms" style="page-break-inside: avoid;">
+                        <h6>Terms &#38; Conditions: </h6>
+                        <p name="standard_terms">
+                            <span t-field="o.company_id.dynamic_purchase_terms"/>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="uncanny_report_purchaseorder_quotation" inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//div[hasclass('page')]" position="inside">
+            <t t-if="o.company_id.is_global">
+                <div class="mt8" t-if="o.company_id.dynamic_purchase_terms" style="page-break-inside: avoid;">
+                    <h6 t-if="o.company_id.dynamic_purchase_terms">Terms &#38; Conditions: </h6>
+                    <p t-if="o.company_id.dynamic_purchase_terms" name="standard_terms">
+                        <span t-field="o.company_id.dynamic_purchase_terms"/>
+                    </p>
+                </div>
+            </t>
+            <t t-else="">
+                <t t-if="o.partner_id.country_id and o.partner_id.country_id.dynamic_sale_terms">
+                    <div class="mt8" style="page-break-inside: avoid;">
+                        <h6>Terms &#38; Conditions: </h6>
+                        <p name="standard_terms">
+                            <span t-field="o.partner_id.country_id.dynamic_sale_terms"/>
+                        </p>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="mt8" t-if="o.company_id.dynamic_purchase_terms" style="page-break-inside: avoid;">
+                        <h6>Terms &#38; Conditions: </h6>
+                        <p name="standard_terms">
+                            <span t-field="o.company_id.dynamic_purchase_terms"/>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

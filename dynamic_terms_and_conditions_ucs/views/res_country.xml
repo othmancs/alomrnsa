@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_country_form_dynamic_terms" model="ir.ui.view">
+        <field name="name">res.country.form.dynamic.terms</field>
+        <field name="model">res.country</field>
+        <field name="inherit_id" ref="base.view_country_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state_ids']" position="after">
+                <notebook>
+                    <page string="Term &#38; Conditions">
+                        <group>
+                            <field name="dynamic_sale_terms" widget="html"/>
+                            <field name="is_same" />
+                            <field name="dynamic_purchase_terms" attrs="{'readonly': [('is_same', '=', True)]}" widget="html"/>
+                            <field name="dynamic_invoice_terms" attrs="{'readonly': [('is_same', '=', True)]}" widget="html"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

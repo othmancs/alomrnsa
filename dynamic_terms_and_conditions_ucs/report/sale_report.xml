@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="uncanny_report_saleorder" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//p[@id='fiscal_position_remark']" position="after">
+            <t t-if="doc.company_id.is_global">
+                <div class="mt8" t-if="doc.company_id.dynamic_sale_terms" style="page-break-inside: avoid;">
+                    <h6>Terms &#38; Conditions: </h6>
+                    <p name="standard_terms">
+                        <span t-field="doc.company_id.dynamic_sale_terms"/>
+                    </p>
+                </div>
+            </t>
+            <t t-else="">
+                <t t-if="doc.partner_id.country_id and doc.partner_id.country_id.dynamic_sale_terms">
+                    <div class="mt8" style="page-break-inside: avoid;">
+                        <h6 >Terms &#38; Conditions: </h6>
+                        <p name="standard_terms">
+                            <span t-field="doc.partner_id.country_id.dynamic_sale_terms"/>
+                        </p>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="mt8" t-if="doc.company_id.dynamic_sale_terms" style="page-break-inside: avoid;">
+                        <h6>Terms &#38; Conditions: </h6>
+                        <p name="standard_terms">
+                            <span t-field="doc.company_id.dynamic_sale_terms"/>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
