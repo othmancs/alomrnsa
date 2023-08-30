@@ -60,6 +60,12 @@ class ResConfigSettings(models.TransientModel):
                                           help="Check to only Debug / Debug Assets for Odoo Admin. Deny debug from url for other user.")
     app_stop_subscribe = fields.Boolean('Stop Odoo Subscribe', help="Check to stop subscribe and follow. This to make odoo speed up.",
                                         config_parameter='app_stop_subscribe')
+    # 处理额外模块
+    module_app_odoo_doc = fields.Boolean("Help Document Anywhere", help='Get Help Documentation on current odoo operation or topic.')
+    module_app_chatgpt = fields.Boolean("Ai Center", help='Use Ai to boost you business.')
+    
+    # 应用帮助文档
+    app_doc_root_url = fields.Char('Help of topic domain', config_parameter='app_doc_root_url', default='https://odooai.cn')
 
     def set_module_url(self):
         sql = "UPDATE ir_module_module SET website = '%s' WHERE license like '%s' and website <> ''" % (self.app_enterprise_url, 'OEEL%')
@@ -494,3 +500,10 @@ class ResConfigSettings(models.TransientModel):
             except:
                 pass
         return True
+
+    def action_set_app_doc_root_to_my(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        self.app_doc_root_url = base_url
+
+    # def action_set_all_to_app_doc_root_url(self):
+    #     if self.app_doc_root_url:
