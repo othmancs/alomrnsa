@@ -12,7 +12,7 @@
     <record id="view_account_type_from" model="ir.ui.view">
         <field name="name">view.account.type.form</field>
         <field name="model">account.account.type</field>
-        <field name="inherit_id" ref="account.field_account_account__account_type"/>
+        <field name="inherit_id" ref="account.view_account_type_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='include_initial_balance']" position="after">
                 <field name="internal_group"/>
