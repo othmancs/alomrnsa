@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_simplified_tax_invoice_document">
+		<t t-call="saudi_einvoice_knk.external_layout_seti">
+			<t t-foreach="doc" t-as="o">
+				<div class="page" style="padding-top:40px;margin-top:-28pt;" >
+					<link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/>
+					<t t-set="company" t-value="res_company"/>
+					<div class="font">
+						<table style="border:1pt solid grey;width:100%;font-size:12px;margin-bottom: 20px;" width="100%">		
+							<tr>
+								<td style="padding:4pt;font-weight: bold;text-align:center;background-color:#DCDCDC;"><span class="text-right arabic">Simplified Tax Invoice / فاتورة ضريبية مبسطة</span></td> 
+							</tr>
+					    </table>
+
+						<div class="row mt32 mb32">
+		                <div class="col-9" style="color:black; ">
+							<table style="border:1pt solid grey;width:100%;padding:10pt;color:black;" class="table table-bordered table-sm">
+								<tr>
+									<td style="font-weight:bold; width:25%;">‫‪Invoice‬‬ ‫‪Number‬‬</td>
+									<td style="width:50%; text-align:center;"><span t-field="o.name"/></td>
+									<td class="arabic" style="width:25%; text-align:right;">رقم الفاتورة</td>
+								</tr>
+								<tr>
+									<td style="font-weight:bold; width:25%;">‫‪Invoice‬‬ Date</td>
+									<td style="width:50%; text-align:center;"><span t-field="o.invoice_date"/></td>
+									<td class="arabic" style="width:25%; text-align:right;">تاريخ الفاتورة</td>
+								</tr>
+								<tr>
+									<td style="font-weight:bold; width:25%;">‫‪Due Date</td>
+									<td style="width:50%; text-align:center;"></td>
+									<td class="arabic" style="width:25%; text-align:right;">تاريخ الفاتورة</td>
+								</tr>
+								<tr>
+									<td style="font-weight:bold; width:25%;">‫‪Payment Terms‬</td>
+									<td style="width:50%; text-align:center;">
+										<span t-field="o.invoice_payment_term_id"/>
+									</td>
+									<td class="arabic" style="width:25%; text-align:right;">فترة الخدمة</td>
+								</tr>
+							</table>
+							<br/>
+						</div>
+						<div class="col-3" style="margin-top: -10pt; padding-left:25pt;">
+			                <img t-if="doc.get_qr_code()"
+								style="display:block;"
+								t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 120, 120)"/>
+			            </div>
+			        </div>
+
+     				<table style="border:1pt solid grey;width:100%;color:black;" class="table-condensed">
+						<thead>
+							<tr style="background-color:#DCDCDC">
+								<td width="40%" style="border:1pt solid grey;text-align:center;padding:2pt;">Description<br/><span class="arabic">تفاصيل السلع أو الخدمات</span></td>
+								<td width="20%" style="border:1pt solid grey;text-align:center;padding:2pt;">Unit Price<br/><span class="arabic">سعر الوحدة</span></td>
+								<td width="20%" style="border:1pt solid grey;text-align:center;padding:2pt;width:7%">Quantity<br/><span class="arabic"></span>الكمية</td>
+								<td width="20%" style="border:1pt solid grey;text-align:center;padding:2pt;">Total<br/>(incl.vat) <br/><span class="arabic">المجموع (شامل ضريبة القيمة المضافة)</span></td>
+							</tr>
+						</thead>
+					 	<t t-set="tax_total" t-value="0"/>
+						<tbody class="invoice_tbody">
+						 	<tr t-foreach="o.invoice_line_ids" t-as="l">
+						 		<t t-set="line_tax_total" t-value="0"/>
+					 			<t t-foreach="l.tax_ids" t-as="t">
+					 				<t t-set="tax_total" t-value="tax_total + l.price_subtotal* t.amount/100"/>
+					 				<t t-set="line_tax_total" t-value="line_tax_total + t.amount"/>
+					 			</t>
+						 		<td style="border-right:1pt solid grey;text-align:center;padding:3pt">
+						 			<span t-field="l.name"/> - 
+						 			<!-- <span class="text-right arabic" t-esc="doc.get_product_arabic_name(l.product_id.id)"/> -->
+						 			<br/>
+						 		</td>
+						 		<td style="border-right:1pt solid grey;text-align:center;padding:3pt"><span t-field="l.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+						 		<td style="border-right:1pt solid grey;text-align:center;padding:3pt"><span t-esc="'%.2f %s '%(l.quantity,l.product_uom_id.name)"/></td>
+						 		<td style="border-right:1pt solid grey;text-align:center;padding:3pt" >
+			                        <span t-field="l.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+			                    </td>
+						 	</tr>
+		               	</tbody>
+					</table>
+					<br/>
+					<table  style="border:1pt solid grey;width:100%;color:black;" class="table table-bordered table-sm">
+						<thead>
+							<tr>
+								<td width="40%" style="font-weight: bold;text-align:left;padding:3pt">Total Taxable Amount (Excluding VAT)</td>
+								<td class="arabic"  width="40%" style="text-align:right;padding:3pt">إجمالي المبلغ الخاضع للضريبة (غير شامل ضريبة القيمة المضافة)</td>
+								<td  width="40%" style="text-align:right;padding:3pt" class="text-right"><span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+							<tr>
+								<td  style="font-weight: bold;text-align:left;padding:3pt" >Total VAT</td>
+								<td class="arabic" style="text-align:right;padding:3pt">مجموع ضريبة القيمة المضافة</td>
+								<td style="text-align:right;padding:3pt" class="text-right"><span t-esc="tax_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+							<tr>
+								<td  style="font-weight: bold;text-align:left;padding:3pt">Total Amount Due</td>
+								<td class="arabic" style="text-align:right;padding:3pt">اجمالي المبلغ المستحق</td>
+								<td style="text-align:right;padding:3pt" class="text-right"><span t-esc="doc.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+						</thead>
+					</table>
+		           
+					</div>
+				</div>
+			</t>
+		</t>
+	</template>
+	
+	<template id="report_simplified_tax_invoice">
+	    <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="saudi_einvoice_knk.report_simplified_tax_invoice_document"/>
+	        </t>
+	    </t>
+	</template>
+</odoo>

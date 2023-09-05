@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="external_layout_seti">
+		<t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"/>
+    	</t>
+    	<t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"/>
+    	</t>
+		<div class="header">
+	    	<table style="border:1pt solid grey;width:100%;font-size:12px;" width="100%">
+	    		<link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/>
+	            <tr>
+	                <td colspan="2" width="35%">
+	                	<strong><span style="padding-left:5px;" t-field="company.name"/></strong><br/>
+	                	<t t-if="company.street">
+	                		<span style="padding-left:5px;" t-field="company.street"/><br/>
+	                	</t>
+	                	<t t-if="company.street2">
+	                		<span style="padding-left:5px;" t-field="company.street2"/><br/>
+	                	</t>
+	                	<t t-if="company.city">
+	                		<span style="padding-left:5px;" t-field="company.city"/><br/>
+	                	</t>
+	                	<t t-if="company.country_id">
+	                		<span style="padding-left:5px;" t-field="company.country_id.name"/><br/>
+	                	</t>
+	                </td>
+	                
+	                <td  colspan="3" width="30%" class="text-center"><img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height: 100px;width: 100px; " alt="Logo"/></td>
+
+	                <td colspan="2" width="35%" class="text-right">
+	                	<strong>
+	                		<span class="text-right arabic" style="padding-right:5px;" t-field="company.arabic_name"/></strong><br/>
+	                	<t t-if="company.street">
+	                		<span class="text-right arabic" style="padding-right:5px;" t-field="company.arabic_street"/><br/>
+	                	</t>
+	                	<t t-if="company.street2">
+	                		<span class="text-right arabic" style="padding-right:5px;" t-field="company.arabic_street2"/><br/>
+	                	</t>
+	                	<t t-if="company.city">
+	                		<span class="text-right arabic" style="padding-right:5px;" t-field="company.arabic_city"/><br/>
+	                	</t>
+	                	<t t-if="company.arabic_country">
+	                		<span class="text-right arabic" style="padding-right:5px;" t-field="company.arabic_country"/><br/>
+	                	</t>
+	                </td>
+	            </tr>
+	        	<tr style="border:1pt solid grey;">
+	            	<td width="16%">‫‪ <span class="text-right" style="padding-left:5px;"/>CR No. : </td> 
+	            	<td width="16%"> <span class="text-center arabic" t-field="company.company_registry"/> ‫‪</td> 
+	            	<td width="17%"> <span class="text-right arabic" style="padding-right:-6px;">رقم السجل التجاري</span>‬</td>
+
+	            	<td width="2%" style="border-left:1pt solid black;"></td>  
+
+	            	<td width="16%">‫‪ <span class="text-right" style="padding-left:5px;">VAT‬‬ No.: </span> </td>
+	            	<td width="16%"> <span class="text-center arabic" t-field="company.vat"/> ‫‪</td>
+	            	<td width="17%"> <span class="text-right arabic" style="padding-right:-6px;">ضريبة القيمة المضافة</span>‬</td>
+	            </tr>  
+	        </table>
+        </div>
+        <div class="article o_report_layout_standard">
+            <t t-raw="0" />
+        </div>
+        <div class="footer o_background_footer">
+            <div class="text-center" style="font-size:14px;"  >
+                <ul class="list-inline">
+                    <li t-if="company.phone" class="list-inline-item"><i class="fa fa-phone" role="img" aria-label="Phone" title="Phone"/> <span t-field="company.phone"/></li>
+                    <li t-if="company.email" class="list-inline-item"><i class="fa fa-at" role="img" aria-label="Email" title="Email"/> <span t-field="company.email"/></li>
+                    <li t-if="company.website" class="list-inline-item"><i class="fa fa-globe" role="img" aria-label="Website" title="Website"/> <span t-field="company.website"/></li>
+                    <li t-if="company.vat" class="list-inline-item"><i class="fa fa-building-o" role="img" aria-label="Fiscal number"/><t t-esc="(company.country_id.vat_label or 'Tax ID').replace(' ','\N{NO-BREAK SPACE}')"/>: <span t-esc="company.vat.replace(' ','\N{NO-BREAK SPACE}')"/></li>
+                </ul>
+                <div t-field="company.report_footer"/>
+                <div t-if="report_type == 'pdf'" class="text-muted">
+                    Page:
+                    <span class="page"/>
+                    of
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+	</template>
+
+	<template id="report_tax_invoice_document">
+		<t t-call="saudi_einvoice_knk.external_layout_seti">
+			<t t-foreach="doc" t-as="o">
+				<div class="page" style="">
+					<link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/>
+					<t t-set="company" t-value="res_company"/>
+					<div class="font">
+
+					<table style="border:1pt solid grey;width:100%;
+    height: 23px;color:black; margin-top:10pt;" class="table-condensed table-sm">
+							<tr>
+								<td style="padding:1pt;margin:0pt;font-weight: bold;text-align:center;background-color:#DCDCDC;"><span class="text-right arabic">Tax Invoice / فاتورة ضريبية </span></td> 
+							</tr>
+					</table>
+			        <div class="row">
+                        <div name="invoice_address" class="col-6">
+                            <address t-field="o.partner_id"
+                                t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                            <div t-if="o.partner_id.vat" class="mt16"><t t-esc="o.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="o.partner_id.vat"/></div>
+                        </div>
+			            <div class="col-4">
+			            	<p>
+			            		<strong>Invoice‬‬ ‫‪Number‬‬: </strong><span t-field="o.name"/><br/>
+			            		<strong>Invoice‬‬ Date: </strong><span t-field="o.invoice_date"/><br/>
+			            		‫<strong>‪Payment Terms‬: </strong><span t-field="o.invoice_payment_term_id"/><br/>
+			            	</p>
+						</div>
+                        <div class="col-2">
+			                <!-- <img t-att-src="'data:image/png;base64,%s' % to_text(doc.get_qr_code())" 
+			                    style="width: 120px;height:120px;" alt="Barcode"/> -->
+			                <img t-if="doc.get_qr_code()"
+								style="display:block;"
+								t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 110, 110)"/>
+			            </div>
+                    </div>
+					<table style="border:1pt solid grey;width:100%;color:black; margin-top:0pt; color:black;" class="table-condensed">
+						<thead>
+							<tr style="background-color:#DCDCDC">
+								<td width="20%" style="border:1pt solid grey;text-align:center;padding:2pt; ">Description<br/><span class="arabic">تفاصيل السلع أو الخدمات</span></td>
+								<td style="border:1pt solid grey;text-align:center;padding:2pt;">Unit Price<br/><span class="arabic">سعر الوحدة</span></td>
+								<td style="border:1pt solid grey;text-align:center;padding:2pt;width:7%">Quantity<br/><span class="arabic">الكمية</span></td>
+								<td style="border:1pt solid grey;text-align:center;padding:2pt;" >Taxable <br/> Amount<br/><span class="arabic">المبلغ الخاضع للضريبة</span></td>
+								<td style="border:1pt solid grey;text-align:center; width:10%;padding:2pt">Discount<br/><span class="arabic">خصومات</span></td>
+								<td style="border:1pt solid grey;text-align:center;padding:2pt;width:8%">Tax Rate<br/><span class="arabic">نسبة الضريبة</span></td>
+								<td style="border:1pt solid grey;text-align:center; width:10%;padding:2pt">Tax Amount<br/><span class="arabic">مبلغ الضريبة</span></td>
+								<td style="border:1pt solid grey;text-align:center;padding:2pt;">Total<br/>(incl.vat) <br/><span class="arabic">المجموع (شامل ضريبة القيمة المضافة)</span></td>
+							</tr>
+						</thead>
+					 	<t t-set="tax_total" t-value="0"/>
+					 	<t t-set="discount_total" t-value="0"/>
+						<tbody class="invoice_tbody">
+						 	<tr t-foreach="o.invoice_line_ids" t-as="l">
+						 		<t t-set="line_tax_total" t-value="0"/>
+					 			<t t-foreach="l.tax_ids" t-as="t">
+					 				<t t-set="tax_total" t-value="tax_total + l.price_subtotal* t.amount/100"/>
+					 				<t t-set="line_tax_total" t-value="line_tax_total + t.amount"/>
+					 			</t>
+					 			<t t-set="discount_total" t-value="discount_total + ((l.price_unit * l.quantity) - l.price_subtotal)"/>
+						 		<td style="border-right:1pt solid grey;padding:3pt">
+						 			<span t-field="l.name"/> - 
+						 			<!-- <span class="text-right arabic" t-esc="doc.get_product_arabic_name(l.product_id.id)"/> -->
+						 			<br/>
+						 		</td>
+						 		<td style="border-right:1pt solid grey;text-align:right;padding:3pt"><span t-field="l.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+						 		<td style="border-right:1pt solid grey;text-align:center;padding:3pt"><span t-esc="'%.2f %s '%(l.quantity,l.product_uom_id.name)"/></td>
+
+					 			<td style="padding:3pt;border-right:1pt solid grey;text-align:right;">
+						 			<sapn t-esc="l.price_unit * l.quantity" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						 		</td>
+
+						 		<td style="border-right:1pt solid grey;text-align:right;padding:3pt;"  >
+	                                <span t-field="l.discount"/> % 
+	                             </td>
+			                    
+						 		<td style="border-right:1pt solid grey;padding:2pt;text-align:center;">
+						 			<t t-foreach="l.tax_ids" t-as="t">
+						 				<span t-esc="'%.2f'%(t.amount)"/> %
+					 				</t>
+					 				<span t-if="not l.tax_ids">0.0 %</span>
+						 		</td>
+						 		<td style="padding:3pt;border-right:1pt solid grey;text-align:right;">
+						 			<t t-set="line_tax_total" t-value="l.price_subtotal*line_tax_total/100"/>
+						 			<sapn t-esc="line_tax_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						 		</td>
+						 		<td style="border-right:1pt solid grey;text-align:right;padding:3pt" >
+			                        <span t-field="l.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+			                    </td>
+						 	</tr>
+		               	</tbody>
+					</table>
+					<table style="border:1pt solid grey;width:100%;color:black;margin-top:5px; color:black;" class="table table-bordered table-sm">
+						<thead>
+							<t t-set="discount_before_total" t-value="doc.amount_untaxed + discount_total"/>
+							<tr class="text-center">
+								<td class=""  style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">Total (Excluding VAT)</td>
+								<td class="text-end arabic" style="border-right:1pt solid grey;text-align:right;padding:3pt">الإجمالي (غير شامل ضريبة القيمة المضافة)</td>
+								<td style="border-right:1pt solid grey;text-align:right;padding:3pt" class="text-end"><span t-esc="discount_before_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+							<tr class="text-center">
+								<td class="" style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt" >Discount</td>
+								<td class="text-end arabic" style="border-right:1pt solid grey;text-align:right;padding:3pt">مجموع الخصم</td>
+								<td style="border-right:1pt solid grey;text-align:right;padding:3pt" class="text-end"><span t-esc="discount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+							<tr>
+								<td class="" style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">Total Taxable Amount (Excluding VAT)</td>
+								<td class="text-end arabic" style="border-right:1pt solid grey;text-align:right;padding:3pt">إجمالي المبلغ الخاضع للضريبة (غير شامل ضريبة القيمة المضافة)</td>
+								<td style="border-right:1pt solid grey;text-align:right;padding:3pt" class="text-end"><span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+							<tr>
+								<td class="" style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">Total VAT</td>
+								<td class="text-end arabic" style="border-right:1pt solid grey;text-align:right;padding:3pt">إجمالي ضريبة القيمة المضافة</td>
+								<td style="border-right:1pt solid grey;text-align:right;padding:3pt" class="text-end"><span t-esc="tax_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+							<tr>
+								<td class="" style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">Total Amount Due</td>
+								<td class="text-end arabic" style="border-right:1pt solid grey;text-align:right;padding:3pt">إجمالي المبلغ المستحق</td>
+								<td style="border-right:1pt solid grey;text-align:right;padding:3pt" class="text-end"><span t-esc="doc.amount_residual" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+						</thead>
+					</table>
+					<table style="border:1pt solid grey;width:100%;color:black;margin-top:0px; color:black;" class="table table-bordered table-sm">
+						<thead>
+							<tr>
+								<td width="30%" style="font-weight: bold;background-color:#DCDCDC;">AMOUNT INVOICED</td>
+								<td class="text-right arabic" width="70%" style="padding-right:12px;" ><span t-esc="doc.amount_word(doc.amount_total)"/></td>
+							</tr>
+						</thead>
+					</table>
+					<h6><span style="font-weight:bold;">Note:</span>Payment against all cash invoices will be valid only if customer have cash receipt voucher proof of payment. otherwise it will be considered as a credit invoice.</h6>
+					<div class="col-9" style="color:black; margin-top:20pt;">
+		                	<div class="row">
+								<div class="col-9" style=" font-weight:bold;">Received By:</div>
+	    						<div class="col-9" style="font-weight:bold;">Prepared‬‬ ‫‪By: </div>
+	    					</div>
+	    					<br>
+	    					</br>
+	    					<br>
+	    					</br>
+	    					<div class="row">
+								<div class="col-9" style=" font-weight:bold;">Signature:__________________</div>
+	    						<div class="col-9" style="font-weight:bold;">Signature:__________________</div>
+	    					</div>
+	    					<div class="row">
+								<div class="col-9" style=" font-weight:bold;">Stamp:</div>
+	    						<div class="col-9" style="font-weight:bold;">Stamp:</div>
+	    					</div>
+	    				</div>
+					</div>
+				</div>
+			</t>
+		</t>
+	</template>
+	
+	<template id="report_tax_invoice">
+	    <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="saudi_einvoice_knk.report_tax_invoice_document"/>
+	        </t>
+	    </t>
+	</template>
+</odoo>
