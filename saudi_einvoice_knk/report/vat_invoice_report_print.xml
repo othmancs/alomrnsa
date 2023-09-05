@@ -205,28 +205,17 @@
 						<thead>
 							<tr>
 								<td width="30%" style="font-weight: bold;background-color:#DCDCDC;">AMOUNT INVOICED</td>
-								<td class="text-right arabic" width="70%" style="padding-right:12px;" ><span t-esc="doc.amount_word(doc.amount_total)"/></td>
+								<td class="text-right arabic" width="70%" style="padding-right:12px;" ><span t-esc="doc.with_context(lang='ar_AA').amount_to_word"/></td>
 							</tr>
 						</thead>
 					</table>
-					<h6><span style="font-weight:bold;">Note:</span>Payment against all cash invoices will be valid only if customer have cash receipt voucher proof of payment. otherwise it will be considered as a credit invoice.</h6>
+					<h6><span style="font-weight:bold;">Note:</span>ملاحظة: لن يكون الدفع مقابل جميع الفواتير النقدية صالحًا إلا إذا كان لدى العميل قسيمة إيصال نقدي تثبت الدفع. وإلا فسيتم اعتبارها بمثابة فاتورة ائتمان.</h6>
 					<div class="col-9" style="color:black; margin-top:20pt;">
 		                	<div class="row">
 								<div class="col-9" style=" font-weight:bold;">Received By:</div>
 	    						<div class="col-9" style="font-weight:bold;">Prepared‬‬ ‫‪By: </div>
 	    					</div>
-	    					<br>
-	    					</br>
-	    					<br>
-	    					</br>
-	    					<div class="row">
-								<div class="col-9" style=" font-weight:bold;">Signature:__________________</div>
-	    						<div class="col-9" style="font-weight:bold;">Signature:__________________</div>
-	    					</div>
-	    					<div class="row">
-								<div class="col-9" style=" font-weight:bold;">Stamp:</div>
-	    						<div class="col-9" style="font-weight:bold;">Stamp:</div>
-	    					</div>
+	    				
 	    				</div>
 					</div>
 				</div>
