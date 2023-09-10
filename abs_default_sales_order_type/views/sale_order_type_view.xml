@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <!-- sale type tree view-->
+ <record id="view_sale_type_tree" model="ir.ui.view">
+        <field name="name">sale.type.tree</field>
+        <field name="model">sale.type</field>
+        <field name="arch" type="xml">
+            <tree string ="Sale Order Type">
+                <field name="sale_order_type"></field> 
+	    </tree>
+        </field>
+    </record>
+
+   <!-- sale type form view-->
+   <record id="view_sale_type_form" model="ir.ui.view">
+        <field name="name">sale.type.form</field>
+        <field name="model">sale.type</field>
+        <field name="arch" type="xml">
+   	    <form string="Sale Order Type">
+		<sheet>
+                <group>
+
+		   <group>
+                      <field name="sale_order_type"></field> 
+		   </group>
+		   <group>
+                      <field name="payment_term_id"></field> 
+		   </group>
+		   <group string="Shipping Information">
+                      <field name="warehouse_id"></field> 
+                      <field name="incoterm"></field> 
+                      <field name="picking_policy"></field> 
+		   </group>
+		   <group string="Sales Information">
+                      <field name="user_id"></field> 
+                      <field name="tag_ids" widget="many2many_tags"></field> 
+                      <field name="team_id"></field> 
+                      <field name="client_order_ref"></field>
+		   </group>
+		   <group string="Reporting" name="technical">
+                      <field name="origin"/>
+                      <field name="campaign_id"/>
+                      <field name="medium_id"/>
+                      <field name="source_id"/>
+                      <field name="opportunity_id"/>
+		   </group>
+
+                </group>
+		</sheet>
+            </form>
+        </field>
+    </record> 
+
+   <!-- sale type action view-->
+   <record id="open_sale_type_tree" model="ir.actions.act_window">
+        <field name="name">Sale order types</field>
+        <field name="res_model">sale.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_sale_type_tree"/>	
+    </record> 
+
+   <!-- sale type menu view-->  
+    <menuitem
+        id="menu_sale_order_type"
+        name="Sale Order Type"
+        parent="sale.menu_sale_config"
+	action="open_sale_type_tree"/>
+
+</odoo>
