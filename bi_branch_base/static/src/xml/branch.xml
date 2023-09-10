@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="web.SwitchBranchMenu" owl="1">
+        <Dropdown class="'o_switch_branch_menu d-none d-md-block'" position="'bottom-end'">
+            <t t-set-slot="toggler">
+                <i class="fa fa-building d-lg-none" />
+                <span class="oe_topbar_name d-none d-lg-block" t-esc="currentBranch.name" />
+            </t>
+            <t t-foreach="Object.values(branchService.branches).sort((c1, c2) => c1.sequence - c2.sequence)" t-as="Branch" t-key="Branch.id">
+                <t t-call="web.SwitchBranchItem">
+                    <t t-set="Branch" t-value="Branch" />
+                </t>
+            </t>
+        </Dropdown>
+    </t>
+
+
+    <t t-name="web.SwitchBranchItem" owl="1">
+        <DropdownItem class="'p-0 bg-white'">
+            <t t-set="isBranchSelected" t-value="selectedBranches.includes(Branch.id)" />
+            <t t-set="isCurrent" t-value="Branch.id === branchService.currentBranch.id" />
+            <div class="d-flex" data-menu="Branch" t-att-data-Branch-id="Branch.id">
+                <div role="menuitemcheckbox" t-att-aria-checked="isBranchSelected" t-att-aria-label="Branch.name" t-att-title="(isBranchSelected ? 'Hide ' : 'Show ') + Branch.name + ' content.'" tabindex="0" class="border-end toggle_branch" t-attf-class="{{isCurrent ? 'border-primary' : ''}}" t-on-click.stop="() => this.toggleBranch(Branch.id)">
+
+                    <span class="btn btn-light border-0 p-2">
+                        <i class="fa fa-fw py-2" t-att-class="isBranchSelected ? 'fa-check-square text-primary' : 'fa-square-o'" />
+                    </span>
+                </div>
+
+                <div role="button" t-att-aria-pressed="isCurrent" t-att-aria-label="'Switch to ' + Branch.name " t-att-title="'Switch to ' + Branch.name " tabindex="0" class="d-flex flex-grow-1 align-items-center py-0 log_into ps-2" t-att-class="isCurrent ? 'alert-primary ms-1 me-2' : 'btn btn-light fw-normal border-0'" t-on-click="() => this.logIntoBranch(Branch.id)">
+
+                    <span class='branch_label pe-3' t-att-class="isCurrent ? 'text-900 fw-bold' : 'ms-1'">
+                        <t t-esc="Branch.name" />
+                    </span>
+                </div>
+            </div>
+        </DropdownItem>
+    </t>
+
+</templates>

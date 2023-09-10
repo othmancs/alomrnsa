@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Users Inherit Form View to Modify it -->
+        <record id="view_users_form_inherit_branch" model="ir.ui.view">
+            <field name="name">view.users.form.inherit.branch</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook/page[2]/group[1]" position="before">
+                    <!-- Add your fields or attributes here -->
+                    <group name="branch">
+                        <field name="branch_ids" widget="many2many_tags" />
+                    </group>
+                    <group>
+                        <field name="branch_id" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_user_preference_form_extended" model="ir.ui.view">
+            <field name="name">res.user.preference.form.extended</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="branch_id" options="{'no_create': True}" context="{'branch_id':branch_id}" groups="bi_branch_base.group_branch_user_manager" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
