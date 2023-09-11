@@ -31,7 +31,8 @@ class ProductTemplate(models.Model):
             img.save(temp, format="PNG")
             qr_code_image = base64.b64encode(temp.getvalue())
             rec.qr_code_img = qr_code_image
-   @api.model
+
+    @api.model
     def _name_search(self, name, args=None, operator='like', limit=100):
         domain = args or []
         if name:
