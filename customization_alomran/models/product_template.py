@@ -47,4 +47,4 @@ class ProductTemplate(models.Model):
             pattern = re.compile('^{}'.format(re.escape(default_code)), re.IGNORECASE)
             filtered_ids = [record.id for record in self.search(domain, limit=limit) if pattern.match(record.default_code)]
             domain = [('id', 'in', filtered_ids)]
-        return super(ProductTemplate, self)._name_search(name, args=domain, operator=operator, limit=limit)
+        return super(ProductTemplate, self)._name_search(default_code, args=domain, operator=operator, limit=limit)
