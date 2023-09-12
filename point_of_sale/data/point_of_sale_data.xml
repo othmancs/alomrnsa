@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+<!--     <data>
         <function model="stock.warehouse" name="_create_missing_pos_picking_types"/>
     </data>
-
+ -->
     <data noupdate="1">
         <!-- After closing the PoS, open the dashboard menu -->
         <record id="action_client_pos_menu" model="ir.actions.client">
