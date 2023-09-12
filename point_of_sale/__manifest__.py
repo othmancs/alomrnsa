@@ -32,7 +32,7 @@
         'views/pos_bill_view.xml',
         'views/pos_session_view.xml',
         'views/point_of_sale_sequence.xml',
-        'data/point_of_sale_data.xml',
+        # 'data/point_of_sale_data.xml',
         'views/pos_order_report_view.xml',
         'views/account_statement_view.xml',
         'views/digest_views.xml',
