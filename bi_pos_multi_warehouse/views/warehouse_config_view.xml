@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="custom_bi_pos_discount_form_view_inherit">
+        <field name="name">res.config.setting.form.extended.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div id="pos_pricing_section" position="after">
+                <h2>Warehouse</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="pos_stock"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span>
+                                <label for="pos_stock"/>
+                            </span>
+                            <div class="text-muted">
+                                check this to display stock in pos screen
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{
+						'invisible': [('pos_stock' ,'=', False)]
+						}">
+                        <div class="o_setting_right_pane">
+                            <span>
+                                <label for="warehouse_ids"/>
+                                <div class="text-muted">
+                                    Available Warehouse In Pos
+                                </div>
+                                <field name="warehouse_ids" widget="many2many_tags" attrs="{'required': [('pos_stock', '!=', False)]}"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{
+						'invisible': [('pos_stock' ,'=', False)]
+						}">
+                        <div class="o_setting_right_pane">
+                            <span>
+                                <label for="stock_qty"/>
+                                <field name="stock_qty" attrs="{'required': [('pos_stock', '!=', False)]}"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{
+						'invisible': [('pos_stock' ,'=', False)]
+						}">
+                        <div class="o_setting_left_pane">
+                            <field name="Ready_state"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span>
+                                <label for="Ready_state"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{
+						'invisible': [('pos_stock' ,'=', False)]
+						}">
+                        <div class="o_setting_left_pane">
+                            <field name="Negative_selling"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span>
+                                <label for="Negative_selling"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="inherit_view_pos_order_related_pickings" model="ir.ui.view">
+        <field name="name">inherit.view.pos.order.related.pickings</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Pickings">
+                    <field name="picking_ids" string='Picking Ref.'>
+                        <tree>
+                            <field name="name" string='Picking Ref.'/>
+                            <field name="location_dest_id"/>
+                            <field name="partner_id"/>
+                            <field name="scheduled_date"/>
+                            <field name="origin"/>
+                            <field name="state"/>
+                            <field name="pos_id" invisible='1'/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="/form/sheet/notebook//field[@name='lines']/tree//field[@name='discount']" position="before">
+                   <field name="stock_location_name"/>
+           </xpath>
+        </field>
+    </record>
+
+</odoo>
