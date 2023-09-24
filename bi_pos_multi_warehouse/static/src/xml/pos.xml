@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="warehouse_management" inherit_id="point_of_sale.template" xml:space="preserve">
+    <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-content')]" position="before">
+            <t t-if="env.pos.config.pos_stock">
+                <t t-if="props.product.type == 'product'">
+                    <t t-if="env.pos.config.stock_qty == 'qty_available'">
+                        <t t-if="props.product.qty_available > 0">
+                            <span class="qty-label" id="stockqty"  >
+                                <t t-esc="props.product.qty_available"/>
+                            </span>
+                        </t>
+                        <t t-else="">
+                            <span class="qty-label out-of-stock-qty" id="stockqty">
+                                <t t-esc="props.product.qty_available"/>
+                            </span>
+                        </t>
+                    </t>
+
+                    <t t-if="env.pos.config.stock_qty == 'virtual_available'">
+                        <t t-if="props.product.virtual_available > 0">
+                            <span class=" qty-label" id="availqty">
+                                <t t-esc="props.product.virtual_available"/>
+                            </span>
+                        </t>
+                        <t t-else="">
+                            <span class="qty-label out-of-stock-qty" id="availqty">
+                                <t t-esc="props.product.virtual_available"/>
+                            </span>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </t>
+    <t t-inherit="point_of_sale.OrderLinesReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-if='isSimple(line)']/WrappedProductNameLines" position="after">
+            <div>
+                <t t-if="line.is_location_warehouse">
+                            <b><t t-esc="line.is_location_warehouse"/></b>
+                        </t>
+            </div>
+
+        </xpath>
+        <xpath expr="//t[@t-else='']/WrappedProductNameLines" position="after">
+            <div>
+                <t t-if="line.is_location_warehouse">
+                            <b><t t-esc="line.is_location_warehouse"/></b>
+                        </t>
+            </div>
+
+        </xpath>
+    </t>
+    <t t-name="PosOutOfStock" owl="1">
+		<div role="dialog" class="modal-dialog">
+			<Draggable>
+				<div class="popup popup-error" style="min-width: 50%;">
+					<header class="title drag-handle">
+						<t t-esc="props.title || 'Error' " />
+					</header>
+					<main class="body" style="font-family: 'Lato-Reg';">
+						<p><t t-esc="props.warning || '' "/></p>
+						<t t-if="props.loc_list">
+							<span>Following is list of locations with Quantities:</span>
+							<table style="min-width: 80%;margin-top: 10px;">
+								<tr t-foreach="props.loc_list || []" t-key="props.loc_list" t-as="loc">
+									<td><t t-esc="loc[0]"/></td>
+									<td><t t-esc="loc[1]"/></td>
+								</tr>
+							</table>
+						</t>
+					</main>
+					<footer class="footer">
+						<div class="button cancel" t-on-click="cancel">
+							<t t-esc="props.cancelText" />
+						</div>
+						<div class="button ok" t-on-click="Ok">
+							<t t-esc="props.confirmText" />
+						</div>
+					</footer>
+				</div>
+			</Draggable>
+		</div>
+	</t>
+    <t t-name="PosStockWarehouse" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <Draggable>
+                <div class="popup">
+                <header class="title drag-handle">Warehouses
+                        <br/>
+                    </header>
+                    <main class="body">
+                        <table class="client-list">
+                            <thead>
+                                <th name="Name_warehouse" >Warehouse</th>
+                                <th name="qty_available">Available</th>
+                                <th name="qty" >Qty</th>
+                            </thead>
+                            <tbody>
+                                <br></br>
+                                <tr t-foreach="props.rec || []" t-as="qty"  t-key="qty['id']">
+                                <td name="Name_warehouse">
+                                    <t t-esc="qty['location']"/>
+                                </td>
+                                <td name="qty_available">
+                                    <t t-esc="qty['quantity']"/>
+                                </td>
+                                <td class="entered_item_qty">
+                                <input id ="entered_item_qty" t-att-loc="qty['location']" t-att-loc-id="qty['location']" t-att-locdbid="qty['id']" t-att-qty-id="qty['quantity']"  type="text" class="stock_id"  name="stock_qty"
+                                        style="height: 10px; width: 40%;" />
+                                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </main>
+                    <footer class="footer">
+                        <div class="button cancel" t-on-click="cancel">
+                            <t t-esc="props.cancelText" />
+                        </div>
+                        <div class="button apply" t-on-click="apply">
+                            <t t-esc="props.confirmText" />
+                        </div>
+                    </footer>
+                </div>
+            </Draggable>
+        </div>
+    </t>
+    <t t-extend="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <ul class="info-list">
+                    <li class="info orderline-stock_location_name">
+                         Location :<t t-esc="props.line.get_stock_location_name()" />
+                    </li>
+            </ul>
+        </xpath>
+    </t>
+</templates>
