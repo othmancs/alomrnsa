@@ -1,0 +1,5 @@
+<odoo>
+    <record id="group_date_cash_move" model="res.groups">
+        <field name="name">Date Cash Move</field>
+    </record>
+</odoo>
