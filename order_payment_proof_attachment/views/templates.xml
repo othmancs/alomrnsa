@@ -1,0 +1,112 @@
+<!-- Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+<odoo>
+  <data>
+    <template id="confirmation_inherited" inherit_id="website_sale.confirmation">
+      <xpath expr="//div[hasclass('oe_cart')]/div[hasclass('card','mt-3')]" position="before">
+        <div class="txn_receipt_block">
+          <div class="form_container">
+            <h4 class="mt-2">Upload Transaction Reciept</h4>
+            <div class="mt-3 mt-2 alert alert-warning">Note:-
+            Only image,pdf ( jpg, png etc..) formats are allowed.
+            Image file should not be more than 1MB.
+          </div>
+
+            <form method="post" action="/upload/payment/proof" class="mt-3" enctype="multipart/form-data">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+              <input type="hidden" name="sale_order_id" t-att-value="order.id" />
+
+              <div class="d-flex flex-wrap flex-column">
+                <span class="mb-2" t-if="order.payment_proof">
+                  <t t-esc="order.payment_proof_name" />
+                </span>
+                <div class="file_label_group">
+                  <label class="file_label" for="txn_proof">
+                    <input type="file" id="txn_proof" name="txn_proof" accept="image/*,application/pdf" />
+                  </label>
+                  <t t-if="order.payment_proof">
+                    <button type="submit" t-attf-class="btn btn-primary toggle_upload pull-right" data-dismiss="modal" disabled="True">
+                      <i class="fa fa-arrow-up" />
+                      Upload
+                    </button>
+                  </t>
+                  <t t-else="">
+                    <button type="submit" t-attf-class="btn btn-primary toggle_upload pull-right" data-dismiss="modal" >
+                      <i class="fa fa-arrow-up" />
+                      Upload
+                    </button>
+                  </t>
+                </div>
+              </div>
+              <div t-if="order.payment_proof" class="mt-2 alert alert-success">
+              Your file has been uploaded successfully.</div>
+            </form>
+          </div>
+        </div>
+      </xpath>
+    </template>
+
+    <template id="sale_order_portal_content_inherited" inherit_id="sale.sale_order_portal_content">
+      <xpath expr="//div[@id='introduction']/h2" position="inside">
+        <t t-if="not sale_order.payment_proof">
+          <button type="button" t-attf-id="manual_payment{{sale_order.id}}" class="btn btn-primary pull-right modal_btn" data-bs-toggle="modal"  t-att-data-bs-target="'#showbankdetails_%s' % sale_order.id">
+            Click here to add order payment receipt
+          </button>
+        </t>
+        <t t-else="">
+          <a href="#" t-if="sale_order.payment_proof" class="d-inline-block btn" id="preview_reciept">
+            <span>Preview Reciept</span>
+          </a>
+          <div t-if="sale_order.payment_proof" class="d-none image_url" t-field="sale_order.payment_proof" t-options="{'widget': 'image', 'class': 'w-100' }" />
+        </t>
+      </xpath>
+      <xpath expr="//div[@id='introduction']/h2" position="after">
+        <div t-if="sale_order.payment_proof" class="mt-2 alert alert-success"><span class="fa fa-check-circle-o mr-2"></span>Thank you for uploading reciept. Please wait untill the transaction receipt is verified.</div>
+      </xpath>
+
+      <xpath expr="//div[@id='introduction']" position="inside">
+        <t t-set="payment_tx_id" t-value="sale_order.get_portal_last_transaction()" />
+        <!-- <t t-set="acq" t-value="payment_tx_id.acquirer_id" /> -->
+        <div class="modal fade" t-att-id="'showbankdetails_%s' % sale_order.id" tabindex="-1" role="dialog" aria-labelledby="detailslabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body"> 
+                <h4 class="mt-2">Upload Transaction Reciept</h4>
+                <div class="mt-3 mt-2 alert alert-warning">Note:-
+                                    Only image,pdf (jpg, png) formats are allowed.
+                                    Image file should not be more than 1MB.</div>
+                <form method="post" action="/upload/payment/proof?to_confirm=True" class="mt-3" enctype="multipart/form-data">
+                  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                  <input type="hidden" name="sale_order_id" t-att-value="sale_order.id" />
+                  <div class="mb-2" t-if="sale_order.payment_proof">
+                    <t t-esc="sale_order.payment_proof_name" />
+                  </div>
+                  <div class="d-flex flex-wrap" id="uploadproof_btn">
+                    <label for="txn_proof">
+                      <input type="file" id="txn_proof" name="txn_proof" accept="image/*,application/pdf" />
+                    </label>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <t t-if="sale_order.payment_proof">
+                  <button type="button" t-attf-class="btn btn-primary toggle_upload submit_proof" data-dismiss="modal">
+                    <i class="fa fa-arrow-up" />
+                    Upload
+                  </button>
+                </t>
+                <t t-else="">
+                  <button type="button" t-attf-class="btn btn-primary toggle_upload submit_proof" data-dismiss="modal" disabled="True">
+                    <i class="fa fa-arrow-up" />
+                    Upload
+                  </button>
+                </t>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:0;padding:5px;">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </xpath>
+    </template>
+  </data>
+</odoo>

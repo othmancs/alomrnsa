@@ -1,0 +1,17 @@
+<!-- Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE URL <https://store.webkul.com/license.html/> for full copyright and licensing details. -->
+<odoo>
+  <data>
+    <record id="sale_order_view_form_inherited" model="ir.ui.view">
+      <field name="name">sale.order.form..payment.proof</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <field name="payment_term_id" position="after">
+          <field name="payment_proof" filename="payment_proof_name"/>
+          <field name="payment_proof_name" invisible="1"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</odoo>
