@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Pickup at store -->
+    <t t-name="website_pick_at_store.Container">
+        <div id="store_container">
+            <t t-call="website_pick_at_store.SelectCtrl"/>
+            <t t-call="website_pick_at_store.StoreList">
+                <t t-set="stores" t-as="[]"/>
+            </t>
+        </div>
+    </t>
+    <t t-name="website_pick_at_store.SelectCtrl">
+        <div id="store-list-btn" class="btn-click">
+            <button type="button">
+                <t t-esc="store.name or ''"/>
+            </button>
+            <input type="hidden" name="warehouse_id" t-att-value="store.id or ''"/>
+        </div>
+    </t>
+    <t t-name="website_pick_at_store.StoreList">
+        <div id="store-list-pickup" class="select">
+            <div class="row">
+                <div class="box-search">
+                    <input placeholder="Store Name / Address"/>
+                    <i class="fa fa-search"></i>
+                </div>
+            </div>
+            <t t-call="website_pick_at_store.StoreListDetail"/>
+        </div>
+    </t>
+    <t t-name="website_pick_at_store.StoreListDetail">
+        <div class="row store-list">
+            <t t-if="stores">
+                <t t-foreach="stores" t-as="store">
+                    <div t-attf-class="card col-md-#{12 / productFrame}">
+                        <button t-attf-class="store-item #{!store_index and 'active' or ''}"
+                            t-att-data-warehouse-id="store.id"
+                            t-att-data-warehouse-name="store.name">
+                            <span t-esc="store.name"/>
+                            <address t-if="store.address">
+                                <div>
+                                    <span class='fa fa-map-marker'></span>
+                                    <span class='pl-1' t-out="store.address"/>
+                                </div>
+                            </address>
+                        </button>
+                    </div>
+                </t>
+            </t>
+        </div>
+    </t>
+</templates>

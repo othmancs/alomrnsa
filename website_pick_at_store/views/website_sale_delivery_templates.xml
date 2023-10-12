@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="payment_delivery" name="Delivery Costs Inherit" inherit_id="website_sale_delivery.payment_delivery">
+        <!-- <xpath expr="//div[@id='delivery_carrier']" position="attributes">
+            <attribute name="t-if">deliveries and not deliveries[0].personal_store_pickup</attribute>
+        </xpath>delivery_nb == 1 and not deliveries[0].personal_store_pickup -->
+        <xpath expr="//div[@id='delivery_method']" position="attributes">
+            <attribute name="t-if">delivery_nb &gt; 1 or (delivery_nb == 1 and deliveries[0].personal_store_pickup)</attribute>
+        </xpath>
+    </template>
+    <template id="payment_delivery_shipping_method" name="Delivery Shipping method Inherit" inherit_id="website_sale_delivery.payment_delivery_shipping_method">
+        <xpath expr="//div[@id='delivery_carrier']" position="attributes">
+            <attribute name="t-if">delivery_nb == 1 and not deliveries[0].personal_store_pickup</attribute>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,119 @@
+
+#delivery_method
+{
+    overflow: initial;
+    #store_container
+    {
+        .btn-click {
+            button{
+                display: block;
+                padding: 10px;
+                border: none;
+                width: 100%;
+                background: #fff;
+                text-align: left;
+                color: #288ad6;
+                position: relative;
+                cursor: pointer;
+                border-bottom: solid 1px #d9d9d9;
+                top: 5px;
+            }
+            button:after {
+                content: "";
+                border-top: 6px solid #288ad6;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+            button.active:after {
+                transform: rotate(180deg);
+            }
+            button:before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                background: #fff;
+                border-top: 1px solid #d1d1d1;
+                border-left: 1px solid #d1d1d1;
+                transform: rotate(45deg);
+                display: block;
+                position: absolute;
+                bottom: -9px;
+                left: 30px;
+                z-index: 2;
+                display: none;
+            }
+            button.active:before {
+                display: block;
+            }
+        }
+        .select {
+            display:none;
+            position: absolute;
+            // top: 137px;
+            // left: 0;
+            // right: 0;
+            margin-top: 10px;
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            background: #fff;
+            z-index: 1;
+            //padding: 0 10px;
+            width: -webkit-max-content;
+            width: -moz-max-content;
+            width: 60%; //max-content;
+            .card {
+                border: none;
+                border-bottom: 1px solid #d9d9d9;
+                //cursor: pointer;
+                padding: 0px;
+                button {
+                    padding: 5px;
+                    border: none;
+                    background-color: #fff;
+                }
+                button:hover{
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+            }
+            
+            .card:last-child {
+                border-bottom: none;
+            }
+            .row {
+                margin: 5px;
+                .box-search {
+                    width: 100%;
+                    margin: 10px 10px 0px;
+                    input{
+                        border: solid 1px #d9d9d9;
+                        padding: 5px;
+                        width: 100%;
+                        cursor: text;
+                    }
+                    i{
+                        position: absolute;
+                        top: 24px;
+                        right: 25px;
+                    }
+                }
+            }
+            address div{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .store-list {
+                position: relative;
+                overflow-y: scroll;
+                max-height: 300px;
+            }
+
+        }
+        .select.active {
+            display: block;
+        }
+    }
+}

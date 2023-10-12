@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_warehouse_delivery" model="ir.ui.view">
+        <field name="name">stock.warehouse.form</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <field name="code" position='after'>
+                <field name="is_store"/>
+            </field>
+        </field>
+    </record>
+    <record id="stock_warehouse_view_search_inherit" model="ir.ui.view">
+        <field name="name">stock.warehouse.search.inherit</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.stock_warehouse_view_search"/>
+        <field name="arch" type="xml">
+            <filter name="inactive" position='after'>
+                <separator/>
+                <filter string="Store" name="store" domain="[('is_store', '=', True)]"/>
+            </filter>
+        </field>
+    </record>
+</odoo>
