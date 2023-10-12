@@ -46,7 +46,7 @@
       </xpath>
     </template>
 
-<!--     <template id="sale_order_portal_content_inherited" inherit_id="sale.sale_order_portal_content">
+    <template id="sale_order_portal_content_inherited" inherit_id="sale.sale_order_portal_content">
       <xpath expr="//div[@id='introduction']/h2" position="inside">
         <t t-if="not sale_order.payment_proof">
           <button type="button" t-attf-id="manual_payment{{sale_order.id}}" class="btn btn-primary pull-right modal_btn" data-bs-toggle="modal"  t-att-data-bs-target="'#showbankdetails_%s' % sale_order.id">
@@ -107,6 +107,6 @@
           </div>
         </div>
       </xpath>
-    </template> -->
+    </template>
   </data>
 </odoo>
