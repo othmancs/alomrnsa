@@ -6,10 +6,8 @@
       <xpath expr="//div[hasclass('oe_cart')]/div[hasclass('card','mt-3')]" position="before">
         <div class="txn_receipt_block">
           <div class="form_container">
-            <h4 class="mt-2">Upload Transaction Reciept</h4>
-            <div class="mt-3 mt-2 alert alert-warning">Note:-
-            Only image,pdf ( jpg, png etc..) formats are allowed.
-            Image file should not be more than 1MB.
+            <h4 class="mt-2">تحميل إيصال التحويل</h4>
+            <div class="mt-3 mt-2 alert alert-warning">ملحوظة:- يُسمح فقط بتنسيقات الصور وpdf (jpg وpng وما إلى ذلك). يجب ألا يزيد حجم ملف الصورة عن 1 ميجابايت.
           </div>
 
             <form method="post" action="/upload/payment/proof" class="mt-3" enctype="multipart/form-data">
@@ -39,7 +37,7 @@
                 </div>
               </div>
               <div t-if="order.payment_proof" class="mt-2 alert alert-success">
-              Your file has been uploaded successfully.</div>
+             لقد تم تحميل ملفك بنجاح</div>
             </form>
           </div>
         </div>
@@ -50,18 +48,18 @@
 <!--       <xpath expr="//div[@id='introduction']/h2" position="inside">
         <t t-if="not sale_order.payment_proof">
           <button type="button" t-attf-id="manual_payment{{sale_order.id}}" class="btn btn-primary pull-right modal_btn" data-bs-toggle="modal"  t-att-data-bs-target="'#showbankdetails_%s' % sale_order.id">
-            Click here to add order payment receipt
+            انقر هنا لإضافة إيصال دفع الطلب
           </button>
         </t>
         <t t-else="">
           <a href="#" t-if="sale_order.payment_proof" class="d-inline-block btn" id="preview_reciept">
-            <span>Preview Reciept</span>
+            <span>معاينة الاستلام</span>
           </a>
           <div t-if="sale_order.payment_proof" class="d-none image_url" t-field="sale_order.payment_proof" t-options="{'widget': 'image', 'class': 'w-100' }" />
         </t>
       </xpath>
       <xpath expr="//div[@id='introduction']/h2" position="after">
-        <div t-if="sale_order.payment_proof" class="mt-2 alert alert-success"><span class="fa fa-check-circle-o mr-2"></span>Thank you for uploading reciept. Please wait untill the transaction receipt is verified.</div>
+        <div t-if="sale_order.payment_proof" class="mt-2 alert alert-success"><span class="fa fa-check-circle-o mr-2"></span>أشكركم على تحميل الاستلام. يرجى الانتظار حتى يتم التحقق من استلام المعاملة.</div>
       </xpath> -->
 
       <xpath expr="//div[@id='introduction']" position="inside">
@@ -71,10 +69,10 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-body"> 
-                <h4 class="mt-2">Upload Transaction Reciept</h4>
-                <div class="mt-3 mt-2 alert alert-warning">Note:-
-                                    Only image,pdf (jpg, png) formats are allowed.
-                                    Image file should not be more than 1MB.</div>
+                <h4 class="mt-2">تحميل إيصال التحويل</h4>
+                <div class="mt-3 mt-2 alert alert-warning">ملحوظة:-
+                                    يُسمح فقط بتنسيقات الصور وpdf (jpg وpng).
+                                    يجب ألا يزيد حجم ملف الصورة عن 1 ميجابايت.</div>
                 <form method="post" action="/upload/payment/proof?to_confirm=True" class="mt-3" enctype="multipart/form-data">
                   <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                   <input type="hidden" name="sale_order_id" t-att-value="sale_order.id" />
@@ -92,16 +90,16 @@
                 <t t-if="sale_order.payment_proof">
                   <button type="button" t-attf-class="btn btn-primary toggle_upload submit_proof" data-dismiss="modal">
                     <i class="fa fa-arrow-up" />
-                    Upload
+                    تحميل
                   </button>
                 </t>
                 <t t-else="">
                   <button type="button" t-attf-class="btn btn-primary toggle_upload submit_proof" data-dismiss="modal" disabled="True">
                     <i class="fa fa-arrow-up" />
-                    Upload
+                    تحميل
                   </button>
                 </t>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:0;padding:5px;">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius:0;padding:5px;">إغلاق</button>
               </div>
             </div>
           </div>
