@@ -41,10 +41,3 @@ class ProductTemplate(models.Model):
     #         print('filtered_ids',filtered_ids)
     #         domain = [('id', 'in', filtered_ids)]
     #     return super(ProductTemplate, self)._name_search( name=name,args=domain, operator=operator, limit=limit)
-    @api.constrains('product_id')
-        def check_exist_product(self):
-            err_products = []
-            for line in self:
-                line_ids = self.search[('product_id', '=', line.product_id.ud),('id', '!=', line.id)])
-                if line_ids:
-                raise exceptions.Warning(_('Product Exist'))
