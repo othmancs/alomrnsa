@@ -41,3 +41,11 @@ class ProductTemplate(models.Model):
     #         print('filtered_ids',filtered_ids)
     #         domain = [('id', 'in', filtered_ids)]
     #     return super(ProductTemplate, self)._name_search( name=name,args=domain, operator=operator, limit=limit)
+    @api.model
+    def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
+        product_ids = []
+        if self._context.get("partner_id") and not self._context.get('product_id'):
+            partner_id = self.env["res.partner"].browse(self._context["partner_id"])
+            product_ids = self.with_context(product_id=True).search([('partner_id', '=', partner_id)])
+                return set(product_ids)
+        return super()._search(args, offset, limit, order, count, access_rights_uid)
