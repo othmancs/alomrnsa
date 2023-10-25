@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="modern_report_deliveryslip_document">
+      <t t-call="web.html_container">
+        <t t-call="web.external_layout">
+          <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)" />
+
+
+          <div class="page natifont" >
+            <h2>
+              <span t-if="o.picking_type_id.sequence_code=='OUT'">Delivery Order :</span>
+              <span t-if="o.picking_type_id.sequence_code=='IN'">Receipt Order :</span>
+              <span t-field="o.name" class="natifont16"/>
+            </h2>
+            <div class="row natifont" >
+
+              <div class="col-4">
+
+                <div class="row mt32 mb32 natifont" >
+
+                  <div   class="ml-2" t-if="o.origin">
+                    <span class="fa fa-bookmark"/>
+                    <sp>&#032;</sp>
+                    <strong >Order:</strong>
+                    <p class="m-0 borderB">OrderEn</p>
+                    <p  class="m-0 naticenter" t-field="o.origin"/>
+                  </div>
+
+
+                  <div t-if="o.state" class="ml-2" name="div_sched_date">
+                    <span class="fa fa-calendar"/>
+                    <sp>&#032;</sp>
+                    <strong>Shipping Date:</strong>
+                    <p class="m-0 borderB">Shipping DateEn</p>
+                    <t t-if="o.state == 'done'">
+                      <p class="m-0 naticenter" t-field="o.date_done" t-options='{"widget": "date"}'/>
+                    </t>
+                    <t t-if="o.state != 'done'">
+                      <p class="m-0 naticenter" t-field="o.scheduled_date" t-options='{"widget": "date"}'/>
+                    </t>
+
+
+
+                  </div>
+
+                </div>
+              </div>
+              <t  t-if="'partner_latitude' in o.partner_id.fields_get()">
+                <t t-if="o.partner_id.partner_latitude">
+                  <div class="col-2">
+                    <t t-set="QRmap" t-value="'http://maps.google.com/maps?q=%s,%s' % (o.partner_id.partner_latitude,o.partner_id.partner_longitude)"/>
+                    <img class="m-0"  t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR',QRmap, 120, 120)"/>
+                  </div>
+                </t>
+              </t>
+              <div class="col-6 natifont" >
+                <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
+                <t t-if="partner" name="partner_header">
+                  <div  dir="ltr" t-esc="partner"
+                  t-options='{"widget": "contact", "fields": ["address", "name", "mobile","email"], "no_marker": False}'/>
+                </t>
+              </div>
+
+            </div>
+
+            <table class="table table-sm natifont" t-if="o.state!='done'" name="stock_move_table">
+              <thead>
+                <tr  class="natiinvoice_header">
+                  <th class="natiinvoice_header" >
+                    <span class="fa fa-list-ol natiinvoice_header"/>
+                    <sp>&#032;</sp>
+                  </th>
+                  <th class="text-left">
+                    <span>Product</span>
+                    <p>ProductEn</p>
+                  </th>
+                  <th class="text-left">
+                    <span>Quantity</span>
+                    <p>QuantityEn</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="invoice_tbody">
+                <t t-set="counter" t-value="0"/>
+                <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>
+
+
+                <t t-foreach="lines" t-as="move">
+                  <tr>
+                    <t  t-set="counter" t-value="counter + 1"/>
+                    <td  >
+                      <span t-esc="counter"/>
+                    </td>
+                    <td>
+                      <span t-field="move.product_id"/>
+
+                      <t t-if="o.picking_type_code == 'outgoing'">
+                        <span t-field="move.product_id.sudo().description_pickingout"/>
+                      </t>
+                      <t t-if="o.picking_type_code == 'incoming'">
+                        <span t-field="move.product_id.sudo().description_pickingin"/>
+                      </t>
+                    </td>
+                    <td>
+                      <span t-field="move.product_uom_qty"/>
+                      <span t-field="move.product_uom"/>
+                    </td>
+                  </tr>
+                </t>
+
+              </tbody>
+            </table>
+            <table class="table table-sm mt48" t-if="o.move_line_ids and o.state=='done'" name="stock_move_line_table">
+              <t t-set="has_serial_number" t-value="o.move_line_ids.mapped('lot_id')" />
+              <thead>
+                <tr class="natiinvoice_header">
+                  <th class="natiinvoice_header" >
+                    <span class="fa fa-list-ol natiinvoice_header"/>
+                    <sp>&#032;</sp>
+                  </th>
+                  <th>
+                    <span>Product</span>
+                    <p>ProductEn</p>
+                  </th>
+                  <th name="lot_serial" t-if="has_serial_number" groups="stock.group_lot_on_delivery_slip">
+                    <span> Lot/Serial Number</span>
+                    <p> Lot/Serial NumberEn</p>
+                  </th>
+                  <th>
+                    <span>Quantity</span>
+                    <p>QuantityEn</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="counter" t-value="0"/>
+
+                <tr t-foreach="o.move_line_ids" t-as="move_line">
+                  <t  t-set="counter" t-value="counter + 1"/>
+                  <td  >
+                    <span t-esc="counter"/>
+                  </td>
+                  <td>
+                    <span t-field="move_line.product_id"/>
+                    <t t-if="o.picking_type_code == 'outgoing'">
+                      <span t-field="move_line.product_id.sudo().description_pickingout"/>
+                    </t>
+                    <t t-if="o.picking_type_code == 'incoming'">
+                      <span t-field="move_line.product_id.sudo().description_pickingin"/>
+                    </t>
+                  </td>
+                  <td t-if="has_serial_number and move_line.lot_name" groups="stock.group_lot_on_delivery_slip">
+                    <span t-field="move_line.lot_name"/>
+                  </td>
+                  <td t-elif="has_serial_number" groups="stock.group_lot_on_delivery_slip">
+                    <span t-field="move_line.lot_id.name"/>
+                  </td>
+                  <td class="text-center">
+                    <span t-field="move_line.qty_done"/>
+                    <span t-field="move_line.product_uom_id"/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p>
+              <t t-if="o.backorder_ids and o.backorder_ids.filtered(lambda x: x.state not in ('done', 'cancel'))">
+                All items couldn't be shipped, the remaining ones will be shipped as soon as they become available.
+              </t>
+            </p>
+
+          </div>
+        </t>
+      </t>
+
+    </template>
+
+  </data>
+</odoo>
