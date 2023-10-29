@@ -64,8 +64,8 @@ class AccountMove(models.Model):
         return ''
 
     def amount_word(self, amount):
-        language = self.partner_id.lang or 'ar_001'
-        language_id = self.env['res.lang'].search([('code', '=', 'ar_001')])
+        language = self.partner_id.lang or 'ar_AA'
+        language_id = self.env['res.lang'].search([('code', '=', 'ar_AA')])
         if language_id:
             language = language_id.iso_code
         amount_str = str('{:2f}'.format(amount))
