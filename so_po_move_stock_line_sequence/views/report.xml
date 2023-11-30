@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <template
+            id="report_saleorder_document_sequence"
+            inherit_id="sale.report_saleorder_document"
+        >
+            <xpath
+                expr="//table[hasclass('table', 'table-sm')]/thead/tr/th[1]"
+                position="before">
+                <th>
+                    <strong>Sequence</strong>
+                </th>
+            </xpath>
+            <xpath
+                expr="//table[hasclass('table', 'table-sm')]/tbody/t/tr[1]/t[1]/td[1]"
+                position="before">
+                <td name="td_sequence2">
+                    <span t-field="line.sequence2" />
+                </td>
+            </xpath>
+        </template>
+
+        <template id="purchase_order_report" inherit_id="purchase.report_purchaseorder_document">
+            <xpath expr="//table[hasclass('table')]//tr//th[@name='th_description']"
+                   position="before">
+                <th>
+                    <strong>Sequence</strong>
+                </th>
+            </xpath>
+            <xpath expr="//tbody//tr//td"
+                   position="before">
+                <td name="td_sequence2">
+                    <span t-esc="line.sequence2"/>
+                </td>
+            </xpath>
+        </template>
+
+        <template id="purchase_quotation_report" inherit_id="purchase.report_purchasequotation_document">
+            <xpath expr="//table[hasclass('table')]//tr//th[@name='th_description']"
+                   position="before">
+                <th>
+                    <strong>Sequence</strong>
+                </th>
+            </xpath>
+            <xpath expr="//tbody//tr//td"
+                   position="before">
+                <td name="td_sequence2">
+                    <span t-esc="order_line.sequence2"/>
+                </td>
+            </xpath>
+        </template>
+        <template id="stock_picking_report" inherit_id="stock.report_picking">
+            <xpath expr="//table[hasclass('table')]//tr//th[@name='th_product']"
+                   position="before">
+                <th name="th_sequence2" class="text-start">Sequence</th>
+            </xpath>
+            <xpath expr="//tbody//tr//td"
+                   position="before">
+                <td name="td_sequence2">
+                    <span t-esc="1 + ml_index"/>
+                </td>
+            </xpath>
+        </template>
+        <template id="sequence_report_account_invoice" inherit_id="account.report_invoice_document">
+          <xpath expr="/t/t/div[2]/div[1]/table/thead/tr/th[1]" position="before">
+            <th>
+              <strong>Sequence</strong>
+            </th>
+          </xpath>
+          <xpath expr="/t/t/div[2]/div[1]/table/tbody/t[3]/tr/t[1]/td[1]" position="before">
+            <td>
+              <span t-field="line.sequence2"/>
+            </td>
+          </xpath>
+        </template>
+</odoo>
