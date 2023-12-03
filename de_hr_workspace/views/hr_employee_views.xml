@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="employee_workspace_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <form string="Employee" >
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <div class="oe_title">
+                            <h1 class="d-flex flex-row">
+                                <span class="me-2">
+                                    <widget name="hr_employee_chat" invisible="not context.get('chat_icon')"/>
+                                </span>
+                                <field name="name" placeholder="Employee's Name"
+                                    required="True" style="font-size: min(4vw, 2.6rem);"/>
+                            </h1>
+                            <h2>
+                                <field name="job_title" placeholder="Job Position" />
+                            </h2>
+                        </div>
+                    
+                        <group>
+                            <group>
+                                <field name="mobile_phone" widget="phone"/>
+                                <field name="work_phone" widget="phone"/>
+                                <field name="work_email" widget="email"/>
+                                <field name="company_id" attrs="{'invisible': [('company_id', '=', False)]}"/>
+                                <field name="company_country_id" invisible="1"/>
+                                <field name="company_country_code" invisible="1"/>
+                            </group>
+                            <group>
+                                 <field name="department_id" domain="[]"/>
+                                <field name="job_id" domain="[]"/>
+                                <field name="parent_id" domain="[]"/>
+                                <field name="coach_id" domain="[]"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="public" string="Work Information">
+                                <div id="o_work_employee_container" class="d-lg-flex"> <!-- These two div are used to position org_chart -->
+                                    <div id="o_work_employee_main" class="flex-grow-1">
+                                        <group string="Location">
+                                            <field name="address_id" domain="[]"/>
+                                            <field name="address_home_id" domain="[]"/>
+
+<field name="work_location_id" domain="[('address_id', '=', address_id)]"/>
+                                        </group>
+                                        <group name="departure" string="Departure" attrs="{'invisible': [('active', '=', True)]}">
+                                            <field name="departure_reason_id" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                                            <field name="departure_description"/>
+                                            <field name="departure_date"/>
+                                        </group>
+                                       
+                                    </div>
+                                </div>
+                            </page>
+                            <page name="personal_information" string="Private Information" groups="hr.group_hr_user">
+                                <group>
+                                    <group string="Private Contact">
+                                        <field name="address_home_id"
+                                            context="{
+                                                'show_address': 1,
+                                                'default_type': 'private',
+                                                'form_view_ref': 'base.res_partner_view_form_private'}"
+                                            options='{"always_reload": True, "highlight_first_line": True}'/>
+                                        <field name="private_email" string="Email"/>
+                                        <field name="phone" string="Phone" readonly="True"/>
+<field name="bank_account_id" domain="[('partner_id', '=', address_home_id)]"/>
+                                        <field name="lang" string="Language"/>
+                                        <label for="km_home_work"/>
+                                        <div class="o_row" name="div_km_home_work">
+                                            <field name="km_home_work" class="o_hr_narrow_field"/>
+                                            <span>Km</span>
+                                        </div>
+                                    </group>
+                                    <group string="Family Status">
+                                        <field name="marital"/>
+                                        <field name="spouse_complete_name" attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"/>
+                                        <field name="spouse_birthdate" attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"/>
+                                        <field name="children"/>
+                                        <separator name="emergency" string="Emergency"/>
+                                        <field name="emergency_contact"/>
+                                        <field name="emergency_phone" class="o_force_ltr"/>
+                                    </group>
+                                    <group string="Education">
+                                        <field name="certificate"/>
+                                        <field name="study_field"/>
+                                        <field name="study_school"/>
+                                        <field name="visa_no"/>
+                                        <field name="permit_no"/>
+                                        <field name="visa_expire"/>
+                                        <field name="work_permit_expiration_date"/>
+                                    </group>
+                                    <group string="Citizenship">
+                                        <field name="country_id" options='{"no_open": True, "no_create": True}'/>
+                                        <field name="identification_id"/>
+                                        <field name="passport_id"/>
+                                        <field name="gender"/>
+                                        <field name="birthday"/>
+                                        <field name="place_of_birth"/>
+                                        <field name="country_of_birth"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="hr_settings" string="HR Settings" groups="hr.group_hr_user">
+                                <group>
+                                    <group string='Status' name="active_group">
+                                        <field name="employee_type"/>
+                                        <field name="user_id" string="Related User" domain="[('share', '=', False)]" context="{'allow_create_employee': False, 'default_create_employee': False}"/>
+                                    </group>
+                                    <group string="Attendance/Point of Sale" name="identification_group">
+                                        <field name="pin" string="PIN Code"/>
+                                        <label for="barcode"/>
+                                        <div class="o_row">
+                                            <field name="barcode"/>
+                                        </div>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+
+    <!-- Define the action to open the form view -->
+    <record id="action_my_profile" model="ir.actions.act_window">
+        <field name="name">My Profile</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_mode">tree,kanban,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('hr.view_employee_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('employee_workspace_form_view')})]"/>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="context">{'create': False,'edit':False}</field>
+    </record>
+
+
+    <menuitem id="menu_my_ws_employee_profile" name="My Profile" parent="menu_my_ws_employee" action="action_my_profile" sequence="10"/>
+   
+</odoo>

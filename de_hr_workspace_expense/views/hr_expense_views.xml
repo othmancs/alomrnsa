@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     
+    <record id="action_my_expense_sheets" model="ir.actions.act_window">
+            <field name="name">My Reports</field>
+            <field name="res_model">hr.expense.sheet</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,activity</field>
+            <field name="search_view_id" ref="hr_expense.hr_expense_sheet_view_search"/>
+            <field name="domain">[('state', '!=', 'cancel'),('employee_id.user_id', '=', uid)]</field>
+            <field name="context">{'search_default_my_reports': 1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No expense report found. Let's create one!
+              </p><p>
+                Once you have created your expense, submit it to your manager who will validate it.
+              </p>
+            </field>
+        </record>
+
+    <record id="action_my_expenses" model="ir.actions.act_window">
+            <field name="name">My Expenses</field>
+            <field name="res_model">hr.expense</field>
+            <field name="view_mode">tree,kanban,form,graph,pivot,activity</field>
+            <field name="search_view_id" ref="hr_expense.hr_expense_view_search"/>
+            <field name="context">{'search_default_my_expenses': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_expense_receipt">
+                    <h2 class="d-none d-md-block">
+                        Drag and drop files to create expenses
+                    </h2>
+                    <p>
+                        Or
+                    </p>
+                    <h2 class="d-none d-md-block">
+                        Did you try the mobile app?
+                    </h2>
+                </p>
+                <p>Snap pictures of your receipts and let Odoo<br/> automatically create expenses for you.</p>
+                <p class="d-none d-md-block">
+                    <a href="https://apps.apple.com/be/app/odoo/id1272543640" target="_blank" class="o_expense_mobile_app">
+                        <img alt="Apple App Store" class="img img-fluid h-100 o_expense_apple_store" src="/hr_expense/static/img/app_store.png"/>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.odoo.mobile" target="_blank" class="o_expense_mobile_app">
+                        <img alt="Google Play Store" class="img img-fluid h-100 o_expense_google_store" src="/hr_expense/static/img/play_store.png"/>
+                    </a>
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_my_expenses" name="My Expenses" parent="de_hr_workspace.menu_my_workspace" sequence="50"/>
+
+    <menuitem id="menu_my_expense_reports" name="Expense Reports" parent="menu_my_expenses" action="action_my_expense_sheets" sequence="10"/>
+    
+    <menuitem id="menu_my_expenses_expenses" name="Expenses" parent="menu_my_expenses" action="action_my_expenses" sequence="20" />
+
+
+   
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_de_hr_workspace_expense_de_hr_workspace_expense,de_hr_workspace_expense.de_hr_workspace_expense,model_de_hr_workspace_expense_de_hr_workspace_expense,base.group_user,1,1,1,1
