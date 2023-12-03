@@ -48,7 +48,7 @@ class WizardWizards(models.Model):
 
         for rec in order:
             custom_value['employee_id'] = rec.employee_id.name
-            custom_value['job'] = rec.employee_id.job_title
+            custom_value['wage'] = rec.employee_id.wage
             custom_value['bank_name'] = rec.employee_id.bank_account_id.bank_id.name
             custom_value['ifsc'] = rec.employee_id.bank_account_id.bank_id.bic
             custom_value['account_no'] = rec.employee_id.bank_account_id.acc_number
