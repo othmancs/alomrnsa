@@ -21,7 +21,7 @@
 ########################################################################################
 {
     'name': 'Enterprise  HRMS Employee Info',
-    'version': '16.0.1.0.0',
+    'version': '16.0.1.0.1',
     'summary': """Adding Advanced Fields In Employee Master""",
     'description': 'This module helps you to add more information in employee records.',
     'category': 'Generic Modules/Human Resources',
