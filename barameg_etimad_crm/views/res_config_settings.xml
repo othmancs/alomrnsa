@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.crm</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="5"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Monafasat" string="Monafasat" data-key="monafasat" groups="sales_team.group_sale_manager">
+                    <h2>Monafasat</h2>
+                    <div class="row mt16 o_settings_container">
+                        <group>
+                            <group>
+                                <field name="client_id" string="Client ID"/>
+                            </group>
+                            <group>
+                                <field name="client_key" string="Client Key"/>
+                            </group>
+                        </group>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

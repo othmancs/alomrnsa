@@ -1,0 +1,129 @@
+<odoo>
+  <data>
+        <record id="barameg_etimad_crm.tender_graph_view" model="ir.ui.view">
+        <field name="model">monafasat.tender</field>
+        <field name="arch" type="xml">
+            <graph string="Sales by Product Category" type="bar">
+                <field name="name" type="row"/>
+                <field name="total_fees" type="measure"/>
+            </graph>
+        </field>
+    </record>
+      <record id="etimad_crm_lead_view_form" model="ir.ui.view">
+        <field name="name">etimad_crm_lead_view_form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="etimad" string="Etimad">
+                    <group>
+                        <group>
+                            <field name="etimad_tender_id"/>
+                            <button type="object" name="visit_source_link" class="btn-primary" string="Visit"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="barameg_etimad_crm.tender_pivot_view" model="ir.ui.view">
+        <field name="model">monafasat.tender</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="related_type" type="row"/>
+            </pivot>
+        </field>
+    </record>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="barameg_etimad_crm.tender_list_view">
+      <field name="name">Monafasat Tenders List View</field>
+      <field name="model">monafasat.tender</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="agency" invisible="1"/>
+          <field name="opportunity" invisible="1"/>
+          <field name="related_opportunity"/>
+          <field name="related_agency"/>
+          <field name="type" invisible="1"/>
+          <field name="related_type"/>
+          <field name="activity" invisible="1"/>
+          <field name="related_activity"/>
+          <field name="create_date"/>
+          <field name="submission_date"/>
+          <field name="last_enqueries_date"/>
+          <field name="last_offer_presentation_date"/>
+          <field name="total_fees" invisible="1"/>
+          <field name="related_total_fees"/>
+          <button type="object" name="create_opportunity" class="btn-primary" string="Create Opportunity"/>
+          <button type="object" name="visit_source_link" class="btn-primary" string="Visit"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="barameg_etimad_crm.agency_list_view">
+      <field name="name">Monafasat Agencies List View</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="barameg_etimad_crm.agency_action_window">
+      <field name="name">Agencies</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[
+        ['monafasat_id', '!=', False]
+      ]</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="barameg_etimad_crm.activity_action_window">
+      <field name="name">Activities</field>
+      <field name="res_model">monafasat.activity</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="barameg_etimad_crm.tender_action_window">
+      <field name="name">Tenders</field>
+      <field name="res_model">monafasat.tender</field>
+      <field name="view_mode">tree,pivot</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="barameg_etimad_crm.action_server">
+      <field name="name">barameg_saudi_monafasat server</field>
+      <field name="model_id" ref="model_barameg_saudi_monafasat_barameg_saudi_monafasat"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Monafasat" id="barameg_etimad_crm.monafasat"/>
+
+    <menuitem sequence="1" name="Tenders" id="barameg_etimad_crm.tenders" action="barameg_etimad_crm.tender_action_window" parent="barameg_etimad_crm.monafasat"/>
+    <menuitem sequence="2" name="Master Data" id="barameg_etimad_crm.configuration" parent="barameg_etimad_crm.monafasat"/>
+
+    <menuitem name="Agencies" id="barameg_etimad_crm.agencies" action="barameg_etimad_crm.agency_action_window" parent="barameg_etimad_crm.configuration"/>
+    <menuitem name="Activities" id="barameg_etimad_crm.activities" action="barameg_etimad_crm.activity_action_window" parent="barameg_etimad_crm.configuration"/>
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="barameg_etimad_crm.menu_1_list" parent="barameg_etimad_crm.menu_1"
+              action="barameg_etimad_crm.action_window"/>
+    <menuitem name="Server to list" id="barameg_saudi_monafasat" parent="barameg_etimad_crm.menu_2"
+              action="barameg_etimad_crm.action_server"/>
+-->
+  </data>
+</odoo>

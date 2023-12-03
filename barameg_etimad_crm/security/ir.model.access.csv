@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+manage_monafasat_activity,manage_monafasat_activity,model_monafasat_activity,base.group_user,1,1,1,1
+manage_monafasat_tender,manage_monafasat_tender,model_monafasat_tender,base.group_user,1,1,1,1
+manage_monafasat_type,manage_monafasat_type,model_monafasat_type,base.group_user,1,1,1,1
