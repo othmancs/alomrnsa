@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem name="Self Service"
+            id="main_menu_self_service_probc"
+            sequence="26"
+            web_icon="hr_employee_self_service,static/description/icon.png"
+/>
+<!--        <menuitem name="Calendar" id="top_menu_employee_self_calendar" parent="employee_self_service_odoo.main_menu_self_service" sequence="1" action="calendar.action_calendar_event"/>-->
+        <menuitem name="Employee Details"
+            id="top_menu_employee_self_service_probc"
+            parent="hr_employee_self_service.main_menu_self_service_probc"
+            action="hr_employee_self_service.open_view_employee_own_info_probc"
+            sequence="2"/>
+        
+       <!--  <menuitem id="sub_menu_employee_self_service"
+             action="employee_self_service_odoo.open_view_employee_own_info"
+             name="Employee Details" 
+             sequence="1"
+             parent="employee_self_service_odoo.top_menu_employee_self_service"/> -->
+             
+        <menuitem name="Timesheet"
+            id="top_menu_employee_timesheet_probc"
+            parent="hr_employee_self_service.main_menu_self_service_probc"
+            action="hr_timesheet.act_hr_timesheet_line"
+            sequence="5"/>
+
+        <menuitem name="Attendences"
+            id="sub_menu_employee_attendence_probc"
+            parent="hr_employee_self_service.main_menu_self_service_probc"
+            action="hr_attendance.hr_attendance_action_my_attendances"
+            sequence="6"/>
+
+
+     <!--   <menuitem id="sub_menu_employee_timesheet"
+             action="hr_timesheet.act_hr_timesheet_line"
+             name="My Timesheets" 
+             sequence="1"
+             parent="employee_self_service_odoo.top_menu_employee_timesheet"/> -->
+         <!--<menuitem id="sub_menu_employee_timesheet_activities"
+             action="hr_timesheet.act_hr_timesheet_line"
+             name="Detailed Activities" 
+             sequence="2"
+             parent="employee_self_service_odoo.top_menu_employee_timesheet"/> -->
+        <!--  <menuitem id="sub_menu_employee_attendence"
+             action="hr_attendance.hr_attendance_action"
+             name="Attendences" 
+             sequence="3"
+             parent="employee_self_service_odoo.top_menu_employee_timesheet"/> -->
+         
+         <!-- <menuitem name="Leave Request" id="top_menu_employee_leave_request" parent="employee_self_service_odoo.main_menu_self_service" action="hr_holidays.hr_leave_action_my" sequence="7"/> -->
+
+         <menuitem name="Time Off Request"
+            id="top_menu_employee_time_off_request_probc"
+            parent="hr_employee_self_service.main_menu_self_service_probc"
+            action="hr_holidays.hr_leave_action_my"
+            sequence="7"/>
+        
+        <!-- <menuitem id="sub_menu_employee_leave_request"
+             action="hr_holidays.hr_leave_action_my"
+             name="Leaves Requests" 
+             sequence="1"
+             parent="employee_self_service_odoo.top_menu_employee_leave_request"/> -->
+             
+         <!-- <menuitem name="My Expenses"
+            id="top_menu_employee_expense_probc"
+            action="hr_expense.hr_expense_actions_my_unsubmitted"
+            parent="hr_employee_self_service.main_menu_self_service_probc"
+            sequence="8"/> -->
+<!--         
+         <menuitem id="sub_menu_employee_expense"
+             action="hr_expense.hr_expense_actions_my_unsubmitted"
+             name="Expenses to Submit" 
+             sequence="1"
+             parent="hr_employee_self_service.top_menu_employee_expense"/>
+          -->
+         <menuitem name="Maintenance Requests"
+            id="top_menu_employee_maintenance_probc"
+            action="maintenance.hr_equipment_request_action"
+            parent="hr_employee_self_service.main_menu_self_service_probc"
+            sequence="11"/>
+        
+        <!-- <menuitem id="sub_menu_employee_maintenance"
+             action="maintenance.hr_equipment_request_action"
+             name="Maintenance Requests" 
+             sequence="1"
+             parent="hr_employee_self_service.top_menu_employee_maintenance"/> -->
+             
+         
+         <!-- <menuitem name="Employee Payslips" 
+        id="top_menu_employee_pay_slip" 
+        action="hr_payroll.action_view_hr_payslip_form" 
+        parent="hr_employee_self_service.main_menu_self_service" sequence="9"/> -->
+        
+         <!-- <menuitem id="sub_menu_employee_pay_sleep"
+             action="hr_payroll.action_view_hr_payslip_form"
+             name="Employee Payslips" 
+             sequence="1"
+             parent="hr_employee_self_service.top_menu_employee_pay_slip"/> -->
+         
+         <menuitem id="sub_menu_employee_contracts_probc"
+             action="hr_contract.action_hr_contract"
+             name="Contracts" 
+             sequence="10"
+             parent="hr_employee_self_service.main_menu_self_service_probc"/>
+             
+         <menuitem name="Projects"
+            id="top_menu_employee_project_probc"
+            action="project.open_view_project_all"
+            parent="hr_employee_self_service.main_menu_self_service_probc"
+            sequence="3"
+            groups="project.group_project_manager,project.group_project_user"/>
+         
+         <!-- <menuitem id="sub_menu_employee_project"
+             action="project.open_view_project_all"
+             name="Projects" 
+             sequence="11"
+             parent="hr_employee_self_service.top_menu_employee_project"/> -->
+
+
+         <menuitem id="sub_menu_employee_task_probc"
+             action="project.action_view_task"
+             name="Tasks" 
+             sequence="4"
+             parent="hr_employee_self_service.main_menu_self_service_probc"
+             groups="project.group_project_manager,project.group_project_user"/>
+         
+    </data>
+</odoo>

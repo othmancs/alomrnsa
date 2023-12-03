@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_self_employee_user,hr self employee user,hr.model_hr_employee,base.group_user,1,1,0,0
+access_hr_self_employee_user_resource,hr self employee resource,resource.model_resource_resource,base.group_user,1,1,0,0
+
