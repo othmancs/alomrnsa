@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payslip_report_out_user,payslip.report.out,model_payslip_report_out,base.group_user,1,1,1,0
+access_wizard_reports_user,wizard.reports,model_wizard_reports,base.group_user,1,1,1,1
