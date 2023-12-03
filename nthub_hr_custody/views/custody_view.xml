@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seq_hr_custody_seq" model="ir.sequence">
+            <field name="name">Custody Code</field>
+            <field name="code">hr.custody.seq</field>
+            <field name="prefix">CR</field>
+            <field eval="4" name="padding"/>
+            <field eval="False" name="company_id"/>
+        </record>
+
+
+        <record id="hr_custody_form_view" model="ir.ui.view">
+            <field name="name">hr.custody.form</field>
+            <field name="model">hr.custody</field>
+            <field name="arch" type="xml">
+                <form string="Custody">
+                    <header>
+                        <button string="Create Stock TR" type="object" name="create_stock_requisition"
+                                groups="nthub_hr_custody.group_custody_internal_transfer_user"
+                                class="oe_highlight" attrs="{'invisible': [('state','not in',('draft'))]}"/>
+
+                        <button string="Approve" groups="nthub_hr_custody.group_custody_internal_transfer_manager"
+                                type="object" name="approve"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state','not in',('to_approve'))]}"/>
+
+                        <button string="Refuse" groups="nthub_hr_custody.group_custody_internal_transfer_manager"
+                                type="action"
+                                name="%(nthub_hr_custody.wizard_reason_act)d"
+                                attrs="{'invisible': ['|',('state','not in',('to_approve')),
+                                ('renew_return_date','=',True)]}" class="btn-primary"
+                                context="{'reject_id':id,'model_id':'hr.custody'}"/>
+
+                        <button string="Set to Draft" type="object" name="set_to_draft"
+                                attrs="{'invisible': [('state','not in',('rejected'))]}"/>
+                        <button string="Approve Return" type="object" name="set_to_return"
+                                groups="nthub_hr_custody.group_custody_internal_transfer_manager"
+                                class="oe_highlight" attrs="{'invisible': [('state','not in',('to_approve_return'))]}"
+                                />
+                        <button string="Return" type="object" name="create_return_stock_requisition"
+                                groups="nthub_hr_custody.group_custody_internal_transfer_manager"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state','not in',('approved','in_progress'))]}"/>
+                        <button string="Send Mail" type="object" name="send_mail"
+                                groups="nthub_hr_custody.group_custody_internal_transfer_manager"
+                                attrs="{'invisible': ['|',('mail_send', '=', False),('state','not in',('approved'))]}"/>
+                        <button string="Send Mail" type="object" class="oe_highlight" name="send_mail"
+                                groups="nthub_hr_custody.group_custody_internal_transfer_manager"
+                                attrs="{'invisible': ['|',('mail_send', '=', True),('state','not in',('approved'))]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,to_approve,approved,returned"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" icon="fa-truck"
+                                    name="show_picking" string="Internal Picking"
+                                    attrs="{'invisible': [('state', 'not in', ['approved','to_approve','to_approve_return','in_progress','returned'])]}"
+
+                            />
+                        </div>
+                        <h1>
+                            <field name="name" readonly="1" nolabel="1"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="read_only" invisible="1"/>
+                                <field name="employee" attrs="{'readonly': [('read_only','=',False)]}"/>
+                                <field name="flag" invisible="1"/>
+
+                                <field name="renew_return_date" invisible="1"/>
+                                <field name="renew_reject" invisible="1"/>
+                                <field name="mail_send" invisible="1"/>
+                                <field name="purpose"/>
+                                <field name="project_id" readonly="0" force_save="1"/>
+                                <field name="source"/>
+                            </group>
+                            <group>
+                                <field name="date_request"/>
+                                <field name="return_date" attrs="{'invisible': [('renew_return_date','=',True),
+                                ('renew_date','not in',[None,False]),('renew_reject','=',False)]}"/>
+                                <field name="renew_date" attrs="{'invisible': ['|',('renew_return_date','=',False),
+                                ('state','!=','to_approve')]}"/>
+                                <field name="rejected_reason" attrs="{'invisible': [('state','not in',('rejected'))]}"/>
+                                <field name="renew_rejected_reason"
+                                       attrs="{'invisible': ['|',('renew_reject','=',False),('state','not in',('approved'))]}"/>
+                                <field name="company_id" options="{'no_create': True}"
+                                       groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes"/>
+                        </group>
+                        <notebook>
+                            <page string="Properties">
+                                <field name="property_ids" widget="one2many" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="product_id"
+                                               domain="[('is_property', '=', True)]"/>
+                                        <field name="source" required="1"/>
+                                        <field name="name"/>
+                                        <field name="qty_onhand" force_save="1"/>
+                                        <field name="quantity"/>
+                                        <field name="delivered" readonly="0"/>
+                                        <field name="returned" readonly="0"/>
+                                        <field name="uom"/>
+                                        <field name="property_selection" optional="hide"/>
+                                        <field name="serial_no" optional="hide" readonly="1" force_save="1"/>
+                                        <field name="lot_id" optional="hide"/>
+                                        <field name="image" optional="show"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Settings">
+                                <group>
+                                    <field name="approve_user"/>
+                                    <field name="rejected_reason"/>
+                                    <field name="it_picking_type_id"/>
+                                    <field name="it_location_id"/>
+                                    <field name="stock_picking_type_id"/>
+                                    <field name="stock_location_id"/>
+                                    <field name="destination_location_id"/>
+                                </group>
+                            </page>
+                            <page string="History">
+                                <field name="custody_history_ids" widget="one2many" nolabel="1">
+                                    <tree editable="bottom" decoration-success="state == 'active'"
+                                          decoration-warning="state == 'done'">
+                                        <field name="employee_id"/>
+                                        <field name="date"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="activity_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_custody_tree_view" model="ir.ui.view">
+            <field name="name">hr.custody.tree</field>
+            <field name="model">hr.custody</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="name"/>
+                    <field name="employee"/>
+                    <field name="purpose"/>
+                    <field name="source"/>
+                    <field name="date_request"/>
+                    <field name="return_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_property_tree_view" model="ir.ui.view">
+            <field name="name">hr_property_tree_view.tree</field>
+            <field name="model">custody.property</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="hr_custody_search_view" model="ir.ui.view">
+            <field name="name">hr.custody.search</field>
+            <field name="model">hr.custody</field>
+            <field name="arch" type="xml">
+                <search string="Custody">
+                    <field name="name"/>
+                    <field name="employee"/>
+                    <field name="purpose"/>
+                    <field name="source"/>
+                    <field name="date_request"/>
+                    <field name="return_date"/>
+                    <field name="state"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Status" name="status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Employee" name="employee" domain="[]" context="{'group_by':'employee'}"/>
+                        <filter string="Source" name="source" domain="[]" context="{'group_by':'source'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_custody" model="ir.actions.act_window">
+            <field name="name">Custody</field>
+            <field name="res_model">hr.custody</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="hr_custody_search_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_hr_property" model="ir.actions.act_window">
+            <field name="name">Property</field>
+            <field name="res_model">custody.property</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="view_id" ref="hr_property_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="hr_custody_main_menu"
+                  web_icon="nthub_hr_custody,static/description/icon.png"
+                  name="Custody" sequence="20"
+                  groups="nthub_hr_custody.group_custody_internal_transfer_user,nthub_hr_custody.group_custody_internal_transfer_manager"/>
+
+        <menuitem id="hr_custody_menu" parent="hr_custody_main_menu"
+                  name="Custody Management" sequence="20"
+                  groups="nthub_hr_custody.group_custody_internal_transfer_user,nthub_hr_custody.group_custody_internal_transfer_manager"/>
+
+        <menuitem action="action_hr_custody" id="hr_custody_menu" parent="nthub_hr_custody.hr_custody_main_menu"
+                  name="Custody Request" sequence="1"
+                  groups="nthub_hr_custody.group_custody_internal_transfer_user,nthub_hr_custody.group_custody_internal_transfer_manager"/>
+
+        <menuitem action="action_hr_property" id="hr_property_menu" parent="nthub_hr_custody.hr_custody_main_menu"
+                  name="Property" sequence="5"
+                  groups="nthub_hr_custody.group_custody_internal_transfer_user,nthub_hr_custody.group_custody_internal_transfer_manager"/>
+
+        <menuitem action="product.product_normal_action_sell" id="product_product_menu"
+                  parent="nthub_hr_custody.hr_custody_main_menu"
+                  name="Product" sequence="10"
+                  groups="nthub_hr_custody.group_custody_internal_transfer_user,nthub_hr_custody.group_custody_internal_transfer_manager"/>
+
+    </data>
+</odoo>

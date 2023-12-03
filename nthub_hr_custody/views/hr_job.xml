@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="hr_job_view_form_inherited" model="ir.ui.view">
+            <field name="name">hr.job.view.form.inherited</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Custody Properties">
+                        <group>
+                            <field name="property_ids" widget="one2many" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="quantity"/>
+                                    <field name="uom"/>
+                                    <field name="property_selection" optional="hide"/>
+                                    <field name="serial_no" optional="hide"/>
+                                    <field name="image" optional="show"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

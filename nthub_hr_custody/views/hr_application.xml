@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_applicant_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr_applicant_view_form_inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header" position="inside">
+                    <button string="Show Custody" name="action_show_custody" type="object"
+                            class="oe_highlight o_create_employee"
+                            attrs="{'invisible': ['|',('emp_id', '=', False),('active', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

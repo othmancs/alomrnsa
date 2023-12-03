@@ -1,0 +1,10 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_hr_custody_hr","hr.custody.hr","model_hr_custody","nthub_hr_custody.group_custody_internal_transfer_manager",1,1,1,1
+"access_hr_custody_hr_manager","hr.custody.user","model_hr_custody","nthub_hr_custody.group_custody_internal_transfer_user",1,1,1,1
+"access_hr_custody_hr_employee","hr.custody.employee","model_hr_custody","nthub_hr_custody.group_custody_internal_transfer_user",1,1,1,0
+"access_hr_custody_hr1","hr.custody.hr1","model_custody_property","nthub_hr_custody.group_custody_internal_transfer_manager",1,1,1,1
+"access_hr_custody_hr_manager1","hr.custody.user1","model_custody_property","nthub_hr_custody.group_custody_internal_transfer_user",1,1,1,1
+"access_hr_custody_hr_employee1","hr.custody.employee1","model_custody_property","nthub_hr_custody.group_custody_internal_transfer_user",1,0,0,0
+"access_hr_custody_reason","hr.custody.reason","model_wizard_reason","nthub_hr_custody.group_custody_internal_transfer_manager",1,1,1,1
+"access_hr_custody_history","hr.custody.history","model_hr_custody_history","nthub_hr_custody.group_custody_internal_transfer_manager",1,1,1,1
+
