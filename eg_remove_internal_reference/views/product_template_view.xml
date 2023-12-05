@@ -1,0 +1,10 @@
+<odoo>
+    <record id="product_template_for_remove_sku" model="ir.ui.view">
+        <field name="name">product.template.for.remove.sku</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_kanban_details']/t[@t-if='record.default_code.value']" position="replace"/>
+        </field>
+    </record>
+</odoo>
