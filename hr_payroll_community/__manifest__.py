@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Odoo16 Payroll',
+    'name': 'Odoo 16 Payroll',
     'category': 'Generic Modules/Human Resources',
-    'version': '16.0.1.0.0',
+    'version': '16.0.1.0.5',
     'author': 'Odoo SA,Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
