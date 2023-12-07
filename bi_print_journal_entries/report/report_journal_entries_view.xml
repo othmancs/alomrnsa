@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+
+		<template id="journal_entry_template_report_view">
+			<t t-call="web.external_layout">
+				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+				<div class="page">
+					<br/>
+					<div class="oe_structure"/>
+					<div>
+						<h2 class="text-center mb32">
+							<strong>Journal Entry</strong>
+						</h2>
+					</div>
+					<br/>
+					<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
+						<tbody>
+							<tr>
+								<td><strong>Journal Entry : </strong></td>
+								<td><p t-field="o.name"/></td>
+								<td><strong>Journal :</strong></td>
+								<td><p t-field="o.journal_id"/></td>
+							</tr>
+							<tr>
+								<td><strong>Date :</strong></td>
+								<td><p t-field="o.date"/></td>
+								<td><strong>Reference :</strong></td>
+								<td><p t-field="o.ref"/></td>
+							</tr>
+						</tbody>
+					</table>
+				<br/>
+
+				<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Partner</th>
+							<th>Account</th>
+							<th>Label</th>
+							<th>Due Date</th>
+							<th>Analytic Account</th>
+							<th>Taxes(%)</th>
+							<th>Debit</th>
+							<th>Credit</th>
+						</tr>
+					</thead>  
+					<tbody class="consumed_tbody">
+						<t t-set="total" t-value="0.0"/>
+						<t t-set="total1" t-value="0.0"/>
+						<t t-foreach="o.line_ids" t-as="line">    
+						<tr>
+							<td>
+								<span t-field="line.partner_id" />
+							</td>
+							<td>
+								<span t-field="line.account_id" />
+							</td>
+							<td>
+								<span t-field="line.name" />
+							</td>
+							<td>
+								<span t-field="line.date_maturity" />
+							</td>
+							<td>
+								<span>
+									<div t-foreach="line.analytic_distribution" t-as="distribution">
+                                       	  <t t-esc="line.env['account.analytic.account'].browse(int(distribution))[0].name"/>: <t t-esc="line.analytic_distribution.get(distribution)"/>
+                                    </div>
+                                </span>
+							</td>
+							<td>
+								<span t-field="line.tax_ids" />
+							</td>
+							<td>
+								<span t-field="line.debit" />
+							</td>
+							<td>
+								<span t-field="line.credit" />
+							</td>
+						</tr>
+						<t t-set="total" t-value="total + line.debit"/>
+						<t t-set="total1" t-value="total1 + line.credit"/>
+						</t>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><strong>Total:</strong></td>
+							<td width="10%"><strong>
+								<span><t t-esc="total"/></span>
+							</strong></td>
+							 <td width="10%"><strong>
+								<span><t t-esc="total1"/></span>
+							</strong></td>
+					  	</tr>
+					</tbody>
+				</table>
+				</div>
+			</t>
+		</template>
+
+		<template id="journal_entry_report_template_id">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="bi_print_journal_entries.journal_entry_template_report_view"  t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+
+	</data>
+</odoo>
