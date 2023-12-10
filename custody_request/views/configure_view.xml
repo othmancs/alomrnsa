@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+
+        <!--<record id="res_config_settings_view_form_main_petty" model="ir.ui.view">-->
+            <!--<field name="name">res.config.settings.view.form.inherit.main.petty</field>-->
+            <!--<field name="model">res.config.settings</field>-->
+            <!--<field name="inherit_id" ref="base.res_config_settings_view_form"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//div[hasclass('settings')]" position="inside">-->
+                    <!--<div class="app_settings_block" data-string="Petty cash"  data-key="custody_request"  string="Petty cash">-->
+                        <!--<h2>Petty cash</h2>-->
+                        <!--<div class="row mt16 o_settings_container">-->
+                            <!--<div >-->
+                                <!--<div >-->
+                                    <!--<group string="Petty cash Account setting">-->
+                                        <!--<field name="petty_account_id"/>-->
+
+                                    <!--</group>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+                    <!--</div>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+        <record id="res_company_view_form_inherit" model="ir.ui.view">
+            <field name="name">res.company.view.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                        <field name="petty_account_id"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <record id="action_main_config_petty" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="base.res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'custody_request'}</field>
+        </record>
+
+        <!--<menuitem id="main_menu_configuration" name="Configuration" sequence="100"-->
+                  <!--parent="custody_request_root"/>-->
+
+        <!--<menuitem id="main_menu_setting" name="Setting" sequence="100"-->
+                  <!--parent="main_menu_configuration" action="action_main_config_petty"/>-->
+
+    </data>
+</odoo>

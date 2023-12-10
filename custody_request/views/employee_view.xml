@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="partner_form_inherit_view">
+        <field name="name">Partner Form Inherit View</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"  ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <notebook>
+                <page string="Petty cash account" groups="account.group_account_manager">
+                    <group string="Petty cash Account" >
+                    <field name="pettycash_account_id" class="oe_inline"/>
+                    </group>
+                </page>
+            </notebook>
+            <!--<xpath expr="//field[@name='lang']" position="after">-->
+                <!--<group string="Internal Type" col="4" colspan="4" >-->
+                    <!--<field name="is_employee"/>-->
+                <!--</group>-->
+            <!--</xpath>-->
+        </field>
+    </record>
+
+    </data>
+</odoo>

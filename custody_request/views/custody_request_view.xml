@@ -1,0 +1,236 @@
+<odoo>
+    <data>
+
+
+        <record id="custody_request_search" model="ir.ui.view">
+            <field name="name">custody.request.search</field>
+            <field name="model">custody.request</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <!--<field name="currency_id"/>-->
+                    <field name="amount"/>
+                    <!--<filter string="Today" name="today" domain="[('custody_date','=',Datetime.now())]"/>-->
+                    <filter string="My Requests" name="my_request" domain="[('user_id', '=', uid)]"/>
+                    <filter name="state" string="Posted" domain="[('state','in',['post'])]"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="custody_request_tree" model="ir.ui.view">
+            <field name="name">custody.request.tree</field>
+            <field name="model">custody.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="custody_date"/>
+                    <!--                    <field name="currency_id"/>-->
+                    <field name="user_name" widget="many2one_avatar_user"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-danger="state == 'to approve'" decoration-success="state == 'done'"/>
+                    <field name="amount" widget="badge" decoration-info="amount &gt; 0" sum="total amount"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="custody_request_form" model="ir.ui.view">
+            <field name="name">custody.request.form</field>
+            <field name="model">custody.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="confirm_dm" string="Submit" type="object"
+                                class="oe_highlight" states="draft" groups="base.group_user"/>
+
+                        <!--                        <button name="confirm_am" string="Confirm" type="object"-->
+                        <!--                                class="oe_highlight" states="dm" groups="custody_request.group_custody_dm"/>-->
+                        <!--                        <button name="reject" string="Reject" type="object"-->
+                        <!--                                states="dm" groups="custody_request.group_custody_dm"/>-->
+
+                        <!--                        <button name="confirm_fm" string="Approve" type="object"-->
+                        <!--                                class="oe_highlight" states="am" groups="custody_request.group_custody_am"/>-->
+                        <button name="reject" string="Set to Draft" type="object"
+                                states="am" groups="custody_request.group_custody_am"/>
+
+                        <button name="confirm_post" string="Posted" type="object"
+                                class="oe_highlight" states="fm" groups="custody_request.group_custody_fm"/>
+                        <button name="cancel_request" string="Set to Draft" type="object" states="done"/>
+
+
+                        <!--                        <button name="cancel_request" string="Cancel" type="object"-->
+                        <!--                                states="post" groups="custody_request.group_custody_fm"/>-->
+
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="action_journal_entry" class="oe_stat_button"
+                                    icon="fa-bars" groups="account.group_account_manager">
+                                <field name="count_journal_entry" widget="statinfo" string="Journal Entry"/>
+                            </button>
+                        </div>
+<!--                        <div class="oe_button_box" name="button_box">-->
+<!--                            <button type="object" name="action_check_view" class="oe_stat_button"-->
+<!--                                    icon="fa-list-alt">-->
+<!--                                <field name="check_count" widget="statinfo" string="Cheque"/>-->
+
+<!--                            </button>-->
+
+<!--                        </div>-->
+                        <!--<button type="object" name="action_reconcile_request" class="oe_stat_button"-->
+                        <!--icon="fa-check-square">-->
+                        <!--<field name="clear_num" widget="statinfo" string="Reconciled"/>-->
+                        <!--</button>-->
+
+                        <group>
+                            <div class="oe_title">
+                                <!--                                <label for="" class="oe_edit_only"/>-->
+                                <h2><field name="name"/></h2>
+                            </div>
+                        </group>
+                        <group string="Details" colspan="2" col="2">
+
+                            <field name="user_name" widget="many2one_avatar_user"/>
+                            <field name="custody_date" />
+                        </group>
+                        <group>
+                            <field name="amount" attrs="{'readonly': [('state','!=','draft')],'required': [('state','=','draft')]}"/>
+                            <field name="attachment" attrs="{'readonly': [('state','!=','draft')],'required': [('state','=','draft')]}"/>
+                            <field name="notes" attrs="{'readonly': [('state','!=','draft')],'required': [('state','=','draft')]}"/>
+                            <field name="num2wo" readonly="1"/>
+                        </group>
+                        <group col="2">
+                            <field name="electronig" invisible="1"/>
+                            <field name="person" attrs="{'invisible': [('electronig','=',False)]}"/>
+                        </group>
+                        <group col="2">
+                            <field name="check_date" invisible="1" attrs="{'invisible': [('electronig','=',False)]}"/>
+                            <field name="cheque_number" invisible="1" attrs="{'invisible': [('electronig','=',False)]}"/>
+                            <field name="company_id" />
+                        </group>
+                        <group col="2">
+                            <field name="user_id" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <group>
+                                    <field name="description"  attrs="{'readonly': [('state','not in',['draft'])]}"/>
+                                </group>
+                            </page>
+
+                            <page string="Accounting Details">
+                                <group col="2" colspan="2">
+                                    <field name="journal_id" options="{'no_create': True}" attrs="{'readonly': [('state','in',['draft','done','cancel'])]}"/>
+                                    <field name="move_id" class="oe_inline" readonly="1" attrs="{'invisible': [('state','not in',['post','cancel'])]}"/>
+                                    <field name="journal_type" invisible="1"/>
+                                    <field name="check_term" invisible="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="sequence_custody_request" model="ir.sequence">
+            <field name="name">custody request sequence</field>
+            <field name="code">custody.request.code</field>
+            <field name="prefix">/%(range_year)s/</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="True" name="use_date_range"/>
+            <field eval="False" name="company_id"/>
+            <field name="padding">4</field>
+        </record>
+
+        <!--kanban View-->
+        <!--        <record model="ir.ui.view" id="petty_cash_kanban_view">-->
+        <!--            <field name="name">Petty Cash Kanban</field>-->
+        <!--            <field name="model">custody.request</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <kanban class="o_res_partner_kanban" create="true">-->
+        <!--                    <field name="name"/>-->
+        <!--                    <field name="user_name" widget="many2one_avatar_user"/>-->
+        <!--                    <field name="custody_date"/>-->
+        <!--                    <field name="amount"/>-->
+        <!--                    <templates>-->
+        <!--                        <t t-name="kanban-box">-->
+        <!--                            <div class="oe_kanban_global_click">-->
+        <!--                                <div class="o_kanban_record_top">-->
+        <!--                                    <div class="o_kanban_record_headings">-->
+        <!--                                        <strong class="o_kanban_record_title">-->
+        <!--                                            <field name="name"/>-->
+        <!--                                        </strong>-->
+        <!--                                        <strong class="o_kanban_record_subtitle"><field name="user_name"/></strong>-->
+        <!--                                        <strong class="o_kanban_record_subtitle"><field name="amount"/></strong>-->
+        <!--                                    </div>-->
+        <!--                                </div>-->
+        <!--                                <strong style="color:blue;"><field name="custody_date"/></strong><br></br>-->
+        <!--                                <strong style="color:green;">State / <field name="state" /></strong>-->
+
+        <!--                            </div>-->
+        <!--                        </t>-->
+        <!--                    </templates>-->
+        <!--                </kanban>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <record id="custody_request_ac" model="ir.actions.act_window">
+            <field name="name">All Petty Cash</field>
+            <field name="res_model">custody.request</field>
+            <!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_my_request': 1}</field>
+        </record>
+
+        <record id="custody_request_dm" model="ir.actions.act_window">
+            <field name="name">Petty Cash Direct Manager</field>
+            <field name="res_model">custody.request</field>
+            <!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'dm')]</field>
+            <field name="context">{'search_default_today': 1}</field>
+
+        </record>
+
+        <record id="custody_request_am" model="ir.actions.act_window">
+            <field name="name">Petty Cash Account Manager</field>
+            <field name="res_model">custody.request</field>
+            <!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'am')]</field>
+        </record>
+
+        <record id="custody_request_fm" model="ir.actions.act_window">
+            <field name="name">Petty Cash Finance Manager</field>
+            <field name="res_model">custody.request</field>
+            <!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'fm')]</field>
+        </record>
+
+        <record id="custody_request_post" model="ir.actions.act_window">
+            <field name="name">Petty Cash Posted </field>
+            <field name="res_model">custody.request</field>
+            <!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state', '=', 'post')]</field>
+            <field name="context">{'search_default_my_request': 1}</field>
+
+        </record>
+
+
+
+
+
+    </data>
+</odoo>

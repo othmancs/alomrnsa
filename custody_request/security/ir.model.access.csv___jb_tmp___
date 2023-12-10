@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custody_request,custody_request,model_custody_request,base.group_user,1,1,1,0
+access_custody_request_dm,custody_request,model_custody_request,custody_request.group_custody_dm,1,1,1,0
+access_custody_request_am,custody_request,model_custody_request,custody_request.group_custody_am,1,1,1,0
+access_custody_request_fm,custody_request,model_custody_request,custody_request.group_custody_fm,1,1,1,0

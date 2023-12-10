@@ -1,0 +1,607 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* custody_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e-20181029\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-03 14:23+0000\n"
+"PO-Revision-Date: 2019-09-03 14:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: custody_request
+#: model:res.groups,name:custody_request.group_custody_dm
+msgid "1-Submission"
+msgstr ""
+
+#. module: custody_request
+#: model:res.groups,name:custody_request.group_custody_am
+msgid "2-Confirmation"
+msgstr ""
+
+#. module: custody_request
+#: model:res.groups,name:custody_request.group_custody_fm
+msgid "3-Approval"
+msgstr ""
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Accountant Signature: ..............................</strong>"
+msgstr ""
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Amount</strong>"
+msgstr "<strong>كمية</strong>"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Analytic Account</strong>"
+msgstr "الحساب التحليلي"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Currency</strong>"
+msgstr "العمله"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Date</strong>"
+msgstr "‏<strong>التاريخ</strong>"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Journal Entry: </strong>"
+msgstr "قيد اليوميه"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Payment From</strong>"
+msgstr ""
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Requester Name: </strong>"
+msgstr " مقدم الطلب"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Requester Signature: ..............................</strong>"
+msgstr "امضاء مقدم الطلب"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Serial</strong>"
+msgstr "الرقم التسلسلي"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>State: </strong>"
+msgstr "الحاله"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>المجموع</strong>"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "<strong>Total</strong>"
+msgstr "<strong>الإجمالي</strong>"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__access_warning
+msgid "Access warning"
+msgstr ""
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Accounting Details"
+msgstr "تفاصيل الحسابات"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: custody_request
+#: model:ir.actions.act_window,name:custody_request.custody_request_ac
+msgid "All Petty Cash"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__num2wo
+msgid "Amount In Text"
+msgstr "القيمه بالحروف"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__analytic_account
+msgid "Analytic Account"
+msgstr "الحساب التحليلي"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Approve"
+msgstr "موافقه"
+
+#. module: custody_request
+#: selection:custody.request,state:0
+msgid "Approved"
+msgstr "تمت الموافقه"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: custody_request
+#: selection:custody.request,state:0
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: custody_request
+#: model:ir.ui.menu,name:custody_request.custody_request_ch1
+msgid "Cash Request"
+msgstr "طلب عهده"
+
+#. module: custody_request
+#: model:ir.model,name:custody_request.model_res_company
+msgid "Companies"
+msgstr "المؤسسات"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__company_id
+msgid "Company Name"
+msgstr "اسم الشركة"
+
+#. module: custody_request
+#: model:ir.model,name:custody_request.model_res_config_settings
+msgid "Config Settings"
+msgstr "ضبط الإعدادات"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: custody_request
+#: selection:custody.request,state:0
+msgid "Confirmed"
+msgstr "تمت الموافقه"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__count_journal_entry
+msgid "Count Journal Entry"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: custody_request
+#: model:ir.module.category,name:custody_request.module_category_custody_request
+msgid "Custody Request"
+msgstr "طلب عهده"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__access_url
+msgid "Customer Portal URL"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__display_name
+#: model:ir.model.fields,field_description:custody_request.field_custody_request_report__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: custody_request
+#: selection:custody.request,state:0
+msgid "Draft"
+msgstr "مسوده"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__account_id
+msgid "Employee Account"
+msgstr "حساب العهده"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__user_name
+msgid "Employee Name"
+msgstr "اسم الموظف"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: custody_request
+#: model:ir.module.category,description:custody_request.module_category_custody_request
+msgid "Helps you manage your Account Custody "
+msgstr ""
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__id
+#: model:ir.model.fields,field_description:custody_request.field_custody_request_report__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__journal_id
+msgid "Journal"
+msgstr "دفتر اليومية"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Journal Entry"
+msgstr "قيد يومية"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request____last_update
+#: model:ir.model.fields,field_description:custody_request.field_custody_request_report____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__move_id
+msgid "Move Reference"
+msgstr "قيد اليوميه"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_search
+msgid "My Requests"
+msgstr "طلباتي"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط القادم"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط القادم"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: custody_request
+#: selection:custody.request,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.ui.menu,name:custody_request.custody_request_root
+msgid "Petty Cash"
+msgstr "العهد"
+
+#. module: custody_request
+#: model:ir.actions.act_window,name:custody_request.custody_request_am
+msgid "Petty Cash Account Manager"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.actions.act_window,name:custody_request.custody_request_dm
+msgid "Petty Cash Direct Manager"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.actions.act_window,name:custody_request.custody_request_fm
+msgid "Petty Cash Finance Manager"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.actions.act_window,name:custody_request.custody_request_post
+msgid "Petty Cash Posted "
+msgstr ""
+
+#. module: custody_request
+#: model:ir.model,name:custody_request.model_custody_request
+msgid "Petty Cash Request"
+msgstr "طلب عهده"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Petty Cash Request Details"
+msgstr "تفاصيل طلب العهده"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_res_config_settings__petty_account_id
+msgid "Petty cash Account"
+msgstr "حساب العهده"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__amount
+msgid "Petty cash Amount"
+msgstr "حساب العهده"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__custody_date
+msgid "Petty cash Date"
+msgstr "تاريخ العهده"
+
+#. module: custody_request
+#: model:ir.actions.report,name:custody_request.custody_request_report
+msgid "Petty cash Request"
+msgstr ""
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.report_custody
+msgid "Petty cash Request Report"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_res_company__petty_account_id
+msgid "Petty cash account"
+msgstr "حساب العهده"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__custody_journal_id
+msgid "Petty cash journal"
+msgstr "يوميه العهده"
+
+#. module: custody_request
+#: selection:custody.request,activity_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__access_url
+msgid "Portal Access URL"
+msgstr ""
+
+#. module: custody_request
+#: selection:custody.request,state:0
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_search
+msgid "Posted"
+msgstr "تم"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__custody_clear_id
+msgid "Reconcile"
+msgstr "تصفيه"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__description
+msgid "Request Description"
+msgstr "وصف الطلب"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسئول"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__access_token
+msgid "Security Token"
+msgstr "رمز الحماية"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__journal_type
+msgid "Select 'Sale' for customer invoices journals.\n"
+"Select 'Purchase' for vendor bills journals.\n"
+"Select 'Cash' or 'Bank' for journals that are used in customer or vendor payments.\n"
+"Select 'General' for miscellaneous operations journals."
+msgstr "اختر \"بيع\" لدفتر اليومية لفواتير العملاء. \n"
+"اختر \"شراء\" لدفتر اليومية فواتير الموردين. \n"
+"اختر \"نقدى\" أو \"بنك\" لدفاتر اليومية المستخدمة في مدفوعات العميل أو المورد.\n"
+" اختر \"عام\" للعمليات المتنوعة لدفتر اليومية. "
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Set to Draft"
+msgstr "تعيين كمسودة"
+
+#. module: custody_request
+#: model:ir.actions.act_window,name:custody_request.action_main_config_petty
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.petty_cash_kanban_view
+msgid "State /"
+msgstr "الحاله"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "الحالة على أساس الأنشطة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية"
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_form
+msgid "Submit"
+msgstr "تأكيد"
+
+#. module: custody_request
+#: selection:custody.request,state:0
+msgid "Submitted"
+msgstr "تم التأكيد"
+
+#. module: custody_request
+#: selection:custody.request,activity_state:0
+msgid "Today"
+msgstr "اليوم"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__journal_type
+msgid "Type"
+msgstr "النوع"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: custody_request
+#: model:ir.model.fields,field_description:custody_request.field_custody_request__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: custody_request
+#: model:ir.model.fields,help:custody_request.field_custody_request__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: custody_request
+#: model:ir.model,name:custody_request.model_custody_request_report
+msgid "custody.request.report"
+msgstr ""
+
+#. module: custody_request
+#: model:res.groups,comment:custody_request.group_custody_am
+#: model:res.groups,comment:custody_request.group_custody_dm
+#: model:res.groups,comment:custody_request.group_custody_fm
+msgid "the user will be able to custody Request created by employees."
+msgstr ""
+
+#. module: custody_request
+#: model_terms:ir.ui.view,arch_db:custody_request.custody_request_tree
+msgid "total amount"
+msgstr "المبلغ الكلي"
+

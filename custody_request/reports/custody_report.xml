@@ -1,0 +1,120 @@
+<odoo>
+    <data>
+        <report
+                id="custody_request_report"
+                model="custody.request"
+                string="Petty cash Request"
+                report_type="qweb-html"
+                name="custody_request.report_custody"
+                file="custody_request.custody_report"
+        />
+
+
+        <template id="report_custody">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <link rel="stylesheet" href="/mai_e_invoice_ksa/static/src/css/style.css"/>
+                            <div style="width:100%;border:0px 2px 0px 0px solid black;"/>
+                            <div class="text-center arabic">
+                                <h2 style="text-align:center; font-size:18px;font-weight:bold;border:solid 2px black;border-radius: 20px;padding: 5px 30px 5px 30px;margin-left:35%;margin-right:35%;margin-top:20px">سند صرف /عهدة</h2>
+
+                            </div>
+                            <br></br>
+                            <!--<div class="row mt64">-->
+                            <!--<div class="col-xs-3" t-if="o.approval_date">-->
+                            <!--<strong>Approval Date: </strong> <p t-field="o.approval_date"/>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <div class="text-center arabic">
+                                <ul class="list-inline">
+                                    <div style="direction:rtl;">
+                                        <strong style="font-weight:bold;font-size:12px;">Date:</strong> &#160;<span style="font-size:12px;margin-left:50px;" t-field="o.custody_date"/>
+
+                                        <strong style="font-weight:bold;font-size:12px;">Ben number:</strong> &#160;<span style="font-size:12px;margin-left:50px;" t-field="o.name"/>
+
+                                        <strong style="font-weight:bold;font-size:12px;">Pay by:</strong>&#160; <span style="font-size:12px;margin-left:50px;" t-field="o.journal_id"/>
+                                        <strong style="font-weight:bold;font-size:12px;">Status:</strong>&#160; <span style="font-size:12px;" t-field="o.state"/>
+
+                                        <!--<strong>Check Number: </strong> <p t-field="o.check_number"/>-->
+
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <!--<div class="text-left">-->
+                            <!--<div t-if="o.move_id">-->
+                            <!--<strong>Journal Entry: </strong> <p t-field="o.move_id"/>-->
+                            <!--</div>-->
+
+                            <!--</div>-->
+
+                            <!--<div class="text-left">-->
+                            <!--<div t-if="o.state">-->
+                            <!--<strong>Approval State: </strong> <p t-field="o.state"/>-->
+                            <!--</div>-->
+
+                            <!--</div>-->
+
+                            <!--&lt;!&ndash;check Details&ndash;&gt;-->
+                            <!--<div class="text-right">-->
+                            <!--<div t-if="o.check_date">-->
+                            <!--<strong>Check Date: </strong> <p t-field="o.check_date"/>-->
+                            <!--</div>-->
+
+                            <!--</div>-->
+
+                            <!--<div class="text-right">-->
+                            <!--<div t-if="o.check_number">-->
+                            <!--<strong>Check Number: </strong> <p t-field="o.check_number"/>-->
+                            <!--</div>-->
+
+                            <!--</div>-->
+                            <br></br>
+
+                            <div class="text-right arabic">
+                                <ul class="list-inline">
+                                    <div style="direction:rtl;width:100%;border-bottom: 1px dotted #000;">
+                                        <strong style="font-weight:bold;font-size:14px;">Amount:</strong> &#160;<span style="font-weight:bold;font-family:arial;border:solid 3px black;padding:2px;width:40%;margin-left:70px; " t-field="o.amount"/>
+
+
+
+                                        <strong style="font-weight:bold;font-size:14px;">Amount in word:</strong> &#160;<span style="margin-right:30px;" t-field="o.num2wo"/> &#160;<span>Only</span>
+                                    </div>
+                                    <br></br>
+                                    <div style="direction:rtl;border-bottom: 1px dotted #000;">
+                                        <strong style="font-weight:bold;font-size:14px;">Label:</strong>&#160; <span t-field="o.description"/>
+                                    </div>
+
+                                    <!--<strong>Check Number: </strong> <p t-field="o.check_number"/>-->
+
+
+                                </ul>
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <div class="text-center arabic">
+                                <ul class="list-inline" style="direction:rtl;">
+
+                                    <strong style="font-weight:bold;font-size:14px;">Accountant Sign:</strong> &#160;<strong style="margin-left:50px;">..............</strong>
+
+
+
+                                    <strong style="font-weight:bold;font-size:14px;">Ben Sign:</strong > &#160;<strong  style="margin-left:50px;">..............</strong>
+                                    <strong style="font-weight:bold;font-size:14px;">Manager Sign:</strong> &#160;<strong >..............</strong>
+
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+
+</odoo>
