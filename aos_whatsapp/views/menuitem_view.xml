@@ -1,0 +1,21 @@
+<odoo>
+
+	<menuitem id="menu_whatsapp_parent" name="Whatsapp"
+		parent="base.menu_custom" sequence="1" />
+
+	<menuitem id="menu_whatsapp_msg_log" name="Logs"
+		action="action_mail_message_whatsapp" parent="menu_whatsapp_parent"
+		sequence="2" />
+		
+    <menuitem id="whatsapp_template_menu"
+              name="Template"
+              parent="menu_whatsapp_parent"
+              action="action_whatsapp_template"
+              sequence="3"/>
+              
+    <menuitem id="menu_whatsapp_servers" 
+    		  parent="menu_whatsapp_parent" 
+    		  action="action_ir_whatsapp_server_list" 
+    		  sequence="15" groups="base.group_no_one"/>
+
+</odoo>

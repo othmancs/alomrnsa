@@ -1,0 +1,28 @@
+<odoo noupdate="1">
+
+    <!-- Scheduler for Whatsapp Error Log-->
+    <record forcecreate="True" id="ir_cron_whatsapp_mail_message_erro_cron" model="ir.cron">
+        <field name="name">WhatsApp : Send In Queue Messages</field>
+        <field name="model_id" ref="mail.model_mail_message"/>
+        <field name="state">code</field>
+        <field name="code">model.resend_whatsapp_mail_message()</field>
+        <field eval="True" name="active" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall" />
+    </record>
+
+
+    <!-- <record id="ir_cron_send_whatsapp_queue" model="ir.cron">
+        <field name="name">WhatsApp : Send In Queue Messages</field>
+        <field name="model_id" ref="whatsapp.model_whatsapp_message"/>
+        <field name="state">code</field>
+        <field name="code">model._send_cron()</field>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>hours</field>
+        <field name="numbercall">-1</field>
+    </record> -->
+
+</odoo>

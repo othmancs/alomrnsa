@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ir_whatsapp_server,ir_whatsapp_server_user,aos_whatsapp.model_ir_whatsapp_server,base.group_user,1,0,0,0
+access_ir_whatsapp_server_system,ir_whatsapp_server_system,aos_whatsapp.model_ir_whatsapp_server,base.group_system,1,1,1,1
+access_ir_wa_klikodoo_popup,wa_klikodoo_popup,aos_whatsapp.model_wa_klikodoo_popup,base.group_system,1,1,1,1
+access_whatsapp_compose_message,access.whatsapp.compose.message,aos_whatsapp.model_whatsapp_compose_message,base.group_user,1,1,1,0
+access_whatsapp_compose_message_portal,access.whatsapp.compose.message.portal,aos_whatsapp.model_whatsapp_compose_message,base.group_portal,1,1,1,0

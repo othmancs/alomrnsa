@@ -1,0 +1,13 @@
+<odoo>
+
+    <record id="ir_config_parameter_webhook" model="ir.config_parameter">
+        <field name="key">webhook.url</field>
+        <field name="value">whatsapp/webhook</field>
+    </record>
+
+    <record id="ir_config_parameter_url_freeze" model="ir.config_parameter">
+        <field name="key">web.base.url.freeze</field>
+        <field name="value">True</field>
+    </record>
+
+</odoo>

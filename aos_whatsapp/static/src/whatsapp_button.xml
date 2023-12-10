@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="SendWhatsAppButton" t-inherit="mail.ChatterTopbar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('o_ChatterTopbar_controllers')]/child::*" position="after">
+            <button class="btn btn-odoo o_ChatterTopbar_button"
+                type="button" 
+                t-att-disabled="!chatterTopbar.chatter.hasReadAccess" 
+                t-on-click="chatterTopbar.chatter.onClickSendWhatsapp"
+                data-hotkey="w"
+                title="WhatsApp">
+                <i class="fa fa-whatsapp"/>
+                <small class="fw-bold ms-1">WhatsApp</small>
+            </button>
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,61 @@
+<odoo>
+
+    <record id="view_message_tree_whatsapp" model="ir.ui.view">
+        <field name="name">mail.message.whatsapp.tree.view</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.view_message_tree"/>
+        <field name="arch" type="xml">
+        	<field name="res_id" position="after">
+        		<field name="message_type"/>
+        		<field name="whatsapp_method"/>
+        		<field name="whatsapp_status"/>
+        	</field>
+        </field>
+    </record>
+    
+    <record id="view_message_form_whatsapp" model="ir.ui.view">
+        <field name="name">mail.message.whatsapp.form.view</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.mail_message_view_form"/>
+        <field name="arch" type="xml">
+        	<field name="parent_id" position="after">
+        		<field name="whatsapp_chat_id" attrs="{'invisible': [('message_type','!=','whatsapp')]}"/>
+        		<field name="whatsapp_status" attrs="{'invisible': [('message_type','!=','whatsapp')]}"/>
+        		<field name="whatsapp_server_id" attrs="{'invisible': [('message_type','!=','whatsapp')]}"/>
+        	</field>
+        	<field name="message_id" position="after">
+        		<field name="whatsapp_method" readonly="1"/>
+            	<field name="whatsapp_response"/>
+            	<field name="whatsapp_data"/>
+        		<field name="whatsapp_numbers"/>
+        	</field>
+        </field>
+    </record>
+    <record id="view_message_search_whatsapp" model="ir.ui.view">
+        <field name="name">mail.message.whatsapp.search.view</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.view_message_search"/>
+        <field name="arch" type="xml">
+            <field name="res_id" position="after">
+                <field name="whatsapp_chat_id"/>
+                <field name="whatsapp_status"/>
+        		<field name="whatsapp_method"/>
+            </field>
+            <filter name="filter_has_mentions" position="after">
+                <filter string="Pending" name="status_pending" domain="[('whatsapp_status','=','pending')]" />
+                <filter string="Failed" name="status_error" domain="[('whatsapp_status','=','error')]" />
+                <filter string="Send" name="status_send" domain="[('whatsapp_status','=','send')]" />
+                <filter string="Status" name="status" context="{'group_by' : 'whatsapp_status'}" />
+            </filter>
+        </field>
+    </record>
+    
+    <record id="action_mail_message_whatsapp" model="ir.actions.act_window">
+        <field name="name">Whatsapp Logs</field>
+        <field name="res_model">mail.message</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('message_type','=','whatsapp')]</field>
+        <field name="search_view_id" ref="mail.view_message_search"/>
+    </record>
+
+</odoo>

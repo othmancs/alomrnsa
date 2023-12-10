@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+		<record id="wa_klikodoo_wiz_view" model="ir.ui.view">
+		    <field name="name">wa.klikodoo.popup.view</field>
+		    <field name="model">wa.klikodoo.popup</field>
+		    <field name="arch" type="xml">
+		        <form style="height: 100%">
+		             <iframe src="https://wa.klikodoo.id/" marginheight="0" marginwidth="0" frameborder="0" height="680px" width="100%" seamless="seamless"></iframe> 		             
+		        </form>
+		    </field>
+		</record>
+    
+	    <record id="action_wa_klikodoo_wiz_view" model="ir.actions.act_window">
+	        <field name="name">Scan QR</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">wa.klikodoo.popup</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="wa_klikodoo_wiz_view"/>
+	        <field name="context">{}</field>
+	        <field name="target">new</field>
+	        <field name="help">This wizard will send message partner with whatsapp</field>
+	    </record>
+	    
+        <record model="ir.ui.view" id="ir_whatsapp_server_form">
+            <field name="model">ir.whatsapp_server</field>
+            <field name="arch" type="xml">
+                <form string="Whatsapp Servers">
+                  <header>
+                  	    <button name="klikapi_status" string="  Use Here" type="object" class="btn-primary" icon="fa-check-circle-o"
+                            attrs="{'invisible': ['|',('status', '=', 'authenticated'),('qr_scan', '=', False)]}"/>
+                        <button name="klikapi_status" string="  Get Status" type="object" class="btn-primary" icon="fa-check-circle-o"/>
+                        <button name="%(action_wa_klikodoo_wiz_view)d" string="  Scan QR Code" type="action" class="btn-primary" icon="fa-qrcode" 
+                        	attrs="{'invisible': ['|',('status','=','authenticated'),('whatsapp_number','=',False)]}"/>
+                        <button string="  Logout" icon="fa-power-off" type="object" class="btn-primary" name="klikapi_logout"
+                        	attrs="{'invisible': [('status','!=','authenticated')]}"/>       	
+                        <field name="status" widget="statusbar"/>	
+                  </header>
+                  <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" class="oe_inline"/></h1>
+                    </div>
+                    <group>
+                        <group string="Connection Information">
+                            <field name="klik_key"/>
+                            <field name="klik_secret"/>
+                        </group>
+                        <group string="Connection Information">
+                            <field name="whatsapp_number"/>
+                            <field name="whatsapp_webhook"/>
+                        </group>
+                     </group>
+                    <group>
+                        <field name="message_counts"/>
+                        <field name="message_response"/>
+                    </group>
+                     <group string="Status and Authentication" colspan="4">
+                     	<div class="text-muted col-xs-12 text-left">
+                           <field name="hint" nolabel="1" icon="fa-qrcode"/>
+                        </div>          
+                        <button name="redirect_whatsapp_key" type="object" class="btn-link">
+	                        <i class="fa fa-arrow-right"/>
+	                        Buy more key or subscription now
+	                    </button>
+                    </group>     
+                    <notebook>
+                        <page string="Allowed Users">
+                            <field name="allowed_user_ids"/>
+                        </page>
+                        <page string="Channel Notification">
+                            <field name="notify_user_ids"/>
+                        </page>
+                    </notebook>               
+                    <div class="text-muted" attrs="{'invisible': [('notes','=',False)]}">
+                        <field name="notes" nolabel="1"/>
+                    </div>             
+                    <div class="col-12 o_setting_box" attrs="{'invisible': ['|',('status','=','authenticated'),('qr_scan','=',False)]}">
+                    	<div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">     
+                         <div class="col-xs-3 text-center">
+                             <field name="qr_scan" readonly="1" widget="image" width="350px" height="350px" nolabel="1"/>
+                         </div>
+                        </div>
+                    </div>
+                  </sheet>  
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ir_whatsapp_server_list">
+            <field name="model">ir.whatsapp_server</field>
+            <field name="arch" type="xml">
+                <tree string="Whatsapp Servers">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="klik_key"/>
+                    <field name="klik_secret"/>
+                    <field name="message_counts"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_ir_whatsapp_server_search" model="ir.ui.view">
+            <field name="model">ir.whatsapp_server</field>
+            <field name="arch" type="xml">
+                <search string="Whatsapp Servers">
+                    <field name="name"
+                        filter_domain="[('name','ilike',self)]"
+                        string="Whatsapp Server"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_ir_whatsapp_server_list">
+            <field name="name">Servers</field>
+            <field name="res_model">ir.whatsapp_server</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="ir_whatsapp_server_list" />
+            <field name="search_view_id" ref="view_ir_whatsapp_server_search"/>
+        </record>
+</odoo>

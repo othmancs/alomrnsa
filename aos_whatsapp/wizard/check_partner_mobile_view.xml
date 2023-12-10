@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+            
+        <record id="check_partner_mobile_view" model="ir.ui.view">
+            <field name="name">Check Whatsapps Mobile</field>
+            <field name="model">check.partner.mobile</field>
+            <field name="arch" type="xml">
+                <form string="Check Whatsapps Mobile">
+                    <span class="o_form_label">All selected partner mobile will be checked.</span>
+                    <footer>
+                        <button string="Check Whatsapps" name="check_whatsapps" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_check_partner_mobile" model="ir.actions.act_window">
+            <field name="name">Check Whatsapp Mobile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">check.partner.mobile</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="check_partner_mobile_view"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="help">This wizard will check all partner mobile for whatsapps integration</field>
+        	<field name="binding_model_id" ref="base.model_res_partner" />
+        </record>
+        
+    </data>
+</openerp>

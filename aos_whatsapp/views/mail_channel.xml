@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <record id="view_channel_tree_whatsapp_livechat" model="ir.ui.view">
+        <field name="name">mail.channel.whatsapp.form.view</field>
+        <field name="model">mail.channel</field>
+        <field name="inherit_id" ref="mail.mail_channel_view_tree"/>
+        <field name="arch" type="xml">
+        	<field name="name" position="after">
+        		<field name="senderkeyhash"/>
+        		<field name="recipientkeyhash"/>
+                <field name="channel_type"/>
+        		<field name="uuid"/>
+                <!-- <field name="livechat_active"/> -->
+        	</field>
+        </field>
+    </record>
+    
+    <record id="view_channel_form_whatsapp_livechat" model="ir.ui.view">
+        <field name="name">mail.channel.whatsapp.form.view</field>
+        <field name="model">mail.channel</field>
+        <field name="inherit_id" ref="mail.mail_channel_view_form"/>
+        <field name="arch" type="xml">
+        	<page name="privacy" position="after">
+                <page string="Whatsapp" name="whatsapp" attrs="{'invisible': [('channel_type','!=','whatsapp')]}">
+                    <group class="o_label_nowrap" col="4">
+                        <field name="senderkeyhash"/>
+                        <field name="recipientkeyhash"/>
+                        <field name="whatsapp_number"/>
+                        <field name="whatsapp_channel_valid_until"/>
+                        <field name="whatsapp_partner_id"/>
+                        <field name="wa_account_id"/>
+                    </group>
+                </page>
+        		<!-- <field name="uuid"/> -->
+                <!-- <field name="livechat_active"/> -->
+                <!-- <field name="path_id"/> -->
+        	</page>
+        </field>
+    </record>
+
+
+</odoo>

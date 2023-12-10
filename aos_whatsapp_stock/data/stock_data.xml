@@ -1,0 +1,133 @@
+<odoo>
+
+    <data noupdate="1">
+    <!-- Server action-->
+    <!-- <record id="send_stock_picking_ready_status" model="base.automation">
+        <field name="name">Customer: Delivery Ready Notification by Whatsapp</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="trigger">on_write</field>
+        <field name="active" eval="True"/>
+        <field name="filter_pre_domain">["&amp;","&amp;",["location_dest_id.usage","=","customer"],["state","!=","assigned"],["state","!=","cancel"]]</field>
+        <field name="filter_domain">[["state","=","assigned"]]</field>
+        <field name="state">code</field>
+        <field name="code">
+record.send_whatsapp_automatic()
+        </field>
+    </record>
+    
+    <record id="send_stock_picking_delivery_status" model="base.automation">
+        <field name="name">Customer: Delivery Order Notification by Whatsapp</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="trigger">on_write</field>
+        <field name="active" eval="True"/>
+        <field name="filter_pre_domain">["&amp;","&amp;",["location_dest_id.usage","=","customer"],["state","!=","done"],["state","!=","cancel"]]</field>
+        <field name="filter_domain">[["state","=","done"]]</field>
+        <field name="state">code</field>
+        <field name="code">
+record.send_whatsapp_automatic()
+        </field>
+    </record>
+    
+    <record id="send_stock_picking_receipt_status" model="base.automation">
+        <field name="name">Supplier: Receipt Notification by Whatsapp</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="trigger">on_write</field>
+        <field name="active" eval="True"/>
+        <field name="filter_pre_domain">["&amp;",["picking_type_code","=","incoming"],["state","=","assigned"]]</field>
+        <field name="filter_domain">[["state","=","done"]]</field>
+        <field name="state">code</field>
+        <field name="code">
+record.send_whatsapp_automatic()
+        </field>
+    </record> -->
+    
+    <record id="stock_quant_minimum_stock_status" model="mail.template">
+        <field name="name">Stock: Minimum Stock</field>
+        <field name="subject">Minimum Stock</field>
+        <field name="model_id" ref="stock.model_stock_quant"/>
+        <field name="body_html"><![CDATA[
+        Product *${object.product_id.name}* is getting low on location ${object.location_id.display_name}.<br/>
+        Available Quantity : ${object.available_quantity} ${object.product_uom_id.name}<br/>
+        Minimum Quantity : ${object.minimum_quantity} ${object.product_uom_id.name}<br/><br/>
+        Location Stock : ${object.available_qty or ''} ${object.product_uom_id.name}<br/>
+        Average Sold : ${object.average_sold or ''} ${object.product_uom_id.name}
+
+        Location Stock : ${object.available_qty or ''}
+        Average Sold : ${object.average_sold or ''}
+        ]]>
+        </field>
+    </record>
+
+    <record id="stock_picking_delivery_status" model="mail.template">
+        <field name="name">Stock: Delivery Order</field>
+        <field name="subject">Delivery Order</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Hello, <t t-out="object.partner_id.name or ''"></t>
+        <br/><br/>
+        <t t-if="object.picking_type_code == 'outgoing'">        
+	        <t t-if="object.state == 'assigned'">
+	        	Your order *<t t-out="object.name or ''"></t>* is Ready for Delivery.
+	        </t>
+	        <t t-if="object.state == 'done'">
+	        	Your order *<t t-out="object.name or ''"></t>* is Delivered.
+	        </t>
+        </t>
+        Thank you,<br/>
+        <t t-if="user.signature">
+        	<t t-out="user.signature or ''">Administrator</t>
+		</t>
+    </p>
+</div>
+            </field>
+    </record> 
+
+    <record id="stock_picking_receipt_status" model="mail.template">
+        <field name="name">Stock: Receipt Items</field>
+        <field name="subject">Receipt Items</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Hello, <t t-out="object.partner_id.name or ''"></t>
+        <br/><br/>
+        <t t-if="object.picking_type_code == 'incoming'">        
+	        <t t-if="object.state == 'done">
+	        	Your Delivery Order *<t t-out="object.name or ''"></t>* is Delivered to <t t-out="user.company_id.name or ''"></t>
+	        </t>
+        </t>
+        Thank you,<br/>
+        <t t-if="user.signature">
+        	<t t-out="user.signature or ''">Administrator</t>
+		</t>
+    </p>
+</div>
+            </field>
+    </record>
+    
+    <record id="stock_picking_internal_status" model="mail.template">
+        <field name="name">Stock: Internal Transfer</field>
+        <field name="subject">Receipt Items.</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Hello, <t t-out="object.partner_id.name or ''"></t>
+        <br/><br/>
+        <t t-if="object.picking_type_code == 'internal'">        
+	        <t t-if="object.state == 'done">
+	        	Internal Transfer from *<t t-out="object.name or ''"></t>* is Delivered to <t t-out="object.location_dest_id.name or ''"></t>
+	        </t>
+        </t>
+        Thank you,<br/>
+        <t t-if="user.signature">
+        	<t t-out="user.signature or ''">Administrator</t>
+		</t>
+    </p>
+</div>
+            </field>
+    </record>
+ </data>
+</odoo>
