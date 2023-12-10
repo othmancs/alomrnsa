@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="clv_stock_picking_form" model="ir.ui.view">
+        <field name="name">clv.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Cleverence settings">
+                    <group>
+                        <field name="scan_locations" value="True"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
