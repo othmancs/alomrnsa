@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_stock" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.product.certificates</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='schedule_info']" position="after">
+                <block title="Product Certificates" id="product_certificates">
+                    <setting help="Days before the Expiration date considered Red Color">
+                        <field name="product_certificate_days_to_red" class="oe_inline"/><span> days  </span><span
+                            class="fa fa-lg fa-circle" style="color: red;"/>
+                    </setting>
+                    <setting help="Days before the Expiration date considered Yellow Color">
+                        <field name="product_certificate_days_to_yellow" class="oe_inline"/><span> days  </span><span
+                            class="fa fa-lg fa-circle" style="color: yellow;"/>
+                    </setting>
+                    <setting help="Make Stages required when creating Certificates">
+                    <field name="product_certificate_stage_required"/>
+                </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

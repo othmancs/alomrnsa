@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_normal_form_view_inherit_product_certificate" model="ir.ui.view">
+        <field name="name">product.product.product,certificate</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="action_view_certificates"
+                        groups="eqp_product_certificate.group_product_certificate_user"
+                        type="object" icon="fa-certificate" invisible="not product_certificate_count"
+                        help="Product Certificates">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value d-flex gap-1">
+                            <field name="product_certificate_count" widget="statinfo" nolabel="1" class="oe_inline"/>
+                        </span>
+                        <span class="o_stat_text">Certificates</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

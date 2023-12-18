@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_product_certificate_user,product.certificate.user,model_product_certificate,eqp_product_certificate.group_product_certificate_user,1,1,1,0
+access_product_certificate_stage_user,product.certificate.stage.user,model_product_certificate_stage,eqp_product_certificate.group_product_certificate_user,1,0,0,0
+access_product_certificate_stage_admin,product.certificate.stage.admin,model_product_certificate_stage,eqp_product_certificate.group_product_certificate_admin,1,1,1,0
+access_product_certificate_tag_user,product.certificate.tag.user,model_product_certificate_tag,eqp_product_certificate.group_product_certificate_user,1,0,0,0
+access_product_certificate_tag_admin,product.certificate.tag.admin,model_product_certificate_tag,eqp_product_certificate.group_product_certificate_admin,1,1,1,0
+access_product_certificate_report_user,product.certificate.report.user,model_product_certificate_report,eqp_product_certificate.group_product_certificate_user,1,1,1,1

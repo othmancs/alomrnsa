@@ -1,0 +1,13 @@
+/* Styles for the can_edit button when button is hovered */
+.oe_stat_button[name="certificate_can_edit_control"] {
+    transition: transform 0.3s;  /* Add a smooth transition effect */
+}
+
+/*  Styles for hover effect  */
+.oe_stat_button[name="certificate_can_edit_control"]:hover {
+    transform: scale(1.1);  /* Increase the scale on hover (zoom effect) */
+}
+
+.custom_narrow_date_field {
+    width: 30%;
+}

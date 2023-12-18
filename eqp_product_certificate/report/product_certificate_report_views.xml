@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Search View -->
+        <record id="view_product_certificate_report_search" model="ir.ui.view">
+            <field name="name">product.certificate.report.search</field>
+            <field name="model">product.certificate.report</field>
+            <field name="arch" type="xml">
+                <search string="Product Certificates">
+                    <filter string="My Certificates" name="my_certificates"
+                            domain="[('user_id', '=', uid)]"/>
+                    <separator/>
+                    <filter string="Start Date" name="filter_start_date" date="start_date"/>
+                    <filter string="Expiration Date" name="filter_expiration_date" date="expiration_date"/>
+                    <separator/>
+                    <field name="product_id"/>
+                    <field name="product_id"/>
+                    <separator/>
+                    <field name="priority"/>
+                    <separator/>
+                    <field name="stage_id"/>
+                    <separator/>
+                    <filter string="Red" name="red_certificates"
+                            domain="[('traffic_light', '=', 'red')]"/>
+                    <filter string="Yellow" name="yellow_certificates"
+                            domain="[('traffic_light', '=', 'yellow')]"/>
+                    <filter string="Green" name="green_certificates"
+                            domain="[('traffic_light', '=', 'green')]"/>
+                    <separator/>
+                    <filter string="Pre-Active" name="pre_active_certificates"
+                            domain="[('state', '=', 'pre-active')]"/>
+                    <filter string="Active" name="active_certificates"
+                            domain="[('state', '=', 'active')]"/>
+                    <filter string="Expired" name="expired_certificates"
+                            domain="[('state', '=', 'expired')]"/>
+                    <separator/>
+                    <group string="Group By">
+                        <filter name="groupby_state" string="State" context="{'group_by': 'state'}"/>
+                        <filter name="groupby_stage" string="Stage" context="{'group_by': 'stage_id'}"/>
+                        <filter name="groupby_trafficlight" string="Traffic Light"
+                                context="{'group_by': 'traffic_light'}"/>
+                        <filter name="groupby_user" string="Responsible" context="{'group_by': 'user_id'}"/>
+                        <filter string="Start Date" name="start_date" context="{'group_by':'start_date'}"/>
+                        <filter string="Expiration Date" name="expiration_date" context="{'group_by':'expiration_date'}"/>
+                        <separator orientation="vertical"/>
+                        <filter name="groupby_product" string="Product" context="{'group_by': 'product_id'}"/>
+                        <filter name="groupby_certificate" string="Certificate"
+                                context="{'group_by': 'certificate_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_product_certificate_report_tree" model="ir.ui.view">
+            <field name="name">product.certificate.report.tree</field>
+            <field name="model">product.certificate.report</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="certificate_id"/>
+                    <field name="product_id"/>
+                    <field name="user_id" />
+                    <field name="start_date" />
+                    <field name="expiration_date"/>
+                    <field name="traffic_light" widget="color"/>
+                    <field name="priority"/>
+                    <field name="stage_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Pivot View -->
+        <record id="view_product_certificate_report_pivot" model="ir.ui.view">
+            <field name="name">product.certificate.report.pivot</field>
+            <field name="model">product.certificate.report</field>
+            <field name="arch" type="xml">
+                <pivot string="Product Certificates Analysis" sample="1">
+                    <field name="expiration_date" interval="month" type="col"/>
+                    <field name="stage_id" type="row"/>
+                    <field name="state" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Graph View -->
+        <record id="view_product_certificate_report_graph" model="ir.ui.view">
+            <field name="name">product.certificate.report.graph</field>
+            <field name="model">product.certificate.report</field>
+            <field name="arch" type="xml">
+                <graph string="Certificates Analysis" type="bar" sample="1">
+                    <field name="state"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_product_certificate_report" model="ir.actions.act_window">
+            <field name="name">Product Certificates Report</field>
+            <field name="res_model">product.certificate.report</field>
+            <field name="view_mode">graph,pivot</field>
+            <field name="search_view_id" ref="view_product_certificate_report_search"/>
+        </record>
+
+        <!-- Menu Items -->
+        <menuitem id="menu_pivot_product_certificate" sequence="300" name="Product Certificates"
+                  parent="stock.menu_warehouse_report"
+                  action="action_product_certificate_report"
+                  groups="eqp_product_certificate.group_product_certificate_user"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Tree View -->
+        <record id="view_product_certificate_stage_tree" model="ir.ui.view">
+            <field name="name">product.certificate.stage.tree</field>
+            <field name="model">product.certificate.stage</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_product_certificate_stage_form" model="ir.ui.view">
+            <field name="name">product.certificate.stage.form</field>
+            <field name="model">product.certificate.stage</field>
+            <field name="arch" type="xml">
+                <form string="Product Certificate Stages">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Stage 1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sequence" widget="integer"/>
+                            </group>
+                            <group>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                        </group>
+
+                        <notebook colspan="4">
+                            <page string="Stage Info" name="product_certificate_stage_info">
+                                <group>
+                                    <group>
+                                        <field name="description"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_product_certificate_stage" model="ir.actions.act_window">
+            <field name="name">Product Certificate Stages</field>
+            <field name="res_model">product.certificate.stage</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_product_certificate_stage_tree"/>
+        </record>
+
+        <!-- Menu Items -->
+        <menuitem id="menu_product_certificate_config" name="Product Certificates Config"
+                  parent="stock.menu_stock_config_settings" groups="eqp_product_certificate.group_product_certificate_admin" sequence="10"/>
+
+        <menuitem id="menu_product_certificate_stage" name="Stages" parent="eqp_product_certificate.menu_product_certificate_config"
+                  action="action_product_certificate_stage" groups="eqp_product_certificate.group_product_certificate_admin" sequence="1"/>
+
+    </data>
+</odoo>

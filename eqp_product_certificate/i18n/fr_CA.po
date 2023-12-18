@@ -1,0 +1,1021 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eqp_product_certificate
+#
+# Translators:
+# Esteban Quevedo, 2023
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-14 18:07+0000\n"
+"PO-Revision-Date: 2023-12-14 18:07+0000\n"
+"Last-Translator: Esteban Quevedo, 2023\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: product_certificate
+#: model:ir.actions.report,print_report_name:eqp_product_certificate.action_report_product_certificate
+msgid ""
+"\n"
+"                (object.state in ('pre-active', 'active') and 'Certificate - %s' % (object.name) or\n"
+"                 'Expired Certificate - %s' % (object.name))"
+msgstr ""
+"\n"
+"                (object.state in ('pre-active', 'active') and 'Certificat - %s' % (object.name) or\n"
+"                 'Certificat expiré - %s' % (object.name))"
+
+#. module: product_certificate
+#. odoo-python
+#: code:addons/eqp_product_certificate/models/product_certificate.py:0
+#: code:addons/eqp_product_certificate/models/product_certificate.py:0
+#: code:addons/eqp_product_certificate/models/product_certificate.py:0
+#: code:addons/eqp_product_certificate/models/product_certificate.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (copie)"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "9328476"
+msgstr "9328476"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.product_normal_form_view_inherit_product_certificate
+msgid "<span class=\"o_stat_text\">Certificates</span>"
+msgstr "<span class=\"o_stat_text\">Certificats</span>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.res_config_settings_view_form_stock
+msgid "<span> days  </span><span class=\"fa fa-lg fa-circle\" style=\"color: red;\"/>"
+msgstr "<span> jours  </span><span class=\"fa fa-lg fa-circle\" style=\"color: red;\"/>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.res_config_settings_view_form_stock
+msgid ""
+"<span> days  </span><span class=\"fa fa-lg fa-circle\" style=\"color: "
+"yellow;\"/>"
+msgstr ""
+"<span> jours  </span><span class=\"fa fa-lg fa-circle\" style=\"color: "
+"yellow;\"/>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "<span>Code: </span>"
+msgstr "<span>Code : </span>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "<span>Product Certificate: </span>"
+msgstr "<span>Certificat de produit : </span>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_kanban
+msgid "<strong> - </strong>"
+msgstr "<strong> - </strong>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "<strong>Description:</strong>"
+msgstr "<strong>Description :</strong>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "<strong>Product:</strong>"
+msgstr "<strong>Produit :</strong>"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "<strong>Status:</strong>"
+msgstr ""
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "<strong>Responsible:</strong>"
+msgstr "<strong>Responsable :</strong>"
+
+#. module: product_certificate
+#: model:ir.model.constraint,message:eqp_product_certificate.constraint_product_certificate_stage_name_unique
+msgid "A unique Stage Name per company."
+msgstr "Un nom de scène unique par entreprise."
+
+#. module: product_certificate
+#: model:ir.model.constraint,message:eqp_product_certificate.constraint_product_certificate_stage_sequence_unique
+msgid "A unique Stage sequence Number per company."
+msgstr "Un numéro de séquence d'étage unique par entreprise."
+
+#. module: product_certificate
+#: model:ir.model.constraint,message:eqp_product_certificate.constraint_product_certificate_tag_name_unique
+msgid "A unique Tag per company."
+msgstr "Une étiquette unique par entreprise."
+
+#. module: product_certificate
+#: model:ir.model.constraint,message:eqp_product_certificate.constraint_product_certificate_code_unique
+msgid "A unique certificate Code per product per company."
+msgstr "Un code de certificat unique par produit par entreprise."
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_needaction
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_needaction
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_needaction
+msgid "Action Needed"
+msgstr "Action requise"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__active
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__active
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__active
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__state__active
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__state__active
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Active"
+msgstr "Actif"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_exception_decoration
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_exception_decoration
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Décoration d'exception d'activité"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_state
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_state
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_state
+msgid "Activity State"
+msgstr "État de l'activité"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_type_icon
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_type_icon
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône de type d'activité"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__description
+msgid "Add a brief description of the Stage."
+msgstr "Ajoutez une brève description de l'étape."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__description
+msgid "Add a brief description of the Tag."
+msgstr "Ajoutez une brève description de l'étiquette."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__description
+msgid "Add a brief description of the certificate"
+msgstr "Ajoutez une brève description du certificat"
+
+#. module: product_certificate
+#: model:res.groups,name:eqp_product_certificate.group_product_certificate_admin
+msgid "Admin"
+msgstr "Admin"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__priority
+msgid ""
+"Assign a priority to your Certificates and manage them by urgency level."
+msgstr ""
+"Attribuez une priorité à vos certificats et gérez-les en fonction du niveau d'urgence."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__user_id
+msgid "Assign a responsible user for this certificate."
+msgstr "Attribuez un utilisateur responsable pour ce certificat."
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_attachment_count
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_attachment_count
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "Bob Williams"
+msgstr "Bob Williams"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__can_edit
+msgid "Can Edit"
+msgstr "Peut être modifié"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__certificate_id
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+msgid "Certificate"
+msgstr "Certificat"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__certificate_file
+msgid "Certificate (PDF) File"
+msgstr "Fichier du certificat (PDF)"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__code
+msgid "Certificate Code"
+msgstr "Code du certificat"
+
+#. module: product_certificate
+#: model:ir.actions.report,name:eqp_product_certificate.action_report_product_certificate
+msgid "Certificate Info"
+msgstr "Informations sur le certificat"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__name
+msgid "Certificate Name"
+msgstr "Nom du certificat"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__description
+msgid "Certificate description"
+msgstr "Description du certificat"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_calendar
+msgid "Certificate's Expiration Dates"
+msgstr "Dates d'expiration des certificats"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_graph
+msgid "Certificates Analysis"
+msgstr "Analyse des certificats"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__tag_ids
+msgid ""
+"Classify and analyze your certificates categories like: CAN, CSA, UL, ANSI, "
+"IEC, and ISO"
+msgstr ""
+"Classifiez et analysez vos catégories de certificats telles que : CAN, CSA, UL, ANSI, "
+"IEC et ISO"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__code
+msgid "Code of the certificate (if apply)"
+msgstr "Code du certificat (si applicable)"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__color
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__color
+msgid "Color"
+msgstr "Couleur"
+
+#. module: product_certificate
+#: model:ir.model,name:eqp_product_certificate.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__company_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__company_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__company_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: product_certificate
+#: model:ir.model,name:eqp_product_certificate.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__create_uid
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__create_uid
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__create_date
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__create_date
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.res_config_settings_view_form_stock
+msgid "Days before the Expiration date considered Red Color"
+msgstr "Jours avant la date d'expiration considérés comme couleur rouge"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.res_config_settings_view_form_stock
+msgid "Days before the Expiration date considered Yellow Color"
+msgstr "Jours avant la date d'expiration considérés comme couleur jaune"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_res_company__product_certificate_days_to_red
+#: model:ir.model.fields,help:eqp_product_certificate.field_res_config_settings__product_certificate_days_to_red
+msgid "Days needed to mark product Certificates in Red."
+msgstr "Jours nécessaires pour marquer les certificats de produit en rouge."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_res_company__product_certificate_days_to_yellow
+#: model:ir.model.fields,help:eqp_product_certificate.field_res_config_settings__product_certificate_days_to_yellow
+msgid "Days needed to mark product Certificates in Yellow."
+msgstr "Jours nécessaires pour marquer les certificats de produit en jaune."
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_res_company__product_certificate_days_to_red
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_res_config_settings__product_certificate_days_to_red
+msgid "Days to Red"
+msgstr "Jours pour le rouge"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_res_company__product_certificate_days_to_yellow
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_res_config_settings__product_certificate_days_to_yellow
+msgid "Days to Yellow"
+msgstr "Jours pour le jaune"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__display_name
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__display_name
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__display_name
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "Example Certificate"
+msgstr "Exemple de certificat"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__expiration_date
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__expiration_date
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Expiration Date"
+msgstr "Date d'expiration"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__state__expired
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__state__expired
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Expired"
+msgstr "Expiré"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_follower_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_follower_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_follower_ids
+msgid "Followers"
+msgstr "Suiveurs"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_partner_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_partner_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Suiveurs (Partenaires)"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__activity_type_icon
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__activity_type_icon
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome, par exemple fa-tasks"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__traffic_light__green
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__traffic_light__green
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Green"
+msgstr "Vert"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__has_message
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__has_message
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__priority__3
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__priority__3
+msgid "High"
+msgstr "Élevé"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_exception_icon
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_exception_icon
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__activity_exception_icon
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__activity_exception_icon
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône indiquant une activité exceptionnelle."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__stage_id
+msgid ""
+"If applicable, use Product Certificate Stages to control your own custom "
+"flow."
+msgstr ""
+"Si applicable, utilisez les étapes de certificat de produit pour contrôler votre propre flux personnalisé."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__message_needaction
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__message_needaction
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, les nouveaux messages nécessitent votre attention."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__message_has_error
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__message_has_sms_error
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__message_has_error
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__message_has_sms_error
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__message_has_error
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si coché, certains messages ont une erreur de livraison."
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Inactive"
+msgstr "Inactif"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_is_follower
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_is_follower
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_is_follower
+msgid "Is Follower"
+msgstr "Est un suiveur"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "Laptop"
+msgstr "Ordinateur portable"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__write_uid
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__write_uid
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__write_date
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__write_date
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid "Locked"
+msgstr "Verrouillé"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__priority__1
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__priority__1
+msgid "Low"
+msgstr "Faible"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.res_config_settings_view_form_stock
+msgid "Make Stages required when creating Certificates"
+msgstr "Rendre les étapes obligatoires lors de la création de certificats"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__stage_required
+#: model:ir.model.fields,help:eqp_product_certificate.field_res_company__product_certificate_stage_required
+#: model:ir.model.fields,help:eqp_product_certificate.field_res_config_settings__product_certificate_stage_required
+msgid ""
+"Makes the selection of a stage mandatory when creating product certificates."
+msgstr ""
+"Rend obligatoire la sélection d'une étape lors de la création de certificats de produit."
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_has_error
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_has_error
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur de livraison du message"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__my_activity_date_deadline
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__my_activity_date_deadline
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Ma date limite d'activité"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "My Certificates"
+msgstr "Mes certificats"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__name
+msgid "Name of the Stage"
+msgstr "Nom de l'étape"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__name
+msgid "Name of the Tag"
+msgstr "Nom de l'étiquette"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__name
+msgid "Name of the certificate"
+msgstr "Nom du certificat"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_date_deadline
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_date_deadline
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Prochaine date limite d'activité"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_summary
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_summary
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé de la prochaine activité"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_type_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_type_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_type_id
+msgid "Next Activity Type"
+msgstr "Prochain type d'activité"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__priority__2
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__priority__2
+msgid "Normal"
+msgstr "Normal"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_needaction_counter
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_needaction_counter
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_has_error_counter
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_has_error_counter
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__message_needaction_counter
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__message_needaction_counter
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__message_has_error_counter
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__message_has_error_counter
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec une erreur de livraison"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__certificate_file
+msgid "PDF file which contain the certificate.."
+msgstr "Fichier PDF contenant le certificat."
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.report_productcertificate_document
+msgid "Pending"
+msgstr "En attente"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid ""
+"Please note that only PDF files are accepted. If you intend to upload a\n"
+"                                        certificate, ensure it is converted to the PDF format before attempting to\n"
+"                                        upload it."
+msgstr  ""
+"Veuillez noter que seuls les fichiers PDF sont acceptés. Si vous avez l'intention de télécharger un\n"
+"                                        certificat, assurez-vous qu'il est converti au format PDF avant de tenter de\n"
+"                                        le télécharger."
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__state__pre-active
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__state__pre-active
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Pre-Active"
+msgstr "Pré-actif"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid "Press to Lock Certificate"
+msgstr "Appuyez pour verrouiller le certificat"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid "Press to Unlock Certificate"
+msgstr "Appuyez pour déverrouiller le certificat"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__priority
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__priority
+msgid "Priority"
+msgstr "Priorité"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__product_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__product_id
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Product"
+msgstr "Produit"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__product_categ_id
+msgid "Product Category"
+msgstr "Catégorie de produit"
+
+#. module: product_certificate
+#: model:ir.model,name:eqp_product_certificate.model_product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid "Product Certificate"
+msgstr "Certificat de produit"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_product__product_certificate_count
+msgid "Product Certificate Count"
+msgstr "Nombre de certificats de produit"
+
+#. module: product_certificate
+#: model:ir.actions.act_window,name:eqp_product_certificate.action_product_certificate_stage
+#: model:ir.model,name:eqp_product_certificate.model_product_certificate_stage
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_stage_form
+msgid "Product Certificate Stages"
+msgstr "Étapes des certificats de produit"
+
+#. module: product_certificate
+#: model:ir.actions.act_window,name:eqp_product_certificate.action_product_certificate_tag
+#: model:ir.model,name:eqp_product_certificate.model_product_certificate_tag
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_tag_form
+msgid "Product Certificate Tags"
+msgstr "Étiquettes des certificats de produit"
+
+#. module: product_certificate
+#: model:ir.actions.act_window,name:eqp_product_certificate.action_product_certificate
+#: model:ir.module.category,name:eqp_product_certificate.module_category_product_certificate
+#: model:ir.ui.menu,name:eqp_product_certificate.menu_pivot_product_certificate
+#: model:ir.ui.menu,name:eqp_product_certificate.menu_product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.product_normal_form_view_inherit_product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.res_config_settings_view_form_stock
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Product Certificates"
+msgstr "Certificats de produit"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_pivot
+msgid "Product Certificates Analysis"
+msgstr "Analyse des certificats de produit"
+
+#. module: product_certificate
+#: model:ir.ui.menu,name:eqp_product_certificate.menu_product_certificate_config
+msgid "Product Certificates Config"
+msgstr "Configuration des certificats de produit"
+
+#. module: product_certificate
+#: model:ir.actions.act_window,name:eqp_product_certificate.action_product_certificate_report
+msgid "Product Certificates Report"
+msgstr "Rapport des certificats de produit"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__product_tmpl_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__product_tmpl_id
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: product_certificate
+#: model:ir.model,name:eqp_product_certificate.model_product_product
+msgid "Product Variant"
+msgstr "Variante de produit"
+
+#. module: product_certificate
+#: model:ir.model,name:eqp_product_certificate.model_product_certificate_report
+msgid "Product certificate Statistics"
+msgstr "Statistiques du certificat de produit"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__traffic_light__red
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__traffic_light__red
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Red"
+msgstr "Rouge"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__stage_required
+msgid "Required Stage"
+msgstr "Étape requise"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__activity_user_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__activity_user_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__user_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__user_id
+msgid "Responsible user"
+msgstr "Utilisateur responsable"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__message_has_sms_error
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__message_has_sms_error
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur de livraison SMS"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__color
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__color
+msgid ""
+"Select a color to visually associate with for quick and easy identification."
+msgstr ""
+"Sélectionnez une couleur pour l'associer visuellement pour une identification rapide et facile."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__product_id
+msgid "Select the product that this certificate applies."
+msgstr "Sélectionnez le produit auquel s'applique ce certificat."
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__sequence
+msgid "Sequence to order the stages."
+msgstr "Séquence pour ordonner les étapes."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__active
+msgid "Set active to false to hide the Certificate Stage without removing it."
+msgstr "Définissez actif sur faux pour masquer l'étape du certificat sans la supprimer."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__active
+msgid "Set active to false to hide the Certificate Tag without removing it."
+msgstr "Définissez actif sur faux pour masquer l'étiquette du certificat sans la supprimer."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__active
+msgid "Set active to false to hide the Certificate without removing it."
+msgstr "Définissez actif sur faux pour masquer le certificat sans le supprimer."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__can_edit
+msgid "Set can_edit to True to edit the certificate."
+msgstr "Définissez can_edit sur Vrai pour éditer le certificat."
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__stage_id
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__stage_id
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Stage"
+msgstr "Étape"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_stage_form
+msgid "Stage Info"
+msgstr "Informations sur l'étape"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__name
+msgid "Stage Name"
+msgstr "Nom de l'étape"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__description
+msgid "Stage description"
+msgstr "Description de l'étape"
+
+#. module: product_certificate
+#: model:ir.ui.menu,name:eqp_product_certificate.menu_product_certificate_stage
+msgid "Stages"
+msgstr "Étapes"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_res_company__product_certificate_stage_required
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_res_config_settings__product_certificate_stage_required
+msgid "Staging Required"
+msgstr "Étape requise"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__start_date
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__start_date
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "State"
+msgstr "État"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__state
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__state
+msgid "Status"
+msgstr "Statut"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__activity_state
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__activity_state
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard : La date d'échéance est déjà passée\n"
+"Aujourd'hui : La date d'activité est aujourd'hui\n"
+"Planifié : Activités futures."
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Tag"
+msgstr "Étiquette"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_tag_form
+msgid "Tag Info"
+msgstr "Informations sur l'étiquette"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__name
+msgid "Tag Name"
+msgstr "Nom de l'étiquette"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__description
+msgid "Tag description"
+msgstr "Description de l'étiquette"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__tag_ids
+#: model:ir.ui.menu,name:eqp_product_certificate.menu_product_certificate_tag
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: product_certificate
+#: model:ir.model.constraint,message:eqp_product_certificate.constraint_product_certificate_check_dates
+msgid "The expiration date must be greater that the start Date"
+msgstr "La date d'expiration doit être postérieure à la date de début"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__expiration_date
+msgid "The expiration date of the certificate."
+msgstr "La date d'expiration du certificat."
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__start_date
+msgid "The issue date of the certificate."
+msgstr "La date de délivrance du certificat."
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_kanban
+msgid ""
+"This bar allows to filter the certificates by the traffic light status."
+msgstr ""
+"Cette barre permet de filtrer les certificats par le statut du feu de signalisation."
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__traffic_light
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_report__traffic_light
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Traffic Light"
+msgstr "Feu de signalisation"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__activity_exception_decoration
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__activity_exception_decoration
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type de l'activité d'exception sur l'enregistrement."
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid "Unlocked"
+msgstr "Déverrouillé"
+
+#. module: product_certificate
+#: model:res.groups,name:eqp_product_certificate.group_product_certificate_user
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__priority__0
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__priority__0
+msgid "Very Low"
+msgstr "Très bas"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate__website_message_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_stage__website_message_ids
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_certificate_tag__website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: product_certificate
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate__website_message_ids
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_stage__website_message_ids
+#: model:ir.model.fields,help:eqp_product_certificate.field_product_certificate_tag__website_message_ids
+msgid "Website communication history"
+msgstr "Historique des communications du site web"
+
+#. module: product_certificate
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate__traffic_light__yellow
+#: model:ir.model.fields.selection,name:eqp_product_certificate.selection__product_certificate_report__traffic_light__yellow
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_report_search
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_search
+msgid "Yellow"
+msgstr "Jaune"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid "description"
+msgstr "description"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_form
+msgid "e.g. ABCDE"
+msgstr "par exemple ABCDE"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_stage_form
+msgid "e.g. Stage 1"
+msgstr "par exemple Étape 1"
+
+#. module: product_certificate
+#: model_terms:ir.ui.view,arch_db:eqp_product_certificate.view_product_certificate_tag_form
+msgid "e.g. Tag 1"
+msgstr "par exemple Étiquette 1"
+
+#. module: product_certificate
+#: model:ir.model.fields,field_description:eqp_product_certificate.field_product_product__certificate_ids
+msgid "product Certificates"
+msgstr "Certificats de produit"

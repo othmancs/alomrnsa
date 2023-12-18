@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_productcertificate_document">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context(lang=o.user_id.lang)"/>
+
+            <div class="page">
+                <div class="oe_structure"/>
+                <h2>
+                    <span>Product Certificate: </span>
+                    <span t-field="o.name">Example Certificate</span>
+                </h2>
+                <h3>
+                    <span>Code: </span>
+                    <span t-field="o.code">9328476</span>
+                </h3>
+                <div id="informations" class="row mb-3">
+                    <div class="col-6">
+                        <p t-if="o.product_id" class="m-0">
+                            <strong>Product:</strong>
+                            <span t-field="o.product_id">Laptop</span>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p class="m-0">
+                            <strong>Status:</strong>
+                            <span t-field="o.state">Pending</span>
+                        </p>
+                        <p t-if="o.user_id" class="m-0">
+                            <strong>Responsible:</strong>
+                            <span t-field="o.user_id">Bob Williams</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6">
+                <p t-if="o.description" class="m-0">
+                            <strong>Description:</strong>
+                            <p t-field="o.description"/>
+                        </p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_productcertificate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="eqp_product_certificate.report_productcertificate_document" t-lang="o.user_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

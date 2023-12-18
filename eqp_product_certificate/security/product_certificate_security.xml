@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.module.category" id="module_category_product_certificate">
+            <field name="name">Product Certificates</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <record id="group_product_certificate_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="eqp_product_certificate.module_category_product_certificate"/>
+        </record>
+
+        <record id="group_product_certificate_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="eqp_product_certificate.module_category_product_certificate"/>
+            <field name="implied_ids" eval="[(4, ref('eqp_product_certificate.group_product_certificate_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>
