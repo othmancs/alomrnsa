@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="login_mobile" inherit_id="auth_signup.login" name="mobile login">
+        <xpath expr="//div[hasclass('justify-content-between')]" position="after">
+            <div>
+                <t t-if="not mobile_login">
+                    <a t-attf-href="/web/login?{{ keep_query() }}&amp;mobile_login=true" class="btn btn-link btn-sm" role="button">Login With Mobile Number</a>
+                </t>
+                <t t-if="mobile_login">
+                    <a t-attf-href="/web/login" class="btn btn-link btn-sm" role="button">Login With Email</a>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('field-login')]" position="after">
+            <t t-if="mobile_login">
+                <div class="form-group field-country o_hidden">
+                    <label for="country" class="control-label">country code</label>
+                    <input type="number" name="countrycode" id="countrycode" class="form-control"/>
+                </div>
+                <div class="form-group field-mobile">
+                    <label for="mobile" class="control-label">Mobile</label>
+                    <input type="tel" name="mobile" id="mobile" class="form-control"/>
+                    <div>
+                        <span id="valid-msg" class="o_hidden text-success">✓ Valid</span>
+                        <span id="error-msg" class="o_hidden text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                    <input id="signin_field_set" name="signin_field_set" value="true" type="hidden" />
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
