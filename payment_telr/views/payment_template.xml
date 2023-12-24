@@ -1,3 +1,0 @@
-<template id="payment_template" name="Custom Payment Template">
-    <t t-raw="iframe_html"/>
-</template>
