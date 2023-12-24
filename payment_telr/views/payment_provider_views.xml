@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">Telr Provider Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form" />
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position='inside'>
+                <group attrs="{'invisible': [('code', '!=', 'telr')]}">
+                    <field name="telr_merchant_id" />
+                    <field name="telr_api_key" password="True" />
+					<field name="telr_remote_key" />	
+                </group>
+            </group>
+			<group name="provider_config" position='inside'>
+                <group attrs="{'invisible': [('code', '!=', 'telr')]}">
+					<field name="telr_lang" />
+					<field name="telr_payment_mode" />
+					<field name="telr_trans_type" />					
+				 </group>
+            </group>			
+			<field name="display_as" position="attributes">
+				<attribute name="readonly">1</attribute>
+			</field>
+			<field name="capture_manually" position="attributes">
+				<!-- Conditionally set the visibility based on a field or condition -->
+				<attribute name="attrs">{'invisible': [('telr_trans_type', '!=', 'auth')]}</attribute>
+				<attribute name="default_checked">True</attribute>
+				<attribute name="readonly">1</attribute>
+			</field>
+			<field name="payment_icon_ids" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</field>
+        </field>
+    </record>
+	<record id="payment_transaction_form" model="ir.ui.view">
+        <field name="name">payment.transaction.form.telr</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form" />
+        <field name="arch" type="xml">
+            <field name="provider_reference" position="after">
+                <field name="telr_order_id" attrs="{'invisible': [('provider_code', '!=', 'telr')]}" />
+            </field>			
+        </field>
+    </record>
+</odoo>
