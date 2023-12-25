@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_account_journal_form_check_settings" model="ir.ui.view">
+        <field name="name">view_account_journal_form_check_settings</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+
+                <page name="Bank_check_print_settings" string="Print Check Settings" attrs="{'invisible': [('type', '!=', 'bank')]}">
+                    <group>
+                        <group>
+                            <field name="date_h" />
+                            <field name="place_h" />
+                            <field name="partner_h" />
+                            <field name="amount_h" />
+                            <field name="amount_words_h" />
+                            <field name="notes_h" />
+                            <field name="font_size" />
+                        </group>
+                        <group>
+                            <field name="date_v" />
+                            <field name="place_v" />
+                            <field name="partner_v" />
+                            <field name="amount_v" />
+                            <field name="amount_words_v" />
+                            <field name="notes_v" />
+                            <field name="place" />
+                        </group>
+                        
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_account_payment_form_check_settings" model="ir.ui.view">
+        <field name="name">view_account_payment_form_check_settings</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+             <xpath expr="//header" position="inside">
+                <button name="action_print_check" string="Print Check" type="object" class="oe_highlight" data-hotkey="v"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
