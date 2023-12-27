@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bi_employee_payslip_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-16 07:38+0000\n"
+"PO-Revision-Date: 2021-06-16 07:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.report_emp_payslip
+msgid "<strong>Payslip Report</strong>"
+msgstr "<strong>Rapport de fiche de paie</strong>"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.report_emp_payslip
+msgid "Allowance"
+msgstr "Allocation"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.report_emp_payslip
+msgid "Basic"
+msgstr "De base"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.emp_payslip_report_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__create_date
+msgid "Created on"
+msgstr "Créé sur"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.report_emp_payslip
+msgid "Deduction"
+msgstr "Déduction"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__display_name
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_report_bi_employee_payslip_report_report_emp_payslip__display_name
+msgid "Display Name"
+msgstr "Afficher un nom"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__file
+msgid "Download File"
+msgstr "Télécharger un fichier"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model,name:bi_employee_payslip_report.model_report_bi_employee_payslip_report_report_emp_payslip
+msgid "Employee Payslip Report"
+msgstr "Rapport de fiche de paie des employés"
+
+#. module: bi_employee_payslip_report
+#: model:ir.actions.report,name:bi_employee_payslip_report.action_report_export_emp_payslip
+msgid "Export Payslip Report"
+msgstr "Exporter le rapport de fiche de paie"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.emp_payslip_report_form_view
+msgid "Export Report"
+msgstr "Rapport d'exportation"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__file_name
+msgid "File Name"
+msgstr "Nom de fichier"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__file_type
+msgid "File Type"
+msgstr "Type de fichier"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.report_emp_payslip
+msgid "Gross"
+msgstr "Brute"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__id
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_report_bi_employee_payslip_report_report_emp_payslip__id
+msgid "ID"
+msgstr "identifiant"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report____last_update
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_report_bi_employee_payslip_report_report_emp_payslip____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields,field_description:bi_employee_payslip_report.field_emp_payslip_report__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.report_emp_payslip
+msgid "Net"
+msgstr "Rapporter"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields.selection,name:bi_employee_payslip_report.selection__emp_payslip_report__file_type__pdf
+msgid "PDF"
+msgstr "PDF"
+
+#. module: bi_employee_payslip_report
+#: model:ir.actions.act_window,name:bi_employee_payslip_report.action_print_report_pdf_xls
+#: model:ir.actions.server,name:bi_employee_payslip_report.action_hr_payroll_print_report_pdf_xls
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.emp_payslip_report_form_view
+msgid "Payslip Report"
+msgstr "Rapport de fiche de paie"
+
+#. module: bi_employee_payslip_report
+#: model_terms:ir.ui.view,arch_db:bi_employee_payslip_report.report_emp_payslip
+msgid "Total"
+msgstr "Le total"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model.fields.selection,name:bi_employee_payslip_report.selection__emp_payslip_report__file_type__xls
+msgid "XLS"
+msgstr "XLS"
+
+#. module: bi_employee_payslip_report
+#: model:ir.model,name:bi_employee_payslip_report.model_emp_payslip_report
+msgid "emp.payslip.report"
+msgstr ""

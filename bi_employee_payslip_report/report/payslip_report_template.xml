@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+    <template id="report_emp_payslip">
+        <t t-call="web.html_container">
+            <div class="page">
+                <div class="oe_structure"/> 
+                <table width="100%" style="font-size:21px;border-style: none;margin-bottom:15px;">
+                    <tr style="border-style: none;">
+                        <td style="border-style: none;">
+                        	<center><strong>Payslip Report</strong></center>
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" style="font-size:13px;font-family: 'Times New Roman', Times, serif;">
+                    
+                    <tr style="min-height:30px;line-height:20px;font-size:13px;font-family: 'Times New Roman', Times, serif;" width="100%" t-foreach="get_payslip_lable" t-as="record">
+                        
+                        <t t-foreach="get_payslip_lable" t-as="record">
+                            <t t-if="record.get('no')">
+                                <td rowspan="2" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="record['no']" />
+                                    </center>
+                                </td>
+                            </t>
+                            <t t-if="record.get('payslip_ref')">
+                                <td rowspan="2" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="record['payslip_ref']" />
+                                    </center>
+                                </td>
+                            </t>
+                            <t t-if="record.get('employee')">
+                                <td rowspan="2" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="record['employee']" />
+                                    </center>
+                                </td>
+                            </t>
+                            <t t-if="record.get('designation')">
+                                <td rowspan="2" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="record['designation']" />
+                                    </center>
+                                </td>
+                            </t>
+                            <t t-if="record.get('period')">
+                                <td rowspan="2" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="record.get('period')" />
+                                    </center>
+                                </td>
+                            </t>
+                            
+                           
+                           
+                           <t t-set="acc" t-value="0"/>
+                            <t t-if="record.get('BASIC')">
+                                <t t-foreach="record.get('BASIC')" t-as="basic">
+                                	<t t-set="acc" t-value="acc+1"/>
+                                </t>
+                                <td t-att-colspan="acc" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                	<center>
+                                    	 Basic
+                                    </center>
+                                </td>
+                            </t>
+                           
+							<t t-set="acc" t-value="0"/>
+                            <t t-if="record.get('ALW')">
+                                <t t-foreach="record.get('ALW')" t-as="awl">
+                                	<t t-set="acc" t-value="acc+1"/>
+                                </t>
+                                <td t-att-colspan="acc" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                	<center>
+                                    	Allowance
+                                    </center>
+                                </td>
+                            </t>
+                       
+                            
+                            <t t-set="acc" t-value="0"/>
+                            <t t-if="record.get('GROSS')">
+                            	<t t-foreach="record.get('GROSS')" t-as="grs">
+                                	<t t-set="acc" t-value="acc+1"/>
+                                </t>
+                                <td t-att-colspan="acc" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        Gross
+                                    </center>
+                                </td>
+                            </t>
+                            
+                            
+                            <t t-set="acc" t-value="0"/>
+                             <t t-if="record.get('DED')">
+                             	<t t-foreach="record.get('DED')" t-as="dediction">
+                                	<t t-set="acc" t-value="acc+1"/>
+                                </t>
+                                <td t-att-colspan="acc" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        Deduction
+                                    </center>
+                                </td>
+                            </t>
+                            
+                            
+                            <t t-set="acc" t-value="0"/>
+                             <t t-if="record.get('NET')">
+                             	<t t-foreach="record.get('NET')" t-as="net">
+                                	<t t-set="acc" t-value="acc+1"/>
+                                </t>
+                                <td t-att-colspan="acc" style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        Net
+                                    </center>
+                                </td>
+                            </t>
+                            
+                      </t>       
+                     </tr>
+                            
+                    <tr style="min-height:30px;line-height:20px;font-size:13px;font-family: 'Times New Roman', Times, serif;" width="100%" t-foreach="get_payslip_lable" t-as="record">
+                            <t t-if="record.get('BASIC')">
+                            	<t t-foreach="record.get('BASIC')" t-as="basic">
+                                    <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                       
+                                       	<t t-esc="ttttttt"/>
+                                        <center>
+                                            <span t-esc="basic" />
+                                        </center>
+                                    </td>
+                                </t>     
+                            </t>
+                            
+                            <t t-if="record.get('ALW')">
+                               <t t-foreach="record.get('ALW')" t-as="awl">
+                                   <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="awl" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                            
+                             <t t-if="record.get('GROSS')">
+                               <t t-foreach="record.get('GROSS')" t-as="grs">
+                                   <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="grs" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                            
+                            
+                            <t t-if="record.get('DED')">
+                               <t t-foreach="record.get('DED')" t-as="deduction">
+                                   <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="deduction" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                            
+                     		<t t-if="record.get('NET')">
+                               <t t-foreach="record.get('NET')" t-as="net">
+                                   <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="net" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>       
+                     
+                    </tr>
+
+					
+					<!-- For the get values of the all records  -->
+					
+                     <t t-foreach="get_payslip_details" t-as="record">
+                     	<tr style="font-size:13px;">
+                            <t t-if="record.get('NO')">
+                                <td style="font-family:verdana;padding-left:5px;border: 1px solid black;text-align:left;">
+                                    <span t-esc="record['NO'][0]"/>
+                                </td>
+                            </t>
+                            <t t-if="record.get('Payslip_Ref')">
+                                <td style="font-family:verdana;padding-left:5px;border: 1px solid black;text-align:left;">
+                                    <span t-esc="record['Payslip_Ref'][0]"/>
+                                </td>
+                           </t>
+                            <t t-if="record.get('Employee')">
+                                <td style="font-family:verdana;padding-left:5px;border: 1px solid black;text-align:left;">
+                                    <span t-esc="record['Employee'][0]"/>
+                                </td>
+                            </t>
+                            <t t-if="record.get('Designation')">
+                                <td style="font-family:verdana;padding-left:5px;border: 1px solid black;text-align:left;">
+                                    <span t-esc="record['Designation'][0]"/>
+                                </td>
+                            </t>
+                            <t t-if="record.get('Period')">
+                                <td style="font-family:verdana;padding-left:5px;border: 1px solid black;text-align:left;">
+                                    <span t-esc="record['Period'][0]"/>
+                                </td>
+                            </t>
+                            
+                            <t t-if="record.get('BASIC')">
+                               <t t-foreach="record.get('BASIC')" t-as="basic">
+                                   <td style="font-family:verdana;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="basic" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                            
+                            <t t-if="record.get('ALW')">
+                               <t t-foreach="record.get('ALW')" t-as="awl">
+                                   <td style="font-family:verdana;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="awl" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                            
+                             <t t-if="record.get('GROSS')">
+                               <t t-foreach="record.get('GROSS')" t-as="grs">
+                                   <td style="font-family:verdana;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="grs" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                            
+                            
+                            <t t-if="record.get('DED')">
+                               <t t-foreach="record.get('DED')" t-as="deduction">
+                                   <td style="font-family:verdana;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="deduction" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                            
+                     		<t t-if="record.get('NET')">
+                               <t t-foreach="record.get('NET')" t-as="net">
+                                   <td style="font-family:verdana;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                    <center>
+                                        <span t-esc="net" />
+                                    </center>
+                                    </td>
+                                </t>
+                            </t>
+                        </tr>
+                    </t>
+                   
+                   
+                     <tr style="font-size:13px;">
+                            <td colspan="5" style="font-family:verdana; background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;text-align:left;">
+                               <center>Total</center>
+                            </td>
+                            
+                            <t t-foreach="get_payslip_details" t-as="record"> 
+                               
+                               <t t-if="record.get('basic_total')">
+                                   <t t-foreach="record.get('basic_total')" t-as="basic">
+                                       <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                        <center>
+                                            <span t-esc="basic" />
+                                        </center>
+                                        </td>
+                                    </t>
+                                </t>
+                                
+                                
+                                
+                                <t t-if="record.get('awl_total')">
+                                   <t t-foreach="record.get('awl_total')" t-as="awl">
+                                       <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                        <center>
+                                            <span t-esc="awl" />
+                                        </center>
+                                        </td>
+                                    </t>
+                                </t>
+                                
+                                
+                                <t t-if="record.get('gross_total')">
+                                   <t t-foreach="record.get('gross_total')" t-as="gross">
+                                       <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                        <center>
+                                            <span t-esc="gross" />
+                                        </center>
+                                        </td>
+                                    </t>
+                                </t>
+                                
+                                
+                                <t t-if="record.get('deduction_total')">
+                                   <t t-foreach="record.get('deduction_total')" t-as="deduct">
+                                       <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                        <center>
+                                            <span t-esc="deduct" />
+                                        </center>
+                                        </td>
+                                    </t>
+                                </t>
+                                
+                                <t t-if="record.get('net_total')">
+                                   <t t-foreach="record.get('net_total')" t-as="net">
+                                       <td style="font-family:verdana;background:#e6e6e6;color:#000000;font-weight:bold;padding-left:5px;border: 1px solid black;">
+                                        <center>
+                                            <span t-esc="net" />
+                                        </center>
+                                        </td>
+                                    </t>
+                                </t>                                                    
+                            </t>
+                    </tr>
+                </table>
+            </div>
+        </t>
+
+    </template>
+</odoo>

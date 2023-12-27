@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="emp_payslip_report_form_view" model="ir.ui.view">
+            <field name="name">emp.payslip.report.form</field>
+            <field name="model">emp.payslip.report</field>
+            <field name="arch" type="xml">
+                <form string="Payslip Report">
+                   <sheet>
+                    <group>
+                        <group>
+                            <field name="file_type" widget="radio" options="{'horizontal': true}" attrs="{'invisible':[('file','!=',False)],'required':[('file','=',False)] }"/>
+                            <field name="file"  filename="file_name" readonly="1" attrs="{'invisible':[('file','=',False)]}"/>
+                            <field name="file_name" invisible="1" />
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="employee_payslip_xls" string="Export Report" type="object" class="btn-primary" attrs="{'invisible':[('file','!=',False)]}"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="bi_action_print_report_pdf_xls" model="ir.actions.act_window">
+            <field name="name">Payslip Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">emp.payslip.report</field>
+            <field name="view_mode">form</field>
+            <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <record model="ir.actions.server" id="action_hr_payroll_print_report_pdf_xls">
+            <field name="name">Payslip Report</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                    "type": "ir.actions.act_window",
+                    "view_type": "form",
+                    "view_mode": "form",
+                    "res_model": "emp.payslip.report",
+                    'target': 'new',
+                    'res_id': False,
+                }
+            </field>
+        </record>
+
+
+       </data>
+
+</odoo>
