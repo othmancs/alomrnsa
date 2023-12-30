@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="crm_lead_form_inh" model="ir.ui.view">
+		<field name="name">crm.lead.form.inh</field>
+		<field name="model">crm.lead</field>
+		<field name="inherit_id" ref="crm.crm_lead_view_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook" position="before">
+				<group string="Contact Person"> 
+					<field name="contact_person">
+						<tree>
+							<field name="name"/>
+							<field name="country_id"/>
+							<field name="phone"/>
+							<button name="open_whatsapp_web" type="object" string="whatsapp web" class="fa-whatsapp"/>
+							<button name="open_whatsapp_moile" type="object" string="whatsapp mobile" class="fa-whatsapp"/>
+						</tree>
+					</field>
+				</group>
+				
+			</xpath>
+		</field>
+	</record>
+</odoo>
