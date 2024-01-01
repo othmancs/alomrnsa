@@ -129,7 +129,7 @@ class EmpPayslipReport(models.TransientModel):
             for line in lines:
                 start_col = 4
                 row = 3
-                col = 5
+                col = 4
                 
                 if 'BASIC' in line.keys():
                     val = len(line.get('BASIC'))
