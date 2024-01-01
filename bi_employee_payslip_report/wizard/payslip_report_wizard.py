@@ -73,7 +73,7 @@ class EmpPayslipReport(models.TransientModel):
             worksheet.set_row(4, 50)
             
             # Merge Row Columns
-            TITLEHEDER = 'Payslip Report'
+            TITLEHEDER = 'تقرير الراتب'
 
             worksheet.set_column(0, 0, 3)
             worksheet.set_column(1, 1, 15)
@@ -87,11 +87,11 @@ class EmpPayslipReport(models.TransientModel):
             active_ids = self.env.context.get('active_ids', [])
             payslip_ids = self.env['hr.payslip'].browse(active_ids)
             
-            worksheet.merge_range(3, 0, 4, 0, 'NO', cell_wrap_format_bold)
+            worksheet.merge_range(3, 0, 4, 0, '#', cell_wrap_format_bold)
             worksheet.merge_range(3, 1, 4, 1, 'رقم سلب الراتب', cell_wrap_format_bold)
-            worksheet.merge_range(3, 2, 4, 2, 'Employee', cell_wrap_format_bold)
-            worksheet.merge_range(3, 3, 4, 3, 'Designation', cell_wrap_format_bold)
-            worksheet.merge_range(3, 4, 4, 4, 'Period', cell_wrap_format_bold)
+            worksheet.merge_range(3, 2, 4, 2, 'اسم الموظف', cell_wrap_format_bold)
+            # worksheet.merge_range(3, 3, 4, 3, 'Designation', cell_wrap_format_bold)
+            worksheet.merge_range(3, 4, 4, 4, 'الفترة', cell_wrap_format_bold)
             
             
             #For the get Lables
