@@ -127,7 +127,7 @@ class EmpPayslipReport(models.TransientModel):
             
             #For Print the Lable 
             for line in lines:
-                start_col = 3
+                start_col = 4
                 row = 3
                 col = 5
                 
