@@ -271,7 +271,7 @@ class EmpPayslipReport(models.TransientModel):
             for value in main:
                 col = 0
                 row = row
-                list = ['NO', 'Payslip_Ref', 'Employee', 'Designation', 'Period', 'BASIC', 'ALW', 'GROSS', 'DED', 'NET']
+                list = ['NO', 'Payslip_Ref', 'Employee',  'Period', 'BASIC', 'ALW', 'GROSS', 'DED', 'NET']
                 for l in list:
                     if l in value.keys():
                         data  = value.get(l)
