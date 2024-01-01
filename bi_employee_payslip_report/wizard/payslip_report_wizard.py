@@ -234,7 +234,7 @@ class EmpPayslipReport(models.TransientModel):
                 values['NO'] = no,
                 values['Payslip_Ref'] = payslip.number or '',
                 values['Employee'] = payslip.employee_id.name or '',
-                values['Designation'] = payslip.employee_id.job_id.name or '',
+                # values['Designation'] = payslip.employee_id.job_id.name or '',
                 values['Period'] = str(payslip.date_from) +  '  to  ' +str(payslip.date_to),
                 lines = self.env['hr.payslip.line'].search([('slip_id','=', payslip.id)])
                 all_category = lines.mapped('category_id.code')
