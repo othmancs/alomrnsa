@@ -91,7 +91,7 @@ class EmpPayslipReport(models.TransientModel):
             worksheet.merge_range(3, 1, 4, 1, 'رقم سلب الراتب', cell_wrap_format_bold)
             worksheet.merge_range(3, 2, 4, 2, 'اسم الموظف', cell_wrap_format_bold)
             # worksheet.merge_range(3, 3, 4, 3, 'Designation', cell_wrap_format_bold)
-            worksheet.merge_range(3, 4, 4, 4, 'الفترة', cell_wrap_format_bold)
+            worksheet.merge_range(3, 3, 4, 3, 'الفترة', cell_wrap_format_bold)
             
             
             #For the get Lables
