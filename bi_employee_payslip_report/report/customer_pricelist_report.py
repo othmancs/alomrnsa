@@ -8,6 +8,7 @@ from odoo import models, api,fields
 
 class ExportCustomerPricelistReport(models.AbstractModel):
 	_name = 'report.bi_employee_payslip_report.report_emp_payslip'
+
 	_description = 'Employee Payslip Report'
 
 	
@@ -69,7 +70,7 @@ class ExportCustomerPricelistReport(models.AbstractModel):
 
 		for mn in main:
 			if 'BASIC' in mn.keys():
-				b_lst = self.get_sum_of_values('BASIC', b_lst, mn)
+				b_lst = self.get_sum_of_values('الاساسي', b_lst, mn)
 			
 			if 'ALW' in mn.keys():
 				a_lst = self.get_sum_of_values('ALW', a_lst, mn)
