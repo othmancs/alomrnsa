@@ -88,7 +88,7 @@ class EmpPayslipReport(models.TransientModel):
             payslip_ids = self.env['hr.payslip'].browse(active_ids)
             
             worksheet.merge_range(3, 0, 4, 0, 'NO', cell_wrap_format_bold)
-            worksheet.merge_range(3, 1, 4, 1, 'Payslip Ref', cell_wrap_format_bold)
+            worksheet.merge_range(3, 1, 4, 1, 'رقم سلب الراتب', cell_wrap_format_bold)
             worksheet.merge_range(3, 2, 4, 2, 'Employee', cell_wrap_format_bold)
             worksheet.merge_range(3, 3, 4, 3, 'Designation', cell_wrap_format_bold)
             worksheet.merge_range(3, 4, 4, 4, 'Period', cell_wrap_format_bold)
