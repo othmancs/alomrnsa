@@ -135,7 +135,7 @@ class EmpPayslipReport(models.TransientModel):
                     val = len(line.get('BASIC'))
                     values = line.get('BASIC')
                     if val > 1:
-                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'Basic' , cell_wrap_format_bold)
+                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'اساسي' , cell_wrap_format_bold)
                         start_col = start_col + val
                         for i in values:
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
@@ -152,7 +152,7 @@ class EmpPayslipReport(models.TransientModel):
                     values  = line.get('ALW')
                     
                     if val > 1:
-                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'Allowance' , cell_wrap_format_bold)
+                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'اضافي' , cell_wrap_format_bold)
                         start_col = start_col + val
                         for i in values:
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
