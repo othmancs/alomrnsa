@@ -20,7 +20,7 @@
             </td>
 
             <td>
-                <t t-set="tax_amount" t-value="line.price_total - line.price_subtotal"/>
+                <t t-set="tax_amount" t-value="round(line.price_total - line.price_subtotal, 3)"/>
                 <span t-esc="tax_amount"/>
             </td>
         </xpath>

@@ -20,7 +20,7 @@
                     <strong>الكود الداخلى</strong>
                 </th>
             </xpath>
-            <xpath expr="//table/tbody//tr//td[1]" position="after">
+            <xpath expr="//table/tbody//tr//td[2]" position="after">
                 <td>
                     <span t-field="line.product_id.default_code"/>
                 </td>
