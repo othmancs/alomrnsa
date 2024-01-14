@@ -12,7 +12,7 @@
                 <strong>Disc. (%)</strong>
             </th>
 
-            <th name="th_taxes"><strong>Taxes</strong></th>
+            <th name="th_taxes"><strong>الضرائب</strong></th>
         </xpath>
         <xpath expr="//td[span[@t-field='line.price_subtotal']]" position="before">
             <td class="text-right">
