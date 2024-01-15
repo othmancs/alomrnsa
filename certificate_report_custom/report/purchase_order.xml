@@ -5,22 +5,22 @@
             <xpath expr="//table/thead/tr/th[@name='th_description']" position="before">
                 <th name="th_sequence"><strong>التسلسل</strong></th>
             </xpath>
-            <xpath expr="//table/tbody//tr//td[1]" position="before">
+            <xpath expr="//table/tbody//tr//td[@id='product']" position="before">
                 <td>
                     <span t-field="line.sequence_number"/>
                 </td>
             </xpath>
-            <xpath expr="//table/thead/tr/th[@name='th_date_req']" position="replace">
-            </xpath>
-            <xpath expr="//table/tbody//tr//td[3]" position="replace">
-            </xpath>
+                        <xpath expr="//table/thead/tr/th[@name='th_date_req']" position="replace">
+                        </xpath>
+                        <xpath expr="//table/tbody//tr//td[4]" position="replace">
+                        </xpath>
 
             <xpath expr="//table/thead/tr/th[@name='th_description']" position="after">
                 <th>
                     <strong>الكود الداخلى</strong>
                 </th>
             </xpath>
-            <xpath expr="//table/tbody//tr//td[2]" position="after">
+            <xpath expr="//table/tbody//tr//td[@id='product']" position="after">
                 <td>
                     <span t-field="line.product_id.default_code"/>
                 </td>
@@ -44,6 +44,21 @@
                         <p t-field="o.partner_id" class="m-0"/>
                     </div>
                 </div>
+            </xpath>
+
+
+            <xpath expr="//table/thead/tr/th[@name='th_taxes']" position="replace">
+            </xpath>
+            <xpath expr="//table/tbody//tr//td[@name='td_taxes']" position="replace">
+            </xpath>
+            <xpath expr="//table[1]/thead/tr//th[last()]" position="before">
+                <th name="th_taxes"><strong>الضرائب</strong></th>
+            </xpath>
+            <xpath expr="//td[span[@t-field='line.price_subtotal']]" position="before">
+                <td>
+                    <t t-set="tax_amount" t-value="round(line.price_total - line.price_subtotal, 3)"/>
+                    <span t-esc="tax_amount"/>
+                </td>
             </xpath>
         </template>
     </data>
