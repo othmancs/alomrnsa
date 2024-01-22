@@ -19,42 +19,38 @@
 #    DEALINGS IN THE SOFTWARE.
 #
 ########################################################################################
-import time
-import babel
-from odoo import models, fields, api, tools, _
-from datetime import datetime
+from odoo import models, fields
 
 
 class HrPayslipInput(models.Model):
+    """Inherited model for 'hr.payslip.input'"""
     _inherit = 'hr.payslip.input'
 
-    loan_line_id = fields.Many2one('hr.loan.line', string="Loan Installment", help="Loan installment")
+    loan_line_id = fields.Many2one('hr.loan.line',
+                                   string="Loan Installment",
+                                   help="Loan installment")
 
 
 class HrPayslip(models.Model):
+    """Employee payslip"""
     _inherit = 'hr.payslip'
 
-
-    @api.onchange('struct_id', 'date_from', 'date_to', 'employee_id')
-    def onchange_employee_loan(self):
+    def compute_sheet(self):
+        """Update the computing sheet of a payslip by adding loan details
+        to the 'Other Inputs' section."""
         for data in self:
-            print("Data:", data)
-            if (not data.employee_id) or (not data.date_from) or (not data.date_to):
+            if (not data.employee_id) or (not data.date_from) or (
+                    not data.date_to):
                 return
             if data.input_line_ids.input_type_id:
                 data.input_line_ids = [(5, 0, 0)]
-            print("Employee:", data)
             loan_line = data.struct_id.rule_ids.filtered(
                 lambda x: x.code == 'LO')
-            print("Data2213:")
-            # loan_line = self.env.ref('ent_ohrms_loan.hr_rule_input_loan')
             if loan_line:
                 get_amount = self.env['hr.loan'].search([
                     ('employee_id', '=', data.employee_id.id),
                     ('state', '=', 'approve')
                 ], limit=1)
-                print(get_amount,'get_amount')
-
                 if get_amount:
                     for lines in get_amount:
                         for line in lines.loan_lines:
@@ -62,11 +58,12 @@ class HrPayslip(models.Model):
                                 if not line.paid:
                                     amount = line.amount
                                     name = loan_line.id
-                                    # loan_line.input_id.struct_id = data.struct_id
-                                    loan = line.id
-                                    self.input_data_line(name, amount, loan)
+                                    data.input_data_line(name, amount, line)
+
+        return super(HrPayslip, self).compute_sheet()
 
     def action_payslip_done(self):
+        """Mark loan as paid on paying payslip"""
         for line in self.input_line_ids:
             if line.loan_line_id:
                 line.loan_line_id.paid = True
@@ -74,36 +71,40 @@ class HrPayslip(models.Model):
         return super(HrPayslip, self).action_payslip_done()
 
     def input_data_line(self, name, amount, loan):
-        for data in self:
-            check_lines = []
-            new_name = self.env['hr.payslip.input.type'].search([
-                ('input_id', '=', name)])
-            line = (0, 0, {
-                'input_type_id': new_name,
-                'amount': amount,
-                'name': 'LO',
-                'loan_line_id': loan
-            })
-            check_lines.append(line)
-            data.input_line_ids = check_lines
+        """Add loan details to payslip as other input"""
+        check_lines = []
+        new_name = self.env['hr.payslip.input.type'].search([
+            ('input_id', '=', name)])
+        line = (0, 0, {
+            'input_type_id': new_name.id,
+            'amount': amount,
+            'name': 'LO',
+            'loan_line_id': loan.id
+        })
+        check_lines.append(line)
+        self.input_line_ids = check_lines
 
 
 class HrPayslipInputType(models.Model):
+    """Inherited model for 'hr.payslip.input.type'"""
     _inherit = 'hr.payslip.input.type'
 
     input_id = fields.Many2one('hr.salary.rule')
 
 
 class HrSalaryRule(models.Model):
+    """New field company_id on salary rule model"""
     _inherit = 'hr.salary.rule'
 
-    company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True, help="Comapny",
+    company_id = fields.Many2one('res.company', 'Company',
+                                 copy=False, readonly=True, help="Comapny",
                                  default=lambda self: self.env.user.company_id)
 
 
 class HrPayrollStructure(models.Model):
+    """New field company_id on 'hr.payroll.structure'"""
     _inherit = 'hr.payroll.structure'
 
-    company_id = fields.Many2one('res.company', 'Company', copy=False, readonly=True, help="Comapny",
+    company_id = fields.Many2one('res.company', 'Company',
+                                 copy=False, readonly=True, help="Comapny",
                                  default=lambda self: self.env.user.company_id)
-

@@ -20,31 +20,40 @@
 #
 ########################################################################################
 {
-    'name': 'Enterprise Open HRMS Loan Management',
+    'name': "Enterprise Open HRMS - HR Dashboard",
     'version': '16.0.1.0.0',
-    'summary': 'Manage Loan Requests',
-    'description': """Helps you to manage Loan Requests of your company's 
-     staff.""",
+    'summary': """Open HRMS - HR Dashboard""",
+    'description': """Open HRMS - HR Dashboard""",
     'category': 'Generic Modules/Human Resources',
+    'live_test_url': 'https://youtu.be/XwGGvZbv6sc',
     'author': "Cybrosys Techno Solutions,Open HRMS",
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
-    'live_test_url': 'https://youtu.be/LdUvXDMkd4Q',
     'website': "https://www.openhrms.com",
-    'depends': [
-        'base', 'hr_payroll', 'hr', 'account', 'ent_hr_payroll_extension',
-    ],
+    'depends': ['hr','hr_holidays', 'hr_timesheet', 'hr_payroll',
+                'hr_attendance', 'hr_timesheet_attendance',
+                'hr_recruitment', 'ent_hr_resignation', 'event',
+                'ent_hr_reward_warning', 'base'],
+    'external_dependencies': {
+        'python': ['pandas'],
+    },
     'data': [
         'security/ir.model.access.csv',
-        'security/security.xml',
-        'views/hr_loan_seq.xml',
-        'data/salary_rule_loan.xml',
-        'views/hr_loan.xml',
-        'views/hr_payroll.xml',
+        'report/broadfactor.xml',
+        'views/dashboard_views.xml',
     ],
-    'images': ['static/description/banner.png'],
-    'license': 'OPL-1',
+    'assets': {
+        'web.assets_backend': [
+            'ent_hrms_dashboard/static/src/css/hrms_dashboard.css',
+            'ent_hrms_dashboard/static/src/css/lib/nv.d3.css',
+            'ent_hrms_dashboard/static/src/js/hrms_dashboard.js',
+            'ent_hrms_dashboard/static/src/js/lib/d3.min.js',
+            'ent_hrms_dashboard/static/src/xml/hrms_dashboard.xml',
+        ],
+    },
+
+    'images': ["static/description/banner.png"],
+    'license': "OPL-1",
     'installable': True,
-    'auto_install': False,
-    'application': False,
+    'application': True,
 }

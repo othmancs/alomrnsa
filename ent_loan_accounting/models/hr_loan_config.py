@@ -19,32 +19,26 @@
 #    DEALINGS IN THE SOFTWARE.
 #
 ########################################################################################
-{
-    'name': 'Enterprise Open HRMS Loan Management',
-    'version': '16.0.1.0.0',
-    'summary': 'Manage Loan Requests',
-    'description': """Helps you to manage Loan Requests of your company's 
-     staff.""",
-    'category': 'Generic Modules/Human Resources',
-    'author': "Cybrosys Techno Solutions,Open HRMS",
-    'company': 'Cybrosys Techno Solutions',
-    'maintainer': 'Cybrosys Techno Solutions',
-    'live_test_url': 'https://youtu.be/LdUvXDMkd4Q',
-    'website': "https://www.openhrms.com",
-    'depends': [
-        'base', 'hr_payroll', 'hr', 'account', 'ent_hr_payroll_extension',
-    ],
-    'data': [
-        'security/ir.model.access.csv',
-        'security/security.xml',
-        'views/hr_loan_seq.xml',
-        'data/salary_rule_loan.xml',
-        'views/hr_loan.xml',
-        'views/hr_payroll.xml',
-    ],
-    'images': ['static/description/banner.png'],
-    'license': 'OPL-1',
-    'installable': True,
-    'auto_install': False,
-    'application': False,
-}
+from odoo import models, fields, api, _
+
+
+class AccConfig(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    loan_approve = fields.Boolean(default=False, string="Approval from Accounting Department",
+                                  help="Loan Approval from account manager")
+
+    @api.model
+    def get_values(self):
+        res = super(AccConfig, self).get_values()
+        res.update(
+            loan_approve=self.env['ir.config_parameter'].sudo().get_param('account.loan_approve')
+        )
+        print(res,'resssssss')
+        return res
+
+    
+    def set_values(self):
+        super(AccConfig, self).set_values()
+        self.env['ir.config_parameter'].sudo().set_param('account.loan_approve', self.loan_approve)
+

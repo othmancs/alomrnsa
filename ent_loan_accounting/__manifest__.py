@@ -20,27 +20,25 @@
 #
 ########################################################################################
 {
-    'name': 'Enterprise Open HRMS Loan Management',
+    'name': 'Enterprise Open HRMS Loan Accounting',
     'version': '16.0.1.0.0',
-    'summary': 'Manage Loan Requests',
-    'description': """Helps you to manage Loan Requests of your company's 
-     staff.""",
+    'summary': 'Open HRMS Loan Accounting',
+    'description': """
+        Create accounting entries for loan requests.
+        """,
     'category': 'Generic Modules/Human Resources',
     'author': "Cybrosys Techno Solutions,Open HRMS",
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
-    'live_test_url': 'https://youtu.be/LdUvXDMkd4Q',
+    'live_test_url': 'https://youtu.be/NFZfiHyn0-0',
     'website': "https://www.openhrms.com",
     'depends': [
         'base', 'hr_payroll', 'hr', 'account', 'ent_hr_payroll_extension',
+        'account_accountant','ent_ohrms_loan'
     ],
     'data': [
-        'security/ir.model.access.csv',
-        'security/security.xml',
-        'views/hr_loan_seq.xml',
-        'data/salary_rule_loan.xml',
-        'views/hr_loan.xml',
-        'views/hr_payroll.xml',
+        'views/hr_loan_config.xml',
+        'views/hr_loan_acc.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'OPL-1',

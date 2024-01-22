@@ -20,28 +20,19 @@
 #
 ########################################################################################
 {
-    'name': 'Enterprise Open HRMS Loan Management',
+    'name': 'Enterprise  HRMS Employees From User',
     'version': '16.0.1.0.0',
-    'summary': 'Manage Loan Requests',
-    'description': """Helps you to manage Loan Requests of your company's 
-     staff.""",
+    'summary': 'Automatically Creates Employee While Creating User',
+    'live_test_url': 'https://youtu.be/gz3Vi3Wn0E8',
+    'description': 'This module helps you to create employees automatically while creating users',
     'category': 'Generic Modules/Human Resources',
     'author': "Cybrosys Techno Solutions,Open HRMS",
+
     'company': 'Cybrosys Techno Solutions',
-    'maintainer': 'Cybrosys Techno Solutions',
-    'live_test_url': 'https://youtu.be/LdUvXDMkd4Q',
     'website': "https://www.openhrms.com",
-    'depends': [
-        'base', 'hr_payroll', 'hr', 'account', 'ent_hr_payroll_extension',
-    ],
-    'data': [
-        'security/ir.model.access.csv',
-        'security/security.xml',
-        'views/hr_loan_seq.xml',
-        'data/salary_rule_loan.xml',
-        'views/hr_loan.xml',
-        'views/hr_payroll.xml',
-    ],
+    'maintainer': 'Cybrosys Techno Solutions',
+    'depends': ['base', 'hr'],
+    'data': ['views/employee_creation_from_user_view.xml'],
     'images': ['static/description/banner.png'],
     'license': 'OPL-1',
     'installable': True,
