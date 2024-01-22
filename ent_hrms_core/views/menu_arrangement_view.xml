@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Leaves"
+                  id="hr_holidays.menu_hr_holidays_root"
+                  web_icon="hr_holidays,static/description/icon.png"
+                  groups="base.group_user"/>
+
+
+
+    </data>
+</odoo>
