@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="purchase_order_document_inherit" inherit_id="purchase.report_purchaseorder_document">
+            <xpath expr="//table/thead/tr/th[@name='th_description']" position="before">
+                <th name="th_sequence"><strong>التسلسل</strong></th>
+            </xpath>
+            <xpath expr="//table/tbody//tr//td[@id='product']" position="before">
+                <td>
+                    <span t-field="line.sequence_number"/>
+                </td>
+            </xpath>
+                        <xpath expr="//table/thead/tr/th[@name='th_date_req']" position="replace">
+                        </xpath>
+                        <xpath expr="//table/tbody//tr//td[4]" position="replace">
+                        </xpath>
+
+            <xpath expr="//table/thead/tr/th[@name='th_description']" position="after">
+                <th>
+                    <strong>الكود الداخلى</strong>
+                </th>
+            </xpath>
+            <xpath expr="//table/tbody//tr//td[@id='product']" position="after">
+                <td>
+                    <span t-field="line.product_id.default_code"/>
+                </td>
+            </xpath>
+            <!--            Deliver To                 -->
+
+            <xpath expr="//div//div[@id='informations']" position="after">
+                <div id="informations" class="row mt-4 mb32">
+                    <div class="col-3 bm-2">
+                        <strong>التوصيل الى:</strong>
+                        <p t-field="o.picking_type_id" class="m-0"/>
+                    </div>
+
+                    <div class="col-3 bm-2">
+                        <strong>الفرع:</strong>
+                        <p t-field="o.branch_id" class="m-0"/>
+                    </div>
+
+                    <div class="col-3 bm-2">
+                        <strong>المورد:</strong>
+                        <p t-field="o.partner_id" class="m-0"/>
+                    </div>
+                </div>
+            </xpath>
+
+
+            <xpath expr="//table/thead/tr/th[@name='th_taxes']" position="replace">
+            </xpath>
+            <xpath expr="//table/tbody//tr//td[@name='td_taxes']" position="replace">
+            </xpath>
+            <xpath expr="//table[1]/thead/tr//th[last()]" position="before">
+                <th name="th_taxes"><strong>الضرائب</strong></th>
+            </xpath>
+            <xpath expr="//td[span[@t-field='line.price_subtotal']]" position="before">
+                <td>
+                    <t t-set="tax_amount" t-value="round(line.price_total - line.price_subtotal, 3)"/>
+                    <span t-esc="tax_amount"/>
+                </td>
+            </xpath>
+        </template>
+    </data>
+</odoo>

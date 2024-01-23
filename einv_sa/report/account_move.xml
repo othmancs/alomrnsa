@@ -110,6 +110,11 @@
                     <div class="col-5 text-center"><span t-field="doc.partner_id.other_id"></span></div>
                     <div class="col-4 text-right"><Strong>معرف آخر</Strong></div>
                 </div>
+                <div class="row">
+                    <div class="col-3"><Strong>Order ID</Strong></div>
+                    <div class="col-5 text-center"><span t-field="doc.line_ids.sale_line_ids.order_id"></span></div>
+                    <div class="col-4 text-right"><Strong>رقم الطلب</Strong></div>
+                </div>
                 <div class="oe_structure"/>
             </div>
             <div class="oe_structure"/>

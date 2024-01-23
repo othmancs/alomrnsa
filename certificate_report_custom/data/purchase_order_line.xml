@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="SequenceName_sequence" model="ir.sequence">
+            <field name="name">SequenceTitle</field>
+            <field name="code">ProjectName.ModelName.seq</field>
+            <field name="prefix">Prefix</field>
+            <field name="padding">7</field>
+        </record>
+        <?xml version="1.0" encoding="utf-8"?>
+
+
+        <!-- Sequences for hr.resignation -->
+        <record id="purchase_order_line_sequence" model="ir.sequence">
+            <field name="name">Purchase Order Line</field>
+            <field name="code">purchase.line.order</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>

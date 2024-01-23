@@ -89,7 +89,7 @@
             <t t-if="branch">
                 <t t-if="branch.street or branch.street2 or branch.city or branch.state_id or branch.zip or branch.country_id">
                 <span class="company_address" t-field="company.partner_id"/>,
-                <span class="company_address" t-field="branch.name"/><br/>
+<!--                <span class="company_address" t-field="branch.name"/><br/>-->
                 <span t-if="branch.street" t-field="branch.street"/><br/>
                 <span t-if="branch.street2" t-field="branch.street2"/><br/>
                 <span t-if="branch.city" t-field="branch.city"/>,

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="product_template_for_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description_purchase']" position="after">
+                    <field name="certificate_for_water"/>
+                    <field name="rationalization_label"/>
+                    <field name="certificate_of_comformity"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
