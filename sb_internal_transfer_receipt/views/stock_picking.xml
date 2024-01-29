@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">view.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_dest_id'][2]" position="after">
+                    <field name="actual_destination_id"
+                           attrs="{
+                    'invisible':['|' ,('picking_type_code', '!=', 'internal'), ('transit_transfer', '!=', False)],
+                    'required': [('transit_transfer', '=', False),('picking_type_code', '=', 'internal')]
+                    }"
+                           options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>
+                    <field name="transit_transfer" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
