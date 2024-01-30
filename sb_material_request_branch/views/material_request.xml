@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="material_request_form_view_inherit" model="ir.ui.view">
+            <field name="name">material.request.form.view.inherit</field>
+            <field name="model">material.request</field>
+            <field name="inherit_id" ref="ak_material_request.material_request_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='request_date']" position="after">
+                    <field name="branch_from_id"/>
+                    <field name="branch_to_id"/>
+                </xpath>
+                <xpath expr="//field[@name='request_line_ids']/tree/field[@name='qty']" position="after">
+                    <field name="qty_available"/>
+                </xpath>
+<!--                <xpath expr="//field[@name='location_id']" position="attributes">-->
+<!--                    <attribute name="domain">[('branch_id', '=', branch_from_id), ('usage', '=', 'internal')]</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='dest_location_id']" position="attributes">-->
+<!--                    <attribute name="domain">[('branch_id', '=', branch_to_id), ('usage', '=', 'internal')]</attribute>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+    </data>
+</odoo>
