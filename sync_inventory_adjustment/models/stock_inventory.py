@@ -27,11 +27,15 @@ class Inventory(models.Model):
 
     name = fields.Char(
         'Inventory Reference',
-        readonly=True, required=True,
-        states={'draft': [('readonly', False)]})
+        required=True,
+        copy=False,
+        readonly=True,
+        index=True,
+        default=lambda self: _('New')
+    )
     date = fields.Datetime(
         'Inventory Date',
-        readonly=True, required=True,
+        required=True,
         default=fields.Datetime.now,
         help="If the inventory adjustment is not validated, date at which the theoritical quantities have been checked.\n"
              "If the inventory adjustment is validated, date at which the inventory adjustment has been validated.")
@@ -58,6 +62,7 @@ class Inventory(models.Model):
         'stock.location', 'Inventoried Location',
         readonly=True, required=True,
         states={'draft': [('readonly', False)]},
+        domain=[('usage', '=', 'internal')],
         default=_default_location_id)
     product_id = fields.Many2one(
         'product.product', 'Inventoried Product',
@@ -92,6 +97,17 @@ class Inventory(models.Model):
         readonly=True, states={'draft': [('readonly', False)]},
         help="Specify Product Category to focus your inventory on a particular Category.")
     exhausted = fields.Boolean('Include Exhausted Products', readonly=True, states={'draft': [('readonly', False)]})
+
+    @api.model
+    def create(self, vals):
+        # assigning the sequence for the record
+        if vals.get('name', _('New')) == _('New'):
+            vals['name'] = self.env['ir.sequence'].next_by_code('adj.inventory') or _('New')
+            if vals.get('location_id', False):
+                location_name = self.env['stock.location'].browse(vals['location_id']).location_id.name
+                vals['name'] = location_name + vals['name']
+        res = super(Inventory, self).create(vals)
+        return res
 
     @api.depends('product_id', 'line_ids.product_qty')
     def _compute_total_qty(self):
@@ -469,6 +485,29 @@ class InventoryLine(models.Model):
     product_tracking = fields.Selection(string='Tracking', related='product_id.tracking', readonly=True)
 
     quant_id = fields.Many2one('stock.quant', string='Quants')
+
+    difference_cost = fields.Float(compute='compute_cost')
+    real_cost = fields.Float(compute='compute_cost')
+    theoretical_cost = fields.Float(compute='compute_cost')
+
+    @api.depends('product_id', 'product_id.standard_price')
+    def compute_cost(self):
+        for rec in self:
+            rec.difference_cost = rec.product_id.standard_price * rec.quantities_difference
+            rec.real_cost = rec.product_id.standard_price * rec.product_qty
+            rec.theoretical_cost = rec.product_id.standard_price * rec.theoretical_qty
+
+
+    @api.model
+    def create(self, vals):
+        if vals.get('product_id', False):
+            inventory = self.env['stock.inventory.line'].search([
+                ('inventory_id', '=', vals['inventory_id']),
+                ('product_id', '=', vals['product_id']),
+            ])
+            if inventory:
+                raise ValidationError("The Product is already in the list")
+        return super(InventoryLine, self).create(vals)
 
     @api.depends('location_id', 'product_id', 'package_id', 'product_uom_id', 'company_id', 'prod_lot_id', 'partner_id')
     def _compute_theoretical_qty(self,product_id=None,lot_id=None,owner_id=None,to_uom=None):
