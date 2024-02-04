@@ -25,11 +25,10 @@
     'summary': "Quick Search Feature For One2many Fields In Odoo",
     'description': 'One2Many Search Widget Helps the User to Search for a Word or Number. The One2many Rows Satisfying the '
                'Search will be Displayed and the Others get Hided.',
-    "website": "https://www.cybrosys.com",
-    'company': 'Cybrosys Techno Solutions',
-    'maintainer': 'Cybrosys Techno Solutions',
+    'company': 'SB Tech',
+    'maintainer': 'SB Tech',
     'category': 'Extra Tools',
-    "author": "Cybrosys Techno Solutions",
+    "author": "SB Tech",
     "license": "AGPL-3",
     'depends': ['base', 'web'],
     'assets': {
