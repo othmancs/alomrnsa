@@ -11,7 +11,7 @@
     'description': """
         Inventory Adjustment Screen
 """,
-    'depends': ['stock', 'sb_one2many_search_widget'],
+    'depends': ['stock',],
     'data': [
         'security/ir.model.access.csv',
         'views/stock_inventory_view.xml',
