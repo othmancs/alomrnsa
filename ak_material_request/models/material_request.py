@@ -143,6 +143,7 @@ class MaterialRequest(models.Model):
             scheduled_date = False
             picking_vals = {
                 "picking_type_id": material_req_rec.picking_type_id.id,
+                "partner_id": material_req_rec.user_id.partner_id.id,
                 "request_id": material_req_rec.id,
                 "origin": material_req_rec.name,
                 "location_id": material_req_rec.dest_location_id.id,
@@ -178,6 +179,7 @@ class MaterialRequest(models.Model):
                 two_step_picking_rec = self.env["stock.picking"].create(
                     {
                         "location_id": transit_location.id,
+                        "partner_id": material_req_rec.user_id.partner_id.id,
                         "location_dest_id": material_req_rec.location_id.id,
                         "picking_type_id": material_req_rec.picking_type_id.id,
                         "request_id": material_req_rec.id,
