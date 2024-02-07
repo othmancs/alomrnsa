@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
 {
-    "name": "sb.internal.transfer.receipt",
+    "name": "sb.remove.barcode",
     "version": "1.0.0.16",
-    "depends": ['stock'],
+    "depends": [
+        'stock'
+    ],
     "category": "Inventory",
     "license": "OPL-1",
 
     "data": [
-
-        'views/stock_location.xml',
-        'views/stock_picking.xml',
+        'reports/report_stockpicking_operations.xml'
     ],
     "installable": True,
     "auto_install": False,
