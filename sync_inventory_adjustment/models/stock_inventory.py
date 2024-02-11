@@ -452,6 +452,7 @@ class InventoryLine(models.Model):
         index=True, required=True)
     quantities_difference = fields.Float('Quantities difference', compute='_compute_quantities_difference')
 
+    @api.depends('product_qty', 'theoretical_qty')
     def _compute_quantities_difference(self):
         for rec in self:
             rec.quantities_difference = rec.product_qty - rec.theoretical_qty
