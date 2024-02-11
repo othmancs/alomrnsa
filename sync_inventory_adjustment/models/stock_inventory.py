@@ -491,13 +491,12 @@ class InventoryLine(models.Model):
     real_cost = fields.Float(compute='compute_cost')
     theoretical_cost = fields.Float(compute='compute_cost')
 
-    @api.depends('product_id', 'product_id.standard_price')
+    @api.depends('product_id', 'product_id.standard_price', 'quantities_difference')
     def compute_cost(self):
         for rec in self:
             rec.difference_cost = rec.product_id.standard_price * rec.quantities_difference
             rec.real_cost = rec.product_id.standard_price * rec.product_qty
             rec.theoretical_cost = rec.product_id.standard_price * rec.theoretical_qty
-
 
     @api.model
     def create(self, vals):
