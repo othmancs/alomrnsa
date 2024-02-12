@@ -9,7 +9,7 @@ class StockPicking(models.Model):
         check_company=True, readonly=True, required=True,
         states={'draft': [('readonly', False)]})
 
-    transit_transfer = fields.Many2one('stock.picking')
+    transit_transfer = fields.Many2one('stock.picking', copy=False)
 
     is_transit = fields.Boolean('Internal Transfer')
 
