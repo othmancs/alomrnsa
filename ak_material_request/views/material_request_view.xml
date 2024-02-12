@@ -48,7 +48,7 @@
                                    domain="[('usage', '=', 'internal')]"
                                    attrs="{'readonly': [('state', 'in', ['approve', 'reject'])]}"
                                    options="{'no_create': True}"
-                                   string="المستودع الطالب",
+                                   string="المستودع الطالب"
                             />
                             <field name="picking_type_id" required="1" domain="[('code', '=', 'internal')]"
                                    attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True}"/>
