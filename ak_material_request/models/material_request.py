@@ -50,12 +50,14 @@ class MaterialRequest(models.Model):
         string="المستودع المطلوب منو",
         copy=True,
         help="Stock needed on Location.",
+        domain=lambda self: [('id', '=', False)],
     )
     dest_location_id = fields.Many2one(
         "stock.location",
         string="المستودع الطالب",
         copy=False,
         help="Location from where stock will be delivered.",
+        domain=lambda self: [('id', '=', False)],
     )
     request_date = fields.Date(string="Request Date", default=datetime.now().date())
     request_line_ids = fields.One2many(

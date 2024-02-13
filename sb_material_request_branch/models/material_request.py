@@ -13,7 +13,8 @@ class MaterialRequest(models.Model):
     branch_to_id = fields.Many2one(
         'res.branch',
         string='فرع الى',
-        domain=lambda self: [('id', '=', False)],
+        domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
+        default=lambda self: self.env.user.branch_id.id,
     )
 
     @api.onchange('branch_from_id',)
