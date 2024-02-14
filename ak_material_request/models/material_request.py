@@ -45,19 +45,29 @@ class MaterialRequest(models.Model):
             ("groups_id", "in", [self.env.ref("stock.group_stock_user").id])
         ],
     )
-    location_id = fields.Many2one(
-        "stock.location",
-        string="من مستودع",
-        copy=True,
-        help="Stock needed on Location.",
-        domain=lambda self: [('id', '=', False)],
+    branch_from_id = fields.Many2one(
+        'res.branch',
+        string='من فرع',
+        domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
+        default=lambda self: self.env.user.branch_id.id,
+    )
+    branch_to_id = fields.Many2one(
+        'res.branch',
+        string='الى فرع',
+        domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
+        default=lambda self: self.env.user.branch_id.id,
     )
     dest_location_id = fields.Many2one(
         "stock.location",
+        string="من مستودع",
+        copy=True,
+        help="Location from where stock will be delivered.",
+    )
+    location_id = fields.Many2one(
+        "stock.location",
         string="الى مستودع",
         copy=False,
-        help="Location from where stock will be delivered.",
-        domain=lambda self: [('id', '=', False)],
+        help="Stock needed on Location.",
     )
     request_date = fields.Date(string="Request Date", default=datetime.now().date())
     request_line_ids = fields.One2many(
@@ -85,6 +95,40 @@ class MaterialRequest(models.Model):
         "res.company", "Company", default=lambda self: self.env.company
     )
     approved_user_id = fields.Many2one("res.users", copy=False, string="Approved By")
+
+    @api.onchange('branch_from_id', )
+    def _onchange_branch_from_id(self):
+        """
+        set domain in branch from
+        """
+        for rec in self:
+            rec.dest_location_id = False
+            if rec.branch_from_id:
+                related_locations = self.env['stock.location'].search([
+                    ('branch_id', '=', rec.branch_from_id.id),
+                    ('usage', '=', 'internal')]
+                )
+                return {'domain': {'dest_location_id': [
+                    ('id', 'in', related_locations.ids)
+                ]}}
+            return {'domain': {'dest_location_id': [('id', '=', False)]}}
+
+    @api.onchange('branch_to_id', )
+    def _onchange_branch_to_id(self):
+        """
+        set domain in branch to
+        """
+        for rec in self:
+            rec.location_id = False
+            if rec.branch_to_id:
+                related_locations = self.env['stock.location'].search([
+                    ('branch_id', '=', rec.branch_to_id.id),
+                    ('usage', '=', 'internal')]
+                )
+                return {'domain': {'location_id': [
+                    ('id', 'in', related_locations.ids)
+                ]}}
+            return {'domain': {'location_id': [('id', '=', False)]}}
 
     @api.constrains("dest_location_id")
     def check_dest_location(self):

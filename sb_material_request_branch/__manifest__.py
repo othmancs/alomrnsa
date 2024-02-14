@@ -2,16 +2,15 @@
 
 {
     "name": "sb.material.request.branch",
-    "version": "1.0.0.16",
+    "version": "16.0.0.16",
     "depends": [
-        'multi_branch_base', 'ak_material_request',
+        'multi_branch_base'
     ],
     "category": "Inventory",
     "license": "OPL-1",
 
     "data": [
         'views/stock_location.xml',
-        'views/material_request.xml',
     ],
     "installable": True,
     "auto_install": False,
