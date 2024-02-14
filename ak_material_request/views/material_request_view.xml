@@ -42,13 +42,11 @@
                                    domain="[('usage', '=', 'internal')]"
                                    attrs="{'readonly': [('state', '!=', 'draft')]}"
                                    options="{'no_create': True}"
-                                   string="المستودع المطلوب منو"
                             />
                             <field name="dest_location_id"
                                    domain="[('usage', '=', 'internal')]"
                                    attrs="{'readonly': [('state', 'in', ['approve', 'reject'])]}"
                                    options="{'no_create': True}"
-                                   string="المستودع الطالب"
                             />
                             <field name="picking_type_id" required="1" domain="[('code', '=', 'internal')]"
                                    attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True}"/>
