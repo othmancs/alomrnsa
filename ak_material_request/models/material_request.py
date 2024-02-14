@@ -47,14 +47,14 @@ class MaterialRequest(models.Model):
     )
     location_id = fields.Many2one(
         "stock.location",
-        string="المستودع المطلوب منو",
+        string="من مستودع",
         copy=True,
         help="Stock needed on Location.",
         domain=lambda self: [('id', '=', False)],
     )
     dest_location_id = fields.Many2one(
         "stock.location",
-        string="المستودع الطالب",
+        string="الى مستودع",
         copy=False,
         help="Location from where stock will be delivered.",
         domain=lambda self: [('id', '=', False)],
