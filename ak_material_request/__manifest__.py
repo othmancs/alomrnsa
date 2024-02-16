@@ -25,7 +25,7 @@
     "license": "OPL-1",
     "version": "16.0.1.0.0",
     "category": "Inventory",
-    "depends": ["stock", "sb_material_request_branch"],
+    "depends": ["stock"],
     "data": [
         "security/ir.model.access.csv",
         "data/material_request_sequence.xml",
