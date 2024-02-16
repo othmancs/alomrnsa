@@ -2,9 +2,9 @@
 
 {
     "name": "sb.material.request.branch",
-    "version": "1.0.0.16",
+    "version": "16.0.0.16",
     "depends": [
-        'multi_branch_base', 'ak_material_request',
+        'multi_branch_base', 'stock'
     ],
     "category": "Inventory",
     "license": "OPL-1",
