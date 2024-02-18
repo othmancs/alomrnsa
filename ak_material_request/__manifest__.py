@@ -25,7 +25,7 @@
     "license": "OPL-1",
     "version": "16.0.1.0.0",
     "category": "Inventory",
-    "depends": ["stock", "sb_material_request_branch"],
+    "depends": ["stock", "mail", 'multi_branch_base'],
     "data": [
         "security/ir.model.access.csv",
         "data/material_request_sequence.xml",
@@ -34,6 +34,7 @@
         "views/material_request_view.xml",
         "views/res_config_views.xml",
         "views/res_company_views.xml",
+        "views/stock_location.xml",
     ],
     "images": ["static/description/Internal_Material_Request_Banner-01.jpg"],
     "installable": True,
