@@ -38,6 +38,13 @@
                     <group>
                         <group>
                             <field name="user_id" readonly="1" force_save="1"/>
+                            <field name="branch_from_id"/>
+                            <field name="branch_to_id"/>
+                            <field name="picking_type_id" required="1" domain="[('code', '=', 'internal')]"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="request_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             <field name="dest_location_id"
                                    attrs="{'readonly': [('state', 'in', ['approve', 'reject'])]}"
                                    options="{'no_create': True}"
@@ -48,13 +55,6 @@
                                    options="{'no_create': True}"
                                    domain="[('branch_id', '=', branch_to_id), ('branch_id', '!=', False), ('usage', '=', 'internal')]"
                             />
-                            <field name="picking_type_id" required="1" domain="[('code', '=', 'internal')]"
-                                   attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True}"/>
-                        </group>
-                        <group>
-                            <field name="request_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                            <field name="branch_from_id"/>
-                            <field name="branch_to_id"/>
                             <field name="good_needed_on" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             <field name="two_verify" attrs="{'invisible': [('picking_two_verify', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
                             <field name="picking_two_verify" invisible="1"/>
@@ -69,6 +69,7 @@
                                     <field name="product_uom_category_id" invisible="1"/>
                                     <field name="description"/>
                                     <field name="qty"/>
+                                    <field name="qty_available"/>
                                     <field name="uom_id"  options="{'no_create': True}"/>
                                 </tree>
                                 <form>
