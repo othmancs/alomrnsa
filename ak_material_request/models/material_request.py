@@ -111,7 +111,7 @@ class MaterialRequest(models.Model):
                 return {'domain': {'dest_location_id': [
                     ('id', 'in', related_locations.ids)
                 ]}}
-            return {'domain': {'dest_location_id': [('id', '=', False)]}}
+            # return {'domain': {'dest_location_id': [('id', '=', False)]}}
 
     @api.onchange('branch_to_id', )
     def _onchange_branch_to_id(self):
@@ -128,7 +128,7 @@ class MaterialRequest(models.Model):
                 return {'domain': {'location_id': [
                     ('id', 'in', related_locations.ids)
                 ]}}
-            return {'domain': {'location_id': [('id', '=', False)]}}
+            # return {'domain': {'location_id': [('id', '=', False)]}}
 
     @api.constrains("dest_location_id")
     def check_dest_location(self):
