@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="custom_report_picking" inherit_id="stock.report_picking">
+            <xpath expr="//div[@name='right_box']" position="replace"></xpath>
+        </template>
+    </data>
+</odoo>

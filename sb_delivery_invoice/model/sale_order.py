@@ -6,6 +6,7 @@ class SaleOrder(models.Model):
 
     first_invoice_id = fields.Many2one('account.move', compute='compute_first_invoice', store=True)
 
+    @api.depends('invoice_ids')
     def compute_first_invoice(self):
         for rec in self:
             if rec.invoice_ids:

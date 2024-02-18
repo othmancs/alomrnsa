@@ -8,6 +8,8 @@
     "license": "OPL-1",
 
     "data": [
+      
+        'views/stock_location.xml',
         'views/stock_picking.xml',
     ],
     "installable": True,
