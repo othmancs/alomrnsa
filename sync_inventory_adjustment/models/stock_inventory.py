@@ -455,7 +455,7 @@ class InventoryLine(models.Model):
     @api.depends('product_qty', 'theoretical_qty')
     def _compute_quantities_difference(self):
         for rec in self:
-            rec.quantities_difference = rec.product_qty - rec.theoretical_qty
+            rec.quantities_difference = rec.theoretical_qty - rec.product_qty
 
     product_uom_id = fields.Many2one(
         'uom.uom', 'Product Unit of Measure',
