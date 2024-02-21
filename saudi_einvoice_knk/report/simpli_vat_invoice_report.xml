@@ -22,6 +22,11 @@
 									<td class="arabic" style="width:25%; text-align:right;">رقم الفاتورة</td>
 								</tr>
 								<tr>
+									<td style="font-weight:bold; width:25%;">Sales Order Number</td>
+									<td style="width:50%; text-align:center;"><span t-field="o.invoice_origin"/></td>
+									<td class="arabic" style="width:25%; text-align:right;">رقم أمر البيع</td>
+								</tr>
+								<tr>
 									<td style="font-weight:bold; width:25%;">‫‪Invoice‬‬ Date</td>
 									<td style="width:50%; text-align:center;"><span t-field="o.invoice_date"/></td>
 									<td class="arabic" style="width:25%; text-align:right;">تاريخ الفاتورة</td>
