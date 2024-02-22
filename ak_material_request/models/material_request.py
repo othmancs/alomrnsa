@@ -38,7 +38,7 @@ class MaterialRequest(models.Model):
     )
     user_id = fields.Many2one(
         "res.users",
-        string="Requested By",
+        string="طلب من قبل",
         default=lambda self: self.env.user and self.env.user.id or False,
         required=True,
         domain=lambda self: [
@@ -69,7 +69,7 @@ class MaterialRequest(models.Model):
         copy=False,
         help="Stock needed on Location.",
     )
-    request_date = fields.Date(string="Request Date", default=datetime.now().date())
+    request_date = fields.Date(string="تاريخ الطلب", default=datetime.now().date())
     request_line_ids = fields.One2many(
         "material.request.line", "request_id", string="Request", copy=True
     )
@@ -88,7 +88,7 @@ class MaterialRequest(models.Model):
         default="pending",
         compute="compute_delivery_state",
     )
-    good_needed_on = fields.Datetime(string="Goods Needed On")
+    good_needed_on = fields.Datetime(string="تاريخ التوصيل")
     picking_count = fields.Integer(string="Picking Count", compute="compute_picking")
     picking_two_verify = fields.Boolean(string="Picking Two Verify")
     company_id = fields.Many2one(

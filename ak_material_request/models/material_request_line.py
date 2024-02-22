@@ -9,15 +9,15 @@ class MaterialRequestLine(models.Model):
     _name = "material.request.line"
     _description = "Material Request Lines"
 
-    product_id = fields.Many2one("product.product", string="Product", required=True)
-    description = fields.Char(string="Description", required=True)
-    qty = fields.Float(string="Quantity", default=1, required=True)
+    product_id = fields.Many2one("product.product", string="المنتج", required=True)
+    description = fields.Char(string="الوصف", required=True)
+    qty = fields.Float(string="الكمية المطلوبة", default=1, required=True)
     product_uom_category_id = fields.Many2one(
         related="product_id.uom_id.category_id", readonly=True
     )
     uom_id = fields.Many2one(
         "uom.uom",
-        string="Unit of Measure",
+        string="وحدة القياس",
         required=True,
         domain="[('category_id', '=', product_uom_category_id)]",
     )

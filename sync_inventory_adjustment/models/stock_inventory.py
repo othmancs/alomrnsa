@@ -447,10 +447,10 @@ class InventoryLine(models.Model):
         index=True, ondelete='cascade')
     partner_id = fields.Many2one('res.partner', 'Owner')
     product_id = fields.Many2one(
-        'product.product', 'Product',
+        'product.product', 'منتج',
         domain=[('type', '=', 'product')],
         index=True, required=True)
-    quantities_difference = fields.Float('Quantities difference', compute='_compute_quantities_difference')
+    quantities_difference = fields.Float('فرق الكمية', compute='_compute_quantities_difference')
 
     @api.depends('product_qty', 'theoretical_qty')
     def _compute_quantities_difference(self):
@@ -458,11 +458,11 @@ class InventoryLine(models.Model):
             rec.quantities_difference = rec.product_qty - rec.theoretical_qty
 
     product_uom_id = fields.Many2one(
-        'uom.uom', 'Product Unit of Measure',
+        'uom.uom', 'وحدة القياس',
         required=True)
     product_uom_category_id = fields.Many2one(string='Uom category', related='product_uom_id.category_id', readonly=True)
     product_qty = fields.Float(
-        'Checked Quantity',
+        'الكمية الحقيقة',
         digits='Product Unit of Measure', default=0)
     location_id = fields.Many2one(
         'stock.location', 'Location',
@@ -479,7 +479,7 @@ class InventoryLine(models.Model):
     state = fields.Selection(
         string='Status',  related='inventory_id.state', readonly=True)
     theoretical_qty = fields.Float(
-        'Theoretical Quantity', compute='_compute_theoretical_qty',
+        'الكمية فى اليد', compute='_compute_theoretical_qty',
         digits='Product Unit of Measure', readonly=True, store=True)
     inventory_location_id = fields.Many2one(
         'stock.location', 'Inventory Location', related='inventory_id.location_id', related_sudo=False, readonly=False)
@@ -487,9 +487,9 @@ class InventoryLine(models.Model):
 
     quant_id = fields.Many2one('stock.quant', string='Quants')
 
-    difference_cost = fields.Float(compute='compute_cost')
-    real_cost = fields.Float(compute='compute_cost')
-    theoretical_cost = fields.Float(compute='compute_cost')
+    difference_cost = fields.Float('فرق التكلفة', compute='compute_cost')
+    real_cost = fields.Float('التكلفة الحقيقة', compute='compute_cost')
+    theoretical_cost = fields.Float('التكلفه الحالية', compute='compute_cost')
 
     @api.depends('product_id', 'product_id.standard_price', 'quantities_difference')
     def compute_cost(self):
