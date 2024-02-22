@@ -16,7 +16,7 @@
     'website': 'https://www.browseinfo.in',
     "price": 39,
     "currency": 'EUR',
-    'depends': ['base', 'sale', 'sale_management', 'product','stock'],
+    'depends': ['base', 'sale', 'sale_management', 'product','stock', 'sale_order_line_multi_warehouse'],
     'data': [
         'security/ir.model.access.csv',
         'views/sale_view.xml',
