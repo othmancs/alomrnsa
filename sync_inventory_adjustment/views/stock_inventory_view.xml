@@ -170,7 +170,7 @@
                     </group>
                 </group>
                 <notebook attrs="{'invisible':[('state','=','draft')]}">
-                    <page string="Inventory Details" >
+                    <page string="تفاصيل المخزون" >
                         <button name="action_reset_product_qty" states="confirm" string="⇒ Set quantities to 0" type="object" class="oe_link oe_right" groups="stock.group_stock_user"/>
                         <field name="location_id" invisible="1"/>
                         <field name="lot_id" invisible="1"/>
@@ -185,7 +185,7 @@
                             <tree string="Inventory Details" editable="bottom" decoration-info="product_qty != theoretical_qty" decoration-danger="theoretical_qty &lt; 0">
                                 <field name="product_tracking" invisible="1"/>
                                 <field name="product_id" domain="[('type','=','product')]" attrs="{'readonly': [('parent.filter', '=', 'product')]}" force_save="1"/>
-                                <field name="product_uom_id" string="UoM" groups="uom.group_uom" domain="[('category_id', '=', product_uom_category_id)]"/>
+                                <field name="product_uom_id" groups="uom.group_uom" domain="[('category_id', '=', product_uom_category_id)]"/>
                                 <field name="product_uom_category_id" invisible="1"/>
                                 <field name="location_id" invisible="1" domain="[('id', 'child_of', parent.location_id)]" groups="stock.group_stock_multi_locations"/>
                                 <field name="prod_lot_id" domain="[('product_id', '=', product_id)]" readonly="1" context="{'default_product_id': product_id}"  groups="stock.group_production_lot" optional="hide"/>
@@ -197,7 +197,7 @@
                                 <field name="theoretical_cost" readonly="1" optional="hide"/>
                                 <field name="quantities_difference" readonly="1"/>
                                 <field name="difference_cost" readonly="1" optional="hide"/>
-                                <field name="product_qty" string="Real Quantity"/>
+                                <field name="product_qty"/>
                                 <field name="real_cost" readonly="1" optional="hide"/>
                                 <field name="state" invisible="True"/>
                                 <field name="quant_id" invisible="1"/>

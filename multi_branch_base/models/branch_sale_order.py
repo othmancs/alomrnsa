@@ -38,7 +38,8 @@ class SaleOrder(models.Model):
 
     branch_id = fields.Many2one("res.branch", string='Branch', store=True,
                                 readonly=False,
-                                compute="_compute_branch")
+                                compute="_compute_branch",
+                                required=True)
     warehouse_id = fields.Many2one(
         'stock.warehouse', string='Warehouse', required=True,
         compute='_compute_warehouse_id', store=True,
