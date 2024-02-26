@@ -2,14 +2,6 @@
 # Part of Odoo, Aktiv Software PVT. LTD.
 # See LICENSE file for full copyright & licensing details.
 
-# Author: Aktiv Software.
-# mail: odoo@aktivsoftware.com
-# Copyright (C) 2015-Present Aktiv Software PVT. LTD.
-# Contributions:
-#   Aktiv Software:
-#       - Parth Radadia
-#       - Jayraj Thakkar
-
 {
     "name": "Internal Material Request / Inter-Warehouse Request",
     "author": "Aktiv Software",
