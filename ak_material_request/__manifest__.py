@@ -2,6 +2,7 @@
 # Part of Odoo, Aktiv Software PVT. LTD.
 # See LICENSE file for full copyright & licensing details.
 
+
 {
     "name": "Internal Material Request / Inter-Warehouse Request",
     "author": "Aktiv Software",
