@@ -81,7 +81,7 @@ class MaterialRequest(models.Model):
             [("code", "=", "internal")], limit=1
         ),
     )
-    two_verify = fields.Boolean(string="2 Step Delivery(Via Transit Location)")
+    two_verify = fields.Boolean(string="التسليم بخطوتين", default=True)
     delivery_state = fields.Selection(
         [("pending", "Transfer Pending"), ("process", "No Pending Transfers")],
         track_visibility="onchange",
@@ -90,7 +90,7 @@ class MaterialRequest(models.Model):
     )
     good_needed_on = fields.Datetime(string="تاريخ التوصيل")
     picking_count = fields.Integer(string="Picking Count", compute="compute_picking")
-    picking_two_verify = fields.Boolean(string="Picking Two Verify")
+    # picking_two_verify = fields.Boolean(string="Picking Two Verify", compute='_compute_2_step_delivery', store=True)
     company_id = fields.Many2one(
         "res.company", "Company", default=lambda self: self.env.company
     )
@@ -148,11 +148,13 @@ class MaterialRequest(models.Model):
         for rec in self:
             rec.write({"state": "draft"})
 
-    @api.onchange("company_id")
-    def _onchange_2_step_delivery(self):
-        for rec in self:
-            if rec.company_id.two_step_material_req:
-                rec.picking_two_verify = True
+    # @api.depends('company_id.two_step_material_req')
+    # def _compute_2_step_delivery(self):
+    #     for rec in self:
+    #         if rec.company_id.two_step_material_req:
+    #             rec.picking_two_verify = True
+    #         else:
+    #             rec.picking_two_verify = False
 
     def action_confirm(self):
         for rec in self:
@@ -230,6 +232,8 @@ class MaterialRequest(models.Model):
                         "picking_type_id": material_req_rec.picking_type_id.id,
                         "request_id": material_req_rec.id,
                         "origin": material_req_rec.name,
+                        # To Disable Validation
+                        "main_picking": main_picking_rec.id
                     }
                 )
 

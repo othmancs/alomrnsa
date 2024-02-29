@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="two_step_material_req" invisible="1"/>
+                <field name="two_step_material_req"/>
             </xpath>
         </field>
     </record>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="material_request_form_view_driver_inherit" model="ir.ui.view">
+            <field name="name">material.request.form.view.driver.inherit</field>
+            <field name="model">material.request</field>
+            <field name="inherit_id" ref="ak_material_request.material_request_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='picking_type_id']" position="after">
+                    <field name="driver_id"/>
+                    <field name="lading_number"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

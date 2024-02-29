@@ -5,7 +5,7 @@
 from . import stock_picking
 from . import material_request
 from . import material_request_line
-from . import res_config
-from . import res_company
+# from . import res_config
+# from . import res_company
 from . import stock_location
 from . import stock_quant

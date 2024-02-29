@@ -56,8 +56,9 @@
                                    domain="[('branch_id', '=', branch_to_id), ('branch_id', '!=', False), ('usage', '=', 'internal')]"
                             />
                             <field name="good_needed_on" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                            <field name="two_verify" attrs="{'invisible': [('picking_two_verify', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
-                            <field name="picking_two_verify" invisible="1"/>
+<!--                            <field name="two_verify" attrs="{'invisible': [('picking_two_verify', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>-->
+                            <field name="two_verify" readonly="1"/>
+<!--                            <field name="picking_two_verify" invisible="1"/>-->
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
@@ -70,6 +71,7 @@
                                     <field name="description"/>
                                     <field name="qty"/>
                                     <field name="qty_available"/>
+                                    <field name="qty_available_from"/>
                                     <field name="uom_id"  options="{'no_create': True}"/>
                                 </tree>
                                 <form>
