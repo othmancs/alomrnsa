@@ -55,25 +55,55 @@
                 <!--                    </div>-->
                 <!--                </t>-->
                 <div class="page">
-                    <h2>
-                        <span t-field="o.name"/>
-                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-6 text-left" name="div_name">
+                            <h2>
+                                <span t-field="o.name"/>
+                            </h2>
+                        </div>
+                        <div class="col-6 text-right" style="direction:rtl;" name="div_branch_to_id">
+                            <h4>
+                                <span>إذن نقل بين الفروع</span>
+                                <br/>
+                                <span>Transfer Delivery Note</span>
+                            </h4>
+                        </div>
+                    </div>
+
+<!--                    <table class="table-borderless" width="100%">-->
+<!--                        <tr>-->
+<!--                            <td>-->
+<!--                                من فرع:-->
+<!--                                <br/>-->
+<!--                                <span t-field="o.branch_from_id"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                الى فرع:-->
+<!--                                <br/>-->
+<!--                                <span t-field="o.branch_to_id"/>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
                     <div class="row mt32 mb32" style="direction:rtl;">
-                        <div class="col-6" name="div_origin">
+                        <div class="col-3" name="div_branch_from_id">
                             <strong>من فرع:</strong>
                             <p t-field="o.branch_from_id"/>
                         </div>
-                        <div class="col-6" name="div_sched_date">
+                        <div class="col-3" name="div_branch_to_id">
                             <strong>الى فرع:</strong>
                             <p t-field="o.branch_to_id"/>
                         </div>
+                        <div class="col-3" name="div_request_date">
+                            <strong>تاريخ الطلب:</strong>
+                            <p t-field="o.request_date"/>
+                        </div>
                     </div>
                     <div class="row mt32 mb32" style="direction:rtl;">
-                        <div class="col-6" name="div_origin">
+                        <div class="col-4" name="div_location_id">
                             <strong>الى مستودع:</strong>
                             <p t-field="o.location_id"/>
                         </div>
-                        <div class="col-6" name="div_sched_date">
+                        <div class="col-4" name="div_dest_location_id">
                             <strong>من مستودع:</strong>
                             <p t-field="o.dest_location_id"/>
                         </div>
@@ -104,6 +134,12 @@
                                 <td>
                                     <span t-field="move.qty_available"/>
                                     <span t-field="move.uom_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">الإجمالي</td>
+                                <td>
+                                    <span t-esc="sum(move.qty for move in lines)"/>
                                 </td>
                             </tr>
                         </tbody>
