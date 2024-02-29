@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="UNIQUE_ID" inherit_id="ak_material_request.report_material_request_delivery_document">
+            <xpath expr="//div[@name='div_request_date']" position="after">
+                <div class="col-3" name="div_driver_id">
+                    <strong>اسم السائق:</strong>
+                    <p t-field="o.driver_id"/>
+                </div>
+            </xpath>
+            <xpath expr="//div[@name='div_dest_location_id']" position="after">
+                <div class="col-4" name="div_lading_number">
+                    <strong>رقم بوليصة الشحن:</strong>
+                    <p t-field="o.lading_number"/>
+                </div>
+            </xpath>
+        </template>
+
+
+
+    </data>
+</odoo>
