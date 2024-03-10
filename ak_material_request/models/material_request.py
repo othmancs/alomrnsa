@@ -196,7 +196,8 @@ class MaterialRequest(models.Model):
                 "origin": material_req_rec.name,
                 "location_id": material_req_rec.dest_location_id.id,
             }
-            if material_req_rec.two_verify:
+            # remove (and False) if u want the two step delivery
+            if material_req_rec.two_verify and False:
                 # Picking create for two step.
                 transit_location = self.env["stock.location"].search(
                     [("usage", "=", "transit")], limit=1
@@ -223,7 +224,8 @@ class MaterialRequest(models.Model):
             if material_req_rec.good_needed_on:
                 scheduled_date = material_req_rec.good_needed_on
 
-            if material_req_rec.two_verify:
+            # remove (and False) if u want the two step delivery
+            if material_req_rec.two_verify and False:
                 two_step_picking_rec = self.env["stock.picking"].create(
                     {
                         "location_id": transit_location.id,
@@ -243,7 +245,8 @@ class MaterialRequest(models.Model):
                 )
                 first_move_rec = stock_move_obj.create(stock_move_vals)
                 main_picking_rec.action_confirm()
-                if material_req_rec.two_verify:
+                # remove (and False) if u want the two step delivery
+                if material_req_rec.two_verify and False:
                     two_verify_stock_move_vals = material_req_rec._prepare_pick_vals(
                         req_line, two_step_picking_rec
                     )
