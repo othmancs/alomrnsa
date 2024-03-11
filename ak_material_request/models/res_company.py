@@ -8,4 +8,4 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    two_step_material_req = fields.Boolean(string="2 step Picking")
+    two_step_material_req = fields.Boolean(string="2 step Picking", default=True)

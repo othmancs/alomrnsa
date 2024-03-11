@@ -2,6 +2,7 @@
 # Part of Odoo, Aktiv Software PVT. LTD.
 # See LICENSE file for full copyright & licensing details.
 
+
 {
     "name": "Internal Material Request / Inter-Warehouse Request",
     "author": "Aktiv Software",
@@ -23,10 +24,12 @@
         "data/material_request_sequence.xml",
         "wizard/reject_reason_wizard_views.xml",
         "wizard/transit_location_wizard.xml",
+        "report/material_request_view.xml",
         "views/material_request_view.xml",
-        "views/res_config_views.xml",
-        "views/res_company_views.xml",
+        # "views/res_config_views.xml",
+        # "views/res_company_views.xml",
         "views/stock_location.xml",
+        "views/stock_picking.xml",
     ],
     "images": ["static/description/Internal_Material_Request_Banner-01.jpg"],
     "installable": True,
