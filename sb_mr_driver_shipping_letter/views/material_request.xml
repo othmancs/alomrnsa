@@ -11,6 +11,7 @@
                 <xpath expr="//field[@name='picking_type_id']" position="after">
                     <field name="driver_id"/>
                     <field name="lading_number"/>
+                    <field name="note"/>
                 </xpath>
             </field>
         </record>

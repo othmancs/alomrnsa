@@ -11,8 +11,10 @@
 
     "data": [
         'views/material_request.xml',
+        'views/material_request_line.xml',
         'views/stock_picking.xml',
         'views/material_request_templ.xml',
+        'views/stock_picking_templ.xml',
     ],
     "installable": True,
     "auto_install": False,

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="sb_report_delivery_document" inherit_id="stock.report_delivery_document">
+            <xpath expr="//div[@name='signature']" position="after">
+                <div class="row mt32 mb8 text_right" style="direction:rtl;">
+                    <div class="col-12" style="font-size:16px;color:black;">
+                        1- تم استلام جميع الاصناف  فى حالة سليمة وجيده.
+                    </div>
+                </div>
+                <div t-if="o.picking_type_code == 'outgoing'" class="row mt8 mb16 text_right" style="direction:rtl;">
+                    <div class="col-12" style="font-size:16px;color:black;">
+                        2- توقيع العميل/ .........................................................
+                    </div>
+                </div>
+                <div t-if="o.picking_type_code == 'incoming'" class="row mt8 mb16 text_right" style="direction:rtl;">
+                    <div class="col-12" style="font-size:16px;color:black;">
+                        2- توقيع مأمور المخزن/ .....................................................
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="sb_report_picking" inherit_id="stock.report_picking">
+            <xpath expr="//p[@t-field='o.note']" position="after">
+                <div class="row mt32 mb8 text_right" style="direction:rtl;">
+                    <div class="col-12" style="font-size:16px;color:black;">
+                        1- تم استلام جميع الاصناف  فى حالة سليمة وجيده.
+                    </div>
+                </div>
+                <div t-if="o.picking_type_code == 'outgoing'" class="row mt8 mb16 text_right" style="direction:rtl;">
+                    <div class="col-12" style="font-size:16px;color:black;">
+                        2- توقيع العميل/ .........................................................
+                    </div>
+                </div>
+                <div t-if="o.picking_type_code == 'incoming'" class="row mt8 mb16 text_right" style="direction:rtl;">
+                    <div class="col-12" style="font-size:16px;color:black;">
+                        2- توقيع مأمور المخزن/ .....................................................
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+
+
+
+    </data>
+</odoo>
