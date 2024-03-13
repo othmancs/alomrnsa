@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="sb_report_material_request_delivery_document" inherit_id="ak_material_request.report_material_request_delivery_document">
+            <xpath expr="//table[@name='stock_move_table']" position="after">
+                <div class="row mt8 mb8 text_right" style="direction:rtl;">
+                    <div class="col-12" name="div_driver_id" style="font-size:12px;">
+                        اسم السائق:
+                        <span t-field="o.driver_id" style="font-size:9px;"/>
+                    </div>
+                </div>
+                <div class="row mt8 mb8 text_right" style="direction:rtl;">
+                    <div class="col-12" name="div_lading_number" style="font-size:12px;">
+                        رقم بوليصة الشحن:
+                        <span t-field="o.lading_number" style="font-size:9px;"/>
+                    </div>
+                </div>
+                <div class="row mt8 mb8 text_right" style="direction:rtl;">
+                    <div class="col-12" name="div_note" style="font-size:12px;">
+                        ملاحظات:
+                        <span t-field="o.note" style="font-size:9px;"/>
+                    </div>
+                </div>
+            </xpath>
+<!--            <xpath expr="//table[@name='stock_move_table']/thead/tr/th[1]" position="after">-->
+<!--                <th style="font-size:12px;">المرجع</th>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//table[@name='stock_move_table']/tbody/tr/td[1]" position="after">-->
+<!--                <td style="font-size:9px;">-->
+<!--                    <span t-field="move.product_id.default_code"/>-->
+<!--                </td>-->
+<!--            </xpath>-->
+            <xpath expr="//table[@name='stock_move_table']/thead/tr/th[1]" position="before">
+                <th style="font-size:12px;">م</th>
+                <th style="font-size:12px;">المرجع</th>
+            </xpath>
+            <xpath expr="//table[@name='stock_move_table']/tbody/tr/td[1]" position="before">
+                <td t-if="move.seq == 0" style="font-size:9px;">
+                    <span/>
+                </td>
+                <td t-else="" style="font-size:9px;">
+                    <span t-field="move.seq"/>
+                </td>
+                <td style="font-size:9px;">
+                    <span t-field="move.product_id.default_code"/>
+                </td>
+            </xpath>
+            <xpath expr="//table[@name='stock_move_table']/tbody/tr[2]" position="replace">
+                <tr>
+<!--                    <td/>-->
+                    <td colspan="3" style="font-size:9px;">الإجمالي</td>
+<!--                    <td/>-->
+                    <td style="font-size:9px;">
+                        <span t-esc="sum(move.qty for move in lines)"/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+
+
+
+    </data>
+</odoo>

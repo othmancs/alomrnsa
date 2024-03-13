@@ -57,7 +57,7 @@
                             />
                             <field name="good_needed_on" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
 <!--                            <field name="two_verify" attrs="{'invisible': [('picking_two_verify', '=', False)], 'readonly': [('state', '!=', 'draft')]}"/>-->
-                            <field name="two_verify" readonly="1" invisible="1"/>
+                            <field name="two_verify" readonly="1"/>
 <!--                            <field name="picking_two_verify" invisible="1"/>-->
                             <field name="company_id" groups="base.group_multi_company"/>
                         </group>

@@ -4,21 +4,26 @@
         <!-- report qweb view -->
         <!--         <span t-field="company.report_footer"/>-->
         <template id="financial_layout_row">
-            <div class="row">
-                <div class="col-6">
-                    <div class="row  mx-1 border-bottom">
-                        <div class="col-3 px-0 text-left">CR No:</div>
-                        <div class="col-4 px-0 "><span t-field="company.company_registry"></span></div>
-                        <div class="col-5 px-0  text-right">:رقم سجل الشركة</div>
+            <div class="row" style="direction:rtl;">
+                <div class="col-6 text-right">
+                    <div class="row mx-1 border-bottom" style="font-size:12px;">
+<!--                        <div class="col-4 px-0 text-right" style="font-size:13px">الرقم الضريبي:</div>-->
+                        الرقم الضريبي:
+<!--                        <div class="col-4 px-0 text-left"><span t-field="company.vat" style="font-size:12px"/></div>-->
+                        <span t-field="company.vat" style="font-size:9px"/>
+                        :Vat No
+<!--                        <div class="col-4 px-0 text-left" style="font-size:13px">:Vat No</div>-->
                     </div>
-
                 </div>
 
                 <div class="col-6">
-                    <div class="row  mx-1 border-bottom">
-                        <div class="col-4 px-0  text-left">Vat No:</div>
-                        <div class="col-4 px-0 "><span t-field="company.vat"></span></div>
-                        <div class="col-4 px-0  text-right">:الرقم الضريبي</div>
+                    <div class="row mx-1 border-bottom" style="font-size:12px;">
+<!--                        <div class="col-4 px-0 text-right" style="font-size:13px">رقم سجل الشركة:</div>-->
+                        رقم سجل الشركة:
+<!--                        <div class="col-4 px-0 text-left"><span t-field="company.company_registry" style="font-size:12px"/></div>-->
+                        <span t-field="company.company_registry" style="font-size:9px"/>
+                        :CR No
+<!--                        <div class="col-4 px-0 text-left" style="font-size:13px">:CR No</div>-->
                     </div>
                 </div>
             </div>
@@ -31,15 +36,15 @@
                 <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
                      adding d-inline class fixes the problem-->
                 <li t-if="company.company_registry" class="list-inline-item d-inline mx-2">
-                    <span>CR No:</span>
-                    <span t-field="company.company_registry"></span>
-                    <span>:رقم سجل الشركة</span>
+                    <span style="font-size:16px">CR No:</span>
+                    <span t-field="company.company_registry" style="font-size:12px"/>
+                    <span style="font-size:16px">:رقم سجل الشركة</span>
                 </li>
 
-                <li t-if="company.vat" class="list-inline-item d-inline">
-                    <span>Vat No:</span>
-                    <span t-field="company.vat"></span>
-                    <span>:الرقم الضريبي</span>
+                <li t-if="company.vat" class="list-inline-item d-inline mx-2">
+                    <span style="font-size:16px">Vat No:</span>
+                    <span t-field="company.vat" style="font-size:12px"/>
+                    <span style="font-size:16px">:الرقم الضريبي</span>
                 </li>
 
             </ul>
