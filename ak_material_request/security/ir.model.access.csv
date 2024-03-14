@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_material_request,access_material_request,model_material_request,,1,1,1,1
+access_material_request_line,access_material_request_line,model_material_request_line,,1,1,1,1
+access_reject_reason_wizard,access_reject_reason_wizard,model_reject_reason_wizard,,1,1,1,1
+access_transit_location_warning,access_transit_location_warning,model_transit_location_warning,,1,1,1,1
