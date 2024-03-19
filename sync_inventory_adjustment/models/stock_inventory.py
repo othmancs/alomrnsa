@@ -100,13 +100,13 @@ class Inventory(models.Model):
 
     @api.model
     def create(self, vals):
-        # assigning the sequence for the record
-        if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('adj.inventory') or _('New')
-            if vals.get('location_id', False):
-                location_name = self.env['stock.location'].browse(vals['location_id']).location_id.name
-                vals['name'] = location_name + vals['name']
-        res = super(Inventory, self).create(vals)
+        if vals.get('location_id', False):
+            location = self.env['stock.location'].browse(vals['location_id']).location_id
+            vals['name'] = location.name + '/%s/' % datetime.year + str(location.adj_seq)
+            res = super(Inventory, self).create(vals)
+            location.adj_seq += 1
+        else:
+            res = super(Inventory, self).create(vals)
         return res
 
     @api.depends('product_id', 'line_ids.product_qty')
