@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="sb_adjustment_report_inventory" inherit_id="sync_inventory_adjustment.report_inventory">
+            <xpath expr="//table[@class='table table-sm']/tbody/t" position="inside">
+                <tr>
+                    <td colspan="1" style="font-size:9px;">الإجمالي</td>
+                    <td/>
+                    <td style="font-size:9px;">
+                        <span t-esc="sum(line.theoretical_cost for line in o.line_ids.filtered(lambda line: line.location_id.id == location.id))"/>
+                    </td>
+                    <td style="font-size:9px;">
+                        <span t-esc="sum(line.real_cost for line in o.line_ids.filtered(lambda line: line.location_id.id == location.id))"/>
+                    </td>
+                </tr>
+            </xpath>
+        </template>
+
+
+
+    </data>
+</odoo>
