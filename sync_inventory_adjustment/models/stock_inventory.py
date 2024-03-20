@@ -8,6 +8,10 @@ from odoo.tools import float_utils, float_compare
 from io import BytesIO
 import xlsxwriter
 import base64
+
+from odoo.tools.safe_eval import datetime
+
+
 from datetime import datetime
 
 
@@ -102,7 +106,7 @@ class Inventory(models.Model):
     def create(self, vals):
         if vals.get('location_id', False):
             location = self.env['stock.location'].browse(vals['location_id']).location_id
-            vals['name'] = location.name + '/%s/' % datetime.year + str(location.adj_seq)
+            vals['name'] = location.name + '/%s/' % datetime.now().year + str(location.adj_seq)
             res = super(Inventory, self).create(vals)
             location.adj_seq += 1
         else:
