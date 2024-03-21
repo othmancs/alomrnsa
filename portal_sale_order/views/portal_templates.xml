@@ -1,0 +1,359 @@
+<odoo>
+
+    <template id="portal_my_home_sale_order" name="Show Sale Order" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="request.env.user.employee_id" t-call="portal.portal_docs_entry">
+                <t t-set="url" t-value="'/my/sale_orders'"/>
+                <t t-set="title">Sale Order</t>
+                <t t-set="placeholder_count" t-value="'sale_order_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'sale_orders_list'"  class="breadcrumb-item">
+                <span>Sale Orders</span>
+            </li>
+            <li t-if="page_name == 'sale_order_form'" class="breadcrumb-item">
+                <a href="/my/sale_orders">Sale Orders</a>
+                <span>/</span>
+                <span>Order</span>
+            </li>
+
+<!--            <li t-if="page_name == 'approval_requests'"  class="breadcrumb-item active">-->
+<!--                 <span>Approval Requests</span>-->
+<!--            </li>-->
+<!--            <li t-if="page_name == 'approval_request_category'"  class="breadcrumb-item">-->
+<!--                Approval Categories-->
+<!--            </li>-->
+<!--            <li t-if="page_name == 'approval_request_new'"  class="breadcrumb-item">-->
+<!--&lt;!&ndash;                <a href="/my/approval_requests">Approval Requests</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                <span>/</span>&ndash;&gt;-->
+<!--                <a href="/my/approval_request_category">Approval Categories</a>-->
+<!--            </li>-->
+<!--            <li t-if="page_name == 'approval_request_new'"  class="breadcrumb-item active">-->
+<!--                <span>New</span>-->
+<!--                <span t-esc="approval_category.name"/>-->
+<!--                <span>Request</span>-->
+<!--            </li>-->
+<!--             <li t-if="page_name == 'approval_request_form_read'"  class="breadcrumb-item">-->
+<!--                <a href="/my/approval_request_category">Approval Categories</a>-->
+<!--            </li>-->
+<!--             <li t-if="page_name == 'approval_request_form_read'" class="breadcrumb-item">-->
+<!--                 <t t-if="category">-->
+<!--                    <a t-attf-href="/my/approval_requests/{{ category.id }}">-->
+<!--                        <span t-esc="category.name"/>-->
+<!--                    </a>-->
+<!--                 </t>-->
+
+<!--                <t t-else="">-->
+<!--                    <a t-attf-href="/my/approval_requests">-->
+<!--                        <span>Approval Requests</span>-->
+<!--                    </a>-->
+<!--                </t>-->
+<!--            </li>-->
+<!--            <li t-if="page_name == 'approval_request_form_read'" class="breadcrumb-item active">-->
+<!--                <t t-esc="approval_request.display_name"/>-->
+<!--            </li>-->
+        </xpath>
+    </template>
+
+    <template id="portal_my_sale_orders_list" name="My Sale Orders">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Sales Orders</t>
+                <a href="/my/sale_order" class="btn btn-primary float-end">New</a>
+            </t>
+            <t t-if="sale_orders" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>Sales Order #</span>
+                            <span class='d-block d-md-none'>Ref.</span>
+                        </th>
+                        <th class="">Customer</th>
+                        <th class="text-end">Order Date</th>
+                        <th class="text-center"/>
+                        <th class="text-end">Total</th>
+                    </tr>
+                </thead>
+                <t t-foreach="sale_orders" t-as="order">
+                    <tr>
+<!--                        <td><a t-att-href="order.get_portal_url()"><t t-out="order.name"/></a></td>-->
+                        <td><a t-attf-href="/my/sale_order/{{order.id}}"><t t-out="order.name"/></a></td>
+                        <td><t t-out="order.partner_id.name"/></td>
+                        <td class="text-end">
+                            <span t-field="order.date_order" t-options="{'widget': 'date'}"/>&amp;nbsp;
+                            <span class='d-none d-md-inline' t-field="order.date_order" t-options="{'time_only': True}"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-if="order.state == 'done' or order.state == 'sale'"  class="badge rounded-pill text-bg-success">
+                                <i class="fa fa-fw fa-check" role="img" aria-label="Done" title="Done"/>Done
+                            </span>
+                        </td>
+                        <td class="text-end"><span t-field="order.amount_total"/></td>
+                    </tr>
+                </t>
+            </t>
+            <p t-else="">There are currently no orders for your account.</p>
+        </t>
+    </template>
+
+    <template id="portal_sale_order_form" name="Sale Order">
+        <t t-set="head">
+            <style>
+                /* Chrome, Safari, Edge, Opera */
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                  -webkit-appearance: none;
+                  margin: 0;
+                }
+
+                /* Firefox */
+                input[type=number] {
+                  -moz-appearance: textfield;
+                }
+            </style>
+        </t>
+        <t t-call="portal.portal_layout">
+            <br/>
+            <div class="alert alert-success" role="alert" t-if="success_msg">
+              <t t-out="success_msg"/>
+            </div>
+            <div class="o_portal_html_view shadow p-3 mt16" style="background-color: white;">
+                <div class="col-md-12 col-lg-12">
+                    <form action="/my/sale_order" method="post" class="form-group o_portal_approval" id="sale_order_form" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="is_sale_order" t-att-value="sale_order_id.id" t-if="sale_order_id and sale_order_id.state not in ('done', 'sale')"/>
+                        <div class="mb-3 row">
+                            <div class="row mb-2">
+                                <div class="col-9">
+                                    <label for="name" class="form-label">Name</label>
+                                    <t t-if="sale_order_id">
+                                        <input class="form-control" id="name" name="name" t-att-value="sale_order_id.name" readonly="True"/>
+                                    </t>
+                                    <t t-if="not sale_order_id">
+                                        <input class="form-control" id="name" name="name" readonly="True"/>
+                                    </t>
+                                </div>
+                                <div class="form-check form-switch col-3" t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">
+                                  <input class="form-check-input" type="checkbox" id="is_confirm" name="is_confirm"/>
+                                  <label class="form-check-label" for="is_confirm">Confirm?</label>
+                                </div>
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                <label for="partner_id" class="form-label">Customer</label>
+                                <select class="form-control" id="partner_id" name="partner_id" required="1">
+                                    <option value="">
+                                    </option>
+                                    <t t-foreach="partner_id" t-as="partner">
+                                        <t t-if="sale_order_id and sale_order_id.partner_id.id == partner.id">
+                                            <option selected="True" t-att-value="partner.id" t-att-data-pricelist="partner.property_product_pricelist.id">
+                                                <t t-out="partner.display_name"/>
+                                            </option>
+                                        </t>
+                                        <t t-else="">
+                                            <option t-att-value="partner.id" t-att-data-pricelist="partner.property_product_pricelist.id">
+                                                <t t-out="partner.display_name"/>
+                                            </option>
+                                        </t>
+
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                <label for="pricelist_id" class="form-label">Pricelist</label>
+                                <select class="form-control" id="pricelist_id" name="pricelist_id" required="1">
+                                    <option value="">
+                                    </option>
+                                    <t t-foreach="pricelist_id" t-as="pricelist">
+                                        <t t-if="sale_order_id and sale_order_id.pricelist_id.id == pricelist.id">
+                                            <option selected="True" t-att-value="pricelist.id">
+                                                <t t-out="pricelist.display_name"/>
+                                            </option>
+                                        </t>
+                                        <t t-else="">
+                                            <option t-att-value="pricelist.id">
+                                                <t t-out="pricelist.display_name"/>
+                                            </option>
+                                        </t>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="mb-2 col-md-4">
+                                <label for="branch_id" class="form-label">Branch</label>
+                                <select class="form-control" id="branch_id" name="branch_id" required="1">
+                                    <option value="">
+                                    </option>
+                                    <t t-foreach="branch_ids" t-as="branch_id">
+                                        <t t-if="sale_order_id and sale_order_id.branch_id.id == branch_id.id">
+                                            <option selected="True" t-att-value="branch_id.id">
+                                                <t t-out="branch_id.display_name"/>
+                                            </option>
+                                        </t>
+                                        <t t-if="not sale_order_id and default_branch_id.id == branch_id.id">
+                                            <option selected="True" t-att-value="branch_id.id">
+                                                <t t-out="branch_id.display_name"/>
+                                            </option>
+                                        </t>
+                                        <t t-else="">
+                                            <option t-att-value="branch_id.id">
+                                                <t t-out="branch_id.display_name"/>
+                                            </option>
+                                        </t>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-12">
+                                    <input type="hidden" name="line_items" value="" />
+                                    <div class="table-responsive">
+                                        <table id="child_table" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Products</th>
+                                                <th>Ref.</th>
+                                                <th>WareHouse</th>
+                                                <th width="150px">Price</th>
+                                                <th width="100px">Quantity</th>
+                                                <th>UOM</th>
+                                                <th>Pricelist</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="child_table_body">
+                                            <tr id="child_row_template" style="display: none;">
+                                                <td width="300px">
+                                                    <select class="form-control product_select" name="select_product">
+                                                        <option></option>
+                                                        <t t-foreach="products" t-as="product">
+                                                            <option t-att-value="product.id" t-att-data-internal_ref="product.default_code" t-att-data-uom="product.uom_id.name">
+                                                                <t t-out="product.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+                                                </td>
+                                                <td width="200px">
+                                                    <input class="form-control" type="text" name="child_ref[]"/>
+                                                </td>
+                                                <td width="200px">
+                                                    <select class="form-control select_warehouse" name="select_warehouse">
+                                                        <option></option>
+                                                        <t t-foreach="warehouse_id" t-as="warehouse">
+                                                            <option t-att-value="warehouse.id">
+                                                                <t t-out="warehouse.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </select>
+                                                </td>
+                                                <td width="150px"><input class="form-control" type="number" name="child_price[]" step="any" value="1"/></td>
+                                                <td width="100px"><input class="form-control" type="number" name="child_quantity[]" step="any" value="1"/></td>
+                                                <td width="100px">
+                                                    <input class="form-control" type="text" name="child_uom[]"/>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control pricelist_line_id" name="pricelist_line_id">
+                                                        <option value="">
+                                                        </option>
+                                                        <t t-foreach="pricelist_id" t-as="pricelist">
+                                                            <option t-att-value="pricelist.id">
+                                                                <t t-out="pricelist.display_name"/>
+                                                            </option>
+
+                                                        </t>
+                                                    </select>
+                                                </td>
+                                                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                            </tr>
+                                            <t t-if="sale_order_id and sale_order_id.order_line">
+                                                <t t-foreach="sale_order_id.order_line" t-as="line">
+                                                    <tr id="child_row_template" style="display: table-row;">
+                                                        <td width="400px">
+                                                            <select class="form-control product_select" name="select_product">
+                                                                <option></option>
+                                                                <t t-foreach="products" t-as="product">
+                                                                    <t t-if="line.product_id.id == product.id">
+                                                                        <option selected="True" t-att-value="product.id" t-att-data-internal_ref="product.default_code" t-att-data-uom="product.uom_id.name">
+                                                                            <t t-out="product.name"/>
+                                                                        </option>
+                                                                    </t>
+                                                                    <t t-else="">
+                                                                        <option t-att-value="product.id" t-att-data-internal_ref="product.default_code" t-att-data-uom="product.uom_id.name">
+                                                                            <t t-out="product.name"/>
+                                                                        </option>
+                                                                    </t>
+                                                                </t>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control" type="text" name="child_ref[]" t-att-value="line.product_id.default_code"/>
+                                                        </td>
+                                                        <td width="200px">
+                                                            <select class="form-control select_warehouse" name="select_warehouse">
+                                                                <option></option>
+                                                                <t t-foreach="warehouse_id" t-as="warehouse">
+                                                                    <t t-if="line.product_warehouse_id.id == warehouse.id">
+                                                                        <option selected="True" t-att-value="warehouse.id">
+                                                                            <t t-out="warehouse.name"/>
+                                                                        </option>
+                                                                    </t>
+                                                                    <t t-else="">
+                                                                        <option t-att-value="warehouse.id">
+                                                                            <t t-out="warehouse.name"/>
+                                                                        </option>
+                                                                    </t>
+                                                                </t>
+                                                            </select>
+                                                        </td>
+                                                        <td width="150px">
+                                                            <input class="form-control" type="number" name="child_price[]" step="any" t-att-value="line.price_unit"/>
+                                                        </td>
+                                                        <td width="100px">
+                                                            <input class="form-control" type="number" name="child_quantity[]" step="any" t-att-value="line.product_uom_qty"/>
+                                                        </td>
+                                                        <td width="100px">
+                                                            <input class="form-control" type="text" name="child_uom[]" t-att-value="line.product_id.uom_id.name"/>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control pricelist_line_id" name="pricelist_line_id">
+                                                                <option value="">
+                                                                </option>
+                                                                <t t-foreach="pricelist_id" t-as="pricelist">
+                                                                    <option t-att-value="pricelist.id">
+                                                                        <t t-out="pricelist.display_name"/>
+                                                                    </option>
+
+                                                                </t>
+                                                            </select>
+                                                        </td>
+                                                        <td><button type="button"
+                                                                    class="btn btn-danger btn-sm delete-row"
+                                                                    t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">
+                                                            Delete</button></td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            id="add_child_row"
+                                            t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">Add Child</button>
+                                </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary"
+                                t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">Confirm</button>
+<!--                        <button type="submit" class="btn btn-primary">Confirm</button>-->
+                    </form>
+
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
+

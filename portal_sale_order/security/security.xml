@@ -1,0 +1,24 @@
+<odoo>
+
+<!--    <record model="ir.rule" id="portal_approval_request_record_rule">-->
+<!--        <field name="name">portal approval request record rule</field>-->
+<!--        <field name="model_id" ref="approvals.model_approval_request"/>-->
+<!--        <field name="domain_force">[('request_owner_id', '=', user.id)]</field>-->
+<!--        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>-->
+<!--    </record>-->
+
+    <record model="ir.rule" id="portal_product_record_rule">
+        <field name="name">Portal Product Record Rule</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
+    <record model="ir.rule" id="portal_res_partner_employee_rule">
+        <field name="name">Portal Partner Employee Record Rule</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
+</odoo>
