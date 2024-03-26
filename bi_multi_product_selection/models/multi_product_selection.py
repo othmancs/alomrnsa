@@ -66,7 +66,7 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     product_ids = fields.Many2many('product.product',string="Select Product", required=True)
-    partner_id = fields.Many2one(string='Customer', comodel_name='res.partner', ondelete='restrict',required=True)
+    partner_id = fields.Many2one(string='Customer', comodel_name='res.partner', ondelete='restrict', required=False)
 
     def stock_picking_select_prodcut(self):
         wizard = self.env['stock.picking.wizard'].create({
