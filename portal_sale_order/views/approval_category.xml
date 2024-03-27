@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="approval_category_form_inherit" model="ir.ui.view">
+            <field name="name">approval.category.form.inherit</field>
+            <field name="model">approval.category</field>
+            <field name="inherit_id" ref="approvals.approval_category_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='automated_sequence']" position="after">
+                    <field name="custom_approval_type" widget="radio" required="1"/>
+                </xpath>
+                <xpath expr="//notebook" position="attributes">
+                    <attribute name="attrs">{
+                        'invisible': [('custom_approval_type', '!=', 'none')]
+                    }</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="approval_category_kanban_inherit" model="ir.ui.view">
+            <field name="name">approval.category.kanban.inherit</field>
+            <field name="model">approval.category</field>
+            <field name="inherit_id" ref="approvals.approval_category_view_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(approvals.approval_request_action_to_review_category)d']" position="attributes">
+                    <attribute name="name">action_custom_show_requests</attribute>
+                    <attribute name="type">object</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

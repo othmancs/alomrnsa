@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_warehouse_portal,access_stock_warehouse_portal,stock.model_stock_warehouse,base.group_portal,1,1,1,1
+access_stock_location_portal,access_stock_location_portal,stock.model_stock_location,base.group_portal,1,1,1,1
+access_stock_quant_portal,access_stock_quant_portal,stock.model_stock_quant,base.group_portal,1,1,1,1
+access_stock_move_portal,access_stock_move_portal,stock.model_stock_move,base.group_portal,1,1,1,1
+access_product_product,access_product_product,product.model_product_product,base.group_portal,1,1,1,1
+access_product_template,access_product_template,product.model_product_template,base.group_portal,1,1,1,1
+access_sale_order_coupon_points,access_sale_order_coupon_points,sale_loyalty.model_sale_order_coupon_points,base.group_portal,1,1,1,1
+access_loyalty_card,access_loyalty_card,loyalty.model_loyalty_card,base.group_portal,1,1,1,1
+access_loyalty_program,access_loyalty_program,loyalty.model_loyalty_program,base.group_portal,1,1,1,1
+access_loyalty_rule,access_loyalty_rule,loyalty.model_loyalty_rule,base.group_portal,1,1,1,1
+access_sale_order,access_sale_order,sale.model_sale_order,base.group_portal,1,1,1,1
+access_sale_order_line,access_sale_order_line,sale.model_sale_order_line,base.group_portal,1,1,1,1
+access_uom_uom_portal,access_uom_uom_portal,uom.model_uom_uom,base.group_portal,1,0,0,0
+access_res_partner_portal,access_res_partner_portal,base.model_res_partner,base.group_portal,1,0,0,0
+
