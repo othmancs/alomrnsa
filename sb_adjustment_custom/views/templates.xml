@@ -3,6 +3,26 @@
     <data>
 
         <template id="sb_adjustment_report_inventory" inherit_id="sync_inventory_adjustment.report_inventory">
+            <xpath expr="//table[@class='table table-sm']/thead/tr/th[3]" position="replace">
+                <th><strong>التكلفة النظرية</strong></th>
+            </xpath>
+            <xpath expr="//table[@class='table table-sm']/thead/tr/th[4]" position="replace">
+                <th><strong>التكلفة الفعلية</strong></th>
+            </xpath>
+            <xpath expr="//table[@class='table table-sm']/thead/tr/th[5]" position="replace">
+                <th class="text-right"><strong>التكلفة الكلية</strong></th>
+            </xpath>
+
+            <xpath expr="//table[@class='table table-sm']/tbody/t/tr[2]/td[3]" position="replace">
+                <td><span t-esc="line.theoretical_qty * line.product_id.standard_price"/></td>
+            </xpath>
+            <xpath expr="//table[@class='table table-sm']/tbody/t/tr[2]/td[4]" position="replace">
+                <td class="text-right"><span t-esc="line.product_id.standard_price * line.product_qty"/> </td>
+            </xpath>
+            <xpath expr="//table[@class='table table-sm']/tbody/t/tr[2]/td[5]" position="replace">
+                <td><span t-esc="line.quantities_difference * line.product_id.standard_price"/></td>
+            </xpath>
+
             <xpath expr="//table[@class='table table-sm']/tbody/t" position="inside">
                 <tr>
                     <td colspan="1" style="font-size:9px;">الإجمالي</td>
@@ -15,6 +35,14 @@
                     </td>
                 </tr>
             </xpath>
+
+            <xpath expr="//div[@class='page']/table[2]/thead/tr/th[1]" position="before">
+                <th><strong>Seq</strong></th>
+            </xpath>
+            <xpath expr="//div[@class='page']/table[2]/tbody/t/tr[2]/td[1]" position="before">
+                <td><span t-field="line.seq"/></td>
+            </xpath>
+
         </template>
 
 
