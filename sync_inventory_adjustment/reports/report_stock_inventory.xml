@@ -27,11 +27,15 @@
                         </tbody>
                         </table>
 
+                        <br/>
+                        <br/>
+                        <br/>
                         <t t-set="locations" t-value="o.line_ids.mapped('location_id')"/>
                         <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th groups="stock.group_stock_multi_locations"><strong>Location</strong></th>
+                                    <th><strong>Seq</strong></th>
                                     <th><strong>Product</strong></th>
                                     <th groups="stock.group_production_lot"><strong>Production Lot</strong></th>
                                     <th groups="stock.group_tracking_lot"><strong>Package</strong></th>
@@ -41,13 +45,14 @@
                             <tbody>
                                 <t t-foreach="locations" t-as="location">
                                     <tr groups="stock.group_stock_multi_locations">
-                                        <td colspan="2"><strong t-esc="location.display_name"/></td>
+                                        <td colspan="3"><strong t-esc="location.display_name"/></td>
                                         <td groups="stock.group_production_lot"></td>
                                         <td groups="stock.group_tracking_lot"></td>
-                                        <td></td>
+                                        <td/>
                                     </tr>
                                     <tr t-foreach="o.line_ids.filtered(lambda line: line.location_id.id == location.id)" t-as="line">
                                         <td groups="stock.group_stock_multi_locations"></td>
+                                        <td><span t-field="line.seq"/></td>
                                         <td><span t-field="line.product_id"/></td>
                                         <td groups="stock.group_production_lot"><span t-field="line.prod_lot_id"/></td>
                                         <td groups="stock.group_tracking_lot"><span t-field="line.package_id"/></td>
