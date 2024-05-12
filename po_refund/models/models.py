@@ -9,13 +9,29 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     is_po_refund = fields.Boolean(string="Is PO Refund", )
+    # is_all_receipts = fields.Boolean(string="Is All Receipts", )
+    is_all_receipts = fields.Boolean(string="Is All Receipts", compute="compute_all_receipts", store=True)
     po_id = fields.Many2one(comodel_name="purchase.order", string="Source PO", required=False, )
+
+    @api.depends('order_line.qty_received')
+    def compute_all_receipts(self):
+        for rec in self:
+            picking = self.env['stock.picking'].search([('origin', '=', rec.name)])
+            if picking:
+                rec.is_all_receipts = True
+                for pick in picking:
+                    if pick.state != "done":
+                        rec.is_all_receipts = False
+                        break
+            else:
+                rec.is_all_receipts = False
 
     @api.model_create_multi
     def create(self, vals_list):
         orders = self.browse()
         partner_vals_list = []
         for vals in vals_list:
+            raise UserError(_("'vals': %s" % vals))
             company_id = vals.get('company_id', self.default_get(['company_id'])['company_id'])
             # Ensures default picking type and currency are taken from the right company.
             self_comp = self.with_company(company_id)
@@ -36,9 +52,9 @@ class PurchaseOrder(models.Model):
             if vals.get('is_po_refund'):
                 vals['name'] = self_comp.env['ir.sequence'].next_by_code('refund_purchase_order',
                                                                          sequence_date=seq_date) or '/'
-            else:
-                vals['name'] = self_comp.env['ir.sequence'].next_by_code('purchase.order',
-                                                                         sequence_date=seq_date) or '/'
+            # else:
+            #     vals['name'] = self_comp.env['ir.sequence'].next_by_code('purchase.order',
+            #                                                              sequence_date=seq_date) or '/'
             vals, partner_vals = self._write_partner_values(vals)
             partner_vals_list.append(partner_vals)
             orders |= super(PurchaseOrder, self_comp).create(vals)

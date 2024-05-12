@@ -18,18 +18,20 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="is_all_receipts" invisible="1"/>
                     <field name="is_po_refund" readonly="1" invisible="1"/>
                     <field name="po_id" readonly="1" attrs="{'invisible': [('is_po_refund', '!=', True)]}"/>
                 </xpath>
 
                 <xpath expr="//button[@name='button_unlock']" position="after">
                     <button name="create_po_refund" type="object" string="Refund" class="oe_highlight"
-                            attrs="{'invisible': ['|',('is_po_refund','=',True),('state','not in',['purchase','done'])]}" states="purchase,done"/>
+                            attrs="{'invisible': [('is_all_receipts','!=',True)]}"/>
+<!--                            attrs="{'invisible': ['|',('is_po_refund','=',True),('state','not in',['purchase','done'])]}" states="purchase,done"/>-->
                 </xpath>
 
                 <xpath expr="//div[@class='oe_button_box']" position="inside">
                     <button name="po_refund_smart_button" type="object" class="oe_stat_button"
-                            string="PO Refunds"
+                            string="PO Refunds" attrs="{'invisible': [('is_all_receipts','!=',True)]}"
                             icon="fa-credit-card">
 <!--                        <field name="po_count" widget="statinfo" string="Purchase Orders"/>-->
                     </button>
