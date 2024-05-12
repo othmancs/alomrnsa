@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="seq_purchase_order_refund" model="ir.sequence">
+            <field name="name">Purchase Order Refund</field>
+            <field name="code">refund_purchase_order</field>
+            <field name="prefix">RP</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="po_refund_purchase_order_form" model="ir.ui.view">
+            <field name="name">po_refund_purchase_order_form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="is_po_refund" readonly="1" invisible="1"/>
+                    <field name="po_id" readonly="1" attrs="{'invisible': [('is_po_refund', '!=', True)]}"/>
+                </xpath>
+
+                <xpath expr="//button[@name='button_unlock']" position="after">
+                    <button name="create_po_refund" type="object" string="Refund" class="oe_highlight"
+                            attrs="{'invisible': ['|',('is_po_refund','=',True),('state','not in',['purchase','done'])]}" states="purchase,done"/>
+                </xpath>
+
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <button name="po_refund_smart_button" type="object" class="oe_stat_button"
+                            string="PO Refunds"
+                            icon="fa-credit-card">
+<!--                        <field name="po_count" widget="statinfo" string="Purchase Orders"/>-->
+                    </button>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>
