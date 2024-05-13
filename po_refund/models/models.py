@@ -31,7 +31,7 @@ class PurchaseOrder(models.Model):
         orders = self.browse()
         partner_vals_list = []
         for vals in vals_list:
-            raise UserError(_("'vals': %s" % vals))
+            # raise UserError(_("'vals': %s" % vals))
             company_id = vals.get('company_id', self.default_get(['company_id'])['company_id'])
             # Ensures default picking type and currency are taken from the right company.
             self_comp = self.with_company(company_id)
