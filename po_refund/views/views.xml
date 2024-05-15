@@ -49,7 +49,7 @@
                 <xpath expr="//filter[@name='draft']" position="before">
                     <filter name="rfs" string="RFs" domain="[('rf_state', '=', 'rf')]"/>
                 </xpath>
-            </field>
+            </field> 
         </record>
 
     </data>
