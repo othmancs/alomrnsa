@@ -336,7 +336,7 @@
                                                         <td><button type="button"
                                                                     class="btn btn-danger btn-sm delete-row"
                                                                     t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">
-                                                            Delete</button></td>
+                                                            حذف</button></td>
                                                     </tr>
                                                 </t>
                                             </t>
