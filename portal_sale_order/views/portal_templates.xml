@@ -270,7 +270,7 @@
                                                         </t>
                                                     </select>
                                                 </td>
-                                                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                <td><button type="button" class="btn btn-danger btn-sm delete-row">حذف</button></td>
                                             </tr>
                                             <t t-if="sale_order_id and sale_order_id.order_line">
                                                 <t t-foreach="sale_order_id.order_line" t-as="line">
