@@ -5,7 +5,7 @@
         <record id="seq_purchase_order_refund" model="ir.sequence">
             <field name="name">Purchase Order Refund</field>
             <field name="code">refund_purchase_order</field>
-            <field name="prefix">RP</field>
+            <field name="prefix">RF</field>
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>
@@ -18,6 +18,7 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="rf_state" invisible="1"/>
                     <field name="is_all_receipts" invisible="1"/>
                     <field name="is_po_refund" readonly="1" invisible="1"/>
                     <field name="po_id" readonly="1" attrs="{'invisible': [('is_po_refund', '!=', True)]}"/>
@@ -33,10 +34,21 @@
                     <button name="po_refund_smart_button" type="object" class="oe_stat_button"
                             string="PO Refunds" attrs="{'invisible': [('is_all_receipts','!=',True)]}"
                             icon="fa-credit-card">
-<!--                        <field name="po_count" widget="statinfo" string="Purchase Orders"/>-->
+                        <field name="po_rf_count" widget="statinfo" string="PO Refunds"/>
                     </button>
                 </xpath>
 
+            </field>
+        </record>
+
+        <record id="rf_view_purchase_order_filter" model="ir.ui.view">
+           <field name="name">rf_view_purchase_order_filter</field>
+           <field name="model">purchase.order</field>
+           <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='draft']" position="before">
+                    <filter name="rfs" string="RFs" domain="[('rf_state', '=', 'rf')]"/>
+                </xpath>
             </field>
         </record>
 

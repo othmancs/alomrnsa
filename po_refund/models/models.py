@@ -12,6 +12,14 @@ class PurchaseOrder(models.Model):
     # is_all_receipts = fields.Boolean(string="Is All Receipts", )
     is_all_receipts = fields.Boolean(string="Is All Receipts", compute="compute_all_receipts", store=True)
     po_id = fields.Many2one(comodel_name="purchase.order", string="Source PO", required=False, )
+    po_rf_count = fields.Integer(string="", required=False, compute="compute_po_rf_count", )
+    rf_state = fields.Selection(string="",
+                                selection=[('empty', 'Empty'),
+                                           ('rf', 'RF'), ], required=False, default='empty')
+
+    def compute_po_rf_count(self):
+        for rec in self:
+            rec.po_rf_count = self.env['purchase.order'].search_count([('po_id', '=', self.id)])
 
     @api.depends('order_line.qty_received')
     def compute_all_receipts(self):
@@ -64,16 +72,16 @@ class PurchaseOrder(models.Model):
         return orders
 
     def create_po_refund(self):
-        # raise UserError(_('%s' % self.copy_data()[0]))
-        # get_pos = self.env['purchase.order'].search([('name', '=', 'R%s' % self.name), ('state', '!=', 'cancel')])
-        # if get_pos:
-        #     raise UserError(_('This PO has a refund created before R%s' % self.name))
+        rfs = self.env['purchase.order'].search([('po_id', '=', self.id)])
+        if rfs:
+            raise UserError(_("You\'ve been created refund before."))
 
         new_order_vals = self.copy_data()[0]
         for line in new_order_vals['order_line']:
             line[2]['product_qty'] = line[2]['product_qty'] * -1
         new_order_vals['is_po_refund'] = True
         new_order_vals['po_id'] = self.id
+        new_order_vals['rf_state'] = 'rf'
         # new_order_vals['name'] = 'R' + self.name
         new_order = self.create(new_order_vals)
         return True
