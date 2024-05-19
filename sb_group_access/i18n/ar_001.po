@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sb_group_access
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-19 07:16+0000\n"
+"PO-Revision-Date: 2024-05-19 07:16+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sb_group_access
+#: model:ir.module.category,name:sb_group_access.module_sale_button_access
+msgid "Access Actions"
+msgstr "صلاحيات الانشاء و التعديل"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.can_cancel_sale_orders
+msgid "Can Cancel Sale Orders"
+msgstr "يمكنه إلغاء أوامر البيع"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.can_creat_invoice
+msgid "Can Creat invoice"
+msgstr "يمكنه إنشاء الفاتورة"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.can_confirm_sale_orders
+msgid "Can Confirm Sale Orders"
+msgstr "يمكنه تأكيد أوامر البيع"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.can_add_product
+msgid "Can add product"
+msgstr "يمكنه اضافه منتج"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.can_add_product_category
+msgid "Can add product category"
+msgstr "يمكنه إضافة فئة المنتج"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.can_add_unit_of_measure
+msgid "Can add unit of measure"
+msgstr "يمكنه إضافة وحدة القياس"
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_sale_order
+msgid "Payment Proof Attachments"
+msgstr ""
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_product_category
+msgid "Product Category"
+msgstr "فئة المنتج"
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "وحدة قياس المنتج"
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_product_product
+msgid "Product Variant"
+msgstr "متغير المنتج "
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/product_template.py:0
+#, python-format
+msgid "You are not authorized to add unit of measure."
+msgstr "غير مسموح لك بإضافة وحدة قياس."
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/sale_order.py:0
+#, python-format
+msgid "You are not authorized to cancel sales orders."
+msgstr "لا يحق لك إلغاء أوامر البيع."
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/sale_order.py:0
+#, python-format
+msgid "You are not authorized to confirm sales orders."
+msgstr "لا يحق لك تأكيد أوامر المبيعات."
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/product_template.py:0
+#, python-format
+msgid "You are not authorized to create product category."
+msgstr "غير مصرح لك بإنشاء فئة المنتج."
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/product_template.py:0
+#: code:addons/sb_group_access/model/product_template.py:0
+#, python-format
+msgid "You are not authorized to create product."
+msgstr "غير مصرح لك بإنشاء منتج."
+
+#. module: sb_group_access
+#: model:ir.module.category,description:sb_group_access.module_sale_button_access
+msgid ""
+"user must be in his group to can do this action\n"
+"            "
+msgstr "يجب أن يكون المستخدم في مجموعته لكى يسطيع القيام بهذه المهام "
