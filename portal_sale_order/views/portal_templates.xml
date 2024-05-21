@@ -4,7 +4,7 @@
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
             <t t-if="request.env.user.employee_id" t-call="portal.portal_docs_entry">
                 <t t-set="url" t-value="'/my/sale_orders'"/>
-                <t t-set="title">Sale Order</t>
+                <t t-set="title">أوامر البيع</t>
                 <t t-set="placeholder_count" t-value="'sale_order_count'"/>
             </t>
         </xpath>
@@ -13,12 +13,17 @@
     <template id="portal_breadcrumbs" inherit_id="portal.portal_breadcrumbs">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
             <li t-if="page_name == 'sale_orders_list'"  class="breadcrumb-item">
-                <span>Sale Orders</span>
+                <span>أوامر البيع</span>
             </li>
             <li t-if="page_name == 'sale_order_form'" class="breadcrumb-item">
-                <a href="/my/sale_orders">Sale Orders</a>
+                <a href="/my/sale_orders">أوامر البيع</a>
                 <span>/</span>
-                <span>Order</span>
+                <t t-if="sale_order_id">
+                    <span t-field="sale_order_id.name"/>
+                </t>
+                <t t-else="">
+                    <span>جديد</span>
+                </t>
             </li>
 
 <!--            <li t-if="page_name == 'approval_requests'"  class="breadcrumb-item active">-->
@@ -65,19 +70,19 @@
 
             <t t-call="portal.portal_searchbar">
                 <t t-set="title">Sales Orders</t>
-                <a href="/my/sale_order" class="btn btn-primary float-end">New</a>
+                <a href="/my/sale_order" class="btn btn-primary float-end">جديد</a>
             </t>
             <t t-if="sale_orders" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
                         <th>
-                            <span class='d-none d-md-inline'>Sales Order #</span>
-                            <span class='d-block d-md-none'>Ref.</span>
+                            <span class='d-none d-md-inline'>رقم أمر البيع</span>
+                            <span class='d-block d-md-none'>رقم أمر البيع</span>
                         </th>
-                        <th class="">Customer</th>
-                        <th class="text-end">Order Date</th>
+                        <th class="">العميل</th>
+                        <th class="text-end">تاريخ الطلب</th>
                         <th class="text-center"/>
-                        <th class="text-end">Total</th>
+                        <th class="text-end">الإجمالي</th>
                     </tr>
                 </thead>
                 <t t-foreach="sale_orders" t-as="order">
@@ -131,7 +136,7 @@
                         <div class="mb-3 row">
                             <div class="row mb-2">
                                 <div class="col-9">
-                                    <label for="name" class="form-label">Name</label>
+                                    <label for="name" class="form-label">رقم البيع</label>
                                     <t t-if="sale_order_id">
                                         <input class="form-control" id="name" name="name" t-att-value="sale_order_id.name" readonly="True"/>
                                     </t>
@@ -141,11 +146,11 @@
                                 </div>
                                 <div class="form-check form-switch col-3" t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">
                                   <input class="form-check-input" type="checkbox" id="is_confirm" name="is_confirm"/>
-                                  <label class="form-check-label" for="is_confirm">Confirm?</label>
+                                  <label class="form-check-label" for="is_confirm">تأكيد</label>
                                 </div>
                             </div>
                             <div class="mb-2 col-md-4">
-                                <label for="partner_id" class="form-label">Customer</label>
+                                <label for="partner_id" class="form-label">العميل</label>
                                 <select class="form-control" id="partner_id" name="partner_id" required="1">
                                     <option value="">
                                     </option>
@@ -165,7 +170,7 @@
                                 </select>
                             </div>
                             <div class="mb-2 col-md-4">
-                                <label for="pricelist_id" class="form-label">Pricelist</label>
+                                <label for="pricelist_id" class="form-label">قائمة الأسعار</label>
                                 <select class="form-control" id="pricelist_id" name="pricelist_id" required="1">
                                     <option value="">
                                     </option>
@@ -184,7 +189,7 @@
                                 </select>
                             </div>
                             <div class="mb-2 col-md-4">
-                                <label for="branch_id" class="form-label">Branch</label>
+                                <label for="branch_id" class="form-label">الفرع</label>
                                 <select class="form-control" id="branch_id" name="branch_id" required="1">
                                     <option value="">
                                     </option>
@@ -214,13 +219,13 @@
                                         <table id="child_table" class="table">
                                         <thead>
                                             <tr>
-                                                <th>Products</th>
-                                                <th>Ref.</th>
-                                                <th>WareHouse</th>
-                                                <th width="150px">Price</th>
-                                                <th width="100px">Quantity</th>
-                                                <th>UOM</th>
-                                                <th>Pricelist</th>
+                                                <th>المنتجات</th>
+                                                <th>الرقم المرجعى</th>
+                                                <th>المستودع</th>
+                                                <th width="150px">السعر</th>
+                                                <th width="100px">الكميه</th>
+                                                <th>وحده القياس</th>
+                                                <th>قائمة الأسعار</th>
                                             </tr>
                                         </thead>
                                         <tbody id="child_table_body">
@@ -265,7 +270,7 @@
                                                         </t>
                                                     </select>
                                                 </td>
-                                                <td><button type="button" class="btn btn-danger btn-sm delete-row">Delete</button></td>
+                                                <td><button type="button" class="btn btn-danger btn-sm delete-row">حذف</button></td>
                                             </tr>
                                             <t t-if="sale_order_id and sale_order_id.order_line">
                                                 <t t-foreach="sale_order_id.order_line" t-as="line">
@@ -331,7 +336,7 @@
                                                         <td><button type="button"
                                                                     class="btn btn-danger btn-sm delete-row"
                                                                     t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">
-                                                            Delete</button></td>
+                                                            حذف</button></td>
                                                     </tr>
                                                 </t>
                                             </t>
@@ -341,12 +346,12 @@
                                     <button type="button"
                                             class="btn btn-primary btn-sm"
                                             id="add_child_row"
-                                            t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">Add Child</button>
+                                            t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">اضافه</button>
                                 </div>
 
                         </div>
                         <button type="submit" class="btn btn-primary"
-                                t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">Confirm</button>
+                                t-if="(sale_order_id and sale_order_id.state not in ('done', 'sale')) or not sale_order_id">حفظ</button>
 <!--                        <button type="submit" class="btn btn-primary">Confirm</button>-->
                     </form>
 

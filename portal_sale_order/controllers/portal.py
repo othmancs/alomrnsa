@@ -88,7 +88,7 @@ class SaleOrder(CustomerPortal):
                         'name': product_id.name,
                         'product_id': product_id.id,
                         'product_template_id': product_id.product_tmpl_id.id,
-                        'warehouse_id': int(line_item.get('warehouse_id') if line_item.get('warehouse_id') else False),
+                        'product_warehouse_id': int(line_item.get('warehouse_id') if line_item.get('warehouse_id') else False),
                         'product_uom_qty': float(line_item.get('quantity', False)),
                         'price_unit': float(line_item.get('price_unit', False)),
                         'product_uom': product_id.uom_id.id,

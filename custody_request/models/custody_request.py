@@ -440,7 +440,7 @@ class FinanceApprovalRequest(models.Model):
             # self.message_post(subject='Create CR', body='This is New CR Number' + str(message))
         return super(FinanceApprovalRequest, self).create(vals)
 
-    # @api.multi
+    # `@api.multi`
     def unlink(self):
         for i in self:
             if i.state != 'draft':

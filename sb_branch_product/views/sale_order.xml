@@ -1,0 +1,20 @@
+<odoo>
+    <record id="sales_order_warehouse_form_view_inherit_warehouse" model="ir.ui.view">
+        <field name="name">sales order warehouse</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority" eval="200"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='order_lines']/field/tree/field[@name='product_template_id']"
+                   position="before">
+                <field name="branch_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']/field/tree/field[@name='product_template_id']"
+                   position="attributes">
+                <attribute name="domain">['|', ('many_branch_product_ids', '=', branch_id), ('many_branch_product_ids',
+                    '=', False)]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
