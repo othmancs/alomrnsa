@@ -2,7 +2,7 @@
 {
     'name': 'Sale Order Portal',
     'description': "",
-    'depends': ['portal', 'sale', 'multi_branch_base', 'web'],
+    'depends': ['portal', 'sale', 'multi_branch_base', 'web_editor'],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
@@ -19,6 +19,7 @@
              'portal_sale_order/static/src/css/select2-bootstrap.min.css'),
             ('replace', 'web/static/lib/select2/select2.js',
              'portal_sale_order/static/lib/select2/js/select2.min.js'),
+            'portal_sale_order/static/src/js/common/**/*',
 
         ],
         'web.assets_frontend': [
@@ -30,6 +31,7 @@
              'portal_sale_order/static/src/css/select2-bootstrap.min.css'),
             ('replace', 'web/static/lib/select2/select2.js',
              'portal_sale_order/static/lib/select2/js/select2.min.js'),
+            'portal_sale_order/static/src/js/common/**/*',
 
         ],
 
