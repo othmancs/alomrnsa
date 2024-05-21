@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="cannot_add_product" model="res.groups">
+            <field name="name">Cannot add product</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+        <record id="cannot_add_product_category" model="res.groups">
+            <field name="name">Cannot add product category</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+        <record id="cannot_add_unit_of_measure" model="res.groups">
+            <field name="name">Cannot add unit of measure</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+
+
+    </data>
+</odoo>
