@@ -10,19 +10,19 @@
             <field name="arch" type="xml">
 
                 <xpath expr="//button[@name='action_cancel']" position="attributes">
-                    <attribute name="groups">sb_group_access.can_cancel_sale_orders</attribute>
+                    <attribute name="groups">!sb_group_access.cannot_cancel_sale_orders</attribute>
                 </xpath>
                  <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
-                    <attribute name="groups">sb_group_access.can_confirm_sale_orders</attribute>
+                    <attribute name="groups">!sb_group_access.cannot_confirm_sale_orders</attribute>
                 </xpath>
                   <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
-                    <attribute name="groups">sb_group_access.can_confirm_sale_orders</attribute>
+                    <attribute name="groups">!sb_group_access.cannot_confirm_sale_orders</attribute>
                 </xpath>
                 <xpath expr="//button[@id='create_invoice']" position="attributes">
-                    <attribute name="groups">sb_group_access.can_creat_invoice</attribute>
+                    <attribute name="groups">!sb_group_access.cannot_creat_invoice</attribute>
                 </xpath>
                 <xpath expr="//button[@id='create_invoice_percentage']" position="attributes">
-                    <attribute name="groups">sb_group_access.can_creat_invoice</attribute>
+                    <attribute name="groups">!sb_group_access.cannot_creat_invoice</attribute>
                 </xpath>
 
             </field>

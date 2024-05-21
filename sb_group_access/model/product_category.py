@@ -7,6 +7,6 @@ class ProductCategory(models.Model):
 
     @api.model
     def name_create(self, name):
-        if not self.env.user.has_group('sb_group_access.can_add_product_category'):
+        if self.env.user.has_group('sb_group_access.cannot_add_product_category'):
             raise UserError(_("You are not authorized to create product category."))
         return super(ProductCategory, self).name_create()

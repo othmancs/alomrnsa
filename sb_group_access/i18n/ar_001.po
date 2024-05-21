@@ -22,32 +22,32 @@ msgstr "صلاحيات الانشاء و التعديل"
 
 #. module: sb_group_access
 #: model:res.groups,name:sb_group_access.can_cancel_sale_orders
-msgid "Can Cancel Sale Orders"
-msgstr "يمكنه إلغاء أوامر البيع"
+msgid "Cannot Cancel Sale Orders"
+msgstr "لا يمكنه إلغاء أوامر البيع"
 
 #. module: sb_group_access
 #: model:res.groups,name:sb_group_access.can_creat_invoice
-msgid "Can Creat invoice"
-msgstr "يمكنه إنشاء الفاتورة"
+msgid "Cannot Creat invoice"
+msgstr " لا يمكنه إنشاء الفاتورة"
 
 #. module: sb_group_access
 #: model:res.groups,name:sb_group_access.can_confirm_sale_orders
-msgid "Can Confirm Sale Orders"
-msgstr "يمكنه تأكيد أوامر البيع"
+msgid "Cannot Confirm Sale Orders"
+msgstr " لا يمكنه تأكيد أوامر البيع"
 
 #. module: sb_group_access
 #: model:res.groups,name:sb_group_access.can_add_product
-msgid "Can add product"
-msgstr "يمكنه اضافه منتج"
+msgid "Cannot add product"
+msgstr "لا يمكنه اضافه منتج"
 
 #. module: sb_group_access
 #: model:res.groups,name:sb_group_access.can_add_product_category
-msgid "Can add product category"
-msgstr "يمكنه إضافة فئة المنتج"
+msgid "Cannot add product category"
+msgstr "لا يمكنه إضافة فئة المنتج"
 
 #. module: sb_group_access
 #: model:res.groups,name:sb_group_access.can_add_unit_of_measure
-msgid "Can add unit of measure"
+msgid "Cannot add unit of measure"
 msgstr "يمكنه إضافة وحدة القياس"
 
 #. module: sb_group_access
