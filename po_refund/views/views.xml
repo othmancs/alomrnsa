@@ -10,6 +10,42 @@
             <field name="company_id" eval="False"/>
         </record>
 
+        <record id="purchase_rfq_rf" model="ir.actions.act_window">
+            <field name="name">Requests for Quotation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+            <field name="view_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="context">{'quotation_only': True, 'search_default_rfs': 'rf'}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No request for quotation found. Let's create one!
+              </p><p>
+                Requests for quotation are documents that will be sent to your suppliers to request prices for different products you consider buying.
+                Once an agreement has been found with the supplier, they will be confirmed and turned into purchase orders.
+              </p>
+            </field>
+        </record>
+        <menuitem action="purchase_rfq_rf" id="menu_purchase_rfq" name="RFQ/RF"
+            parent="purchase.menu_procurement_management"
+            sequence="-1"/>
+
+
+        <record id="purchase_refund" model="ir.actions.act_window">
+            <field name="name">Purchase Refund</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('rf_state','=', 'rf')]</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="purchase_refund_menu" name="RF"
+                  parent="purchase.menu_procurement_management"
+                  action="po_refund.purchase_refund" sequence="8"/>
+
         <!-- Inherit Form View to Modify it -->
         <record id="po_refund_purchase_order_form" model="ir.ui.view">
             <field name="name">po_refund_purchase_order_form</field>
