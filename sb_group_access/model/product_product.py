@@ -7,6 +7,7 @@ class Product(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        res = super(Product, self).create()
         if self.env.user.has_group('sb_group_access.cannot_add_product'):
             raise UserError(_("You are not authorized to create product."))
-        return super(Product, self).create()
+        return res

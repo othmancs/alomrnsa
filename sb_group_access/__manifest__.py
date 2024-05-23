@@ -12,12 +12,14 @@
     'category': 'sale',
     'version': '0.1',
 
-    'depends': ['base', 'sale'],
+    'depends': ['base', 'sale','account'],
 
     'data': [
         'security/sb_sale_group_access.xml',
         'security/sb_product_group_access.xml',
+        'security/sb_inventory_group_access.xml',
         'views/sale_order.xml',
+        'views/account_move.xml',
     ],
     'application': True
 }
