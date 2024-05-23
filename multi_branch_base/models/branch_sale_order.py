@@ -40,7 +40,7 @@ class SaleOrder(models.Model):
                                 readonly=False,
                                 compute="_compute_branch",
                                 required=True,
-                                default = lambda self: self.env.user.branch_id)
+                                default=lambda self: self.env.user.branch_id)
     warehouse_id = fields.Many2one(
         'stock.warehouse', string='Warehouse', required=True,
         compute='_compute_warehouse_id', store=True,
