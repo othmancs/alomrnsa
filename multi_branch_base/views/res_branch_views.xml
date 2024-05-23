@@ -14,6 +14,11 @@
                                 <field name="name"/>
                             </h1>
                         </div>
+                        <group>
+                            <group>
+                                <field name="is_default"/>
+                            </group>
+                        </group>
                         <notebook colspan="4">
                         <page string="Contact Information" name="contact_info">
                             <group>
