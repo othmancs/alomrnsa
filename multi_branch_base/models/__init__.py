@@ -32,4 +32,3 @@ from . import branch_account_payment
 from . import branch_account_journal
 from . import branch_account_account
 from . import branch_stock_warehouse
-from . import website

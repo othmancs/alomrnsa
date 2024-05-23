@@ -35,7 +35,7 @@
     'category': 'Tools',
     'depends': ['sale_management',
                 'sale_stock', 'purchase_stock',
-                'stock_account', 'website_sale'],
+                'stock_account'],
     'data': [
         'security/branch_security.xml',
         'security/ir.model.access.csv',
