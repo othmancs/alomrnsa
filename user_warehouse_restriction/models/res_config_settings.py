@@ -29,8 +29,7 @@ class ResConfigSettings(models.TransientModel):
 
     group_user_warehouse_restriction = fields.Boolean(
         string="Restrict Stock Warehouse",
-        implied_group='user_warehouse_restriction.'
-                      'user_warehouse_restriction_group_user',
+        implied_group='user_warehouse_restriction.user_warehouse_restriction_group_user',
         help="Check if you want to restrict warehouse for users.")
 
     @api.onchange('group_user_warehouse_restriction')
