@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="cannot_add_location" model="res.groups">
+            <field name="name">Cannot add location</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+        <record id="cannot_add_warehouse" model="res.groups">
+            <field name="name">Cannot add warehouse</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+        <record id="cannot_add_operation" model="res.groups">
+            <field name="name">Cannot add operation</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+
+    </data>
+</odoo>
