@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-19 07:16+0000\n"
-"PO-Revision-Date: 2024-05-19 07:16+0000\n"
+"POT-Creation-Date: 2024-05-23 10:33+0000\n"
+"PO-Revision-Date: 2024-05-23 10:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,38 +21,58 @@ msgid "Access Actions"
 msgstr "صلاحيات الانشاء و التعديل"
 
 #. module: sb_group_access
-#: model:res.groups,name:sb_group_access.can_cancel_sale_orders
+#: model:res.groups,name:sb_group_access.cannot_cancel_sale_orders
 msgid "Cannot Cancel Sale Orders"
-msgstr "لا يمكنه إلغاء أوامر البيع"
+msgstr "لا يستطيع الغاء امر البيع"
 
 #. module: sb_group_access
-#: model:res.groups,name:sb_group_access.can_creat_invoice
-msgid "Cannot Creat invoice"
-msgstr " لا يمكنه إنشاء الفاتورة"
-
-#. module: sb_group_access
-#: model:res.groups,name:sb_group_access.can_confirm_sale_orders
+#: model:res.groups,name:sb_group_access.cannot_confirm_sale_orders
 msgid "Cannot Confirm Sale Orders"
-msgstr " لا يمكنه تأكيد أوامر البيع"
+msgstr "لا يستطيع تاكيد امر البيع"
 
 #. module: sb_group_access
-#: model:res.groups,name:sb_group_access.can_add_product
+#: model:res.groups,name:sb_group_access.cannot_creat_invoice
+msgid "Cannot Creat invoice"
+msgstr "لا يستطيع انشاء فاتوره"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.cannot_add_location
+msgid "Cannot add location"
+msgstr "لا يستطيع انشاء موقع"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.cannot_add_operation
+msgid "Cannot add operation"
+msgstr "لا يستطيع اضافه عمليات"
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.cannot_add_product
 msgid "Cannot add product"
-msgstr "لا يمكنه اضافه منتج"
+msgstr "لا يستطيع اضافه منتج"
 
 #. module: sb_group_access
-#: model:res.groups,name:sb_group_access.can_add_product_category
+#: model:res.groups,name:sb_group_access.cannot_add_product_category
 msgid "Cannot add product category"
-msgstr "لا يمكنه إضافة فئة المنتج"
+msgstr "لا يستطيع اضافه فئه المنتج"
 
 #. module: sb_group_access
-#: model:res.groups,name:sb_group_access.can_add_unit_of_measure
+#: model:res.groups,name:sb_group_access.cannot_add_unit_of_measure
 msgid "Cannot add unit of measure"
-msgstr "يمكنه إضافة وحدة القياس"
+msgstr "لا يستطيع اضافه وحده القياس"
 
 #. module: sb_group_access
-#: model:ir.model,name:sb_group_access.model_sale_order
-msgid "Payment Proof Attachments"
+#: model:res.groups,name:sb_group_access.cannot_add_warehouse
+msgid "Cannot add warehouse"
+msgstr "لا يستطيع اضافه مستودع"
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_stock_location
+msgid "Inventory Locations"
+msgstr "مواقع المخزون"
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_account_move
+msgid "Journal Entry"
 msgstr ""
 
 #. module: sb_group_access
@@ -76,11 +96,42 @@ msgid "Product Variant"
 msgstr "متغير المنتج "
 
 #. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sb_group_access
+#: model:ir.model,name:sb_group_access.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""
+
+#. module: sb_group_access
 #. odoo-python
-#: code:addons/sb_group_access/model/product_template.py:0
+#: code:addons/sb_group_access/model/location.py:0
+#, python-format
+msgid "You are not authorized to add location"
+msgstr "غير مسموح لك اضاقه موقع"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/operations.py:0
+#, python-format
+msgid "You are not authorized to add operation"
+msgstr "غير مسموح لك اضافه عمليه"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/uom_uom.py:0
 #, python-format
 msgid "You are not authorized to add unit of measure."
 msgstr "غير مسموح لك بإضافة وحدة قياس."
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/warehouse.py:0
+#, python-format
+msgid "You are not authorized to add warehouse"
+msgstr "غير مسموح لك اضافه مستودع"
 
 #. module: sb_group_access
 #. odoo-python
@@ -98,22 +149,81 @@ msgstr "لا يحق لك تأكيد أوامر المبيعات."
 
 #. module: sb_group_access
 #. odoo-python
-#: code:addons/sb_group_access/model/product_template.py:0
+#: code:addons/sb_group_access/model/account_move.py:0
+#: code:addons/sb_group_access/model/account_move.py:0
+#: code:addons/sb_group_access/model/account_move.py:0
+#, python-format
+msgid "You are not authorized to creat invoice"
+msgstr "لا يحق لك عمل فاتوره"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/sale_order.py:0
+#, python-format
+msgid "You are not authorized to creat invoices."
+msgstr "لا يحق لك عمل فاتوره"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/product_category.py:0
 #, python-format
 msgid "You are not authorized to create product category."
 msgstr "غير مصرح لك بإنشاء فئة المنتج."
 
 #. module: sb_group_access
 #. odoo-python
-#: code:addons/sb_group_access/model/product_template.py:0
+#: code:addons/sb_group_access/model/product_product.py:0
 #: code:addons/sb_group_access/model/product_template.py:0
 #, python-format
 msgid "You are not authorized to create product."
 msgstr "غير مصرح لك بإنشاء منتج."
 
 #. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/location.py:0
+#, python-format
+msgid "You are not authorized to edit location"
+msgstr "غير مصرح لك التعديل على موقع"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/operations.py:0
+#, python-format
+msgid "You are not authorized to edit operation"
+msgstr "غير مصرح لك التعديل على عمليه"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/product_category.py:0
+#, python-format
+msgid "You are not authorized to edit product category."
+msgstr "غير مصرح لك التعديل على فئه المنتج"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/product_product.py:0
+#: code:addons/sb_group_access/model/product_template.py:0
+#, python-format
+msgid "You are not authorized to edit product."
+msgstr "غير مصرح لك التعديل على المنتج"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/uom_uom.py:0
+#, python-format
+msgid "You are not authorized to edit unit of measure."
+msgstr "غير مصرح لك التعديل على وحده القياس"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/warehouse.py:0
+#, python-format
+msgid "You are not authorized to edit warehouse"
+msgstr "غير مصرح لك التعديل على المستودع"
+
+#. module: sb_group_access
 #: model:ir.module.category,description:sb_group_access.module_sale_button_access
 msgid ""
-"user must be in his group to can do this action\n"
+"user in any group cannot do this action\n"
 "            "
 msgstr "يجب أن يكون المستخدم في مجموعته لكى يسطيع القيام بهذه المهام "
