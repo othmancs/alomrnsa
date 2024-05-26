@@ -19,5 +19,5 @@ registry.category("ir.actions.report handlers").add('xlsx', async function(actio
         });
         return def;
     }
-});
+}, {force: true});
 

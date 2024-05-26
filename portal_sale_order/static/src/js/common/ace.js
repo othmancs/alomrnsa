@@ -4,7 +4,6 @@ odoo.define('portal_sale_order.ace', function (require) {
     var config = require('web.config');
     var Widget = require('web.Widget');
     var ViewEditor = require('web_editor.ace');
-    console.log('portal_sale_order.ace module loaded');
 
     var ViewEditorPortal = ViewEditor.include({
         _getSelectedResource: function () {
@@ -109,6 +108,5 @@ odoo.define('portal_sale_order.ace', function (require) {
         },
     });
 
-    console.log('portal_sale_order.ace module loaded and finished');
     return ViewEditorPortal;
 });
