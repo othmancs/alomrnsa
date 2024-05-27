@@ -34,28 +34,28 @@ odoo.define('portal_sale_order.ace', function (require) {
 
             // Define a list of the elements you want to initialize
             const elements = ['xml', 'scss', 'js'];
-            // Iterate over each element and apply the select2 configuration if the element exists
+            // Iterate over each element and apply the select4 configuration if the element exists
             elements.forEach(element => {
-                if (this.$lists[element] && this.$lists[element].select2) {
+                if (this.$lists[element] && this.$lists[element].select4) {
                     try {
-                        // Check if Select2 is initialized on the element before destroying it
-                        if (this.$lists[element].data('select2')) {
-                            this.$lists[element].select2('destroy');
+                        // Check if select4 is initialized on the element before destroying it
+                        if (this.$lists[element].data('select4')) {
+                            this.$lists[element].select4('destroy');
                         }
 
-                        // Initialize Select2 with the specified configurations
-                        this.$lists[element].select2({
+                        // Initialize select4 with the specified configurations
+                        this.$lists[element].select4({
                             formatResult: _formatDisplay.bind(this, false),
                             formatSelection: _formatDisplay.bind(this, true),
                         });
 
                         // Add the class to the dropdown
-                        var select2Instance = this.$lists[element].data('select2');
-                        if (select2Instance && select2Instance.dropdown && select2Instance.dropdown.$dropdown) {
-                            select2Instance.dropdown.$dropdown.addClass('o_ace_select2_dropdown');
+                        var select4Instance = this.$lists[element].data('select4');
+                        if (select4Instance && select4Instance.dropdown && select4Instance.dropdown.$dropdown) {
+                            select4Instance.dropdown.$dropdown.addClass('o_ace_select4_dropdown');
                         }
                     } catch (e) {
-                        console.error(`Error initializing Select2 on ${element}:`, e);
+                        console.error(`Error initializing select4 on ${element}:`, e);
                     }
                 }
             });
@@ -87,7 +87,7 @@ odoo.define('portal_sale_order.ace', function (require) {
                 }
                 var $div = $('<div/>', {
                     text: text,
-                    class: 'o_ace_select2_result',
+                    class: 'o_ace_select4_result',
                 });
 
                 if ($elem.data('dirty') || $elem.data('customized')) {

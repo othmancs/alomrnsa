@@ -13,25 +13,20 @@
     'license': 'OEEL-1',
     'assets': {
         'web.assets_common': [
-            ('replace', 'web/static/lib/select2/select2.css',
-             'portal_sale_order/static/lib/select2/css/select2.min.css'),
-            ('replace', 'web/static/lib/select2-bootstrap-css/select2-bootstrap.css',
-             'portal_sale_order/static/src/css/select2-bootstrap.min.css'),
-            ('replace', 'web/static/lib/select2/select2.js',
-             'portal_sale_order/static/lib/select2/js/select2.min.js'),
-            'portal_sale_order/static/src/js/common/**/*',
+
+            'portal_sale_order/static/lib/select4/css/select4.min.css',
+            'portal_sale_order/static/src/css/select4-bootstrap.min.css',
+            'portal_sale_order/static/lib/select4/js/select4.min.js',
+            # 'portal_sale_order/static/src/js/common/**/*',
 
         ],
         'web.assets_frontend': [
             'portal_sale_order/static/src/js/portal_form.js',
             'portal_sale_order/static/src/js/portal_sale_order.js',
-            ('replace', 'web/static/lib/select2/select2.css',
-             'portal_sale_order/static/lib/select2/css/select2.min.css'),
-            ('replace', 'web/static/lib/select2-bootstrap-css/select2-bootstrap.css',
-             'portal_sale_order/static/src/css/select2-bootstrap.min.css'),
-            ('replace', 'web/static/lib/select2/select2.js',
-             'portal_sale_order/static/lib/select2/js/select2.min.js'),
-            'portal_sale_order/static/src/js/common/**/*',
+            'portal_sale_order/static/lib/select4/css/select4.min.css',
+            'portal_sale_order/static/src/css/select4-bootstrap.min.css',
+            'portal_sale_order/static/lib/select4/js/select4.min.js',
+            # 'portal_sale_order/static/src/js/common/**/*',
 
         ],
 
