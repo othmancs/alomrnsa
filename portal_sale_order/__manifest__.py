@@ -17,8 +17,6 @@
             'portal_sale_order/static/lib/select4/css/select4.min.css',
             'portal_sale_order/static/src/css/select4-bootstrap.min.css',
             'portal_sale_order/static/lib/select4/js/select4.min.js',
-            # 'portal_sale_order/static/src/js/common/**/*',
-
         ],
         'web.assets_frontend': [
             'portal_sale_order/static/src/js/portal_form.js',
@@ -26,8 +24,6 @@
             'portal_sale_order/static/lib/select4/css/select4.min.css',
             'portal_sale_order/static/src/css/select4-bootstrap.min.css',
             'portal_sale_order/static/lib/select4/js/select4.min.js',
-            # 'portal_sale_order/static/src/js/common/**/*',
-
         ],
 
     },
