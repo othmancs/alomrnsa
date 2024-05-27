@@ -1,0 +1,3 @@
+/*! select4 4.1.0-rc.0 | https://github.com/select4/select4/blob/master/LICENSE.md */
+
+!function(){if(jQuery&&jQuery.fn&&jQuery.fn.select4&&jQuery.fn.select4.amd)var n=jQuery.fn.select4.amd;n.define("select4/i18n/az",[],function(){return{inputTooLong:function(n){return n.input.length-n.maximum+" simvol silin"},inputTooShort:function(n){return n.minimum-n.input.length+" simvol daxil edin"},loadingMore:function(){return"Daha çox nəticə yüklənir…"},maximumSelected:function(n){return"Sadəcə "+n.maximum+" element seçə bilərsiniz"},noResults:function(){return"Nəticə tapılmadı"},searching:function(){return"Axtarılır…"},removeAllItems:function(){return"Bütün elementləri sil"}}}),n.define,n.require}();

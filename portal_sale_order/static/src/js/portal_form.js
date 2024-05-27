@@ -5,7 +5,7 @@ odoo.define('portal_sale_order.portal_form', function(require){
     var rpc = require('web.rpc');
     // var core = require('web.core');
 
-    const select2Options = {
+    const select4Options = {
         theme: 'bootstrap',
         minimumResultsForSearch: 1,
         width: 'resolve'
@@ -33,9 +33,9 @@ odoo.define('portal_sale_order.portal_form', function(require){
             this.$pricelist = $('#pricelist_id')
             this.$branch = $('#branch_id')
 
-            this.$partner.select2({...select2Options, placeholder:'Select Customer'})
-            this.$pricelist.select2({...select2Options, placeholder:'Select Pricelist'})
-            this.$branch.select2({...select2Options, placeholder:'Select Branch'})
+            this.$partner.select4({...select4Options, placeholder:'Select Customer'})
+            this.$pricelist.select4({...select4Options, placeholder:'Select Pricelist'})
+            this.$branch.select4({...select4Options, placeholder:'Select Branch'})
 
 
             this.$childTableBody.find('tr').each(function() {
@@ -43,9 +43,9 @@ odoo.define('portal_sale_order.portal_form', function(require){
                 if ($(this).css('display') === 'none') {
                     return true;
                 }
-                $(this).find('select[name="select_product"]').select2({...select2Options, placeholder:'Select Product'});
-                $(this).find('select[name="select_warehouse"]').select2({...select2Options, placeholder:'Select Warehouse'});
-                $(this).find('select[name="pricelist_line_id"]').select2({...select2Options, placeholder:'Select PriceList'});
+                $(this).find('select[name="select_product"]').select4({...select4Options, placeholder:'Select Product'});
+                $(this).find('select[name="select_warehouse"]').select4({...select4Options, placeholder:'Select Warehouse'});
+                $(this).find('select[name="pricelist_line_id"]').select4({...select4Options, placeholder:'Select PriceList'});
             });
 
 
@@ -76,13 +76,13 @@ odoo.define('portal_sale_order.portal_form', function(require){
             // Clear all the fields
             newRow.find('select[name="select_product"]')
                 .prop('selectedIndex', 0)
-                .select2({...select2Options, placeholder:'Select Product'});
+                .select4({...select4Options, placeholder:'Select Product'});
             newRow.find('select[name="select_warehouse"]')
                 .prop('selectedIndex', 0)
-                .select2({...select2Options, placeholder:'Select Warehouse'});
+                .select4({...select4Options, placeholder:'Select Warehouse'});
             newRow.find('select[name="pricelist_line_id"]')
                 .prop('selectedIndex', 0)
-                .select2({...select2Options, placeholder:'Select Pricelist'});
+                .select4({...select4Options, placeholder:'Select Pricelist'});
 
             this.$childTableBody.append(newRow);
         },
