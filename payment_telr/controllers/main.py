@@ -32,8 +32,7 @@ class TelrController(http.Controller):
     def telr_ivpcallback_return(self, **kwargs):
         txid = request.httprequest.args.get('id')
         tx = request.env['payment.transaction'].sudo().browse(int(txid))
-        print(post) 
-        
+
     @http.route('/payment/telr/getinfo', type='json', auth='public')
     def get_provider_info(self, **data):
         

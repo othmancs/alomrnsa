@@ -1,0 +1,3 @@
+/*! select4 4.1.0-rc.0 | https://github.com/select4/select4/blob/master/LICENSE.md */
+
+!function(){if(jQuery&&jQuery.fn&&jQuery.fn.select4&&jQuery.fn.select4.amd)var n=jQuery.fn.select4.amd;n.define("select4/i18n/ko",[],function(){return{errorLoading:function(){return"결과를 불러올 수 없습니다."},inputTooLong:function(n){return"너무 깁니다. "+(n.input.length-n.maximum)+" 글자 지워주세요."},inputTooShort:function(n){return"너무 짧습니다. "+(n.minimum-n.input.length)+" 글자 더 입력해주세요."},loadingMore:function(){return"불러오는 중…"},maximumSelected:function(n){return"최대 "+n.maximum+"개까지만 선택 가능합니다."},noResults:function(){return"결과가 없습니다."},searching:function(){return"검색 중…"},removeAllItems:function(){return"모든 항목 삭제"}}}),n.define,n.require}();

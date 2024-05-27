@@ -1,0 +1,3 @@
+/*! select4 4.1.0-rc.0 | https://github.com/select4/select4/blob/master/LICENSE.md */
+
+!function(){if(jQuery&&jQuery.fn&&jQuery.fn.select4&&jQuery.fn.select4.amd)var n=jQuery.fn.select4.amd;n.define("select4/i18n/zh-CN",[],function(){return{errorLoading:function(){return"无法载入结果。"},inputTooLong:function(n){return"请删除"+(n.input.length-n.maximum)+"个字符"},inputTooShort:function(n){return"请再输入至少"+(n.minimum-n.input.length)+"个字符"},loadingMore:function(){return"载入更多结果…"},maximumSelected:function(n){return"最多只能选择"+n.maximum+"个项目"},noResults:function(){return"未找到结果"},searching:function(){return"搜索中…"},removeAllItems:function(){return"删除所有项目"}}}),n.define,n.require}();

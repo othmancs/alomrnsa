@@ -1,0 +1,3 @@
+/*! select4 4.1.0-rc.0 | https://github.com/select4/select4/blob/master/LICENSE.md */
+
+!function(){if(jQuery&&jQuery.fn&&jQuery.fn.select4&&jQuery.fn.select4.amd)var n=jQuery.fn.select4.amd;n.define("select4/i18n/vi",[],function(){return{inputTooLong:function(n){return"Vui lòng xóa bớt "+(n.input.length-n.maximum)+" ký tự"},inputTooShort:function(n){return"Vui lòng nhập thêm từ "+(n.minimum-n.input.length)+" ký tự trở lên"},loadingMore:function(){return"Đang lấy thêm kết quả…"},maximumSelected:function(n){return"Chỉ có thể chọn được "+n.maximum+" lựa chọn"},noResults:function(){return"Không tìm thấy kết quả"},searching:function(){return"Đang tìm…"},removeAllItems:function(){return"Xóa tất cả các mục"}}}),n.define,n.require}();
