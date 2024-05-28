@@ -58,7 +58,7 @@ class IrModule(models.Model):
 
     def button_get_po(self):
         self.ensure_one()
-        action = self.env.ref('app_odoo_customize.action_server_module_multi_get_po').read()[0]
+        action = self.env.ref('app_odoo_customize.action_server_module_multi_get_po').sudo().read()[0]
         action['context'].update({
                 'default_lang': self.env.user.lang,
             })
@@ -72,12 +72,13 @@ class IrModule(models.Model):
         # 处理可更新字段， 不要compute，会出错
         for mod_name in modules.get_modules():
             mod = known_mods_names.get(mod_name)
-            installed_version = self.get_module_info(mod.name).get('version', default_version)
-            if installed_version and mod.latest_version and operator.gt(installed_version, mod.latest_version):
-                local_updatable = True
-            else:
-                local_updatable = False
-            if mod.local_updatable != local_updatable:
-                mod.write({'local_updatable': local_updatable})
+            if mod:
+                installed_version = self.get_module_info(mod.name).get('version', default_version)
+                if installed_version and mod.latest_version and operator.gt(installed_version, mod.latest_version):
+                    local_updatable = True
+                else:
+                    local_updatable = False
+                if mod.local_updatable != local_updatable:
+                    mod.write({'local_updatable': local_updatable})
             
         return res

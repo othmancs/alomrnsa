@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api, _
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from odoo.http import request
 
 import requests
 import base64
 from io import BytesIO
-
+import uuid
+from PIL import Image
 from datetime import date, datetime, time
 import pytz
 
 import logging
+
+from odoo import models, fields, api, _
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
@@ -51,6 +53,12 @@ EXCLU_FIELDS = [
 
 class Base(models.AbstractModel):
     _inherit = 'base'
+
+    @api.model
+    def _app_check_sys_op(self):
+        if self.env.user.has_group('base.group_erp_manager'):
+            return True
+        return False
 
     @api.model
     def _get_normal_fields(self):
@@ -100,19 +108,141 @@ class Base(models.AbstractModel):
         return dt.astimezone(pytz_timezone).strftime(return_format)
 
     @api.model
-    def get_image_from_url(self, url):
-        if not url:
-            return None
-        try:
-            response = requests.get(url)  # 将这个图片保存在内存
-        except Exception as e:
-            return None
+    def _get_image_from_url(self, url):
         # 返回这个图片的base64编码
-        return base64.b64encode(BytesIO(response.content).read())
+        if not self._app_check_sys_op():
+            return False
+        return get_image_from_url(url)
+
+    @api.model
+    def _get_image_url2attachment(self, url, mimetype_list=None):
+        # Todo: mimetype filter
+        if not self._app_check_sys_op():
+            return False
+        image, file_name = get_image_url2attachment(url)
+        if image and file_name:
+            try:
+                attachment = self.env['ir.attachment'].create({
+                    'datas': image,
+                    'name': file_name,
+                    'website_id': False,
+                    'res_model': self._name,
+                    'res_id': self.id,
+                    'public': True,
+                })
+                attachment.generate_access_token()
+                return attachment
+            except Exception as e:
+                _logger.error('get_image_url2attachment error: %s' % str(e))
+                return False
+        else:
+            return False
+
+    @api.model
+    def _get_image_base642attachment(self, data):
+        if not self._app_check_sys_op():
+            return False
+        image, file_name = get_image_base642attachment(data)
+        if image and file_name:
+            try:
+                attachment = self.env['ir.attachment'].create({
+                    'datas': image,
+                    'name': file_name,
+                    'website_id': False,
+                    'res_model': self._name,
+                    'res_id': self.id,
+                    'public': True,
+                })
+                attachment.generate_access_token()
+                return attachment
+            except Exception as e:
+                _logger.error('get_image_base642attachment error: %s' % str(e))
+                return False
+        else:
+            return False
+        
+    @api.model
+    def _get_video_url2attachment(self, url):
+        if not self._app_check_sys_op():
+            return False
+        video, file_name = get_video_url2attachment(url)
+        if video and file_name:
+            try:
+                attachment = self.env['ir.attachment'].create({
+                    'datas': video,
+                    'name': file_name,
+                    'website_id': False,
+                    'res_model': self._name,
+                    'res_id': self.id,
+                    'public': True,
+                })
+                attachment.generate_access_token()
+                return attachment
+            except Exception as e:
+                _logger.error('get_video_url2attachment error: %s' % str(e))
+                return False
+        else:
+            return False
 
     def get_ua_type(self):
         return get_ua_type()
 
+def get_image_from_url(url):
+    if not url:
+        return None
+    try:
+        response = requests.get(url, timeout=5)
+    except Exception as e:
+        return None
+    # 返回这个图片的base64编码
+    return base64.b64encode(BytesIO(response.content).read())
+
+
+def get_image_url2attachment(url):
+    if not url:
+        return None
+    try:
+        if url.startswith('//'):
+            url = 'https:%s' % url
+        response = requests.get(url, timeout=90)
+    except Exception as e:
+        return None, None
+    # 返回这个图片的base64编码
+    image = base64.b64encode(BytesIO(response.content).read())
+    file_name = url.split('/')[-1]
+    return image, file_name
+
+
+def get_image_base642attachment(data):
+    if not data:
+        return None
+    try:
+        image_data = data.split(',')[1]
+        img = Image.open(BytesIO(base64.b64decode(image_data)))
+        img = img.convert('RGB')
+        output = BytesIO()
+        img.save(output, format='JPEG')
+        file_name = str(uuid.uuid4()) + '.jpeg'
+        jpeg_data = output.getvalue()
+        jpeg_base64 = base64.b64encode(jpeg_data)
+        return jpeg_base64, file_name
+    except Exception as e:
+        return None, None
+    
+def get_video_url2attachment(url):
+    if not url:
+        return None
+    try:
+        if url.startswith('//'):
+            url = 'https:%s' % url
+        response = requests.get(url, timeout=90)
+        video_content = response.content
+    except Exception as e:
+        return None, None
+    # return this video in base64
+    base64_video = base64.b64encode(video_content)
+    file_name = url.split('/')[-1]
+    return base64_video, file_name
 
 def get_ua_type():
     ua = request.httprequest.headers.get('User-Agent')
@@ -147,11 +277,15 @@ def get_ua_type():
         and ('miniProgram' in ua or 'MiniProgram' in ua or 'MiniProgramEnv' in ua or 'wechatdevtools' in ua):
         # 微信小程序及开发者工具
         utype = 'wxapp'
+    elif 'wxwork' in ua:
+        utype = 'qwapp'
     elif 'MicroMessenger' in ua:
         # 微信浏览器
         utype = 'wxweb'
     elif 'cn.erpapp.o20sticks.App' in ua:
         # 安卓app
         utype = 'native_android'
+    elif 'BytedanceWebview' in ua:
+        utype = 'dyweb'
     # _logger.warning('=========get ua %s,%s' % (utype, ua))
     return utype
