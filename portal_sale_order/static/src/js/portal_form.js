@@ -216,9 +216,17 @@ odoo.define('portal_sale_order.portal_form', function(require){
                 var phone = $('#new_phone').val();
 
                 // First RPC call to create the customer
+                // const customerId = await rpc.query({
+                //     model: 'res.partner',
+                //     method: 'create',
+                //     args: [{
+                //         'name': customer,
+                //         'phone': phone
+                //     }],
+                // });
                 const customerId = await rpc.query({
                     model: 'res.partner',
-                    method: 'create',
+                    method: 'create_partner_with_sudo',
                     args: [{
                         'name': customer,
                         'phone': phone
