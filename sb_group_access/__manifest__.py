@@ -20,6 +20,8 @@
         'security/sb_inventory_group_access.xml',
         'views/sale_order.xml',
         'views/account_move.xml',
+        'views/invoice.xml',
+
     ],
     'application': True
 }

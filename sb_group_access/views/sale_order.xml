@@ -27,5 +27,21 @@
 
             </field>
         </record>
+         <record id="view_order_form_unit_price_readonly_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.readonly</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_unit']"
+                       position="after">
+                    <field name="readonly_price" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_unit']"
+                       position="attributes">
+                    <attribute name="attrs">{'readonly': [('readonly_price', '=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>

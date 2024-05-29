@@ -19,6 +19,10 @@
             <field name="name">Cannot Creat invoice</field>
             <field name="category_id" ref="module_sale_button_access"/>
         </record>
+        <record id="cannot_edit_unit_price" model="res.groups">
+            <field name="name">Cannot edit unit price</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
 
     </data>
 </odoo>
