@@ -3,11 +3,11 @@ from odoo.exceptions import UserError
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = 'sale.order'
 
     readonly_price = fields.Boolean(string="Belongs to Group", compute='_compute_belongs_to_group')
 
-    @api.depends('product_template_id')
+    @api.depends('order_line')
     def _compute_belongs_to_group(self):
         for rec in self:
             rec.readonly_price = self.env.user.has_group('sb_group_access.cannot_edit_unit_price')
