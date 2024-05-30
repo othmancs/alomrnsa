@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--###############################customer-->
+
+<!--        ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]-->
+        <record id="client_user_group_id" model="res.groups">
+            <field name="name">Client User</field>
+
+        </record>
+        <record id="client_admin_group_id" model="res.groups">
+            <field name="name">Client Admin</field>
+
+        </record>
+        <record id="all_clients_by_group_id" model="ir.rule">
+            <field name="name">All Clients By Group</field>
+            <field ref="model_res_partner" name="model_id"/>
+            <field name="domain_force">['|','|',('user_group_ids', 'in', user.id),('user_group_ids', '=', False),('id',
+                '=', user.partner_id.id)]
+            </field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('sb_access_right_customer_account.client_user_group_id'))]"/>
+            <!--        <field name="global" eval="1"/>-->
+        </record>
+        <record id="all_clients_id" model="ir.rule">
+            <field name="name">All Clients</field>
+            <field ref="model_res_partner" name="model_id"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('sb_access_right_customer_account.client_admin_group_id'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="res_partner_add_group_access_right_id" model="ir.ui.view">
+            <field name="name">res.partner.add.group.access.right</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="group_ids" widget="many2many_tags" invisible="1"/>
+                    <field name="user_group_ids" widget="many2many_tags"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!--################################account-->
+
+<!--        ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]-->
+        <record id="account_user_group_id" model="res.groups">
+            <field name="name">Account User</field>
+
+        </record>
+        <record id="account_admin_group_id" model="res.groups">
+            <field name="name">Account Admin</field>
+
+        </record>
+
+        <record id="all_account_by_group_id" model="ir.rule">
+            <field name="name">All AccountS By Group</field>
+            <field ref="account.model_account_account" name="model_id"/>
+            <field name="domain_force">['&amp;','|',('user_group_ids', 'in', user.id),('user_group_ids', '=', False),('company_id', 'in', company_ids)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+                    <field name="groups" eval="[(4, ref('sb_access_right_customer_account.account_user_group_id'))]"/>
+<!--            <field name="global" eval="1"/>-->
+        </record>
+        <record id="all_Account_id" model="ir.rule">
+            <field name="name">All Account</field>
+             <field ref="account.model_account_account" name="model_id"/>
+            <field name="domain_force">['&amp;',(1, '=', 1),('company_id', 'in', company_ids)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('sb_access_right_customer_account.account_admin_group_id'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="account_account_add_group_access_right_id" model="ir.ui.view">
+            <field name="name">account.account.add.group.access.right</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='allowed_journal_ids']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="group_ids" widget="many2many_tags" invisible="1"/>
+                    <field name="user_group_ids" widget="many2many_tags"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!--#########################journal-->
+
+<!--        ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]-->
+        <record id="journal_user_group_id" model="res.groups">
+            <field name="name">Journal User</field>
+
+        </record>
+        <record id="journal_admin_group_id" model="res.groups">
+            <field name="name">Journal Admin</field>
+
+        </record>
+
+        <record id="all_journal_by_group_id" model="ir.rule">
+            <field name="name">All Journals By Group</field>
+            <field ref="account.model_account_journal" name="model_id"/>
+            <field name="domain_force">['&amp;','|',('user_group_ids', 'in', user.id),('user_group_ids', '=', False),('company_id', 'in', company_ids)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+                    <field name="groups" eval="[(4, ref('sb_access_right_customer_account.journal_user_group_id'))]"/>
+<!--            <field name="global" eval="1"/>-->
+        </record>
+        <record id="all_journal_id" model="ir.rule">
+            <field name="name">All Journals</field>
+            <field ref="account.model_account_journal" name="model_id"/>
+            <field name="domain_force">['&amp;',(1, '=', 1),('company_id', 'in', company_ids)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('sb_access_right_customer_account.journal_admin_group_id'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="account_journal_add_group_access_right_id" model="ir.ui.view">
+            <field name="name">account.journal.add.group.access.right</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="group_ids" widget="many2many_tags" invisible="1"/>
+                    <field name="user_group_ids" widget="many2many_tags"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="all_account_payment_journal_by_group_id" model="ir.rule">
+            <field name="name">All account payment Journals By Group</field>
+            <field ref="account.model_account_payment" name="model_id"/>
+            <field name="domain_force">['&amp;','|',('journal_id.user_group_ids', 'in', user.id),('journal_id.user_group_ids', '=', False),('company_id', 'in', company_ids)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+                    <field name="groups" eval="[(4, ref('sb_access_right_customer_account.journal_user_group_id'))]"/>
+<!--            <field name="global" eval="1"/>-->
+        </record>
+        <record id="all_account_payment_journal_id" model="ir.rule">
+            <field name="name">All account payment Journals</field>
+            <field ref="account.model_account_payment" name="model_id"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('sb_access_right_customer_account.journal_admin_group_id'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+    </data>
+</odoo>
