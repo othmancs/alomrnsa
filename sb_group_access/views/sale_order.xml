@@ -24,15 +24,6 @@
                 <xpath expr="//button[@id='create_invoice_percentage']" position="attributes">
                     <attribute name="groups">!sb_group_access.cannot_creat_invoice</attribute>
                 </xpath>
-
-            </field>
-        </record>
-        <record id="view_order_form_unit_price_readonly_inherit" model="ir.ui.view">
-            <field name="name">sale.order.form.inherit.readonly</field>
-            <field name="model">sale.order</field>
-            <field name="priority">500</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']"
                        position="after">
                     <field name="readonly_price" invisible="1"/>
@@ -41,8 +32,8 @@
                        position="attributes">
                     <attribute name="attrs">{'readonly': [('parent.readonly_price', '=', True)]}</attribute>
                 </xpath>
+
             </field>
         </record>
-
     </data>
 </odoo>

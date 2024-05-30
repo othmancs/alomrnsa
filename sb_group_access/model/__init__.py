@@ -7,5 +7,4 @@ from . import location
 from . import warehouse
 from . import account_move
 from . import operations
-from . import sale_order_line
-from . import invoice
+
