@@ -265,12 +265,23 @@
                                                         </t>
                                                     </select>
                                                 </td>
-                                                <td width="150px"><input class="form-control" type="number"
-                                                                         name="child_price[]" step="any"
-                                                                         value="1"/></td>
-                                                <td width="100px"><input class="form-control" type="number"
+                                                <td width="150px">
+                                                    <t t-if="request.env.user.cannot_edit_unit_price">
+                                                        <input class="form-control" type="number"
+                                                                             name="child_price[]" step="any"
+                                                                             value="1" readonly="True"/>
+                                                    </t>
+                                                    <t t-if="not request.env.user.cannot_edit_unit_price">
+                                                        <input class="form-control" type="number"
+                                                                             name="child_price[]" step="any"
+                                                                             value="1"/>
+                                                    </t>
+                                                </td>
+                                                <td width="100px">
+                                                    <input class="form-control" type="number"
                                                                          name="child_quantity[]" step="any"
-                                                                         value="1"/></td>
+                                                                         value="1"/>
+                                                </td>
                                                 <td width="100px">
                                                     <input class="form-control" type="text" name="child_uom[]"/>
                                                 </td>
@@ -339,9 +350,18 @@
                                                             </select>
                                                         </td>
                                                         <td width="150px">
-                                                            <input class="form-control" type="number"
-                                                                   name="child_price[]" step="any"
-                                                                   t-att-value="line.price_unit"/>
+                                                            <t t-if="request.env.user.cannot_edit_unit_price">
+                                                                <input class="form-control" type="number"
+                                                                       name="child_price[]" step="any"
+                                                                       t-att-value="line.price_unit"
+                                                                       readonly="True"/>
+                                                            </t>
+                                                            <t t-if="not request.env.user.cannot_edit_unit_price">
+                                                                <input class="form-control" type="number"
+                                                                       name="child_price[]" step="any"
+                                                                       t-att-value="line.price_unit"
+                                                                       />
+                                                            </t>
                                                         </td>
                                                         <td width="100px">
                                                             <input class="form-control" type="number"

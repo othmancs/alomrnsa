@@ -154,7 +154,7 @@
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
 
-                <xpath expr="//field[@name='company_id']" position="after">
+                <xpath expr="//field[@name='country_code']" position="before">
                     <!-- Add your fields or attributes here -->
                     <field name="group_ids" widget="many2many_tags" invisible="1"/>
                     <field name="user_group_ids" widget="many2many_tags"/>
