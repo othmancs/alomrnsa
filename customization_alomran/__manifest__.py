@@ -13,7 +13,7 @@
     'depends': ['base', 'stock', 'product', 'sale_order_line_multi_warehouse', 'sale'],
     'data': [
         'views/product_category.xml',
-        # 'views/product_template.xml',
+      'views/product_template.xml',
         'views/sale_order.xml',
     ],
     'demo': [],
