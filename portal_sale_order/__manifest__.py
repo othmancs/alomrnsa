@@ -7,7 +7,7 @@
         'security/ir.model.access.csv',
         'security/security.xml',
         'views/portal_templates.xml',
-        'views/res_users.xml',
+        # 'views/res_users.xml',
         # 'views/hr_employee.xml',
         # 'views/approval_category.xml',
     ],
