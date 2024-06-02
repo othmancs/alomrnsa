@@ -12,7 +12,6 @@ class UnitOfMeasure(models.Model):
             raise UserError(_("You are not authorized to add unit of measure."))
         return res
 
-
     def write(self, vals_list):
         res = super(UnitOfMeasure, self).write(vals_list)
         if self.env.user.has_group('sb_group_access.cannot_add_unit_of_measure'):

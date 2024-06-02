@@ -11,8 +11,16 @@
                 <xpath expr="//button[@name='action_post'][1]" position="attributes">
                     <attribute name="groups">!sb_group_access.cannot_creat_invoice</attribute>
                 </xpath>
-                 <xpath expr="//button[@name='action_post'][2]" position="attributes">
+                <xpath expr="//button[@name='action_post'][2]" position="attributes">
                     <attribute name="groups">!sb_group_access.cannot_creat_invoice</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']"
+                       position="after">
+                    <field name="readonly_price" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='price_unit']"
+                       position="attributes">
+                    <attribute name="attrs">{'readonly': [('parent.readonly_price', '=', True)]}</attribute>
                 </xpath>
 
             </field>

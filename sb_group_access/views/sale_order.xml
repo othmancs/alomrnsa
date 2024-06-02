@@ -12,10 +12,10 @@
                 <xpath expr="//button[@name='action_cancel']" position="attributes">
                     <attribute name="groups">!sb_group_access.cannot_cancel_sale_orders</attribute>
                 </xpath>
-                 <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
                     <attribute name="groups">!sb_group_access.cannot_confirm_sale_orders</attribute>
                 </xpath>
-                  <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
                     <attribute name="groups">!sb_group_access.cannot_confirm_sale_orders</attribute>
                 </xpath>
                 <xpath expr="//button[@id='create_invoice']" position="attributes">
@@ -23,6 +23,14 @@
                 </xpath>
                 <xpath expr="//button[@id='create_invoice_percentage']" position="attributes">
                     <attribute name="groups">!sb_group_access.cannot_creat_invoice</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']"
+                       position="after">
+                    <field name="readonly_price" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_unit']"
+                       position="attributes">
+                    <attribute name="attrs">{'readonly': [('parent.readonly_price', '=', True)]}</attribute>
                 </xpath>
 
             </field>

@@ -16,21 +16,16 @@ class SaleOrder(CustomerPortal):
     def _prepare_home_portal_values(self, counters):
         values = super()._prepare_home_portal_values(counters)
         if 'sale_order_count' in counters:
-            sale_order_count = request.env['sale.order'].\
-                search_count([
-                    (
-                        'user_id',
-                        '=',
-                        http.request.env.user.id
-                    )
-                ])
+            sale_order_count = request.env['sale.order'].search_count([
+                ('user_id', '=', http.request.env.user.id)
+            ])
             values['sale_order_count'] = sale_order_count
         return values
 
     @http.route('/my/sale_orders', type='http', website=True, auth='user')
     def sale_order_list_view(self):
         sale_orders = request.env['sale.order'].search([
-                                                                        ('user_id', '=', request.env.user.id)
+            ('user_id', '=', request.env.user.id)
         ])
 
         vals = {
@@ -88,7 +83,8 @@ class SaleOrder(CustomerPortal):
                         'name': product_id.name,
                         'product_id': product_id.id,
                         'product_template_id': product_id.product_tmpl_id.id,
-                        'product_warehouse_id': int(line_item.get('warehouse_id') if line_item.get('warehouse_id') else False),
+                        'product_warehouse_id': int(
+                            line_item.get('warehouse_id') if line_item.get('warehouse_id') else False),
                         'product_uom_qty': float(line_item.get('quantity', False)),
                         'price_unit': float(line_item.get('price_unit', False)),
                         'product_uom': product_id.uom_id.id,

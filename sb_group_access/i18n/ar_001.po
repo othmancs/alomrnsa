@@ -56,6 +56,11 @@ msgid "Cannot add product category"
 msgstr "لا يستطيع اضافه فئه المنتج"
 
 #. module: sb_group_access
+#: model:res.groups,name:sb_group_access.cannot_edit_unit_price
+msgid "Cannot edit unit price"
+msgstr "لا يستطيع تعديل سعر المنتج"
+
+#. module: sb_group_access
 #: model:res.groups,name:sb_group_access.cannot_add_unit_of_measure
 msgid "Cannot add unit of measure"
 msgstr "لا يستطيع اضافه وحده القياس"
