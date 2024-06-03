@@ -35,9 +35,6 @@
                                          col="3">
                                         <span>VAT ID:<t t-esc="o.res_company.vat"/>
                                         </span>
-<!--                                             <span t-field="res_company.vat">
-
-                                        </span> -->
                                     </div>
 
 
