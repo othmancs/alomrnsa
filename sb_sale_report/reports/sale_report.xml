@@ -7,18 +7,13 @@
                     <t t-call="web.basic_layout">
 
                         <div class="page">
-                              <div class="page">
                             <div class="header">
-                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
-                                         alt="Logo"
-                                         style="max-width: 150px; max-height: 100px;" float="right"/>
-                                </div> -->
-                                <div style="font-size:30px;text-align:center; color:red; font-weight:bold;">
+<!--                                 <div style="font-size:30px;text-align:center; color:red; font-weight:bold;">
                                   <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
                                          style="max-width: 150px; max-height: 100px;" float="right"/>
                                     <t t-esc="o.company_id.name"/>
-                                </div>
+                                </div> -->
                                 <div style="height:15px;"/>
                                 <div style="font-size:20px;text-align:center; color:#00215E; font-weight:bold;">
                                     <h4 style="text-decoration: underline;">
@@ -36,24 +31,6 @@
     <span t-field="res_company.vat"/>
                                     </div>
 
-                                </div>
-                                <div class="row">
-                                    <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
-                                         col="3">
-                                        <span>TEL:<t t-esc="o.company_id.phone"/>,EMAIL:
-                                            <t t-esc="o.company_id.email"/>
-                                        </span>
-                                    </div>
-
-
-                                </div>
-                                <div style="height:15px;"/>
-                                <div style="text-align: center;">
-                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
-                                         alt="Logo"
-                                         style="max-width: 150px; max-height: 100px;" float="right"/>
-                                </div>
-                            </div>
                             <div style="margin-top:50px;  margin-left:25px;">
                                 <table style="border:0px white; width:200px; font-size:17px;">
                                     <tr style="border:0px;font-size:17px;">
@@ -98,27 +75,28 @@
                             <br/>
                             <br/>
 
-                            <div style=" margin-left:25px;">
+<!--                             <div style=" margin-left:25px;">
                                 <strong>Salesperson:</strong>
                                 <span t-esc="o.user_id.name"/>
-                            </div>
-                            <div style=" margin-left:25px;">
+                            </div> -->
+<!--                             <div style=" margin-left:25px;">
                                 <strong>Mobile:</strong>
                                 <span t-esc="o.user_id.mobile"/>
-                            </div>
+                            </div> -->
                             <div style="height:50px; "/>
                             <div style="width:100%;text-align;center; float:center;">
                                 <table style="width:95%; text-align;center; float:center; margin-left:25px;">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
+                                            <th>PRODUCT-IMG</th>
+                                            <th>QR</th>
                                             <th>PRODUCT NAME</th>
                                             <th>DESCREPTION</th>
                                             <th>QTY</th>
                                             <th>UNIT-SAR</th>
-                                            <th>VAT</th>
+                                            <th>Tax 15%</th>
                                             <th>TOTAL-SAR</th>
-                                            <th>PRODUCT-IMG</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -132,6 +110,15 @@
                                                     <td style="font-size:20px; text-align:center;">
                                                         <span t-esc="counter"/>
                                                     </td>
+                                                      <td style="max-width: 30px; max-height: 30px;">
+                                                        <span itemprop="image"
+                                                              t-field="line.product_template_id.image_1920"
+                                                              t-options='{"widget": "image"}'
+                                                              style="height:50px !important;width:60px !important;"/>
+                                                    </td>
+                                                     <td STYLE="border: 1px solid black; border-collapse: collapse;">
+      <span t-field="line.qr_code_img" t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"/>
+    </td>
                                                     <td style="font-size:17px; text-align:center;">
                                                         <t t-esc="line.product_template_id.name"/>
                                                     </td>
@@ -152,17 +139,12 @@
                                                         <t t-esc="line.price_unit"/>
                                                     </td>
                                                     <td style="font-size:17px; text-align:center;">
-                                                        15%
+                                                      <span t-field="line.price_tax"/>
                                                     </td>
                                                     <td style="font-size:17px; text-align:center;">
                                                         <t t-esc="line.price_total"/>
                                                     </td>
-                                                    <td style="max-width: 30px; max-height: 30px;">
-                                                        <span itemprop="image"
-                                                              t-field="line.product_template_id.image_1920"
-                                                              t-options='{"widget": "image"}'
-                                                              style="height:50px !important;width:60px !important;"/>
-                                                    </td>
+                                                  
                                                 </t>
                                                 <t t-elif="line.display_type == 'line_section'">
                                                     <td style="border-bottom: 1px solid white; text-align: right; font-weight: bold; font-size: 20px;">
@@ -232,7 +214,7 @@
                                 <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">5) DOCUMENT VALIDITY : 5
                                     DAYS
                                 </h4>
-                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">Beneficiary:
+                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">
                                     <h4 style="font-weight:bold; color:black;font-size:10px;">
                                         <span t-field="o.note"/>
                                     </h4>
