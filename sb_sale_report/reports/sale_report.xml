@@ -16,9 +16,9 @@
                                     <h4 style="text-decoration: underline;">
                                         <span><t t-esc="o.company_id.street"/>,<t t-esc="o.company_id.street2"/>,
                                             <t t-esc="o.company_id.city"/>,
-                                            <t t-esc="o.company_id.state_id.id"/>
+                                            <t t-esc="o.company_id.state_id.name"/>
                                             <t t-esc="o.company_id.zip"/>,
-                                            <t t-esc="o.company_id.country_id.id"/>
+                                            <t t-esc="o.company_id.country_id.name"/>
                                         </span>
                                     </h4>
                                 </div>
@@ -255,7 +255,7 @@
             <field name="binding_type">report</field>
         </record>
         <record id="paperformat_action_sale_order" model="report.paperformat">
-            <field name="name">SB Quotations</field>
+            <field name="name">Sale Order</field>
             <field name="default" eval="True"/>
             <field name="format">custom</field>
             <field name="page_height">297</field>
