@@ -103,7 +103,7 @@
                                             <th>DESCREPTION</th>
                                             <th>QTY</th>
                                             <th>UNIT-SAR</th>
-                                            <th>VAT</th>
+                                            <th>Tax 15%</th>
                                             <th>TOTAL-SAR</th>
                                         </tr>
                                     </thead>
@@ -147,7 +147,7 @@
                                                         <t t-esc="line.price_unit"/>
                                                     </td>
                                                     <td style="font-size:17px; text-align:center;">
-                                                        15%
+                                                      <span t-field="line.price_tax"/>
                                                     </td>
                                                     <td style="font-size:17px; text-align:center;">
                                                         <t t-esc="line.price_total"/>
