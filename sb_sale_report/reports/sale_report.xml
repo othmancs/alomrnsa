@@ -24,7 +24,13 @@
                                             <t t-esc="o.company_id.country_id.name"/>
                                         </span>
                                     </h4>
+                                    <div class="row">
                                 </div>
+                                        <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
+                                         col="3">
+    <span t-field="res_company.vat"/>
+                                    </div>
+                                     </div>
 <!--                                 <div class="row">
                                     <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
