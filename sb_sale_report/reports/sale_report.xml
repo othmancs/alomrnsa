@@ -8,11 +8,11 @@
 
                         <div class="page">
                             <div class="header">
-<!--                                    <div style="text-align: center;">
+                                   <div style="text-align: center;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
                                          style="max-width: 150px; max-height: 100px;" float="right"/>
-                                </div> -->
+                                </div>
                                 <div style="font-size:30px;text-align:center; color:red; font-weight:bold;">
                                   <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
@@ -42,12 +42,12 @@
 
 
                                 </div>
-                                <div style="height:15px;"/>
+<!--                                 <div style="height:15px;"/>
 <!--                                 <div style="float:right;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
                                          style="max-width: 200px; max-height: 150px;" float="right"/>
-                                </div>
+                                </div> -->
                             </div> -->
                             <div style="margin-top:50px;  margin-left:25px;">
                                 <table style="border:0px white; width:200px; font-size:17px;">
