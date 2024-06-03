@@ -27,8 +27,6 @@
                                             <t t-esc="o.company_id.state_id.name"/>
                                             <t t-esc="o.company_id.zip"/>,
                                             <t t-esc="o.company_id.country_id.name"/>
-<!--  <t t-esc="o.res_company.vat"/>
-                                    -->
                                         </span>
                                     </h4>
                                 </div>
@@ -38,13 +36,6 @@
     <span t-field="res_company.vat"/>
                                     </div>
 
-<!--                                 <div style="height:15px;"/>
-                                <div style="float:right;">
-                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
-                                         alt="Logo"
-                                         style="max-width: 200px; max-height: 150px;" float="right"/>
-                                </div>
-                            </div> -->
                             <div style="margin-top:50px;  margin-left:25px;">
                                 <table style="border:0px white; width:200px; font-size:17px;">
                                     <tr style="border:0px;font-size:17px;">
@@ -89,14 +80,14 @@
                             <br/>
                             <br/>
 
-                            <div style=" margin-left:25px;">
+<!--                             <div style=" margin-left:25px;">
                                 <strong>Salesperson:</strong>
                                 <span t-esc="o.user_id.name"/>
-                            </div>
-                            <div style=" margin-left:25px;">
+                            </div> -->
+<!--                             <div style=" margin-left:25px;">
                                 <strong>Mobile:</strong>
                                 <span t-esc="o.user_id.mobile"/>
-                            </div>
+                            </div> -->
                             <div style="height:50px; "/>
                             <div style="width:100%;text-align;center; float:center;">
                                 <table style="width:95%; text-align;center; float:center; margin-left:25px;">
