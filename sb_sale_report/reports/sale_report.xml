@@ -9,6 +9,9 @@
                         <div class="page">
                             <div class="header">
                                 <div style="font-size:30px;text-align:center; color:red; font-weight:bold;">
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                         alt="Logo"
+                                         style="max-width: 150px; max-height: 100px;" float="right"/>
                                     <t t-esc="o.company_id.name"/>
                                 </div>
                                 <div style="height:15px;"/>
