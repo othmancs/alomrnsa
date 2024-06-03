@@ -27,10 +27,13 @@
                                             <t t-esc="o.company_id.state_id.name"/>
                                             <t t-esc="o.company_id.zip"/>,
                                             <t t-esc="o.company_id.country_id.name"/>
+<br/>
+                                        <span>VAT ID:<t t-esc="o.res_company.vat"/>
+
                                         </span>
                                     </h4>
                                 </div>
-                                <div class="row">
+<!--                                 <div class="row">
                                     <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
                                         <span>VAT ID:<t t-esc="o.res_company.vat"/>
@@ -38,7 +41,7 @@
                                     </div>
 
 
-                                </div>
+                                </div> -->
                                 <div style="height:15px;"/>
                                 <div style="float:right;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
