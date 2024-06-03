@@ -258,12 +258,13 @@
                                 </div>
 
                             </div>
-
+     <br/>
                         </div>
+                        <br/>
                     </t>
                 </t>
             </t>
-
+     <br/>
 
         </template>
         <record id="action_reportt_salee_orderr" model="ir.actions.report">
