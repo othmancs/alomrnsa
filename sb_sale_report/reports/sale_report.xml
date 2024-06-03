@@ -25,7 +25,7 @@
                                         </span>
                                     </h4>
                                 </div>
-                                <div class="row">
+<!--                                 <div class="row">
                                     <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
                                         <span>TEL:<t t-esc="o.company_id.phone"/>,EMAIL:
@@ -34,15 +34,15 @@
                                     </div>
 
 
-                                </div>
+                                </div> -->
                                 <div style="height:15px;"/>
-                                <div style="float:right;">
+<!--                                 <div style="float:right;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
                                          style="max-width: 200px; max-height: 150px;" float="right"/>
-                                </div>
+                                </div> -->
                             </div>
-                            <div style="margin-top:50px;  margin-left:25px;">
+<!--                             <div style="margin-top:50px;  margin-left:25px;">
                                 <table style="border:0px white; width:200px; font-size:17px;">
                                     <tr style="border:0px;font-size:17px;">
                                         <td style="border:0px; font-size:17px; ">Date:</td>
@@ -82,7 +82,7 @@
                                     </tr>
 
                                 </table>
-                            </div>
+                            </div> -->
                             <br/>
                             <br/>
 
