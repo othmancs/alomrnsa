@@ -42,13 +42,13 @@
 
 
                                 </div>
-<!--                                 <div style="height:15px;"/>
-<!--                                 <div style="float:right;">
+                                <div style="height:15px;"/>
+                                <div style="float:right;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
                                          style="max-width: 200px; max-height: 150px;" float="right"/>
-                                </div> -->
-                            </div> -->
+                                </div>
+                            </div>
                             <div style="margin-top:50px;  margin-left:25px;">
                                 <table style="border:0px white; width:200px; font-size:17px;">
                                     <tr style="border:0px;font-size:17px;">
