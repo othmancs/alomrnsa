@@ -8,11 +8,11 @@
 
                         <div class="page">
                             <div class="header">
-                                   <div style="text-align: center;">
+<!--                                    <div style="text-align: center;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
                                          style="max-width: 150px; max-height: 100px;" float="right"/>
-                                </div>
+                                </div> -->
                                 <div style="font-size:30px;text-align:center; color:red; font-weight:bold;">
                                   <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
@@ -30,7 +30,7 @@
                                         </span>
                                     </h4>
                                 </div>
-<!--                                 <div class="row">
+                                <div class="row">
                                     <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
                                         <span>VAT ID:<t t-esc="o.res_company.vat"/>
@@ -38,7 +38,7 @@
                                     </div>
 
 
-                                </div> -->
+                                </div>
                                 <div style="height:15px;"/>
                                 <div style="float:right;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
@@ -229,7 +229,7 @@
                                 <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">5) DOCUMENT VALIDITY : 5
                                     DAYS
                                 </h4>
-                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">Beneficiary:
+                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">
                                     <h4 style="font-weight:bold; color:black;font-size:10px;">
                                         <span t-field="o.note"/>
                                     </h4>
