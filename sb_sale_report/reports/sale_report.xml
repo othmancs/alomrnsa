@@ -25,8 +25,11 @@
                                 <div class="row">
                                     <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
-                                        <span>TEL:<t t-esc="o.company_id.phone"/>,EMAIL:
+<!--                                         <span>TEL:<t t-esc="o.company_id.phone"/>,EMAIL:
                                             <t t-esc="o.company_id.email"/>
+                                        </span> -->
+                                            <span t-field="res_company.vat>
+
                                         </span>
                                     </div>
 
