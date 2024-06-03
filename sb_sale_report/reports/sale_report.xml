@@ -28,9 +28,7 @@
                                             <t t-esc="o.company_id.zip"/>,
                                             <t t-esc="o.company_id.country_id.name"/>
 <br/>
-                                        <span>VAT ID:<t t-esc="o.res_company.vat"/>
-
-                                        </span>
+                                       <t t-esc="o.res_company.vat"/>
                                     </h4>
                                 </div>
 <!--                                 <div class="row">
