@@ -29,6 +29,9 @@
                                         <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
     <span t-field="res_company.vat"/>
+                                              <br/>
+                            <br/>
+
                                     </div>
                                      </div>
 <!--                                 <div class="row">
@@ -90,6 +93,8 @@
                                 </table>
                             </div> -->
                             <br/>
+                            <br/>
+  <br/>
                             <br/>
 
                             <div style=" margin-left:25px;">
