@@ -28,7 +28,7 @@
 <!--                                         <span>TEL:<t t-esc="o.company_id.phone"/>,EMAIL:
                                             <t t-esc="o.company_id.email"/>
                                         </span> -->
-                                            <span t-field="res_company.vat>
+                                            <span t-field="res_company.vat">
 
                                         </span>
                                     </div>
