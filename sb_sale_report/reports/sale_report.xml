@@ -95,18 +95,20 @@
                                 <span t-esc="o.user_id.mobile"/>
                             </div>
                             <div style="height:50px; "/>
+                         
                             <div style="width:100%;text-align;center; float:center;">
                                 <table style="width:95%; text-align;center; float:center; margin-left:25px;">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
+                                            <th>PRODUCT-IMG</th>
+                                            <th>QR</th>
                                             <th>PRODUCT NAME</th>
                                             <th>DESCREPTION</th>
                                             <th>QTY</th>
                                             <th>UNIT-SAR</th>
-                                            <th>VAT</th>
+                                            <th>Tax 15%</th>
                                             <th>TOTAL-SAR</th>
-                                            <th>PRODUCT-IMG</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,6 +122,15 @@
                                                     <td style="font-size:20px; text-align:center;">
                                                         <span t-esc="counter"/>
                                                     </td>
+                                                      <td style="max-width: 30px; max-height: 30px;">
+                                                        <span itemprop="image"
+                                                              t-field="line.product_template_id.image_1920"
+                                                              t-options='{"widget": "image"}'
+                                                              style="height:50px !important;width:60px !important;"/>
+                                                    </td>
+                                                     <td STYLE="border: 1px solid black; border-collapse: collapse;">
+      <span t-field="line.qr_code_img" t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"/>
+    </td>
                                                     <td style="font-size:17px; text-align:center;">
                                                         <t t-esc="line.product_template_id.name"/>
                                                     </td>
@@ -140,17 +151,12 @@
                                                         <t t-esc="line.price_unit"/>
                                                     </td>
                                                     <td style="font-size:17px; text-align:center;">
-                                                        15%
+                                                      <span t-field="line.price_tax"/>
                                                     </td>
                                                     <td style="font-size:17px; text-align:center;">
                                                         <t t-esc="line.price_total"/>
                                                     </td>
-                                                    <td style="max-width: 30px; max-height: 30px;">
-                                                        <span itemprop="image"
-                                                              t-field="line.product_template_id.image_1920"
-                                                              t-options='{"widget": "image"}'
-                                                              style="height:50px !important;width:60px !important;"/>
-                                                    </td>
+                                                  
                                                 </t>
                                                 <t t-elif="line.display_type == 'line_section'">
                                                     <td style="border-bottom: 1px solid white; text-align: right; font-weight: bold; font-size: 20px;">
@@ -174,6 +180,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
                             <div style="height:50px;"/>
                             <div>
                                 <table border="2" style="width:50%; height:100px; float:center; margin-left:25%;">
