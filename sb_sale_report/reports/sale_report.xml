@@ -45,8 +45,8 @@
                                          style="max-width: 200px; max-height: 150px;" float="right"/>
                                 </div>
                             </div> -->
-<!--                             <div style="margin-top:50px;  margin-left:25px;"> -->
-<!--                                 <table style="border:0px white; width:200px; font-size:17px;">
+                            <div style="margin-top:50px;  margin-left:25px;">
+                                <table style="border:0px white; width:200px; font-size:17px;">
                                     <tr style="border:0px;font-size:17px;">
                                         <td style="border:0px; font-size:17px; ">Date:</td>
                                         <td style="border:0px; font-size:17px;">
@@ -96,7 +96,7 @@
                             <div style=" margin-left:25px;">
                                 <strong>Mobile:</strong>
                                 <span t-esc="o.user_id.mobile"/>
-                            </div> -->
+                            </div>
                             <div style="height:50px; "/>
                             <div style="width:100%;text-align;center; float:center;">
                                 <table style="width:95%; text-align;center; float:center; margin-left:25px;">
