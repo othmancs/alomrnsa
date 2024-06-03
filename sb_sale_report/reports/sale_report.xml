@@ -35,8 +35,7 @@
 
                                     <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
-                                        <span>VAT ID:<t t-esc="o.res_company.vat"/>
-                                        </span>
+    <span t-field="res_company.vat"/>
                                     </div>
 
                                 <div style="height:15px;"/>
