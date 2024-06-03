@@ -8,7 +8,15 @@
 
                         <div class="page">
                             <div class="header">
+                                   <div style="text-align: center;">
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                         alt="Logo"
+                                         style="max-width: 150px; max-height: 100px;" float="right"/>
+                                </div>
                                 <div style="font-size:30px;text-align:center; color:red; font-weight:bold;">
+                                  <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                         alt="Logo"
+                                         style="max-width: 150px; max-height: 100px;" float="right"/>
                                     <t t-esc="o.company_id.name"/>
                                 </div>
                                 <div style="height:15px;"/>
@@ -25,23 +33,22 @@
                                 <div class="row">
                                     <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
-<!--                                         <span>TEL:<t t-esc="o.company_id.phone"/>,EMAIL:
-                                            <t t-esc="o.company_id.email"/>
-                                        </span> -->
-                                            <span t-field="res_company.vat">
-
+                                        <span>VAT ID:<t t-esc="o.res_company.vat"/>
                                         </span>
+<!--                                             <span t-field="res_company.vat">
+
+                                        </span> -->
                                     </div>
 
 
                                 </div>
                                 <div style="height:15px;"/>
-                                <div style="float:right;">
+<!--                                 <div style="float:right;">
                                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                                          alt="Logo"
                                          style="max-width: 200px; max-height: 150px;" float="right"/>
                                 </div>
-                            </div>
+                            </div> -->
                             <div style="margin-top:50px;  margin-left:25px;">
                                 <table style="border:0px white; width:200px; font-size:17px;">
                                     <tr style="border:0px;font-size:17px;">
