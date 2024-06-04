@@ -96,10 +96,43 @@
                             <br/>
   <br/>
                             <br/>
+                             <div style="width:100%;text-align;center; float:center;">
+                                <table style="width:95%; text-align;center; float:center; margin-left:25px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Salesperson:</th>
+                                            <th>Mobile:</th>
+                                            <th>Email:</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    
+                                                    <td style="font-size:17px; text-align:center;">
+                                                                <span t-field="doc.user_id"/>
+
+                                                    </td>
+
+                                                                <td style="font-size:17px; text-align:center;">
+                                                                <span t-field="doc.user_id.phone"/>
+
+                                                    </td>
+                <td style="font-size:17px; text-align:center;">
+                                                                 <span t-field="doc.user_id.email"/>
+
+                                                    </td>
+    
+                                                
+                                            </tr>
+                                            
+
+                                    </tbody>
+                                </table>
+                            </div>
 
       <div>
         <span>
-          <strong>مندوب المبيعات :</strong>
+          <strong>Salesperson:</strong>
           <br/>
         </span>
         <span t-field="o.user_id.name"/>
