@@ -317,8 +317,9 @@
 
                             <div class="footer" style="width:100%;">
                                 <div class="row">
-               <div t-if="report_type == 'pdf'" class="text-muted">
-                     <table style="width:100%;border-style: none;">
+
+                                    <div style="font-size:15px;font-weight: bold;text-align: center;  ">
+                                                             <table style="width:100%;border-style: none;">
   <tr>
 
     <th>Bank Name : AL Rajhi Bank</th>
@@ -337,7 +338,7 @@
 </td>
   </tr>
 </table>
-                                    <div style="font-size:15px;font-weight: bold;text-align: center;  ">
+                                        <br/>
                                         <span>Page</span>
                                         <span>
                                             <span class="page"/>
