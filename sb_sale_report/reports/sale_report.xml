@@ -109,16 +109,16 @@
                                     <tr>
                                     
                                                     <td style="font-size:17px; text-align:center;">
-                                                                <span t-field="doc.user_id"/>
+                                                                <span t-field="o.user_id.name"/>
 
                                                     </td>
 
                                                                 <td style="font-size:17px; text-align:center;">
-                                                                <span t-field="doc.user_id.phone"/>
+                                                                <span t-field="o.user_id.phone"/>
 
                                                     </td>
                 <td style="font-size:17px; text-align:center;">
-                                                                 <span t-field="doc.user_id.email"/>
+                                                                 <span t-field="o.user_id.email"/>
 
                                                     </td>
     
