@@ -102,7 +102,7 @@
   <br/>
                             <br/>
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-style: none;">
+                                <table style="font-size:20px;width:95%; text-align;center; float:center; margin-left:25px;border:0px;">
                                     <thead>
                                         <tr>
                                             <th>Salesperson:</th>
@@ -155,7 +155,7 @@
                             </div> -->
                              <div style="height:15px;"/>
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border-style: none;">
+                                <table style="font-size:30px;width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border:0px;">
                                     <thead>
                                         <tr>
                                             <th>Customer:</th>
@@ -196,7 +196,7 @@
                             <div style="height:50px; "/>
                           <div style="height:15px;"/>
                             <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border: 1px solid black;">
+                                <table style="font-size:25px;width:95%; text-align;center; float:center; margin-left:25px;border: 1px solid black;">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
@@ -284,22 +284,22 @@
                             <div>
                                 <table border="2" style="width:50%; height:100px; float:center; margin-left:25%;">
                                     <tr style="text-align:center;">
-                                        <td style="text-size:30px text-align:center; font-weight:bold;">TOTAL</td>
-                                        <td style="text-size:30px text-align:center; font-weight:bold;">
+                                        <td style="text-size:25px text-align:center; font-weight:bold;">TOTAL</td>
+                                        <td style="text-size:25px text-align:center; font-weight:bold;">
                                             <t t-esc="total_price"/>
                                         </td>
                                     </tr>
                                     <tr style="text-align:center;">
-                                        <td style="text-size:30px text-align:center; font-weight:bold; ">VAT 15 %</td>
-                                        <td style="text-size:30px text-align:center; font-weight:bold;">
+                                        <td style="text-size:25px text-align:center; font-weight:bold; ">VAT 15 %</td>
+                                        <td style="text-size:25px text-align:center; font-weight:bold;">
                                             <t t-esc="vat_amount"/>
                                         </td>
                                     </tr>
                                     <tr style="text-align:center;">
-                                        <td style="text-size:30px text-align:center; font-weight:bold; background-color:#CA8787;">
+                                        <td style="text-size:25px text-align:center; font-weight:bold; background-color:#CA8787;">
                                             TOTAL WITH 15%
                                         </td>
-                                        <td style="text-size:30px text-align:center; font-weight:bold;">
+                                        <td style="text-size:25px text-align:center; font-weight:bold;">
                                             <t t-esc="total_price_with_vat"/>
                                         </td>
                                     </tr>
@@ -315,7 +315,7 @@
                                 </h4>
                             </div>
                             <div>
-                                                                               <table style="width:100%;border-style: none;">
+                                                                               <table style="width:100%;border:0px;color:#CBCBCB;">
   <tr>
 
     <th>Bank Name : AL Rajhi Bank</th>
