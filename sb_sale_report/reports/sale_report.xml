@@ -130,16 +130,16 @@
                                 </table>
                             </div>
 
-      <div>
+<!--       <div>
         <span>
           <strong>Salesperson:</strong>
           <br/>
         </span>
         <span t-field="o.user_id.name"/>
       </div>
-   
+    -->
   
-                            <div style=" margin-left:25px;">
+<!--                             <div style=" margin-left:25px;">
                                 <strong>Salesperson:</strong>
                             <br/>
                                 <span t-esc="o.user_id.name"/>
@@ -147,6 +147,45 @@
                             <div style=" margin-left:25px;">
                                 <strong>Mobile:</strong>
                                 <span t-esc="o.user_id.mobile"/>
+                            </div> -->
+                             <div style="width:100%;text-align;center; float:center;">
+                                <table style="width:95%; text-align;center; float:center; margin-left:25px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Salesperson:</th>
+                                            <th>Mobile:</th>
+                                            <th>Email:</th>
+                                            <th>Location:</th>
+                                            </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    
+                                                    <td style="font-size:17px; text-align:center;">
+<span t-field="o.partner_id.name"/>
+                                                    </td>
+
+                                                                <td style="font-size:17px; text-align:center;">
+                                                                <span t-field="o.partner_id.phone"/>
+
+                                                    </td>
+                                                        <td style="font-size:17px; text-align:center;">
+<span t-field="doc.partner_id.email"/>
+
+
+                                                    </td>
+                <td style="font-size:17px; text-align:center;">
+<span t-field="o.partner_id.contact_address_complete"/>
+
+
+                                                    </td>
+    
+                                                
+                                            </tr>
+                                            
+
+                                    </tbody>
+                                </table>
                             </div>
                             <div style="height:50px; "/>
                          
