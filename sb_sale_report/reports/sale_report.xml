@@ -97,7 +97,7 @@
   <br/>
                             <br/>
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;">
+                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border: none;">
                                     <thead>
                                         <tr>
                                             <th>Salesperson:</th>
@@ -149,10 +149,10 @@
                                 <span t-esc="o.user_id.mobile"/>
                             </div> -->
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;">
+                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border: none;">
                                     <thead>
                                         <tr>
-                                            <th>Salesperson:</th>
+                                            <th>Customer:</th>
                                             <th>Mobile:</th>
                                             <th>Email:</th>
                                             <th>Location:</th>
@@ -215,11 +215,11 @@
                                                     <td style="font-size:20px; text-align:center;">
                                                         <span t-esc="counter"/>
                                                     </td>
-                                                      <td style="max-width: 30px; max-height: 30px;">
+                                                      <td style="width:70px;">
                                                         <span itemprop="image"
                                                               t-field="line.product_template_id.image_1920"
                                                               t-options='{"widget": "image"}'
-                                                              style="height:50px !important;width:60px !important;"/>
+                                                              style="width:70px !important;"/>
                                                     </td>
                                              <td STYLE="border: 1px solid black; border-collapse: collapse;width:70px;">
       <span t-field="line.qr_code_img" t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"/>
