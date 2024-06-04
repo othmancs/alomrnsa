@@ -102,7 +102,7 @@
   <br/>
                             <br/>
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="font-size:20px;width:95%; text-align;center; float:center; margin-left:25px;border:0px;">
+                                <table style="font-size:14px;width:95%; text-align;center; float:center; margin-left:25px;border:0px;">
                                     <thead>
                                         <tr>
                                             <th>Salesperson:</th>
@@ -113,7 +113,7 @@
                                     <tbody>
                                     <tr>
                                     
-                                                    <td style="font-size:17px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
                                                                 <span t-field="o.user_id.name"/>
 
                                                     </td>
@@ -122,7 +122,7 @@
                                                                 <span t-field="o.user_id.phone"/>
 
                                                     </td>
-                <td style="font-size:17px; text-align:center;">
+                <td style="font-size:12px; text-align:center;">
                                                                  <span t-field="o.user_id.email"/>
 
                                                     </td>
@@ -155,7 +155,7 @@
                             </div> -->
                              <div style="height:15px;"/>
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="font-size:30px;width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border:0px;">
+                                <table style="font-size:14px;width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border:0px;">
                                     <thead>
                                         <tr>
                                             <th>Customer:</th>
@@ -167,20 +167,20 @@
                                     <tbody>
                                     <tr>
                                     
-                                                    <td style="font-size:17px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
 <span t-field="o.partner_id.name"/>
                                                     </td>
 
-                                                                <td style="font-size:17px; text-align:center;">
+                                                                <td style="font-size:12px; text-align:center;">
                                                                 <span t-field="o.partner_id.phone"/>
 
                                                     </td>
-                                                        <td style="font-size:17px; text-align:center;">
+                                                        <td style="font-size:12px; text-align:center;">
 <span t-field="o.partner_id.email"/>
 
 
                                                     </td>
-                <td style="font-size:17px; text-align:center;">
+                <td style="font-size:12px; text-align:center;">
 <span t-field="o.partner_id.contact_address_complete"/>
 
 
@@ -196,7 +196,7 @@
                             <div style="height:50px; "/>
                           <div style="height:15px;"/>
                             <div style="width:100%;text-align;center; float:center;">
-                                <table style="font-size:25px;width:95%; text-align;center; float:center; margin-left:25px;border: 1px solid black;">
+                                <table style="font-size:14px;width:95%; text-align;center; float:center; margin-left:25px;border: 1px solid black;">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
@@ -218,7 +218,7 @@
                                         <t t-foreach="o.order_line" t-as="line">
                                             <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
                                                 <t t-if="not line.display_type ">
-                                                    <td style="font-size:20px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
                                                         <span t-esc="counter"/>
                                                     </td>
                                                       <td style="width:70px;border: 1px solid black;">
@@ -230,35 +230,35 @@
                                              <td STYLE="border: 1px solid black;width:70px;">
       <span t-field="line.qr_code_img" t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"/>
     </td>
-                                                    <td style="font-size:17px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
                                                         <t t-esc="line.product_template_id.name"/>
                                                     </td>
 <!--                                                     <t t-if="line.product_template_id.description ">
-                                                        <td style="font-size:15px; text-align:center;">
+                                                        <td style="font-size:12px; text-align:center;">
                                                             <t t-esc="line.product_template_id.description"/>
                                                         </td>
                                                     </t> -->
 <!--                                                     <t t-elif="not line.product_template_id.description">
-                                                        <td style="font-size:15px; text-align:center;">
+                                                        <td style="font-size:12px; text-align:center;">
                                                             <t t-esc="line.product_template_id.name"/>
                                                         </td>
                                                     </t> -->
-                                                    <td style="font-size:17px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
                                                         <t t-esc="line.product_uom_qty"/>
                                                     </td>
-                                                    <td style="font-size:17px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
                                                         <t t-esc="line.price_unit"/>
                                                     </td>
-                                                    <td style="font-size:17px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
                                                       <span t-field="line.price_tax"/>
                                                     </td>
-                                                    <td style="font-size:17px; text-align:center;">
+                                                    <td style="font-size:12px; text-align:center;">
                                                         <t t-esc="line.price_total"/>
                                                     </td>
                                                   
                                                 </t>
                                                 <t t-elif="line.display_type == 'line_section'">
-                                                    <td style="border-bottom: 1px solid white; text-align: right; font-weight: bold; font-size: 20px;">
+                                                    <td style="border-bottom: 1px solid white; text-align: right; font-weight: bold; font-size: 14px;">
                                                         <span t-field="line.name"/>
                                                     </td>
                                                     <t t-set="current_section" t-value="line"/>
