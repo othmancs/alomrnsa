@@ -97,6 +97,7 @@
                                 </table>
                             </div> -->
                             <br/>
+                             <div style="height:15px;"/>
                             <br/>
   <br/>
                             <br/>
@@ -152,6 +153,7 @@
                                 <strong>Mobile:</strong>
                                 <span t-esc="o.user_id.mobile"/>
                             </div> -->
+                             <div style="height:15px;"/>
                              <div style="width:100%;text-align;center; float:center;">
                                 <table style="width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border: none;">
                                     <thead>
@@ -192,7 +194,7 @@
                                 </table>
                             </div>
                             <div style="height:50px; "/>
-                         
+                          <div style="height:15px;"/>
                             <div style="width:100%;text-align;center; float:center;">
                                 <table style="width:95%; text-align;center; float:center; margin-left:25px;">
                                     <thead>
