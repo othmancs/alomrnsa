@@ -150,11 +150,11 @@
                                                             <t t-esc="line.product_template_id.description"/>
                                                         </td>
                                                     </t> -->
-                                                    <t t-elif="not line.product_template_id.description">
+<!--                                                     <t t-elif="not line.product_template_id.description">
                                                         <td style="font-size:15px; text-align:center;">
                                                             <t t-esc="line.product_template_id.name"/>
                                                         </td>
-                                                    </t>
+                                                    </t> -->
                                                     <td style="font-size:17px; text-align:center;">
                                                         <t t-esc="line.product_uom_qty"/>
                                                     </td>
