@@ -314,12 +314,8 @@
                                     </h4>
                                 </h4>
                             </div>
-
-                            <div class="footer" style="width:100%;">
-                                <div class="row">
-
-                                    <div style="font-size:15px;font-weight: bold;text-align: center;  ">
-                                                             <table style="width:100%;border-style: none;">
+                            <div>
+                                                                               <table style="width:100%;border-style: none;">
   <tr>
 
     <th>Bank Name : AL Rajhi Bank</th>
@@ -339,6 +335,13 @@
   </tr>
 </table>
                                         <br/>
+                            </div>
+
+                            <div class="footer" style="width:100%;">
+                                <div class="row">
+
+                                    <div style="font-size:15px;font-weight: bold;text-align: center;  ">
+            
                                         <span>Page</span>
                                         <span>
                                             <span class="page"/>
