@@ -353,14 +353,30 @@
             <field name="page_height">297</field>
             <field name="page_width">230</field>
             <field name="orientation">Portrait</field>
-            <field name="margin_top">40</field>
-            <field name="margin_bottom">24.5</field>
+            <field name="margin_top">55</field>
+            <field name="margin_bottom">10</field>
             <field name="margin_left">0</field>
             <field name="margin_right">0</field>
             <field name="header_line" eval="False"/>
-            <field name="header_spacing">35</field>
+            <field name="header_spacing">50</field>
             <field name="dpi">90</field>
             <field name="report_ids" eval="[(6,0,[ref('sb_sale_report.action_reportt_salee_orderr')])]"/>
+
+
+<!--         <field name="format">Letter</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">55</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">50</field>
+        <field name="dpi">90</field>
+        <field name="report_ids" eval="[(6, 0, [ref('report_action_id_1'), ref('report_action_id_2')])]"/>
+ -->
+
+
+            
         </record>
     </data>
 </odoo>
