@@ -102,12 +102,13 @@
           <strong>مندوب المبيعات :</strong>
           <br/>
         </span>
-        <span t-field="doc.user_id"/>
+        <span t-field="o.user_id.name"/>
       </div>
    
   
                             <div style=" margin-left:25px;">
                                 <strong>Salesperson:</strong>
+                            <br/>
                                 <span t-esc="o.user_id.name"/>
                             </div>
                             <div style=" margin-left:25px;">
