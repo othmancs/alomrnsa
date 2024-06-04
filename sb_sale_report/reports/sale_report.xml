@@ -223,8 +223,8 @@
                                                     </td>
                                                       <td style="width:70px;border: 1px solid black;">
                                                         <span itemprop="image"
-                                                              t-field="line.product_template_id.image_1920"
-                                                              t-options='{"widget": "image"}'
+                                                              t-field="line.product_template_id.image_128"
+                                                              t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"
                                                               style="width:70px !important;"/>
                                                     </td>
                                              <td STYLE="border: 1px solid black;width:70px;">
