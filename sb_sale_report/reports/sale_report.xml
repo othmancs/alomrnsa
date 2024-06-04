@@ -139,7 +139,7 @@
                                                               t-options='{"widget": "image"}'
                                                               style="height:50px !important;width:60px !important;"/>
                                                     </td>
-                                                     <td STYLE="border: 1px solid black; border-collapse: collapse;">
+                                             <td STYLE="border: 1px solid black; border-collapse: collapse;width:70px;display:inline-block">
       <span t-field="line.qr_code_img" t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"/>
     </td>
                                                     <td style="font-size:17px; text-align:center;">
