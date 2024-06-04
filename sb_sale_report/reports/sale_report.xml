@@ -170,7 +170,7 @@
 
                                                     </td>
                                                         <td style="font-size:17px; text-align:center;">
-<span t-field="doc.partner_id.email"/>
+<span t-field="o.partner_id.email"/>
 
 
                                                     </td>
