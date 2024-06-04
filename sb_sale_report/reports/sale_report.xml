@@ -23,7 +23,7 @@
                                             <t t-esc="o.company_id.zip"/>,
                                             <t t-esc="o.company_id.country_id.name"/>
                                             <br/>
-                                            <t t-esc="o.res_company.vat"/>
+<span t-field="res_company.vat"/>
                                             <br/>
                                             <br/>
                                         </span>
