@@ -310,7 +310,6 @@ class EmpPayslipReport(models.TransientModel):
                     coln +=1
             
             worksheet.merge_range(total_row, 2, total_row, 3, 'المجموع','123', cell_wrap_format_bold)
-            worksheet.merge_range(total_row, 2, total_row, 3, 'المجموع','123', cell_wrap_format_bold)
 
             workbook.close()
             export_id = base64.b64encode(open('/tmp/' + file_path, 'rb+').read())
