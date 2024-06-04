@@ -285,7 +285,7 @@ class EmpPayslipReport(models.TransientModel):
             #For Get the Total
             total_row = end_row + 1
             list = ['BASIC', 'ALW', 'GROSS', 'DED', 'NET']
-            coln = 5
+            coln = 4
             for l in list:
                 lst = []
                 for mn  in main:
