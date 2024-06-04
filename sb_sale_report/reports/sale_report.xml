@@ -220,24 +220,6 @@
                             </div>
                             <div style="height:25px;"/>
                             <div style=" margin-left:25px; font-size:10px; font-weight:bold;">
-                                <h5 style="font-weight:bold; color:black; font-size:10px; text-decoration: underline;">
-                                    TERMS/ CONDITIONS
-                                </h5>
-                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">1) PRICE QUOTED: UNIT PRICE
-                                    IN SAUDI RIYAL
-                                </h4>
-                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">2) DELIVERY: According to
-                                    the agreement
-                                </h4>
-                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">3) PACKING: TOTO STANDARD
-                                    PACKING AND COLOURS
-                                </h4>
-                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">4) PAYMENT TERM: 100% CASH
-                                    BEFORE DELIVERY
-                                </h4>
-                                <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">5) DOCUMENT VALIDITY : 5
-                                    DAYS
-                                </h4>
                                 <h4 style="font-weight:bold; color:#3572EF; font-size:10px;">Beneficiary:
                                     <h4 style="font-weight:bold; color:black;font-size:10px;">
                                         <span t-field="o.note"/>
