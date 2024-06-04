@@ -115,7 +115,7 @@
                                             <th>PRODUCT-IMG</th>
                                             <th>QR</th>
                                             <th>PRODUCT NAME</th>
-                                            <th>DESCREPTION</th>
+<!--                                             <th>DESCREPTION</th> -->
                                             <th>QTY</th>
                                             <th>UNIT-SAR</th>
                                             <th>Tax 15%</th>
@@ -145,11 +145,11 @@
                                                     <td style="font-size:17px; text-align:center;">
                                                         <t t-esc="line.product_template_id.name"/>
                                                     </td>
-                                                    <t t-if="line.product_template_id.description ">
+<!--                                                     <t t-if="line.product_template_id.description ">
                                                         <td style="font-size:15px; text-align:center;">
                                                             <t t-esc="line.product_template_id.description"/>
                                                         </td>
-                                                    </t>
+                                                    </t> -->
                                                     <t t-elif="not line.product_template_id.description">
                                                         <td style="font-size:15px; text-align:center;">
                                                             <t t-esc="line.product_template_id.name"/>
