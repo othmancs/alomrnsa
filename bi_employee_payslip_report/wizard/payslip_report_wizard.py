@@ -185,14 +185,14 @@ class EmpPayslipReport(models.TransientModel):
                     values  = line.get('DED')
                     
                     if val > 1:
-                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'Deduction' , cell_wrap_format_bold)
+                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'خصومات' , cell_wrap_format_bold)
                         start_col = start_col + val
                         for i in values:
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
                             col+=1
                         
                     else:
-                        worksheet.write(row,start_col,'Deduction',cell_wrap_format_bold)
+                        worksheet.write(row,start_col,'خصومات',cell_wrap_format_bold)
                         start_col = start_col + 1
                         worksheet.write(4, col, values[0] ,sub_cell_wrap_format_bold)
                         col+=1
@@ -210,7 +210,7 @@ class EmpPayslipReport(models.TransientModel):
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
                             col+=1
                     else:
-                        worksheet.write(row,start_col,'Net',cell_wrap_format_bold)
+                        worksheet.write(row,start_col,'صافي',cell_wrap_format_bold)
                         start_col = start_col + 1
                         worksheet.write(4, col, values[0] ,sub_cell_wrap_format_bold)
                         col+=1
