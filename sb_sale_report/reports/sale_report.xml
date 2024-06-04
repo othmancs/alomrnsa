@@ -102,7 +102,7 @@
   <br/>
                             <br/>
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border: none;">
+                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-style: none;">
                                     <thead>
                                         <tr>
                                             <th>Salesperson:</th>
@@ -155,7 +155,7 @@
                             </div> -->
                              <div style="height:15px;"/>
                              <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border: none;">
+                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border-collapse: collapse; border-style: none;">
                                     <thead>
                                         <tr>
                                             <th>Customer:</th>
@@ -196,7 +196,7 @@
                             <div style="height:50px; "/>
                           <div style="height:15px;"/>
                             <div style="width:100%;text-align;center; float:center;">
-                                <table style="width:95%; text-align;center; float:center; margin-left:25px;">
+                                <table style="width:95%; text-align;center; float:center; margin-left:25px;border: 1px solid black;">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
@@ -221,13 +221,13 @@
                                                     <td style="font-size:20px; text-align:center;">
                                                         <span t-esc="counter"/>
                                                     </td>
-                                                      <td style="width:70px;">
+                                                      <td style="width:70px;border: 1px solid black;">
                                                         <span itemprop="image"
                                                               t-field="line.product_template_id.image_1920"
                                                               t-options='{"widget": "image"}'
                                                               style="width:70px !important;"/>
                                                     </td>
-                                             <td STYLE="border: 1px solid black; border-collapse: collapse;width:70px;">
+                                             <td STYLE="border: 1px solid black;width:70px;">
       <span t-field="line.qr_code_img" t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"/>
     </td>
                                                     <td style="font-size:17px; text-align:center;">
@@ -317,7 +317,26 @@
 
                             <div class="footer" style="width:100%;">
                                 <div class="row">
+               <div t-if="report_type == 'pdf'" class="text-muted">
+                     <table style="width:100%;border-style: none;">
+  <tr>
 
+    <th>Bank Name : AL Rajhi Bank</th>
+    <th>Bank Name : NCB</th>
+    <th>Bank Name : SABB Bank</th>
+  </tr>
+  <tr>
+    <td>Account Number : 195608010002116</td>
+    <td>Account Number : 21615736000101</td>
+    <td>Account Number : 18048900001</td>
+  </tr>
+  <tr>
+    <td>IBAN : SA1280000195608010002116</td>
+    <td>IBAN : SA2910000021615736000101</td>
+    <td>IBAN : SA4635000000018048900001
+</td>
+  </tr>
+</table>
                                     <div style="font-size:15px;font-weight: bold;text-align: center;  ">
                                         <span>Page</span>
                                         <span>
