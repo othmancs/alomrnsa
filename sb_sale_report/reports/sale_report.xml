@@ -17,13 +17,22 @@
                                 <div style="height:15px;"/>
                                 <div style="font-size:20px;text-align:center; color:#00215E; font-weight:bold;">
                                     <h4 style="text-decoration: underline;">
-                                        <span><t t-esc="o.company_id.street"/>,<t t-esc="o.company_id.street2"/>,
+                                        <span>
+<!--                                             <t t-esc="o.company_id.street"/>,<t t-esc="o.company_id.street2"/>,
                                             <t t-esc="o.company_id.city"/>,
                                             <t t-esc="o.company_id.state_id.name"/>
                                             <t t-esc="o.company_id.zip"/>,
-                                            <t t-esc="o.company_id.country_id.name"/>
+                                            <t t-esc="o.company_id.country_id.name"/> -->
+                                            <span t-field="o.branch_id"/>
                                             <br/>
 <span t-field="res_company.vat"/>
+                                            <br/>
+                                                                                     
+                                            <span>
+          <strong>Quotation No.:</strong>
+          <br/>
+        </span>
+                                            <span t-field="o.display_name"/>
                                             <br/>
                                             <br/>
                                         </span>
