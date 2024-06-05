@@ -123,7 +123,7 @@
 <span t-field="o.seller_id.phone"/>
                                                     </td>
                 <td style="font-size:12px; text-align:center;">
-                                                                 <span t-field="o.user_id.email"/>
+                                                                 <span t-field="o.seller_id.email"/>
 
                                                     </td>
     
@@ -172,8 +172,8 @@
                                                     </td>
 
                                                                 <td style="font-size:12px; text-align:center;">
-<!--                                                                 <span t-field="o.partner_id.phone"/> -->
-                                                                            <span t-field="o.seller_id.name"/>
+                                                                <span t-field="o.partner_id.phone"/>
+<!--                                                                             <span t-field="o.seller_id.name"/> -->
 
 
                                                     </td>
