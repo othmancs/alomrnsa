@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_order_form_inherit_add_saler" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.add.saler</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="multi_branch_base.view_sale_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='branch_id']" position="after">
+                    <field name="seller_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
