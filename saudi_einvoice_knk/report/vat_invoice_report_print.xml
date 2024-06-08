@@ -128,6 +128,7 @@
                                     <strong>Sales Order Number: </strong><span t-field="o.invoice_origin"/><br/>
                                     <strong>Invoice Date: </strong><span t-field="o.invoice_date"/><br/>
                                     <strong>Payment Terms: </strong><span t-field="o.invoice_payment_term_id"/><br/>
+                                 <strong>رقم عرض السعر: </strong>   <span t-field="o.display_name"/><br/>
                                 </p>
                             </div>
                             <div class="col-2">
