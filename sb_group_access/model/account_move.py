@@ -29,3 +29,9 @@ class AccountInvoice(models.Model):
     def _compute_belongs_to_group(self):
         for rec in self:
             rec.readonly_price = self.env.user.has_group('sb_group_access.cannot_edit_unit_price')
+
+    def action_register_payment(self):
+        result = super(AccountInvoice, self).action_register_payment()
+        if self.env.user.has_group('sb_group_access.cannot_register_payment'):
+            raise UserError(_("You are not authorized to register payment"))
+        return result
