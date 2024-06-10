@@ -26,6 +26,11 @@ msgid "Cannot Cancel Sale Orders"
 msgstr "لا يستطيع الغاء امر البيع"
 
 #. module: sb_group_access
+#: model:res.groups,name:sb_group_access.cannot_register_payment
+msgid "Cannot register payment"
+msgstr "لا يستطيع تسجيل دفعات"
+
+#. module: sb_group_access
 #: model:res.groups,name:sb_group_access.cannot_confirm_sale_orders
 msgid "Cannot Confirm Sale Orders"
 msgstr "لا يستطيع تاكيد امر البيع"
@@ -123,6 +128,21 @@ msgstr "غير مسموح لك اضاقه موقع"
 #, python-format
 msgid "You are not authorized to add operation"
 msgstr "غير مسموح لك اضافه عمليه"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/account_payment.py:0
+#, python-format
+msgid "You are not authorized to register payment"
+msgstr "غير مسموح لك تسجيل دفعات"
+
+#. module: sb_group_access
+#. odoo-python
+#: code:addons/sb_group_access/model/account_move.py:0
+#, python-format
+msgid "You are not authorized to register payment"
+msgstr "غير مسموح لك تسجيل دفعات"
+
 
 #. module: sb_group_access
 #. odoo-python
