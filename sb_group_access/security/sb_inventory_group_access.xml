@@ -14,6 +14,10 @@
             <field name="name">Cannot add operation</field>
             <field name="category_id" ref="module_sale_button_access"/>
         </record>
+        <record id="cannot_register_payment" model="res.groups">
+            <field name="name">Cannot register payment</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
 
     </data>
 </odoo>
