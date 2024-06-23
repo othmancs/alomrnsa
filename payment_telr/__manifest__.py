@@ -1,29 +1,30 @@
+# -*- coding: utf-8 -*-
+# Powered by Kanak Infosystems LLP.
+# © 2020 Kanak Infosystems LLP. (<https://www.kanakinfosystems.com>).
+
 {
-    'name': "Telr Payment Gateway",
+    'name': "Telr Payment Provider",
     'version': '16.0.1.1',
     'category': 'Accounting/Payment Providers',
-    'summary': 'Telr Payment Gateway is a distinguished global payment gateway that provides businesses with a secure and hassle-free platform to accept online payments from their customers',
+    'summary': 'Telr Payment Gateway - One of the widely used payment gateway used in the UAE integrated with odoo ecommerce | Telr Payment Gateway | Telr Payement Acquirer | Telr Payement Provider | AED Online Payment | AED Debit Card Payment | AED E-commerce payment | AED Online sale payment | AED Online card payment',
     'description': """
-                    Telr Payment Gateway
-                    ================================
-                     Telr is an award-winning payment gateway provider, founded in 2014, and with offices in Singapore, the UAE, India, and Saudi Arabia'
-                        """,
-    'author': "Telr",
-    'website': "https://telr.com/",
-    'images': ['static/description/icon.png'],
+Telr Payment Gateway
+================================
+One of the widely used payment gateway used in the UAE integrated with odoo ecommerce'
+    """,
+    'license': 'OPL-1',
+    'author': "Kanak Infosystems LLP.",
+    'website': "https://www.kanakinfosystems.com",
+    'images': ['static/description/banner.jpg'],
     'depends': ['payment'],
     'data': [
         'views/payment_telr_templates.xml',
         'views/payment_provider_views.xml',
         'data/telr_payment_data.xml',
     ],
-    
     'installable': True,
+    'price': 69,
+    'currency': 'EUR',
     'post_init_hook': 'post_init_hook',
     'uninstall_hook': 'uninstall_hook',
-    'assets': {
-        'web.assets_frontend': [
-            'payment_telr/static/src/js/**/*',
-        ],
-    },
 }
