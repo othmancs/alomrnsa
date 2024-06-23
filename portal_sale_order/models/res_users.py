@@ -1,5 +1,4 @@
 from odoo import fields, models, api
-from odoo.tools.sql import column_exists, create_column
 
 
 class ResUsers(models.Model):

@@ -8,6 +8,7 @@
             <field name="inherit_id" ref="sync_inventory_adjustment.view_inventory_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='memo']" position="after">
+                    <field name="branch_id"/>
                     <field name="created_by_id"/>
                 </xpath>
             </field>
