@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="material_request_form_inherit_add_saler" model="ir.ui.view">
+            <field name="name">material_request_form_inherit_add_saler</field>
+            <field name="model">material.request</field>
+            <field name="inherit_id" ref="ak_material_request.material_request_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="created_by_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
