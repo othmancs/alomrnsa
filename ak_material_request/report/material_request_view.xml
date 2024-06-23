@@ -126,7 +126,6 @@
                                 <td colspan="1" style="font-size:9px;">الإجمالي</td>
                                 <td/>
                                 <td style="font-size:9px;">
-
                                     <span t-esc="sum(move.qty for move in lines)"/>
                                 </td>
                             </tr>

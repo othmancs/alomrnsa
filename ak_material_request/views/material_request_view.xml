@@ -137,12 +137,12 @@
     </record>
 
     <record model="ir.actions.act_window" id="action_material_request">
-        <field name="name">Internal Material Request</field>
+        <field name="name">طلب النقل بين الفروع</field>
         <field name="res_model">material.request</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_action_material_request" name="Internal Material Request" parent="stock.menu_stock_warehouse_mgmt"
+    <menuitem id="menu_action_material_request" name="طلب النقل بين الفروع" parent="stock.menu_stock_warehouse_mgmt"
               action="action_material_request"/>
 
 </odoo>
