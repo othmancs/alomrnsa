@@ -12,4 +12,9 @@ class ResPartner(models.Model):
 
     @api.model
     def create_partner_with_sudo(self, vals):
-        return self.sudo().create(vals).id
+        if vals.get('name', False):
+            print("ppppppppppppppppppp",vals)
+            return self.sudo().create(vals).id
+        else:
+            print("ssssssssssssss")
+            return None
