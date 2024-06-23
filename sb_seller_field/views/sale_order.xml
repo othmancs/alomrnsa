@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="multi_branch_base.view_sale_order_form_inherit"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='branch_id']" position="after">
-                    <field name="seller_id"/>
+                    <field name="created_by_id"/>
                 </xpath>
             </field>
         </record>

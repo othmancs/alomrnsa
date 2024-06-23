@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_inventory_form_inherit_add_saler" model="ir.ui.view">
+            <field name="name">stock_inventory_form_inherit_add_saler</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="sync_inventory_adjustment.view_inventory_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='memo']" position="after">
+                    <field name="created_by_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
