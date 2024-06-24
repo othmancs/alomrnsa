@@ -55,12 +55,12 @@ class SaleOrderLine(models.Model):
             vals['sh_sale_minimum_price'] = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(), product.taxes_id, self.tax_id, self.company_id)
         self.update(vals)
 
-    # @api.depends('product_id', 'product_uom','product_uom_qty')
-    # def _compute_price_unit(self):
-    #     res = super(SaleOrderLine, self)._compute_price_unit()
-    #     if self.order_id.pricelist_id and self.order_id.partner_id:
-    #         self.sh_sale_minimum_price = self.price_unit
-    #     return res
+    @api.depends('product_id', 'product_uom','product_uom_qty')
+    def _compute_price_unit(self):
+        res = super(SaleOrderLine, self)._compute_price_unit()
+        if self.order_id.pricelist_id and self.order_id.partner_id:
+            self.sh_sale_minimum_price = self.price_unit
+        return res
 
     @api.onchange('price_unit')
     def price_unit_check(self):
