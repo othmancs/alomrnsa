@@ -129,10 +129,10 @@
                                                     </td> 
 
                                                                 <td style="font-size:17px; text-align:center;">
-<span t-field="o.seller_id.mobile"/>
+<!-- <span t-field="o.seller_id.mobile"/> -->
                                                     </td>
                 <td style="font-size:12px; text-align:center;">
-                                                                 <span t-field="o.seller_id.email"/>
+<!--                                                                  <span t-field="o.seller_id.email"/> -->
 
                                                     </td>
     <td style="font-size:12px; text-align:center;">
