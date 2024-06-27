@@ -22,7 +22,7 @@
         "views/res_company.xml",
         "views/res_config.xml",
         "views/res_country.xml",
-        "report/sale_report.xml",
+        "report/credit_note_report.xml",
         "report/purchase_report.xml",
         "report/invoice_report.xml",
     ],

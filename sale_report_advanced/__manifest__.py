@@ -34,7 +34,7 @@
     'depends': ['sale_management', 'base','account'],
     'data': [
         'security/ir.model.access.csv',
-        'wizard/sale_report.xml',
+        'wizard/credit_note_report.xml',
         'wizard/sale_invoice.xml',
         'wizard/sale_analysis.xml',
         'wizard/weekly_wise.xml',
