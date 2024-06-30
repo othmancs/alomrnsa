@@ -1,0 +1,128 @@
+.section_sf_icon{
+    margin: 0 60px;
+  
+  h1 {
+    font-size: 32px;
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    background: #FF7D6D;
+    color: #fff;
+    padding: 4px;
+  }
+  
+  p,
+  span,
+  .twitter {
+    font: normal normal 10px Arial;
+    text-align: center;
+    color: #998578;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  
+  .twitter {
+    color: #72898b;
+    text-decoration: none;
+    display: block;
+    padding: 14px;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+  }
+  
+  .twitter:hover {
+    color: #FF7D6D;
+    text-decoration: none;
+  }
+  
+  span {
+    font-style: italic;
+    display: block;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+
+  /* Floating Social Media Bar Style Starts Here */
+  
+  .fl-fl {
+    background: #000000;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 4px;
+    width: 190px;
+    position: fixed;
+    right: -140px;
+    z-index: 1000;
+
+    font: normal normal 10px Arial;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+    
+    border-radius: 20px 0px 0px 20px;
+    opacity: 0.6;
+  }
+  
+  .fa {
+    font-size: 20px;
+    color: #fff;
+    padding: 10px 0;
+    width: 40px;
+    margin-left: 20px;
+
+    opacity: 1;
+  }
+  
+  .fl-fl:hover {
+    right: 0;
+    opacity: 1;
+  }
+  
+  .fl-fl a {
+    color: #fff !important;
+    text-decoration: none;
+    text-align: center;
+    line-height: 43px!important;
+    vertical-align: top!important;
+  }
+  
+  .float-fb {
+    top: 260px;
+  }
+  
+  .float-ig {
+    top: 315px;
+  }
+  
+  .float-tw {
+    top: 370px;
+  }
+  
+  .float-ln {
+    top: 425px;
+  }
+  
+  .float-yt {
+    top: 480px;
+  }
+  
+  // .float-rs {
+  //   top: 380px;
+  // }
+  
+  // .float-pn {
+  //   top: 435px;
+  // }
+
+
+}

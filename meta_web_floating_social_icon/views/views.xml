@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <template id="snippet_sf_icon" inherit_id="website.snippets">
+          <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+            <t t-snippet="meta_web_floating_social_icon.social_floating_icon" t-thumbnail="/meta_web_floating_social_icon/static/src/img/snippets_thumbs/sf_icon.png"/>
+          </xpath>
+        </template>
+
+</odoo>
