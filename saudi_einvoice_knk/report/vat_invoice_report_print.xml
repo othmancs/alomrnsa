@@ -267,7 +267,7 @@
                                         style="border-right:1pt solid grey;text-align:right;padding:3pt">إجمالي المبلغ
                                         المستحق</td>
                                     <td style="border-right:1pt solid grey;text-align:right;padding:3pt"
-                                        class="text-end"><span t-esc="doc.amount_residual"
+                                        class="text-end"><span t-esc="doc.amount_total"
                                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
                                 </tr>
                             </thead>
