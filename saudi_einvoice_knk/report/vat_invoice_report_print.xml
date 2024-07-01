@@ -276,8 +276,7 @@
                                class="table table-bordered table-sm">
                             <thead>
                                 <tr>
-                                    <td width="30%" style="font-weight: bold;background-color:#DCDCDC;">AMOUNT
-                                        INVOICED</td>
+                                    <td width="30%" style="font-weight: bold;background-color:#DCDCDC;">المبلغ الإجمالي</td>
                                     <td class="text-right arabic" width="70%" style="padding-right:12px;"><span
                                             t-esc="doc.amount_word(doc.amount_total)"/></td>
                                 </tr>
