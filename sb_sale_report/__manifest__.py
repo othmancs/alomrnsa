@@ -4,7 +4,7 @@
     'version': '0.1',
     'depends': ['base', 'sale'],
     'data': [
-        'reports/sale_report.xml',
+        'reports/credit_note_report.xml',
 
     ],
 }

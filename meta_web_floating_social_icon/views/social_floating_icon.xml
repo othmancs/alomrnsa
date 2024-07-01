@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+      <template id="social_floating_icon" name="Floating Social Icon">
+
+        <section class="section_sf_icon">
+          <div class="float-sm">
+            
+              <div class="fl-fl float-fb" style="background:#3b5998;">
+                <i class="fa fa-facebook"></i>
+                <a href="https://www.facebook.com/iptecltd" target="_blank">Like us!</a>
+              </div>
+              
+              <div class="fl-fl float-ig" style="background:#C13584;">                
+                <i class="fa fa-instagram"></i>
+                <a href="https://www.instagram.com/iptec_limited/" target="_blank">Follow us!</a>
+              </div>
+              
+
+              <div class="fl-fl float-tw" style="background:#1DA1F2;">
+                <i class="fa fa-twitter"></i>
+                <a href="https://twitter.com/iptec_limited" target="_blank">Follow us!</a>
+              </div>
+ 
+              
+              <div class="fl-fl float-ln" style="background:#0072b1;">
+                <i class="fa fa-linkedin"></i>
+                <a href="https://www.linkedin.com/company/iptec-south-sudan" target="_blank">Follow us!</a>
+              </div>
+              
+              <div class="fl-fl float-yt" style="background:#FF0000;">
+                <i class="fa fa-youtube"></i>
+                <a href="https://www.youtube.com/@ipteclimitedsouthsudan3581" target="_blank">Subscribe!</a>
+              </div>
+
+              <!-- <div class="fl-fl float-gp">
+                <i class="fa fa-google-plus"></i>
+                <a href="" target="_blank">Recommend us!</a>
+              </div>
+               <div class="fl-fl float-rs"> -->
+                <!-- <i class="fa fa-rss"></i> -->
+                <!-- <a href="" target="_blank">Follow via RSS</a> -->
+              <!-- </div> -->
+              <!-- <div class="fl-fl float-pn">
+                <i class="fa fa-pinterest"></i>
+                <a href="" target="_blank">Follow us!</a>
+              </div> -->
+
+          </div>
+
+      </section>
+
+    </template>
+
+</odoo>

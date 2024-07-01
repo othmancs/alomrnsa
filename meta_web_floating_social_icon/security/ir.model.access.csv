@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_meta_web_floating_social_icon_meta_web_floating_social_icon,meta_web_floating_social_icon.meta_web_floating_social_icon,model_meta_web_floating_social_icon_meta_web_floating_social_icon,base.group_user,1,1,1,1

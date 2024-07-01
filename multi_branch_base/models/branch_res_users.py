@@ -50,7 +50,7 @@ class ResUsers(models.Model):
         if self.property_warehouse_id:
             return self.property_warehouse_id
         # !!! Any change to the following search domain should probably
-        # be also applied in sale_stock/models/sale_order.py/_init_column.
+        # be also applied in sale_stock/models/account_move.py/_init_column.
         if len(self.env.user.branch_ids) == 1:
             warehouse = self.env['stock.warehouse'].search([
                 ('branch_id', '=', self.env.user.branch_id.id)], limit=1)
