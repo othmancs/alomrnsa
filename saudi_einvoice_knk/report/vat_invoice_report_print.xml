@@ -259,6 +259,17 @@
                                         class="text-end"><span t-esc="tax_total"
                                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
                                 </tr>
+                                 <tr>
+                                    <td class=""
+                                        style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">
+                                        Total Amount Due</td>
+                                    <td class="text-end arabic"
+                                        style="border-right:1pt solid grey;text-align:right;padding:3pt">إجمالي المبلغ
+                                        </td>
+                                    <td style="border-right:1pt solid grey;text-align:right;padding:3pt"
+                                        class="text-end"><span t-esc="doc.amount_total"
+                                                               t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                </tr>
                                 <tr>
                                     <td class=""
                                         style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">
@@ -267,7 +278,7 @@
                                         style="border-right:1pt solid grey;text-align:right;padding:3pt">إجمالي المبلغ
                                         المستحق</td>
                                     <td style="border-right:1pt solid grey;text-align:right;padding:3pt"
-                                        class="text-end"><span t-value="doc.amount_total"
+                                        class="text-end"><span t-esc="doc.amount_residual"
                                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
                                 </tr>
                             </thead>
