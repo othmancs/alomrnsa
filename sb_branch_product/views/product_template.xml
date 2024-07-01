@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_name_form_inherit" model="ir.ui.view">
+        <field name="name">module_name.view_name_form_inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='branch_id']" position="after">
+                <field name="allowed_branch_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='branch_id']" position="replace">
+                <field name="many_branch_product_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

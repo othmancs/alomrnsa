@@ -39,7 +39,8 @@ class SaleOrder(models.Model):
     branch_id = fields.Many2one("res.branch", string='Branch', store=True,
                                 readonly=False,
                                 compute="_compute_branch",
-                                required=True)
+                                required=True,
+                                default=lambda self: self.env.user.branch_id)
     warehouse_id = fields.Many2one(
         'stock.warehouse', string='Warehouse', required=True,
         compute='_compute_warehouse_id', store=True,
@@ -89,24 +90,24 @@ class SaleOrder(models.Model):
                     quote_branch=order.branch_id.name,
                 ))
 
-    @api.constrains('branch_id', 'order_line')
-    def _check_order_line_branch_id(self):
-        """methode to check branch of products and sale order"""
-        for order in self:
-            branches = order.order_line.product_id.branch_id
-            if branches and branches != order.branch_id:
-                bad_products = order.order_line.product_id.filtered(
-                    lambda p: p.branch_id and p.branch_id != order.branch_id)
-                raise ValidationError(_(
-                    "Your quotation contains products from company branch "
-                    "%(product_branch)s whereas your quotation belongs to "
-                    "company branch %(quote_branch)s. \n Please change the "
-                    "company of your quotation or remove the products from "
-                    "other companies (%(bad_products)s).",
-                    product_branch=', '.join(branches.mapped('name')),
-                    quote_branch=order.branch_id.name,
-                    bad_products=', '.join(bad_products.mapped('display_name')),
-                ))
+    # @api.constrains('branch_id', 'order_line')
+    # def _check_order_line_branch_id(self):
+    #     """methode to check branch of products and sale order"""
+    #     for order in self:
+    #         branches = order.order_line.product_id.branch_id
+    #         if branches and branches != order.branch_id:
+    #             bad_products = order.order_line.product_id.filtered(
+    #                 lambda p: p.branch_id and p.branch_id != order.branch_id)
+    #             raise ValidationError(_(
+    #                 "Your quotation contains products from company branch "
+    #                 "%(product_branch)s whereas your quotation belongs to "
+    #                 "company branch %(quote_branch)s. \n Please change the "
+    #                 "company of your quotation or remove the products from "
+    #                 "other companies (%(bad_products)s).",
+    #                 product_branch=', '.join(branches.mapped('name')),
+    #                 quote_branch=order.branch_id.name,
+    #                 bad_products=', '.join(bad_products.mapped('display_name')),
+    #             ))
 
     def _prepare_invoice(self):
         """override prepare_invoice function to include branch"""

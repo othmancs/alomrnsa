@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_sale_button_access">
+            <field name="name">Access Actions</field>
+            <field name="description">user in any group cannot do this action
+            </field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="cannot_cancel_sale_orders" model="res.groups">
+            <field name="name">Cannot Cancel Sale Orders</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+        <record id="cannot_confirm_sale_orders" model="res.groups">
+            <field name="name">Cannot Confirm Sale Orders</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+        <record id="cannot_creat_invoice" model="res.groups">
+            <field name="name">Cannot Creat invoice</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+        <record id="cannot_edit_unit_price" model="res.groups">
+            <field name="name">Cannot edit unit price</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+
+    </data>
+</odoo>

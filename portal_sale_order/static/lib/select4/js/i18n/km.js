@@ -1,0 +1,3 @@
+/*! select4 4.1.0-rc.0 | https://github.com/select4/select4/blob/master/LICENSE.md */
+
+!function(){if(jQuery&&jQuery.fn&&jQuery.fn.select4&&jQuery.fn.select4.amd)var n=jQuery.fn.select4.amd;n.define("select4/i18n/km",[],function(){return{errorLoading:function(){return"មិនអាចទាញយកទិន្នន័យ"},inputTooLong:function(n){return"សូមលុបចេញ  "+(n.input.length-n.maximum)+" អក្សរ"},inputTooShort:function(n){return"សូមបញ្ចូល"+(n.minimum-n.input.length)+" អក្សរ រឺ ច្រើនជាងនេះ"},loadingMore:function(){return"កំពុងទាញយកទិន្នន័យបន្ថែម..."},maximumSelected:function(n){return"អ្នកអាចជ្រើសរើសបានតែ "+n.maximum+" ជម្រើសប៉ុណ្ណោះ"},noResults:function(){return"មិនមានលទ្ធផល"},searching:function(){return"កំពុងស្វែងរក..."},removeAllItems:function(){return"លុបធាតុទាំងអស់"}}}),n.define,n.require}();

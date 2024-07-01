@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>   
+    <record id="st_group_enable_min_max_price" model="res.groups">
+        <field name="name">Enable Min-Max price</field>
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]" />    
+    </record>
+</odoo>

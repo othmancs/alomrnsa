@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_zk_machine_user,access.zk.machine.user,model_zk_machine,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_zk_machine_attendance_user,access.zk.machine.attendance.user,model_zk_machine_attendance,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_zk_report_daily_attendance_user,access.zk.report.daily.attendance.user,model_zk_report_daily_attendance,hr_attendance.group_hr_attendance_user,1,1,1,1

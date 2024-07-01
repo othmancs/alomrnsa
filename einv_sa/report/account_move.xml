@@ -64,6 +64,11 @@
                     <div class="col-4 text-right"><Strong>الاسم</Strong></div>
                 </div>
                 <div class="row">
+                    <div class="col-3"><Strong>Phone</Strong></div>
+                    <div class="col-5 text-center"><span t-field="doc.partner_id.phone"></span></div>
+                    <div class="col-4 text-right"><Strong>رقم الهاتف</Strong></div>
+                </div>
+                <div class="row">
                     <div class="col-3"><Strong>Building No</Strong></div>
                     <div class="col-5 text-center"><span t-field="doc.partner_id.building_no"></span></div>
                     <div class="col-4 text-right"><Strong>رقم المبني</Strong></div>

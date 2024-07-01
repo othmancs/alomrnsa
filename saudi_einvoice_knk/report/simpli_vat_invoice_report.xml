@@ -58,6 +58,18 @@
                             </div>
                         </div>
 
+                        <div class="row mt-4 mb-4" id="informations">
+                            <div t-if="doc.partner_id.name" class="col-auto col-3 mw-100 mb-2">
+                                <strong>Customer:</strong>
+                                <p class="m-0" t-field="doc.partner_id.name"/>
+                                <p class="m-0" t-field="doc.partner_id.phone"/>
+                            </div>
+                            <div t-if="doc.partner_id.name" class="col-auto col-3 mw-100 mb-2">
+                                <strong>Salesperson:</strong>
+                                <p class="m-0" t-field="doc.invoice_user_id.name"/>
+                            </div>
+                        </div>
+
                         <table style="border:1pt solid grey;width:100%;color:black;" class="table-condensed">
                             <thead>
                                 <tr style="background-color:#DCDCDC">

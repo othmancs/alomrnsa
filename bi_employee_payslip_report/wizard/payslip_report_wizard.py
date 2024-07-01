@@ -71,7 +71,20 @@ class EmpPayslipReport(models.TransientModel):
             
             worksheet.set_row(1, 30)  # Set row height
             worksheet.set_row(4, 50)
-            
+
+            #         if self.company_id.logo:
+            # pil_image = base64_to_image(self.company_id.logo)
+            # pil_image = pil_image.resize((150, 150))
+            # im = pil_image
+            # image_parts = im.split()
+            # r = image_parts[0]
+            # g = image_parts[1]
+            # b = image_parts[2]
+            # img = Image.merge("RGB", (r, g, b))
+            # fo = io.BytesIO()
+            # img.save(fo, format='bmp')
+
+            # worksheet.insert_bitmap_data(fo.getvalue(), row, 4)
             # Merge Row Columns
             TITLEHEDER = 'تقرير الراتب'
 
@@ -175,7 +188,7 @@ class EmpPayslipReport(models.TransientModel):
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
                             col+=1
                     else:
-                        worksheet.write(row,start_col,'Gross',cell_wrap_format_bold)
+                        worksheet.write(row,start_col,'تأمينات',cell_wrap_format_bold)
                         start_col = start_col + 1
                         worksheet.write(4, col, values[0] ,sub_cell_wrap_format_bold)
                         col+=1
@@ -185,14 +198,14 @@ class EmpPayslipReport(models.TransientModel):
                     values  = line.get('DED')
                     
                     if val > 1:
-                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'Deduction' , cell_wrap_format_bold)
+                        worksheet.merge_range(row,start_col,row,start_col + (val - 1), 'خصومات' , cell_wrap_format_bold)
                         start_col = start_col + val
                         for i in values:
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
                             col+=1
                         
                     else:
-                        worksheet.write(row,start_col,'Deduction',cell_wrap_format_bold)
+                        worksheet.write(row,start_col,'خصومات',cell_wrap_format_bold)
                         start_col = start_col + 1
                         worksheet.write(4, col, values[0] ,sub_cell_wrap_format_bold)
                         col+=1
@@ -210,7 +223,7 @@ class EmpPayslipReport(models.TransientModel):
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
                             col+=1
                     else:
-                        worksheet.write(row,start_col,'Net',cell_wrap_format_bold)
+                        worksheet.write(row,start_col,'صافي',cell_wrap_format_bold)
                         start_col = start_col + 1
                         worksheet.write(4, col, values[0] ,sub_cell_wrap_format_bold)
                         col+=1
@@ -285,7 +298,7 @@ class EmpPayslipReport(models.TransientModel):
             #For Get the Total
             total_row = end_row + 1
             list = ['BASIC', 'ALW', 'GROSS', 'DED', 'NET']
-            coln = 5
+            coln = 4
             for l in list:
                 lst = []
                 for mn  in main:
@@ -296,7 +309,7 @@ class EmpPayslipReport(models.TransientModel):
                     worksheet.write(total_row,coln, r, cell_wrap_format_bold)
                     coln +=1
             
-            worksheet.merge_range(total_row, 3, total_row, 4, 'Total', cell_wrap_format_bold)
+            worksheet.merge_range(total_row, 2, total_row, 3, 'المجموع', cell_wrap_format_bold)
 
             workbook.close()
             export_id = base64.b64encode(open('/tmp/' + file_path, 'rb+').read())

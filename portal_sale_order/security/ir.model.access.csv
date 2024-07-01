@@ -12,5 +12,4 @@ access_loyalty_rule,access_loyalty_rule,loyalty.model_loyalty_rule,base.group_po
 access_sale_order,access_sale_order,sale.model_sale_order,base.group_portal,1,1,1,1
 access_sale_order_line,access_sale_order_line,sale.model_sale_order_line,base.group_portal,1,1,1,1
 access_uom_uom_portal,access_uom_uom_portal,uom.model_uom_uom,base.group_portal,1,0,0,0
-access_res_partner_portal,access_res_partner_portal,base.model_res_partner,base.group_portal,1,0,0,0
-
+access_res_partner_portal,access_res_partner_portal,base.model_res_partner,base.group_portal,1,1,1,1

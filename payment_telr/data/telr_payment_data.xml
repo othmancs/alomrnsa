@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
     <record id="payment_acquirer_telr" model="payment.provider">
-        <field name="name">Telr Payment</field>
-        <field name="display_as">CREDIT/DEBIT CARD</field>
-		<field name="capture_manually"></field>
+        <field name="name">Telr</field>
+        <field name="display_as">Telr</field>
         <field name="image_128" type="base64" file="payment_telr/static/src/img/telr_icon.png" />
         <field name="code">telr</field>
         <field name="company_id" ref="base.main_company" />
         <field name="module_id" ref="base.module_payment_telr"/>
         <field name="redirect_form_view_id" ref="redirect_form" />
-		<field name="inline_form_view_id" ref="inline_form"/>
         <field name="state">disabled</field>
         <field name="telr_merchant_id">12345</field>
         <field name="telr_api_key">****************</field>
-		<field name="telr_lang">en</field>
-		<field name="telr_payment_mode">0</field>
-		<field name="telr_trans_type">sale</field>
-		<field name="telr_remote_key"></field>
         <field name="pre_msg">
             <![CDATA[
 <p>You will be redirected to the Telr payment page after clicking on payment button.</p>]]>
@@ -24,6 +18,6 @@
         <field name="payment_icon_ids" eval='[(6, 0, [
             ref("payment.payment_icon_cc_visa"),
             ref("payment.payment_icon_cc_mastercard")
-        ])]' />		
+        ])]' />
     </record>
 </odoo>

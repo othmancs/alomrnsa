@@ -7,13 +7,13 @@ class ResPartner(models.Model):
 
     ref = fields.Char(string='Reference', index=True, readonly=True)
 
-    @api.constrains('vat')
-    def _check_unique_vat(self):
-        for partner in self:
-            if partner.vat:
-                existing_partner = self.search([('vat', '=', partner.vat), ('id', '!=', partner.id)])
-                if existing_partner:
-                    raise ValidationError("Tax ID already exists!")
+    # @api.constrains('vat')
+    # def _check_unique_vat(self):
+    #     for partner in self:
+    #         if partner.vat:
+    #             existing_partner = self.search([('vat', '=', partner.vat), ('id', '!=', partner.id)])
+    #             if existing_partner:
+    #                 raise ValidationError("Tax ID already exists!")
 
     def create(self, vals_list):
         for vals in vals_list:

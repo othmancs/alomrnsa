@@ -21,8 +21,8 @@
 #############################################################################
 
 import logging
-from odoo import models, fields
-
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -47,7 +47,17 @@ class Branch(models.Model):
     email = fields.Char(store=True, )
     phone = fields.Char(store=True)
     website = fields.Char(readonly=False)
+    is_default = fields.Boolean('Default')
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', 'The Branch name must be unique !')
     ]
+
+    @api.constrains('is_default')
+    def _check_single_default(self):
+        for branch in self:
+            if branch.is_default:
+                existing_default_branch = self.search([('is_default', '=', True), ('id', '!=', branch.id)])
+                if existing_default_branch:
+                    raise ValidationError("There can only be one Default branch")
+

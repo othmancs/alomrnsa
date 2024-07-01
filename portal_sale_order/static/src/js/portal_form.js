@@ -5,7 +5,7 @@ odoo.define('portal_sale_order.portal_form', function(require){
     var rpc = require('web.rpc');
     // var core = require('web.core');
 
-    const select2Options = {
+    const select4Options = {
         theme: 'bootstrap',
         minimumResultsForSearch: 1,
         width: 'resolve'
@@ -18,9 +18,11 @@ odoo.define('portal_sale_order.portal_form', function(require){
         events: {
             'click #add_child_row': '_onAddChild',
             'click .delete-row': '_onDeleteRow',
+            'click #hidden_box_btn': '_onModalShow',
             'change .product_select': '_onProductSelectChange',
             'change .pricelist_line_id': '_onProductSelectChange',
             'change #partner_id': '_onChangePartnerId',
+            'click #submit_customer': '_onClickSubmitCustomer',
             'submit': '_onFormSubmit'
         },
 
@@ -33,9 +35,9 @@ odoo.define('portal_sale_order.portal_form', function(require){
             this.$pricelist = $('#pricelist_id')
             this.$branch = $('#branch_id')
 
-            this.$partner.select2({...select2Options, placeholder:'Select Customer'})
-            this.$pricelist.select2({...select2Options, placeholder:'Select Pricelist'})
-            this.$branch.select2({...select2Options, placeholder:'Select Branch'})
+            this.$partner.select4({...select4Options, placeholder:'Select Customer'})
+            this.$pricelist.select4({...select4Options, placeholder:'Select Pricelist'})
+            this.$branch.select4({...select4Options, placeholder:'Select Branch'})
 
 
             this.$childTableBody.find('tr').each(function() {
@@ -43,9 +45,9 @@ odoo.define('portal_sale_order.portal_form', function(require){
                 if ($(this).css('display') === 'none') {
                     return true;
                 }
-                $(this).find('select[name="select_product"]').select2({...select2Options, placeholder:'Select Product'});
-                $(this).find('select[name="select_warehouse"]').select2({...select2Options, placeholder:'Select Warehouse'});
-                $(this).find('select[name="pricelist_line_id"]').select2({...select2Options, placeholder:'Select PriceList'});
+                $(this).find('select[name="select_product"]').select4({...select4Options, placeholder:'Select Product'});
+                $(this).find('select[name="select_warehouse"]').select4({...select4Options, placeholder:'Select Warehouse'});
+                $(this).find('select[name="pricelist_line_id"]').select4({...select4Options, placeholder:'Select PriceList'});
             });
 
 
@@ -76,13 +78,13 @@ odoo.define('portal_sale_order.portal_form', function(require){
             // Clear all the fields
             newRow.find('select[name="select_product"]')
                 .prop('selectedIndex', 0)
-                .select2({...select2Options, placeholder:'Select Product'});
+                .select4({...select4Options, placeholder:'Select Product'});
             newRow.find('select[name="select_warehouse"]')
                 .prop('selectedIndex', 0)
-                .select2({...select2Options, placeholder:'Select Warehouse'});
+                .select4({...select4Options, placeholder:'Select Warehouse'});
             newRow.find('select[name="pricelist_line_id"]')
                 .prop('selectedIndex', 0)
-                .select2({...select2Options, placeholder:'Select Pricelist'});
+                .select4({...select4Options, placeholder:'Select Pricelist'});
 
             this.$childTableBody.append(newRow);
         },
@@ -90,6 +92,10 @@ odoo.define('portal_sale_order.portal_form', function(require){
         _onDeleteRow: function (event) {
             var row = $(event.target).closest('tr');
             row.remove();
+        },
+
+        _onModalShow: function (event) {
+            $("#hidden_box").modal('show');
         },
 
         _onProductSelectChange: function (event) {
@@ -116,7 +122,6 @@ odoo.define('portal_sale_order.portal_form', function(require){
                         args: [parseInt(productId), parseInt(quantity), parseInt(priceList)],
                     }).then(function (priceData) {
                         price.val(parseInt(priceData));
-                        console.log(priceData)
                     });
         },
 
@@ -134,7 +139,6 @@ odoo.define('portal_sale_order.portal_form', function(require){
                         args: [parseInt(productId), parseInt(quantity), parseInt(priceList)],
                     }).then(function (priceData) {
                         price.val(parseFloat(priceData));
-                        console.log(priceData)
                     });
         },
 
@@ -202,5 +206,69 @@ odoo.define('portal_sale_order.portal_form', function(require){
 
             this.el.submit();
         },
+
+        _onClickSubmitCustomer: async function (event) {
+            event.preventDefault();
+
+            try {
+                // Retrieve the values from input fields
+                var customer = $('#new_customer').val();
+                var phone = $('#new_phone').val();
+
+                // First RPC call to create the customer
+                // const customerId = await rpc.query({
+                //     model: 'res.partner',
+                //     method: 'create',
+                //     args: [{
+                //         'name': customer,
+                //         'phone': phone
+                //     }],
+                // });
+                const customerId = await rpc.query({
+                    model: 'res.partner',
+                    method: 'create_partner_with_sudo',
+                    args: [{
+                        'name': customer,
+                        'phone': phone
+                    }],
+                });
+
+
+                // Second RPC call to fetch the customer data using the created customerId
+                const customerData = await rpc.query({
+                    model: 'res.partner',
+                    method: 'search_read',
+                    kwargs: {
+                        domain: [
+                            ['id', '=', customerId]
+                        ],
+                        fields: ['id', 'name', 'property_product_pricelist'],
+                        limit: 1,
+                    }
+                });
+
+                if (customerData.length > 0) {
+                    const customer = customerData[0];
+
+                    // Create a new option element
+                    const option = document.createElement('option');
+                    option.value = customer.id;
+                    option.setAttribute('data-pricelist', customer.pricelist_id ? customer.pricelist_id[0] : '');
+                    option.textContent = customer.name;
+
+                    const selectElement = document.getElementById('partner_id');
+                    selectElement.appendChild(option);
+
+                    // Set the newly added option as selected
+                    selectElement.value = customer.id;
+                }
+                $('#new_customer').val('');
+                $('#new_phone').val('');
+                $("#hidden_box").modal('hide');
+
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
     });
 });

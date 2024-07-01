@@ -64,8 +64,8 @@ class AccountMove(models.Model):
         return ''
 
     def amount_word(self, amount):
-        language = self.partner_id.lang or 'ar_AA'
-        language_id = self.env['res.lang'].search([('code', '=', 'ar_AA')])
+        language = self.partner_id.lang or 'ar_001'
+        language_id = self.env['res.lang'].search([('code', '=', 'ar_001')])
         if language_id:
             language = language_id.iso_code
         amount_str = str('{:2f}'.format(amount))
@@ -74,7 +74,7 @@ class AccountMove(models.Model):
         after_point_value = amount_str_splt[1][:2]
         before_amount_words = num2words(int(before_point_value), lang=language)
         after_amount_words = num2words(int(after_point_value), lang=language)
-        amount = before_amount_words + ' ' + after_amount_words
+        amount = before_amount_words +' ريال ' +' و ' + after_amount_words+' هللة '+' فقط لا غير '
         return amount
 
     def amount_total_words(self, amount):
