@@ -1,0 +1,168 @@
+<!--<odoo>-->
+<!--    <data>-->
+<!--        <template id="sales_report_template">-->
+<!--            <t t-call="web.html_container">-->
+<!--                <t t-call="web.external_layout">-->
+<!--                    <div class="page" dir="rtl" style="">-->
+<!--                        <h5>تقرير المبيعات</h5>-->
+<!--                        &lt;!&ndash;                        <br/>&ndash;&gt;-->
+<!--                        <div class="row mt-4 mb-4">-->
+<!--                            <div class="col-auto col-3 mw-100 mb-2">-->
+<!--                                <p class="m-0">-->
+<!--                                    <strong>-->
+<!--                                        من تاريخ:-->
+<!--                                        <span t-esc="form['date_start']"/>-->
+<!--                                    </strong>-->
+<!--                                </p>-->
+<!--                                <p class="m-0">-->
+<!--                                    <strong>-->
+<!--                                        الي تاريخ:-->
+<!--                                        <span t-esc="form['date_end']"/>-->
+<!--                                    </strong>-->
+<!--                                </p>-->
+<!--                                <p class="m-0">-->
+<!--                                    <strong>-->
+<!--                                        طبع بواسطة :-->
+<!--                                        <span t-esc="form['printed_by']"/>-->
+<!--                                    </strong>-->
+<!--                                </p>-->
+<!--                                <p class="m-0">-->
+<!--                                    <strong>-->
+<!--                                        تاريخ الطباعة :-->
+<!--                                        <span t-esc="form['print_date']"/>-->
+<!--                                    </strong>-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <table>-->
+<!--                            <tbody>-->
+<!--                                <t t-foreach="branches" t-as="branch">-->
+<!--                                    <tr style="border-left:none;border-top:none;border-right:none; background-color:#CCC7BF;">-->
+<!--                                        <td colspan="5" class="text-right" style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">-->
+<!--                                            <strong>-->
+<!--                                                <span t-esc="branch['branch_name']"/>-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--&lt;!&ndash;                                        <td> </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <td> </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <td> </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <td> </td>&ndash;&gt;-->
+
+<!--                                        <td class="text-center" style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">-->
+<!--                                            <strong>-->
+<!--                                                <span t-esc="sum(line['total_price'] for line in data if line['branch_name'] == branch['branch_name'])"/>-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--                                        <td class="text-center" style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">-->
+<!--                                            <strong>-->
+<!--                                                <span t-esc="sum(line['total_discount'] for line in data if line['branch_name'] == branch['branch_name'])"/>-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--                                        <td class="text-center" style="border-left:none;border-top:none;border-right:none; background-color:#CCC7BF;">-->
+<!--                                            <strong>-->
+<!--                                                <span t-esc="sum(line['net_cost'] for line in data if line['branch_name'] == branch['branch_name'])"/>-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--                                        <td class="text-center" style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">-->
+<!--                                            <strong>-->
+<!--                                                <span t-esc="sum(line['cost'] for line in data if line['branch_name'] == branch['branch_name'])"/>-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--                                        <td class="text-center" style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">-->
+<!--                                            <strong>-->
+<!--                                                <span t-esc="sum(line['total_credit_note'] for line in data if line['branch_name'] == branch['branch_name'])"/>-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--                                         <td class="text-center" style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">-->
+<!--                                            <strong>-->
+<!--                                                <span t-esc="sum(line['t'] for line in data if line['branch_name'] == branch['branch_name'])"/>-->
+<!--                                            </strong>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                    <th class="text-center">رقم الفاتوره</th>-->
+<!--                                    <th class="text-center">اسم البائع</th>-->
+<!--                                    <th class="text-center">اسم العميل</th>-->
+<!--                                    <th class="text-center">طريقة الدفع</th>-->
+<!--                                    <th class="text-center">التاريخ</th>-->
+<!--                                    <th class="text-center">اجمالى البيع</th>-->
+<!--                                    <th class="text-center">خصم بيع</th>-->
+<!--                                    <th class="text-center">صافى البيع</th>-->
+<!--                                    <th class="text-center">اجمالى تكلفه البيع</th>-->
+<!--                                    <th class="text-center">اجمالى الارجعات</th>-->
+<!--                                    <th class="text-center">تكلفة الارجعات</th>-->
+<!--                                </tr>-->
+<!--                                    <t t-foreach="data" t-as="line">-->
+<!--                                        <tr t-if="line['branch_name'] == branch['branch_name']">-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['invoice_number']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['seller_name']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['customer_name']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['payment_method']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['invoice_date']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['total_price']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['total_discount']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['net_cost']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['cost']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['total_credit_note']"/>-->
+<!--                                            </td>-->
+<!--                                            <td class="text-center">-->
+<!--                                                <span t-esc="line['t']"/>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--                                    </t>-->
+<!--                                </t>-->
+<!--                            </tbody>-->
+
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </template>-->
+<!--        &lt;!&ndash;   QWeb Reports   &ndash;&gt;-->
+<!--        &lt;!&ndash;   NAME & FILE_NAME should be the same   &ndash;&gt;-->
+<!--        <record id="sales_report" model="ir.actions.report">-->
+<!--            <field name="name">تقرير المبيعات</field>-->
+<!--            <field name="model">sales.report.wizard</field>-->
+<!--            <field name="report_type">qweb-pdf</field>-->
+<!--            <field name="report_name">sb_sale_edit_and_reports.sales_report_template</field>-->
+<!--            <field name="report_file">sb_sale_edit_and_reports.sales_report_template</field>-->
+<!--            <field name="binding_model_id" ref="model_sales_report_wizard"/>-->
+<!--            <field name="binding_type">report</field>-->
+<!--        </record>-->
+<!--        <record id="paperformat_action_sale_order_id" model="report.paperformat">-->
+<!--            <field name="name">Sales report</field>-->
+<!--            <field name="default" eval="True"/>-->
+<!--            <field name="format">custom</field>-->
+<!--            <field name="page_height">297</field>-->
+<!--            <field name="page_width">210</field>-->
+<!--            <field name="orientation">Landscape</field>-->
+<!--            <field name="margin_top">40</field>-->
+<!--            <field name="margin_bottom">24.5</field>-->
+<!--            <field name="margin_left">1</field>-->
+<!--            <field name="margin_right">4</field>-->
+<!--            <field name="header_line" eval="False"/>-->
+<!--            <field name="header_spacing">35</field>-->
+<!--            <field name="dpi">90</field>-->
+<!--            <field name="report_ids" eval="[(6,0,[ref('sb_sale_edit_and_reports.sales_report')])]"/>-->
+<!--        </record>-->
+<!--    </data>-->
+<!--</odoo>-->

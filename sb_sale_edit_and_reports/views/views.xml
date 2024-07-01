@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_sales_report" model="ir.actions.report">
+            <field name="name">sales report xlsx</field>
+            <field name="model">sales.report.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_sale_edit_and_reports.report_sales_report</field>
+            <field name="report_file">sb_sale_edit_and_reports.report_sales_report</field>
+            <field name="print_report_name">'تقرير المبيعات'</field>
+            <field name="binding_model_id" ref="model_sales_report_wizard"/>
+        </record>
+
+        <record id="sales_report_wizard_form" model="ir.ui.view">
+            <field name="name">sales.report.wizard.form</field>
+            <field name="model">sales.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="branch_ids" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="date_end"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="print_date" invisible="1"/>
+                                <field name="printed_by" invisible="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_sales_export_xlsx" type="object" string="Xlsx" class="btn-primary"/>
+<!--                        <button name="generate_pdf_report" type="object" string="PDF" class="btn-primary"/>-->
+                        <button special="cancel" class="btn-secondary" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sales_report_wizard_action" model="ir.actions.act_window">
+            <field name="name">تقرير المبيعات</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sales.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="sales_report_wizard_new"
+                  parent="sale.menu_sale_report"
+                  name="تقرير المبيعات"
+                  action="sales_report_wizard_action"
+                  sequence="11"/>
+
+    </data>
+</odoo>
