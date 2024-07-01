@@ -271,14 +271,24 @@ class MaterialRequest(models.Model):
         vals.update({"name": name})
         res = super(MaterialRequest, self).create(vals)
         return res
+    #
+    # def show_picking(self):
+    #     """Redirects to the stock picking view."""
+    #     for rec in self:
+    #         res = self.env.ref("stock.action_picking_tree_all")
+    #         res = res.read()[0]
+    #         res["domain"] = str([("request_id", "=", rec.id)])
+    #     return res
 
     def show_picking(self):
         """Redirects to the stock picking view."""
-        for rec in self:
-            res = self.env.ref("stock.action_picking_tree_all")
-            res = res.read()[0]
-            res["domain"] = str([("request_id", "=", rec.id)])
-        return res
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Picking',
+            'view_mode': 'tree,form',
+            'res_model': 'stock.picking',
+            'domain': [('request_id', '=', self.id)],
+        }
 
     def unlink(self):
         for rec in self:
@@ -287,3 +297,4 @@ class MaterialRequest(models.Model):
                     _("This record can be deleted only in Draft or Rejected state.")
                 )
         return super(MaterialRequest, self).unlink()
+
