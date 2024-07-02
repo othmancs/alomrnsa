@@ -28,6 +28,7 @@ class CreditNoteWizard(models.TransientModel):
             domain += [('invoice_date', '<=', date_to)]
 
         domain += [('company_id', '=', self.company_id.id)]
+        domain += [('move_type', '=', 'out_refund')]
 
         wizard_data = self.read()[0]
 
@@ -56,9 +57,9 @@ class CreditNoteWizard(models.TransientModel):
         date_to = self.date_to
         if date_to:
             domain += [('invoice_date', '<=', date_to)]
-        if branch_ids:
-            domain += [('branch_id', 'in', branch_ids.ids)]
+
         domain += [('company_id', '=', self.company_id.id)]
+        domain += [('move_type', '=', 'out_refund')]
 
         wizard_data = self.read()[0]
 
