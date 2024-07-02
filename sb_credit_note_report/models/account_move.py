@@ -9,4 +9,4 @@ class AccountMove(models.Model):
     @api.depends('line_ids.purchase_price')
     def _compute_total_price(self):
         for record in self:
-            record.total_purchase_price = sum(rec.purchase_price for rec in record.line_ids)
+            record.total_purchase_price = sum(rec.purchase_price * rec.quantity for rec in record.line_ids)

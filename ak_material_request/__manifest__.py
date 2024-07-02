@@ -21,6 +21,7 @@
     "depends": ["stock", "mail", 'multi_branch_base'],
     "data": [
         "security/ir.model.access.csv",
+        "security/security.xml",
         "data/material_request_sequence.xml",
         "wizard/reject_reason_wizard_views.xml",
         "wizard/transit_location_wizard.xml",
@@ -38,3 +39,4 @@
     "currency": "USD",
     "price": 19.11,
 }
+

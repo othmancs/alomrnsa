@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="record_rule_see_by_user" model="ir.rule">
+        <field name="name">See Material Requests Created by User</field>
+        <field name="model_id" ref="ak_material_request.model_material_request"/>
+        <field name="domain_force">['|',('branch_to_id', 'in', user.branch_ids.ids),('branch_from_id', 'in', user.branch_ids.ids)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>
