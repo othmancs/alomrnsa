@@ -35,30 +35,40 @@ class BranchSalesComparison(models.TransientModel):
         report_data = []
         for branch in existing_branch:
             current_branch_lines = line_data.filtered(lambda x: x.branch_id == branch)
-            total_option1_branch = sum([sum(move.line_ids.mapped('price_total')) for move in
-                                        current_branch_lines.filtered(
-                                            lambda x: x.move_type != 'out_refund' and x.payment_method == 'option1')])
-            total_option2_branch = sum([sum(move.line_ids.mapped('price_total')) for move in
-                                        current_branch_lines.filtered(
-                                            lambda x: x.move_type != 'out_refund' and x.payment_method == 'option2')])
+            total_option1_branch = sum([sum(move.mapped('amount_untaxed')) for move in
+                                        current_branch_lines.filtered(lambda x: x.payment_method == 'option1')])
+            total_option2_branch = sum([sum(move.mapped('amount_untaxed')) for move in
+                                        current_branch_lines.filtered(lambda x: x.payment_method == 'option2')])
+            total_option1_branch_purchase = sum([sum(move.line_ids.mapped('purchase_price')) for move in
+                                                 current_branch_lines.filtered(
+                                                     lambda x: x.payment_method != 'option1')])
+            total_option2_branch_purchase = sum([sum(move.line_ids.mapped('purchase_price')) for move in
+                                                 current_branch_lines.filtered(
+                                                     lambda x: x.payment_method != 'option2')])
+            total_op1_op2_purchase = total_option1_branch_purchase + total_option2_branch_purchase
             total_op1_op2 = total_option1_branch + total_option2_branch
+
             out_refund_price = self.env['account.move'].search([
                 ('move_type', '=', 'out_refund'),
                 ('branch_id', '=', branch.id),
-                ('state', '=', 'posted')
+                ('state', '=', 'posted'),
+                ('date', '>=', self.date_start),
+                ('date', '<=', self.date_end)
             ])
             total_out_refund_price = sum(out_refund_price.mapped('amount_untaxed'))
-            total_out_refund_purchase_price = sum(out_refund_price.line_ids.mapped('purchase_price'))
+            total_out_refund_purchase_price = sum(
+                out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
 
-            total_all = abs(total_op1_op2 - total_out_refund_price)
-            profit = abs(total_all - total_out_refund_purchase_price)
-            total_payments_branch = 0.0
-            for line in current_branch_lines:
-                payments = self.env['account.payment'].search([
-                    ('move_id', '=', line.payment_id.id),
-                    ('state','=','posted')
-                ])
-                total_payments_branch += sum(payments.mapped('amount_company_currency_signed'))
+            total_all = abs(total_op1_op2) - abs(total_out_refund_price)
+            profit = abs(total_all) - abs(total_out_refund_purchase_price)
+            payments = self.env['account.payment'].search([
+                ('branch_id', '=', branch.id),
+                ('state', '=', 'posted'),
+                ('date', '>=', self.date_start),
+                ('date', '<=', self.date_end)
+            ])
+            total_payments_branch = sum(payments.mapped('amount_company_currency_signed'))
+            total_purchase = abs(total_op1_op2_purchase) - abs(total_out_refund_purchase_price)
 
             wizard_data = self.read()[0]
             report_data_item = {
@@ -68,7 +78,7 @@ class BranchSalesComparison(models.TransientModel):
                 'total_op1_op2': total_op1_op2,
                 'total_refund_price': total_out_refund_price,
                 'total_all': total_all,
-                'total_out_refund_cost_branch': total_out_refund_purchase_price,
+                'total_out_refund_cost_branch': total_purchase,
                 'total_profit': profit,
                 'total_payments': total_payments_branch,
             }
