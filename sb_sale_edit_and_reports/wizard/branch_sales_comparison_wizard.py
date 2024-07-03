@@ -78,7 +78,7 @@ class BranchSalesComparison(models.TransientModel):
                 'total_op1_op2': total_op1_op2,
                 'total_refund_price': total_out_refund_price,
                 'total_all': total_all,
-                'total_out_refund_cost_branch': total_purchase,
+                'total_out_refund_cost_branch': total_op1_op2_purchase,
                 'total_profit': profit,
                 'total_payments': total_payments_branch,
             }
