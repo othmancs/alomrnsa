@@ -9,7 +9,7 @@
     "depends": ["base", "hr"],
     "data": [
         "views/biometric_machine_view.xml",
-        "security/res_groups.xml",
+        # "security/res_groups.xml",
         "security/ir.model.access.csv"
     ],
     "images": ["static/images/zk_screenshot.jpg"],
