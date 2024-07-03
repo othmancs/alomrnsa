@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="group_zk_manager_demo_udp" model="res.groups">
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="name">ZKteco manager Demo (udp)</field>
+            <field name="implied_ids" eval="[(4, ref('hr_attendance.group_hr_attendance_manager'))]"/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_zk_machine_demo_udp_form" model="ir.ui.view">
+		<field name="name">zk.machine.form</field>
+		<field name="model">zk.machine.demo.udp</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+		<form string="Zk Machine">
+			<header>
+				<button name="try_connection" type="object" string="Try connection"/>
+			</header>
+			<sheet>
+				<div class="oe_left">
+					<h1>
+						<field name="name" required="1" placeholder="Machine IP"/>
+					</h1>
+				</div>
+				<br/><br/><br/>
+				<group col="4"  colspan="4"> 
+					<field name="port" required="1"/>
+				</group>
+			</sheet>
+		</form>
+		</field>
+	</record>
+
+	<record id="view_zk_machine_demo_udp_tree" model="ir.ui.view">
+		<field name="name">zk.machine.tree</field>
+		<field name="model">zk.machine.demo.udp</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Zk Machine">
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+	
+	<record id="attendance_machine_demo_udp_action" model="ir.actions.act_window">
+            <field name="name">Attendances</field>
+            <field name="res_model">zk.machine.demo.udp</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    	<menuitem id="attendance_machine_menu_demo_udp" name="Attendance Machine Demo" action="attendance_machine_demo_udp_action" parent="hr.menu_hr_root" sequence="20"/>
+	
+	
+	
+        
+     </data>
+</odoo>
+

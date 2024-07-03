@@ -1,0 +1,316 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_biometric_machine_zk
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-28 05:35+0000\n"
+"PO-Revision-Date: 2019-08-28 05:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_biometric_machine_zk
+#: code:addons/hr_biometric_machine_zk/models/biometric_machine.py:186
+#, python-format
+msgid "%(empl_name)s Desde %(check_in)s"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: code:addons/hr_biometric_machine_zk/models/biometric_machine.py:192
+#: code:addons/hr_biometric_machine_zk/models/biometric_machine.py:198
+#, python-format
+msgid "%(empl_name)s Desde %(check_in)s Hasta %(check_out)s"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Are you sure you want to delete the registered attendance in the zkteco device?"
+msgstr "¿Está seguro de que desea eliminar la asistencia registrada en el dispositivo zkteco?"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Are you sure you want to do this?"
+msgstr "¿Seguro que quieres hacer esto?"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model,name:hr_biometric_machine_zk.model_hr_attendance
+msgid "Attendance"
+msgstr "Servicio"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.ui.menu,name:hr_biometric_machine_zk.attendance_machine_menu
+msgid "Attendance Machine"
+msgstr "Maquina de asistencia"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.actions.act_window,name:hr_biometric_machine_zk.attendance_machine_action
+msgid "Attendances"
+msgstr "Asistencias"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.zk_create_user_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: hr_biometric_machine_zk
+#: code:addons/hr_biometric_machine_zk/models/biometric_machine.py:227
+#: code:addons/hr_biometric_machine_zk/models/biometric_machine.py:253
+#, python-format
+msgid "Cannot create new attendance record for %(empl_name)s, the employee was already checked in on %(datetime)s"
+msgstr "No se puede crear un nuevo registro de asistencia para %(empl_name)s, el empleado ya estaba registrado %(datetime)s"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_hr_attendance__check_in
+msgid "Check In"
+msgstr "Entrada"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Clear attendance"
+msgstr "Borrar Asistencias"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.zk_create_user_view
+msgid "Create"
+msgstr "Crear"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.actions.act_window,name:hr_biometric_machine_zk.action_create_user_zk
+msgid "Create User Zk"
+msgstr "Crear usuario Zk"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Create Users"
+msgstr "Crear Usuarios"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model,name:hr_biometric_machine_zk.model_zk_create_user
+msgid "Create user in machine Zk"
+msgstr "Crear usuario en máquina Zk"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__create_uid
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__create_uid
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__create_uid
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__create_date
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__create_date
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__create_date
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Delete employee of zkteco device."
+msgstr "Eliminar empleado del dispositivo zkteco"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__display_name
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__display_name
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__display_name
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: hr_biometric_machine_zk
+#: selection:zk.machine,state:0
+msgid "Done"
+msgstr "Hecho"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Download Data"
+msgstr "Descargar datos"
+
+#. module: hr_biometric_machine_zk
+#: selection:zk.machine,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model,name:hr_biometric_machine_zk.model_hr_employee
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__employee_ids
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__employee_ids
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__id
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__id
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__id
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user____last_update
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line____last_update
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine____last_update
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__write_uid
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__write_uid
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__write_uid
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__write_date
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__write_date
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__write_date
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__location_id
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__location_id
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine_location__name
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_hr_employee__zk_location_line_ids
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__machine_id
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__machine_id
+msgid "Machine"
+msgstr "Maquina"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__name
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Machine IP"
+msgstr "IP de la Maquina"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__port
+msgid "Port Number"
+msgstr "Número de puerto"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Restart"
+msgstr "Reiniciar"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_machine__state
+msgid "State"
+msgstr "Estado"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "¿Seguro que quieres eliminar al empleado del dispositivo zkteco?"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Synchronize"
+msgstr "Sincronizar"
+
+#. module: hr_biometric_machine_zk
+#: sql_constraint:zk.employee.location.line:0
+msgid "There is a record of this employee for this location."
+msgstr "Hay un registro de este empleado para esta ubicación."
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+msgid "Try connection"
+msgstr "Prueba la conexión"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_create_user__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: hr_biometric_machine_zk
+#: selection:zk.create.user,type:0
+msgid "USER_ADMIN"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: selection:zk.create.user,type:0
+msgid "USER_DEFAULT"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__uid
+msgid "Uid"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,help:hr_biometric_machine_zk.field_zk_employee_location_line__zk_num
+msgid "ZK Attendance User Code"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_hr_employee_inherit
+msgid "Número ZK y ubicación"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model.fields,field_description:hr_biometric_machine_zk.field_zk_employee_location_line__zk_num
+msgid "ZKSoftware Number"
+msgstr "Número de software ZK"
+
+#. module: hr_biometric_machine_zk
+#: model:res.groups,name:hr_biometric_machine_zk.group_zk_manager
+msgid "ZKteco manager"
+msgstr "ZKteco Responsable"
+
+#. module: hr_biometric_machine_zk
+#: model:res.groups,name:hr_biometric_machine_zk.group_zk_user
+msgid "ZKteco user"
+msgstr "ZKteco Oficial"
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_form
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.view_zk_machine_tree
+msgid "Zk Maquina"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model_terms:ir.ui.view,arch_db:hr_biometric_machine_zk.zk_create_user_view
+msgid "or"
+msgstr "o"
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model,name:hr_biometric_machine_zk.model_zk_employee_location_line
+msgid "zk.employee.location.line"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model,name:hr_biometric_machine_zk.model_zk_machine
+msgid "zk.machine"
+msgstr ""
+
+#. module: hr_biometric_machine_zk
+#: model:ir.model,name:hr_biometric_machine_zk.model_zk_machine_location
+msgid "zk.machine.location"
+msgstr ""
+
