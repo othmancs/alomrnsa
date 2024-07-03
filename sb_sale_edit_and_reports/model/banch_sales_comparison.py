@@ -27,7 +27,8 @@ class BranchComparison(models.AbstractModel):
 
             domain = [('date', '>=', obj.date_start),
                       ('date', '<=', obj.date_end),
-                      ('state', '=', 'posted')
+                      ('state', '=', 'posted'),
+                      ('move_type', '=', 'out_invoice')
                       ]
             lines_data = self.env['account.move'].search(domain)
 
@@ -63,11 +64,12 @@ class BranchComparison(models.AbstractModel):
                 current_branch_lines = line_data.filtered(lambda x: x.branch_id == branch)
                 total_option1_branch = sum([sum(move.mapped('amount_untaxed')) for move in current_branch_lines.filtered(lambda x: x.payment_method == 'option1')])
                 total_option2_branch = sum([sum(move.mapped('amount_untaxed')) for move in current_branch_lines.filtered(lambda x: x.payment_method == 'option2')])
-                total_option1_branch_purchase = sum([sum(move.line_ids.mapped('purchase_price')) for move in
+                total_option1_branch_purchase = sum([sum(move.line_ids.mapped(lambda x: x.purchase_price * x.quantity)) for move in
                                             current_branch_lines.filtered(lambda x: x.payment_method != 'option1')])
-                total_option2_branch_purchase = sum([sum(move.line_ids.mapped('purchase_price')) for move in
+                total_option2_branch_purchase = sum([sum(move.line_ids.mapped(lambda x: x.purchase_price * x.quantity)) for move in
                                             current_branch_lines.filtered(lambda x: x.payment_method != 'option2')])
                 total_op1_op2_purchase = total_option1_branch_purchase+total_option2_branch_purchase
+                print('fffffffff',total_op1_op2_purchase)
                 total_op1_op2 = total_option1_branch + total_option2_branch
 
                 out_refund_price = self.env['account.move'].search([
@@ -77,11 +79,10 @@ class BranchComparison(models.AbstractModel):
                     ('date', '>=', obj.date_start),
                     ('date', '<=', obj.date_end)
                 ])
-                total_out_refund_price = sum(out_refund_price.mapped('amount_untaxed'))
+                total_out_refund_price = sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
                 total_out_refund_purchase_price = sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
-
                 total_all = abs(total_op1_op2)-abs(total_out_refund_price)
-                profit = abs(total_all)-abs(total_out_refund_purchase_price)
+                profit = abs(total_all-total_out_refund_purchase_price)
                 payments = self.env['account.payment'].search([
                     ('branch_id', '=', branch.id),
                     ('state', '=', 'posted'),
