@@ -13,33 +13,38 @@
                         <br/>
                         <div class="row mt-4 mb-4" id="creditnote">
                             <div class="col-auto col-3 mw-100 mb-2">
-                                <!--                                <p class="m-0">-->
-                                <!--                                    <strong>-->
-                                <!--                                        الفرع :-->
-                                <!--                                        <span t-esc="form['branch_names']"/>-->
-                                <!--                                    </strong>-->
-                                <!--                                </p>-->
                                 <p class="m-0">
                                     <strong>
-                                        من تاريخ:
+                                        <t t-if="form['branch_names'] and len(form['branch_names'].split(',')) == 1">
+                                            الفــرع :
+                                            <span t-esc="form['branch_names']"/>
+                                        </t>
+                                        <t t-else="">
+                                            <p></p>
+                                        </t>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        مــن تـاريـخ:
                                         <span t-esc="form['date_from']"/>
                                     </strong>
                                 </p>
                                 <p class="m-0">
                                     <strong>
-                                        الي تاريخ:
+                                        الــي تـاريـخ:
                                         <span t-esc="form['date_to']"/>
                                     </strong>
                                 </p>
                                 <p class="m-0">
                                     <strong>
-                                        طبع بواسطة :
+                                        طبـع بواسطـة :
                                         <span t-esc="form['printed_by']"/>
                                     </strong>
                                 </p>
                                 <p class="m-0">
                                     <strong>
-                                        تاريخ الطباعة :
+                                        تـاريخ الطبـاعـة :
                                         <span t-esc="form['print_date']"/>
                                     </strong>
                                 </p>
