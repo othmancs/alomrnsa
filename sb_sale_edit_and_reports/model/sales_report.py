@@ -1,6 +1,5 @@
 from odoo import models
 from datetime import date
-
 from odoo.tools import format_date
 
 
@@ -29,7 +28,11 @@ class SalesReportReport(models.AbstractModel):
             format5 = workbook.add_format(
                 {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': '#caf0f8'})
             domain = [('date', '>=', obj.date_start),
-                      ('date', '<=', obj.date_end)]
+                      ('date', '<=', obj.date_end),
+                      ('move_type','=','out_invoice'),
+                      ('state','=','posted')
+
+                      ]
             if obj.branch_ids:
                 domain.append(('branch_id', 'in', obj.branch_ids.ids))
             lines_data = self.env['account.move'].search(domain)
@@ -46,28 +49,30 @@ class SalesReportReport(models.AbstractModel):
             worksheet.write(row + 4, col + 1, self.env.user.name, format3)
 
             row += 8
+
             for branch in existing_branches:
                 current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
-                total_price_branch = sum([sum(move.line_ids.mapped('price_total')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-                total_out_refund_branch =sum([sum(move.line_ids.mapped('price_total')) for move in current_branch_lines.filtered(lambda x: x.move_type == 'out_refund')])
-                total_out_refund_price_branch = sum([sum(move.line_ids.mapped('purchase_price')) for move in current_branch_lines.filtered(lambda x: x.move_type == 'out_refund')])
-                print(total_out_refund_price_branch)
-                total_out_refund_gty_branch = sum([sum(move.line_ids.mapped('quantity')) for move in current_branch_lines.filtered(lambda x: x.move_type == 'out_refund')])
-                print(total_out_refund_gty_branch)
-                total = total_out_refund_gty_branch*total_out_refund_price_branch
-                total_discount_branch =sum([sum(move.line_ids.mapped('discount')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-                print(total_discount_branch)
-                total_net_cost_branch = total_price_branch - total_discount_branch
-                total_cost=sum([sum(move.line_ids.mapped('purchase_price')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+                unit_price_branch = sum([sum(move.mapped('amount_untaxed')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+                total_discount_branch = sum([sum(move.line_ids.mapped('discount')) for move in
+                                             current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+                branch_amount_untaxed=sum([sum(move.line_ids.mapped(lambda line: (line.price_unit*line.quantity) - line.discount)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+                total_cost_branch =  sum([sum(move.line_ids.mapped(lambda line: line.purchase_price * line.quantity)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
 
-                worksheet.write(row, col + 9, total_out_refund_branch, format5)
-                worksheet.write(row, col + 10, total, format5)
+                out_refund_price=self.env['account.move'].search([
+                    ('move_type','=','out_refund'),
+                    ('branch_id','=',branch.id),
+                    ('state', '=', 'posted')
+                    ])
+                total_out_refund_price = sum(out_refund_price.mapped('amount_untaxed'))
+                total_out_refund_purchase_price = sum(out_refund_price.line_ids.mapped('purchase_price'))
                 worksheet.write(row, col, branch.name, format5)
                 worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
-                worksheet.write(row, col + 5, total_price_branch, format5)
+                worksheet.write(row, col + 5, unit_price_branch, format5)
                 worksheet.write(row, col + 6, total_discount_branch, format5)
-                worksheet.write(row, col + 7, total_net_cost_branch, format5)
-                worksheet.write(row, col + 8, total_cost, format5)
+                worksheet.write(row, col + 7, branch_amount_untaxed, format5)
+                worksheet.write(row, col + 8, total_cost_branch, format5)
+                worksheet.write(row, col + 9, total_out_refund_price, format5)
+                worksheet.write(row, col + 10, total_out_refund_purchase_price, format5)
                 row += 1
                 worksheet.write(row, col, 'رقم الفاتورة ', format1)
                 worksheet.write(row, col + 1, 'اسم البائع ', format1)
@@ -86,19 +91,13 @@ class SalesReportReport(models.AbstractModel):
                     seller_name = account.created_by_id.name
                     customer_name = account.partner_id.name
                     invoice_date = account.invoice_date
-                    cost =sum(account.line_ids.mapped('purchase_price'))
+                    cost = cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
                     payment_method = account.payment_method
-                    if account.move_type != 'out_refund':
-                        total_price = sum(account.line_ids.mapped('price_total'))
-                    else:
-                        total_price = 0
+                    price = sum(account.mapped('amount_untaxed'))
                     total_discount = sum(account.line_ids.mapped('discount'))
-                    net_cost = total_price-total_discount
+                    net_cost =sum(account.line_ids.mapped(lambda line: (line.price_unit*line.quantity) - line.discount))
                     worksheet.write(row, col, invoice_number, format2)
-                    if seller_name:
-                        worksheet.write(row, col+1, seller_name, format2)
-                    else:
-                        worksheet.write(row, col + 1, '-', format2)
+                    worksheet.write(row, col+1, seller_name, format2)
                     worksheet.write(row, col+2, customer_name, format2)
                     if payment_method == 'option1':
                         worksheet.write(row, col+3, 'نقدى', format2)
@@ -107,19 +106,21 @@ class SalesReportReport(models.AbstractModel):
                     else:
                         worksheet.write(row, col + 3, '-', format2)
                     worksheet.write(row, col+4, format_date(self.env, invoice_date), format2)
-                    worksheet.write(row, col+5, total_price, format2)
+                    worksheet.write(row, col+5, price, format2)
                     worksheet.write(row, col+6, total_discount, format2)
                     worksheet.write(row, col+7, net_cost, format2)
                     worksheet.write(row, col + 8, cost, format2)
-
-                    if account.move_type == 'out_refund':
-                        t = sum(account.line_ids.mapped('purchase_price'))*sum(account.line_ids.mapped('quantity'))
-                        total_credit_note =sum(account.line_ids.mapped('price_total'))
-
-                        worksheet.write(row, col + 9, total_credit_note, format2)
-                        worksheet.write(row, col + 10, t, format2)
-                    else:
-                        worksheet.write(row, col + 9, 0, format2)
-                        worksheet.write(row, col + 10, 0, format2)
+                    out_refund=self.env['account.move'].search([
+                        ('move_type','=','out_refund'),
+                        ('branch_id','=',branch.id),
+                        ('reversed_entry_id','=',account.id),
+                        ('state', '=', 'posted')
+                    ])
+                    print('hhhhhhhhhhhhhhh',out_refund)
+                    for ac in out_refund:
+                        out_refund_purchase_price = sum(ac.mapped('total_purchase_price'))
+                        out_refund_price = sum(ac.mapped('amount_untaxed'))
+                        worksheet.write(row, col + 9, out_refund_price, format2)
+                        worksheet.write(row, col + 10, out_refund_purchase_price, format2)
 
                     row += 1

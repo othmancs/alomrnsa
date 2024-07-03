@@ -22,7 +22,9 @@ class BranchSalesComparison(models.TransientModel):
     def generate_pdf_report(self):
         domain = [('date', '>=', self.date_start),
                   ('date', '<=', self.date_end),
-                  ('state', '=', 'posted')]
+                  ('state', '=', 'posted'),
+                  ('move_type', '=', 'out_invoice')
+                  ]
         product_category_id = self.product_category_id.id
 
         lines_data = self.env['account.move'].search(domain)
@@ -40,18 +42,21 @@ class BranchSalesComparison(models.TransientModel):
                                         current_branch_lines.filtered(
                                             lambda x: x.move_type != 'out_refund' and x.payment_method == 'option2')])
             total_op1_op2 = total_option1_branch + total_option2_branch
-            total_out_refund_price_branch = sum([sum(move.line_ids.mapped('price_total')) for move in
-                                                 current_branch_lines.filtered(
-                                                     lambda x: x.move_type == 'out_refund')])
-            total_all = abs(total_op1_op2 - total_out_refund_price_branch)
-            total_out_refund_cost_branch = sum([sum(move.line_ids.mapped('purchase_price')) for move in
-                                                current_branch_lines.filtered(
-                                                    lambda x: x.move_type == 'out_refund')])
-            profit = abs(total_all - total_out_refund_cost_branch)
+            out_refund_price = self.env['account.move'].search([
+                ('move_type', '=', 'out_refund'),
+                ('branch_id', '=', branch.id),
+                ('state', '=', 'posted')
+            ])
+            total_out_refund_price = sum(out_refund_price.mapped('amount_untaxed'))
+            total_out_refund_purchase_price = sum(out_refund_price.line_ids.mapped('purchase_price'))
+
+            total_all = abs(total_op1_op2 - total_out_refund_price)
+            profit = abs(total_all - total_out_refund_purchase_price)
             total_payments_branch = 0.0
             for line in current_branch_lines:
                 payments = self.env['account.payment'].search([
-                    ('move_id', '=', line.payment_id.id)
+                    ('move_id', '=', line.payment_id.id),
+                    ('state','=','posted')
                 ])
                 total_payments_branch += sum(payments.mapped('amount_company_currency_signed'))
 
@@ -61,9 +66,9 @@ class BranchSalesComparison(models.TransientModel):
                 'total_option1': total_option1_branch,
                 'total_option2': total_option2_branch,
                 'total_op1_op2': total_op1_op2,
-                'total_refund_price': total_out_refund_price_branch,
+                'total_refund_price': total_out_refund_price,
                 'total_all': total_all,
-                'total_out_refund_cost_branch': total_out_refund_cost_branch,
+                'total_out_refund_cost_branch': total_out_refund_purchase_price,
                 'total_profit': profit,
                 'total_payments': total_payments_branch,
             }

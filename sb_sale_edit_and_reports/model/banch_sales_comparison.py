@@ -68,27 +68,30 @@ class BranchComparison(models.AbstractModel):
                                                    current_branch_lines.filtered(
                                                     lambda x: x.move_type != 'out_refund' and x.payment_method == 'option2')])
                 total_op1_op2 = total_option1_branch + total_option2_branch
-                total_out_refund_price_branch = sum([sum(move.line_ids.mapped('price_total')) for move in
-                                                   current_branch_lines.filtered(
-                                                    lambda x: x.move_type == 'out_refund')])
-                total_all = abs(total_op1_op2-total_out_refund_price_branch)
-                total_out_refund_cost_branch = sum([sum(move.line_ids.mapped('purchase_price')) for move in
-                                                   current_branch_lines.filtered(
-                                                    lambda x: x.move_type == 'out_refund')])
-                profit = abs(total_all-total_out_refund_cost_branch)
+                out_refund_price = self.env['account.move'].search([
+                    ('move_type', '=', 'out_refund'),
+                    ('branch_id', '=', branch.id),
+                    ('state', '=', 'posted')
+                ])
+                total_out_refund_price = sum(out_refund_price.mapped('amount_untaxed'))
+                total_out_refund_purchase_price = sum(out_refund_price.line_ids.mapped('purchase_price'))
+
+                total_all = abs(total_op1_op2-total_out_refund_price)
+                profit = abs(total_all-total_out_refund_purchase_price)
                 total_payments_branch = 0.0
                 for line in current_branch_lines:
                     payments = self.env['account.payment'].search([
-                        ('move_id', '=', line.payment_id.id)
+                        ('ref', '=', line.name),
+                        ('state', '=', 'posted')
                     ])
                     total_payments_branch += sum(payments.mapped('amount_company_currency_signed'))
                 worksheet.write(row, col, branch.name, format2)
                 worksheet.write(row, col+1, total_option1_branch, format2)
                 worksheet.write(row, col+2, total_option2_branch, format2)
                 worksheet.write(row, col+3, total_op1_op2, format2)
-                worksheet.write(row, col+4, total_out_refund_price_branch, format2)
+                worksheet.write(row, col+4, total_out_refund_price, format2)
                 worksheet.write(row, col+5, total_all, format2)
-                worksheet.write(row, col+6, total_out_refund_cost_branch, format2)
+                worksheet.write(row, col+6, total_out_refund_purchase_price, format2)
                 worksheet.write(row, col+7, profit, format2)
                 worksheet.write(row, col + 8, total_payments_branch, format2)
                 row += 1

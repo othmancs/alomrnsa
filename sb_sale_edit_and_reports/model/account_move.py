@@ -8,7 +8,7 @@ class AccountMove(models.Model):
         ('option1', 'نقدى'),
         ('option2', 'اجل'),
     ], string='طريقه الدفع', required=True )
-    created_by_id = fields.Many2one('res.partner', string='انشأ من قبل', domain="[('branch_id', '=', branch_id)]")
+    created_by_id = fields.Many2one('res.partner', string='انشأ من قبل', domain="[('branch_id', '=', branch_id)]",readonly=True)
 
 
 class AccountInvoiceLine(models.Model):
