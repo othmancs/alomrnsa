@@ -120,6 +120,7 @@
         <field name="arch" type="xml">
             <search string="Material Request Search">
                 <field name="user_id"/>
+                <field name="name"/>
                 <field name="request_date"/>
                 <field name="location_id"/>
                 <field name="dest_location_id"/>
