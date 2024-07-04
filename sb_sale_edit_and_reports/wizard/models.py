@@ -19,83 +19,82 @@ class SalesReportWizard(models.TransientModel):
     def get_sales_export_xlsx(self):
         return self.env.ref("sb_sale_edit_and_reports.report_sales_report").report_action(self)
 
-    # def generate_pdf_report(self):
-    #     domain = [('date', '>=', self.date_start),
-    #               ('date', '<=', self.date_end)]
-    #     if self.branch_ids:
-    #         domain.append(('branch_id', 'in', self.branch_ids.ids))
-    #     lines_data = self.env['account.move'].search(domain)
-    #     existing_branches = lines_data.mapped('branch_id')
-    #     report_data = []
-    #     branches = [{'branch_id': branch.id, 'branch_name': branch.name} for branch in existing_branches]
-    #     print('bvbvbvbvbvbvbvb',branches)
-    #     for branch in existing_branches:
-    #         current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
-    #         print('dddd', branch.name)
-    #         total_price_branch = sum([sum(move.line_ids.mapped('price_total')) for move in
-    #                                   current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-    #         total_out_refund_branch = sum([sum(move.line_ids.mapped('price_total')) for move in
-    #                                        current_branch_lines.filtered(lambda x: x.move_type == 'out_refund')])
-    #         total_out_refund_price_branch = sum([sum(move.line_ids.mapped('purchase_price')) for move in
-    #                                              current_branch_lines.filtered(lambda x: x.move_type == 'out_refund')])
-    #         total_out_refund_gty_branch = sum([sum(move.line_ids.mapped('quantity')) for move in
-    #                                            current_branch_lines.filtered(lambda x: x.move_type == 'out_refund')])
-    #         total = total_out_refund_gty_branch * total_out_refund_price_branch
-    #         total_discount_branch = sum([sum(move.line_ids.mapped('discount')) for move in
-    #                                      current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-    #         total_net_cost_branch = total_price_branch - total_discount_branch
-    #
-    #         for account in current_branch_lines:
-    #             invoice_number = account.name
-    #             seller_name = account.created_by_id.name
-    #             customer_name = account.partner_id.name
-    #             invoice_date = account.invoice_date
-    #             # cost = sum(account.line_ids.mapped('purchase_price'))
-    #             payment_method = account.payment_method
-    #             if account.move_type != 'out_refund':
-    #                 total_price = sum(account.line_ids.mapped('price_total'))
-    #                 cost = sum(account.line_ids.mapped('purchase_price')) * sum(account.line_ids.mapped('quantity'))
-    #             else:
-    #                 total_price = 0
-    #                 cost = 0
-    #
-    #             total_discount = sum(account.line_ids.mapped('discount'))
-    #             net_cost = total_price - total_discount
-    #             if payment_method == 'option1':
-    #                 payment_method = 'نقدى'
-    #             elif payment_method == 'option2':
-    #                 payment_method = 'اجل'
-    #             else:
-    #                 payment_method = '-'
-    #
-    #             if account.move_type == 'out_refund':
-    #                 t = sum(account.line_ids.mapped('purchase_price')) * sum(account.line_ids.mapped('quantity'))
-    #                 total_credit_note = sum(account.line_ids.mapped('price_total'))
-    #             else:
-    #                 t = 0
-    #                 total_credit_note = 0
-    #
-    #             wizard_data = self.read()[0]
-    #
-    #             report_data_item = {
-    #                 'branch_name': branch.name,
-    #                 'invoice_number': invoice_number,
-    #                 'seller_name': seller_name,
-    #                 'customer_name': customer_name,
-    #                 'invoice_date': invoice_date,
-    #                 'cost': cost,
-    #                 'payment_method': payment_method,
-    #                 'total_price': total_price,
-    #                 'total_discount': total_discount,
-    #                 'net_cost': net_cost,
-    #                 'total_credit_note': total_credit_note,
-    #                 't': t,
-    #             }
-    #             report_data.append(report_data_item)
-    #     data = {
-    #         'form': wizard_data,
-    #         'data': report_data,
-    #         'branches':branches,
-    #     }
-    #     print('ddddddddddddddddddddddddddddddddddd',report_data)
-    #     return self.env.ref("sb_sale_edit_and_reports.sales_report").report_action(self, data=data)
+    def generate_pdf_report(self):
+        domain = [('date', '>=', self.date_start),
+                  ('date', '<=', self.date_end),
+                  ('move_type', '=', 'out_invoice'),
+                  ('state', '=', 'posted')
+                  ]
+        if self.branch_ids:
+            domain.append(('branch_id', 'in', self.branch_ids.ids))
+        lines_data = self.env['account.move'].search(domain)
+        existing_branches = lines_data.mapped('branch_id')
+        report_data = []
+        branches = [{'branch_id': branch.id, 'branch_name': branch.name} for branch in existing_branches]
+        print('bvbvbvbvbvbvbvb',branches)
+        for branch in existing_branches:
+            current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
+            total_out_refund_purchase_price = 0.0
+            total_out_refund_price = 0.0
+            for line in current_branch_lines:
+                out_refund_price = self.env['account.move'].search([
+                    ('move_type', '=', 'out_refund'),
+                    ('branch_id', '=', branch.id),
+                    ('reversed_entry_id', '=', line.id),
+                    ('state', '=', 'posted')
+                ])
+                total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
+                total_out_refund_purchase_price += sum(
+                    out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+            for account in current_branch_lines:
+                invoice_number = account.name
+                seller_name = account.created_by_id.name
+                customer_name = account.partner_id.name
+                invoice_date = account.invoice_date
+                cost = cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
+                payment_method = account.payment_method
+                price = sum(account.mapped('amount_untaxed'))
+                total_discount = sum(account.line_ids.mapped('discount'))
+                net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
+                if payment_method == 'option1':
+                    payment_method ='نقدى'
+                elif payment_method == 'option2':
+                    payment_method = 'اجل'
+                else:
+                    payment_method ='-'
+                out_refund = self.env['account.move'].search([
+                    ('move_type', '=', 'out_refund'),
+                    ('branch_id', '=', branch.id),
+                    ('reversed_entry_id', '=', account.id),
+                    ('state', '=', 'posted')
+                ])
+                out_refund_purchase_price=0.0
+                out_refund_price=0.0
+                for ac in out_refund:
+                    out_refund_purchase_price += sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                    out_refund_price += sum(ac.mapped('amount_untaxed'))
+
+                wizard_data = self.read()[0]
+
+                report_data_item = {
+                    'branch_name':branch.name,
+                    'invoice_number': invoice_number,
+                    'seller_name': seller_name,
+                    'customer_name': customer_name,
+                    'payment_method': payment_method,
+                    'invoice_date': invoice_date,
+                    'total_price': price,
+                    'total_discount': total_discount,
+                    'net_cost': net_cost,
+                    'cost': cost,
+                    'total_credit_note': out_refund_price,
+                    't': out_refund_purchase_price,
+                }
+                report_data.append(report_data_item)
+        data = {
+            'form': wizard_data,
+            'data': report_data,
+            'branches':branches,
+        }
+        print('ddddddddddddddddddddddddddddddddddd',report_data)
+        return self.env.ref("sb_sale_edit_and_reports.sales_report").report_action(self, data=data)

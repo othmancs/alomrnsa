@@ -101,5 +101,21 @@
             <field name="binding_model_id" ref="model_branch_sales_comparison_wizard"/>
             <field name="binding_type">report</field>
         </record>
+        <record id="paperformattt_action_sale_order_id" model="report.paperformat">
+            <field name="name">Sales report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('sb_sale_edit_and_reports.banch1_sales_comparison_report')])]"/>
+        </record>
     </data>
 </odoo>

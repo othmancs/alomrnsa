@@ -57,22 +57,26 @@ class SalesReportReport(models.AbstractModel):
                                              current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
                 branch_amount_untaxed=sum([sum(move.line_ids.mapped(lambda line: (line.price_unit*line.quantity) - line.discount)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
                 total_cost_branch =  sum([sum(move.line_ids.mapped(lambda line: line.purchase_price * line.quantity)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-
-                out_refund_price=self.env['account.move'].search([
-                    ('move_type','=','out_refund'),
-                    ('branch_id','=',branch.id),
-                    ('state', '=', 'posted')
+                total_out_refund_purchase_price=0.0
+                total_out_refund_price=0.0
+                for line in current_branch_lines:
+                    out_refund_price = self.env['account.move'].search([
+                        ('move_type', '=', 'out_refund'),
+                        ('branch_id', '=', branch.id),
+                        ('reversed_entry_id', '=', line.id),
+                        ('state', '=', 'posted')
                     ])
-                total_out_refund_price = sum(out_refund_price.mapped('amount_untaxed'))
-                total_out_refund_purchase_price = sum(out_refund_price.line_ids.mapped('purchase_price'))
+                    total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
+                    total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                    worksheet.write(row, col + 9, total_out_refund_price, format5)
+                    worksheet.write(row, col + 10, total_out_refund_purchase_price, format5)
+
                 worksheet.write(row, col, branch.name, format5)
                 worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
                 worksheet.write(row, col + 5, unit_price_branch, format5)
                 worksheet.write(row, col + 6, total_discount_branch, format5)
                 worksheet.write(row, col + 7, branch_amount_untaxed, format5)
                 worksheet.write(row, col + 8, total_cost_branch, format5)
-                worksheet.write(row, col + 9, total_out_refund_price, format5)
-                worksheet.write(row, col + 10, total_out_refund_purchase_price, format5)
                 row += 1
                 worksheet.write(row, col, 'رقم الفاتورة ', format1)
                 worksheet.write(row, col + 1, 'اسم البائع ', format1)
@@ -118,7 +122,7 @@ class SalesReportReport(models.AbstractModel):
                     ])
                     print('hhhhhhhhhhhhhhh',out_refund)
                     for ac in out_refund:
-                        out_refund_purchase_price = sum(ac.mapped('total_purchase_price'))
+                        out_refund_purchase_price = sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                         out_refund_price = sum(ac.mapped('amount_untaxed'))
                         worksheet.write(row, col + 9, out_refund_price, format2)
                         worksheet.write(row, col + 10, out_refund_purchase_price, format2)

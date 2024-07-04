@@ -33,7 +33,7 @@
                     </sheet>
                     <footer>
                         <button name="get_sales_export_xlsx" type="object" string="Xlsx" class="btn-primary"/>
-<!--                        <button name="generate_pdf_report" type="object" string="PDF" class="btn-primary"/>-->
+                        <button name="generate_pdf_report" type="object" string="PDF" class="btn-primary"/>
                         <button special="cancel" class="btn-secondary" string="Cancel"/>
                     </footer>
                 </form>

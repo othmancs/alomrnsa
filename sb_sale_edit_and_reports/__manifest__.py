@@ -13,7 +13,7 @@
         'views/views.xml',
         'views/branch_sales_comparison_wizard.xml',
         'reports/branch_sales_comparison_report.xml',
-        # 'reports/sales_report.xml'
+        'reports/sales_report.xml'
 
 
     ],
