@@ -128,6 +128,9 @@
                                     <strong>Sales Order Number: </strong><span t-field="o.invoice_origin"/><br/>
                                     <strong>Invoice Date: </strong><span t-field="o.invoice_date"/><br/>
                                     <strong>Payment Terms: </strong><span t-field="o.invoice_payment_term_id"/><br/>
+                                 <strong>رقم عرض السعر: </strong>   <span t-field="o.display_name"/><br/>
+                                    <strong>Salesperson: </strong>   <span t-field="o.created_by_id.name"/><br/>
+                                    <strong>Payment Method: </strong>   <span t-field="o.payment_method"/><br/>
                                 </p>
                             </div>
                             <div class="col-2">
@@ -258,6 +261,17 @@
                                         class="text-end"><span t-esc="tax_total"
                                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
                                 </tr>
+                                 <tr>
+                                    <td class=""
+                                        style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">
+                                        Total Amount Due</td>
+                                    <td class="text-end arabic"
+                                        style="border-right:1pt solid grey;text-align:right;padding:3pt">إجمالي المبلغ
+                                        </td>
+                                    <td style="border-right:1pt solid grey;text-align:right;padding:3pt"
+                                        class="text-end"><span t-esc="doc.amount_total"
+                                                               t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                </tr>
                                 <tr>
                                     <td class=""
                                         style="font-weight: bold;border-right:1pt solid grey;text-align:left;padding:3pt">
@@ -275,8 +289,7 @@
                                class="table table-bordered table-sm">
                             <thead>
                                 <tr>
-                                    <td width="30%" style="font-weight: bold;background-color:#DCDCDC;">AMOUNT
-                                        INVOICED</td>
+                                    <td width="30%" style="font-weight: bold;background-color:#DCDCDC;">المبلغ الإجمالي</td>
                                     <td class="text-right arabic" width="70%" style="padding-right:12px;"><span
                                             t-esc="doc.amount_word(doc.amount_total)"/></td>
                                 </tr>
