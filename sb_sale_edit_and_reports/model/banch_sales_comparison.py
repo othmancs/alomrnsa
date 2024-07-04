@@ -28,7 +28,7 @@ class BranchComparison(models.AbstractModel):
             domain = [('date', '>=', obj.date_start),
                       ('date', '<=', obj.date_end),
                       ('state', '=', 'posted'),
-                      ('move_type', '=', 'out_invoice')
+                      ('move_type', '=', 'out_invoice'),
                       ]
             lines_data = self.env['account.move'].search(domain)
 
@@ -77,7 +77,8 @@ class BranchComparison(models.AbstractModel):
                     ('branch_id', '=', branch.id),
                     ('state', '=', 'posted'),
                     ('date', '>=', obj.date_start),
-                    ('date', '<=', obj.date_end)
+                    ('date', '<=', obj.date_end),
+                    ('line_ids.product_id.categ_id', '=', obj.product_category_id.id)
                 ])
                 total_out_refund_price = sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
                 total_out_refund_purchase_price = sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
