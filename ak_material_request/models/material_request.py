@@ -48,13 +48,13 @@ class MaterialRequest(models.Model):
     branch_from_id = fields.Many2one(
         'res.branch',
         string='من فرع',
-        domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
+        # domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
         default=lambda self: self.env.user.branch_id.id,
     )
     branch_to_id = fields.Many2one(
         'res.branch',
         string='الى فرع',
-        domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
+        # domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
         default=lambda self: self.env.user.branch_id.id,
     )
     dest_location_id = fields.Many2one(
