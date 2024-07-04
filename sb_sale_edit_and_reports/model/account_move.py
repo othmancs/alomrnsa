@@ -7,7 +7,7 @@ class AccountMove(models.Model):
     payment_method = fields.Selection([
         ('option1', 'نقدى'),
         ('option2', 'اجل'),
-    ], string='طريقه الدفع', required=True )
+    ], string='طريقه الدفع', required=True ,readonly=True )
     created_by_id = fields.Many2one('res.partner', string='انشأ من قبل', domain="[('branch_id', '=', branch_id)]",readonly=True)
 
 

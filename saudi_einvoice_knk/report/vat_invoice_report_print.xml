@@ -129,6 +129,8 @@
                                     <strong>Invoice Date: </strong><span t-field="o.invoice_date"/><br/>
                                     <strong>Payment Terms: </strong><span t-field="o.invoice_payment_term_id"/><br/>
                                  <strong>رقم عرض السعر: </strong>   <span t-field="o.display_name"/><br/>
+                                    <strong>Salesperson: </strong>   <span t-field="o.created_by_id.name"/><br/>
+                                    <strong>Payment Method: </strong>   <span t-field="o.payment_method"/><br/>
                                 </p>
                             </div>
                             <div class="col-2">

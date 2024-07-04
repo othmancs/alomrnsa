@@ -64,9 +64,13 @@
                                 <p class="m-0" t-field="doc.partner_id.name"/>
                                 <p class="m-0" t-field="doc.partner_id.phone"/>
                             </div>
-                            <div t-if="doc.partner_id.name" class="col-auto col-3 mw-100 mb-2">
+                            <div t-if="doc.created_by_id.name" class="col-auto col-3 mw-100 mb-2">
                                 <strong>Salesperson:</strong>
-                                <p class="m-0" t-field="doc.invoice_user_id.name"/>
+                                <p class="m-0" t-field="doc.created_by_id.name"/>
+                            </div>
+                             <div t-if="doc.payment_method" class="col-auto col-3 mw-100 mb-2">
+                                <strong>:Payment Method</strong>
+                                <p class="m-0" t-field="doc.payment_method"/>
                             </div>
                         </div>
 
