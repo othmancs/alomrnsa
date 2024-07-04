@@ -1,0 +1,121 @@
+<odoo>
+    <data>
+        <template id="banch1_sales_comparison_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl" style="">
+                        <h5>مقارنة مبيعات الفروع </h5>
+                        <!--                        <br/>-->
+                        <div class="row mt-4 mb-4">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        من تاريخ:
+                                        <span t-esc="form['date_start']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الي تاريخ:
+                                        <span t-esc="form['date_end']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبع بواسطة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تاريخ الطباعة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                         <div  class="text-center">
+                             <h5>فئه المنتج</h5>
+                             <span t-esc="form['product_category_id'][1]"/></div>
+                         <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 20%;">الفرع</th>
+                                    <th class="text-center" style="width: 20%;">مبيعات نقدية</th>
+                                    <th class="text-center" style="width: 20%;">مبيعات أجلة</th>
+                                    <th class="text-center" style="width: 20%;">اجمالى المبيعات</th>
+                                    <th class="text-center" style="width: 20%;">الارجعات</th>
+                                    <th class="text-center" style="width: 20%;">صافى المبيعات  </th>
+                                    <th class="text-center" style="width: 20%;">صافى التكلفة</th>
+                                    <th class="text-center" style="width: 20%">الربح</th>
+                                    <th class="text-center" style="width: 20%;">التحصيل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-esc="line['branch_name']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_option1'])"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_option2'])"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_op1_op2'])"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_refund_price'])"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_all'])"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_out_refund_cost_branch'])"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_profit'])"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="'{:,.2f}'.format(line['total_payments'])"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <!--   QWeb Reports   -->
+        <!--   NAME & FILE_NAME should be the same   -->
+        <record id="banch1_sales_comparison_report" model="ir.actions.report">
+            <field name="name">مقارنة مبيعات الفروع </field>
+            <field name="model">branch.sales.comparison.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_sale_edit_and_reports.banch1_sales_comparison_report_template</field>
+            <field name="report_file">sb_sale_edit_and_reports.banch1_sales_comparison_report_template</field>
+            <field name="binding_model_id" ref="model_branch_sales_comparison_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="paperformattt_action_sale_order_id" model="report.paperformat">
+            <field name="name">Sales report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('sb_sale_edit_and_reports.banch1_sales_comparison_report')])]"/>
+        </record>
+    </data>
+</odoo>

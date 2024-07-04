@@ -1,0 +1,140 @@
+<odoo>
+    <data>
+        <template id="credit_note_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl">
+                        <h4 class="m-0">
+                            <strong>
+                                <t t-esc="form['company_id'][1]"/>
+                            </strong>
+                        </h4>
+                        <h5>ارجـاعــات المبيـــعات</h5>
+                        <br/>
+                        <div class="row mt-4 mb-4" id="creditnote">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        <t t-if="form['branch_names'] and len(form['branch_names'].split(',')) == 1">
+                                            الفــرع :
+                                            <span t-esc="form['branch_names']"/>
+                                        </t>
+                                        <t t-else="">
+                                            <p></p>
+                                        </t>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        مــن تـاريـخ:
+                                        <span t-esc="form['date_from']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الــي تـاريـخ:
+                                        <span t-esc="form['date_to']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبـع بواسطـة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تـاريخ الطبـاعـة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 20%;">اسم الفرع</th>
+                                    <th class="text-center" style="width: 15%;">رقم الارجاع</th>
+                                    <th class="text-center" style="width: 20%;">اسم البائع</th>
+                                    <th class="text-center" style="width: 20%;">اسم العميل</th>
+                                    <th class="text-center" style="width: 20%;">تاريح الارجاع</th>
+                                    <th class="text-center" style="width: 15%;">اجمالى الارجاعات</th>
+                                    <th class="text-center" style="width: 15%;">تكلفة الارجاعات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="invoice" t-as="component">
+                                    <tr>
+                                        <td class="text-center">
+                                            <t t-if="component['branch_id'] and isinstance(component['branch_id'], list) and len(component['branch_id']) > 1">
+                                                <t t-esc="component['branch_id'][1]"/>
+                                            </t>
+                                            <t t-else="">
+                                                <p></p>
+                                            </t>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="component['name']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="component['created_by_id'] and isinstance(component['created_by_id'], list) and len(component['created_by_id']) > 1">
+                                                <t t-esc="component['created_by_id'][1]"/>
+                                            </t>
+                                            <t t-else="">
+                                                <p></p>
+                                            </t>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-if="component['partner_id'] and isinstance(component['partner_id'], list) and len(component['partner_id']) > 1">
+                                                <span t-esc="component['partner_id'][1]"/>
+                                            </t>
+                                            <t t-else="">
+                                                <p></p>
+                                            </t>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="component['invoice_date']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="component['amount_untaxed']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="component['total_purchase_price']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <!--  QWeb Reports  -->
+        <!--  NAME & FILE_NAME should be the same  -->
+
+        <record id="credit_note_report" model="ir.actions.report">
+            <field name="name">CreditNote Report</field>
+            <field name="model">credit.note.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_credit_note_report.credit_note_report_template</field>
+            <field name="report_file">sb_credit_note_report.credit_note_report_template</field>
+            <field name="binding_model_id" ref="model_credit_note_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!--        ======= Excel Report =================-->
+        <record id="credit_note_report_xls" model="ir.actions.report">
+            <field name="name">CreditNote Report</field>
+            <field name="model">credit.note.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_credit_note_report.report_xls</field>
+            <field name="report_file">sb_credit_note_report.report_xls</field>
+            <field name="binding_model_id" ref="model_credit_note_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_branch_sales_comparison" model="ir.actions.report">
+            <field name="name">branch sales comparison</field>
+            <field name="model">branch.sales.comparison.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_sale_edit_and_reports.report_branch_sales_comparison</field>
+            <field name="report_file">sb_sale_edit_and_reports.report_branch_sales_comparison</field>
+            <field name="print_report_name">'مقارنة مبيعات الفروع'</field>
+            <field name="binding_model_id" ref="model_branch_sales_comparison_wizard"/>
+        </record>
+
+        <record id="branch_sales_comparison_wizard_form" model="ir.ui.view">
+            <field name="name">branch_sales_comparison_wizard_form</field>
+            <field name="model">branch.sales.comparison.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="product_category_id"/>
+                            </group>
+                            <group>
+                                <field name="date_end"/>
+                                <field name="company_id" invisible="1" />
+                                <field name="print_date" invisible="1" />
+                                <field name="printed_by" invisible="1" />
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_branch_export_xlsx" type="object" string="Xlsx" class="btn-primary"/>
+                        <button name="generate_pdf_report" type="object" string="PDF" class="btn-primary"/>
+                        <button special="cancel" class="btn-secondary" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="branch_sales_comparison_wizard_action" model="ir.actions.act_window">
+            <field name="name">مقارنة مبيعات الفروع</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">branch.sales.comparison.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="branch_sales_comparison_wizard_new"
+              parent="sale.menu_sale_report"
+              name="مقارنة مبيعات الفروع  "
+              action="branch_sales_comparison_wizard_action"
+              sequence="12"/>
+
+    </data>
+</odoo>
