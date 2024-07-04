@@ -54,7 +54,8 @@ class BranchSalesComparison(models.TransientModel):
                 ('branch_id', '=', branch.id),
                 ('state', '=', 'posted'),
                 ('date', '>=', self.date_start),
-                ('date', '<=', self.date_end)
+                ('date', '<=', self.date_end),
+                ('line_ids.product_id.categ_id', '=', self.product_category_id.id)
             ])
             total_out_refund_price = sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
             total_out_refund_purchase_price = sum(
