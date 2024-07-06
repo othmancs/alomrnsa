@@ -142,7 +142,7 @@
     <td style="font-size:12px; text-align:center;">
 <span t-field="o.branch_id"/>
                                                     </td>
-                                                                         </td>
+<!--                                                                          </td> -->
     <td style="font-size:12px; text-align:center;">
 <span t-field="res_company.vat"/>
                                                     </td>  
