@@ -221,8 +221,8 @@
                                         <tr>
                                             <th>NO</th>
                                             <th>PRODUCT-IMG</th>
-<!--                                             <th>QR</th>
-                                            <th>PRODUCT NAME</th> -->
+<!--                                             <th>QR</th> -->
+                                            <th>PRODUCT NAME</th>
 <!--                                             <th>DESCREPTION</th> -->
                                             <th>QTY</th>
                                             <th>UNIT-SAR</th>
