@@ -216,7 +216,7 @@
                             <div style="height:50px; "/>
                           <div style="height:15px;"/>
                             <div style="width:100%;text-align;center; float:center;">
-                                <table style="font-size:14px;width:95%; text-align;center; float:center; margin-left:25px;border: 1px solid black;">
+                                <table style="font-size:14px;width:95%; text-align;center; float:center; margin-left:25px;border: 2px solid black;">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
@@ -241,7 +241,7 @@
                                                     <td style="font-size:12px; text-align:center;">
                                                         <span t-esc="counter"/>
                                                     </td>
-                                                      <td style="width:70px;border: 1px solid black;">
+                                                      <td style="width:70px;border: 2px solid black;">
                                                         <span itemprop="image"
                                                               t-field="line.product_template_id.image_128"
                                                               t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"
