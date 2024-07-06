@@ -16,17 +16,17 @@
                                 </div>
                                 <div style="height:15px;"/>
                                 <div style="font-size:20px;text-align:center; color:#00215E; font-weight:bold;">
-                                    <h4 style="text-decoration: underline;">
+                                    <h5 style="text-decoration: underline;">
                                         <span>
 <!--                                             <t t-esc="o.company_id.street"/>,<t t-esc="o.company_id.street2"/>,
                                             <t t-esc="o.company_id.city"/>,
                                             <t t-esc="o.company_id.state_id.name"/>
                                             <t t-esc="o.company_id.zip"/>,
                                             <t t-esc="o.company_id.country_id.name"/> -->
-                                            <span t-field="o.branch_id"/>
-                                            <br/>
-<span t-field="res_company.vat"/>
-                                            <br/>
+<!--                                             <span t-field="o.branch_id"/>
+                                            <br/> -->
+<!-- <span t-field="res_company.vat"/>
+                                            <br/> -->
                                                                                      
                                             <span>
           <strong>Quotation No.:</strong>
@@ -36,8 +36,11 @@
                                             <br/>
                                             <br/>
                                         </span>
-                                    </h4>
+                                    </h5>
+                                    <br/>
                                     <div class="row">
+                                        <br/>
+                                        <br/>
                                 </div>
 <!--                                         <div style="font-size:20px;text-align:center; color:#3C5B6F; font-weight:bold;"
                                          col="3">
@@ -118,6 +121,7 @@
                                             <th>Mobile:</th>
                                             <th>Email:</th>
                                                                                         <th>Branch:</th>
+                                            <th>Tax ID:</th>
 
                                             </tr>
                                     </thead>
@@ -138,7 +142,10 @@
     <td style="font-size:12px; text-align:center;">
 <span t-field="o.branch_id"/>
                                                     </td>
-                                                
+                                                                         </td>
+    <td style="font-size:12px; text-align:center;">
+<span t-field="res_company.vat"/>
+                                                    </td>  
                                             </tr>
                                             
 
@@ -214,8 +221,8 @@
                                         <tr>
                                             <th>NO</th>
                                             <th>PRODUCT-IMG</th>
-                                            <th>QR</th>
-                                            <th>PRODUCT NAME</th>
+<!--                                             <th>QR</th>
+                                            <th>PRODUCT NAME</th> -->
 <!--                                             <th>DESCREPTION</th> -->
                                             <th>QTY</th>
                                             <th>UNIT-SAR</th>
@@ -240,9 +247,9 @@
                                                               t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"
                                                               style="width:70px !important;"/>
                                                     </td>
-                                             <td STYLE="border: 1px solid black;width:70px;">
+<!--                                              <td STYLE="border: 1px solid black;width:70px;">
       <span t-field="line.qr_code_img" t-options-widget="&quot;image&quot;" t-options-qweb_img_raw_data="1"/>
-    </td>
+    </td> -->
                                                     <td style="font-size:12px; text-align:center;">
                                                         <t t-esc="line.product_template_id.name"/>
                                                     </td>
@@ -355,9 +362,9 @@
 
                                     <div style="font-size:15px;font-weight: bold;text-align: center;  ">
             
-                                        <span>Page</span>
+<!--                                         <span>Page</span> -->
                                         <span>
-                                            <span class="page"/>
+                                          Page <span class="page"/> / <span class="topage"/>
                                         </span>
                                     </div>
 
