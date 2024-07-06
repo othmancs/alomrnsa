@@ -284,7 +284,7 @@
                                                 </t>
                                             </tr>
                                             <t t-set="counter" t-value="counter + 1"/>
-                                            <t t-set="total_price" t-value="total_price + line.price_unit"/>
+                                            <t t-set="total_price" t-value="total_price + (line.price_unit * line.product_uom_qty)"/>
                                             <t t-set="vat_amount" t-value="total_price * 0.15"/>
                                             <t t-set="total_price_with_vat" t-value="total_price + vat_amount"/>
                                         </t>
