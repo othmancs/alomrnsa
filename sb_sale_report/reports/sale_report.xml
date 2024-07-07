@@ -180,6 +180,7 @@
                                             <th>Mobile:</th>
                                             <th>Email:</th>
                                             <th>Location:</th>
+                                            <th>Expiry date:</th>
                                             </tr>
                                     </thead>
                                     <tbody>
@@ -206,7 +207,12 @@
 
                                                     </td>
     
-                                                
+                                                  <td style="font-size:12px; text-align:center;">
+<!-- <span t-field="o.partner_id.contact_address_complete"/> -->
+
+        <span t-field="o.validity_date"/>
+
+                                                    </td>
                                             </tr>
                                             
 
