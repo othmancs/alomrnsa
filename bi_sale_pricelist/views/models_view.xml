@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']//tree" position="inside">
-                <button name="pricelist_apply" type="object" string="Apply"/>
+                <button name="pricelist_apply" type="object" string="مشاهدة"/>
             </xpath>
         </field>
     </record>
