@@ -78,7 +78,7 @@ class MaterialRequest(models.Model):
         string="Picking Type",
         copy=False,
         default=lambda self: self.env["stock.picking.type"].search(
-            [("code", "=", "internal")], limit=1, readonly=True
+            [("code", "=", "internal")], limit=1
         ),
     )
     two_verify = fields.Boolean(string="التسليم بخطوتين", default=True)
