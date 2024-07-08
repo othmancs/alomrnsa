@@ -53,7 +53,7 @@
                                 <table style="border:1px white; font-size:13px;">
                                     <tr style="border:none;">
                                         <td style="border:none; width:300px; font-weight:bold;">رقم الفاتوره</td>
-                                        <td style="border:none; font-weight:bold;">مرجع المورد</td>
+                                        <td style="border:none; font-weight:bold; width:100px; ">مرجع المورد</td>
 
                                     </tr>
                                     <tr style="border:none;">
@@ -129,11 +129,11 @@
                             <div style="float: left;">
                                 <table style="border:1px white;font-size:13px;">
                                     <tr style="border:none;">
-                                        <td style="border:none; font-weight:bold;width:100px;" >انشابواسطه</td>
+                                        <td style="border:none; font-weight:bold;width:100px;" >طبع بواسطه</td>
                                     </tr>
                                     <tr style="border:none;">
                                         <td style="border:none; width:100px;">
-                                            <t t-esc="o.created_by_id.name"/>
+                                            <t t-esc="o.print_by"/>
                                         </td>
                                     </tr>
                                 </table>
