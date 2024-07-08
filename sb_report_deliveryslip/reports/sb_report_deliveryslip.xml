@@ -8,14 +8,12 @@
 
                         <div class="page" style="direction: rtl;">
                             <br/>
-                            <br/>
-                            <br/>
                             <div class="row">
-                                <div class="col-4" style="font-size:25px; color:#8B322C;">
+                                <div class="col-4" style="font-size:20px; color:#8B322C;">
                                     <t t-esc="o.name"/>
                                 </div>
                                 <div class="col-5">
-                                    <h4 style="text-align:left;color:#071952;">ايصال التوصيل</h4>
+                                    <h5 style="text-align:left;color:#071952;">ايصال التوصيل</h5>
                                 </div>
                             </div>
                             <br/>
