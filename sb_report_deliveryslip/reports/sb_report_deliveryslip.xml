@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_custom_documenttt">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+
+                        <div class="page" style="direction: rtl;">
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-4" style="font-size:25px; color:#8B322C;">
+                                    <t t-esc="o.name"/>
+                                </div>
+                                <div class="col-5">
+                                    <h4 style="text-align:left;color:#071952;">ايصال التوصيل</h4>
+                                </div>
+                            </div>
+                            <br/>
+                            <div>
+                                <table style="border:1px white; font-size:13px;">
+                                    <tr style="border:none;">
+                                        <td style="border:none; width:300px;font-weight:bold;">موقع العميل</td>
+                                        <td style="border:none; font-weight:bold;">الموقع المصدري</td>
+                                    </tr>
+                                    <tr style="border:none;">
+                                        <td style="border:none; width:300px;">
+                                            <t t-esc="o.partner_id.name"/>
+                                        </td>
+                                        <td style="border:none;">
+                                            <t t-esc="o.location_id.name"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table style="border:1px white;font-size:13px;">
+                                    <tr style="border:none;">
+                                        <td style="border:none; width:300px; font-weight:bold;">Order</td>
+                                        <td style="border:none; font-weight:bold;">Shipping Date</td>
+                                    </tr>
+                                    <tr style="border:none;">
+                                        <td style="border:none; width:300px;">
+                                            <t t-esc="o.origin"/>
+                                        </td>
+                                        <td style="border:none;">
+                                            <t t-esc="o.date_done"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <table style="border:1px white; font-size:13px;">
+                                    <tr style="border:none;">
+                                        <td style="border:none; width:300px; font-weight:bold;">رقم الفاتوره</td>
+                                        <td style="border:none; font-weight:bold;">مرجع المورد</td>
+
+                                    </tr>
+                                    <tr style="border:none;">
+                                        <td style="border:none; width:300px;">
+                                            <t t-esc="o.invoice_id.name"/>
+                                        </td>
+                                        <td style="border:none; ">
+                                            <t t-esc="o.partner_ref"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div>
+                                <table class="table table-sm table-bordered"
+                                       style="width: 100%; table-layout: fixed; font-size:13px;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 10%;">Num</th>
+                                            <th class="text-center" style="width: 50%;">product</th>
+                                            <th class="text-center" style="width: 20%;">Ordered</th>
+                                            <th class="text-center" style="width: 20%;">Delivered</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="total_product_uom_qty" t-value="0"/>
+                                        <t t-set="total_quantity_done" t-value="0"/>
+                                        <t t-foreach="o.move_ids_without_package" t-as="line">
+                                            <t t-set="counter" t-value="0"/>
+                                            <td class="text-center">
+                                                <t t-esc="counter + 1"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.product_id.name"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.product_uom_qty"/>
+                                                <t t-set="total_product_uom_qty"
+                                                   t-value="total_product_uom_qty + line.product_uom_qty"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.quantity_done"/>
+                                                <t t-set="total_quantity_done"
+                                                   t-value="total_quantity_done + line.quantity_done"/>
+                                            </td>
+                                            <t t-set="counter" t-value="counter + 1"/>
+                                        </t>
+                                        <tr style="border:1px white;">
+
+                                            <td class="text-right " style="border:1px white; text-align:left;"> </td>
+                                            <td class="text-right " style="border:1px white; text-align:left;">Total</td>
+
+                                            <td class="text-center" style="border-right:1px white; border:1px white;">
+                                                <t t-esc="total_product_uom_qty"/>
+                                            </td>
+                                            <td class="text-center"  style="border-right:1px white; border:1px white;">
+                                                <t t-esc="total_quantity_done"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="text-align:right;">
+                                <p style="font-size:13px;">1- تم استلام جميع الاصناففى حالة سليمة وجيده.</p>
+                                <p style="font-size:13px;">2-توقيع العميل/ ...........................</p>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="float: left;">
+                                <table style="border:1px white;font-size:13px;">
+                                    <tr style="border:none;">
+                                        <td style="border:none; font-weight:bold;width:100px;" >انشابواسطه</td>
+                                    </tr>
+                                    <tr style="border:none;">
+                                        <td style="border:none; width:100px;">
+                                            <t t-esc="o.created_by_id.name"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+
+        </template>
+        <record id="action_reportt_stock_picking" model="ir.actions.report">
+            <field name="name">ايصال التوصيل</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_file">sb_report_deliveryslip.report_custom_documenttt</field>
+            <field name="report_name">sb_report_deliveryslip.report_custom_documenttt</field>
+            <field name="binding_model_id" ref="model_stock_picking"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
