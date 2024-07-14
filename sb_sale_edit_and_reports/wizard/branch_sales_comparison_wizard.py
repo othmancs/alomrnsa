@@ -71,7 +71,7 @@ class BranchSalesComparison(models.TransientModel):
             total_payments_branch = sum(payments.mapped('amount_company_currency_signed'))
             total_purchase = abs(total_op1_op2_purchase) - abs(total_out_refund_purchase_price)
 
-            wizard_data = self.read()[0]
+            # wizard_data = self.read()[0]
             report_data_item = {
                 'branch_name': branch.name,
                 'total_option1': total_option1_branch,
@@ -85,7 +85,7 @@ class BranchSalesComparison(models.TransientModel):
             }
             report_data.append(report_data_item)
         data = {
-            'form': wizard_data,
+            'form': self.read()[0],
             'data': report_data
         }
         return self.env.ref("sb_sale_edit_and_reports.banch1_sales_comparison_report").report_action(self, data=data)

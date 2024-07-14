@@ -27,6 +27,10 @@ class SalesReportReport(models.AbstractModel):
                 {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True})
             format5 = workbook.add_format(
                 {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': '#caf0f8'})
+            format6 = workbook.add_format(
+                {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True ,'bg_color': 'red','color':'white'})
+            format7 = workbook.add_format(
+                {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'green', 'color':'white'})
             domain = [('date', '>=', obj.date_start),
                       ('date', '<=', obj.date_end),
                       ('move_type','=','out_invoice'),
@@ -89,12 +93,20 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col + 8, 'اجمالى تكلفه البيع  ', format1)
                 worksheet.write(row, col + 9, 'اجمالى الارجعات  ', format1)
                 worksheet.write(row, col + 10, 'تكلفة الارجعات  ', format1)
+                worksheet.write(row, col + 11, ' حاله الدفع ', format1)
                 row += 1
                 for account in current_branch_lines:
                     invoice_number = account.name
                     seller_name = account.created_by_id.name
                     customer_name = account.partner_id.name
                     invoice_date = account.invoice_date
+                    state=account.payment_state
+                    if state == 'paid':
+                        worksheet.write(row, col + 11,'مدفوع' , format7)
+                    elif state == 'not_paid':
+                        worksheet.write(row, col + 11, 'غير مدفوع', format6)
+
+
                     cost = cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
                     payment_method = account.payment_method
                     price = sum(account.mapped('amount_untaxed'))
