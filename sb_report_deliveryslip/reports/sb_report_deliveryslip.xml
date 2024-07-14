@@ -93,11 +93,11 @@
                                     <tbody>
                                         <t t-set="total_product_uom_qty" t-value="0"/>
                                         <t t-set="total_quantity_done" t-value="0"/>
+                                        <t t-set="counter" t-value="1"/>
                                         <t t-foreach="o.move_ids_without_package" t-as="line">
                                             <tr>
-                                                <t t-set="counter" t-value="0"/>
                                                 <td class="text-center">
-                                                    <t t-esc="counter + 1"/>
+                                                    <t t-esc="counter"/>
                                                 </td>
 
                                                 <td class="text-center">
@@ -114,6 +114,7 @@
                                                        t-value="total_quantity_done + line.quantity_done"/>
                                                 </td>
                                             </tr>
+                                            <t t-set="counter" t-value="counter + 1"/>
                                         </t>
                                         <tr style="border:1px white;">
                                             <td class="text-right " style="border:1px white; text-align:left;"></td>
