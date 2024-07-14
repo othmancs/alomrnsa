@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="no_delete_draft_picking" model="res.groups">
+            <field name="name">Cannot Delete Transfers</field>
+            <field name="category_id" ref="sb_group_access.module_sale_button_access"/>
+            <field name="comment">This user Cannot Delete Transfers</field>
+        </record>
+    </data>
+</odoo>
