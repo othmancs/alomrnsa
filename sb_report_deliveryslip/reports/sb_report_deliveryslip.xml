@@ -43,7 +43,7 @@
                                             <t t-esc="o.origin"/>
                                         </td>
                                         <td style="border:none;">
-                                            <t t-esc="o.location_id.name"/>
+                                            <t t-esc="o.location_dest_id.name"/>
                                         </td>
                                     </tr>
                                 </table>
