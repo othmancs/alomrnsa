@@ -36,14 +36,14 @@
                                 <table style="border:1px white;font-size:13px;">
                                     <tr style="border:none;">
                                         <td style="border:none; width:321px; font-weight:bold;">Order</td>
-                                        <td style="border:none; font-weight:bold;">Shipping Date</td>
+                                        <td style="border:none; font-weight:bold;">الموقع الوجهه</td>
                                     </tr>
                                     <tr style="border:none;">
                                         <td style="border:none; width:321px;">
                                             <t t-esc="o.origin"/>
                                         </td>
                                         <td style="border:none;">
-                                            <t t-esc="o.date_done"/>
+                                            <t t-esc="o.location_id.name"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -58,20 +58,23 @@
                                         <td style="border:none; width:321px;">
                                             <t t-esc="o.invoice_id.name"/>
                                         </td>
-                                        <td style="border:none; ">
-                                            <t t-esc="o.partner_ref"/>
-                                        </td>
+<!--                                        <td style="border:none; ">-->
+<!--                                            <t t-esc="o.partner_ref"/>-->
+<!--                                        </td>-->
                                     </tr>
                                 </table>
                                 <br/>
                                 <table style="border:1px white; font-size:13px;">
                                     <tr style="border:none;">
-                                        <td style="border:none; font-weight:bold; width:100px; ">انشا من قبل</td>
-
+                                        <td style="border:none; font-weight:bold;  width:321px; ">انشا من قبل</td>
+                                         <td style="border:none; font-weight:bold;">Shipping Date</td>
                                     </tr>
                                     <tr style="border:none;">
-                                        <td style="border:none; width:100px;">
+                                        <td style="border:none;  width:321px;">
                                             <t t-esc="o.created_by_id.name"/>
+                                        </td>
+                                         <td style="border:none;  width:100px;">
+                                            <t t-esc="o.date_done"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -134,6 +137,8 @@
                             <br/>
                             <div style="text-align:right;">
                                 <p style="font-size:13px;">1- تم استلام جميع الاصناف فى حالة سليمة وجيده.</p>
+                                <span><t t-esc="o.note"/></span>
+                                <br/>
                                 <p style="font-size:13px;">2-توقيع العميل/ ..................................</p>
                             </div>
                             <br/>
