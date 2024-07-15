@@ -58,9 +58,9 @@
                                         <td style="border:none; width:321px;">
                                             <t t-esc="o.invoice_id.name"/>
                                         </td>
-<!--                                        <td style="border:none; ">-->
-<!--                                            <t t-esc="o.partner_ref"/>-->
-<!--                                        </td>-->
+                                        <td style="border:none; ">
+                                            <t t-esc="o.partner_ref"/>
+                                        </td>
                                     </tr>
                                 </table>
                                 <br/>
