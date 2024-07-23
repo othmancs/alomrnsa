@@ -19,7 +19,6 @@
         'security/sb_product_group_access.xml',
         'security/sb_inventory_group_access.xml',
         'security/sb_stock_picking_group.xml',
-        'security/ir.model.access.csv',
         'views/sale_order.xml',
         'views/account_move.xml',
 
