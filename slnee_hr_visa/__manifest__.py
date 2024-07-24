@@ -12,7 +12,7 @@
     'website': 'http://www.slnee.com',
     'category': 'Generic Modules/Human Resources',
     'version': '1.0',
-    'depends': ['hr_expense_payment', 'res_documents', 'slnee_hr_grade'],
+    'depends': [],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
