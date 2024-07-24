@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="website_product_name" inherit_id="website_sale.product" name="Product">
+         <xpath expr="//div[@id='product_details']/h1" position="replace">
+            <t t-if="product.web_pro_name">
+                <h1 itemprop="name" t-field="product.web_pro_name">Product Name</h1>
+            </t>
+            <t t-else=" ">
+                <h1 itemprop="name" t-field="product.name">Product Name</h1>
+            </t>
+        </xpath>
+         <xpath expr="//li[@class='breadcrumb-item active']" position="replace">
+             <li class="breadcrumb-item active">
+                <t t-if="product.web_pro_name">
+                    <span t-field="product.web_pro_name"/>
+                </t>
+                <t t-else=" ">
+                   <span t-field="product.name" />
+                </t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="adding_review_stars" inherit_id="website_sale.products_item" customize_show="True"
+              name="Product Reviews">
+         <xpath expr="//h6[@class='o_wsale_products_item_title mb-2']/a[1]" position="replace">
+             <t t-if="product.web_pro_name">
+                <a itemprop="name" t-att-href="product_href" t-att-content="product.web_pro_name" t-field="product.web_pro_name" style="font-size: 17px; font-weight: bold;"/>
+            </t>
+            <t t-else=" ">
+                <a itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.name" style="font-size: 17px; font-weight: bold;"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="cart_lines_inherit" inherit_id="website_sale.cart_lines" customize_show="True"
+              name="Cart Lines">
+         <xpath expr="//td[@class='td-product_name']/div" position="replace">
+            <t t-if="line.product_id.product_tmpl_id.web_pro_name">
+               <strong t-field="line.product_id.product_tmpl_id.web_pro_name" />
+            </t>
+            <t t-else=" ">
+                <strong t-field="line.name_short" />
+            </t>
+        </xpath>
+    </template>
+
+    <template id="cart_popover_inherit" inherit_id="website_sale.cart_popover" customize_show="True"
+              name="Cart popover">
+         <xpath expr="//div[@class='col-9']/div/t/span" position="replace">
+            <t t-if="line.product_id.product_tmpl_id.web_pro_name">
+               <span class="h6" t-field="line.product_id.product_tmpl_id.web_pro_name" />
+            </t>
+            <t t-else=" ">
+                <span class="h6" t-field="line.name_short" />
+            </t>
+        </xpath>
+    </template>
+
+    <template id="cart_summary_inherit" inherit_id="website_sale.cart_summary" customize_show="True"
+              name="Cart summary">
+         <xpath expr="//td[@class='td-product_name']/div/strong" position="replace">
+            <t t-if="line.product_id.product_tmpl_id.web_pro_name">
+               <strong t-field="line.product_id.product_tmpl_id.web_pro_name" />
+            </t>
+            <t t-else=" ">
+                <strong t-field="line.name_short" />
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
