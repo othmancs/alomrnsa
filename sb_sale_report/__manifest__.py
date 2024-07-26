@@ -6,6 +6,7 @@
     'data': [
         'reports/sale_report.xml',
         'reports/sale_report_templates.xml',
+        'reports/sale_order_view.xml',
 
     ],
 }
