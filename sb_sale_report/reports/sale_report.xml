@@ -275,8 +275,8 @@
                                                     <td style="font-size:1; text-align:center;">
                                                         <t t-esc="line.price_unit"/>
                                                     </td>
-                                                    <td style="font-size:1; text-align:center;">
-                                                      <span t-field="line.price_tax"/>
+                                               <td style="font-size:1; text-align:center;">
+                                                      <span t-field="line.tax_amount"/>
                                                     </td>
                                                     <td style="font-size:1; text-align:center;">
                                                         <t t-esc="line.price_total"/>
