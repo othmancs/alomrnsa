@@ -1,0 +1,14 @@
+<odoo>
+    <template id="report_saleorder_for_tax_amount_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[hasclass('o_main_table')]/thead/tr/th[5]" position="after">
+            <t t-if="doc.print_tax_amount_in_sale">
+                <th class="text-end">Tax Amount</th>
+            </t>
+        </xpath>
+         <xpath expr="//tbody[hasclass('sale_tbody')]/t[2]/tr/t[1]/td[5]" position="after">
+             <t t-if="doc.print_tax_amount_in_sale">
+                 <td class="text-end"><span t-field="line.tax_amount"/></td>
+             </t>
+        </xpath>
+    </template>
+</odoo>
