@@ -369,7 +369,7 @@
                                     <div style="font-size:15px;font-weight: bold;text-align: center;  ">
             
                                         <span>
-                                          Page <span class="page"/> / <span class="topage"/>
+                                          صفحة <span class="page"/> / <span class="topage"/>
                                         </span>
                                     </div>
 
@@ -385,17 +385,17 @@
      <br/>
 
         </template>
-        <record id="action_reportt_salee_orderr" model="ir.actions.report">
-            <field name="name">Sale Order</field>
+        <record id="action_reportt_salee_orderr2" model="ir.actions.report">
+            <field name="name">Sale Order22</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_file">sb_sale_report.report_custom_document</field>
-            <field name="report_name">sb_sale_report.report_custom_document</field>
+            <field name="report_file">sb_sale_report.report_custom_document2</field>
+            <field name="report_name">sb_sale_report.report_custom_document2</field>
             <field name="binding_model_id" ref="model_sale_order"/>
             <field name="binding_type">report</field>
         </record>
-        <record id="paperformat_action_sale_order" model="report.paperformat">
-            <field name="name">Sale Order</field>
+        <record id="paperformat_action_sale_order2" model="report.paperformat">
+            <field name="name">Sale Order22</field>
             <field name="default" eval="True"/>
             <field name="format">custom</field>
             <field name="page_height">297</field>
@@ -408,7 +408,7 @@
             <field name="header_line" eval="False"/>
             <field name="header_spacing">50</field>
             <field name="dpi">90</field>
-            <field name="report_ids" eval="[(6,0,[ref('sb_sale_report.action_reportt_salee_orderr')])]"/>
+            <field name="report_ids" eval="[(6,0,[ref('sb_sale_report.action_reportt_salee_orderr2')])]"/>
 
 
 
