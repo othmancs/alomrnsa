@@ -1,0 +1,161 @@
+<odoo>
+    <data>
+        <template id="sales_per_day_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl">
+                        <h4 class="m-0">
+                            <strong>
+                                <t t-if="form['company_id']">
+                                    <t t-esc="form['company_id'][1]"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-esc="'Unknown Company'"/>
+                                </t>
+                            </strong>
+                        </h4>
+                        <h5>تقـريـر المـبيعــات بـاليــوم</h5>
+                        <br/>
+                        <div class="row mt-4 mb-4" id="creditnote">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        <t t-if="form['branch_data']">
+                                            <p>الفــروع:</p>
+                                        </t>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        مــن تـاريـخ:
+                                        <span t-esc="form['date_from']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الــي تـاريـخ:
+                                        <span t-esc="form['date_to']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبـع بواسطـة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تـاريخ الطبـاعـة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <t t-foreach="form['branch_data']" t-as="branch">
+                            <div style="page-break-before: always;">
+                                <h6 class="mb-3 mt-4">
+                                    <strong>
+                                        <t t-esc="branch['branch_name']"/>
+                                    </strong>
+                                </h6>
+                                <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 12%;">رقم اليوم</th>
+                                            <th class="text-center" style="width: 22%;">اليوم</th>
+                                            <th class="text-center" style="width: 22%;">التاريخ هـ</th>
+                                            <th class="text-center" style="width: 23%;">التاريخ م</th>
+                                            <th class="text-center" style="width: 19%;">المبيعات</th>
+                                            <th class="text-center" style="width: 20%;">الارجاعات</th>
+                                            <th class="text-center" style="width: 20%;">صافي المبيعات</th>
+                                            <th class="text-center" style="width: 15%;">صافي التكلفة</th>
+                                            <th class="text-center" style="width: 16%;">الربح</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="0"/>
+                                        <t t-foreach="branch['records']" t-as="record">
+                                            <t t-set="counter" t-value="counter + 1"/>
+                                            <tr>
+                                                <td class="text-center">
+                                                    <t t-esc="counter"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="record['day_name']"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="record['hijri_date']"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="record['invoice_date']"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="round(record['sales'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="record['returns']"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="abs(round(record['net_sales'], 2))"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="abs(round(record['cost'], 2))"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="abs(round(record['profit'], 2))"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <!--        ===========================================================================-->
+
+
+        <record id="sales_per_day_report" model="ir.actions.report">
+            <field name="name">تقرير المبيعات باليوم</field>
+            <field name="model">sales.per.day.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_sales_per_day_report.sales_per_day_report_template</field>
+            <field name="report_file">sb_sales_per_day_report.sales_per_day_report_template</field>
+            <field name="binding_model_id" ref="model_sales_per_day_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <!--        <record id="paperformat_action_sales_per_day" model="report.paperformat">-->
+        <!--            <field name="name">Sales Per Day Report</field>-->
+        <!--            <field name="default" eval="True"/>-->
+        <!--            <field name="format">custom</field>-->
+        <!--            <field name="page_height">297</field>-->
+        <!--            <field name="page_width">210</field>-->
+        <!--            <field name="orientation">Landscape</field>-->
+        <!--            <field name="margin_top">40</field>-->
+        <!--            <field name="margin_bottom">24.5</field>-->
+        <!--            <field name="margin_left">1</field>-->
+        <!--            <field name="margin_right">4</field>-->
+        <!--            <field name="header_line" eval="False"/>-->
+        <!--            <field name="header_spacing">35</field>-->
+        <!--            <field name="dpi">90</field>-->
+        <!--            <field name="report_ids" eval="[(6,0,[ref('sb_sales_per_day_report.sales_per_day_report')])]"/>-->
+        <!--        </record>-->
+
+        <!--                ======= Excel Report =================-->
+        <record id="sales_per_day_report_xls" model="ir.actions.report">
+            <field name="name">تقرير المبيعات باليوم</field>
+            <field name="model">sales.per.day.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_sales_per_day_report.report_xls</field>
+            <field name="report_file">sb_sales_per_day_report.report_xls</field>
+            <field name="binding_model_id" ref="model_sales_per_day_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
