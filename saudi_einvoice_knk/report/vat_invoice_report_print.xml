@@ -113,7 +113,10 @@
                                 <td style="padding:1pt;margin:0pt;font-weight: bold;text-align:center;background-color:#DCDCDC;"><span
                                         class="text-right arabic">Tax Invoice / فاتورة ضريبية </span></td>
                             </tr>
+       <br></br>
                         </table>
+                        <br></br>
+                        <br></br>
                         <div class="row">
                             <div name="invoice_address" class="col-6">
                                 <address t-field="o.partner_id"
@@ -128,7 +131,7 @@
                                     <strong>Sales Order Number: </strong><span t-field="o.invoice_origin"/><br/>
                                     <strong>Invoice Date: </strong><span t-field="o.invoice_date"/><br/>
                                     <strong>Payment Terms: </strong><span t-field="o.invoice_payment_term_id"/><br/>
-                                 <strong>رقم عرض السعر: </strong>   <span t-field="o.display_name"/><br/>
+                                 <strong>Quotation No.: </strong>   <span t-field="o.display_name"/><br/>
                                     <strong>Salesperson: </strong>   <span t-field="o.created_by_id.name"/><br/>
                                     <strong>Payment Method: </strong>   <span t-field="o.payment_method"/><br/>
                                 </p>
