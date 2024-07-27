@@ -276,7 +276,7 @@
                                                         <t t-esc="line.price_unit"/>
                                                     </td>
                                                <td style="font-size:1; text-align:center;">
-                                                      <span t-field="line.tax_amount"/>
+                                                      <span t-esc="line.tax_amount" t-options='{"widget": "float", "precision": 2}'/>
                                                     </td>
                                                     <td style="font-size:1; text-align:center;">
                                                         <t t-esc="line.price_total"/>
@@ -297,9 +297,9 @@
                                                 </t>
                                             </tr>
                                             <t t-set="counter" t-value="counter + 1"/>
-                                            <t t-set="total_price" t-value="total_price + (line.price_unit * line.product_uom_qty)"/>
-                                            <t t-set="vat_amount" t-value="total_price * 0.15"/>
-                                            <t t-set="total_price_with_vat" t-value="total_price + vat_amount"/>
+                                            <t t-set="total_price" t-value="total_price + (line.price_unit * line.product_uom_qty)" t-options='{"widget": "float", "precision": 2}'/>
+                                            <t t-set="vat_amount" t-value="total_price * 0.15" t-options='{"widget": "float", "precision": 2}'/>
+                                            <t t-set="total_price_with_vat" t-value="total_price + vat_amount" t-options='{"widget": "float", "precision": 2}'/>
                                         </t>
 
                                     </tbody>
