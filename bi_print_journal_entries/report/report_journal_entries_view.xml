@@ -103,8 +103,6 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td></td>
-							<td></td>
 							<td><strong>Total:</strong></td>
 							<td width="10%"><strong>
 								<span><t t-esc="total"/></span>
