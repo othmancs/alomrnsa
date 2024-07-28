@@ -5,7 +5,7 @@
 
 		<template id="journal_entry_template_report_view">
 			<t t-call="web.external_layout">
-				<t t-set="o" t-lang="ar_001"/>
+				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
 				<br></br>
 				<br></br>
 				<br></br>
