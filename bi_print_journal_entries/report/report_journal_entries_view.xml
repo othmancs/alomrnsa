@@ -15,40 +15,45 @@
 					<div class="oe_structure"/>
 					<div>
 						<h2 class="text-center mb32">
-							<strong>سند قد</strong>
+							<strong>سند قيد</strong>
 						</h2>
 					</div>
 					<br/>
+					<div>
 					<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
 						<tbody>
 							<tr>
-								<td><strong>قيد اليومية : </strong></td>
+								<td><p>قيد اليومية  </p></td>
 								<td><p t-field="o.name"/></td>
-								<td><strong>دفتر اليومية :</strong></td>
+								<td><p>دفتر اليومية </p></td>
 								<td><p t-field="o.journal_id"/></td>
 							</tr>
 							<tr>
-								<td><strong>التاريخ :</strong></td>
+								<td><p>التاريخ </p></td>
 								<td><p t-field="o.date"/></td>
-								<td><strong>المرجع :</strong></td>
+								<td><p>المرجع </p></td>
 								<td><p t-field="o.ref"/></td>
 							</tr>
 						</tbody>
 					</table>
+					</div>
 				<br/>
+					<div>
 	<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
 						<tbody>
 								<tr>
-								<td><strong>أنشئ بواسطة:</strong></td>
+								<td><p>أنشئ بواسطة</p></td>
 								<td>    <span t-field="o.create_uid"/></td>
-								<td>    <strong>طبع بواسطة:</strong></td>
+								<td>    <p>طبع بواسطة</p></td>
 								<td>    <span t-field="user_id.name"/></td>
-								<td>    <strong>الفرع:</strong></td>
+								<td>    <p>الفرع</p></td>
 								<td>    <span t-field="o.branch_id.name"/></td>	
 							</tr>
 						</tbody>
 					</table>
 					<br></br>
+					</div>
+					
 				<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
 					<thead>
 						<tr>
