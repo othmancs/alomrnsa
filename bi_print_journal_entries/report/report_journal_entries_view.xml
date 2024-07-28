@@ -5,7 +5,7 @@
 
 		<template id="journal_entry_template_report_view">
 			<t t-call="web.external_layout">
-				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+				<t t-set="o" t-lang="ar_001"/>
 				<br></br>
 				<br></br>
 				<br></br>
@@ -103,7 +103,7 @@
 							<td></td>
 							<td></td>
 							<td></td>
-							<td><strong>Total:</strong></td>
+							<td><strong>المجموع</strong></td>
 							<td width="10%"><strong>
 								<span><t t-esc="total"/></span>
 							</strong></td>
@@ -120,7 +120,7 @@
 		<template id="journal_entry_report_template_id">
 			<t t-call="web.html_container">
 				<t t-foreach="docs" t-as="o">
-					<t t-call="bi_print_journal_entries.journal_entry_template_report_view"  t-lang="o.partner_id.lang"/>
+					<t t-call="bi_print_journal_entries.journal_entry_template_report_view" t-lang="ar_001"/>
 				</t>
 			</t>
 		</template>
