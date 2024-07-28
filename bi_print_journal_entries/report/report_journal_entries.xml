@@ -3,7 +3,7 @@
 	<data>
 
 		<record id="journal_entry_report_id" model="ir.actions.report">
-            <field name="name">Print Journal Entries</field>
+            <field name="name">طباعة قيد اليومية</field>
             <field name="model">account.move</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">bi_print_journal_entries.journal_entry_report_template_id</field>
