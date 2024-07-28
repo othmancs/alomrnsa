@@ -6,44 +6,58 @@
 		<template id="journal_entry_template_report_view">
 			<t t-call="web.external_layout">
 				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+				<br></br>
+				<br></br>
+				<br></br>
 				<div class="page">
-					<br/>
+					<br></br>
+					<br></br>
 					<div class="oe_structure"/>
 					<div>
 						<h2 class="text-center mb32">
-							<strong>Journal Entry</strong>
+							<strong>سند قد</strong>
 						</h2>
 					</div>
 					<br/>
 					<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
 						<tbody>
 							<tr>
-								<td><strong>Journal Entry : </strong></td>
+								<td><strong>قيد اليومية : </strong></td>
 								<td><p t-field="o.name"/></td>
-								<td><strong>Journal :</strong></td>
+								<td><strong>دفتر اليومية :</strong></td>
 								<td><p t-field="o.journal_id"/></td>
 							</tr>
 							<tr>
-								<td><strong>Date :</strong></td>
+								<td><strong>التاريخ :</strong></td>
 								<td><p t-field="o.date"/></td>
-								<td><strong>Reference :</strong></td>
+								<td><strong>المرجع :</strong></td>
 								<td><p t-field="o.ref"/></td>
 							</tr>
 						</tbody>
 					</table>
 				<br/>
-
+	<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
+						<tbody>
+								<tr>
+								<td><strong>أنشئ بواسطة:</strong></td>
+								<td>    <span t-field="o.create_uid"/></td>
+								<td>    <strong>طبع بواسطة:</strong></td>
+								<td>    <span t-field="user_id.name"/></td>
+								<td>    <strong>الفرع:</strong></td>
+								<td>    <span t-field="o.branch_id.name"/></td>	
+							</tr>
+						</tbody>
+					</table>
+					<br></br>
 				<table style="width:100%;margin:0px auto;background:white;border:1px solid #e1e1e1;" class="table table-condensed">
 					<thead>
 						<tr>
-							<th>Partner</th>
-							<th>Account</th>
-							<th>Label</th>
-							<th>Due Date</th>
-							<th>Analytic Account</th>
-							<th>Taxes(%)</th>
-							<th>Debit</th>
-							<th>Credit</th>
+							<th>الحساب</th>
+							<th>الشريك</th>
+							<th>البيان</th>
+							<th>تحليلي</th>
+							<th>مدين</th>
+							<th>دائن</th>
 						</tr>
 					</thead>  
 					<tbody class="consumed_tbody">
@@ -52,17 +66,16 @@
 						<t t-foreach="o.line_ids" t-as="line">    
 						<tr>
 							<td>
-								<span t-field="line.partner_id" />
-							</td>
-							<td>
 								<span t-field="line.account_id" />
 							</td>
 							<td>
+								<span t-field="line.partner_id" />
+							</td>
+							
+							<td>
 								<span t-field="line.name" />
 							</td>
-							<td>
-								<span t-field="line.date_maturity" />
-							</td>
+							
 							<td>
 								<span>
 									<div t-foreach="line.analytic_distribution" t-as="distribution">
@@ -70,9 +83,7 @@
                                     </div>
                                 </span>
 							</td>
-							<td>
-								<span t-field="line.tax_ids" />
-							</td>
+							
 							<td>
 								<span t-field="line.debit" />
 							</td>
