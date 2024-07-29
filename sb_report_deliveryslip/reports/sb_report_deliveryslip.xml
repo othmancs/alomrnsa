@@ -107,14 +107,14 @@
                                                     <t t-esc="line.product_id.name"/>
                                                 </td>
                                                 <td class="text-center">
-                                                    <t t-esc="line.product_uom_qty"/>
+                                                    <t t-esc="line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
                                                     <t t-set="total_product_uom_qty"
-                                                       t-value="total_product_uom_qty + line.product_uom_qty"/>
+                                                       t-value="total_product_uom_qty + line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
                                                 </td>
                                                 <td class="text-center">
                                                     <t t-esc="line.quantity_done"/>
                                                     <t t-set="total_quantity_done"
-                                                       t-value="total_quantity_done + line.quantity_done"/>
+                                                       t-value="total_quantity_done + line.quantity_done" t-options='{"widget": "float", "precision": 2}'/>
                                                 </td>
                                             </tr>
                                             <t t-set="counter" t-value="counter + 1"/>
@@ -124,10 +124,10 @@
                                             <td class="text-right " style="border:1px white; text-align:left;">Total
                                             </td>
                                             <td class="text-center" style="border-right:1px white; border:1px white;">
-                                                <t t-esc="total_product_uom_qty"/>
+                                                <t t-esc="total_product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
                                             </td>
                                             <td class="text-center" style="border-right:1px white; border:1px white;">
-                                                <t t-esc="total_quantity_done"/>
+                                                <t t-esc="total_quantity_done" t-options='{"widget": "float", "precision": 2}'/>
                                             </td>
                                         </tr>
                                     </tbody>
