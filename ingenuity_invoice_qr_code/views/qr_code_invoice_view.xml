@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="account_move_form_view_inh" model="ir.ui.view">
+        <field name="name">account.move.form.view.inh</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="qr_in_report"/>
+            </field>
+            <xpath expr="/form/sheet/div[hasclass('oe_title')]" position="before">
+                <field name="qr_image" attrs="{'invisible': [('state', '=', 'draft')]}" widget="image" class="oe_avatar"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
