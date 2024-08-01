@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="account_move_tree_view_inherit_button" model="ir.ui.view">
+    <field name="name">account.move.tree.inherit.buttons</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_out_invoice_tree" />
+    <field name="arch" type="xml">
+      <field name="state" position="after">
+        <button string="Post"
+                name="action_post"
+                type="object"
+                icon="fa-check"
+                states="draft" />
+        <button string="Register Payment"
+                name="action_register_payment"
+                type="object"
+                icon="fa-thumbs-up"
+                attrs="{'invisible':['|',('payment_state','not in',['not_paid','partial']),('state','!=','posted')]}"/>
+        <button string="Reset to Draft"
+                name="button_draft"
+                type="object"
+                icon="fa-times"
+                states="posted"/>
+        <button string="Cancel"
+                name="button_cancel"
+                type="object"
+                icon="fa-times"
+                states="draft" />
+      </field>
+    </field>
+  </record>
+
+  <record id="bill_tree_view_inherit_button" model="ir.ui.view">
+    <field name="name">inherit.bill.tree.inherit.button</field>
+    <field name="model">account.move</field>
+    <field name="inherit_id" ref="account.view_in_invoice_bill_tree" />
+    <field name="arch" type="xml">
+      <field name="state" position="after">
+        <button string="Post"
+                name="action_post"
+                type="object"
+                icon="fa-check"
+                states="draft" />
+        <button string="Register Payment"
+                name="action_register_payment"
+                type="object"
+                icon="fa-thumbs-up"
+                attrs="{'invisible':['|',('payment_state','not in',['not_paid','partial']),('state','!=','posted')]}"/>
+        <button string="Reset to Draft"
+                name="button_draft"
+                type="object"
+                icon="fa-times"
+                states="posted"/>
+        <button string="Cancel"
+                name="button_cancel"
+                type="object"
+                icon="fa-times"
+                states="draft" />
+      </field>
+    </field>
+  </record>
+</odoo>
