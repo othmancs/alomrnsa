@@ -38,10 +38,11 @@
                     <group>
                         <group>
                             <field name="user_id" readonly="1" force_save="1"/>
-                            <field name="branch_from_id"/>
+                            <field name="branch_from_id" options="{'no_create': True}"/>
                             <field name="branch_to_id" readonly="1" />
-                            <field name="picking_type_id" required="1" domain="[('code', '=', 'internal')]"
-                                   attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True}" />
+<!--                             <field name="picking_type_id" required="1" domain="[('code', '=', 'internal')]"
+                                   attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True}" /> -->
+                             <field name="picking_type_id" required="1" domain="[('code', '=', 'internal')]" options="{'no_create': True}"/>
                         </group>
                         <group>
                             <field name="request_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
