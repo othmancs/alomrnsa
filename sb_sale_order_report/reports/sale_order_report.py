@@ -75,7 +75,7 @@ class SaleOrderReportXlsx(models.AbstractModel):
                 sheet.write(row, col + 5, payment_method_text, format2)
                 sheet.write(row, col + 6, rec['amount_untaxed'], format2)
                 sheet.write(row, col + 7, rec['margin'], format2)
-                sheet.write(row, col + 8, round(rec['margin_percent'] * 100, 2), format2)
+                sheet.write(row, col + 8, f"{round(rec['margin_percent'] * 100, 2)}%", format2)
                 row += 1
 
             # Add space between branches

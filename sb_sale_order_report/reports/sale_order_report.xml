@@ -109,7 +109,8 @@
                                                     <t t-esc="order['margin']"/>
                                                 </td>
                                                 <td class="text-center">
-                                                    <t t-esc="round(order['margin_percent'] * 100, 2)"/>
+                                                    <span t-esc="round(order['margin_percent'] * 100, 2)"/>
+                                                    <span>%</span>
                                                 </td>
                                             </tr>
                                         </t>
