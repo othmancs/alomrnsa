@@ -20,10 +20,15 @@
                             <div class="col-auto col-3 mw-100 mb-2">
                                 <p class="m-0">
                                     <strong>
-                                        <t t-if="form['branch_data']">
-                                            <p>الفــروع:</p>
+                                        <t t-if="len(form['branch_data']) == 1">
+                                            الفــروع:
+                                            <t t-esc="form['branch_data'][0]['branch_name']"/>
+                                        </t>
+                                        <t t-else="">
+                                            <p></p>
                                         </t>
                                     </strong>
+
                                 </p>
                                 <p class="m-0">
                                     <strong>
