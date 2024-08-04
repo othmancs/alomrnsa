@@ -20,8 +20,8 @@ class SalesReportWizard(models.TransientModel):
         return self.env.ref("sb_sale_edit_and_reports.report_sales_report").report_action(self)
 
     def generate_pdf_report(self):
-        domain = [('date', '>=', self.date_start),
-                  ('date', '<=', self.date_end),
+        domain = [('invoice_date', '>=', self.date_start),
+                  ('invoice_date', '<=', self.date_end),
                   ('move_type', '=', 'out_invoice'),
                   ('state', '=', 'posted')
                   ]
@@ -31,7 +31,6 @@ class SalesReportWizard(models.TransientModel):
         existing_branches = lines_data.mapped('branch_id')
         report_data = []
         branches = [{'branch_id': branch.id, 'branch_name': branch.name} for branch in existing_branches]
-        print('bvbvbvbvbvbvbvb',branches)
         for branch in existing_branches:
             current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
             total_out_refund_purchase_price = 0.0
@@ -51,6 +50,7 @@ class SalesReportWizard(models.TransientModel):
                 seller_name = account.created_by_id.name
                 customer_name = account.partner_id.name
                 invoice_date = account.invoice_date
+                state=account.payment_state
                 cost = cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
                 payment_method = account.payment_method
                 price = sum(account.mapped('amount_untaxed'))
@@ -74,7 +74,7 @@ class SalesReportWizard(models.TransientModel):
                     out_refund_purchase_price += sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                     out_refund_price += sum(ac.mapped('amount_untaxed'))
 
-                wizard_data = self.read()[0]
+                # wizard_data = self.read()[0]
 
                 report_data_item = {
                     'branch_name':branch.name,
@@ -89,10 +89,13 @@ class SalesReportWizard(models.TransientModel):
                     'cost': cost,
                     'total_credit_note': out_refund_price,
                     't': out_refund_purchase_price,
+                    'state':state
                 }
+
                 report_data.append(report_data_item)
+                # wizard_data = self.read()[0]
         data = {
-            'form': wizard_data,
+            'form': self.read()[0],
             'data': report_data,
             'branches':branches,
         }

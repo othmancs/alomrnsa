@@ -20,8 +20,8 @@ class BranchSalesComparison(models.TransientModel):
         return self.env.ref("sb_sale_edit_and_reports.report_branch_sales_comparison").report_action(self)
 
     def generate_pdf_report(self):
-        domain = [('date', '>=', self.date_start),
-                  ('date', '<=', self.date_end),
+        domain = [('invoice_date', '>=', self.date_start),
+                  ('invoice_date', '<=', self.date_end),
                   ('state', '=', 'posted'),
                   ('move_type', '=', 'out_invoice')
                   ]
@@ -46,15 +46,15 @@ class BranchSalesComparison(models.TransientModel):
                 [sum(move.line_ids.mapped(lambda x: x.purchase_price * x.quantity)) for move in
                  current_branch_lines.filtered(lambda x: x.payment_method != 'option2')])
             total_op1_op2_purchase = total_option1_branch_purchase + total_option2_branch_purchase
-            print('fffffffff', total_op1_op2_purchase)
             total_op1_op2 = total_option1_branch + total_option2_branch
 
             out_refund_price = self.env['account.move'].search([
                 ('move_type', '=', 'out_refund'),
                 ('branch_id', '=', branch.id),
                 ('state', '=', 'posted'),
-                ('date', '>=', self.date_start),
-                ('date', '<=', self.date_end)
+                ('invoice_date', '>=', self.date_start),
+                ('invoice_date', '<=', self.date_end),
+                ('line_ids.product_id.categ_id', '=', self.product_category_id.id)
             ])
             total_out_refund_price = sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
             total_out_refund_purchase_price = sum(
@@ -70,7 +70,7 @@ class BranchSalesComparison(models.TransientModel):
             total_payments_branch = sum(payments.mapped('amount_company_currency_signed'))
             total_purchase = abs(total_op1_op2_purchase) - abs(total_out_refund_purchase_price)
 
-            wizard_data = self.read()[0]
+            # wizard_data = self.read()[0]
             report_data_item = {
                 'branch_name': branch.name,
                 'total_option1': total_option1_branch,
@@ -84,7 +84,7 @@ class BranchSalesComparison(models.TransientModel):
             }
             report_data.append(report_data_item)
         data = {
-            'form': wizard_data,
+            'form': self.read()[0],
             'data': report_data
         }
         return self.env.ref("sb_sale_edit_and_reports.banch1_sales_comparison_report").report_action(self, data=data)

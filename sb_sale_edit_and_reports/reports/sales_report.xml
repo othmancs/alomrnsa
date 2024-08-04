@@ -91,6 +91,7 @@
                                     <th class="text-center" style="width: 20%;">اجمالى تكلفه البيع</th>
                                     <th class="text-center" style="width: 20%;">اجمالى الارجعات</th>
                                     <th class="text-center" style="width: 20%;">تكلفة الارجعات</th>
+                                    <th class="text-center" style="width: 20%;">حاله الدفع</th>
                                 </tr>
                                     <t t-foreach="data" t-as="line">
                                         <tr t-if="line['branch_name'] == branch['branch_name']">
@@ -127,6 +128,19 @@
                                             <td class="text-center">
                                                 <span t-esc="round(line['t'],4)"/>
                                             </td>
+                                            <t t-if="line['state'] == 'paid'">
+                                                <td class="text-center" style="color:white; background-color:green;">
+                                                    <span>مدفوع</span>
+
+                                                </td>
+
+                                            </t>
+                                                <t t-if="line['state'] == 'not_paid'">
+                                                <td class="text-center" style="color:white; background-color:red;">
+                                                    <span>غير مسدد</span>
+
+                                            </td>
+                                                </t>
                                         </tr>
                                     </t>
                                 </t>

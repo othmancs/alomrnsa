@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="created_by_id" invisible="0" />
-                    <field name="payment_method" invisible="1" />
+                    <field name="payment_method" invisible="0" />
                 </xpath>
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="after">
                     <field name="purchase_price" invisible="1" />
