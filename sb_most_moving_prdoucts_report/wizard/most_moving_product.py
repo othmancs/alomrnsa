@@ -121,7 +121,7 @@ class ProductWizard(models.TransientModel):
                 print("internal_beginning_balance=======>", internal_beginning_balance)
 
                 ##================================================================
-                new_incoming = internal_incoming + incoming_period
+                new_incoming = (internal_incoming + incoming_period) - return_qty
                 print("new_incoming=======>", new_incoming)
                 new_outgoing = outgoing_period + internal_outgoing
                 print('new_outging======>', new_outgoing)
@@ -129,7 +129,7 @@ class ProductWizard(models.TransientModel):
                 new_beginning_balance = beginning_balance + internal_beginning_balance
                 print('new_beginning_balance======>', new_beginning_balance)
                 # Calculate available quantity
-                available_qty = (new_beginning_balance + new_incoming) - new_outgoing
+                available_qty = (new_beginning_balance + new_incoming + return_qty) - new_outgoing
                 print("available_qty=======>", available_qty)
 
                 sales_percentage = 0
