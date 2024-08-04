@@ -1,0 +1,128 @@
+<odoo>
+    <data>
+        <template id="profitable_clients_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl" style="">
+                        <h5>العملاء الاكثر ربحيه</h5>
+                        <div class="row mt-4 mb-4">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        من تاريخ:
+                                        <span t-esc="form['date_start']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الي تاريخ:
+                                        <span t-esc="form['date_end']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبع بواسطة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تاريخ الطباعة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h5>الفرع</h5>
+                            <span t-esc="form['branch_id'][1]"/>
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 20%;">رقم العميل</th>
+                                    <th class="text-center" style="width: 20%;">اسم العميل</th>
+                                    <th class="text-center" style="width: 20%;">المبيعات</th>
+                                    <th class="text-center" style="width: 20%;">التكلفه</th>
+                                    <th class="text-center" style="width: 20%;">الربح</th>
+                                    <th class="text-center" style="width: 20%;">نسبه الربح %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data" t-as="line">
+                                    <tr>
+                                        <td class="text-center">
+                                            <span t-esc="line['other_id']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="line['client']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="round(line['unit_price_branch'], 4)"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="round(line['total_cost_branch'], 4)"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="round(line['cost'], 4)"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="round(line['cost_pers'], 4)"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                        <td class="text-center" style="background-color:white;border:1px white; border-right:1px white;border-bottom:1px white;">
+                                        </td>
+                                        <td class="text-center" style="background-color:#B8B8B8;">
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="text-center" style="background-color:#B8B8B8;">
+                                            <span t-esc="round(sum(l['unit_price_branch'] for l in data), 4)"/>
+                                        </td>
+                                        <td class="text-center" style="background-color:#B8B8B8;">
+                                            <span t-esc="round(sum(l['total_cost_branch'] for l in data), 4)"/>
+                                        </td>
+                                        <td class="text-center" style="background-color:#B8B8B8;">
+                                            <span t-esc="round(sum(l['cost'] for l in data), 4)"/>
+                                        </td>
+                                        <td class="text-center" style="background-color:#B8B8B8;">
+                                            <span t-esc="round(sum(l['cost_pers'] for l in data), 4)"/>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <!--   QWeb Reports   -->
+        <!--   NAME & FILE_NAME should be the same   -->
+        <record id="profitable_clients_report" model="ir.actions.report">
+            <field name="name">العملاء الاكثر ربحيه</field>
+            <field name="model">profitable.clients.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_profitable_clients_report.profitable_clients_report_template</field>
+            <field name="report_file">sb_profitable_clients_report.profitable_clients_report_template</field>
+            <field name="binding_model_id" ref="model_profitable_clients_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="paperformattttt_action_sale_order_id" model="report.paperformat">
+            <field name="name">العملاء الاكثر ربحيه</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('sb_profitable_clients_report.profitable_clients_report')])]"/>
+        </record>
+    </data>
+</odoo>

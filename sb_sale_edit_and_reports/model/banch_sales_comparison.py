@@ -25,8 +25,8 @@ class BranchComparison(models.AbstractModel):
             format4 = workbook.add_format(
                 {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True})
 
-            domain = [('date', '>=', obj.date_start),
-                      ('date', '<=', obj.date_end),
+            domain = [('invoice_date', '>=', obj.date_start),
+                      ('invoice_date', '<=', obj.date_end),
                       ('state', '=', 'posted'),
                       ('move_type', '=', 'out_invoice'),
                       ]
@@ -69,15 +69,14 @@ class BranchComparison(models.AbstractModel):
                 total_option2_branch_purchase = sum([sum(move.line_ids.mapped(lambda x: x.purchase_price * x.quantity)) for move in
                                             current_branch_lines.filtered(lambda x: x.payment_method != 'option2')])
                 total_op1_op2_purchase = total_option1_branch_purchase+total_option2_branch_purchase
-                print('fffffffff',total_op1_op2_purchase)
                 total_op1_op2 = total_option1_branch + total_option2_branch
 
                 out_refund_price = self.env['account.move'].search([
                     ('move_type', '=', 'out_refund'),
                     ('branch_id', '=', branch.id),
                     ('state', '=', 'posted'),
-                    ('date', '>=', obj.date_start),
-                    ('date', '<=', obj.date_end),
+                    ('invoice_date', '>=', obj.date_start),
+                    ('invoice_date', '<=', obj.date_end),
                     ('line_ids.product_id.categ_id', '=', obj.product_category_id.id)
                 ])
                 total_out_refund_price = sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
