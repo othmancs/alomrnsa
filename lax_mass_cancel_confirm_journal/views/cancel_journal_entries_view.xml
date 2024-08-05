@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_mass_cancel_confirm_journal_entries_root"
+        web_icon="mass_cancel_confirm_journal_entries,static/description/icon.png"
+        sequence="0"/>
+
+</odoo>
