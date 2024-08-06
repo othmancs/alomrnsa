@@ -284,7 +284,7 @@
                                         المستحق</td>
                                     <td style="border-right:1pt solid grey;text-align:right;padding:3pt"
                                         class="text-end"><span t-esc="doc.amount_residual"
-                                                               t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                                               t-options='{"widget": "monetary", "display_currency": o.currency_id,'widget':'float', 'precision':2}'/></td>
                                 </tr>
                             </thead>
                         </table>
