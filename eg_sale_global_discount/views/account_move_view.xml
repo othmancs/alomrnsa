@@ -1,0 +1,17 @@
+<odoo>
+    <record id="account_move_eg_discount_form_view" model="ir.ui.view">
+        <field name="name">account.move.eg.discount.form.view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[1]" position="inside">
+                <field name="sale_order" invisible="1"/>
+                <field name="discount_method" attrs="{'readonly': [('state', '!=', 'draft')],'invisible': [ ('sale_order', '=',True)]}"/>
+                <field name="discount_amount" attrs="{'readonly': [('state', '!=', 'draft')],'invisible': [ ('sale_order', '=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='tax_totals']" position="before">
+                <field name="total_discount" options="{'currency_field': 'currency_id'}"  attrs="{'invisible': [ ('sale_order', '=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

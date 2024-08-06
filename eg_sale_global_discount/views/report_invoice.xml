@@ -1,0 +1,16 @@
+<odoo>
+    <template id="report_invoice_eg_discount" inherit_id="account.report_invoice_document">
+        <xpath expr="//div/div[2]/div/div/table/t[1]" position="before">
+            <tr class="border-black" style="border-bottom:1px solid #dddddd;">
+                <td t-if="o.sale_order == False">
+                    <strong>Discount</strong>
+                </td>
+                <td class="text-right"  t-if="o.sale_order == False">
+                    <span t-field="o.total_discount"
+                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+            </tr>
+        </xpath>
+
+    </template>
+</odoo>

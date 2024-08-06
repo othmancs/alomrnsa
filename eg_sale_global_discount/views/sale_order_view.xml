@@ -1,0 +1,16 @@
+<odoo>
+    <record id="sale_order_eg_discount_form_view" model="ir.ui.view">
+        <field name="name">sale.order.eg.discount.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="discount_method" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                   <field name="discount_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </xpath>
+            <xpath expr="//notebook/page[@name='order_lines']/group[@name='note_group']/group[2]" position="inside">
+                <field name="total_discount" options="{'currency_field': 'currency_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
