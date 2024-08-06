@@ -144,9 +144,10 @@
 <!--                                 <img t-if="doc.get_qr_code()"
                                      style="display:block;"
                                      t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 110, 110)"/> -->
-                                <img t-if="doc.get_qr_code()"
+                              <img t-if="doc.get_qr_code()"
      style="display:block;"
-     t-att-src="'/report/barcode/?type=QR&amp;value=' + doc.get_qr_code() + '&amp;width=110&amp;height=110'"/>
+     t-att-src="'/report/barcode/?type=QR&value=' + t-esc(doc.get_qr_code()) + '&width=110&height=110'"/>
+
 
                             </div>
                         </div>
