@@ -138,7 +138,7 @@
                                     <strong>Payment Method: </strong>   <span t-field="o.payment_method"/><br/>
                                 </p>
                             </div>
-                            <div class="col-2">
+<!--                             <div class="col-2">
                                 <!-- <img t-att-src="'data:image/png;base64,%s' % to_text(doc.get_qr_code())"
                                     style="width: 120px;height:120px;" alt="Barcode"/> -->
 <!--                                 <img t-if="doc.get_qr_code()"
@@ -149,7 +149,7 @@
 								t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 110, 110)"/>
 
 
-                            </div>
+                            </div> -->
                         </div>
                         <table style="border:1pt solid grey;width:100%;color:black; margin-top:0pt; color:black;"
                                class="table-condensed">
@@ -305,6 +305,18 @@
                                 </tr>
                             </thead>
                         </table>
+			         <div class="col-2">
+                                <!-- <img t-att-src="'data:image/png;base64,%s' % to_text(doc.get_qr_code())"
+                                    style="width: 120px;height:120px;" alt="Barcode"/> -->
+<!--                                 <img t-if="doc.get_qr_code()"
+                                     style="display:block;"
+                                     t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 110, 110)"/> -->
+                             <img t-if="doc.get_qr_code()"
+								style="display:block;"
+								t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 110, 110)"/>
+
+
+                            </div>
                         <h6><span style="font-weight:bold;">Note:</span>ملاحظة: لن يكون الدفع مقابل جميع الفواتير
                             النقدية صالحًا إلا إذا كان لدى العميل قسيمة إيصال نقدي تثبت الدفع. وإلا فسيتم اعتبارها
                             بمثابة فاتورة ائتمان.</h6>
