@@ -306,11 +306,11 @@
 <!--                                 <img t-if="doc.get_qr_code()"
                                      style="display:block;"
                                      t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 110, 110)"/> -->
-                             <img t-if="doc.get_qr_code()"
+<!--                              <img t-if="doc.get_qr_code()"
 								style="display:block;"
 								t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.get_qr_code(), 110, 110)"/>
 
-
+ -->
                             </div> -->
                         <h6><span style="font-weight:bold;">Note:</span>ملاحظة: لن يكون الدفع مقابل جميع الفواتير
                             النقدية صالحًا إلا إذا كان لدى العميل قسيمة إيصال نقدي تثبت الدفع. وإلا فسيتم اعتبارها
