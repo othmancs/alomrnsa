@@ -31,8 +31,8 @@ class SalesReportReport(models.AbstractModel):
                 {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True ,'bg_color': 'red','color':'white'})
             format7 = workbook.add_format(
                 {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'green', 'color':'white'})
-            domain = [('date', '>=', obj.date_start),
-                      ('date', '<=', obj.date_end),
+            domain = [('invoice_date', '>=', obj.date_start),
+                      ('invoice_date', '<=', obj.date_end),
                       ('move_type','=','out_invoice'),
                       ('state','=','posted')
 

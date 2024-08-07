@@ -20,8 +20,8 @@ class SalesReportWizard(models.TransientModel):
         return self.env.ref("sb_sale_edit_and_reports.report_sales_report").report_action(self)
 
     def generate_pdf_report(self):
-        domain = [('date', '>=', self.date_start),
-                  ('date', '<=', self.date_end),
+        domain = [('invoice_date', '>=', self.date_start),
+                  ('invoice_date', '<=', self.date_end),
                   ('move_type', '=', 'out_invoice'),
                   ('state', '=', 'posted')
                   ]
@@ -31,7 +31,6 @@ class SalesReportWizard(models.TransientModel):
         existing_branches = lines_data.mapped('branch_id')
         report_data = []
         branches = [{'branch_id': branch.id, 'branch_name': branch.name} for branch in existing_branches]
-        print('bvbvbvbvbvbvbvb',branches)
         for branch in existing_branches:
             current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
             total_out_refund_purchase_price = 0.0
@@ -92,6 +91,7 @@ class SalesReportWizard(models.TransientModel):
                     't': out_refund_purchase_price,
                     'state':state
                 }
+
                 report_data.append(report_data_item)
                 # wizard_data = self.read()[0]
         data = {
