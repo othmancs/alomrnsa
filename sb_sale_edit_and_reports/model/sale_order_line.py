@@ -1,9 +1,9 @@
 from odoo import fields, models
 
+
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
-
-    purchase_price = fields.Float(string='Purchase Price')
 
     def _prepare_invoice_line(self, **optional_values):
         invoice_vals = super(SaleOrderLine, self)._prepare_invoice_line()
