@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_monetary_movement" model="ir.actions.report">
+            <field name="name">monetary movement</field>
+            <field name="model">monetary.movement.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_monetary_movement_report.report_monetary_movement</field>
+            <field name="report_file">sb_monetary_movement_report.report_monetary_movement</field>
+            <field name="print_report_name">'تقرير الحركه النقديه'</field>
+            <field name="binding_model_id" ref="model_monetary_movement_wizard"/>
+        </record>
+
+        <record id="monetary_movement_wizard_form" model="ir.ui.view">
+            <field name="name">monetary_movement_wizard_form</field>
+            <field name="model">monetary.movement.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="branch_id" widget="many2many_tags"/>
+                            </group>
+                            <group>
+                                <field name="date_end"/>
+<!--                                <field name="product_category_id" widget="many2many_tags"/>-->
+                                <field name="company_id" invisible="1" />
+                                <field name="print_date" invisible="1" />
+                                <field name="printed_by" invisible="1" />
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_clients_export_xlsx" type="object" string="Xlsx" class="btn-primary"/>
+                        <button name="generate_pdf_report" type="object" string="PDF" class="btn-primary"/>
+                        <button special="cancel" class="btn-secondary" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="monetary_movement_wizard_action" model="ir.actions.act_window">
+            <field name="name">تقرير الحركه النقديه</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">monetary.movement.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="monetary_movement_wizard_new"
+              parent="sale.menu_sale_report"
+              name="تقرير الحركه النقديه"
+              action="monetary_movement_wizard_action"
+              sequence="37"/>
+
+    </data>
+</odoo>

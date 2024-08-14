@@ -27,8 +27,10 @@ class BranchSalesComparison(models.TransientModel):
             ('invoice_date', '<=', self.date_end),
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
-            ('partner_id', 'in', self.partner_id.ids)
+            # ('partner_id', 'in', self.partner_id.ids)
         ]
+        if self.partner_id.ids:
+            domain.append(('partner_id', 'in', self.partner_id.ids))
         lines_data = self.env['account.move'].search(domain)
         domain_new = [
             ('date', '<', self.date_start)
@@ -59,9 +61,16 @@ class BranchSalesComparison(models.TransientModel):
                         processed_partner_ids.add(account.partner_id.id)
                         filtered_accounts = balance_data.filtered(lambda
                                                                       x: x.partner_id == account.partner_id and x.account_id == account.partner_id.property_account_receivable_id)
+                        f_in_refund_price = branch_lines_data.filtered(
+                            lambda x: x.partner_id == account.partner_id and x.debit_origin_id)
+                        in_refund_price = sum([sum(move.mapped('amount_total_signed')) for move in
+                                               f_in_refund_price])
                         debit = round(sum(filtered_accounts.mapped('debit')), 4)
                         credit = round(sum(filtered_accounts.mapped('credit')), 4)
-                        balance = debit - credit
+                        balance = debit
+                        unit_branch = sum([sum(move.mapped('amount_total_in_currency_signed')) for move in
+                                           branch_lines_data.filtered(
+                                               lambda x: x.move_type == 'out_invoice')])
                         unit_price_branch = sum([sum(move.mapped('amount_total_signed')) for move in
                                                  branch_lines_data.filtered(
                                                      lambda x: x.move_type == 'out_invoice')])
@@ -72,13 +81,7 @@ class BranchSalesComparison(models.TransientModel):
                             ('state', '=', 'posted')
                         ])
                         out_refund_price = round(abs(sum(out_refund.mapped('amount_total_signed'))), 4)
-                        in_refund = self.env['account.move'].search([
-                            ('debit_origin_id', '=', account.debit_origin_id.id),
-                            ('partner_id', '=', account.partner_id.id),
-                            ('state', '=', 'posted')
-                        ])
-                        in_refund_price = round(abs(sum(in_refund.mapped('amount_total_signed'))), 4)
-                        total_price_branch = round(abs(unit_price_branch - in_refund_price), 4)
+
                         filtered_payments = payment_data.filtered(lambda x: x.partner_id == account.partner_id)
                         payment = round(sum(filtered_payments.mapped('amount_company_currency_signed')), 4)
                         last_term_balance = round(abs(balance + unit_price_branch - payment), 4)
@@ -87,10 +90,10 @@ class BranchSalesComparison(models.TransientModel):
 
             report_data_item = {
                 'branch_name': branch.name,
-                "other_id":other_id,
+                "other_id":account.partner_id.other_id,
                 "partner_name": partner_name,
-                "balance": balance,
-                "total_price_branch": total_price_branch,
+                "balance": debit,
+                "total_price_branch": unit_branch,
                 "in_refund_price": in_refund_price,
                 "payment": payment,
                 "out_refund_price": out_refund_price,

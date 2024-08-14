@@ -42,8 +42,10 @@ class BranchComparison(models.AbstractModel):
                 ('invoice_date', '<=', obj.date_end),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('partner_id', 'in', obj.partner_id.ids)
+                # ('partner_id', 'in', obj.partner_id.ids)
             ]
+            if obj.partner_id.ids:
+                domain.append(('partner_id', 'in', obj.partner_id.ids))
             lines_data = self.env['account.move'].search(domain)
             domain_new = [
                 ('date', '<', obj.date_start)
@@ -68,6 +70,8 @@ class BranchComparison(models.AbstractModel):
 
             for branch in obj.branch_id:
                 branch_lines_data = lines_data.filtered(lambda x: x.partner_id.branch_id == branch)
+
+                print('eeeeeeeeeeeeeeeeeeeeeeeee',branch_lines_data)
                 if branch_lines_data:
                     worksheet.merge_range(row, col, row, col + 8, branch.name, format2)
                     row += 1
@@ -90,12 +94,19 @@ class BranchComparison(models.AbstractModel):
                         if account.partner_id.id not in processed_partner_ids:
                             processed_partner_ids.add(account.partner_id.id)
                             filtered_accounts = balance_data.filtered(lambda x: x.partner_id == account.partner_id and x.account_id == account.partner_id.property_account_receivable_id)
+                            f_in_refund_price= branch_lines_data.filtered(lambda x: x.partner_id == account.partner_id and x.debit_origin_id)
+                            in_refund_price=sum([sum(move.mapped('amount_total_signed')) for move in
+                                                     f_in_refund_price])
+
                             debit = round(sum(filtered_accounts.mapped('debit')), 4)
+                            print('ddddddd',f_in_refund_price)
                             credit = round(sum(filtered_accounts.mapped('credit')), 4)
-                            balance = debit - credit
-                            unit_price_branch = sum([sum(move.mapped('amount_total_signed')) for move in
+                            balance = debit
+
+                            unit_branch = sum([sum(move.mapped('amount_total_in_currency_signed')) for move in
                                                      branch_lines_data.filtered(
                                                          lambda x: x.move_type == 'out_invoice')])
+
 
                             out_refund = self.env['account.move'].search([
                                 ('move_type', '=', 'out_refund'),
@@ -103,22 +114,14 @@ class BranchComparison(models.AbstractModel):
                                 ('state', '=', 'posted')
                             ])
                             out_refund_price = round(abs(sum(out_refund.mapped('amount_total_signed'))), 4)
-                            in_refund = self.env['account.move'].search([
-                                ('debit_origin_id', '=', account.debit_origin_id.id),
-                                ('partner_id', '=', account.partner_id.id),
-                                ('state', '=', 'posted')
-                            ])
-                            in_refund_price = round(abs(sum(in_refund.mapped('amount_total_signed'))), 4)
-                            total_price_branch = round(abs(unit_price_branch - in_refund_price), 4)
                             filtered_payments = payment_data.filtered(lambda x: x.partner_id == account.partner_id)
                             payment = round(sum(filtered_payments.mapped('amount_company_currency_signed')), 4)
-                            last_term_balance = round(abs(balance + unit_price_branch - payment), 4)
+                            last_term_balance = round(abs(balance + unit_branch - payment), 4)
                             change_in_balance = round(abs(balance - last_term_balance), 4)
-
                             worksheet.write(row, col, account.partner_id.other_id, format4)
                             worksheet.write(row, col + 1, account.partner_id.name, format4)
-                            worksheet.write(row, col + 2, balance, format4)
-                            worksheet.write(row, col + 3, total_price_branch, format4)
+                            worksheet.write(row, col + 2, debit, format4)
+                            worksheet.write(row, col + 3, unit_branch, format4)
                             worksheet.write(row, col + 4, in_refund_price, format4)
                             worksheet.write(row, col + 5, payment, format4)
                             worksheet.write(row, col + 7, last_term_balance, format4)

@@ -25,9 +25,13 @@ class BranchSalesComparison(models.TransientModel):
                   ('invoice_date', '<=', self.date_end),
                   ('state', '=', 'posted'),
                   ('move_type', '=', 'out_invoice'),
-                  ('line_ids.product_id.categ_id.id', '=', self.product_category_id.ids),
+                  # ('line_ids.product_id.categ_id.id','=',obj.product_category_id.ids),
                   ('branch_id', '=', self.branch_id.ids)
                   ]
+        if len(self.product_category_id) == 1 and self.product_category_id.name == 'All':
+            domain.append(('line_ids.product_id.categ_id.parent_id.name', '=', 'All'))
+        else:
+            domain.append(('line_ids.product_id.categ_id.id', 'in', self.product_category_id.ids))
         lines_data = self.env['account.move'].search(domain)
         existing_branch = lines_data.mapped('branch_id')
         existing_products = list(set(lines_data.mapped('line_ids.product_id')))
@@ -44,29 +48,24 @@ class BranchSalesComparison(models.TransientModel):
                 product_uom_name = ' حبه'
                 product_qty = sum(
                     current_branch_lines.line_ids.filtered(lambda x: x.product_id == product).mapped('quantity'))
-                domain = [
+                domain_qty_all = [
                     ('state', '=', 'posted'),
                     ('move_type', '=', 'out_invoice'),
                     ('line_ids.product_id', '=', product.id)
                 ]
-                lines_data = self.env['account.move'].search(domain)
+                qty_all = self.env['account.move'].search(domain_qty_all)
                 product_qty_all = sum(
-                    lines_data.line_ids.filtered(lambda x: x.product_id == product).mapped('quantity'))
-                domain = [
-                    ('date', '<', self.date_start),
-                    ('product_id', '=', product.id),
-                    ('branch_id', '=', branch.id)
+                    qty_all.line_ids.filtered(lambda x: x.product_id == product).mapped('quantity'))
+                domain_on_hand = [
+                    # ('date','<',obj.date_start),
+                    ('location_id.branch_id', '=', branch.id),
+                    # ('branch_id','=',branch.id)
                 ]
-                lines_data = self.env['stock.move.line'].search(domain)
-                product_qty_in = sum(
-                    lines_data.filtered(lambda x: x.product_id == product and x.picking_code == 'incoming').mapped(
-                        'qty_done')
-                )
-                product_qty_out = sum(
-                    lines_data.filtered(lambda x: x.product_id == product and x.picking_code == 'outgoing').mapped(
-                        'qty_done')
-                )
-                product_on_hand_qty = product_qty_in - product_qty_out
+                on_hand = self.env['stock.quant'].search(domain_on_hand)
+                product_qty_in = round(sum(
+                    on_hand.filtered(lambda x: x.product_id == product).mapped(
+                        'quantity')
+                ), 4)
 
                 report_data_item = {
                     'branch_name': branch.name,
@@ -75,7 +74,7 @@ class BranchSalesComparison(models.TransientModel):
                     "product_uom_name": product_uom_name,
                     "product_qty": product_qty,
                     "product_qty_all": product_qty_all,
-                    "product_on_hand_qty": product_on_hand_qty,
+                    "product_on_hand_qty": product_qty_in,
                 }
 
                 report_data.append(report_data_item)

@@ -50,7 +50,7 @@
                                     <th class="text-center" style="width: 10%;">المنتج</th>
 <!--                                    <th class="text-center" style="width: 22%;"></th>-->
                                     <th class="text-center" style="width: 22%;" colspan="2">الكميه المباعه</th>
-                                    <th class="text-center" style="width: 22%;">كل الكميه المباعه</th>
+                                    <th class="text-center" style="width: 22%;"> اجمالى الكميه المباعه</th>
                                     <th class="text-center" style="width: 22%;">الكميه المتاحه</th>
                                     </tr>
 
