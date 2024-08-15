@@ -1,0 +1,351 @@
+<odoo>
+    <data>
+        <template id="seller_activity_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl">
+                        <h4 class="m-0">
+                            <strong>
+                                <t t-if="form['company_id']">
+                                    <t t-esc="form['company_id']"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-esc="'Unknown Company'"/>
+                                </t>
+                            </strong>
+                        </h4>
+                        <h5>تقـريـر نشـــاطـ البـائـعيـن اجمــالـى</h5>
+                        <br/>
+                        <div class="row mt-4 mb-4" id="creditnote">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        مــن تـاريـخ:
+                                        <span t-esc="form['date_from']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الــي تـاريـخ:
+                                        <span t-esc="form['date_to']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبـع بواسطـة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تـاريخ الطبـاعـة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">اسم البائع</th>
+                                    <th class="text-center" colspan="8">نـقـــدي</th>
+                                    <th class="text-center" colspan="7">أجــــــل</th>
+                                    <th class="text-center" colspan="2">اجـمـــالـــى</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center">اسم البائع</th>
+                                    <th class="text-center">المبيعات النقدية</th>
+                                    <th class="text-center">كمية المبيعات النقدية</th>
+                                    <th class="text-center">اجمالى الارجاعات</th>
+                                    <th class="text-center">كمية الارجعات</th>
+                                    <th class="text-center">صافى المبيعات</th>
+                                    <th class="text-center">صافى التكلفة</th>
+                                    <th class="text-center">ربح نقدى</th>
+                                    <th class="text-center">اجمالى المبيعات الاجلة</th>
+                                    <th class="text-center">كمية المبيعات الاجلة</th>
+                                    <th class="text-center">ارجاعات المبيعات الاجلة</th>
+                                    <th class="text-center">كمية ارجاعات المبيعات الاجلة</th>
+                                    <th class="text-center">صافى المبيعات الاجلة</th>
+                                    <th class="text-center">تكلفة المبيعات</th>
+                                    <th class="text-center">ربح الاجل</th>
+                                    <th class="text-center">صافى المبيعات الاجل + النقدى</th>
+                                    <th class="text-center">صافى التكلفة</th>
+                                    <th class="text-center">الربح</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="form['branch_data']" t-as="branch">
+                                    <tr>
+                                        <td colspan="18" class="text-center">
+                                            <strong>
+                                                <t t-esc="branch['branch_name']"/>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <t t-set="cash_sales_total" t-value="0"/>
+                                    <t t-set="cash_quantity_total" t-value="0"/>
+                                    <t t-set="cash_returns_total" t-value="0"/>
+                                    <t t-set="cash_returns_quantity_total" t-value="0"/>
+                                    <t t-set="net_cash_sales_total" t-value="0"/>
+                                    <t t-set="cash_cost_total" t-value="0"/>
+                                    <t t-set="cash_profit_total" t-value="0"/>
+                                    <t t-set="credit_sales_total" t-value="0"/>
+                                    <t t-set="credit_quantity_total" t-value="0"/>
+                                    <t t-set="credit_returns_total" t-value="0"/>
+                                    <t t-set="credit_returns_quantity_total" t-value="0"/>
+                                    <t t-set="net_credit_sales_total" t-value="0"/>
+                                    <t t-set="credit_cost_total" t-value="0"/>
+                                    <t t-set="credit_profit_total" t-value="0"/>
+                                    <t t-set="total_net_sales_total" t-value="0"/>
+                                    <t t-set="total_cost_total" t-value="0"/>
+                                    <t t-set="total_profit_total" t-value="0"/>
+                                    <t t-foreach="branch['created_by_data'].values()" t-as="data">
+                                        <t t-set="cash_sales" t-value="data['option1']['invoices_sum']"/>
+                                        <t t-set="cash_quantity" t-value="data['option1']['invoices_quantity']"/>
+                                        <t t-set="cash_returns" t-value="data['option1']['credit_notes_sum']"/>
+                                        <t t-set="cash_returns_quantity"
+                                           t-value="data['option1']['credit_notes_quantity']"/>
+                                        <t t-set="net_cash_sales" t-value="abs(cash_sales - cash_returns)"/>
+                                        <t t-set="cash_cost"
+                                           t-value="data['option1']['invoices_total_purchase_price']"/>
+                                        <t t-set="cash_profit" t-value="abs(cash_cost - net_cash_sales)"/>
+                                        <t t-set="credit_sales" t-value="data['option2']['invoices_sum']"/>
+                                        <t t-set="credit_quantity" t-value="data['option2']['invoices_quantity']"/>
+                                        <t t-set="credit_returns" t-value="data['option2']['credit_notes_sum']"/>
+                                        <t t-set="credit_returns_quantity"
+                                           t-value="data['option2']['credit_notes_quantity']"/>
+                                        <t t-set="net_credit_sales" t-value="abs(credit_sales - credit_returns)"/>
+                                        <t t-set="credit_cost"
+                                           t-value="data['option2']['invoices_total_purchase_price']"/>
+                                        <t t-set="credit_profit" t-value="abs(credit_cost - net_credit_sales)"/>
+                                        <t t-set="total_net_sales" t-value="net_cash_sales + net_credit_sales"/>
+                                        <t t-set="total_cost" t-value="cash_cost + credit_cost"/>
+                                        <t t-set="total_profit" t-value="abs(total_cost - total_net_sales)"/>
+
+                                        <!-- Update totals -->
+                                        <t t-set="cash_sales_total" t-value="cash_sales_total + cash_sales"/>
+                                        <t t-set="cash_quantity_total" t-value="cash_quantity_total + cash_quantity"/>
+                                        <t t-set="cash_returns_total" t-value="cash_returns_total + cash_returns"/>
+                                        <t t-set="cash_returns_quantity_total"
+                                           t-value="cash_returns_quantity_total + cash_returns_quantity"/>
+                                        <t t-set="net_cash_sales_total"
+                                           t-value="net_cash_sales_total + net_cash_sales"/>
+                                        <t t-set="cash_cost_total" t-value="cash_cost_total + cash_cost"/>
+                                        <t t-set="cash_profit_total" t-value="cash_profit_total + cash_profit"/>
+                                        <t t-set="credit_sales_total" t-value="credit_sales_total + credit_sales"/>
+                                        <t t-set="credit_quantity_total"
+                                           t-value="credit_quantity_total + credit_quantity"/>
+                                        <t t-set="credit_returns_total"
+                                           t-value="credit_returns_total + credit_returns"/>
+                                        <t t-set="credit_returns_quantity_total"
+                                           t-value="credit_returns_quantity_total + credit_returns_quantity"/>
+                                        <t t-set="net_credit_sales_total"
+                                           t-value="net_credit_sales_total + net_credit_sales"/>
+                                        <t t-set="credit_cost_total" t-value="credit_cost_total + credit_cost"/>
+                                        <t t-set="credit_profit_total" t-value="credit_profit_total + credit_profit"/>
+                                        <t t-set="total_net_sales_total"
+                                           t-value="total_net_sales_total + total_net_sales"/>
+                                        <t t-set="total_cost_total" t-value="total_cost_total + total_cost"/>
+                                        <t t-set="total_profit_total" t-value="total_profit_total + total_profit"/>
+
+                                        <!-- Display seller data -->
+                                        <tr>
+                                            <td class="text-center">
+                                                <t t-esc="data['name']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(cash_sales), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="abs(cash_quantity)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(cash_returns), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="abs(cash_returns_quantity)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(net_cash_sales), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(cash_cost), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(cash_profit), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="abs(credit_sales)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="abs(credit_quantity)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="abs(credit_returns)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="abs(credit_returns_quantity)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="abs(net_credit_sales)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(credit_cost), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(credit_profit), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(total_net_sales), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(total_cost), 2)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="round(abs(total_profit), 2)"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <!-- Display branch totals -->
+                                    <tr style="border-bottom: 1px solid black">
+                                        <td class="text-center">
+                                            <strong>الاجمالي</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(cash_sales_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="abs(cash_quantity_total)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(cash_returns_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="abs(cash_returns_quantity_total)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(net_cash_sales_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(cash_cost_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(cash_profit_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="abs(credit_sales_total)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="abs(credit_quantity_total)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="abs(credit_returns_total)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="abs(credit_returns_quantity_total)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(net_credit_sales_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(credit_cost_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(credit_profit_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(total_net_sales_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(total_cost_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>
+                                                <t t-esc="round(abs(total_profit_total), 2)"/>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <!--        ===========================================================================-->
+
+
+        <record id="seller_activity_report" model="ir.actions.report">
+            <field name="name">تقرير نشاط البائعين اجمالى</field>
+            <field name="model">seller.activity.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_total_seller_activity_report.seller_activity_report_template</field>
+            <field name="report_file">sb_total_seller_activity_report.seller_activity_report_template</field>
+            <field name="binding_model_id" ref="model_seller_activity_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="paperformat_action_seller_activity" model="report.paperformat">
+            <field name="name">Seller Activity report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">220</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('sb_total_seller_activity_report.seller_activity_report')])]"/>
+        </record>
+
+        <!--                ======= Excel Report =================-->
+        <record id="seller_activity_report_xls" model="ir.actions.report">
+            <field name="name">تقرير نشاط البائعين اجمالى</field>
+            <field name="model">seller.activity.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_total_seller_activity_report.report_xls</field>
+            <field name="report_file">sb_total_seller_activity_report.report_xls</field>
+            <field name="binding_model_id" ref="model_seller_activity_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
