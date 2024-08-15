@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+        <template id="customer_movement_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl" style="">
+                        <h5>حركه العملاء</h5>
+                        <div class="row mt-4 mb-4">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        من تاريخ:
+                                        <span t-esc="form['date_start']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الي تاريخ:
+                                        <span t-esc="form['date_end']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبع بواسطة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تاريخ الطباعة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <tbody>
+                                <t t-foreach="branches" t-as="branch">
+                                    <tr style="border-left:none;border-top:none;border-right:none; background-color:#CCC7BF;">
+                                        <td colspan="9" class="text-right"
+                                            style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">
+                                            <strong>
+                                                <span t-esc="branch['branch_name']"/>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center" style="width: 22%;">رقم العميل</th>
+                                        <th class="text-center" style="width: 22%;">اسم العميل</th>
+                                        <th class="text-center" style="width: 22%;">رصيد اول المده</th>
+                                        <th class="text-center" style="width: 22%;">المبيعات</th>
+                                        <th class="text-center" style="width: 22%;">تسويه م</th>
+                                        <th class="text-center" style="width: 22%;">تحصيلات</th>
+                                        <th class="text-center" style="width: 22%;">تسويه د</th>
+                                        <th class="text-center" style="width: 22%;">رصيد اخر المده</th>
+                                        <th class="text-center" style="width: 22%;">التغير فى الرصيد</th>
+                                    </tr>
+
+
+                                    <t t-foreach="data" t-as="line">
+                                        <tr t-if="line['branch_name'] == branch['branch_name']">
+                                            <td class="text-center">
+                                                <span t-esc="line['other_id']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="line['partner_name']"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="round(line['balance'], 4)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="round(line['total_price_branch'], 4)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="round(line['in_refund_price'], 4)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="round(line['payment'], 4)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="round(line['out_refund_price'], 4)"/>
+                                            </td>
+                                              <td class="text-center">
+                                                <span t-esc="round(line['last_term_balance'], 4)"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <span t-esc="round(line['change_in_balance'], 4)"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <!--   QWeb Reports   -->
+        <!--   NAME & FILE_NAME should be the same   -->
+        <record id="customer_movement_report" model="ir.actions.report">
+            <field name="name">تقرير حركه العملاء</field>
+            <field name="model">customer.movement.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_customer_movement_report.customer_movement_report_template</field>
+            <field name="report_file">sb_customer_movement_report.customer_movement_report_template</field>
+            <field name="binding_model_id" ref="model_customer_movement_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="paperformattttt_action_salee_orderr_id" model="report.paperformat">
+            <field name="name">تقرير حركه العملاء</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('sb_customer_movement_report.customer_movement_report')])]"/>
+        </record>
+    </data>
+</odoo>
