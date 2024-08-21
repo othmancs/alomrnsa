@@ -9,7 +9,7 @@ class InvoiceGenerator(models.Model):
         # Add the purchase name to the invoice
         invoice['purchase_name'] = self.name
         invoice['warehouse_name'] = self.picking_type_id.warehouse_id.name
-        invoice['created_by_id'] = self.created_by_id
+        invoice['created_by_id'] = self.created_by_id.id
 
         return invoice
 
