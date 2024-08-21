@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_bill_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+
+                        <div class="page">
+
+                            <div class="mt-4" dir="rtl">
+                                <br/>
+                                <h2 t-if="o.move_type == 'in_refund'" style="font-size:25px;">مرتجع مورد#
+                                    <span t-field="o.name"/>
+                                </h2>
+                                <h2 t-if="o.move_type =='in_invoice' " style="font-size:25px;">فاتوره مورد #
+                                    <span t-field="o.name"/>
+                                </h2>
+                                <h2 t-if="o.move_type =='out_invoice' " style="font-size:25px;">فاتوره عميل #
+                                    <span t-field="o.name"/>
+                                </h2>
+                                <h2 t-if="o.move_type =='out_refund' " style="font-size:25px;">فاتوره مرتجع #
+                                    <span t-field="o.name"/>
+                                </h2>
+                            </div>
+                            <div class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+                                <div class="col-3 bm-2" style="font-size:11px;">
+                                    <t t-if="o.move_type == 'in_invoice'">
+                                        <strong>اسم المورد:</strong>
+                                    </t>
+                                    <t t-if="o.move_type == 'in_refund'">
+                                        <strong>اسم المورد:</strong>
+                                    </t>
+                                    <t t-if="o.move_type == 'out_refund'">
+                                        <strong>اسم العميل:</strong>
+                                    </t>
+                                    <t t-if="o.move_type == 'out_invoice'">
+                                        <strong>اسم العميل:</strong>
+                                    </t>
+                                    <p t-field="o.partner_id"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>الفرع:</strong>
+                                    <p t-field="o.branch_id"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>تاريخ الطلب:</strong>
+                                    <p t-field="o.invoice_date"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>انشا من قبل:</strong>
+                                    <p t-field="o.created_by_id"/>
+                                </div>
+                                <!--                                <div class="col-3 bm-2">-->
+                                <!--                                    <strong>طريقه الدفع:</strong>-->
+                                <!--                                    <p t-field="o.payment_method"/>-->
+                                <!--                                </div>-->
+                            </div>
+                            <div class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+                                <div class="col-3 bm-2">
+                                    <strong>رقم امر الشراء:</strong>
+                                    <p t-esc="o.purchase_name"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>المستودع:</strong>
+                                    <p t-esc="o.warehouse_name"/>
+                                </div>
+                                <t t-if="o.move_type =='in_invoice'">
+                                 <div class="col-3 bm-2">
+                                    <strong>الرقم المرجعى للفاتوره:</strong>
+                                    <p t-field="o.ref"/>
+                                </div>
+                                </t>
+                                 <t t-if="o.move_type =='in_refund'">
+                                 <div class="col-3 bm-2">
+                                    <strong>الرقم المرجعى للفاتوره:</strong>
+                                    <p t-field="o.ref"/>
+                                </div>
+                                </t>
+                            </div>
+
+                            <!--                            <div>-->
+                            <!--                                <div  dir="rtl" style="font-size:11px;">-->
+                            <!--                                    <strong>انشا من قبل:</strong>-->
+                            <!--                                    <p t-field="o.created_by_id"/>-->
+                            <!--                                </div>-->
+                            <!--                                <br/>-->
+                            <!--                                <div dir="rtl" style="font-size:11px;">-->
+                            <!--                                    <strong>رقم امر الشراء:</strong>-->
+                            <!--                                    <p t-esc="o.purchase_name"/>-->
+                            <!--                                </div>-->
+                            <!--                                <div dir="rtl" style="font-size:11px;">-->
+                            <!--                                    <strong>المستودع:</strong>-->
+                            <!--                                    <p t-esc="o.warehouse_name"/>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <div dir="rtl">
+                                <table class="table table-sm o_main_table  mt-4">
+                                    <thead style="display: table-row-group">
+                                        <tr>
+                                            <th name="th_product" style="font-size:13px;">
+                                                اسم المنتج
+                                            </th>
+                                            <th name="th_qty" style="font-size:13px;">
+                                                الكميه
+                                            </th>
+                                            <th name="th_qty_uom" style="font-size:13px;">
+                                                الوحده
+                                            </th>
+                                            <th name="th_price" style="font-size:13px;">
+                                                التكلفه
+                                            </th>
+                                            <th name="th_taxes" style="font-size:13px;">
+                                                ضريبه
+
+                                            </th>
+                                            <th name="th_all_price" style="font-size:13px;">
+                                                اجمالى التكلفه
+                                            </th>
+                                            <!--                                             <th name="th_taxes"style="font-size:11px;">-->
+                                            <!--                                                -->
+                                            <!--                                            </th>-->
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="current_subtotal" t-value="0"/>
+                                        <t t-foreach="o.invoice_line_ids" t-as="line">
+                                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"
+                                               groups="account.group_show_line_subtotals_tax_excluded"/>
+                                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
+                                               groups="account.group_show_line_subtotals_tax_included"/>
+
+                                            <tr style="border_bottom:1px #000000;">
+                                                <td id="product" style="font-size:13px; border_bottom:1px #000000;"
+                                                    align="right">
+                                                    <span t-field="line.product_id"/>
+                                                </td>
+                                                <td class="text-end" style="font-size:13px; border_bottom:1px #000000;"
+                                                    align="center">
+                                                    <span t-field="line.quantity"/>
+                                                </td>
+                                                <td class="text-end" style="font-size:13px; border_bottom:1px #000000;"
+                                                    align="center">
+
+                                                    <span t-field="line.product_uom_id.name" groups="uom.group_uom"/>
+                                                </td>
+
+                                                <td class="text-end" style="font-size:13px; border_bottom:1px #000000;"
+                                                    align="center">
+                                                    <span t-field="line.price_unit"/>
+                                                </td>
+                                                <td class="text-end" style="font-size:13px; border_bottom:1px #000000;"
+                                                    align="center">
+                                                    <span t-field="line.tax_ids"/>
+                                                </td>
+                                                <td class="text-end" style="font-size:13px; border_bottom:1px #000000;"
+                                                    align="center">
+                                                    <span t-field="line.price_subtotal"
+                                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </td>
+
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+
+                                <div id="total" class="row justify-content-end">
+                                    <div class="col-4">
+                                        <table class="table table-sm table-borderless">
+                                            <t t-set="tax_totals" t-value="o.tax_totals"/>
+                                            <t t-call="account.document_tax_totals"/>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="col-3 bm-2" style="font-size:11px;">
+                                <strong>:طبع بواسطه</strong>
+                                <p t-field="o.printed_by" class="m-0"/>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+
+        </template>
+        <record id="action_reportt_bill" model="ir.actions.report">
+            <field name="name">فاتوره مورد</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_file">sb_bill_report.report_bill_document</field>
+            <field name="report_name">sb_bill_report.report_bill_document</field>
+            <field name="binding_model_id" ref="model_account_move"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
