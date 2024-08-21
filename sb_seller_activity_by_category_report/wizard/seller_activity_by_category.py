@@ -29,7 +29,8 @@ class SellerActivityByCategory(models.TransientModel):
             domain.append(('created_by_id', 'in', self.created_by_id.ids))
 
         lines_data = self.env['account.move'].search(domain)
-        existing_branches = lines_data.mapped('branch_id')
+        # existing_branches = lines_data.mapped('branch_id')
+        existing_branches = lines_data.mapped('branch_id').sorted(key=lambda b: self.branch_ids.ids.index(b.id))
         existing_created = list(set(lines_data.mapped('created_by_id')))
         existing_category = list(set(lines_data.mapped('invoice_line_ids.product_id.categ_id')))
         branches = [{'branch_id': branch.id, 'branch_name': branch.name} for branch in existing_branches]

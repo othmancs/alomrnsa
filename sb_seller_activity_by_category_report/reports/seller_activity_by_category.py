@@ -102,7 +102,8 @@ class SellerActivityReportXlsx(models.AbstractModel):
 
             lines_data = self.env['account.move'].search(domain)
 
-            existing_branches = lines_data.mapped('branch_id')
+            # existing_branches = lines_data.mapped('branch_id')
+            existing_branches = lines_data.mapped('branch_id').sorted(key=lambda b: obj.branch_ids.ids.index(b.id))
             existing_created = list(set(lines_data.mapped('created_by_id')))
             existing_category = list(set(lines_data.mapped('invoice_line_ids.product_id.categ_id')))
 
