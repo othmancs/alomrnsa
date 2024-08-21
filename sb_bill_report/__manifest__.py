@@ -5,6 +5,6 @@
     'depends': ['base', 'account'],
     'data': [
         'reports/bill_report.xml',
-        # 'views/sale_order_views.xml',
+        'views/purchase_order.xml',
     ],
 }
