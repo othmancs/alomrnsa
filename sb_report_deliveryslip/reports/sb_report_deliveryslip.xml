@@ -13,7 +13,15 @@
                                     <t t-esc="o.name"/>
                                 </div>
                                 <div class="col-5">
-                                    <h5 style="text-align:left;color:#071952;">ايصال التوصيل</h5>
+                                    <t t-if="o.picking_type_code=='incoming'">
+                                        <h5 style="text-align:left;color:#071952;">سند استلام</h5>
+                                    </t>
+                                    <t t-if="o.picking_type_code=='internal'">
+                                        <h5 style="text-align:left;color:#071952;">سند استلام</h5>
+                                    </t>
+                                    <t t-if="o.picking_type_code=='outgoing'">
+                                        <h5 style="text-align:left;color:#071952;">سند تسليم</h5>
+                                    </t>
                                 </div>
                             </div>
                             <br/>
@@ -35,7 +43,7 @@
                                 <br/>
                                 <table style="border:1px white;font-size:13px;">
                                     <tr style="border:none;">
-                                        <td style="border:none; width:321px; font-weight:bold;">Order</td>
+                                        <td style="border:none; width:321px; font-weight:bold;">رقم الشراء</td>
                                         <td style="border:none; font-weight:bold;">الموقع الوجهه</td>
                                     </tr>
                                     <tr style="border:none;">
@@ -50,13 +58,13 @@
                                 <br/>
                                 <table style="border:1px white; font-size:13px;">
                                     <tr style="border:none;">
-                                        <td style="border:none; width:321px; font-weight:bold;">رقم الفاتوره</td>
+                                        <td style="border:none; width:321px; font-weight:bold;">تاريخ الشحن</td>
                                         <td style="border:none; font-weight:bold; width:100px; ">مرجع المورد</td>
 
                                     </tr>
                                     <tr style="border:none;">
                                         <td style="border:none; width:321px;">
-                                            <t t-esc="o.invoice_id.name"/>
+                                            <t t-esc="o.date_done"/>
                                         </td>
                                         <td style="border:none; ">
                                             <t t-esc="o.partner_ref"/>
@@ -67,14 +75,14 @@
                                 <table style="border:1px white; font-size:13px;">
                                     <tr style="border:none;">
                                         <td style="border:none; font-weight:bold;  width:321px; ">انشا من قبل</td>
-                                         <td style="border:none; font-weight:bold;">Shipping Date</td>
+                                        <td style="border:none; font-weight:bold;">الفرع</td>
                                     </tr>
                                     <tr style="border:none;">
                                         <td style="border:none;  width:321px;">
                                             <t t-esc="o.created_by_id.name"/>
                                         </td>
-                                         <td style="border:none;  width:100px;">
-                                            <t t-esc="o.date_done"/>
+                                        <td style="border:none;  width:100px;">
+                                            <t t-esc="o.branch_id.name"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -86,10 +94,11 @@
                                        style="width: 100%; table-layout: fixed; font-size:13px;">
                                     <thead>
                                         <tr>
-                                            <th class="text-center" style="width: 10%;">Num</th>
-                                            <th class="text-center" style="width: 50%;">product</th>
-                                            <th class="text-center" style="width: 20%;">Ordered</th>
-                                            <th class="text-center" style="width: 20%;">Delivered</th>
+                                            <th class="text-center" style="width: 10%;">-</th>
+                                            <th class="text-center" style="width: 20%;">كود</th>
+                                            <th class="text-center" style="width: 50%;">المنتج</th>
+                                            <th class="text-center" style="width: 20%;">تم طلبه</th>
+                                            <th class="text-center" style="width: 20%;">تم توصيله</th>
 
                                         </tr>
                                     </thead>
@@ -102,32 +111,40 @@
                                                 <td class="text-center">
                                                     <t t-esc="counter"/>
                                                 </td>
-
+                                                <td class="text-center">
+                                                    <t t-esc="line.product_id.default_code"/>
+                                                </td>
                                                 <td class="text-center">
                                                     <t t-esc="line.product_id.name"/>
                                                 </td>
                                                 <td class="text-center">
-                                                    <t t-esc="line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
+                                                    <t t-esc="line.product_uom_qty"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
                                                     <t t-set="total_product_uom_qty"
-                                                       t-value="total_product_uom_qty + line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
+                                                       t-value="total_product_uom_qty + line.product_uom_qty"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
                                                 </td>
                                                 <td class="text-center">
                                                     <t t-esc="line.quantity_done"/>
                                                     <t t-set="total_quantity_done"
-                                                       t-value="total_quantity_done + line.quantity_done" t-options='{"widget": "float", "precision": 2}'/>
+                                                       t-value="total_quantity_done + line.quantity_done"
+                                                       t-options='{"widget": "float", "precision": 2}'/>
                                                 </td>
                                             </tr>
                                             <t t-set="counter" t-value="counter + 1"/>
                                         </t>
                                         <tr style="border:1px white;">
                                             <td class="text-right " style="border:1px white; text-align:left;"></td>
-                                            <td class="text-right " style="border:1px white; text-align:left;">Total
+                                            <td class="text-right " style="border:1px white; text-align:left;"></td>
+                                            <td class="text-right " style="border:1px white; text-align:left;">اجمالى
                                             </td>
                                             <td class="text-center" style="border-right:1px white; border:1px white;">
-                                                <t t-esc="total_product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
+                                                <t t-esc="total_product_uom_qty"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
                                             </td>
                                             <td class="text-center" style="border-right:1px white; border:1px white;">
-                                                <t t-esc="total_quantity_done" t-options='{"widget": "float", "precision": 2}'/>
+                                                <t t-esc="total_quantity_done"
+                                                   t-options='{"widget": "float", "precision": 2}'/>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -137,9 +154,25 @@
                             <br/>
                             <div style="text-align:right;">
                                 <p style="font-size:13px;">1- تم استلام جميع الاصناف فى حالة سليمة وجيده.</p>
-                                <span><t t-esc="o.note"/></span>
+                                <span>
+                                    <t t-esc="o.note"/>
+                                </span>
                                 <br/>
-                                <p style="font-size:13px;">2-توقيع العميل/ ..................................</p>
+                                <t t-if="o.picking_type_code=='incoming'">
+                                    <p style="font-size:13px;">2-توقيع مأمور المستودع/
+                                        ..................................
+                                    </p>
+                                </t>
+                                <t t-if="o.picking_type_code=='internal'">
+                                    <p style="font-size:13px;">2-توقيع مأمور المستودع/
+                                        ..................................
+                                    </p>
+                                </t>
+                                <t t-if="o.picking_type_code=='outgoing'">
+                                    <p style="font-size:13px;">2-توقيع العميل/ ..................................
+                                    </p>
+                                </t>
+
                             </div>
                             <br/>
                             <br/>
