@@ -16,16 +16,16 @@ class PurchaseOrderLine(models.Model):
             ])
             line.qty_on_hand = sum(quant.mapped('quantity'))
 
-    @api.model
-    def create(self, vals):
-        line = super(PurchaseOrderLine, self).create(vals)
-        line._compute_qty_on_hand()
-        return line
-
-    def write(self, vals):
-        res = super(PurchaseOrderLine, self).write(vals)
-        self._compute_qty_on_hand()
-        return res
+    # @api.model
+    # def create(self, vals):
+    #     line = super(PurchaseOrderLine, self).create(vals)
+    #     self._compute_qty_on_hand()
+    #     return line
+    #
+    # def write(self, vals):
+    #     res = super(PurchaseOrderLine, self).write(vals)
+    #     self._compute_qty_on_hand()
+    #     return res
 
 
 class PurchaseOrder(models.Model):
