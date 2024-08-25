@@ -127,7 +127,7 @@
                 </th>
             </xpath>
             <xpath expr="//table[1]/thead/tr//th[@name='th_amount']" position="replace">
-                <th name="th_amount" style="font-size:1px;">
+                <th name="th_amount" style="font-size:15px;">
                     <strong>اجمالى التكلفه</strong>
                 </th>
             </xpath>
