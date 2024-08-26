@@ -15,7 +15,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/stock_inventory_view.xml',
-        'reports/report_stock_inventory.xml',
+        # 'reports/report_stock_inventory.xml',
         'views/adj_inv_sequence.xml',
     ],
     'images': [

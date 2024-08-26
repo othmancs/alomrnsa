@@ -17,7 +17,7 @@
                                         <h5 style="text-align:left;color:#071952;">سند استلام</h5>
                                     </t>
                                     <t t-if="o.picking_type_code=='internal'">
-                                        <h5 style="text-align:left;color:#071952;">سند استلام</h5>
+                                        <h5 style="text-align:left;color:#071952;">نقل داخلى</h5>
                                     </t>
                                     <t t-if="o.picking_type_code=='outgoing'">
                                         <h5 style="text-align:left;color:#071952;">سند تسليم</h5>
@@ -28,13 +28,29 @@
                             <div>
                                 <table style="border:1px white; font-size:13px;">
                                     <tr style="border:none;">
+                                        <t t-if="o.picking_type_code=='internal'">
+                                        </t>
+                                        <t t-if="o.picking_type_code=='incoming'">
                                         <td style="border:none; width:321px;font-weight:bold;">موقع العميل</td>
+                                        </t>
+                                        <t t-if="o.picking_type_code=='outgoing'">
+                                        <td style="border:none; width:321px;font-weight:bold;">موقع العميل</td>
+                                        </t>
                                         <td style="border:none; font-weight:bold;">الموقع المصدري</td>
                                     </tr>
                                     <tr style="border:none;">
+                                        <t t-if="o.picking_type_code=='internal'">
+                                        </t>
+                                        <t t-if="o.picking_type_code=='outgoing'">
                                         <td style="border:none; width:321px;">
                                             <t t-esc="o.partner_id.name"/>
                                         </td>
+                                        </t>
+                                        <t t-if="o.picking_type_code=='incoming'">
+                                        <td style="border:none; width:321px;">
+                                            <t t-esc="o.partner_id.name"/>
+                                        </td>
+                                        </t>
                                         <td style="border:none;">
                                             <t t-esc="o.location_id.name"/>
                                         </td>
@@ -164,8 +180,7 @@
                                     </p>
                                 </t>
                                 <t t-if="o.picking_type_code=='internal'">
-                                    <p style="font-size:13px;">2-توقيع مأمور المستودع/
-                                        ..................................
+                                    <p style="font-size:13px;">
                                     </p>
                                 </t>
                                 <t t-if="o.picking_type_code=='outgoing'">

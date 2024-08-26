@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_inventory_adjustments_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+
+                        <div class="page">
+
+                            <div class="mt-4" dir="rtl">
+                                <h2 style="font-size:25px;">تسويه جرد#
+                                    <span t-field="o.name"/>
+                                </h2>
+                            </div>
+                            <div class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+                                <div class="col-3 bm-2" style="font-size:11px;">
+
+                                    <strong>الفرع:</strong>
+                                    <p t-field="o.branch_id"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>المخزن:</strong>
+                                    <p t-field="o.location_id"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>تاريخ الطلب:</strong>
+                                    <p t-field="o.date"/>
+                                </div>
+                            </div>
+                            <div class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+                                <div class="col-3 bm-2">
+                                    <strong>انشا من قبل:</strong>
+                                    <p t-field="o.created_by_id"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>طبع بواسطه:</strong>
+                                    <p t-field="o.printed_by" class="m-0"/>
+                                </div>
+                                <div class="col-3 bm-2">
+                                    <strong>جرد:</strong>
+                                    <t t-if="o.filter =='none'">
+                                        <p>All products</p>
+                                    </t>
+                                    <t t-if="o.filter =='category'">
+                                        <p>One product category</p>
+                                    </t>
+                                    <t t-if="o.filter =='product'">
+                                        <p>One product only</p>
+                                    </t>
+                                    <t t-if="o.filter =='partial'">
+                                        <p>Select products manually</p>
+                                    </t>
+                                    <t t-if="o.filter =='owner'">
+                                        <p>One owner only</p>
+                                    </t>
+                                    <t t-if="o.filter =='product_owner'">
+                                        <p>One product for a specific owner</p>
+                                    </t>
+                                    <t t-if="o.filter =='lot'">
+                                        <p>One Lot/Serial Number</p>
+                                    </t>
+                                    <t t-if="o.filter =='pack'">
+                                        <p>A Pack</p>
+                                    </t>
+                                </div>
+                            </div>
+                            <t t-if="o.line_ids">
+                                <div dir="rtl" style="width:100%">
+                                    <table class="table table-sm o_main_table  mt-4"
+                                           style="width:100%; table-layout: fixed">
+                                        <thead>
+                                            <tr>
+                                                <th name="th_product_counter" style="font-size:13px; width:5%;">
+                                                    -
+                                                </th>
+                                                <th name="th_product_ref" style="font-size:13px; width:13%;">
+                                                    الصنف
+                                                </th>
+                                                <th name="th_product"
+                                                    style="font-size:13px; width: 25%; ">
+                                                    وصف الصنف
+                                                </th>
+                                                <th name="th_qty" style="font-size:13px;">
+                                                    الوحده
+                                                </th>
+                                                <th name="th_qty_uom" style="font-size:13px;">
+                                                    التكلفه الحاليه
+                                                </th>
+                                                <th name="th_qty_uom" style="font-size:13px;">
+                                                    التكلفه الحقيقيه
+                                                </th>
+                                                <th name="th_price" style="font-size:13px;">
+                                                    المتوفر
+                                                </th>
+                                                <th name="th_taxes" style="font-size:13px;">
+                                                    الفعلى
+
+                                                </th>
+                                                <th name="th_all_price" style="font-size:13px;">
+                                                    الفرق
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-set="subtotal_1" t-value="0"/>
+                                            <t t-set="subtotal_2" t-value="0"/>
+                                            <t t-set="subtotal_3" t-value="0"/>
+                                            <t t-set="counter" t-value="0"/>
+
+                                            <t t-foreach="o.line_ids" t-as="line">
+                                                <t t-set="subtotal_1" t-value="subtotal_1 + line.theoretical_cost"/>
+                                                <t t-set="subtotal_2" t-value="subtotal_2 + line.real_cost"/>
+                                                <t t-set="subtotal_3" t-value="subtotal_3 + line.difference_cost"/>
+                                                <t t-set="counter" t-value="counter + 1"/>
+                                                <tr>
+                                                    <td id="product-counter"
+                                                        style="font-size:13px;"
+                                                        align="center">
+                                                        <span t-esc="counter"/>
+                                                    </td>
+                                                    <td class="text-end" style="font-size:13px; "
+                                                        align="center">
+                                                        <span t-field="line.product_id.default_code"/>
+                                                    </td>
+                                                    <td style="font-size:13px; border_bottom:1px #000000; width: 30%">
+                                                        <t t-esc="line.product_id.name"/>
+                                                    </td>
+                                                    <td style="font-size:13px;"
+                                                        align="center">
+
+                                                        <span t-field="line.product_uom_id.name"
+                                                              groups="uom.group_uom"/>
+                                                    </td>
+
+                                                    <td style="font-size:13px; "
+                                                        align="center">
+                                                        <span t-esc="round(line.theoretical_cost, 2)"/>
+                                                    </td>
+                                                    <td style="font-size:13px; "
+                                                        align="center">
+                                                        <span t-esc="round(line.real_cost, 2)"/>
+                                                    </td>
+                                                    <td style="font-size:13px; "
+                                                        align="center">
+                                                        <span t-esc="round(line.theoretical_qty, 2)"/>
+                                                    </td>
+                                                    <td style="font-size:13px; "
+                                                        align="center">
+                                                        <span t-esc="round(line.product_qty, 2)"/>
+                                                    </td>
+                                                    <td style="font-size:13px; "
+                                                        align="center">
+                                                        <span t-esc="round(line.quantities_difference, 2)"/>
+                                                    </td>
+
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+
+                                    <div id="total" class="row justify-content-end">
+                                        <div class="col-4">
+                                            <table class="table table-sm table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>اجمالى تكلفه المتوفر</td>
+                                                        <td>
+                                                            <span t-esc="subtotal_1"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>اجمالى تكلفه الفعلى</td>
+                                                        <td>
+                                                            <span t-esc="subtotal_2"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>اجمالى فرق التكلفه</td>
+                                                        <td>
+                                                            <span t-esc="subtotal_3"/>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+
+        </template>
+        <record id="action_report_inventory_adjustments" model="ir.actions.report">
+            <field name="name">التسويات الجرديه</field>
+            <field name="model">stock.inventory</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_file">sb_inventory_adjustments_report.report_inventory_adjustments_document</field>
+            <field name="report_name">sb_inventory_adjustments_report.report_inventory_adjustments_document</field>
+            <field name="binding_model_id" ref="model_stock_inventory"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
