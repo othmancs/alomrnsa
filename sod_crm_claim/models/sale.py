@@ -80,5 +80,5 @@ class SaleOrder(models.Model):
                     ('product_id', '=', line.product_id.id),
                     ('id', '!=', line.id)
                 ]) > 0:
-                    raise ValidationError(_('Duplicate products in order line not allowed!'))
+                    raise ValidationError(_('!يوجد منتج مكرر في بنود امر البيع يرجى التاكد'))
     
