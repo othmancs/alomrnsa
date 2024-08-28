@@ -4,7 +4,7 @@
     "name": "sb_sale_edit_and_reports",
     "version": "1.0.0.16",
     "depends": [
-        'base', 'sale', 'multi_branch_base', 'account', 'sb_seller_field', 'report_xlsx'
+        'base', 'sale', 'multi_branch_base', 'account', 'sb_seller_field', 'report_xlsx', 'contacts'
     ],
     "data": [
         'security/ir.model.access.csv',
