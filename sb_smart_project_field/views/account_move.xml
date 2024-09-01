@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="sb_smart_project_field" model="ir.ui.view">
+            <field name="name">sb_account_group_access_button</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']"
+                       position="after">
+                     <field name="smart_field"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
