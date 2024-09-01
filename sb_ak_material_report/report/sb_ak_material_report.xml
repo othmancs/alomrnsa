@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="action_report_deliver_material_report" model="ir.actions.report">
-        <field name="name">Delivery slip </field>
+        <field name="name">طلب النقل بين الفروع </field>
         <field name="model">material.request</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">sb_ak_material_report.report_deliveryslip_mr_new</field>
@@ -97,35 +97,45 @@
                     <table class="table table-sm" name="stock_move_table" style="direction:rtl;">
                         <thead>
                             <tr>
-                                <th style="font-size:12px;">المنتج</th>
-                                <th style="font-size:12px;">كمية المصدر</th>
-                                <th style="font-size:12px;">المرسل</th>
-                                <th style="font-size:12px;">كمية المستقبل</th>
+                                <th class="text-center" style="font-size:12px;">التسلسل</th>
+                                <th class="text-center" style="font-size:12px;">كود المنتج</th>
+                                <th class="text-center" style="font-size:12px;">المنتج</th>
+                                <th class="text-center" style="font-size:12px;">كمية المصدر</th>
+                                <th class="text-center" style="font-size:12px;">المرسل</th>
+                                <th class="text-center" style="font-size:12px;">كمية المستقبل</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <t t-set="counter" t-value="0"/>
                             <t t-set="lines" t-value="o.request_line_ids"/>
                             <tr t-foreach="lines" t-as="move">
-                                <td style="font-size:9px;">
+                                <t t-set="counter" t-value="counter + 1"/>
+                                <td  class="text-center" style="font-size:9px;">
+                                    <span t-esc="counter"/>
+                                </td>
+                                <td class="text-center" style="font-size:9px;">
+                                    <span t-esc="move.product_ref_2"/>
+                                </td>
+                                <td class="text-center" style="font-size:9px;">
                                     <span t-field="move.product_id.display_name"/>
                                 </td>
-                                <td style="font-size:9px;">
+                                <td class="text-center" style="font-size:9px;">
                                     <span t-field="move.qty_available_from"/>
                                     <span t-field="move.uom_id"/>
                                 </td>
-                                <td style="font-size:9px;">
+                                <td class="text-center" style="font-size:9px;">
                                     <span t-esc="move.qty"/>
                                     <span t-field="move.uom_id"/>
                                 </td>
-                                <td style="font-size:9px;">
+                                <td class="text-center" style="font-size:9px;">
                                     <span t-field="move.qty_available"/>
                                     <span t-field="move.uom_id"/>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1" style="font-size:9px;">الإجمالي</td>
+                                <td colspan="3" class="text-left" style="font-size:9px;">الإجمالي</td>
                                 <td/>
-                                <td style="font-size:9px;">
+                                <td class="text-center" style="font-size:9px;">
                                     <span t-esc="sum(move.qty for move in lines)"/>
                                 </td>
                             </tr>

@@ -75,19 +75,24 @@
                                 <table style="border:1px white; font-size:13px;">
                                     <tr style="border:none;">
                                         <td style="border:none; width:321px; font-weight:bold;">تاريخ الشحن</td>
+                                         <t t-if="o.picking_type_code!='internal'">
                                         <td style="border:none; font-weight:bold; width:100px; ">مرجع المورد</td>
+                                         </t>
 
                                     </tr>
                                     <tr style="border:none;">
                                         <td style="border:none; width:321px;">
                                             <t t-esc="o.date_done"/>
                                         </td>
+                                        <t t-if="o.picking_type_code!='internal'">
                                         <td style="border:none; ">
                                             <t t-esc="o.partner_ref"/>
                                         </td>
+                                        </t>
                                     </tr>
                                 </table>
                                 <br/>
+                                 <t t-if="o.picking_type_code!='internal'">
                                 <table style="border:1px white; font-size:13px;">
                                     <tr style="border:none;">
                                         <td style="border:none; font-weight:bold;  width:321px; ">انشا من قبل</td>
@@ -102,6 +107,7 @@
                                         </td>
                                     </tr>
                                 </table>
+                                 </t>
                             </div>
                             <br/>
                             <br/>
@@ -169,7 +175,7 @@
                             <br/>
                             <br/>
                             <div style="text-align:right;">
-                                <p style="font-size:13px;">1- تم استلام جميع الاصناف فى حالة سليمة وجيده.</p>
+                                <p style="font-size:13px;">1- تم استلام جميع الاصناف فى حالة سليمة .</p>
                                 <span>
                                     <t t-esc="o.note"/>
                                 </span>
@@ -180,7 +186,8 @@
                                     </p>
                                 </t>
                                 <t t-if="o.picking_type_code=='internal'">
-                                    <p style="font-size:13px;">
+                                    <p style="font-size:13px;">2-توقيع مأمور المستودع/
+                                        ..................................
                                     </p>
                                 </t>
                                 <t t-if="o.picking_type_code=='outgoing'">
