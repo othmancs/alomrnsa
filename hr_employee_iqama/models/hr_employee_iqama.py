@@ -27,9 +27,9 @@ class HrEmployeeIqama(models.Model):
     issue_place = fields.Char(string="Place of Issue")
     state = fields.Selection([('valid', 'Valid'), ('invalid', 'Invalid')], string="Status", default="valid")
 
-    _sql_constraints = [
-        ('iqama_uniq', 'unique(employee_id, relation)', 'Already added Iqama !'),
-    ]
+    # _sql_constraints = [
+    #     ('iqama_uniq', 'unique(employee_id, relation)', 'Already added Iqama !'),
+    # ]
     
     @api.depends('employee_id', 'iqama_number')
     def _compute_name(self):
