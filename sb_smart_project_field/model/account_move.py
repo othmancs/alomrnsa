@@ -12,15 +12,14 @@ class AccountInvoice(models.Model):
         for invoice in self:
             # Check if the required field is empty or has less than 4 digits
             if not invoice.smart_field:
-                raise UserError(" الرقم المرجعى لبرناج سمارت اجبارى")
+                raise UserError("خطا مستخدم")
             if len(str(invoice.smart_field)) < 4:
-                raise UserError("الرقم المرجعى لبرناج سمارت يجب ان يتكون من اربعه ارقام او اكثر")
+                raise UserError("خطا مستخدم")
                 # Check if the field contains only zeros
             if str(invoice.smart_field).strip('0') == '':
-                raise UserError("الرقم المرجعى لبرناج سمارت لا يمكن ان يكون اصفار فقط")
+                raise UserError("خطا مستخدم")
                 # Check if the field starts with zero
             if str(invoice.smart_field).startswith('0'):
-                raise UserError("الرقم المرجعى لبرناج سمارت لا يمكن ان يبدأ بصفر")
+                raise UserError("خطا مستخدم")
         # Call the original method to proceed with posting
         return super(AccountInvoice, self).action_post()
-
