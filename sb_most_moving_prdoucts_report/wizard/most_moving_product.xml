@@ -1,0 +1,38 @@
+<odoo>
+    <record id="most_moving_product_wizard_form" model="ir.ui.view">
+        <field name="name">Most Moving Product Category</field>
+        <field name="model">most.moving.product.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="branch_id"/>
+                        <field name="product_category_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="company_id" invisible='1'/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="PDF" name="pdf_report_action" type="object" class="btn btn-primary"/>
+                    <button string="XLS" name="xls_report_action" type="object" class="btn btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="most_moving_product_wizard_action" model="ir.actions.act_window">
+        <field name="name">أكثر الاصناف حركة بالنسبة</field>
+        <field name="res_model">most.moving.product.wizard</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="most_moving_product_wizard_menu"
+              parent="sale.menu_sale_report"
+              name="أكثر الاصناف حركة بالنسبة"
+              action="most_moving_product_wizard_action"
+              sequence="60"/>
+</odoo>
