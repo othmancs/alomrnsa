@@ -1,0 +1,38 @@
+<odoo>
+    <record id="profit_loss_report_wizard_form" model="ir.ui.view">
+        <field name="name">Profit Loss By Category</field>
+        <field name="model">profit.loss.by.category.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="branch_ids" widget="many2many_tags"/>
+                        <field name="all_category"/>
+                        <field name="product_category_ids" widget="many2many_tags" attrs="{'invisible': [('all_category', '=', True)]}"/>
+                    </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="company_id" invisible='1'/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="PDF" name="pdf_report_action" type="object" class="btn btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="profit_loss_by_category_wizard_action" model="ir.actions.act_window">
+        <field name="name">تقرير الربح والخٍسـارة حســب الفئـات</field>
+        <field name="res_model">profit.loss.by.category.wizard</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="profit_loss_by_category_wizard_menu"
+              parent="sale.menu_sale_report"
+              name="تقرير الربح والخٍسـارة حســب الفئـات"
+              action="profit_loss_by_category_wizard_action"
+              sequence="59"/>
+</odoo>
