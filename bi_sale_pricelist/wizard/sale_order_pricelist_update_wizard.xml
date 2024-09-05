@@ -24,8 +24,6 @@
 							</field>
 						</page>
 					</notebook>
-					                        <button name="view_pricelist" string="View" type="object" class="oe_highlight"/>
-
 				</sheet>			
 			</form>
 			</field>
