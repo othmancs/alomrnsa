@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="col-6 text-right" style="direction:rtl;" name="div_branch_to_id">
                                     <h5>
-                                        <span>طلب النقل بين الفروع</span>
+                                        <span>اذن النقل بين الفروع</span>
                                         <br/>
                                         <span>Transfer Delivery Note</span>
                                     </h5>
@@ -52,7 +52,7 @@
                                         <th class="text-center" style="font-size:12px;">كود المنتج</th>
                                         <th class="text-center" style="font-size:12px;">المنتج</th>
                                         <th class="text-center" style="font-size:12px;">كمية المصدر</th>
-                                        <th class="text-center" style="font-size:12px;">الكميه المطلوبه</th>
+                                        <th class="text-center" style="font-size:12px;">الكميه المرسله</th>
                                         <th class="text-center" style="font-size:12px;">كمية المستقبل</th>
                                     </tr>
                                 </thead>
