@@ -15,3 +15,6 @@ class SaleOrder(models.Model):
         invoice_vals['created_by_id'] = self.created_by_id.id
         return invoice_vals
 
+
+
+

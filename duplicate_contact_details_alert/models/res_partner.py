@@ -77,3 +77,24 @@ class ResPartner(models.Model):
         else:
             res = super(ResPartner, self).write(vals)
             return res
+class Partner(models.Model):
+    _inherit = 'res.partner'
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        if self._context.get('search_by_vat', False):
+            if name:
+                args = args if args else []
+                # args.extend(['|', ['name', 'ilike', name], ['vat', 'ilike', name]])
+                args.extend(['|', '|', ['name', 'ilike', name], ['vat', 'ilike', name], ['other_id', 'ilike', name]])
+                name = ''
+        return super(Partner, self).name_search(name=name, args=args, operator=operator, limit=limit)
+        
+    def name_search_other_id(self, name='', args=None, operator='ilike', limit=100):
+        if self._context.get('search_by_vat', False):
+            if name:
+                args = args if args else []
+                args.extend(['|', ['name', 'ilike', name], ['other_id', 'ilike', name]])
+                name = ''
+        return super(Partner, self).name_search(name=name, args=args, operator=operator, limit=limit)
+

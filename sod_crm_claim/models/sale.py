@@ -1,8 +1,8 @@
 # Copyright 2019-2023 Sodexis
 # License OPL-1 (See LICENSE file for full copyright and licensing details)
 
-from odoo import fields, models
-
+from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -46,15 +46,39 @@ class SaleOrder(models.Model):
         return action
 
 
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
+# class SaleOrderLine(models.Model):
+#     _inherit = "sale.order.line"
 
-    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
-        res = super()._action_launch_stock_rule(
-            previous_product_uom_qty=previous_product_uom_qty
-        )
-        orders = list({x.order_id for x in self})
-        for order in orders:
-            if order.claim_id:
-                order.picking_ids.write({"claim_id": order.claim_id.id})
-        return res
+#     def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+#         res = super()._action_launch_stock_rule(
+#             previous_product_uom_qty=previous_product_uom_qty
+#         )
+#         orders = list({x.order_id for x in self})
+#         for order in orders:
+#             if order.claim_id:
+#                 order.picking_ids.write({"claim_id": order.claim_id.id})
+#         return res
+
+    class SaleOrderLine(models.Model):
+        _inherit = "sale.order.line"
+    
+        def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+            res = super()._action_launch_stock_rule(
+                previous_product_uom_qty=previous_product_uom_qty
+            )
+            orders = list({x.order_id for x in self})
+            for order in orders:
+                if order.claim_id:
+                    order.picking_ids.write({"claim_id": order.claim_id.id})
+            return res
+    
+        @api.constrains('order_id', 'product_id')
+        def _check_duplicate_product(self):
+            for line in self:
+                if self.search_count([
+                    ('order_id', '=', line.order_id.id),
+                    ('product_id', '=', line.product_id.id),
+                    ('id', '!=', line.id)
+                ]) > 0:
+                    raise ValidationError(_('!يوجد منتج مكرر في بنود امر البيع يرجى التاكد'))
+    

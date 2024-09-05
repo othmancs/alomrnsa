@@ -1,0 +1,10 @@
+<odoo>
+    <record model="ir.actions.server" id="clear_duplicates_contacts">
+        <field name="name">Clear Duplicate Contacts</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">records.clear_duplicates()</field>
+    </record>
+</odoo>

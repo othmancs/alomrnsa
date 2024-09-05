@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_material_document_new_packing_3">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row mt0 mb8">
+                                <div class="col-6 text-left" name="div_name">
+                                    <h3>
+                                        <span t-field="o.request_id.name"/>
+                                    </h3>
+                                </div>
+                                <div class="col-6 text-right" style="direction:rtl;" name="div_branch_to_id">
+                                    <h5>
+                                        <span>اذن النقل بين الفروع</span>
+                                        <br/>
+                                        <span>Transfer Delivery Note</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row mt8 mb8" style="direction:rtl;">
+                                <div class="col-4 text-right" name="div_branch_from_id" style="font-size:12px;">
+                                    من فرع:
+                                    <span t-field="o.request_id.branch_from_id" style="font-size:9px;"/>
+                                </div>
+                                <div class="col-4 text-right" name="div_request_date" style="font-size:12px;">
+                                    تاريخ الطلب:
+                                    <span t-field="o.request_id.request_date" style="font-size:9px;"/>
+                                </div>
+                                <div class="col-4 text-right" name="div_dest_location_id" style="font-size:12px;">
+                                    من مستودع:
+                                    <span t-field="o.request_id.dest_location_id" style="font-size:9px;"/>
+                                </div>
+                            </div>
+                            <div class="row mt8 mb8" style="direction:rtl;">
+                                <div class="col-4 text-right" name="div_branch_to_id" style="font-size:12px;">
+                                    الى فرع:
+                                    <span t-field="o.request_id.branch_to_id" style="font-size:9px;"/>
+                                </div>
+                                <div class="col-4 text-right"/>
+                                <div class="col-4 text-right" name="div_location_id" style="font-size:12px;">
+                                    الى مستودع:
+                                    <span t-field="o.request_id.location_id" style="font-size:9px;"/>
+                                </div>
+                            </div>
+                            <table class="table table-sm" name="stock_move_table" style="direction:rtl;">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="font-size:12px;">التسلسل</th>
+                                        <th class="text-center" style="font-size:12px;">كود المنتج</th>
+                                        <th class="text-center" style="font-size:12px;">المنتج</th>
+                                        <th class="text-center" style="font-size:12px;">كمية المصدر</th>
+                                        <th class="text-center" style="font-size:12px;">الكميه المرسله</th>
+                                        <th class="text-center" style="font-size:12px;">كمية المستقبل</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="counter" t-value="0"/>
+                                    <t t-set="lines" t-value="o.request_id.request_line_ids"/>
+                                    <tr t-foreach="lines" t-as="move">
+                                        <t t-set="counter" t-value="counter + 1"/>
+                                        <td class="text-center" style="font-size:9px;">
+                                            <span t-esc="counter"/>
+                                        </td>
+                                        <td class="text-center" style="font-size:9px;">
+                                            <span t-esc="move.product_ref_2"/>
+                                        </td>
+                                        <td class="text-center" style="font-size:9px;">
+                                            <span t-field="move.product_id.display_name"/>
+                                        </td>
+                                        <td class="text-center" style="font-size:9px;">
+                                            <span t-field="move.qty_available_from"/>
+                                            <span t-field="move.uom_id"/>
+                                        </td>
+                                        <td class="text-center" style="font-size:9px;">
+                                            <span t-esc="move.qty"/>
+                                            <span t-field="move.uom_id"/>
+                                        </td>
+                                        <td class="text-center" style="font-size:9px;">
+                                            <span t-field="move.qty_available"/>
+                                            <span t-field="move.uom_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-left" style="font-size:9px;">الإجمالي</td>
+                                        <td/>
+                                        <td class="text-center" style="font-size:9px;">
+                                            <span t-esc="sum(move.qty for move in lines)"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row mt8 mb8 text_right" style="direction:rtl;">
+                                <div class="col-12" name="div_driver_id" style="font-size:12px;">
+                                    اسم السائق:
+                                    <span t-field="o.request_id.driver_id" style="font-size:9px;"/>
+                                </div>
+                            </div>
+                            <div class="row mt8 mb8 text_right" style="direction:rtl;">
+                                <div class="col-12" name="div_lading_number" style="font-size:12px;">
+                                    رقم بوليصة الشحن:
+                                    <span t-field="o.request_id.lading_number" style="font-size:9px;"/>
+                                </div>
+                            </div>
+                            <div class="row mt8 mb8 text_right" style="direction:rtl;">
+                                <div class="col-12" name="div_note" style="font-size:12px;">
+                                    ملاحظات:
+                                    <span t-field="o.request_id.note" style="font-size:9px;"/>
+                                </div>
+                            </div>
+                            <div>
+                                <p style="font-size:12px;"> تم استلام جميع الاصناف فى حالة سليمة .</p>
+                            </div>
+                            <br/>
+
+                            <div class="row mt8 mb8 text_right" style="direction:rtl;">
+                                <div class="col-12" name="div_note" style="font-size:12px;">
+                                    توقيع مامور المستودع:
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_report_deliver_material_report_pack3" model="ir.actions.report">
+            <field name="name">طلب النقل بين الفروع</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_packing_new_report.report_material_document_new_packing_3</field>
+            <field name="report_file">sb_packing_new_report.report_material_document_new_packing_3</field>
+<!--            <field name="print_report_name">Material Request</field>-->
+            <field name="binding_model_id" ref="model_stock_picking"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
