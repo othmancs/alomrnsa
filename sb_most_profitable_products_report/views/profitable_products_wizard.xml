@@ -44,7 +44,7 @@
               parent="sale.menu_sale_report"
               name="تقرير الاصناف الاكثر ربحيه"
               action="profitable_products_wizard_action"
-              sequence="69"/>
+              sequence="102"/>
 
     </data>
 </odoo>
