@@ -40,4 +40,8 @@
  	<!-- <menuitem id="sh_pricelist_wizard_id" name="Pricelist Wizard" parent="sale.product_menu_catalog"
  		action="action_quick_product_wizard" groups="" sequence="100"/>   -->       
          
- </odoo>	
+ </odoo>
+
+
+
+
