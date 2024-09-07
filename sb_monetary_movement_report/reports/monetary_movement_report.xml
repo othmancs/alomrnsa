@@ -1,0 +1,194 @@
+<odoo>
+    <data>
+        <template id="monetary_movement_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl" style="">
+                        <h5>الحركه النقديه</h5>
+                        <div class="row mt-4 mb-4">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        من تاريخ:
+                                        <span t-esc="form['date_start']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الي تاريخ:
+                                        <span t-esc="form['date_end']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبع بواسطة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تاريخ الطباعة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <tbody>
+                                <t t-foreach="branches" t-as="branch">
+                                    <tr style="border-left:none;border-top:none;border-right:none; background-color:#FFE4CF;">
+                                        <td colspan="7" class="text-right"
+                                            style="border-left:none;border-top:none;border-right:none;background-color:#FFE4CF;">
+                                            <strong>
+                                                <span t-esc="branch['branch_name']"/>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center" style="width: 20%; background-color:#CCC7BF;"></th>
+                                        <th class="text-center" style="width: 20%; background-color:#CCC7BF;">اجمالى
+                                            نقدى
+                                        </th>
+                                        <th class="text-center" style="width: 20%; background-color:#CCC7BF;">اجمالى
+                                            اجل
+                                        </th>
+                                        <th class="text-center" style="width: 20%; background-color:#CCC7BF;">شبكه</th>
+                                        <th class="text-center" style="width: 20%; background-color:#CCC7BF;">فيزا</th>
+                                        <th class="text-center" style="width: 20%; background-color:#CCC7BF;">شيك</th>
+                                        <th class="text-center" style="width: 20%; background-color:#CCC7BF;">حواله
+                                            بنكيه
+                                        </th>
+                                    </tr>
+
+
+                                    <t t-foreach="data" t-as="line">
+                                        <tr t-if="line['branch_name'] == branch['branch_name']">
+                                            <tr>
+                                                <td class="text-center" style="background-color:#CCC7BF;">مبيعات</td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option1_branch'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option2_branch'], 2)"/>
+                                                </td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="background-color:#CCC7BF;">ض.مبيعات</td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option1_branch_tax'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option2_branch_tax'], 2)"/>
+                                                </td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="background-color:#CCC7BF;">ارجاعات</td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option1_out_refund'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option2_out_refund'], 2)"/>
+                                                </td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="background-color:#CCC7BF;">ض.ارجاعات</td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option1_tax_out_refund'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_option2_tax_out_refund'], 2)"/>
+                                                </td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="background-color:#CCC7BF;">مقبوضات</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">-</td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_payments_branch1'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_payments_branch2'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_payments_branch3'], 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(line['total_payments_branch4'], 2)"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="background-color:#D0B8A8;">الاجمالى</td>
+                                                <td class="text-center" style="background-color:#D0B8A8;">
+                                                    <span t-esc="round(line['total1'], 2)"/>
+                                                </td>
+                                                <td class="text-center" style="background-color:#D0B8A8;">
+                                                    <span t-esc="round(line['total2'], 2)"/>
+                                                </td>
+                                                <td class="text-center" style="background-color:#D0B8A8;">
+                                                    <span t-esc="round(line['total3'], 2)"/>
+                                                </td>
+                                                <td class="text-center" style="background-color:#D0B8A8;">
+                                                    <span t-esc="round(line['total4'], 2)"/>
+                                                </td>
+                                                <td class="text-center" style="background-color:#D0B8A8;">
+                                                    <span t-esc="round(line['total5'], 2)"/>
+                                                </td>
+                                                <td class="text-center" style="background-color:#D0B8A8;">
+                                                    <span t-esc="round(line['total6'], 2)"/>
+                                                </td>
+                                            </tr>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <!--   QWeb Reports   -->
+        <!--   NAME & FILE_NAME should be the same   -->
+        <record id="monetary_movement_report" model="ir.actions.report">
+            <field name="name">تقرير الحركه النقديه</field>
+            <field name="model">monetary.movement.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_monetary_movement_report.monetary_movement_template</field>
+            <field name="report_file">sb_monetary_movement_report.monetary_movement_template</field>
+            <field name="binding_model_id" ref="model_monetary_movement_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="paperformmattttt_actionى_salee_orderr_id" model="report.paperformat">
+            <field name="name">الحركه النقديخ</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">210</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('sb_monetary_movement_report.monetary_movement_report')])]"/>
+        </record>
+    </data>
+</odoo>

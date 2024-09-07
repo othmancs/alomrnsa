@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_profitable_clients" model="ir.actions.report">
+            <field name="name">profitable clients</field>
+            <field name="model">profitable.clients.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_profitable_clients_report.report_profitable_clients</field>
+            <field name="report_file">sb_profitable_clients_report.report_profitable_clients</field>
+            <field name="print_report_name">'تقرير العملاء الاكثر ربحيه'</field>
+            <field name="binding_model_id" ref="model_profitable_clients_wizard"/>
+        </record>
+
+        <record id="profitable_clients_wizard_form" model="ir.ui.view">
+            <field name="name">profitable_clients_wizard_form</field>
+            <field name="model">profitable.clients.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="branch_id"/>
+                            </group>
+                            <group>
+                                <field name="date_end"/>
+                                <field name="company_id" invisible="1" />
+                                <field name="print_date" invisible="1" />
+                                <field name="printed_by" invisible="1" />
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_clients_export_xlsx" type="object" string="Xlsx" class="btn-primary"/>
+                        <button name="generate_pdf_report" type="object" string="PDF" class="btn-primary"/>
+                        <button special="cancel" class="btn-secondary" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="profitable_clients_wizard_action" model="ir.actions.act_window">
+            <field name="name">مقارنة العملاء الاكثر ربحيه</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">profitable.clients.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="profitable_clients_wizard_new"
+              parent="sale.menu_sale_report"
+              name="مقارنة العملاء الاكثر ربحيه "
+              action="profitable_clients_wizard_action"
+              sequence="15"/>
+
+    </data>
+</odoo>

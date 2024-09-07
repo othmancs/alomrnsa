@@ -1,14 +1,15 @@
 <odoo>
-    <record id="sale_order_wizard_form" model="ir.ui.view">
-        <field name="name">Price offers</field>
-        <field name="model">sale.order.wizard</field>
+    <record id="seller_activity_report_wizard_form" model="ir.ui.view">
+        <field name="name">Seller Activity By Category</field>
+        <field name="model">seller.activity.by.category.wizard</field>
         <field name="arch" type="xml">
             <form>
                 <group>
                     <group>
                         <field name="branch_ids" widget="many2many_tags"/>
+                        <field name="product_category_ids" widget="many2many_tags"/>
                         <field name="created_by_id" widget="many2many_tags"/>
-                        <field name="partner_id" widget="res_partner_many2one"/>
+
                     </group>
                     <group>
                         <field name="date_from"/>
@@ -24,16 +25,16 @@
             </form>
         </field>
     </record>
-    <record id="sale_order_wizard_action" model="ir.actions.act_window">
-        <field name="name">تقـريـر عـروض الاســعار</field>
-        <field name="res_model">sale.order.wizard</field>
+    <record id="seller_activity_by_category_wizard_action" model="ir.actions.act_window">
+        <field name="name">تقرير نشاط البائعين حسب الفئات - اجمالي</field>
+        <field name="res_model">seller.activity.by.category.wizard</field>
         <field name="target">new</field>
         <field name="view_mode">form</field>
     </record>
 
-    <menuitem id="sale_order_report_wizard_menu"
+    <menuitem id="seller_activity_by_category_wizard_menu"
               parent="sale.menu_sale_report"
-              name="تقـريـر عـروض الاســعار"
-              action="sale_order_wizard_action"
-              sequence="49"/>
+              name="تقرير نشاط البائعين حسب الفئات - اجمالي"
+              action="seller_activity_by_category_wizard_action"
+              sequence="55"/>
 </odoo>

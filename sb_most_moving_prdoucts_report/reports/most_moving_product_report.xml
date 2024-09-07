@@ -1,0 +1,142 @@
+<odoo>
+    <data>
+        <template id="most_moving_product_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl">
+                        <h4 class="m-0">
+                            <strong>
+                                <t t-esc="form['company_id'][1]"/>
+                            </strong>
+                        </h4>
+                        <h5>تقـريـر أكــثر الاصنــاف حـركــة بـالنسبــة</h5>
+                        <br/>
+                        <div class="row mt-4 mb-4" id="creditnote">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        الفــرع :
+                                        <span t-esc="form['branch_id'][1]"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        مــن تـاريـخ:
+                                        <span t-esc="form['date_from']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الــي تـاريـخ:
+                                        <span t-esc="form['date_to']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبـع بواسطـة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تـاريخ الطبـاعـة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 20%;">رقم الصنف</th>
+                                    <th class="text-center" style="width: 15%;">وصف الصنف</th>
+                                    <th class="text-center" style="width: 20%;">رصيد البداية</th>
+                                    <th class="text-center" style="width: 20%;">ادخالات الفترة</th>
+                                    <th class="text-center" style="width: 20%;">الكمية المباعة</th>
+                                    <th class="text-center" style="width: 15%;">المتوفر</th>
+                                    <th class="text-center" style="width: 15%;">الكمية المرتجعة</th>
+                                    <th class="text-center" style="width: 15%;">نسبه المـئـويــة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="form['products']" t-as="product">
+                                    <tr>
+                                        <td class="text-center">
+                                            <t t-esc="product['product_reference']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="product['product_description']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="product['beginning_balance']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="product['new_incoming']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="product['new_outgoing']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="product['available_qty']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="product['return_qty']"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="round(product['sales_percentage'], 2)"/>
+                                            <span>%</span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <!--  QWeb Reports  -->
+        <!--  NAME & FILE_NAME should be the same  -->
+        <record id="most_moving_product_report" model="ir.actions.report">
+            <field name="name">تقـريـر أكــثر الاصنـاف حـركـة بـالنسبـة</field>
+            <field name="model">most.moving.product.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_most_moving_prdoucts_report.most_moving_product_report_template</field>
+            <field name="report_file">sb_most_moving_prdoucts_report.most_moving_product_report_template</field>
+            <field name="binding_model_id" ref="model_most_moving_product_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <record id="paperformat_action_most_moving_product" model="report.paperformat">
+            <field name="name">Most Moving Product Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">220</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6,0,[ref('sb_most_moving_prdoucts_report.most_moving_product_report')])]"/>
+        </record>
+
+        <!--        ======= Excel Report =================-->
+        <record id="most_moving_product_report_xls" model="ir.actions.report">
+            <field name="name">تقـريـر أكــثر الاصنـاف حـركـة بـالنسبـة</field>
+            <field name="model">most.moving.product.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_most_moving_prdoucts_report.report_xls</field>
+            <field name="report_file">sb_most_moving_prdoucts_report.report_xls</field>
+            <field name="binding_model_id" ref="model_most_moving_product_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
+

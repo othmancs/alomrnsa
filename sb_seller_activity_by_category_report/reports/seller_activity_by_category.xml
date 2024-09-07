@@ -1,0 +1,313 @@
+<odoo>
+    <data>
+        <template id="seller_activity_by_category_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl">
+                        <h4 class="m-0">
+                            <strong>
+                                <t t-if="form['company_id']">
+                                    <t t-esc="form['company_id'][1]"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-esc="'Unknown Company'"/>
+                                </t>
+                            </strong>
+                        </h4>
+                        <h5>تقـريـر نشـــاطـ البـائـعيـن حســــب الفئـــات - اجمــالـى</h5>
+                        <br/>
+                        <div class="row mt-4 mb-4" id="creditnote">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        مــن تـاريـخ:
+                                        <span t-esc="form['date_from']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الــي تـاريـخ:
+                                        <span t-esc="form['date_to']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبـع بواسطـة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تـاريخ الطبـاعـة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <table class="table table-sm table-bordered" style="width: 100%; table-layout: fixed; ">
+                            <tr>
+                                <th class="text-center" colspan="8">نـقـــدي</th>
+                                <th class="text-center" colspan="7">أجــــــل</th>
+                                <th class="text-center" colspan="3">اجـمـــالـــى</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">الفئة</th>
+                                <th class="text-center">المبيعات النقدية</th>
+                                <th class="text-center">كمية المبيعات النقدية</th>
+                                <th class="text-center">اجمالى الارجاعات</th>
+                                <th class="text-center">كمية الارجاعات</th>
+                                <th class="text-center">صافى المبيعات</th>
+                                <th class="text-center">صافى التكلفة</th>
+                                <th class="text-center">ربح نقدى</th>
+                                <th class="text-center">اجمالى المبيعات الاجلة</th>
+                                <th class="text-center">كمية المبيعات الاجلة</th>
+                                <th class="text-center">ارجاعات المبيعات الاجلة</th>
+                                <th class="text-center">كمية ارجاعات المبيعات الاجلة</th>
+                                <th class="text-center">صافى المبيعات الاجلة</th>
+                                <th class="text-center">تكلفة المبيعات</th>
+                                <th class="text-center">ربح الاجل</th>
+                                <th class="text-center">صافى المبيعات الاجل + النقدى</th>
+                                <th class="text-center">صافى التكلفة</th>
+                                <th class="text-center">الربح</th>
+                            </tr>
+                            <tbody>
+                                <t t-foreach="branches" t-as="branch">
+                                    <tr style="border-left:none;border-top:none;border-right:none; background-color:#CCC7BF;">
+                                        <td colspan="18" class="text-center"
+                                            style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">
+                                            <strong>
+                                                <span t-esc="branch['branch_name']"/>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="created" t-as="created_info">
+                                        <t t-if="created_info['branch_name'] == branch['branch_name']">
+                                            <tr style="border-left:none;border-top:none;border-right:none; background-color:#CCC7BF;">
+                                                <td colspan="18" class="text-center"
+                                                    style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">
+                                                    <strong>
+                                                        <span t-esc="created_info['created_by_name']"/>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+                                            <t t-set="sum_total_option1_branch_price" t-value="0"/>
+                                            <t t-set="sum_total_quantity_option1" t-value="0"/>
+                                            <t t-set="sum_total_option1_branch_price_credit" t-value="0"/>
+                                            <t t-set="sum_total_quantity_option1_credit" t-value="0"/>
+                                            <t t-set="sum_net_sales_option1" t-value="0"/>
+                                            <t t-set="sum_total_option1_branch_purchase" t-value="0"/>
+                                            <t t-set="sum_cash_profit_option1" t-value="0"/>
+                                            <t t-set="sum_total_option2_branch_price" t-value="0"/>
+                                            <t t-set="sum_total_quantity_option2" t-value="0"/>
+                                            <t t-set="sum_total_option2_branch_price_credit" t-value="0"/>
+                                            <t t-set="sum_total_quantity_option2_credit" t-value="0"/>
+                                            <t t-set="sum_net_sales_option2" t-value="0"/>
+                                            <t t-set="sum_total_option2_branch_purchase" t-value="0"/>
+                                            <t t-set="sum_cash_profit_option2" t-value="0"/>
+                                            <t t-set="sum_net_sales_cash_credit" t-value="0"/>
+                                            <t t-set="sum_net_cost_cash_credit" t-value="0"/>
+                                            <t t-set="sum_profit" t-value="0"/>
+
+                                            <t t-foreach="branch_data" t-as="line">
+                                                <t t-if="line['created_by_name'] == created_info['created_by_name']">
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <span t-esc="line['category']"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['total_option1_branch_price']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="line['total_quantity_option1']"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['total_option1_branch_price_credit']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="line['total_quantity_option1_credit']"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['net_sales_option1']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['total_option1_branch_purchase']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['cash_profit_option1']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['total_option2_branch_price']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="line['total_quantity_option2']"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['total_option2_branch_price_credit']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="line['total_quantity_option2_credit']"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['net_sales_option2']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['total_option2_branch_purchase']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['cash_profit_option2']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['net_sales_cash_credit']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['net_cost_cash_credit']), 2)"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-esc="round(abs(line['profit']), 2)"/>
+                                                        </td>
+                                                    </tr>
+                                                    <t t-set="sum_total_option1_branch_price"
+                                                       t-value="sum_total_option1_branch_price + abs(line['total_option1_branch_price'])"/>
+                                                    <t t-set="sum_total_quantity_option1"
+                                                       t-value="sum_total_quantity_option1 + line['total_quantity_option1']"/>
+                                                    <t t-set="sum_total_option1_branch_price_credit"
+                                                       t-value="sum_total_option1_branch_price_credit + abs(line['total_option1_branch_price_credit'])"/>
+                                                    <t t-set="sum_total_quantity_option1_credit"
+                                                       t-value="sum_total_quantity_option1_credit + line['total_quantity_option1_credit']"/>
+                                                    <t t-set="sum_net_sales_option1"
+                                                       t-value="sum_net_sales_option1 + abs(line['net_sales_option1'])"/>
+                                                    <t t-set="sum_total_option1_branch_purchase"
+                                                       t-value="sum_total_option1_branch_purchase + abs(line['total_option1_branch_purchase'])"/>
+                                                    <t t-set="sum_cash_profit_option1"
+                                                       t-value="sum_cash_profit_option1 + abs(line['cash_profit_option1'])"/>
+                                                    <t t-set="sum_total_option2_branch_price"
+                                                       t-value="sum_total_option2_branch_price + abs(line['total_option2_branch_price'])"/>
+                                                    <t t-set="sum_total_quantity_option2"
+                                                       t-value="sum_total_quantity_option2 + line['total_quantity_option2']"/>
+                                                    <t t-set="sum_total_option2_branch_price_credit"
+                                                       t-value="sum_total_option2_branch_price_credit + abs(line['total_option2_branch_price_credit'])"/>
+                                                    <t t-set="sum_total_quantity_option2_credit"
+                                                       t-value="sum_total_quantity_option2_credit + line['total_quantity_option2_credit']"/>
+                                                    <t t-set="sum_net_sales_option2"
+                                                       t-value="sum_net_sales_option2 + abs(line['net_sales_option2'])"/>
+                                                    <t t-set="sum_total_option2_branch_purchase"
+                                                       t-value="sum_total_option2_branch_purchase + abs(line['total_option2_branch_purchase'])"/>
+                                                    <t t-set="sum_cash_profit_option2"
+                                                       t-value="sum_cash_profit_option2 + abs(line['cash_profit_option2'])"/>
+                                                    <t t-set="sum_net_sales_cash_credit"
+                                                       t-value="sum_net_sales_cash_credit + abs(line['net_sales_cash_credit'])"/>
+                                                    <t t-set="sum_net_cost_cash_credit"
+                                                       t-value="sum_net_cost_cash_credit + abs(line['net_cost_cash_credit'])"/>
+                                                    <t t-set="sum_profit" t-value="sum_profit + abs(line['profit'])"/>
+                                                </t>
+                                            </t>
+                                            <tr style="font-weight: bold;">
+                                                <td class="text-center">الاجمالي</td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_total_option1_branch_price), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="sum_total_quantity_option1"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_total_option1_branch_price_credit), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="sum_total_quantity_option1_credit"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_net_sales_option1), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_total_option1_branch_purchase), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_cash_profit_option1), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_total_option2_branch_price), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="sum_total_quantity_option2"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_total_option2_branch_price_credit), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="sum_total_quantity_option2_credit"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_net_sales_option2), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_total_option2_branch_purchase), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_cash_profit_option2), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_net_sales_cash_credit), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_net_cost_cash_credit), 2)"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <span t-esc="round(abs(sum_profit), 2)"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+        <!--        ===========================================================================-->
+
+
+        <record id="seller_activity_by_category_report_action" model="ir.actions.report">
+            <field name="name">تقرير نشاط البائعين حســب الفئـات - اجمالي</field>
+            <field name="model">seller.activity.by.category.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_seller_activity_by_category_report.seller_activity_by_category_report_template</field>
+            <field name="report_file">sb_seller_activity_by_category_report.seller_activity_by_category_report_template</field>
+            <field name="binding_model_id" ref="model_seller_activity_by_category_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <record id="paperformat_action_seller_activity_by_category" model="report.paperformat">
+            <field name="name">Seller Activity By Category Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">297</field>
+            <field name="page_width">220</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">24.5</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids"
+                   eval="[(6,0,[ref('sb_seller_activity_by_category_report.seller_activity_by_category_report_action')])]"/>
+        </record>
+
+        <!--                ======= Excel Report =================-->
+        <record id="seller_activity_by_category_report_action_xls" model="ir.actions.report">
+            <field name="name">تقرير نشاط البائعين حســب الفئـات - اجمالي</field>
+            <field name="model">seller.activity.by.category.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_seller_activity_by_category_report.report_xls</field>
+            <field name="report_file">sb_seller_activity_by_category_report.report_xls</field>
+            <field name="binding_model_id" ref="model_seller_activity_by_category_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

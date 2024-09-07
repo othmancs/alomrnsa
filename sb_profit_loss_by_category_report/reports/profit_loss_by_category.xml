@@ -1,0 +1,153 @@
+<odoo>
+    <data>
+        <template id="profit_loss_by_category_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl">
+                        <h4 class="m-0">
+                            <strong>
+                                <t t-if="form['company_id']">
+                                    <t t-esc="form['company_id'][1]"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-esc="'Unknown Company'"/>
+                                </t>
+                            </strong>
+                        </h4>
+                        <h5>تقـريـر الربــح والخٍســـارة حســــب الفئـــات</h5>
+                        <br/>
+                        <div class="row mt-4 mb-4" id="creditnote">
+                            <div class="col-auto col-3 mw-100 mb-2">
+                                <p class="m-0">
+                                    <strong>
+                                        مــن تـاريـخ:
+                                        <span t-esc="form['date_from']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        الــي تـاريـخ:
+                                        <span t-esc="form['date_to']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        طبـع بواسطـة :
+                                        <span t-esc="form['printed_by']"/>
+                                    </strong>
+                                </p>
+                                <p class="m-0">
+                                    <strong>
+                                        تـاريخ الطبـاعـة :
+                                        <span t-esc="form['print_date']"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <br/>
+                        <t t-foreach="branches" t-as="branch">
+                            <div class="page">
+                                <table class="table table-sm table-bordered" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">مسلسل</th>
+                                            <th class="text-center">الفئة</th>
+                                            <th class="text-center">اجمالى المبيعات</th>
+                                            <th class="text-center">تكلفة المباع</th>
+                                            <th class="text-center">اجمالى الربح</th>
+                                            <th class="text-center">ن.الربح</th>
+                                            <th class="text-center">اجمالي المتوفر</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="counter" t-value="0"/>
+                                        <tr style="border-left:none;border-top:none;border-right:none; background-color:#CCC7BF;">
+                                            <td colspan="7" class="text-center"
+                                                style="border-left:none;border-top:none;border-right:none;background-color:#CCC7BF;">
+                                                <strong>
+                                                    <span t-esc="branch['branch_name']"/>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                        <t t-foreach="branch_data" t-as="line">
+                                            <t t-if="line['branch_name'] == branch['branch_name']">
+                                                <t t-set="counter" t-value="counter + 1"/>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <span t-esc="counter"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span t-esc="line['category']"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span t-esc="round(abs(line['total_sales']), 2)"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span t-esc="round(abs(line['total_purchase_cost']), 2)"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span t-esc="round(abs(line['total_profit']), 2)"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span t-esc="round(abs(line['profit_rate']), 2)"/>
+                                                        <span>%</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <span t-esc="round(abs(line['product_qty_in']), 2)"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <!--        ===========================================================================-->
+
+
+        <record id="profit_loss_by_category_report_action" model="ir.actions.report">
+            <field name="name">تقرير الربح والخٍسـارة حســب الفئـات</field>
+            <field name="model">profit.loss.by.category.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_profit_loss_by_category_report.profit_loss_by_category_report_template</field>
+            <field name="report_file">sb_profit_loss_by_category_report.profit_loss_by_category_report_template</field>
+            <field name="binding_model_id" ref="model_profit_loss_by_category_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+<!--        <record id="paperformat_action_profit_loss_by_category_report" model="report.paperformat">-->
+<!--            <field name="name">Profit Loss By Category Report</field>-->
+<!--            <field name="default" eval="True"/>-->
+<!--            <field name="format">custom</field>-->
+<!--            <field name="page_height">297</field>-->
+<!--            <field name="page_width">220</field>-->
+<!--            <field name="orientation">Landscape</field>-->
+<!--            <field name="margin_top">40</field>-->
+<!--            <field name="margin_bottom">24.5</field>-->
+<!--            <field name="margin_left">1</field>-->
+<!--            <field name="margin_right">4</field>-->
+<!--            <field name="header_line" eval="False"/>-->
+<!--            <field name="header_spacing">35</field>-->
+<!--            <field name="dpi">90</field>-->
+<!--            <field name="report_ids"-->
+<!--                   eval="[(6,0,[ref('sb_profit_loss_by_category_report.profit_loss_by_category_report_action')])]"/>-->
+<!--        </record>-->
+
+        <!--                ======= Excel Report =================-->
+        <record id="seller_activity_by_category_report_action_xls" model="ir.actions.report">
+            <field name="name">تقرير الربح والخٍسـارة حســب الفئـات</field>
+            <field name="model">profit.loss.by.category.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">sb_profit_loss_by_category_report.report_xls</field>
+            <field name="report_file">sb_profit_loss_by_category_report.report_xls</field>
+            <field name="binding_model_id" ref="model_profit_loss_by_category_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

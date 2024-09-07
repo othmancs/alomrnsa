@@ -1,14 +1,13 @@
 <odoo>
-    <record id="sale_order_wizard_form" model="ir.ui.view">
-        <field name="name">Price offers</field>
-        <field name="model">sale.order.wizard</field>
+    <record id="most_moving_product_wizard_form" model="ir.ui.view">
+        <field name="name">Most Moving Product Category</field>
+        <field name="model">most.moving.product.wizard</field>
         <field name="arch" type="xml">
             <form>
                 <group>
                     <group>
-                        <field name="branch_ids" widget="many2many_tags"/>
-                        <field name="created_by_id" widget="many2many_tags"/>
-                        <field name="partner_id" widget="res_partner_many2one"/>
+                        <field name="branch_id"/>
+                        <field name="product_category_ids" widget="many2many_tags"/>
                     </group>
                     <group>
                         <field name="date_from"/>
@@ -24,16 +23,16 @@
             </form>
         </field>
     </record>
-    <record id="sale_order_wizard_action" model="ir.actions.act_window">
-        <field name="name">تقـريـر عـروض الاســعار</field>
-        <field name="res_model">sale.order.wizard</field>
+    <record id="most_moving_product_wizard_action" model="ir.actions.act_window">
+        <field name="name">أكثر الاصناف حركة بالنسبة</field>
+        <field name="res_model">most.moving.product.wizard</field>
         <field name="target">new</field>
         <field name="view_mode">form</field>
     </record>
 
-    <menuitem id="sale_order_report_wizard_menu"
+    <menuitem id="most_moving_product_wizard_menu"
               parent="sale.menu_sale_report"
-              name="تقـريـر عـروض الاســعار"
-              action="sale_order_wizard_action"
-              sequence="49"/>
+              name="أكثر الاصناف حركة بالنسبة"
+              action="most_moving_product_wizard_action"
+              sequence="60"/>
 </odoo>
