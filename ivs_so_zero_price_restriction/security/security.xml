@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <!-- <record id="show_margin_on_sales_order_group" model="res.groups">
+        <field name="name">Show Margin on Sales Order</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record> -->
+
+</odoo>
