@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-extend="ListView.buttons" t-name="ak_inventory_adjustments.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="before">
+            <button type="object" class="btn btn-primary button_validate_inventory" style="margin-right: 5px;">
+                VALIDATE INVENTORY
+            </button>
+        </t>
+    </t>
+</templates>

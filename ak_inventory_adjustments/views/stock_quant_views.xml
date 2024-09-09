@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Changed name of stock.quant menu -->
+    <record model="ir.ui.menu" id="stock.menu_action_inventory_tree">
+        <field name="name">Quants</field>
+    </record>
+</odoo>

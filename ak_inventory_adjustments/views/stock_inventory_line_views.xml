@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Stock Inventory line tree view -->
+    <record id="stock_inventory_line_tree" model="ir.ui.view">
+        <field name="name">stock.inventory.line.tree</field>
+        <field name="model">stock.inventory.line</field>
+        <field name="arch" type="xml">
+            <tree default_order="location_id,product_id" editable="top" string="Inventory Details" js_class="inventory_validate_button"
+                  decoration-danger="product_qty != theoretical_qty"
+                  decoration-muted="product_qty == theoretical_qty"
+                  decoration-bf="is_editable">
+
+                <field name="company_id" invisible="1"/>
+                <field name="product_tracking" invisible="1"/>
+                <field name="is_editable" invisible="1"/>
+                <field name="outdated" invisible="1"/>
+                <field name="product_id" width="1.6"
+                       context="{'default_type': 'product'}"
+                       domain="product_id_domain"
+                       readonly="context.get('default_product_id', False)"
+                       attrs="{'readonly': ['|',
+                            ('is_editable', '=', False),
+                            ('state', 'not in', ['confirm','waiting_for_approval'])]}"/>
+                <field name="product_id_domain" invisible="1"/>
+                <field name="package_id_domain" invisible="1"/>
+                <field name="location_id" groups="stock.group_stock_multi_locations"
+                       options="{'no_create': True}"
+                       readonly="context.get('readonly_location_id', False)"
+                       attrs="{'readonly': ['|',
+                            ('is_editable', '=', False),
+                            ('state', 'not in', ['confirm','waiting_for_approval'])]}"/>
+                <field name="inventory_date" optional="hide" width="0.8"/>
+                <field name="prod_lot_id" groups="stock.group_production_lot" width="0.8"
+                       attrs="{'readonly': ['|', '|',
+                            ('product_tracking', '=', 'none'),
+                            ('is_editable', '=', False),
+                            ('state', 'not in', ['confirm','waiting_for_approval'])]}"
+                       context="{'default_product_id': product_id, 'default_company_id': company_id}" optional="show"/>
+                <field name="package_id" groups="stock.group_tracking_lot" width="0.8"
+                       domain="package_id_domain"
+                       attrs="{'readonly': ['|',
+                            ('is_editable', '=', False),
+                            ('state', 'not in', ['confirm','waiting_for_approval'])]}"
+                       string="Package" optional="show"/>
+                <field name="partner_id" groups="stock.group_tracking_owner"
+                       attrs="{'readonly': ['|',
+                            ('is_editable', '=', False),
+                            ('state', 'not in', ['confirm','waiting_for_approval'])]}"/>
+                <field name="theoretical_qty" string="On Hand" width="0.5"
+                       force_save="1" readonly="1" invisible="1"/>
+                <button name="action_refresh_quantity" title="Refresh quantity"
+                        icon="fa-refresh" type="object"
+                        attrs="{'invisible': [('outdated', '=', False)]}"/>
+                <field name="product_qty" width="0.5" string="Counted"/>
+                <field name="difference_qty" optional="show" invisible="1"/>
+                <field name="product_uom_id" string="UoM" groups="uom.group_uom"
+                       width="0.3" force_save="1"/>
+                <field name="inventory_id" invisible="1"/>
+                <field name="state" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+    <record id="inherited_stock_inventory_line_view" model="ir.ui.view">
+           <field name="name">inherited.stock.inventory.line.view</field>
+           <field name="model">stock.inventory.line</field>
+           <field name="inherit_id" ref="stock_inventory_line_tree"/>
+           <field name="arch" type="xml">
+               <xpath expr="//tree" position="attributes">
+                   <attribute name="js_class">button_in_tree</attribute>
+               </xpath>
+           </field>
+       </record>
+
+    <record id="stock_inventory_line_tree_no_product_create" model="ir.ui.view">
+        <field name="name">stock.inventory.line.tree2</field>
+        <field name="model">stock.inventory.line</field>
+        <field name="inherit_id" ref="ak_inventory_adjustments.stock_inventory_line_tree"/>
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <field name="product_id" position="attributes"><attribute name="options">{'no_create': True}</attribute></field>
+        </field>
+    </record>
+
+    <record id="stock_inventory_line_search" model="ir.ui.view">
+        <field name="name">stock.inventory.line.search</field>
+        <field name="model">stock.inventory.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Inventory Lines">
+                <field name="product_id" groups="stock.group_stock_multi_locations"/>
+                <field name="location_id" />
+                <field name="prod_lot_id" groups="stock.group_production_lot"/>
+                <field name="package_id" groups="stock.group_tracking_lot"/>
+                <field name="partner_id" groups="stock.group_tracking_owner"/>
+                <filter string="Outdated Theoretical Quantities"
+                        name="outdated" domain="[('outdated', '=', True)]"/>
+                <filter string="Difference different than zero"
+                        name="difference" domain="[('difference_qty', '!=', '0')]"/>
+                <group  expand='0' string='Group by...'>
+                   <filter string='Location' name="location" domain="[]" context="{'group_by' : 'location_id'}"/>
+                   <filter string='Packaging' name="packaging" domain="[]" context="{'group_by' : 'package_id'}"/>
+                   <filter string='Product' name="product" domain="[]" context="{'group_by' : 'product_id'}"/>
+                   <filter string='Product Category' name="product_category" domain="[]" context="{'group_by' : 'categ_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>
