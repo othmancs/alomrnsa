@@ -7,7 +7,7 @@
 		<field name="inherit_id" ref="sale.view_order_form"/>
 		<field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="before">
-            	<button name="%(action_available_quantities_wizard)d" string="Available Quantity" type="action" class="oe_highlight"/>
+            	<button name="%(action_available_quantities_wizard)d" string="Available Quantity" type="action" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
             </xpath>
 		</field>
 	</record>
