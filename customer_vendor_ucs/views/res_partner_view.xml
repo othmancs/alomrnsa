@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//notebook/page[@name='sales_purchases']/group/group/field[@name='user_id']" position="after">
+                            <field name="is_customer"/>
+                    </xpath>
+                    <xpath expr="//notebook/page[@name='sales_purchases']/group/group[2][@name='purchase']" position="inside">
+                        <field name="is_vendor"/>
+                    </xpath>
+            </field>
+        </record>
+    </data>
+    <record id="account.res_partner_action_customer" model="ir.actions.act_window">
+        <field name="domain">[('is_customer','=',1)]</field>
+    </record>
+    <record id="account.res_partner_action_supplier" model="ir.actions.act_window">
+        <field name="domain">[('is_vendor','=',1)]</field>
+    </record>
+</odoo>

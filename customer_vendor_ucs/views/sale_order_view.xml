@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form//field[@name='partner_id']" position="attributes">
+            	<attribute name="domain">[('is_customer','=',1)]</attribute>
+            	<attribute name="context">{'default_is_customer':1}</attribute>
+            </xpath>
+            <xpath expr="//form//field[@name='partner_invoice_id']" position="attributes">
+            	<attribute name="domain">[('is_customer','=',1)]</attribute>
+            </xpath>
+            <xpath expr="//form//field[@name='partner_shipping_id']" position="attributes">
+            	<attribute name="domain">[('is_customer','=',1)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
