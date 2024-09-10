@@ -96,12 +96,21 @@ class Inventory(models.Model):
              "(e.g. Cycle Counting) you can choose 'Manual Selection of Products' and the system won't propose anything.  You can also let the "
              "system propose for a single product / lot /... ")
     total_qty = fields.Float('Total Quantity', compute='_compute_total_qty')
-    category_id = fields.Many2one(
+    category_id = fields.Many2many(
         'product.category', 'Product Category',
         readonly=True, states={'draft': [('readonly', False)]},
         help="Specify Product Category to focus your inventory on a particular Category.")
     exhausted = fields.Boolean('Include Exhausted Products', readonly=True, states={'draft': [('readonly', False)]})
     memo = fields.Char(string="Note", required=False, )
+    
+#     category_ids = fields.Many2many(
+#     'product.category', 'product_category_rel', 'product_id', 'category_id',
+#     string='Product Categories',
+#     readonly=True, states={'draft': [('readonly', False)]},
+#     help="Specify Product Categories to focus your inventory on particular Categories.")
+#     exhausted = fields.Boolean('Include Exhausted Products', readonly=True, states={'draft': [('readonly', False)]})
+# memo = fields.Char(string="Note", required=False)
+
 
     @api.model
     def create(self, vals):
