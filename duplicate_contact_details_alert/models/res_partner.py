@@ -1,32 +1,14 @@
-# -*- coding: utf-8 -*-
-#############################################################################
-#
-#    Cybrosys Technologies Pvt. Ltd.
-#
-#    Copyright (C) 2022-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
-#
-#    You can modify it under the terms of the GNU LESSER
-#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU LESSER GENERAL PUBLIC LICENSE (LGPL v3) for more details.
-#
-#    You should have received a copy of the GNU LESSER GENERAL PUBLIC LICENSE
-#    (LGPL v3) along with this program.
-#    If not, see <http://www.gnu.org/licenses/>.
-#
-#############################################################################
-
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 import ast
 
-
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+    customer_type = fields.Selection([
+        ('credit', 'آجل'),
+        ('cash', 'كاش')
+    ], string='Customer Type', default='cash')
 
     @api.model
     def create(self, vals):
@@ -77,6 +59,7 @@ class ResPartner(models.Model):
         else:
             res = super(ResPartner, self).write(vals)
             return res
+
 class Partner(models.Model):
     _inherit = 'res.partner'
 
@@ -85,7 +68,6 @@ class Partner(models.Model):
         if self._context.get('search_by_vat', False):
             if name:
                 args = args if args else []
-                # args.extend(['|', ['name', 'ilike', name], ['vat', 'ilike', name]])
                 args.extend(['|', '|', ['name', 'ilike', name], ['vat', 'ilike', name], ['other_id', 'ilike', name]])
                 name = ''
         return super(Partner, self).name_search(name=name, args=args, operator=operator, limit=limit)
@@ -97,4 +79,3 @@ class Partner(models.Model):
                 args.extend(['|', ['name', 'ilike', name], ['other_id', 'ilike', name]])
                 name = ''
         return super(Partner, self).name_search(name=name, args=args, operator=operator, limit=limit)
-
