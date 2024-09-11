@@ -161,8 +161,8 @@ class HrSalaryRule(models.Model):
                     result = contract.wage * 0.10''')
     amount_percentage_base = fields.Char(string='Percentage based on', help='result will be affected to a variable')
     child_ids = fields.One2many('hr.salary.rule', 'parent_rule_id', string='Child Salary Rule', copy=True)
-    # register_id = fields.Many2one('hr.contribution.register', string='Contribution Register',
-    #     help="Eventual third party involved in the salary payment of the employees.")
+    register_id = fields.Many2one('hr.contribution.register', string='Contribution Register',
+        help="Eventual third party involved in the salary payment of the employees.")
     # register_id = fields.Many2one('related.model', string="Register")
 
     input_ids = fields.One2many('hr.rule.input', 'input_id', string='Inputs', copy=True)
