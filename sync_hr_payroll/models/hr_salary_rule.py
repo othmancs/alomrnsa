@@ -163,7 +163,7 @@ class HrSalaryRule(models.Model):
     child_ids = fields.One2many('hr.salary.rule', 'parent_rule_id', string='Child Salary Rule', copy=True)
     # register_id = fields.Many2one('hr.contribution.register', string='Contribution Register',
     #     help="Eventual third party involved in the salary payment of the employees.")
-    register_id = fields.Many2one('related.model', string="Register")
+    # register_id = fields.Many2one('related.model', string="Register")
 
     input_ids = fields.One2many('hr.rule.input', 'input_id', string='Inputs', copy=True)
     note = fields.Text(string='Description')
