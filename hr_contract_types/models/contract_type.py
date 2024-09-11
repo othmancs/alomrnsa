@@ -9,11 +9,11 @@ class ContractType(models.Model):
     _order = 'sequence, id'
 
     name = fields.Char(string='Contract Type', required=True, help="Name")
-    sequence = fields.Integer(help="Gives the sequence when displaying a list of Contract.", default=10)
 
 
 class ContractInherit(models.Model):
     _inherit = 'hr.contract'
+    sequence = fields.Integer(help="Gives the sequence when displaying a list of Contract.", default=10)
 
     type_id = fields.Many2one('hr.contract.type', string="Employee Category",
                               required=True, help="Employee category",
