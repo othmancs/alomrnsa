@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_slide_channel_form_inherited" model="ir.ui.view">
+        <field name="name">slide.channel.view.form.inherited</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
+        <field name="arch" type="xml">
+            <group name="display" position="inside">
+                <field name="training_topic_id" attrs="{'invisible': [('channel_type', '!=', 'training')]}" />
+                <field name="training_method_id" attrs="{'invisible': [('channel_type', '!=', 'training')]}" />
+            </group>
+        </field>
+    </record>
+</odoo>

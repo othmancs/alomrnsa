@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hr_training.access_training_topic,access_training_topic,hr_training.model_training_topic,base.group_user,1,1,1,1
+hr_training.access_training_method,access_training_method,hr_training.model_training_method,base.group_user,1,1,1,1
+hr_training.access_hr_training,access_hr_training,hr_training.model_hr_training,base.group_user,1,0,0,0
+hr_training.access_hr_training_hr_user,access_hr_training_hr_user,hr_training.model_hr_training,hr.group_hr_user,1,1,1,0
+hr_training.access_hr_training_hr_manager,access_hr_training_hr_manager,hr_training.model_hr_training,hr.group_hr_manager,1,1,1,1

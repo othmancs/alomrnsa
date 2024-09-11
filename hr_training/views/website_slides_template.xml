@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id='course_main_inherited' inherit_id="website_slides.course_main">
+        <xpath expr="//div[hasclass('o_wslides_course_main')]/div[hasclass('container')]//div[@id='courseMainTabContent']/div[@id='home']/t[contains(@t-call, 'website_slides.course_slides_list')]" position="before">
+            <div t-if="channel.channel_type == 'training'" class="mb-2 pt-1">
+                <table class="table table-sm" style="width: 20%">
+                    <tr t-if="channel.training_topic_id">
+                        <th class="border-top-0">Topic</th>
+                        <td class="border-top-0"><span t-field="channel.training_topic_id"/></td>
+                    </tr>
+                    <tr t-if="channel.training_method_id">
+                        <th class="border-top-0">Method</th>
+                        <td class="border-top-0"><span t-field="channel.training_method_id" /></td>
+                    </tr>
+                </table>
+            </div>
+        </xpath>
+    </template>
+</odoo>

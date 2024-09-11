@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record forcecreate="True" id="ir_cron_training_scheduler_action" model="ir.cron">
+        <field name="name">Scheduled Employee's Training Expiration</field>
+        <field name="model_id" ref="hr_training.model_hr_training"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+        <field name="state">code</field>
+        <field name="code">model.training_expire_notification()</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+    <record id="email_template_training_expire" model="mail.template">
+        <field name="name">Training</field>
+        <field name="email_from">{{object.employee_id.company_id.email}}</field>
+        <field name="email_to">{{ctx.get('email_to')}}</field>
+        <field name="subject">Training</field>
+        <field name="model_id" ref="hr_training.model_hr_training"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="lang">{{object.employee_id.user_id and object.employee_id.user_id.partner_id.lang}}</field>
+        <field name="body_html" type="html">
+        <p>Hello,</p><br/>
+        <p style="color:red"><t t-out="object.employee_id.name"/>'s training <b><t t-out="object.topic_id.name"/></b> has been Expired on <t t-out="object.training_end_date"/>.</p><br/>
+        <p>Thank you,</p>
+        </field>
+    </record>
+</odoo>

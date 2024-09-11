@@ -1,0 +1,583 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_training
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 07:30+0000\n"
+"PO-Revision-Date: 2023-02-06 07:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_training
+#: model:mail.template,body_html:hr_training.email_template_training_expire
+msgid ""
+"<p>Hello,</p><br/>\n"
+"        <p style=\"color:red\"><t t-out=\"object.employee_id.name\"/>'s training <b><t t-out=\"object.topic_id.name\"/></b> has been Expired on <t t-out=\"object.training_end_date\"/>.</p><br/>\n"
+"        <p>Thank you,</p>\n"
+"        "
+msgstr ""
+"<p>Hello,</p><br/>\n"
+"        El Capacitación de <p style=\"color:red\"><t t-out=\"object.employee_id.name\"/> <b><t t-out=\"object.topic_id.name\"/></b> caducó el <t t-out=\"object.training_end_date\"/>.</p><br/>\n"
+"        <p>Gracias,</p>\n"
+"        "
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_needaction
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_ids
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_exception_decoration
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_state
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_type_icon
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_training_topic_form
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_attachment_count
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_employee_form_inherit
+msgid "CURP"
+msgstr ""
+
+#. module: hr_training
+#: model_terms:ir.actions.act_window,help:hr_training.action_hr_training
+#: model_terms:ir.actions.act_window,help:hr_training.action_training_method
+msgid "Click to create a new training method."
+msgstr "Haga clic para crear un nuevo método de capacitación ."
+
+#. module: hr_training
+#: model_terms:ir.actions.act_window,help:hr_training.action_training_topic
+msgid "Click to create a new training topic."
+msgstr "Haga clic para crear un nuevo tema de capacitación."
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_employee__country_code
+msgid "Country Code"
+msgstr "Código de País"
+
+#. module: hr_training
+#: model:ir.model,name:hr_training.model_slide_channel
+msgid "Course"
+msgstr "Curso"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__create_uid
+#: model:ir.model.fields,field_description:hr_training.field_training_method__create_uid
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__create_date
+#: model:ir.model.fields,field_description:hr_training.field_training_method__create_date
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_config_settings_saudi_hr
+msgid "Days before"
+msgstr "Días antes"
+
+#. module: hr_training
+#: model:ir.model,name:hr_training.model_hr_department
+msgid "Department"
+msgstr "Departamento"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__display_name
+#: model:ir.model.fields,field_description:hr_training.field_training_method__display_name
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: hr_training
+#: model:ir.model,name:hr_training.model_hr_employee
+#: model_terms:ir.ui.view,arch_db:hr_training.view_hr_training_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__employee_id
+msgid "Employee Name"
+msgstr "Nombre del Empleado"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__emp_code
+msgid "Employee No."
+msgstr "Número de Empleado"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_config_settings_saudi_hr
+msgid "Expiring Training Notification"
+msgstr "Notificación de Capacitación que Expira"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_follower_ids
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_partner_ids
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__activity_type_icon
+#: model:ir.model.fields,help:hr_training.field_training_topic__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ícono de fuente impresionante, p. "
+
+#. module: hr_training
+#: model:ir.model,name:hr_training.model_hr_job
+msgid "HR Job"
+msgstr "Trabajo de RR.HH."
+
+#. module: hr_training
+#: model:ir.model,name:hr_training.model_hr_training
+msgid "HR Training"
+msgstr "Capacitación de RR.HH."
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__has_message
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__hire_date
+msgid "Hire Date"
+msgstr "Fecha de Contratación"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__id
+#: model:ir.model.fields,field_description:hr_training.field_training_method__id
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_exception_icon
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__activity_exception_icon
+#: model:ir.model.fields,help:hr_training.field_training_topic__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_employee_form_inherit
+msgid "Identification No."
+msgstr "Número de Identificación"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__message_needaction
+#: model:ir.model.fields,help:hr_training.field_hr_training__message_unread
+#: model:ir.model.fields,help:hr_training.field_training_topic__message_needaction
+#: model:ir.model.fields,help:hr_training.field_training_topic__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__message_has_error
+#: model:ir.model.fields,help:hr_training.field_hr_training__message_has_sms_error
+#: model:ir.model.fields,help:hr_training.field_training_topic__message_has_error
+#: model:ir.model.fields,help:hr_training.field_training_topic__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_is_follower
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training____last_update
+#: model:ir.model.fields,field_description:hr_training.field_training_method____last_update
+#: model:ir.model.fields,field_description:hr_training.field_training_topic____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__write_uid
+#: model:ir.model.fields,field_description:hr_training.field_training_method__write_uid
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__write_date
+#: model:ir.model.fields,field_description:hr_training.field_training_method__write_date
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunto Principal"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_has_error
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_ids
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_slide_channel__training_method_id
+#: model_terms:ir.ui.view,arch_db:hr_training.course_main_inherited
+msgid "Method"
+msgstr "Método"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__method_ids
+#: model:ir.ui.menu,name:hr_training.hr_training_method
+#: model_terms:ir.ui.view,arch_db:hr_training.view_training_topic_form
+msgid "Methods"
+msgstr "Métodos"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__my_activity_date_deadline
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de mi Actividad"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_training_method__name
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_calendar_event_id
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Actividad Siguiente de Evento en Calendario"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_date_deadline
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Próxima fecha límite de actividad"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_summary
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la Siguiente Actividad"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_type_id
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Actividad Siguiente"
+
+#. module: hr_training
+#: model:ir.model.fields.selection,name:hr_training.selection__hr_training__status__not_start
+msgid "Not Start"
+msgstr "No Iniciar"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_needaction_counter
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_has_error_counter
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__message_needaction_counter
+#: model:ir.model.fields,help:hr_training.field_training_topic__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__message_has_error_counter
+#: model:ir.model.fields,help:hr_training.field_training_topic__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__message_unread_counter
+#: model:ir.model.fields,help:hr_training.field_training_topic__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__language_id
+msgid "Prefered Language"
+msgstr "Idioma Preferido"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__is_required
+msgid "Required"
+msgstr "Requerido"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_department__training_topic_ids
+msgid "Required Training for this department."
+msgstr "Capacitación Requerida para este departamento."
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_job__training_topic_ids
+msgid "Required Trainings"
+msgstr "Capacitaciones Requeridas"
+
+#. module: hr_training
+#: model:ir.model,name:hr_training.model_res_config_settings
+msgid "ResConfigSettings"
+msgstr ""
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__activity_user_id
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__review_time_frame
+msgid "Review Time Frame"
+msgstr "Marco de Tiempo de Revisión"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_employee_form_inherit
+msgid "SIN"
+msgstr ""
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_has_sms_error
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_employee_form_inherit
+msgid "SSN"
+msgstr "NSS"
+
+#. module: hr_training
+#: model:ir.actions.server,name:hr_training.ir_cron_training_scheduler_action_ir_actions_server
+#: model:ir.cron,cron_name:hr_training.ir_cron_training_scheduler_action
+#: model:ir.cron,name:hr_training.ir_cron_training_scheduler_action
+msgid "Scheduled Employee's Training Expiration"
+msgstr "Vencimiento Programado de la Capacitación del Empleado"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_config_settings_saudi_hr
+msgid "Set before notification days for upcoming expiring training."
+msgstr "Establecido antes de los días de notificación para el próximo Capacitación que expira."
+
+#. module: hr_training
+#: model:ir.model.fields.selection,name:hr_training.selection__hr_training__status__running
+msgid "Started"
+msgstr "Iniciado"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__status
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__status
+msgid "Status"
+msgstr "Estado"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__activity_state
+#: model:ir.model.fields,help:hr_training.field_training_topic__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Atrasado: La fecha de vencimiento ya pasó\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_employee__country_code
+msgid ""
+"The ISO country code in two chars. \n"
+"You can use this field for quick search."
+msgstr ""
+"El código de país ISO en dos caracteres. \n"
+"Puede utilizar este campo para una búsqueda rápida."
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__topic_id
+#: model:ir.model.fields,field_description:hr_training.field_slide_channel__training_topic_id
+#: model:ir.model.fields,field_description:hr_training.field_training_method__topic_id
+#: model:ir.ui.menu,name:hr_training.hr_training_topic
+#: model_terms:ir.ui.view,arch_db:hr_training.course_main_inherited
+msgid "Topic"
+msgstr "Tema"
+
+#. module: hr_training
+#: model:ir.model.fields.selection,name:hr_training.selection__hr_training__status__trained
+msgid "Trained"
+msgstr "Capacitado"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_employee__training_ids
+#: model:mail.template,name:hr_training.email_template_training_expire
+#: model:mail.template,subject:hr_training.email_template_training_expire
+#: model_terms:ir.ui.view,arch_db:hr_training.view_employee_form_inherit
+msgid "Training"
+msgstr "Capacitación"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__training_end_date
+msgid "Training End Date"
+msgstr "Fecha de Finalización de la Capacitación"
+
+#. module: hr_training
+#: model:ir.model,name:hr_training.model_training_method
+msgid "Training Method"
+msgstr "Método de Capacitación"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_res_config_settings__expire_training_notification_days
+msgid "Training Notification Before Days"
+msgstr "Notificación de Capacitación Antes de los Días"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_department__training_topic_ids
+msgid "Training Package"
+msgstr "Paquete de Capacitación "
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__training_date
+msgid "Training Start Date"
+msgstr "Fecha de Inicio de la Capacitación "
+
+#. module: hr_training
+#: model:ir.actions.act_window,name:hr_training.action_training_topic
+#: model:ir.model,name:hr_training.model_training_topic
+msgid "Training Topic"
+msgstr "Tema de Capacitación"
+
+#. module: hr_training
+#: model:ir.model.fields.selection,name:hr_training.selection__training_topic__status__current
+msgid "Training is Current"
+msgstr "La Capacitación es Actual"
+
+#. module: hr_training
+#: model:ir.model.fields.selection,name:hr_training.selection__training_topic__status__not_current
+msgid "Training is not Current"
+msgstr "La capacitación no es actual"
+
+#. module: hr_training
+#: model:ir.actions.act_window,name:hr_training.action_training_method
+msgid "Training method"
+msgstr "Método de Capacitación"
+
+#. module: hr_training
+#: code:addons/hr_training/models/hr_training.py:0
+#: code:addons/hrms/hr_training/models/hr_training.py:0
+#: code:addons/odoo-modules/hrms/hr_training/models/hr_trainings.py:0
+#, python-format
+msgid "Training start date should not be less than hire date."
+msgstr "La fecha de inicio de la capacitación no debe ser anterior a la fecha de contratación."
+
+#. module: hr_training
+#: model:ir.actions.act_window,name:hr_training.action_hr_training
+#: model:ir.ui.menu,name:hr_training.menu_hr_training
+#: model:ir.ui.menu,name:hr_training.menu_main_hr_training
+msgid "Trainings"
+msgstr "Capacitaciones"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__activity_exception_decoration
+#: model:ir.model.fields,help:hr_training.field_training_topic__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_unread
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no leídos"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__message_unread_counter
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes no leídos"
+
+#. module: hr_training
+#: model:ir.model.fields,field_description:hr_training.field_hr_training__website_message_ids
+#: model:ir.model.fields,field_description:hr_training.field_training_topic__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: hr_training
+#: model:ir.model.fields,help:hr_training.field_hr_training__website_message_ids
+#: model:ir.model.fields,help:hr_training.field_training_topic__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: hr_training
+#: model_terms:ir.ui.view,arch_db:hr_training.view_hr_training_filter
+msgid "training"
+msgstr "capacitación"
+
