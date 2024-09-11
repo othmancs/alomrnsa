@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="hr_form_view_inherit_probation" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="saudi_hr.hr_form_view"/>
+        <field name="arch" type="xml">
+        	<field name="benefit_ref" position="after">
+        		<field name="effective_date"/>
+        	</field>
+        </field>
+    </record>
+</odoo>

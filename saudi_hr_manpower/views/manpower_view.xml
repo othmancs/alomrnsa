@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- ManPower Plan -->
+    <record id="manpower_plan_tree_view" model="ir.ui.view">
+        <field name="name">manpower.plan.tree.view</field>
+        <field name="model">manpower.plan</field>
+        <field name="arch" type="xml">
+            <tree string="Manpower Plan">
+                <field name="hof_id"/>
+                <field name="department_id"/>
+                <field name="fiscal_year_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="manpower_plan_form_view" model="ir.ui.view">
+        <field name="name">manpower.plan.form.view</field>
+        <field name="model">manpower.plan</field>
+        <field name="arch" type="xml">
+            <form string="Manpower Plan">
+                <header>
+                    <button name="action_confirm_manpower" string="Confirm" states="draft" type="object" groups="hr.group_hr_user,saudi_hr.group_hof" class="oe_highlight"/>
+                    <button name="action_approve_manpower" string="Approve" states="confirm" type="object" groups="hr.group_hr_manager" class="oe_highlight"/>
+                    <button name="action_reject_manpower" string="Reject" states="confirm" type="object" groups="hr.group_hr_manager" class="oe_highlight"/>
+                    <button name="action_set_draft" string="Set to Draft" states="rejected" type="object" groups="hr.group_hr_user" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve"/>
+                </header>
+                <sheet>
+                    <group col="4">
+                        <field name="department_id" attrs="{'readonly':[('state','=','approved')]}"/>
+                        <field name="hof_id"  domain="[('is_hod','=','True')]" attrs="{'readonly':[('state','=','approved')]}"/>
+                        <field name="fiscal_year_id" attrs="{'readonly':[('state','=','approved')]}"/>
+                    </group>
+                    <separator string="Plan Details"/>
+                    <field name="plan_lines" nolabel="1" context="{'default_fiscal_year_id': fiscal_year_id}" attrs="{'readonly':[('state','=','approved')]}">
+                        <tree string="Manpower Plan Detail">
+                            <field name="job_id"/>
+                            <field name="current_employees"/>
+                            <field name="leaving_employees"/>
+                            <field name="critical_roles"/>
+                            <field name="expected_employees"/>
+                            <field name="future_strength"/>
+                            <field name="progress" class="oe_progress" widget="progressbar"/>
+                            <button name="create_or_update_requisition"
+                                type="object"
+                                title="Requisition"
+                                icon="fa-pencil-square-o"
+                                attrs="{'invisible':[('parent.state','=','draft')]}" />
+                        </tree>
+                        <form string="Manpower Plan Detail">
+                            <group col="4">
+                                <field name="job_id" domain="[('department_id','=',parent.department_id)]"/>
+                                <field name="current_employees"/>
+                                <field name="leaving_employees"/>
+                                <field name="critical_roles"/>
+                                <field name="expected_employees"/>
+                                <field name="calculated_employees"/>
+                                <field name="future_strength"/>
+                                    <field name="progress" class="oe_progress" widget="progressbar"/>
+                                <field name="fiscal_year_id" invisible="True"/>
+                            </group>
+                            <separator string="Plan Details"/>
+                            <field name="joining_months" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="period_id" domain="[('fiscalyear_id','=',parent.fiscal_year_id)]"/>
+                                    <field name="joining_employees" nolabel="1" sum="Total"/>
+                                    <field name="current_recruitment_emp" sum="Total"/>
+                                    <field name="progress" class="oe_progress" widget="progressbar"/>
+                                </tree>
+                            </field>
+                        </form>
+                    </field>
+                <div class="oe_horizontal_separator oe_clear ">
+                </div>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_manpower_plan" model="ir.actions.act_window">
+        <field name="name">Manpower Plan</field>
+        <field name="res_model">manpower.plan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Manpower Plan Details -->
+    <record id="manpower_plan_line_tree_view" model="ir.ui.view">
+        <field name="name">manpower.plan.line.tree.view</field>
+        <field name="model">manpower.plan.line</field>
+        <field name="arch" type="xml">
+            <tree string="Manpower Plan Detail" create="false">
+                <field name="job_id"/>
+                <field name="current_employees"/>
+                <field name="leaving_employees"/>
+                <field name="critical_roles"/>
+                <field name="expected_employees"/>
+                <field name="future_strength"/>
+                <field name="progress" class="oe_progress" widget="progressbar"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="manpower_plan_line_form_view" model="ir.ui.view">
+        <field name="name">manpower.plan.line.form.view</field>
+        <field name="model">manpower.plan.line</field>
+        <field name="arch" type="xml">
+            <form string="Manpower Plan Detail" create="false" edit="false">
+                <sheet>
+                    <group col="4">
+                        <field name="job_id" domain="[('department_id','=',parent.department_id)]" />
+                        <field name="current_employees"/>
+                        <field name="leaving_employees"/>
+                        <field name="critical_roles"/>
+                        <field name="expected_employees"/>
+                        <field name="calculated_employees"/>
+                        <field name="future_strength"/>
+                        <field name="progress" class="oe_progress" widget="progressbar"/>
+                        <field name="no_of_employee"/>
+                        <field name="fiscal_year_id" invisible="True"/>
+                    </group>
+                    <group string="Joining Details">
+                        <field name="joining_months" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="period_id" domain="[('fiscalyear_id','=',parent.fiscal_year_id)]"/>
+                                <field name="joining_employees" nolabel="1"/>
+                                <field name="current_recruitment_emp"/>
+                                <field name="progress" class="oe_progress" widget="progressbar"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="manpower_plan_line_filter" model="ir.ui.view">
+        <field name="name">manpower.plan.line.list.select</field>
+        <field name="model">manpower.plan.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0" string="Group By">
+                    <field name="job_id"/>
+                    <filter name="group_job" string="Job" context="{'group_by':'job_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="manpower_plan_filter" model="ir.ui.view">
+        <field name="name">manpower.plan.list.select</field>
+        <field name="model">manpower.plan</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="0" string="Group By">
+                    <field name="department_id"/>
+                    <filter name="group_hod" string="Head of Department" context="{'group_by':'hof_id'}"/>
+                    <filter name="group_department" string="Department" context="{'group_by':'department_id'}"/>
+                    <filter name="group_plan_year" string="Plan Year" context="{'group_by':'fiscal_year_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_manpower_plan_line" model="ir.actions.act_window">
+        <field name="name">Manpower Plan Details</field>
+        <field name="res_model">manpower.plan.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

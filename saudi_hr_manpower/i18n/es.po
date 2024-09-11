@@ -1,0 +1,461 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_manpower
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-29 11:24+0000\n"
+"PO-Revision-Date: 2024-08-29 11:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields.selection,name:saudi_hr_manpower.selection__manpower_plan__state__approved
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_report_print_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__create_date
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__create_date
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__create_date
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__critical_roles
+msgid "Critical Roles"
+msgstr "Roles Críticos"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__current_employees
+msgid "Current Employees"
+msgstr "Empleados Actuales"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__no_of_employee
+msgid "Current Number of Employees"
+msgstr "Número Actual de Empleados"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__current_recruitment_emp
+msgid "Current Recruitment"
+msgstr "Reclutamiento Actual"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_filter
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__display_name
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__display_name
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__display_name
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields.selection,name:saudi_hr_manpower.selection__manpower_plan__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__excel_file
+msgid "Excel File"
+msgstr "Archivo Excel"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__expected_employees
+msgid "Expected New Hires"
+msgstr "Nuevas Contrataciones Esperadas"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__filename
+msgid "File Name"
+msgstr "Nombre del Archivo"
+
+#. module: saudi_hr_manpower
+#: model:ir.ui.menu,name:saudi_hr_manpower.year_year
+msgid "Fiscal Year"
+msgstr "Año Fiscal"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__calculated_employees
+msgid "Forecast Employees"
+msgstr "Previsión de Empleados"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__leaving_employees
+msgid "Forecast Leavers"
+msgstr "Pronóstico de Abandonos"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__future_strength
+msgid "Future Workforce"
+msgstr "Fuerza Laboral Futura"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_line_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__hof_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_filter
+msgid "Head of Department"
+msgstr "Jefe de Departamento"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__id
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__id
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__id
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,help:saudi_hr_manpower.field_manpower_plan__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,help:saudi_hr_manpower.field_manpower_plan__message_has_error
+#: model:ir.model.fields,help:saudi_hr_manpower.field_manpower_plan__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__job_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_line_filter
+msgid "Job"
+msgstr "Trabajo"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__job_requisition_id
+msgid "Job Requisition"
+msgstr "Solicitud de Trabajo"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__joining_months
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_line_form_view
+msgid "Joining Details"
+msgstr "Detalles de Unión"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__joining_employees
+msgid "Joining Employees"
+msgstr "Empleados Uniendose "
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining____last_update
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan____last_update
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line____last_update
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__write_date
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__write_date
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__write_date
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_manpower
+#: model:ir.ui.menu,name:saudi_hr_manpower.manpower_report
+#: model:ir.ui.menu,name:saudi_hr_manpower.menu_manpower_label
+msgid "Manpower"
+msgstr "Mano de Obra"
+
+#. module: saudi_hr_manpower
+#: model:ir.model,name:saudi_hr_manpower.model_manpower_joining
+msgid "Manpower Joining"
+msgstr "Mano de Obra Uniendose"
+
+#. module: saudi_hr_manpower
+#: model:ir.actions.act_window,name:saudi_hr_manpower.action_manpower_plan
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__plan_id
+#: model:ir.ui.menu,name:saudi_hr_manpower.menu_manpower_plan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_tree_view
+msgid "Manpower Plan"
+msgstr "Plan de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_line_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_line_tree_view
+msgid "Manpower Plan Detail"
+msgstr "Detalle del Plan de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#: model:ir.actions.act_window,name:saudi_hr_manpower.action_manpower_plan_line
+#: model:ir.ui.menu,name:saudi_hr_manpower.menu_manpower_plan_line
+msgid "Manpower Plan Details"
+msgstr "Detalles del Plan de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#: model:ir.model,name:saudi_hr_manpower.model_manpower_plan_line
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__plan_line_id
+msgid "Manpower Plan Line"
+msgstr "Línea de Plan de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_report__fiscal_year_id
+msgid "Manpower Plan Year"
+msgstr "Plan de Mano de Obra Anual"
+
+#. module: saudi_hr_manpower
+#: model:ir.model,name:saudi_hr_manpower.model_manpower_plan
+msgid "Manpower Planing"
+msgstr "Planificación de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#: model:ir.actions.act_window,name:saudi_hr_manpower.action_manpower_report_form
+#: model:ir.model,name:saudi_hr_manpower.model_manpower_report
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_report_print_view
+msgid "Manpower Report"
+msgstr "Informe de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#. odoo-python
+#: code:addons/saudi_hr_manpower/models/manpower.py:0
+#, python-format
+msgid "Manpower plan approve."
+msgstr "Aprobación del plan de mano de obra."
+
+#. module: saudi_hr_manpower
+#. odoo-python
+#: code:addons/saudi_hr_manpower/models/manpower.py:0
+#, python-format
+msgid "Manpower plan confirm"
+msgstr "Confirmación del Plan de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#. odoo-python
+#: code:addons/saudi_hr_manpower/models/manpower.py:0
+#, python-format
+msgid "Manpower plan draft"
+msgstr "Borrador del Plan de Mano de Obra"
+
+#. module: saudi_hr_manpower
+#. odoo-python
+#: code:addons/saudi_hr_manpower/models/manpower.py:0
+#, python-format
+msgid "Manpower plan reject"
+msgstr "Rechazo del plan de mano de obra"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__period_id
+msgid "Month"
+msgstr "Mes"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,help:saudi_hr_manpower.field_manpower_plan_line__no_of_employee
+msgid "Number of employees currently occupying this job position."
+msgstr "Número de empleados que actualmente ocupan este puesto de trabajo."
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,help:saudi_hr_manpower.field_manpower_plan__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,help:saudi_hr_manpower.field_manpower_plan__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+msgid "Plan Details"
+msgstr "Detalles del Plan"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__plan_lines
+msgid "Plan Lines"
+msgstr "Líneas del Plan"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__fiscal_year_id
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__fiscal_year_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_filter
+msgid "Plan Year"
+msgstr "Año del Plan"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_report_print_view
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_joining__progress
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan_line__progress
+msgid "Progress"
+msgstr "Progreso"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields.selection,name:saudi_hr_manpower.selection__manpower_plan__state__rejected
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+msgid "Requisition"
+msgstr ""
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+msgid "Set to Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_plan_form_view
+msgid "Total"
+msgstr "Total"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields.selection,name:saudi_hr_manpower.selection__manpower_plan__state__confirm
+msgid "Waiting Approval"
+msgstr "Esperando Aprobación"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,field_description:saudi_hr_manpower.field_manpower_plan__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_manpower
+#: model:ir.model.fields,help:saudi_hr_manpower.field_manpower_plan__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_manpower
+#. odoo-python
+#: code:addons/saudi_hr_manpower/models/manpower.py:0
+#, python-format
+msgid "You already set %s month plan for %s job, Kindly check!!"
+msgstr ""
+"Ya configuró el plan mensual de %s para el trabajo de %s ¡Compruébelo por "
+"favor!"
+
+#. module: saudi_hr_manpower
+#: model_terms:ir.ui.view,arch_db:saudi_hr_manpower.manpower_report_print_view
+msgid "or"
+msgstr "o"
+
+#. module: saudi_hr_manpower
+#. odoo-python
+#: code:addons/saudi_hr_manpower/models/manpower.py:0
+#, python-format
+msgid "you can not delete record when stage is %s."
+msgstr "no puede eliminar el registro cuando la etapa es %s."

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_manpower_plan_hr_officer,access_manpower_plan_hr_officer,model_manpower_plan,hr.group_hr_user,1,1,1,0
+access_manpower_plan_hof,access_manpower_plan_hof,model_manpower_plan,saudi_hr.group_hof,1,1,1,0
+access_manpower_plan_hr_manager,access_manpower_plan_hr_manager,model_manpower_plan,hr.group_hr_manager,1,1,1,1
+access_manpower_plan_line_hr_officer,access_manpower_plan_line_hr_officer,model_manpower_plan_line,hr.group_hr_user,1,1,1,0
+access_manpower_plan_line_hof,access_manpower_plan_line_hof,model_manpower_plan_line,saudi_hr.group_hof,1,1,1,0
+access_manpower_plan_line_hr_manager,access_manpower_plan_line_hr_manager,model_manpower_plan_line,hr.group_hr_manager,1,1,1,1
+access_manpower_joining_hr_officer,access_manpower_joining_hr_officer,model_manpower_joining,hr.group_hr_user,1,1,1,0
+access_manpower_joining_hof,access_manpower_joining_hof,model_manpower_joining,saudi_hr.group_hof,1,1,1,0
+access_manpower_joining_hr_manager,access_manpower_joining_hr_manager,model_manpower_joining,hr.group_hr_manager,1,1,1,1
+access_manpower_report,access_manpower_report,model_manpower_report,base.group_user,1,1,1,1

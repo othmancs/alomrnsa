@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <menuitem id="year_year" action="hr_fiscal_year.action_public_year" parent="hr_recruitment.menu_hr_recruitment_configuration" sequence="0" groups="hr.group_hr_user" name="Fiscal Year"/>
+
+    <!-- Manpower Menu -->
+    <menuitem id="menu_manpower_label" name="Manpower" sequence="18" parent="hr_recruitment.menu_hr_recruitment_root" groups="hr.group_hr_user,saudi_hr.group_hof"/>
+    <menuitem id="menu_manpower_plan" action="action_manpower_plan" parent="menu_manpower_label" sequence="5" groups="hr.group_hr_user,saudi_hr.group_hof"/>
+    <menuitem id="menu_manpower_plan_line" action="action_manpower_plan_line" parent="menu_manpower_label" sequence="6" groups="hr.group_hr_user,saudi_hr.group_hof"/>
+
+    <menuitem id="manpower_report" name="Manpower" parent="hr_recruitment.report_hr_recruitment" action="action_manpower_report_form" sequence="7" groups="hr.group_hr_user"/>
+
+</odoo>

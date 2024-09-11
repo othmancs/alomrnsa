@@ -1,0 +1,504 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* saudi_hr_probation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-24 06:56+0000\n"
+"PO-Revision-Date: 2018-12-24 06:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_probation
+#: model:mail.template,body_html:saudi_hr_probation.email_template_employee_relieving
+msgid "\n"
+"            <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34);\n"
+"                background-color: #FFF; \">\n"
+"                <p>Hello <b>${object.employee_id.name}</b>,</p>\n"
+"                <p>You are Relive at date <b>${object.probation_complete_date}</b>.</p>\n"
+"                </div>\n"
+"                <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;\n"
+"                color: rgb(34, 34, 34); background-color: #FFF; margin-left: 0px; \">\n"
+"                <p>Regards,</p>\n"
+"                <p>${(object.company_id.name)}</p>\n"
+"            </div>\n"
+"        "
+msgstr "\n"
+"            <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34);\n"
+"                background-color: #FFF; \">\n"
+"                <p>مرحبا <b>${object.employee_id.name}</b>,</p>\n"
+"                <p>انت تستمتع في التاريخ <b>${object.probation_complete_date}</b>.</p>\n"
+"                </div>\n"
+"                <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;\n"
+"                color: rgb(34, 34, 34); background-color: #FFF; margin-left: 0px; \">\n"
+"                <p>مع تحياتي,</p>\n"
+"                <p>${(object.company_id.name)}</p>\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr_probation
+#: model:mail.template,body_html:saudi_hr_probation.email_template_probation_end
+msgid "\n"
+"            <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34);\n"
+"                background-color: #FFF; \">\n"
+"                <p>Hello <b>${object.employee_id.name}</b>,</p>\n"
+"                <p>Your probation period End at date <b>${object.probation_complete_date}</b>.</p>\n"
+"                </div>\n"
+"                <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;\n"
+"                color: rgb(34, 34, 34); background-color: #FFF; margin-left: 0px; \">\n"
+"                <p>Regards,</p>\n"
+"                <p>${(object.company_id.name)}</p>\n"
+"            </div>\n"
+"        "
+msgstr "\n"
+"            <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34);\n"
+"                background-color: #FFF; \">\n"
+"                <p>مرحبا <b>${object.employee_id.name}</b>,</p>\n"
+"                <p>فترة الاختبار الخاصة بك تنتهي في التاريخ <b>${object.probation_complete_date}</b>.</p>\n"
+"                </div>\n"
+"                <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;\n"
+"                color: rgb(34, 34, 34); background-color: #FFF; margin-left: 0px; \">\n"
+"                <p>مع تحياتي،</p>\n"
+"                <p>${(object.company_id.name)}</p>\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr_probation
+#: model:mail.template,body_html:saudi_hr_probation.email_template_probation_extend
+msgid "\n"
+"            <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34);\n"
+"                background-color: #FFF; \">\n"
+"                <p>Hello <b>${object.employee_id.name}</b>,</p>\n"
+"                <p>Your probation period Extend for date <b>${object.extend_start_date}</b> to <b>${object.extend_end_date}</b>.</p>\n"
+"                </div>\n"
+"                <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;\n"
+"                color: rgb(34, 34, 34); background-color: #FFF; margin-left: 0px; \">\n"
+"                <p>Regards,</p>\n"
+"                <p>${(object.company_id.name)}</p>\n"
+"            </div>\n"
+"        "
+msgstr "\n"
+"            <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34);\n"
+"                background-color: #FFF; \">\n"
+"                <p>مرحبا <b>${object.employee_id.name}</b>,</p>\n"
+"                <p>فترة الاختبار الخاصة بك تمديد لتاريخ <b>${object.extend_start_date}</b> إلى <b>${object.extend_end_date}</b>.</p>\n"
+"                </div>\n"
+"                <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px;\n"
+"                color: rgb(34, 34, 34); background-color: #FFF; margin-left: 0px; \">\n"
+"                <p>مع تحياتي،</p>\n"
+"                <p>${(object.company_id.name)}</p>\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,rating:0
+msgid "10"
+msgstr ""
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Approved"
+msgstr "وافق"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__approved_date
+msgid "Approved Date"
+msgstr "تاريخ الموافقة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__approved_by
+msgid "Approved by"
+msgstr "تمت الموافقة عليه من قبل"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__company_id
+msgid "Company"
+msgstr "المؤسسة"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__contract_id
+msgid "Contract"
+msgstr "العقد "
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Department"
+msgstr "القسم"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Done"
+msgstr "منتهي"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,state:0
+msgid "Draft"
+msgstr "مشروع"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Employee Information"
+msgstr "معلومات الموظف"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_tree
+msgid "Employee Probation Plan"
+msgstr "خطة اختبار الموظف"
+
+#. module: saudi_hr_probation
+#: model:ir.model,name:saudi_hr_probation.model_emp_probation_review
+msgid "Employee Probation Review"
+msgstr "استعراض السلوك للموظفين"
+
+#. module: saudi_hr_probation
+#: model:mail.template,subject:saudi_hr_probation.email_template_employee_relieving
+msgid "Employee Relieve"
+msgstr "عامل تخفيف"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Employee Status"
+msgstr "حالة الموظف"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__employment_status
+msgid "Employment Status"
+msgstr "الحالة الوظيفية"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__extend_end_date
+msgid "Extend End Date"
+msgstr "تمديد تاريخ الانتهاء"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,employment_status:0
+msgid "Extend Probation"
+msgstr "تمديد اختبار"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__extend_start_date
+msgid "Extend Start Date"
+msgstr "تمديد تاريخ البدء"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Extra Information"
+msgstr "معلومات اضافية"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Filter"
+msgstr "منقي"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Group By..."
+msgstr "تجميع حسب.."
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__hof_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Head of Department"
+msgstr "رئيس القسم"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,help:saudi_hr_probation.field_emp_probation_review__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,help:saudi_hr_probation.field_emp_probation_review__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,help:saudi_hr_probation.field_emp_probation_review__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__job_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Job Position"
+msgstr "المناصب الوظيفية"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__join_date
+msgid "Join Date"
+msgstr "تاريخ الانضمام"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__line_manager_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Manager"
+msgstr "المدير"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,help:saudi_hr_probation.field_emp_probation_review__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,help:saudi_hr_probation.field_emp_probation_review__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,help:saudi_hr_probation.field_emp_probation_review__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__branch_id
+msgid "Office"
+msgstr "مكتب. مقر. مركز"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Plan"
+msgstr "خطة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__probation_complete_date
+msgid "Probation Complete Date"
+msgstr "اختبار كامل التاريخ"
+
+#. module: saudi_hr_probation
+#: model:ir.actions.server,name:saudi_hr_probation.probation_done_cron_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_probation.probation_done_cron
+#: model:ir.cron,name:saudi_hr_probation.probation_done_cron
+msgid "Probation Done"
+msgstr "اختبار انتهى"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,employment_status:0
+msgid "Probation End"
+msgstr "نهاية الاختبار"
+
+#. module: saudi_hr_probation
+#: model:ir.ui.menu,name:saudi_hr_probation.menu_emp_probation_review
+msgid "Probation Period"
+msgstr "فترة اختبار"
+
+#. module: saudi_hr_probation
+#: model:mail.template,subject:saudi_hr_probation.email_template_probation_end
+msgid "Probation Period End"
+msgstr "نهاية فترة الاختبار"
+
+#. module: saudi_hr_probation
+#: model:mail.template,subject:saudi_hr_probation.email_template_probation_extend
+msgid "Probation Period Extend"
+msgstr "تمديد فترة الاختبار"
+
+#. module: saudi_hr_probation
+#: model:ir.actions.act_window,name:saudi_hr_probation.action_emp_probation_review
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__probation_plan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Probation Plan"
+msgstr "خطة الاختبار"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__rating
+msgid "Progress Rate"
+msgstr "معدل التقدم"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Refuse"
+msgstr "رفض"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Refused"
+msgstr "مرفوض"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,employment_status:0
+msgid "Relieve"
+msgstr "اعفاء"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__review
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Review"
+msgstr "مراجعة"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Send Mail"
+msgstr "ارسل بريد"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Send Review"
+msgstr "إرسال مراجعة"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Set Probation Plan"
+msgstr "مجموعة خطة الاختبار"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_form
+msgid "Set to Draft"
+msgstr "تعيين كمسودة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "Status"
+msgstr "الحالة"
+
+#. module: saudi_hr_probation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_probation.emp_probation_review_filter
+msgid "To Approve"
+msgstr "للموافقة"
+
+#. module: saudi_hr_probation
+#: code:addons/saudi_hr_probation/models/hr_employee_probation.py:184
+#, python-format
+msgid "Today's date must be 10 days less then Probation Complete Date"
+msgstr "يجب أن يكون تاريخ اليوم 10 أيام أقل من تاريخ اكتمال فترة الاختبار"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: saudi_hr_probation
+#: selection:emp.probation.review,state:0
+msgid "Waiting Approval"
+msgstr "في انتظار الموافقة"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,field_description:saudi_hr_probation.field_emp_probation_review__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: saudi_hr_probation
+#: model:ir.model.fields,help:saudi_hr_probation.field_emp_probation_review__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: saudi_hr_probation
+#: code:addons/saudi_hr_probation/models/hr_employee_probation.py:146
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "لا يمكنك إزالة السجل الموجود في حالة٪ s!"
+

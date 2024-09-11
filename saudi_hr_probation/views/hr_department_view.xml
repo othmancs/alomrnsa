@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+	<record id="view_department_form_inherit_probation" model="ir.ui.view">
+		<field name="name">hr.department.form.inherit.probation</field>
+		<field name="model">hr.department</field>
+		<field name="inherit_id" ref="saudi_hr.view_department_form_inherit" />
+		<field name="arch" type="xml">
+			<field name="parent_id" position="after">
+				<field name="probation_duration" />
+			</field>
+		</field>
+	</record>
+</odoo>

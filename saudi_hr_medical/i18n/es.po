@@ -1,0 +1,840 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_medical
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-29 15:53+0000\n"
+"PO-Revision-Date: 2024-08-29 15:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__claim_count
+msgid "# of claims"
+msgstr "# de reclamos"
+
+#. module: saudi_hr_medical
+#: model:ir.actions.report,print_report_name:saudi_hr_medical.action_report_insurance_details
+msgid "'Insurance Details'"
+msgstr "'Detalles del Seguro'"
+
+#. module: saudi_hr_medical
+#: model:mail.template,body_html:saudi_hr_medical.hr_medical_insurance_expiration_email
+msgid ""
+"<p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Hello <t t-out=\"object.responsible_id.partner_id.name\"></t>,</p>\n"
+"                    <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">We are inform you <t t-out=\"object.employee_id.name\"></t> insurance <t t-out=\"object.name\"></t> is expired on <t t-out=\"object.end_date\"></t>.</p>\n"
+"                    <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Thank you,</p>\n"
+"            "
+msgstr ""
+"<p>Hola  <t t-out=\"object.responsible_id.partner_id.name\"/>,</p>\n"
+"                    <p>Le informamos <t t-out=\"object.employee_id.name\"/> el seguro <t t-out=\"object.name\"/> vence en <t t-out=\"object.end_date\"/>.</p>\n"
+"                    <p>Gracias,</p>\n"
+"            "
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span><strong>Employee Details</strong></span>"
+msgstr "<span><strong>Detalles del empleado</strong></span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span><strong>Policy Details</strong></span>"
+msgstr "<span><strong>Detalles de la póliza</strong></span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span><strong>Policy Holder Details</strong></span>"
+msgstr "<span><strong>Detalles del Titular de la Póliza</strong></span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span><strong>Supplier Details</strong></span>"
+msgstr "<span><strong>Detalles del Proveedor</strong></span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Card Code</span>"
+msgstr "<span>Código de la Tarjeta</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Class</span>"
+msgstr "<span>Clase</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Date Of Birth</span>"
+msgstr "<span>Fecha de Nacimiento</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Employee</span>"
+msgstr "<span>Empleado</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>End Date</span>"
+msgstr "<span>Fecha de Finalización</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Gender</span>"
+msgstr "<span>Género</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Insurance Amount</span>"
+msgstr "<span>Importe del Seguro</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Member Name</span>"
+msgstr "<span>Nombre del Miembro</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Payment Mode</span>"
+msgstr "<span>Modalidad de Pago</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Premium Amount</span>"
+msgstr "<span>Importe de Prima</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Relation</span>"
+msgstr "<span>Relación</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Responsible</span>"
+msgstr "<span>Responsable</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Start Date</span>"
+msgstr "<span>Fecha de Inicio</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<span>Supplier</span>"
+msgstr "<span>Proveedor</span>"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.report_insurance_details_template
+msgid "<strong>Paid Premium Amount</strong>"
+msgstr "<strong>Importe Pagado de Prima</strong>"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_needaction
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_attachment_count
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Archivos Adjuntos"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__state__cancelled
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_premium_multi_invoice_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__claim_details__state__cancel
+msgid "Cancelled"
+msgstr "Cancelados"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__card_code
+msgid "Card Code"
+msgstr "Código de Tarjeta"
+
+#. module: saudi_hr_medical
+#: model:ir.actions.server,name:saudi_hr_medical.insurance_expiration_cron_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_medical.insurance_expiration_cron
+msgid "Check Insurance"
+msgstr "Check Insurance"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__relation__child
+msgid "Child"
+msgstr "Hijo"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__claim_amount
+msgid "Claim Amount"
+msgstr "Monto de Reclamo"
+
+#. module: saudi_hr_medical
+#: model:ir.model,name:saudi_hr_medical.model_claim_details
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claims_details_tree_view
+msgid "Claim Details"
+msgstr "Detalles del Reclamo"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+msgid "Claim Number"
+msgstr "Número de Reclamación"
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/models/hr_employee_medical.py:0
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__claims_ids
+#: model:ir.ui.menu,name:saudi_hr_medical.claims_details
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+#, python-format
+msgid "Claims"
+msgstr "Reclamos"
+
+#. module: saudi_hr_medical
+#: model:ir.actions.act_window,name:saudi_hr_medical.action_claims_details_view
+msgid "Claims Details"
+msgstr "Detalles de Reclamos"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__class_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.employee_class_form_view
+msgid "Class"
+msgstr "Clase"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__company_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__state__confirmed
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__claim_details__state__confirm
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: saudi_hr_medical
+#: model:ir.actions.server,name:saudi_hr_medical.ir_cron_insurance_premium_invoice_creation_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_medical.ir_cron_insurance_premium_invoice_creation
+msgid "Create Insurance Premium"
+msgstr "Crear Prima de Seguro"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_premium_multi_invoice_form_view
+msgid "Create Invoice"
+msgstr "Crear Factura"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__create_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class__create_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__create_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__create_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__currency_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__currency_id
+msgid "Currency"
+msgstr "Divisa"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__date_applied
+msgid "Date Applied"
+msgstr "Fecha aplicada"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__dob
+msgid "Date of Birth"
+msgstr "Fecha de Nacimiento"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__department_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_details_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_premium_filter
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Description"
+msgstr "Descripción"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__display_name
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class__display_name
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__display_name
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__display_name
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__claim_details__state__done
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__state__done
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__claim_details__state__draft
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_medical
+#: model:ir.model,name:saudi_hr_medical.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__employee_id
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__relation__employee
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_premium_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_medical
+#: model:ir.model,name:saudi_hr_medical.model_employee_class
+msgid "Employee Class"
+msgstr "Clase de Empleado"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Employee Details"
+msgstr "Detalles de empleado"
+
+#. module: saudi_hr_medical
+#: model:ir.model,name:saudi_hr_medical.model_insurance_details
+msgid "Employee Medical Insurance"
+msgstr "Seguro Médico de Empleado"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__end_date
+msgid "End Date"
+msgstr "Fecha de Finalización"
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/wizard/insurance_premium_multi_invoice.py:0
+#, python-format
+msgid "Error! premium start-date must be lower than premium end-date."
+msgstr ""
+"¡Error! la fecha de inicio de la prima debe ser inferior a la fecha de "
+"finalización de la prima."
+
+#. module: saudi_hr_medical
+#: model:mail.template,name:saudi_hr_medical.hr_medical_insurance_expiration_email
+msgid "Expiration Insurance"
+msgstr "Seguro de Vencimiento"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__gender__female
+msgid "Female"
+msgstr "Femenino"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_follower_ids
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_partner_ids
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__start_date
+msgid "From Date"
+msgstr "Desde la Fecha"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__gender
+msgid "Gender"
+msgstr "Género"
+
+#. module: saudi_hr_medical
+#: model:ir.actions.act_window,name:saudi_hr_medical.insurance_premium_multi_invoice_action
+msgid "Generate Premium Invoice"
+msgstr "Generar Factura de Prima"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_details_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_premium_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__premium_type__half
+msgid "Half Yearly"
+msgstr "Medio Anual"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__has_message
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class__id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,help:saudi_hr_medical.field_claim_details__message_needaction
+#: model:ir.model.fields,help:saudi_hr_medical.field_insurance_details__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,help:saudi_hr_medical.field_claim_details__message_has_error
+#: model:ir.model.fields,help:saudi_hr_medical.field_claim_details__message_has_sms_error
+#: model:ir.model.fields,help:saudi_hr_medical.field_insurance_details__message_has_error
+#: model:ir.model.fields,help:saudi_hr_medical.field_insurance_details__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/models/hr_employee_medical.py:0
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__insurance_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__insurance_id
+#: model:ir.ui.menu,name:saudi_hr_medical.insurance_details
+#: model:ir.ui.menu,name:saudi_hr_medical.insurance_main_menu
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.hr_employee_medical_form
+#, python-format
+msgid "Insurance"
+msgstr "Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__insurance_amount
+msgid "Insurance Amount"
+msgstr "Monto del seguro"
+
+#. module: saudi_hr_medical
+#: model:product.template,name:saudi_hr_medical.insurance_prodcuct_product_template
+msgid "Insurance Charge"
+msgstr "Cargo de Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.actions.act_window,name:saudi_hr_medical.action_insurance_details_view
+#: model:ir.actions.report,name:saudi_hr_medical.action_report_insurance_details
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_tree_view
+msgid "Insurance Details"
+msgstr "Detalles del Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.ui.menu,name:saudi_hr_medical.insurance_invoice_details
+msgid "Insurance Invoice Details"
+msgstr "Detalles de la Factura del Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Insurance Number"
+msgstr "Número de Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.actions.act_window,name:saudi_hr_medical.action_insurance_premium
+#: model:ir.model,name:saudi_hr_medical.model_insurance_premium
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_premium_tree_view
+msgid "Insurance Premium"
+msgstr "Prima de Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.model,name:saudi_hr_medical.model_insurance_premium_multi_invoice
+msgid "Insurance Premium Multi Invoice"
+msgstr "Factura Múltiple de Prima de Seguro"
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/models/hr_employee_medical.py:0
+#, python-format
+msgid "Insurance amount must be greater then premium amount!"
+msgstr "¡El monto del seguro debe ser mayor que el monto de la prima!"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__premium_ids
+msgid "Insurance premium"
+msgstr "Prima de Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__invoice_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__is_invoice_created
+msgid "Invoice Created"
+msgstr "Factura Creada"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_premium_filter
+msgid "Invoice Status"
+msgstr "Estatus de Factura"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_is_follower
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__is_hr_user
+msgid "Is Hr User"
+msgstr ""
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__job_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_details_filter
+msgid "Job Position"
+msgstr "Puesto de trabajo"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details____last_update
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class____last_update
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details____last_update
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium____last_update
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice____last_update
+msgid "Last Modified on"
+msgstr "Última odificación el"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__write_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class__write_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__write_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__write_date
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_main_attachment_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__gender__male
+msgid "Male"
+msgstr "Masculino"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_hr_employee__insurance_ids
+msgid "Medical Insurance"
+msgstr "Seguro Médico"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__member_name
+msgid "Member Name"
+msgstr "Nombre del Miembro"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_has_error
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_ids
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__premium_type__monthly
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_employee_class__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__note
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__note
+msgid "Note"
+msgstr "Nota"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_needaction_counter
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_has_error_counter
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,help:saudi_hr_medical.field_claim_details__message_needaction_counter
+#: model:ir.model.fields,help:saudi_hr_medical.field_insurance_details__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Cantidad de mensajes que requieren una acció"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,help:saudi_hr_medical.field_claim_details__message_has_error_counter
+#: model:ir.model.fields,help:saudi_hr_medical.field_insurance_details__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Cantidad de mensajes con error de entrega"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__branch_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__branch_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_details_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_premium_filter
+msgid "Office"
+msgstr "Oficina"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__passed_amount
+msgid "Passed Amount"
+msgstr "Monto aprobada"
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/models/hr_employee_medical.py:0
+#, python-format
+msgid "Passed Amount should be greater then 0"
+msgstr "El Monto Aprobado debe ser mayor que 0"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__premium_type
+msgid "Payment Mode"
+msgstr "Forma de Pago"
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/models/hr_employee_medical.py:0
+#, python-format
+msgid "Please enter proper value for Claim Amount"
+msgstr "Ingrese un valor adecuado para el monto del reclamo"
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/models/hr_employee_medical.py:0
+#, python-format
+msgid "Please enter proper value for Insurance Amount and Premium Amount"
+msgstr ""
+"Ingrese el valor adecuado para el Monto del seguro y el Monto de la prima"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Policy Details"
+msgstr "Detalles de la Póliza"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Policy Holder Details"
+msgstr "Detalles del Titular de la Póliza"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__premium_amount
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__amount
+msgid "Premium Amount"
+msgstr "Importe de la Prima"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__date
+msgid "Premium Date"
+msgstr "Fecha de la prima"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Print Invoice"
+msgstr "Imprimir Factura"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__premium_type__quarterly
+msgid "Quarterly"
+msgstr "Trimestral"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+msgid "Refuse"
+msgstr "Rechazar"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__claim_details__state__refuse
+msgid "Refused"
+msgstr "Rechazada"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__relation
+msgid "Relation"
+msgstr "Relación"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__responsible_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__responsible_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__message_has_sms_error
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_details_filter
+msgid "Search Insurance Operation"
+msgstr "Buscar Operación de Seguros"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_premium_filter
+msgid "Search Insurance Premium"
+msgstr "Buscar Prima de Seguro"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.claim_details_form_view
+msgid "Set to draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__relation__spouse
+msgid "Spouse"
+msgstr "Cónyuge"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__start_date
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__state
+msgid "State"
+msgstr "Estado"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_details_filter
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__supplier_id
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium__supplier_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.view_insurance_premium_filter
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "Supplier Details"
+msgstr "Detalles del Proveedor"
+
+#. module: saudi_hr_medical
+#: model:ir.model.constraint,message:saudi_hr_medical.constraint_insurance_details_card_code_uniq
+msgid "The card code of the insurance must be unique!"
+msgstr "¡El código de la tarjeta del seguro debe ser único!"
+
+#. module: saudi_hr_medical
+#. odoo-python
+#: code:addons/saudi_hr_medical/models/hr_employee_medical.py:0
+#, python-format
+msgid "There is no payable account defined for this supplier: \"%s\"."
+msgstr "No hay una cuenta por pagar definida para este proveedor: \"%s\"."
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_premium_multi_invoice__end_date
+msgid "To Date"
+msgstr "Hasta la Fecha"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,help:saudi_hr_medical.field_claim_details__is_hr_user
+msgid "To check the current user is Hr/User or Hr/Manager"
+msgstr ""
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__total_paid_premium
+msgid "Total Paid Premium"
+msgstr "Prima Pagada Total"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.hr_employee_medical_form
+msgid "View Insurance"
+msgstr "Ver seguro"
+
+#. module: saudi_hr_medical
+#: model_terms:ir.ui.view,arch_db:saudi_hr_medical.insurance_details_form_view
+msgid "View Invoice"
+msgstr "Ver factura"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_claim_details__website_message_ids
+#: model:ir.model.fields,field_description:saudi_hr_medical.field_insurance_details__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields,help:saudi_hr_medical.field_claim_details__website_message_ids
+#: model:ir.model.fields,help:saudi_hr_medical.field_insurance_details__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de Comunicación del Sitio Web"
+
+#. module: saudi_hr_medical
+#: model:ir.model.fields.selection,name:saudi_hr_medical.selection__insurance_details__premium_type__yearly
+msgid "Yearly"
+msgstr "Anual"
+
+#. module: saudi_hr_medical
+#: model:mail.template,subject:saudi_hr_medical.hr_medical_insurance_expiration_email
+msgid "{{object.employee_id.name}} Insurance Expiration Reminder"
+msgstr "{{object.employee_id.name}} Recordatorio de vencimiento del Seguro"

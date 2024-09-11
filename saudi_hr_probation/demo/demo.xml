@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="emp_probation_al" model="emp.probation.review">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="line_manager_id" ref="hr.employee_admin"/>
+            <field name="rating">5</field>
+            <field name="probation_plan">3 month probation plan</field>
+            <field name="join_date" eval="(DateTime.today())"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="emp_probation_qdp" model="emp.probation.review">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="line_manager_id" ref="hr.employee_admin"/>
+            <field name="rating">6</field>
+            <field name="probation_plan">3 month probation plan</field>
+            <field name="join_date" eval="(DateTime.today())"/>
+            <field name="state">confirm</field>
+        </record>
+
+        <record id="emp_probation_fpi" model="emp.probation.review">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="line_manager_id" ref="hr.employee_admin"/>
+            <field name="rating">4</field>
+            <field name="probation_plan">3 month probation plan</field>
+            <field name="review">complete your probation</field>
+            <field name="join_date" eval="(DateTime.today())"/>
+            <field name="state">approve</field>
+        </record>
+
+        <record id="emp_probation_jep" model="emp.probation.review">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="line_manager_id" ref="hr.employee_admin"/>
+            <field name="rating">8</field>
+            <field name="probation_plan">3 month probation plan</field>
+            <field name="review">Etend your probation period</field>
+            <field name="employment_status">extend</field>
+            <field name="join_date" eval="(DateTime.today())"/>
+            <field name="extend_start_date" eval="DateTime.today() + relativedelta(day=+1)"/>
+            <field name="extend_end_date" eval="DateTime.today() + relativedelta(month=+1)"/>
+            <field name="state">done</field>
+        </record>
+
+        <record id="emp_probation_stw" model="emp.probation.review">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="line_manager_id" ref="hr.employee_admin"/>
+            <field name="rating">9</field>
+            <field name="probation_plan">3 month probation plan</field>
+            <field name="join_date" eval="(DateTime.today())"/>
+            <field name="state">draft</field>
+        </record>
+    </data>
+</odoo>

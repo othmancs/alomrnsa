@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--Payroll user-->
+        <record id="user_payroll_manager" model="res.users">
+            <field name="name">Iqbal</field>
+            <field name="login">payroll_manager@example.com</field>
+            <field name="email">payroll_manager@example.com</field>
+            <field name="password">1</field>
+            <field name="groups_id" eval="[(4, ref('sync_hr_payroll.group_hr_payroll_manager')), (4, ref('base.group_user'))]"/>
+            <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1818.jpg"/>
+        </record>
+
+        <!-- Employee -->
+        <record id="sync_hr_payroll.hr_employee_payroll" model="hr.employee">
+            <field eval="0" name="manager"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field name="name">Roger</field>
+            <field name="work_location">Riyadh</field>
+            <field name="work_phone">+3282823500</field>
+            <field name="department_id" ref="hr.dep_rd"/>
+            <field name="job_id" ref="hr.job_developer"/>
+            <field name="last_name">Scott</field>
+            <field name="birthday">06/07/1986</field>
+            <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=2,months=1, days=8)).strftime('%Y-%m-%d')" />
+            <field name="code">emp24</field>
+            <field name="employee_status">hired</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="work_email">roger@example.com</field>
+        </record>
+
+        <record id="hr_payslip_al" model="hr.payslip">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="date_from" eval="DateTime.today().replace(day=1)"/>
+            <field name="date_to" eval="DateTime.today() + relativedelta(day=1, months=+1, days=-1)"/>
+            <field name="contract_id" ref="saudi_hr_contract.al_hr_contract"/>
+            <field name="struct_id" ref="sync_hr_payroll.structure_base"></field>
+        </record>
+
+        <record id="hr_payslip_qdp" model="hr.payslip">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="date_from" eval="DateTime.today().replace(day=1)"/>
+            <field name="date_to" eval="DateTime.today() + relativedelta(day=1, months=+1, days=-1)"/>
+            <field name="contract_id" ref="saudi_hr_contract.qdp_hr_contract"/>
+            <field name="struct_id" ref="sync_hr_payroll.structure_base"></field>
+        </record>
+
+        <record id="hr_payslip_fpi" model="hr.payslip">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="date_from" eval="DateTime.today().replace(day=1)"/>
+            <field name="date_to" eval="DateTime.today() + relativedelta(day=1, months=+1, days=-1)"/>
+            <field name="contract_id" ref="saudi_hr_contract.fpi_hr_contract"/>
+            <field name="struct_id" ref="sync_hr_payroll.structure_base"></field>
+        </record>
+
+        <record id="hr_payslip_jep" model="hr.payslip">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="date_from" eval="DateTime.today().replace(day=1)"/>
+            <field name="date_to" eval="DateTime.today() + relativedelta(day=1, months=+1, days=-1)"/>
+            <field name="contract_id" ref="saudi_hr_contract.jep_hr_contract"/>
+            <field name="struct_id" ref="sync_hr_payroll.structure_base"></field>
+        </record>
+
+        <record id="hr_payslip_stw" model="hr.payslip">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="date_from" eval="DateTime.today().replace(day=1)"/>
+            <field name="date_to" eval="DateTime.today() + relativedelta(day=1, months=+1, days=-1)"/>
+            <field name="contract_id" ref="saudi_hr_contract.stw_hr_contract"/>
+            <field name="struct_id" ref="sync_hr_payroll.structure_base"></field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="manpower_report_print_view" model="ir.ui.view">
+        <field name="name">manpower.report.form</field>
+        <field name="model">manpower.report</field>
+        <field name="arch" type="xml">
+            <form string="Manpower Report">
+                <group>
+                    <field name="fiscal_year_id" attrs="{'readonly': [('filename','!=',False)]}"/>
+                    <field name="excel_file" filename="filename" readonly="1"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <footer> 
+                    <button name="print_manpower_report" string="Print" type="object" class="oe_highlight"/>
+                    or
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_manpower_report_form" model="ir.actions.act_window">
+        <field name="name">Manpower Report</field>
+        <field name="res_model">manpower.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="manpower_report_print_view"/>
+    </record>
+</odoo>

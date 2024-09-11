@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_insurance_details" model="ir.actions.report">
+        <field name="name">Insurance Details</field>
+        <field name="model">insurance.details</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_medical.report_insurance_details</field>
+        <field name="report_file">saudi_hr_medical.report_insurance_details</field>
+        <field name="print_report_name">'Insurance Details'</field>
+        <field name="binding_model_id" ref="model_insurance_details"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_insurance_details_template">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="col mt64 mb64">
+                    <div class="text-center" t-if="o.name">
+                        <center><h3><strong><span t-field="o.name"/></strong></h3></center>
+                    </div>
+                </div>
+                <div class="col mt64 mb64">
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            <center><span><strong>Employee Details</strong></span></center>
+                        </h4>
+                        <div>
+                            <table class="table">
+                                <thread>
+                                    <tr>
+                                        <th><span>Employee</span></th>
+                                        <td class="text-right"><span class="m-0" t-esc="o.employee_id.name"/> <span t-esc="o.employee_id.middle_name"/> <span t-esc="o.employee_id.last_name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th><span>Gender</span></th>
+                                        <td class="text-right"><span class="m-0" t-field="o.gender"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th><span>Date Of Birth</span></th>
+                                        <td class="text-right"><span class="m-0" t-field="o.dob"/></td>
+                                    </tr>
+                                </thread>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            <center><span><strong>Supplier Details</strong></span></center>
+                        </h4>
+                        <table class="table">
+                            <thread>
+                                <tr>
+                                    <th><span>Supplier</span></th>
+                                    <td class="text-right"><span class="m-0" t-esc="o.supplier_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>Premium Amount</span></th>
+                                    <td class="text-right"><span class="m-0" t-esc="o.premium_amount"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>Payment Mode</span></th>
+                                    <td class="text-right"><span class="m-0" t-field="o.premium_type"/></td>
+                                </tr>
+                            </thread>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                <div class="col mt64 mb64">
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            <center><span><strong>Policy Details</strong></span></center>
+                        </h4>
+                        <table class="table">
+                            <thread>
+                                <tr>
+                                    <th><span>Start Date</span></th>
+                                    <td class="text-right"><span class="m-0" t-field="o.start_date"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>End Date</span></th>
+                                    <td class="text-right"><span class="m-0" t-field="o.end_date"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>Insurance Amount</span></th>
+                                    <td class="text-right"><span class="m-0" t-esc="o.insurance_amount"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>Responsible</span></th>
+                                    <td class="text-right"><span class="m-0" t-esc="o.responsible_id.name"/></td>
+
+                                </tr>
+                            </thread>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <h4>
+                            <center><span><strong>Policy Holder Details</strong></span></center>
+                        </h4>
+                        <table class="table">
+                            <thread>
+                                <tr>
+                                    <th><span>Class</span></th>
+                                    <td class="text-right"><span class="m-0" t-esc="o.class_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>Relation</span></th>
+                                    <td class="text-right"><span class="m-0" t-field="o.relation"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>Card Code</span></th>
+                                    <td class="text-right"><span class="m-0" t-esc="o.card_code"/></td>
+                                </tr>
+                                <tr>
+                                    <th><span>Member Name</span></th>
+                                    <td class="text-right"><span class="m-0" t-esc="o.member_name"/></td>
+                                </tr>
+                            </thread>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                <div class="col mt32 mb32">
+                    <div class="row">
+                        <div class="col-4">
+                            <table class="table table-sm">
+                                <tr class="o_subtotal">
+                                    <td><strong>Paid Premium Amount</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="o.total_paid_premium"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_insurance_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="saudi_hr_medical.report_insurance_details_template"/>
+            </t>
+        </t>
+    </template>
+</odoo>

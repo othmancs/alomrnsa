@@ -1,0 +1,11 @@
+.o_web_client{
+	.oe_progress{
+		.o_progress{
+			border: 1px solid #000;
+			border-radius: 4px;
+			.o_progressbar_complete{
+				background-color: #09cbf7;
+			}
+		}
+	}
+}

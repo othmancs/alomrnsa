@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="hr_manpower_plan" model="manpower.plan">
+            <field name="department_id" ref="hr.dep_management"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="hr_manpower_plan_line_one" model="manpower.plan.line">
+            <field name="plan_id" ref="hr_manpower_plan"/>
+            <field name="job_id" ref="hr.job_ceo"/>
+            <field name="current_employees">4</field>
+            <field name="leaving_employees">2</field>
+            <field name="critical_roles">3</field>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="manpower_joining_one" model="manpower.joining">
+            <field name="plan_line_id" ref="hr_manpower_plan_line_one"/>
+            <field name="period_id" ref="hr_fiscal_year.year_period_january"/>
+            <field name="joining_employees">2</field>
+        </record>
+
+        <record id="hr_manpower_plan_two" model="manpower.plan">
+            <field name="department_id" ref="hr.dep_rd"/>
+            <field name="hof_id" ref="hr.employee_jve"/>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="hr_manpower_plan_line_two" model="manpower.plan.line">
+            <field name="plan_id" ref="hr_manpower_plan_two"/>
+            <field name="job_id" ref="hr.job_developer"/>
+            <field name="current_employees">4</field>
+            <field name="leaving_employees">3</field>
+            <field name="critical_roles">2</field>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="manpower_joining_two" model="manpower.joining">
+            <field name="plan_line_id" ref="hr_manpower_plan_line_two"/>
+            <field name="period_id" ref="hr_fiscal_year.year_period_february"/>
+            <field name="joining_employees">2</field>
+        </record>
+
+        <record id="hr_manpower_plan_three" model="manpower.plan">
+            <field name="department_id" ref="hr.dep_rd"/>
+            <field name="hof_id" ref="hr.employee_jve"/>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year_1"/>
+        </record>
+
+        <record id="hr_manpower_plan_line_three" model="manpower.plan.line">
+            <field name="plan_id" ref="hr_manpower_plan_three"/>
+            <field name="job_id" ref="hr.job_developer"/>
+            <field name="current_employees">10</field>
+            <field name="leaving_employees">5</field>
+            <field name="critical_roles">0</field>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year_1"/>
+        </record>
+
+        <record id="manpower_joining_three" model="manpower.joining">
+            <field name="plan_line_id" ref="hr_manpower_plan_line_three"/>
+            <field name="period_id" ref="hr_fiscal_year.year_period_june_1"/>
+            <field name="joining_employees">2</field>
+        </record>
+
+        <record id="hr_manpower_plan_four" model="manpower.plan">
+            <field name="department_id" ref="hr.dep_rd"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="hr_manpower_plan_line_four" model="manpower.plan.line">
+            <field name="plan_id" ref="hr_manpower_plan_four"/>
+            <field name="job_id" ref="hr.job_developer"/>
+            <field name="current_employees">3</field>
+            <field name="leaving_employees">2</field>
+            <field name="critical_roles">1</field>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="manpower_joining_four" model="manpower.joining">
+            <field name="plan_line_id" ref="hr_manpower_plan_line_four"/>
+            <field name="period_id" ref="hr_fiscal_year.year_period_april"/>
+            <field name="joining_employees">2</field>
+        </record>
+
+        <record id="hr_manpower_plan_five" model="manpower.plan">
+            <field name="department_id" ref="hr.dep_rd"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year_1"/>
+        </record>
+
+        <record id="hr_manpower_plan_line_five" model="manpower.plan.line">
+            <field name="plan_id" ref="hr_manpower_plan_five"/>
+            <field name="job_id" ref="hr.job_developer"/>
+            <field name="current_employees">4</field>
+            <field name="leaving_employees">2</field>
+            <field name="critical_roles">1</field>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year_1"/>
+        </record>
+
+        <record id="manpower_joining_five" model="manpower.joining">
+            <field name="plan_line_id" ref="hr_manpower_plan_line_five"/>
+            <field name="period_id" ref="hr_fiscal_year.year_period_april_1"/>
+            <field name="joining_employees">2</field>
+        </record>
+
+        <record id="hr_manpower_plan_six" model="manpower.plan">
+            <field name="department_id" ref="hr.dep_ps"/>
+            <field name="hof_id" ref="hr.employee_admin"/>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="hr_manpower_plan_line_six" model="manpower.plan.line">
+            <field name="plan_id" ref="hr_manpower_plan_six"/>
+            <field name="job_id" ref="hr.job_consultant"/>
+            <field name="current_employees">4</field>
+            <field name="leaving_employees">3</field>
+            <field name="critical_roles">2</field>
+            <field name="fiscal_year_id" ref="hr_fiscal_year.employee_year"/>
+        </record>
+
+        <record id="manpower_joining_six" model="manpower.joining">
+            <field name="plan_line_id" ref="hr_manpower_plan_line_six"/>
+            <field name="period_id" ref="hr_fiscal_year.year_period_may"/>
+            <field name="joining_employees">1</field>
+        </record>
+
+    </data>
+</odoo>

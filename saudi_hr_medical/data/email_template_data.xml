@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <data noupdate="1">
+        <!-- Email template expiration insurance -->
+        <record id="hr_medical_insurance_expiration_email" model="mail.template">
+            <field name="name">Expiration Insurance</field>
+            <field name="model_id" ref="saudi_hr_medical.model_insurance_details"/>
+            <field name="email_from">{{object.company_id.name}} {{(object.company_id.email or user.email)}}</field>
+            <field name="email_to">{{object.responsible_id.partner_id.email or ''}}</field>
+            <field name="subject">{{object.employee_id.name}} Insurance Expiration Reminder</field>
+            <field name="body_html" type="html">
+                    <p>Hello <t t-out="object.responsible_id.partner_id.name"/>,</p>
+                    <p>We are inform you <t t-out="object.employee_id.name"/> insurance <t t-out="object.name"/> is expired on <t t-out="object.end_date"/>.</p>
+                    <p>Thank you,</p>
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+     </data>
+</odoo>

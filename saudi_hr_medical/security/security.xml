@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="ir.rule" id="insurance_user_rule">
+            <field name="name">Insurance: user</field>
+            <field name="model_id" ref="model_insurance_details"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id), ('message_partner_ids', '=', user.partner_id.id)]
+            </field>
+        </record>
+        <record model="ir.rule" id="insurance_officer_rule">
+            <field name="name">Insurance: Officer</field>
+            <field name="model_id" ref="model_insurance_details"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+            <field name="domain_force">['|', ('message_partner_ids', 'in', [user.partner_id.id]), '|', ('company_id','=',False),('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+        <record model="ir.rule" id="claim_user_rule">
+            <field name="name">Claim: user</field>
+            <field name="model_id" ref="model_claim_details"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('message_partner_ids', '=', user.partner_id.id), ('insurance_id.employee_id.user_id', '=', user.id)]
+            </field>
+        </record>
+        <record model="ir.rule" id="claim_officer_rule">
+            <field name="name">Claim: Officer</field>
+            <field name="model_id" ref="model_claim_details"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+            <field name="domain_force">['|', ('message_partner_ids', 'in', [user.partner_id.id]), '|', ('company_id','=',False),('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+        <record model="ir.rule" id="account_insurance_rule">
+            <field name="name">Insurance: Manager</field>
+            <field name="model_id" ref="model_insurance_details"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('message_partner_ids', 'in', [user.partner_id.id]), '|', ('company_id','=',False),('company_id', 'in', company_ids)]
+            </field>
+        </record>
+
+    </data>
+</odoo>

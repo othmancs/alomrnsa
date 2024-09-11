@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Employee Type id -->
+        <record id="emp_sickness" model="employee.class">
+            <field name="name">Sickness</field>
+        </record>
+
+        <record id="emp_railway" model="employee.class">
+            <field name="name">Railway rolling stock</field>
+        </record>
+
+        <record id="emp_goods" model="employee.class">
+            <field name="name">Goods in transit</field>
+        </record>
+
+        <record id="emp_miscellaneous" model="employee.class">
+            <field name="name">Miscellaneous financial loss</field>
+        </record>
+
+        <record id="emp_suretyship" model="employee.class">
+            <field name="name">Suretyship</field>
+        </record>
+        <!-- Employee insurance -->
+        <record id="fpi_employee_insurance1" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="member_name">Abdul Omar</field>
+            <field name="relation">employee</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">5000</field>
+            <field name="gender">male</field>
+            <field name="supplier_id" ref="base.res_partner_1"></field>
+            <field name="card_code">BPLL1273</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_sickness"/>
+        </record>
+
+        <record id="fpi_employee_insurance2" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="member_name">Jasmin Omar</field>
+            <field name="relation">spouse</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">3000</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_2"></field>
+            <field name="card_code">BPLL7373</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_railway"/>
+        </record>
+
+        <record id="fpi_employee_insurance3" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="member_name">Asqa Omar</field>
+            <field name="relation">child</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">2000</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_3"></field>
+            <field name="card_code">BPLL7473</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_goods"/>
+        </record>
+
+        <record id="al_employee_insurance1" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="member_name">Abdul Naseer</field>
+            <field name="relation">employee</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">5500</field>
+            <field name="gender">male</field>
+            <field name="supplier_id" ref="base.res_partner_1"></field>
+            <field name="card_code">BPLL1255</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_miscellaneous"/>
+        </record>
+
+        <record id="al_employee_insurance2" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="member_name">Jasmin Naseer</field>
+            <field name="relation">spouse</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">5500</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_2"></field>
+            <field name="card_code">BPLL5520</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_goods"/>
+        </record>
+
+        <record id="al_employee_insurance3" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="member_name">Firdaus Naseer</field>
+            <field name="relation">child</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">2500</field>
+            <field name="gender">male</field>
+            <field name="supplier_id" ref="base.res_partner_3"></field>
+            <field name="card_code">BPLL3062</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_miscellaneous"/>
+        </record>
+
+        <record id="qdp_employee_insurance1" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="member_name">Bilal pathan</field>
+            <field name="relation">employee</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">7500</field>
+            <field name="gender">male</field>
+            <field name="supplier_id" ref="base.res_partner_1"></field>
+            <field name="supplier_id" ref="base.res_partner_1"></field>
+            <field name="card_code">BPLL2273</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_miscellaneous"/>
+        </record>
+
+        <record id="qdp_employee_insurance2" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="member_name">Asba pathan</field>
+            <field name="relation">spouse</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">5000</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_2"></field>
+            <field name="card_code">BPLL1233</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_suretyship"/>
+        </record>
+
+        <record id="qdp_employee_insurance3" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="member_name">Humaira pathan</field>
+            <field name="relation">child</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">3000</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_3"></field>
+            <field name="card_code">BPLL1274</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_railway"/>
+        </record>
+
+        <record id="jep_employee_insurance1" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="member_name">Danail peter</field>
+            <field name="relation">employee</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">10000</field>
+            <field name="gender">male</field>
+            <field name="supplier_id" ref="base.res_partner_1"></field>
+            <field name="card_code">BPLL1283</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_sickness"/>
+        </record>
+
+        <record id="jep_employee_insurance2" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="member_name">Rozy peter</field>
+            <field name="relation">spouse</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">8550</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_2"></field>
+            <field name="card_code">BPLL1293</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_sickness"/>
+        </record>
+
+        <record id="jep_employee_insurance3" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="member_name">Jack peter</field>
+            <field name="relation">child</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">6600</field>
+            <field name="gender">male</field>
+            <field name="supplier_id" ref="base.res_partner_3"></field>
+            <field name="card_code">BPLL1232</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_sickness"/>
+        </record>
+
+        <record id="stw_employee_insurance1" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="member_name">Fareeda khan</field>
+            <field name="relation">child</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">5000</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_1"></field>
+            <field name="card_code">BPLL7383</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_railway"/>
+        </record>
+
+        <record id="stw_employee_insurance2" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="member_name">Fusin khan</field>
+            <field name="relation">spouse</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">2500</field>
+            <field name="gender">male</field>
+            <field name="supplier_id" ref="base.res_partner_2"></field>
+            <field name="card_code">BPLL5963</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_suretyship"/>
+        </record>
+
+        <record id="stw_employee_insurance3" model="insurance.details">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="member_name">Sofia khan</field>
+            <field name="relation">child</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta(years=1)).strftime('%Y-%m-%d')"/>
+            <field name="insurance_amount">50000</field>
+            <field name="premium_amount">1000</field>
+            <field name="gender">female</field>
+            <field name="supplier_id" ref="base.res_partner_3"></field>
+            <field name="card_code">BPLL3065</field>
+            <field name="class_id" ref="saudi_hr_medical.emp_miscellaneous"/>
+        </record>
+
+        <!-- Claim Details -->
+        <record id="fpi_employee_claim_details" model="claim.details">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="insurance_id" ref="saudi_hr_medical.fpi_employee_insurance1"/>
+            <field name="date_applied" eval="(DateTime.today())"></field>
+            <field name="claim_amount">700</field>
+        </record>
+
+         <record id="al_employee_claim_details" model="claim.details">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="insurance_id" ref="saudi_hr_medical.fpi_employee_insurance1"/>
+            <field name="date_applied" eval="(DateTime.today())"></field>
+            <field name="claim_amount">800</field>
+        </record>
+
+        <record id="fpi_employee_claim_details" model="claim.details">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="insurance_id" ref="saudi_hr_medical.fpi_employee_insurance1"/>
+            <field name="date_applied" eval="(DateTime.today())"></field>
+            <field name="claim_amount">600</field>
+        </record>
+
+        <record id="fpi_employee_claim_details" model="claim.details">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="insurance_id" ref="saudi_hr_medical.fpi_employee_insurance1"/>
+            <field name="date_applied" eval="(DateTime.today())"></field>
+            <field name="claim_amount">300</field>
+        </record>
+
+        <record id="qdp_employee_claim_details" model="claim.details">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="insurance_id" ref="saudi_hr_medical.qdp_employee_insurance1"/>
+            <field name="date_applied" eval="(DateTime.today())"></field>
+            <field name="claim_amount">500</field>
+        </record>
+
+        <record id="jep_employee_claim_details" model="claim.details">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="insurance_id" ref="saudi_hr_medical.jep_employee_insurance1"/>
+            <field name="date_applied" eval="(DateTime.today())"></field>
+            <field name="claim_amount">300</field>
+        </record>
+
+        <record id="stw_employee_claim_details" model="claim.details">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="insurance_id" ref="saudi_hr_medical.stw_employee_insurance1"/>
+            <field name="date_applied" eval="(DateTime.today())"></field>
+            <field name="claim_amount">400</field>
+        </record>
+
+     </data>
+</odoo>
