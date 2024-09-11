@@ -11,7 +11,16 @@ class ContractType(models.Model):
 
     name = fields.Char(string='Contract Type', required=True, help="Name")
 
-
+class HRContract(models.Model):
+    _name = 'hr.contract'
+    _inherit = ['mail.thread', 'hr.contract']
+    schedule_pay = fields.Selection(related='structure_type_id.default_struct_id.schedule_pay', string="Schedule Pay", store=True)
+    schedule_pay = fields.Selection([
+        ('monthly', 'Monthly'),
+        ('bi-weekly', 'Bi-Weekly'),
+        ('weekly', 'Weekly'),
+    ], string="Schedule Pay")
+    
 class ContractInherit(models.Model):
     _inherit = 'hr.contract'
     sequence = fields.Integer(help="Gives the sequence when displaying a list of Contract.", default=10)
