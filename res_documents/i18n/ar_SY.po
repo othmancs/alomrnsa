@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-06 12:58+0000\n"
-"PO-Revision-Date: 2018-08-06 12:58+0000\n"
+"POT-Creation-Date: 2018-12-24 06:48+0000\n"
+"PO-Revision-Date: 2018-12-24 06:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -90,25 +90,39 @@ msgid "${object.employee_id.name} Document Expiration"
 msgstr "${object.employee_id.name} انتهاء صلاحية الوثيقة"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Attachment"
 msgstr "مرفق"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_attachment_ids
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__attachment_ids
 msgid "Attachments"
 msgstr "المُرفقات"
 
 #. module: res_documents
-#: model:ir.actions.act_window,help:res_documents.action_res_document_type
-#: model:ir.actions.act_window,help:res_documents.action_res_documents
+#: model_terms:ir.actions.act_window,help:res_documents.action_res_document_type
 msgid "Click to define a new Document Type."
 msgstr "انقر لتحديد نوع مستند جديد."
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_code
+#: model_terms:ir.actions.act_window,help:res_documents.action_res_documents
+msgid "Click to define a new Document."
+msgstr "انقر لتحديد مستند جديد."
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__code
 msgid "Code"
-msgstr "الشفرة"
+msgstr "الرمز"
 
 #. module: res_documents
 #: sql_constraint:res.document.type:0
@@ -116,9 +130,9 @@ msgid "Code must be unique per Document!"
 msgstr "يجب أن تكون الشفرة فريدة لكل مستند!"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_company_id
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__company_id
 msgid "Company"
-msgstr "الشركة"
+msgstr "المؤسسة"
 
 #. module: res_documents
 #: selection:res.documents,state:0
@@ -126,46 +140,46 @@ msgid "Confirmed"
 msgstr "تم تأكيد"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_create_uid
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_create_uid
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__create_uid
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__create_uid
 msgid "Created by"
 msgstr "أنشئ بواسطة"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_create_date
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_create_date
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__create_date
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__create_date
 msgid "Created on"
 msgstr "أنشئ في"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_expiry_date
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__expiry_date
 msgid "Date of Expiry"
 msgstr "تاريخ انتهاء الصلاحية"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_hijri_expiry_date
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__hijri_expiry_date
 msgid "Date of Expiry(Hijri)"
-msgstr "(تاريخ انتهاء الصلاحية (المقالات"
+msgstr "تاريخ انتهاء الصلاحية (هجري)"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_issue_date
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__issue_date
 msgid "Date of Issue"
-msgstr "تاريخ الإصدار"
+msgstr "تاريخ المسألة"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_display_name
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_display_name
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__display_name
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__display_name
 msgid "Display Name"
-msgstr "الاسم المعروض"
+msgstr "اسم العرض"
 
 #. module: res_documents
 #: model:ir.actions.act_window,name:res_documents.action_res_documents
-#: model:ir.model.fields,field_description:res_documents.field_hr_employee_document_ids
+#: model:ir.model.fields,field_description:res_documents.field_hr_employee__document_ids
 msgid "Document"
 msgstr "وثيقة"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Document Details"
 msgstr "تفاصيل المستند"
 
@@ -181,16 +195,19 @@ msgstr "وثيقة القضية"
 
 #. module: res_documents
 #: model:ir.actions.act_window,name:res_documents.action_res_document_type
+#: model:ir.model,name:res_documents.model_res_document_type
 #: model:ir.ui.menu,name:res_documents.menu_hr_document_type
-#: model:ir.ui.view,arch_db:res_documents.view_res_document_type_form
-#: model:ir.ui.view,arch_db:res_documents.view_res_document_type_tree
+#: model_terms:ir.ui.view,arch_db:res_documents.view_res_document_type_form
+#: model_terms:ir.ui.view,arch_db:res_documents.view_res_document_type_tree
 msgid "Document Type"
 msgstr "نوع الوثيقة"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_hr_employee_documents_count
+#: code:addons/res_documents/models/res_documents.py:230
+#: model:ir.model.fields,field_description:res_documents.field_hr_employee__documents_count
 #: model:ir.ui.menu,name:res_documents.menu_hr_document
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_employee_form
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_employee_form
+#, python-format
 msgid "Documents"
 msgstr "الوثائق"
 
@@ -201,15 +218,15 @@ msgstr "مشروع"
 
 #. module: res_documents
 #: model:ir.model,name:res_documents.model_hr_employee
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_employee_id
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_search
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__employee_id
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_search
 msgid "Employee"
 msgstr "الموظف"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Employee Details"
-msgstr "تفاصيل موظف"
+msgstr "تفاصيل الموظف"
 
 #. module: res_documents
 #: selection:res.documents,state:0
@@ -217,13 +234,48 @@ msgid "Expiry"
 msgstr "انقضاء"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_id
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_id
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__id
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__id
 msgid "ID"
 msgstr "المعرف"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Issue"
 msgstr "القضية"
 
@@ -233,61 +285,101 @@ msgid "Issued"
 msgstr "نشر"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type___last_update
-#: model:ir.model.fields,field_description:res_documents.field_res_documents___last_update
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type____last_update
+#: model:ir.model.fields,field_description:res_documents.field_res_documents____last_update
 msgid "Last Modified on"
 msgstr "آخر تعديل في"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_write_uid
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_write_uid
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__write_uid
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__write_uid
 msgid "Last Updated by"
 msgstr "آخر تحديث بواسطة"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_write_date
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_write_date
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__write_date
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__write_date
 msgid "Last Updated on"
 msgstr "آخر تحديث في"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_manager_id
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__manager_id
 msgid "Manager"
 msgstr "المدير"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_document_type_name
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__name
 msgid "Name"
 msgstr "الاسم"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_notes
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__notes
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Notes"
 msgstr "ملاحظات"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_doc_number
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__doc_number
 msgid "Number"
-msgstr "عدد"
+msgstr "الرقم"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_issue_place
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__issue_place
 msgid "Place of Issue"
-msgstr "مكان الإصدار"
+msgstr "مكان صدوره"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_position
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__position
 msgid "Position"
-msgstr "موقف"
+msgstr "موضع"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_profession
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__profession
 msgid "Profession"
 msgstr "مهنة"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Refuse"
 msgstr "رفض"
 
@@ -297,7 +389,7 @@ msgid "Refused"
 msgstr "رفض"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 #: selection:res.documents,state:0
 msgid "Renew"
 msgstr "جدد"
@@ -310,38 +402,53 @@ msgid "Scheduled Employee's Documents Expiration"
 msgstr "انتهاء صلاحية وثائق الموظف المجدولة"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Set to Draft"
 msgstr "تعيين كمسودة"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_state
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_search
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__state
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_search
 msgid "Status"
-msgstr "الحالة "
+msgstr "الحالة"
 
 #. module: res_documents
-#: model:ir.ui.view,arch_db:res_documents.res_documents_view_form
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
 msgid "Submit"
 msgstr "خضع"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_type_id
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__type_id
 msgid "Type"
 msgstr "النوع"
 
 #. module: res_documents
-#: model:ir.model.fields,field_description:res_documents.field_res_documents_is_visible_on_report
-msgid "Visible on Report"
-msgstr "مرئية على تقرير"
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
 
 #. module: res_documents
-#: model:ir.model,name:res_documents.model_res_document_type
-msgid "res.document.type"
-msgstr "res.document.type"
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__is_visible_on_report
+msgid "Visible on Report"
+msgstr "مرئي على التقرير"
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
 
 #. module: res_documents
 #: model:ir.model,name:res_documents.model_res_documents
 msgid "res.documents"
-msgstr "res.documents"
+msgstr "وثائق .الدقة"
 

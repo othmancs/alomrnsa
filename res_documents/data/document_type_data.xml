@@ -5,10 +5,10 @@
             <field name="code">pno</field>
             <field name="name">Passport No</field>
         </record>
-        <record id="document_type2" model="res.document.type">
+        <!-- <record id="document_type2" model="res.document.type">
             <field name="code">ino</field>
             <field name="name">Iqama No</field>
-        </record>
+        </record> -->
         <record id="document_type3" model="res.document.type">
             <field name="code">nid</field>
             <field name="name">National ID</field>

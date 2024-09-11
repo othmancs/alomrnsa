@@ -1,0 +1,535 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_warning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-24 09:46+0000\n"
+"PO-Revision-Date: 2018-12-24 09:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_warning
+#: model:mail.template,body_html:hr_warning.email_template_warning_alert
+msgid "\n"
+"        <h3><p style=\"color:#FF0000;\">Warning Alert</p></h3>\n"
+"        <p>Hello sir</p>\n"
+"        <p>We need to inform that below list of employee have already some warning during last six months.</p>\n"
+"        <p>Employee: ${ctx.get('employee_ids')}</p>\n"
+"        <p></p>\n"
+"        <p>Thank you,</p>\n"
+"        <p style=\"color:#888888;\">\n"
+"        ${object.user_id.name}\n"
+"        </p>\n"
+"        "
+msgstr "\n"
+"        <h3><p style=\"color:#FF0000;\">تنبيه تحذير</p></h3>\n"
+"        <p>مرحبا يا سيدي</p>\n"
+"        <p>نحن بحاجة إلى إبلاغ أن القائمة أدناه الموظف لديها بالفعل بعض التحذير خلال الأشهر الستة الماضية.</p>\n"
+"        <p>موظف: ${ctx.get('employee_ids')}</p>\n"
+"        <p></p>\n"
+"        <p>شكرا لكم،</p>\n"
+"        <p style=\"color:#888888;\">\n"
+"        ${object.user_id.name}\n"
+"        </p>\n"
+"        "
+
+#. module: hr_warning
+#: model:mail.template,body_html:hr_warning.email_template_warning_confirm_partner
+msgid "\n"
+"        <h3><p style=\"color:#FF0000;\">Warning: ${ctx.get('warning')}</p></h3>\n"
+"        <p>It is a matter of serious concern that ${ctx.get('warning')} despite repeated verbal warnings. Please treat this letter as a warning for your unacceptable behavior.</p>\n"
+"        <p>${object.description}</p>\n"
+"        <p>We would be left with no choice but to suspend or relieve you from work if this unethical behavior continues.</p>\n"
+"        <p>We expect you to rectify your follies and observe good conduct from hereon.</p>\n"
+"        <p style=\"color:#FF0000;\">So,We decide to action ${object.warning_action}</p>\n"
+"        <p>Thank you,</p>\n"
+"        <p style=\"color:#888888;\">\n"
+"        ${object.user_id.name}\n"
+"        </p>\n"
+"        "
+msgstr "\n"
+"        <h3><p style=\"color:#FF0000;\">تحذير: ${ctx.get('warning')}</p></h3>\n"
+"        <p>إنها مسألة مثيرة للقلق الشديد ${ctx.get('warning')}على الرغم من التحذيرات اللفظية المتكررة. يرجى التعامل مع هذه الرسالة كتحذير لسلوك غير مقبول.</p>\n"
+"        <p>${object.description}</p>\n"
+"        <p>لن يكون أمامنا أي خيار سوى تعليق عملك أو إعفائك منه إذا استمر هذا السلوك غير الأخلاقي.</p>\n"
+"        <p>نتوقع منك تصحيح الحماقات ومراقبة السلوك الجيد من هنا.</p>\n"
+"        <p style=\"color:#FF0000;\">لذا ، قررنا اتخاذ إجراء ${object.warning_action}</p>\n"
+"        <p>شكرا لكم،</p>\n"
+"        <p style=\"color:#888888;\">\n"
+"        ${object.user_id.name}\n"
+"        </p>\n"
+"        "
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: hr_warning
+#: selection:issue.warning,target_group:0
+msgid "All Employees"
+msgstr "كل الموظفين"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__ded_amt
+msgid "Amount"
+msgstr "القيمة"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: hr_warning
+#: selection:issue.warning,deduct_type:0
+msgid "By Amount"
+msgstr "حسب المبلغ"
+
+#. module: hr_warning
+#: selection:issue.warning,deduct_type:0
+msgid "By Days"
+msgstr "حسب الأيام"
+
+#. module: hr_warning
+#: selection:issue.warning,deduct_type:0
+msgid "By Hours"
+msgstr "عن طريق ساعات"
+
+#. module: hr_warning
+#: selection:issue.warning,deduct_type:0
+msgid "By Percentage"
+msgstr "حسب النسبة المئوية"
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: hr_warning
+#: selection:issue.warning,state:0
+msgid "Cancelled"
+msgstr "ألغيت"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_hr_job__color
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__color
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__color
+msgid "Color"
+msgstr "اللون"
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: hr_warning
+#: selection:issue.warning,state:0
+msgid "Confirmed"
+msgstr "تم تأكيد"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__user_id
+msgid "Confirmed By"
+msgstr "موكد بواسطة"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__create_uid
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__create_date
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: hr_warning
+#: selection:issue.warning,warning_action:0
+#: selection:warning.type,warning_action:0
+msgid "Deduct from Salary or not"
+msgstr "خصم من الراتب أم لا"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__deduct_type
+msgid "Deduct type"
+msgstr "نوع الخصم"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__department_ids
+msgid "Department"
+msgstr "القسم"
+
+#. module: hr_warning
+#: selection:issue.warning,target_group:0
+msgid "Department Wise"
+msgstr "قسم الحكمة"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__description
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__description
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_type_view_form
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Description"
+msgstr "الوصف"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__display_name
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+#: selection:issue.warning,state:0
+msgid "Done"
+msgstr "تم"
+
+#. module: hr_warning
+#: selection:issue.warning,state:0
+msgid "Draft"
+msgstr "مشروع"
+
+#. module: hr_warning
+#: model:ir.model,name:hr_warning.model_hr_employee
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Employee Details"
+msgstr "تفاصيل الموظف"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__employee_ids
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Employees"
+msgstr "الموظفون"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__end_date
+msgid "End Date"
+msgstr "تاريخ الإنتهاء"
+
+#. module: hr_warning
+#: selection:issue.warning,warning_action:0
+#: selection:warning.type,warning_action:0
+msgid "Expiry Period"
+msgstr "فترة انتهاء الصلاحية"
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Extra Information"
+msgstr "معلومات اضافية"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__group_mail
+msgid "Group Mail"
+msgstr "بريد المجموعة"
+
+#. module: hr_warning
+#: model:ir.model,name:hr_warning.model_hr_job
+msgid "HR Job"
+msgstr "وظيفة الموارد البشرية"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__id
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__is_deduction_from_salary
+msgid "Is Deduct from Salary"
+msgstr "يتم خصم من الراتب"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: hr_warning
+#: model:mail.template,subject:hr_warning.email_template_warning_confirm_partner
+msgid "Issue Warning"
+msgstr "تحذير القضية"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_hr_employee__issue_warning_ids
+msgid "Issue Warnings"
+msgstr "تحذيرات القضية"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__job_ids
+#: selection:issue.warning,target_group:0
+msgid "Job Profile"
+msgstr "نبذه عن الوظيفه"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning____last_update
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__write_uid
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__write_date
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__name
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط القادم"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط القادم"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__no_of_days
+msgid "No of Days"
+msgstr "لا أيام"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__no_of_hours
+msgid "No of Hours"
+msgstr "عدد الساعات"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr_warning
+#: selection:issue.warning,target_group:0
+msgid "One Employee"
+msgstr "موظف واحد"
+
+#. module: hr_warning
+#: selection:issue.warning,activity_state:0
+msgid "Overdue"
+msgstr "متأخر"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__percentage
+msgid "Percentage"
+msgstr "النسبة"
+
+#. module: hr_warning
+#: selection:issue.warning,activity_state:0
+msgid "Planned"
+msgstr "مخطط"
+
+#. module: hr_warning
+#: selection:issue.warning,warning_action:0
+#: selection:warning.type,warning_action:0
+msgid "Prohibit Benefit Upgrades"
+msgstr "منع ترقية الفوائد"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسئول"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__start_date
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "الحالة على أساس الأنشطة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__target_group
+msgid "Target Group"
+msgstr "المجموعة المستهدفة"
+
+#. module: hr_warning
+#: selection:issue.warning,activity_state:0
+msgid "Today"
+msgstr "اليوم"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr_warning
+#: model:ir.actions.act_window,name:hr_warning.act_issue_warning
+#: model:ir.ui.menu,name:hr_warning.menu_issue_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_employee_warning_view_form
+msgid "Warning"
+msgstr "تحذير"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__warning_action
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__warning_action
+msgid "Warning Action"
+msgstr "تحذير العمل"
+
+#. module: hr_warning
+#: model:mail.template,subject:hr_warning.email_template_warning_alert
+msgid "Warning Alert"
+msgstr "تنبيه تحذير"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__warning_date
+msgid "Warning Date"
+msgstr "تاريخ التحذير"
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Warning Details"
+msgstr "تفاصيل التحذير"
+
+#. module: hr_warning
+#: model:ir.actions.act_window,name:hr_warning.act_issue_warning_type
+#: model:ir.model,name:hr_warning.model_warning_type
+msgid "Warning Type"
+msgstr "نوع التحذير"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__warning_types
+#: model:ir.ui.menu,name:hr_warning.menu_issue_warning_type
+msgid "Warning Types"
+msgstr "أنواع التحذير"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_hr_employee__warning_count
+msgid "Warnings"
+msgstr "تحذيرات"
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: hr_warning
+#: model:ir.model,name:hr_warning.model_issue_warning
+msgid "issue.warning"
+msgstr "تحذير القضية"
+

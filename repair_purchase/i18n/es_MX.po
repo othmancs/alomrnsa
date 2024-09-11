@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* repair_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-24 14:15+0000\n"
+"PO-Revision-Date: 2024-08-24 14:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: repair_purchase
+#: model:ir.model.fields,field_description:repair_purchase.field_repair_order__purchase_count
+msgid "# Purchase"
+msgstr "# Compra"
+
+#. module: repair_purchase
+#. odoo-python
+#: code:addons/repair_purchase/models/repair.py:0
+#, python-format
+msgid ""
+"Before start repair need to be all parts quantity are available in stock!"
+msgstr ""
+"¡Antes de comenzar la reparación, es necesario que todas las piezas estén disponibles en stock!"
+
+#. module: repair_purchase
+#. odoo-python
+#: code:addons/repair_purchase/models/procurement.py:0
+#, python-format
+msgid ""
+"No rule has been found to replenish \"%s\" in \"%s\".\n"
+"Verify the routes configuration on the product."
+msgstr ""
+"No se ha encontrado ninguna regla para reponer \"%s\" en \"%s\".\n"
+"Verifique la configuración de rutas en el producto".
+
+#. module: repair_purchase
+#. odoo-python
+#: code:addons/repair_purchase/models/repair.py:0
+#, python-format
+msgid "Not enough inventory!"
+msgstr "¡No hay suficiente inventario!"
+
+#. module: repair_purchase
+#: model:ir.model.fields,field_description:repair_purchase.field_repair_line__available_qty
+msgid "OnHand Quantity"
+msgstr "Cantidad Sisponible"
+
+#. module: repair_purchase
+#: model:ir.model,name:repair_purchase.model_procurement_group
+msgid "Procurement Group"
+msgstr "Grupo de Aprovisionamiento"
+
+#. module: repair_purchase
+#: model_terms:ir.ui.view,arch_db:repair_purchase.repair_purchase_view_repair_order_form
+msgid "Purchases"
+msgstr "Compras"
+
+#. module: repair_purchase
+#: model:ir.model,name:repair_purchase.model_repair_line
+msgid "Repair Line (parts)"
+msgstr "Línea de Reparación (partes)"
+
+#. module: repair_purchase
+#: model:ir.model,name:repair_purchase.model_repair_order
+msgid "Repair Order"
+msgstr "Orden de reparación"
+
+#. module: repair_purchase
+#: model:ir.model.fields,field_description:repair_purchase.field_repair_order__warehouse_id
+msgid "Warehouse"
+msgstr "Almacén"
+
+#. module: repair_purchase
+#: model:ir.model,name:repair_purchase.model_stock_warn_insufficient_qty_repair
+msgid "Warn Insufficient Repair Quantity"
+msgstr "Aviso Cantidad de Reparación Insuficiente"
+
+#. module: repair_purchase
+#. odoo-python
+#: code:addons/repair_purchase/models/repair.py:0
+#, python-format
+msgid ""
+"You plan to sell %s %s but you only have %s %s available in %s location."
+msgstr ""
+"Planeas vender %s %s pero solo tienes %s %s disponible en la ubicación %s."

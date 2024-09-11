@@ -1,0 +1,653 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_warning
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 10:19+0000\n"
+"PO-Revision-Date: 2022-05-30 10:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_warning
+#: model:ir.actions.report,print_report_name:hr_warning.action_report_warning
+msgid "\"'Warning - %s' % (object.name)\""
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "<b>Date: </b>"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "<b>Employee Name: </b>"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "<b>Subject Line: </b>Warning notice for"
+msgstr ""
+
+#. module: hr_warning
+#: model:mail.template,body_html:hr_warning.email_template_warning_alert
+msgid ""
+"<h3><p style=\"color:#FF0000;\">Warning Alert</p></h3>\n"
+"        <p>Hello sir</p>\n"
+"        <p>We need to inform that below list of employee have already some warning during last six months.</p>\n"
+"        <p>Employee: <t t-out=\"ctx.get('employee_ids')\"/></p>\n"
+"        <p/>\n"
+"        <p>Thank you,</p>\n"
+"        <p style=\"color:#888888;\">\n"
+"        <t t-out=\"object.user_id.name\"/>\n"
+"        </p>\n"
+"        "
+msgstr ""
+
+#. module: hr_warning
+#: model:mail.template,body_html:hr_warning.email_template_warning_confirm_partner
+msgid ""
+"<h3><p style=\"color:#FF0000;\">Warning: <t t-out=\"ctx.get('warning')\"/> </p></h3>\n"
+"        <p>It is a matter of serious concern that <t t-out=\"ctx.get('warning')\"/> despite repeated verbal warnings. Please treat this letter as a warning for your unacceptable behavior.</p>\n"
+"        <p><t t-out=\"object.description\"/></p>\n"
+"        <p>We would be left with no choice but to suspend or relieve you from work if this unethical behavior continues.</p>\n"
+"        <p>We expect you to rectify your follies and observe good conduct from hereon.</p>\n"
+"        <p style=\"color:#FF0000;\">So,We decide to action <t t-out=\"object.warning_action\"/></p>\n"
+"        <p>Thank you,</p>\n"
+"        <p style=\"color:#888888;\">\n"
+"        <t t-out=\"object.user_id.name\"/>\n"
+"        </p>\n"
+"        "
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "<span><b>Warning</b></span>"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__target_group__all_employee
+msgid "All Employees"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__ded_amt
+msgid "Amount"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__deduct_type__amount
+msgid "By Amount"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__deduct_type__days
+msgid "By Days"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__deduct_type__hours
+msgid "By Hours"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__deduct_type__percentage
+msgid "By Percentage"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Cancel"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_hr_job__color
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__color
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__color
+msgid "Color"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Confirm"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__state__confirm
+msgid "Confirmed"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__user_id
+msgid "Confirmed By"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__create_uid
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__create_date
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "Deduct"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__warning_action__deduct
+#: model:ir.model.fields.selection,name:hr_warning.selection__warning_type__warning_action__deduct
+msgid "Deduct from Salary or not"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__deduct_type
+msgid "Deduct type"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__department_ids
+msgid "Department"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__target_group__department
+msgid "Department Wise"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__description
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__description
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_type_view_form
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Description"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__display_name
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__state__done
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Done"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model,name:hr_warning.model_hr_employee
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__employee_id
+msgid "Employee"
+msgstr "Employé"
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Employee Details"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__employee_ids
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Employees"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__end_date
+msgid "End Date"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__warning_action__expiry
+#: model:ir.model.fields.selection,name:hr_warning.selection__warning_type__warning_action__expiry
+msgid "Expiry Period"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Extra Information"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.issue_warning_filter
+msgid "Filter"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "From"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.issue_warning_filter
+msgid "Group By..."
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__group_mail
+msgid "Group Mail"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model,name:hr_warning.model_hr_job
+msgid "HR Job"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__id
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_needaction
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_has_error
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__is_deduction_from_salary
+msgid "Is Deduct from Salary"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model,name:hr_warning.model_issue_warning
+#: model:mail.template,subject:hr_warning.email_template_warning_confirm_partner
+msgid "Issue Warning"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_hr_employee__issue_warning_ids
+msgid "Issue Warnings"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "It is a matter of serious concern that"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__job_ids
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__target_group__job
+msgid "Job Profile"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning____last_update
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__write_uid
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__write_date
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__name
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__name
+msgid "Name"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__no_of_days
+msgid "No of Days"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__no_of_hours
+msgid "No of Hours"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__target_group__employee
+msgid "One Employee"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__percentage
+msgid "Percentage"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields.selection,name:hr_warning.selection__issue_warning__warning_action__prohibit
+#: model:ir.model.fields.selection,name:hr_warning.selection__warning_type__warning_action__prohibit
+msgid "Prohibit Benefit Upgrades"
+msgstr ""
+
+#. module: hr_warning
+#: model:mail.template,name:hr_warning.email_template_warning_alert
+msgid "Repeated Warning Alert"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "So,We have decide to take action as following:<br/>"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__state
+msgid "Status"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.issue_warning_filter
+msgid "Stauts"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__target_group
+#: model_terms:ir.ui.view,arch_db:hr_warning.issue_warning_filter
+msgid "Target Group"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "Thank you,"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid "To"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.actions.act_window,name:hr_warning.act_issue_warning
+#: model:ir.ui.menu,name:hr_warning.menu_issue_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_employee_warning_view_form
+msgid "Warning"
+msgstr ""
+
+#. module: hr_warning
+#: model:mail.template,name:hr_warning.email_template_warning_confirm_partner
+msgid "Warning - Send by Email"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__warning_action
+#: model:ir.model.fields,field_description:hr_warning.field_warning_type__warning_action
+#: model_terms:ir.ui.view,arch_db:hr_warning.issue_warning_filter
+msgid "Warning Action"
+msgstr ""
+
+#. module: hr_warning
+#: model:mail.template,subject:hr_warning.email_template_warning_alert
+msgid "Warning Alert"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__warning_date
+msgid "Warning Date"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.hr_warning_view_form
+msgid "Warning Details"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.actions.report,name:hr_warning.action_report_warning
+msgid "Warning Report"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.actions.act_window,name:hr_warning.act_issue_warning_type
+#: model:ir.model,name:hr_warning.model_warning_type
+msgid "Warning Type"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__warning_types
+#: model:ir.ui.menu,name:hr_warning.menu_issue_warning_type
+msgid "Warning Types"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_hr_employee__warning_count
+msgid "Warnings"
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid ""
+"We expect you to rectify your follies and observe good conduct from hereon."
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid ""
+"We would be left with no choice but to suspend or relieve you from work if "
+"this unethical behavior continues."
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,field_description:hr_warning.field_issue_warning__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: hr_warning
+#: model:ir.model.fields,help:hr_warning.field_issue_warning__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: hr_warning
+#: code:addons/hr_warning/models/issue_warning.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr ""
+
+#. module: hr_warning
+#: code:addons/hr_warning/models/issue_warning.py:0
+#, python-format
+msgid "You need to select Is Deduct from Salary option."
+msgstr ""
+
+#. module: hr_warning
+#: model_terms:ir.ui.view,arch_db:hr_warning.report_warning_template
+msgid ""
+"is reapeted despite verbal warnings given. Please treat this letter as a "
+"warning for your unacceptable behavior."
+msgstr ""

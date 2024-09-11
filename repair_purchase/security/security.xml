@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="purchase.group_purchase_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('stock.group_stock_user')), (4, ref('account.group_account_invoice'))]"/>
+    </record>
+    <record id="purchase.group_purchase_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('stock.group_stock_manager')), (4, ref('account.group_account_manager'))]"/>
+    </record>
+
+    <record id="stock.group_stock_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('purchase.group_purchase_user')), (4, ref('account.group_account_invoice'))]"/>
+    </record>
+    <record id="stock.group_stock_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('purchase.group_purchase_manager')), (4, ref('account.group_account_manager'))]"/>
+    </record>
+</odoo>

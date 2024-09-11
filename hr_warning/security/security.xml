@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="warning_employee_rule" model="ir.rule">
+        <field name="name">Employee</field>
+        <field name="model_id" ref="model_issue_warning"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="domain_force">['|', ('employee_ids','=', user.employee_ids.id), ('message_partner_ids', '=', user.partner_id.id)]</field>
+    </record>
+
+    <record id="warning_officer_rule" model="ir.rule">
+        <field name="name">Officer</field>
+        <field name="model_id" ref="model_issue_warning"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user')),(4, ref('hr.group_hr_manager'))]"/>
+        <field name="domain_force">['|', ('employee_ids', 'child_of', [user.employee_ids.id]), ('message_partner_ids', 'child_of', [user.partner_id.id])]</field>
+    </record>
+
+    <record id="warning_manager_rule" model="ir.rule">
+        <field name="name">Manager</field>
+        <field name="model_id" ref="model_issue_warning"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+</odoo>

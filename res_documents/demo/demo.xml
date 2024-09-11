@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--   Employee Documents -->
+        <record id="fp_employee_documents1" model="res.documents">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="type_id" ref="res_documents.document_type3"/>
+            <field name="doc_number">2514568521</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="profession">Able Seamen</field>
+            <field name="position">Land Surveyor</field>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(years=+5)"/>
+            <field name="is_visible_on_report">True</field>
+        </record>
+
+        <record id="fp_employee_documents2" model="res.documents">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="type_id" ref="res_documents.document_type1"/>
+            <field name="doc_number">12345678</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(years=+1)"/>
+            <field name="profession">Adjustment Clerk</field>
+            <field name="position">Lathe Operator</field>
+        </record>
+
+         <record id="qdp_employee_documents1" model="res.documents">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="type_id" ref="res_documents.document_type3"/>
+            <field name="doc_number">2564521352</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="profession">Agricultural Crop Farm Manager</field>
+            <field name="position">License Clerk</field>
+            <field name="is_visible_on_report">True</field>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(years=+2)"/>
+        </record>
+
+         <record id="qdp_employee_documents2" model="res.documents">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="type_id" ref="res_documents.document_type1"/>
+            <field name="doc_number">98585278</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="profession">Air Crew Officer</field>
+            <field name="position">Logging Tractor Operator</field>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(days=10)"/>
+        </record>
+
+        <record id="fpi_employee_documents1" model="res.documents">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="type_id" ref="res_documents.document_type3"/>
+            <field name="doc_number">2456321548</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="profession">Budget Analyst</field>
+            <field name="position">Accounts Clerk (Banking)</field>
+            <field name="is_visible_on_report">True</field>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(years=+1)"/>
+        </record>
+
+        <record id="fpi_employee_documents2" model="res.documents">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="type_id" ref="res_documents.document_type1"/>
+            <field name="doc_number">285245524</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(years=+3)"/>
+            <field name="profession">Business Professor</field>
+            <field name="position">Medicine Technologist</field>
+        </record>
+
+        <record id="jep_employee_documents" model="res.documents">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="type_id" ref="res_documents.document_type1"/>
+            <field name="doc_number">23645582</field>
+            <field name="issue_place">california</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="profession">Court Clerk</field>
+            <field name="position">Pressure Vessel Inspectors</field>
+            <field name="is_visible_on_report">True</field>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(month=6)"/>
+        </record>
+
+        <record id="stw_employee_documents1" model="res.documents">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="type_id" ref="res_documents.document_type1"/>
+            <field name="doc_number">2145632158</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="profession">Financial Planner</field>
+            <field name="position">Securities Broker</field>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(years=+2)"/>
+        </record>
+
+        <record id="stw_employee_documents2" model="res.documents">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="type_id" ref="res_documents.document_type1"/>
+            <field name="doc_number">28545852</field>
+            <field name="issue_place">riyadh</field>
+            <field name="issue_date" eval="(DateTime.today())"/>
+            <field name="profession">Industrial Engineer</field>
+            <field name="position">Travel Writer (Journalist)</field>
+            <field name="is_visible_on_report">True</field>
+            <field name="expiry_date" eval="DateTime.today() + relativedelta(days=10)"/>
+        </record>
+    </data>
+</odoo>

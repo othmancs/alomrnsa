@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- menu for hr transaction reports -->
+    <menuitem id="menu_hr_transaction_report"
+        parent="saudi_hr.menu_reports"
+        name="HR Transaction Report"
+        action="hr_transaction_report.action_hr_transaction_report_wizard"
+        groups="hr.group_hr_user"
+        sequence="3" />
+</odoo>

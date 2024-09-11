@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Customer Approval Credit Limit -->
+    <record id="view_approval_credit_limit" model="ir.ui.view">
+        <field name="name">Approval Credit Limit</field>
+        <field name="model">approval.credit.limit</field>
+        <field name="arch" type="xml">
+            <form string="Approval Credit Limit">
+                <group>
+                    <field name="approved_amount" required="1"/>
+                    <field name="reason" required="1"/>
+                </group>
+                <footer>
+                    <button name="approved_credit_limit" string="Approved" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_approved_credit_limit" model="ir.actions.act_window">
+        <field name="name">Approval Credit Limit</field>
+        <field name="res_model">approval.credit.limit</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_approval_credit_limit"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Customer Cancel Credit Limit -->
+    <record id="view_cancel_credit_limit" model="ir.ui.view">
+        <field name="name">Cancel Credit Limit</field>
+        <field name="model">approval.credit.limit</field>
+        <field name="arch" type="xml">
+            <form string="Cancel Credit Limit">
+                <group>
+                    <field name="reason" required="1"/>
+                </group>
+                <footer>
+                    <button name="cancel_credit_limit" string="Cancel Approval" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_cancel_credit_limit" model="ir.actions.act_window">
+        <field name="name">Cancel Approval</field>
+        <field name="res_model">approval.credit.limit</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_cancel_credit_limit"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

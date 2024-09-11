@@ -1,0 +1,432 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* res_documents
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 10:17+0000\n"
+"PO-Revision-Date: 2022-05-30 10:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: res_documents
+#: model:mail.template,body_html:res_documents.email_template_res_documents_notify
+msgid ""
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"                <p>Hello, <strong><t t-out=\"object.employee_id.name\"/></strong></p>\n"
+"                <p>This is to inform you that your document <strong><t t-out=\"object.type_id.name\"/></strong> will expire at the close of business hours on <strong><t t-out=\"object.expiry_date\"/></strong> by operation of law. You shall be notified in writing within the date or after this date should renew your <strong><t t-out=\"object.type_id.name\"/></strong> </p>\n"
+"                <p>For more information see below details,</p>\n"
+"                <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"                     <strong>REFERENCES</strong><br/>\n"
+"                        Subject: <strong><t t-out=\"object.employee_id.name\"/>'s <t t-out=\"object.type_id.name\"/> Expiration</strong><br/>\n"
+"                        Employee: <t t-out=\"object.employee_id.name\"/><br/>\n"
+"                        Document: <t t-out=\"object.type_id.name\"/><br/>\n"
+"                        Duration: <strong> <t t-out=\"object.issue_date\"/> - <t t-out=\"object.expiry_date\"/> </strong><br/>\n"
+"                </p>\n"
+"                <p> This Document will be expired on <strong> <t t-out=\"object.expiry_date\"/> </strong>.</p>\n"
+"                <br/><br/>\n"
+"                Thanks,<br/>\n"
+"                Administrator.\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: res_documents
+#: model:mail.template,body_html:res_documents.email_template_res_document_expire
+msgid ""
+"<p>Hello <t t-out=\"object.employee_id.name\"/>,</p><br/>\n"
+"        <p style=\"color:red\">Your Document <b><t t-out=\"object.type_id.name\"/></b> is <b><t t-out=\"object.doc_number\"/></b> has been expired on <t t-out=\"object.expiry_date\"/>.</p><br/>\n"
+"        <p>Thank you,</p>\n"
+"        <p><t t-out=\"user.name\"/></p>\n"
+"        "
+msgstr ""
+
+#. module: res_documents
+#: model:mail.template,body_html:res_documents.email_template_res_document
+msgid ""
+"<p>Hello <t t-out=\"object.employee_id.name\"/>,</p><br/>\n"
+"        <p>Your Document <b><t t-out=\"object.type_id.name\"/></b> is <b><t t-out=\"object.doc_number\"/></b> has been issue of <t t-out=\"object.issue_date\"/> by <t t-out=\"user.name\"/>.</p><br/>\n"
+"        <p>Thank you,</p>\n"
+"        <p><t t-out=\"user.name\"/></p>\n"
+"        "
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Attachment"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__attachment_ids
+msgid "Attachments"
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.actions.act_window,help:res_documents.action_res_document_type
+msgid "Click to define a new Document Type."
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.actions.act_window,help:res_documents.action_res_documents
+msgid "Click to define a new Document."
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__code
+msgid "Code"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.constraint,message:res_documents.constraint_res_document_type_code
+msgid "Code must be unique per Document!"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__company_id
+msgid "Company"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields.selection,name:res_documents.selection__res_documents__state__confirm
+msgid "Confirmed"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__create_uid
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__create_date
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__expiry_date
+msgid "Date of Expiry"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__issue_date
+msgid "Date of Issue"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__display_name
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.actions.act_window,name:res_documents.action_res_documents
+#: model:ir.model.fields,field_description:res_documents.field_hr_employee__document_ids
+msgid "Document"
+msgstr ""
+
+#. module: res_documents
+#: model:mail.template,name:res_documents.email_template_res_document
+#: model:mail.template,name:res_documents.email_template_res_document_expire
+msgid "Document - Send by Email"
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Document Details"
+msgstr ""
+
+#. module: res_documents
+#: model:mail.template,name:res_documents.email_template_res_documents_notify
+msgid "Document Expiration Notification - Send by Email"
+msgstr ""
+
+#. module: res_documents
+#: model:mail.template,subject:res_documents.email_template_res_document_expire
+msgid "Document Expire"
+msgstr ""
+
+#. module: res_documents
+#: model:mail.template,subject:res_documents.email_template_res_document
+msgid "Document Issue"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.actions.act_window,name:res_documents.action_res_document_type
+#: model:ir.model,name:res_documents.model_res_document_type
+#: model:ir.ui.menu,name:res_documents.menu_hr_document_type
+#: model_terms:ir.ui.view,arch_db:res_documents.view_res_document_type_form
+#: model_terms:ir.ui.view,arch_db:res_documents.view_res_document_type_tree
+msgid "Document Type"
+msgstr ""
+
+#. module: res_documents
+#: code:addons/res_documents/models/res_documents.py:0
+#: model:ir.model.fields,field_description:res_documents.field_hr_employee__documents_count
+#: model:ir.ui.menu,name:res_documents.menu_hr_document
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_employee_form
+#, python-format
+msgid "Documents"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields.selection,name:res_documents.selection__res_documents__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model,name:res_documents.model_hr_employee
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__employee_id
+msgid "Employee"
+msgstr "Employé"
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Employee Details"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields.selection,name:res_documents.selection__res_documents__state__expiry
+msgid "Expiry"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__id
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__id
+msgid "ID"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_needaction
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_has_error
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Issue"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields.selection,name:res_documents.selection__res_documents__state__issue
+msgid "Issued"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type____last_update
+#: model:ir.model.fields,field_description:res_documents.field_res_documents____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__write_uid
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__write_date
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__manager_id
+msgid "Manager"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_document_type__name
+msgid "Name"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__notes
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Notes"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__doc_number
+msgid "Number"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__issue_place
+msgid "Place of Issue"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__position
+msgid "Position"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__profession
+msgid "Profession"
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Refuse"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields.selection,name:res_documents.selection__res_documents__state__refuse
+msgid "Refused"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields.selection,name:res_documents.selection__res_documents__state__renew
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Renew"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model,name:res_documents.model_res_documents
+msgid "Res Documents"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.actions.server,name:res_documents.ir_cron_documents_scheduler_action_ir_actions_server
+#: model:ir.cron,cron_name:res_documents.ir_cron_documents_scheduler_action
+#: model:ir.cron,name:res_documents.ir_cron_documents_scheduler_action
+msgid "Scheduled Employee's Documents Expiration"
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Set to Draft"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__state
+msgid "Status"
+msgstr ""
+
+#. module: res_documents
+#: model_terms:ir.ui.view,arch_db:res_documents.res_documents_view_form
+msgid "Submit"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__type_id
+msgid "Type"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__is_visible_on_report
+msgid "Visible on Report"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,field_description:res_documents.field_res_documents__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: res_documents
+#: model:ir.model.fields,help:res_documents.field_res_documents__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: res_documents
+#: model:mail.template,subject:res_documents.email_template_res_documents_notify
+msgid "{{object.employee_id.name}} Document Expiration"
+msgstr ""

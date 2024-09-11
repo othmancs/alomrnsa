@@ -1,14 +1,14 @@
+# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 from odoo import models, fields, api, _
-from ast import literal_eval
 
 
 class ResDocumentType(models.Model):
     _name = 'res.document.type'
+    _description = 'Document Type'
 
     code = fields.Char('Code', required=True)
     name = fields.Char('Name', required=True)
@@ -21,59 +21,43 @@ class ResDocumentType(models.Model):
 class ResDocuments(models.Model):
     _name = 'res.documents'
     _inherit = ['mail.thread']
+    _description = 'Res Documents'
 
-#     applicant_id =  fields.Many2one('hr.applicant', 'Applicant')
     type_id = fields.Many2one('res.document.type', 'Type')
     doc_number = fields.Char('Number', size=128)
     issue_place = fields.Char('Place of Issue', size=128)
-    issue_date = fields.Date('Date of Issue', track_visibility='onchange')
-    expiry_date = fields.Date('Date of Expiry', track_visibility='onchange')
+    issue_date = fields.Date('Date of Issue', tracking=True)
+    expiry_date = fields.Date('Date of Expiry', tracking=True)
     notes = fields.Text('Notes')
-    employee_id = fields.Many2one('hr.employee', 'Employee')
-    manager_id = fields.Many2one('hr.employee', string='Manager', track_visibility='onchange')
-    company_id = fields.Many2one('res.company', 'Company')
+    employee_id = fields.Many2one('hr.employee', 'Employee', required=True, default=lambda self: self.env['hr.employee'].get_employee())
+    manager_id = fields.Many2one('hr.employee', string='Manager', readonly=True, tracking=True)
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.user.company_id)
     is_visible_on_report = fields.Boolean('Visible on Report')
     profession = fields.Char('Profession', size=32)
-    hijri_expiry_date = fields.Char('Date of Expiry(Hijri)')
     position = fields.Char('Position')
     attachment_ids = fields.Many2many('ir.attachment', string='Attachments')
+    notification_type = fields.Selection([
+            ('single', 'Notification on Expiry Date'),
+            ('multi', 'Notification Before Few Days'),
+            ('everyday', 'Everyday Till Expiry Date'),
+            ('everyday_after', 'Notification On And After Expiry')],
+            string='Notification Type', default='single', tracking=True)
+    before_days = fields.Integer('Days')
     state = fields.Selection([
             ('draft', 'Draft'),
             ('confirm', 'Confirmed'),
             ('issue', 'Issued'),
             ('refuse', 'Refused'),
             ('renew', 'Renew'),
-            ('expiry', 'Expiry')], string='Status', readonly=True, copy=False, default='draft', track_visibility='onchange')
+            ('expiry', 'Expiry')], string='Status', readonly=True, copy=False, default='draft', tracking=True)
 
-    @api.model
-    def create(self, vals):
-        res = super(ResDocuments, self).create(vals)
-        partner = []
-        partner.append(self.env.user.partner_id.id)
-        if res.manager_id.user_id:
-            partner.append(res.manager_id.user_id.partner_id.id)
-        if res.employee_id.user_id:
-            partner.append(res.employee_id.user_id.partner_id.id)
-        channel_id = self.env.ref('slnee_hr.manager_channel').id
-        res.message_subscribe(partner_ids=partner, channel_ids=[channel_id])
-        return res
+    @api.onchange('employee_id')
+    def onchange_employee(self):
+        for rec in self:
+            if rec.employee_id:
+                rec.position = rec.employee_id.job_title
+                rec.profession = rec.employee_id.profession
 
-    @api.multi
-    def write(self, vals):
-        partner=[]
-        if vals.get('manager_id'):
-            employee = self.env['hr.employee'].browse(vals.get('manager_id'))
-            if employee.user_id:
-                partner.append(employee.user_id.partner_id.id)
-        if vals.get('employee_id'):
-            employee = self.env['hr.employee'].browse(vals.get('employee_id'))
-            if employee.user_id:
-                partner.append(employee.user_id.partner_id.id)
-        # channel_id=self.env.ref('slnee_hr.manager_channel').id
-        self.message_subscribe(partner_ids=partner)
-        return super(ResDocuments, self).write(vals)
-
-    @api.multi
     @api.depends('employee_id', 'type_id', 'doc_number')
     def name_get(self):
         """
@@ -91,94 +75,117 @@ class ResDocuments(models.Model):
             cron job for automatically sent an email,
             sent notification, your document expired after 1 month.
         """
-        try:
-            template_id = self.env.ref('res_documents.email_template_res_documents_notify')
-        except ValueError:
-            template_id = False
-        for document in self.search([]):
-            if document.expiry_date and document.employee_id.user_id and template_id:
-                if str(datetime.now().date()) == str((datetime.strptime(document.expiry_date, DEFAULT_SERVER_DATE_FORMAT) - relativedelta(months=+1)).date()):
-                    email_to = ''
-                    user = document.employee_id.user_id
-                    if user.email:
-                        email_to = email_to and email_to + ',' + user.email or email_to + user.email
-                    template_id.write({'email_to': email_to, 'reply_to': email_to, 'auto_delete': False})
-                    template_id.send_mail(document.id, force_send=True)
-            if document.expiry_date and document.expiry_date == str(datetime.now().date()) and document.state == 'issue':
-                document.state = 'expiry'
-                if document.state == 'expiry':
-                    ir_model_data = self.env['ir.model.data']
-                    try:
-                        template_id = ir_model_data.get_object_reference('res_documents', 'email_template_res_document_expire')[1]
-                    except ValueError:
-                        template_id = False
-                    if template_id:
-                        template = self.env['mail.template'].browse(template_id)
-                        template.send_mail(document.id, force_send=True,raise_exception=False,email_values=None)
+        today = datetime.now().date()
+        for document in self.search([('state', '=', 'issue')]):
+            if document.expiry_date and document.employee_id.user_id:
+                try:
+                    template_id = self.env.ref('res_documents.email_template_res_documents_notify')
+                except ValueError:
+                    template_id = False
+                email_to = ''
+                user = document.employee_id.user_id
+                if user.email:
+                    email_to = email_to and email_to + ',' + user.email or email_to + user.email
+                template_id.write({'email_to': email_to, 'reply_to': email_to, 'auto_delete': False})
+
+                if document.notification_type == 'single':
+                    if today == document.expiry_date:
+                        template_id.send_mail(document.id, force_send=True)
+                elif document.notification_type == 'multi':
+                    notification_date = (document.expiry_date - relativedelta(days=document.before_days))
+                    if today == notification_date:
+                        template_id.send_mail(document.id, force_send=True)
+                elif document.notification_type == 'everyday':
+                    notification_date = (document.expiry_date - relativedelta(days=document.before_days))
+                    if today >= notification_date or today == document.expiry_date:
+                        template_id.send_mail(document.id, force_send=True)
+                else:
+                    notification_date = (document.expiry_date + relativedelta(days=document.before_days))
+                    if today <= notification_date or today == document.expiry_date:
+                        document.state = 'expiry'
+                        try:
+                            template_expiry_id = self.env.ref('res_documents.email_template_res_document_expire')
+                        except ValueError:
+                            template_expiry_id = False
+
+                        template_expiry_id.write({'email_to': email_to, 'reply_to': email_to, 'auto_delete': False})
+                        template_expiry_id.send_mail(document.id, force_send=True)
         return True
 
-    @api.multi
     def action_send_mail(self):
         """
             send mail using mail template
         """
-        ir_model_data = self.env['ir.model.data']
         try:
-            template_id = ir_model_data.get_object_reference('res_documents', 'email_template_res_document')[1]
+            template_id = self.env.ref('res_documents.email_template_res_document')
         except ValueError:
             template_id = False
         if template_id:
-            template = self.env['mail.template'].browse(template_id)
-            template.send_mail(self.id, force_send=True,raise_exception=False,email_values=None)
+            template_id.send_mail(self.id, force_send=True, raise_exception=False, email_values=None)
         return True
 
-    @api.multi
     def set_draft(self):
         """
             sent the status of generating Document record in draft state
         """
         self.state = 'draft'
 
-    @api.multi
+    def _add_followers(self):
+        """
+            Add employee and manager in followers
+        """
+        partner_ids = []
+        if self.employee_id.user_id:
+            partner_ids.append(self.employee_id.user_id.partner_id.id)
+        if self.manager_id.user_id:
+            partner_ids.append(self.manager_id.user_id.partner_id.id)
+        self.message_subscribe(partner_ids=partner_ids)
+
     def document_submit(self):
         """
             sent the status of generating Document record in confirm state
         """
         self.state = 'confirm'
 
-    @api.multi
+    @api.model
+    def get_employee(self):
+        """
+            Get Employee record depends on current user.
+            return: employee_ids
+        """
+        employee_ids = self.env['hr.employee'].search([('user_id', '=', self.env.uid)]).ids
+        return employee_ids[0] if employee_ids else False
+
     def document_issue(self):
         """
             sent the status of generating Document record in issue state and get issue date
         """
+        self.write({'manager_id': self.get_employee(),
+                    'state': 'issue',
+                    'issue_date': datetime.today()})
         self.action_send_mail()
-        return self.write({'state':'issue', 'issue_date': datetime.today()})
 
-    @api.multi
     def document_refuse(self):
         """
             sent the status of generating Document record in refuse state
         """
         self.state = 'refuse'
 
-    @api.multi
     def document_renew(self):
         """
             sent the status of generating Document record is renew
         """
-        self.state = 'renew'
-        self.expiry_date = ''
-        self.issue_date = ''
+        self.write({'state': 'renew',
+                    'expiry_date': False,
+                    'issue_date': False})
 
 
 class HrEmployee(models.Model):
-
     _inherit = 'hr.employee'
 
     document_ids = fields.One2many('res.documents', 'employee_id', 'Document')
-    documents_count = fields.Integer(string='Documents', compute="_compute_documents")
+    documents_count = fields.Integer(string='Documents', compute='_compute_documents')
 
-    @api.multi
     def _compute_documents(self):
         """
             count total document related employee
@@ -187,27 +194,19 @@ class HrEmployee(models.Model):
             documents = self.env['res.documents'].search([('employee_id', '=', employee.id)])
             employee.documents_count = len(documents) if documents else 0
 
-    @api.multi
     def action_documents(self):
         """
             Show employee Documents
         """
-        document_ids = self.env['res.documents'].search([('employee_id', '=', self.id)])
-        action = self.env.ref('res_documents.action_res_documents')
-        result = action.read()[0]
-        if len(document_ids) > 1:
-            result['domain'] = [('id', 'in', document_ids.ids)]
-        elif len(document_ids) == 1:
-            res = self.env.ref('res_documents.res_documents_view_form', False)
-            result['views'] = [(res.id, 'form')]
-            result['res_id'] = document_ids[0].id
-        else:
-            result['domain'] = [('id', 'in', document_ids.ids)]
-        context = literal_eval(result['context'])
-        context.update({'default_employee_id': self.id,
-                        'default_manager_id': self.coach_id.id,
-                        'from_employee': True,
-                        'search_default_group_state': 0,
-                        'search_default_group_employee_id': 0})
-        result['context'] = context
-        return result
+        self.ensure_one()
+        tree_view = self.env.ref('res_documents.res_documents_view_tree')
+        form_view = self.env.ref('res_documents.res_documents_view_form')
+        return {'type': 'ir.actions.act_window',
+                'name': _('Documents'),
+                'res_model': 'res.documents',
+                'view_mode': 'tree',
+                'views': [(tree_view.id, 'tree'), (form_view.id, 'form')],
+                'domain': [('employee_id', '=', self.id)],
+                'res_id': self.document_ids.ids and self.document_ids.ids[0] or False,
+                'context': self.env.context,
+                }

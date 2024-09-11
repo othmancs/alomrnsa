@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_warning" model="ir.actions.report">
+        <field name="name">Warning Report</field>
+        <field name="model">issue.warning</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_warning.report_warning_template</field>
+        <field name="report_file">hr_warning.report_warning_template</field>
+        <field name="binding_model_id" ref="model_issue_warning"/>
+        <field name="print_report_name">'Warning - %s' % (object.name)</field>
+    </record>
+
+   <template id="report_warning_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <br/><br/>
+                        <h2>
+                            <center><span><b>Warning</b></span></center>
+                        </h2>
+
+                        <p style="text-align:right;">
+                            <b>Date: </b><span t-field="o.warning_date"/>
+                        </p>
+                        <h3>
+                            <p style="color:#FF0000;"><b>Subject Line: </b>Warning notice for <span t-field="o.warning_types"/></p>
+                        </h3>
+                        <p>
+                        <b>Employee Name: </b><span t-esc="', '.join(map(lambda x: x.name, o.employee_ids))"/></p>
+
+                        <p></p>
+                        <p>It is a matter of serious concern that <span t-field="o.warning_types"/> is reapeted despite verbal warnings given. Please treat this letter as a warning for your unacceptable behavior.</p>
+                        <p><span t-field="o.description"/></p>
+                        <p>We would be left with no choice but to suspend or relieve you from work if this unethical behavior continues.</p>
+                        <p>We expect you to rectify your follies and observe good conduct from hereon.</p>
+                        <p style="color:#FF0000;">So,We have decide to take action as following:<br/><span t-field="o.warning_action"/>
+                        <t t-if="o.warning_action in ['expiry', 'prohibit']">
+                            From <span t-field="o.start_date"/>
+                            To <span t-field="o.end_date"/>
+                        </t>
+                        <t t-if="o.is_deduction_from_salary == True">
+                            <t t-if="o.warning_action == 'deduct'">
+                                Deduct <span t-field="o.deduct_type"/>
+                                <t t-if="o.deduct_type == 'amount'">
+                                    <span t-field="o.ded_amt"/>
+                                </t>
+                                <t t-if="o.deduct_type == 'days'">
+                                    <span t-field="o.no_of_days"/>
+                                </t>
+                                <t t-if="o.deduct_type == 'hours'">
+                                    <span t-field="o.no_of_hours"/>
+                                </t>
+                                <t t-if="o.deduct_type == 'percentage'">
+                                    <span t-field="o.percentage"/>%
+                                </t>
+                            </t>
+                        </t>
+                        </p>
+                        Thank you,
+                        <div><span t-field="o.user_id.name"/></div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

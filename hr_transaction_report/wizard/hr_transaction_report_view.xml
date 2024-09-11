@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_transaction_report_wizard" model="ir.ui.view">
+        <field name="name">hr.transaction.report.form</field>
+        <field name="model">hr.transaction.report</field>
+        <field name="arch" type="xml">
+            <form string="HR Transaction Excel Report">
+                <group>
+                    <group>
+                        <field name="name" required="1" attrs="{'readonly': [('excel_file', '!=', False)]}"/>
+                    </group>
+                    <group>
+                        <field name="start_date" attrs="{'readonly': [('excel_file', '!=', False)]}"/>
+                        <field name="end_date" attrs="{'readonly': [('excel_file', '!=', False)]}"/>
+                    </group>
+                </group>
+                <group attrs="{'invisible': [('excel_file', '=', False)]}">
+                    <field name="excel_file" filename="filename" readonly="1"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+
+                <notebook>
+                    <page string="Employees">
+                        <group>
+                            <group>
+                                <field name="employee_selection" widget="radio"/>
+                            </group>
+                            <group>
+                            </group>
+                            <field name="employee_ids" nolabel="1" attrs="{'invisible': [('employee_selection', '=', 'all')], 'required': [('employee_selection', '=', 'selected')]}"/>
+                        </group>
+                    </page>
+
+                    <page string="Options">
+                        <group>
+                            <group>
+                                <field name="add_vacation"/>
+                                <field name="add_transfer"/>
+                                <field name="add_clearance"/>
+                                <field name="add_other_allowance"/>
+                                <field name="add_new_staff"/>
+                            </group>
+                            <group>
+                                <field name="add_sick_leave"/>
+                                <field name="add_loan"/>
+                                <field name="add_warning"/>
+                                <field name="add_cost_report"/>
+                                <field name="payslip_export_id" attrs="{'invisible': [('add_cost_report', '=', False)], 'required': [('add_cost_report', '=', True)]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="generate_hr_transaction_excel_report" string="Print" attrs="{'invisible': [('excel_file', '!=', False)]}" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_transaction_report_wizard" model="ir.actions.act_window">
+        <field name="name">HR Transaction Report</field>
+        <field name="res_model">hr.transaction.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="hr_transaction_report_wizard"/>
+    </record>
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="issue_warning_al" model="issue.warning">
+            <field name="warning_date" eval="DateTime.today()"/>
+            <field name="warning_action">expiry</field>
+            <field name="warning_types" eval="[(6, 0, [ref('hr_warning.poor_performance_warning_type'), ref('hr_warning.behavior_warning_type')])]"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="start_date" eval="DateTime.today()"/>
+            <field name="end_date" eval="DateTime.today() + relativedelta(day=+15)"/>
+            <field name="description">Expiry Warning</field>
+            <field name="target_group">employee</field>
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="issue_warning_jep" model="issue.warning">
+            <field name="warning_date" eval="DateTime.today()"/>
+            <field name="warning_action">expiry</field>
+            <field name="warning_types" eval="[(6, 0, [ref('hr_warning.poor_performance_warning_type'), ref('hr_warning.behavior_warning_type')])]"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="start_date" eval="DateTime.today()"/>
+            <field name="end_date" eval="DateTime.today() + relativedelta(day=+15)"></field>
+            <field name="description">Expiry Warning</field>
+            <field name="target_group">employee</field>
+            <field name="employee_id" ref="hr.employee_jep"></field>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="issue_warning_deduct_amount" model="issue.warning">
+            <field name="warning_date" eval="DateTime.today()"/>
+            <field name="warning_action">deduct</field>
+            <field name="warning_types" eval="[(6, 0, [ref('hr_warning.attendance_warning_type'), ref('hr_warning.tenant_warning_type')])]"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="is_deduction_from_salary">True</field>
+            <field name="deduct_type">amount</field>
+            <field name="ded_amt">500</field>
+            <field name="description">Salary Deduction Warning</field>
+            <field name="target_group">department</field>
+            <field name="department_ids" eval="[(6, 0, [ref('hr.dep_rd')])]"/>
+            <field name="employee_ids" eval="[(6, 0, [ref('hr.employee_al'), ref('hr.employee_qdp')])]"/>
+            <field name="group_mail">True</field>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="issue_warning_deduct_day" model="issue.warning">
+            <field name="warning_date" eval="DateTime.today()"/>
+            <field name="warning_action">deduct</field>
+            <field name="warning_types" eval="[(6, 0, [ref('hr_warning.attendance_warning_type'), ref('hr_warning.tenant_warning_type')])]"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="is_deduction_from_salary">True</field>
+            <field name="deduct_type">days</field>
+            <field name="no_of_days">5</field>
+            <field name="description">Salary Deduction Warning</field>
+            <field name="target_group">department</field>
+            <field name="department_ids" eval="[(6, 0, [ref('hr.dep_rd')])]"/>
+            <field name="employee_ids" eval="[(6, 0, [ref('hr.employee_al'), ref('hr.employee_qdp')])]"/>
+            <field name="group_mail">True</field>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="issue_warning_prohibit" model="issue.warning">
+            <field name="warning_date" eval="DateTime.today()"/>
+            <field name="warning_action">prohibit</field>
+            <field name="warning_types" eval="[(6, 0, [ref('hr_warning.prohibit_warning_type')])]"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="start_date" eval="DateTime.today()"/>
+            <field name="end_date" eval="DateTime.today() + relativedelta(day=+15)"></field>
+            <field name="description">Prohibit Warning</field>
+            <field name="target_group">job</field>
+            <field name="job_ids" eval="[(6, 0, [ref('hr.job_developer')])]"/>
+            <field name="employee_ids" eval="[(6, 0, [ref('hr.employee_fpi'), ref('hr.employee_qdp')])]"/>
+            <field name="group_mail">True</field>
+            <field name="state">draft</field>
+        </record>
+    </data>
+</odoo>

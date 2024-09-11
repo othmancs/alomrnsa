@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit product form view -->
+    <record id="one_time_use_product_product_normal_form_view" model="ir.ui.view">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <div attrs="{'invisible': [('type', '!=', 'product')]}">
+                    <field name="is_one_time_use"/>
+                    <label for="is_one_time_use"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

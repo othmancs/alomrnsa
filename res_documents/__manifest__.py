@@ -1,15 +1,18 @@
+# -*- coding: utf-8 -*-
 # Part of Odoo. See COPYRIGHT & LICENSE files for full copyright and licensing details.
 
 {
     'name': "Res Documents",
     'summary': "Res Documents",
     'description': """
-Allow specific user to add documents and generate expiry date notification""",
-    'author': 'SLNEE',
-    'website': 'http://www.slnee.com',
+        Allow specific user to add documents and generate expiry documents notification
+        """,
+    'author': 'Synconics Technologies Pvt. Ltd.',
+    'website': 'http://www.synconics.com',
     'category': 'HR',
     'version': '1.0',
-    'depends': ['slnee_hr'],
+    'license': 'OPL-1',
+    'depends': ['saudi_hr'],
     'data': [
         'data/document_type_data.xml',
         'data/res_documents_cron.xml',
@@ -20,11 +23,6 @@ Allow specific user to add documents and generate expiry date notification""",
         'views/menu.xml',
     ],
     'demo': [],
-    'images': [
-        'static/description/main_screen.jpg'
-    ],
-    "price": 30.0,
-    "currency": "EUR",
     'installable': True,
     'auto_install': False,
 }

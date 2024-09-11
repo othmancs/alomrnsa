@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit repair order form view -->
+    <record id="repair_purchase_view_repair_order_form" model="ir.ui.view">
+        <field name="name">repair.order.form</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object"
+                    class="oe_stat_button"
+                    id="rma_issue_id"
+                    icon="fa-shopping-cart"
+                    name="action_view_purchase"
+                    attrs="{'invisible': [('purchase_count','=',0)]}">
+                    <field name="purchase_count" widget="statinfo"
+                    string="Purchases" />
+                </button>
+            </div>
+            <field name="partner_id" position="after">
+                <field name="warehouse_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <xpath expr="//field[@name='operations']/tree/field[@name='product_uom_qty']" position="before">
+                <field name="available_qty"/>
+            </xpath>
+            <xpath expr="//field[@name='operations']/form/group/group/field[@name='name']" position="after">
+                <label for="available_qty"/>
+                <div class="o_row">
+                    <field name="available_qty"/>
+                    <field name="product_uom" groups="uom.group_uom"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

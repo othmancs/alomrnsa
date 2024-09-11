@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_order_form_inherit">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//group[@name='sale_total']" position="after">
+                <group class="oe_subtotal_footer_new oe_right" colspan="2" name="sale_total_new">
+                    <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                        <label for="amount_total" />
+                        <button name="button_dummy"
+                            states="draft,sent" string="(update)" class="oe_edit_only oe_link"/>
+                    </div>
+                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+
+                    <div class="oe_subtotal_footer_separator oe_inline o_td_label" style="color: red;" attrs="{'invisible':[('state', 'not in', ['approved'])]}">
+                        <label for="approved_amount" attrs="{'invisible':[('state', 'not in', ['approved'])]}" />
+                    </div>
+                    <field name="approved_amount" style="color: red;" nolabel="1" class="oe_subtotal_footer_separator" readonly="1"  attrs="{'invisible':[('state', 'not in', ['approved'])]}"/>
+                </group>
+            </xpath> -->
+<!--            <field name="//sheet" position="inside">-->
+            <field name="tax_totals" position="after">
+                <div class="oe_subtotal_footer_separator oe_inline o_td_label" style="color: red;" attrs="{'invisible':[('state', 'not in', ['approved'])]}">
+                    <label for="approved_amount" attrs="{'invisible':[('state', 'not in', ['approved'])]}"/>
+                </div>
+                <field name="approved_amount" style="color: red;" nolabel="1" class="oe_subtotal_footer_separator" readonly="1" attrs="{'invisible':[('state', 'not in', ['approved'])]}" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_view_inherit123">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_crm.sale_view_inherit123"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name="action_done" type="object" string="Set to Done"
+                        attrs="{'invisible': [('state', 'in', ['credit_hold', 'approved', 'done', 'cancel'])]}"
+                        help="If a sale order is done, you cannot modify it manually anymore. However, you will still be able to invoice or deliver. This is used to freeze the sale order."/>
+                <button name="delivery_order" type="object" string="Create Delivery" attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'approved']), ('picking_ids', '!=', [])]}"/>
+                <button name="credit_approve" string="Approve" type="object"
+                    states="credit_hold" groups="account.group_account_invoice"/>
+                <button name="cancel_order_on_cc" string="Reject" type="object" states="credit_hold" groups="account.group_account_invoice"/>
+            </xpath>
+            <xpath expr="//page[@name='other_information']" position="inside">
+                <field name="picking_ids" invisible="1"/>
+                <separator string="Approval History"/>
+                <group>
+                    <field name="approval_history_ids" nolabel="1" readonly="1">
+                        <form string="Approval History">
+                            <group colspan="4" col="4">
+                                <field name="user_id"/>
+                                <field name="status"/>
+                                <field name="approved_amount"/>
+                                <field name="date"/>
+                            </group>
+                            <group>
+                                <field name="reason"/>
+                            </group>
+                        </form>
+                        <tree string="Approval History">
+                            <field name="date"/>
+                            <field name="user_id"/>
+                            <field name="approved_amount"/>
+                            <field name="reason"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_view_search_inherit">
+        <field name="name">sale.order.search.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="before">
+                <filter string="CC Hold Orders" domain="[('state', '=', 'credit_hold')]" name="cc_hold_orders_filter"/>
+                <separator/>
+            </filter>
+        </field>
+    </record>
+</odoo>

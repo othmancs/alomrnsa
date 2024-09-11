@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_orderline_approval_history,access_orderline_approval_history,model_orderline_approval_history,base.group_user,1,0,1,0
+access_admin_orderline_approval_history,access_admin_orderline_approval_history,model_orderline_approval_history,base.group_system,1,1,1,1
+access_credit_code,access_credit_code,model_credit_code,base.group_user,1,0,0,0
+access_admin_credit_code,access_admin_credit_code,model_credit_code,base.group_system,1,1,1,1
+access_ir_config_parameter,access_ir_config_parameter,base.model_ir_config_parameter,sales_team.group_sale_manager,1,0,0,0
+access_approval_credit_limit,access_approval_credit_limit,model_approval_credit_limit,,1,1,1,1
