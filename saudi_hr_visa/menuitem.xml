@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="business_visa_new" model="ir.actions.report">
+        <field name="name">Embassy Business Visa Report</field>
+        <field name="model">hr.visa</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_visa.business_visa_report_new</field>
+        <field name="report_file">saudi_hr_visa.business_visa_report_new</field>
+        <field name="print_report_name">'Employee Business Visa Report'</field>
+        <field name="binding_model_id" ref="model_hr_visa"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="embassy_visitvisa_new" model="ir.actions.report">
+        <field name="name">Embassy Visit Visa Report</field>
+        <field name="model">hr.visa</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_visa.embassy_visit_visa_report_new</field>
+        <field name="report_file">saudi_hr_visa.embassy_visit_visa_report_new</field>
+        <field name="print_report_name">'Embassy Visit Visa Report'</field>
+        <field name="binding_model_id" ref="model_hr_visa"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- <record id="visit_visa_new" model="ir.actions.report">
+        <field name="name">Visit Visa Report</field>
+        <field name="model">hr.visa</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_visa.visit_visa_report_new</field>
+        <field name="report_file">saudi_hr_visa.visit_visa_report_new</field>
+        <field name="print_report_name">'Visit Visa Report'</field>
+        <field name="binding_model_id" ref="model_hr_visa"/>
+        <field name="binding_type">report</field>
+    </record -->>
+</odoo>
