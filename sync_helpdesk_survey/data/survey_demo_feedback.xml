@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- User Feedback Form -->
+    <record id="feedback_form" model="survey.survey">
+        <field name="title">Ticket Feedback Form</field>
+        <field name="access_mode">token</field>
+        <field name="users_can_go_back" eval="True"/>
+        <field name="description" type="html">
+        <p>
+            This survey should take less than five minutes.
+        </p>
+        </field>
+    </record>
+ 
+    <record model="survey.question" id="feedback_1">
+        <field name="title">About your Ticket usage</field>
+        <field name="survey_id" ref="feedback_form" />
+        <field name="sequence">1</field>
+        <field name="question_type" eval="False" />
+        <field name="is_page" eval="True" />
+        <field name="description">&lt;p&gt;&lt;/p&gt;</field>
+    </record>
+
+    <record model="survey.question" id="feedback_1_1">
+        <field name="survey_id" ref="feedback_form" />
+        <field name="page_id" ref="feedback_1" />
+        <field name="sequence">1</field>
+        <field name="title">Do you have suggestions on how to improve the process view ?</field>
+        <field name="question_type">text_box</field>
+        <field name="constr_mandatory" eval="True"/>
+    </record>
+
+    <record model="survey.question" id="feedback_1_2">
+        <field name="survey_id" ref="feedback_form" />
+        <field name="page_id" ref="feedback_1"/>
+        <field name="sequence">2</field>
+        <field name="title">Do you have a proposition to help people to contribute?</field>
+        <field name="question_type">text_box</field>
+        <field name="constr_mandatory" eval="True"/>
+    </record>
+
+    <record model="survey.question" id="feedback_1_3">
+        <field name="survey_id" ref="feedback_form" />
+        <field name="page_id" ref="feedback_1" />
+        <field name="sequence">3</field>
+        <field name="title">Are you satisfied with our services?</field>
+        <field name="question_type">matrix</field>
+        <field name="matrix_subtype">simple</field>
+        <field name="constr_mandatory" eval="True" />
+    </record>
+    <record model="survey.question.answer" id="choice_1_1_1">
+        <field name="question_id" ref="feedback_1_3"/>
+        <field name="sequence">1</field>
+        <field name="value">Yes</field>
+    </record>
+    <record model="survey.question.answer" id="choice_1_1_2">
+        <field name="question_id" ref="feedback_1_3"/>
+        <field name="sequence">2</field>
+        <field name="value">No</field>
+    </record>
+    <record model="survey.question.answer" id="choice_1_1_3">
+        <field name="matrix_question_id" ref="feedback_1_3"/>
+        <field name="sequence">1</field>
+        <field name="value">Are you satisfied with our services?</field>
+    </record>
+</odoo>

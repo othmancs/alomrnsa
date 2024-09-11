@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+        <!-- Ticket -->
+    <record id="helpdesk_tickek_quote_1" model="ticket.ticket" context="{'default_intake_demo_data': True}">
+        <field name="name">Wall Cabinets door information</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id6"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_jack"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=6)"/>
+        <field name="priority">3</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_sales"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id16'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_website"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_jamie"/>
+        <field name="partner_phone">(870)-931-0505</field>
+        <field name="partner_mobile">8560954782</field>
+        <field name="partner_email">jamie@example.com</field>
+        <field name="description">Wall Cabinets door colour in white and black with 6th feet, please give me estimate of it.</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_waiting_permission"/>
+    </record>
+    <record id="sync_helpdesk.helpdesk_ticket7" model="ticket.ticket" context="{'default_intake_demo_data': True}">
+        <field name="categ_id" ref="sync_helpdesk.queue_type_sales"/>
+        <field name="description">Broken Corners in 3 door wardrobe Cabinets repairing, also give me estimate for new Cabinet.</field>
+    </record>
+    <!-- Ryan customer sale order 1 -->
+    <record id="sale_order_quote_1" model="sale.order">
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_jamie"/>
+        <field name="partner_invoice_id" ref="sync_helpdesk.helpdesk_customer_jamie"/>
+        <field name="partner_shipping_id" ref="sync_helpdesk.helpdesk_customer_jamie"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_jenson"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+        <field name="date_order" eval="(DateTime.today() - relativedelta(days=2)).strftime('%Y-%m-%d %H:%M')"/>
+        <field name="state">sent</field>
+        <field name="sale_order_template_id" ref="sale_management.sale_order_template_1"/>
+        <field name="ticket_id" ref="helpdesk_tickek_quote_1"/>
+        <field name="payment_term_id" ref="account.account_payment_term_15days"/>
+        <field name="validity_date" eval="(DateTime.today() - relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+        <field name="expected_date" eval="(DateTime.today() - relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+
+    <record id="sale_order_line_quote_1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_quote_1"/>
+        <field name="name">Wall Cabinets</field>
+        <field name="product_id" ref="sync_helpdesk_sale_quote.wall_cabinets_product"/>
+        <field name="product_uom_qty">3</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="price_unit">1400.00</field>
+    </record>
+
+    <record id="sale_order_option_quote_1" model="sale.order.option">
+        <field name="order_id" ref="sale_order_quote_1"/>
+        <field name="name">Bar Cabinets</field>
+        <field name="product_id" ref="sync_helpdesk_sale_quote.bar_cabinets_product"/>
+        <field name="quantity">13</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="price_unit">1200.00</field>
+    </record>
+
+     <!-- Ryan customer sale order 2 -->
+    <record id="sale_order_quote_2" model="sale.order">
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="partner_invoice_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="partner_shipping_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_jenson"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+        <field name="sale_order_template_id" ref="sale_management.sale_order_template_1"/>
+        <field name="date_order" eval="(DateTime.today() - relativedelta(days=2)).strftime('%Y-%m-%d %H:%M')"/>
+        <field name="state">sent</field>
+        <field name="ticket_id" ref="sync_helpdesk.helpdesk_ticket7"/>
+        <field name="payment_term_id" ref="account.account_payment_term_15days"/>
+        <field name="validity_date" eval="(DateTime.today() - relativedelta(days=1)).strftime('%Y-%m-%d')"/>
+        <field name="expected_date" eval="(DateTime.today() - relativedelta(days=2)).strftime('%Y-%m-%d')"/>
+    </record>
+
+    <record id="sale_order_line_quote_2" model="sale.order.line">
+        <field name="order_id" ref="sale_order_quote_2"/>
+        <field name="name">Wall Cabinets</field>
+        <field name="product_id" ref="sync_helpdesk_sale_quote.wall_cabinets_product"/>
+        <field name="product_uom_qty">13</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="price_unit">1400.00</field>
+    </record>
+
+    <record id="sale_order_option_quote_2" model="sale.order.option">
+        <field name="order_id" ref="sale_order_quote_2"/>
+        <field name="name">Bar Cabinets</field>
+        <field name="product_id" ref="sync_helpdesk_sale_quote.bar_cabinets_product"/>
+        <field name="quantity">13</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="price_unit">1200.00</field>
+    </record>
+</odoo>

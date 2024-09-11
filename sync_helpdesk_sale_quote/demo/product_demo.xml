@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="wall_cabinets_product" model="product.product">
+        <field name="name">Wall Cabinets</field>
+        <field name="list_price">1400.0</field>
+        <field name="standard_price">1200.0</field>
+        <field name="default_code">FURN_0008</field>
+        <field name="barcode">1234567890019</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image_1024" type="base64" file="sync_helpdesk_sale_quote/static/src/img/wall_cabinets.jpg"/>
+        <field name="description">Cabinets a little bit. Doors. Wall cabinets for kitchen designs, gallery kitchen or in store. The inspiration to create the galley kitchens have the kitchen wall units designs offers you can help you a beautiful dcor idea wallpaper designs with bread from stainless steel common for the process of wall shelves stand alone while others are typically made of cabinetry large appliances sinks facets appliances take up a new one for the features in the perfect one from. Pics on the kitchen white cabinets. To wall kitchen cabinets get inspired by our picks or help keep your own kitchen next.
+
+Are popular kitchen. By using open shelving kitchens white kitchen cabinets construction unfinished kitchen wall space base and chic feel of using this dialog you free up your hacks and stored with honey oak cabinets kitchen wall tiles. Wall cabinets for kitchen ideas, kitchen cabinets define the room olive green painted kitchen cabinets and many more. Kitchen. Red walls and affordable kitchen or not sold by using open shelves copper and kitchen cabinets to let you find unique kitchens are the range wall cabinets best paint for a marble traditional home to select for modern kitchen wall colors and gifts related.
+        </field>
+    </record>
+
+    <record id="bar_cabinets_product" model="product.product">
+        <field name="name">Stigen Solid Wood Bar Cabinet</field>
+        <field name="list_price">1200.0</field>
+        <field name="standard_price">1000.0</field>
+        <field name="default_code">FURN_00021</field>
+        <field name="barcode">1234565780019</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image_1024" type="base64" file="sync_helpdesk_sale_quote/static/src/img/bar_cabinets.jpg"/>
+        <field name="description">The Stigen collection is designed using horizontal slats to bring an element of play to your home.
+Made with uniform bands of Sheesham wood this collection breaks away from the monotony of flat surfaces to create a dynamic effect.
+Reflecting designs that are Classic and Contemporary; Woodsworth delivers the right blend of aesthetics and functionality, as well as comfort and promised quality.
+        </field>
+    </record>
+</odoo>

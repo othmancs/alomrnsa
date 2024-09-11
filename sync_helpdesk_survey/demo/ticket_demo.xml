@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Tags -->
+    <record model="ticket.tag" id="support_tag_id23">
+        <field name="name">McTaylor Bunk Bed Broken</field>
+    </record>
+
+    <record model="ticket.tag" id="support_tag_id24">
+        <field name="name">Library Table With Partition</field>
+    </record>
+
+    <!-- Tickets-->
+    <record model="ticket.ticket" id="ticket_survey_1" context="{'default_intake_demo_data': True}">
+        <field name="name">McTaylor Bunk Bed Broken</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id4"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_ronnie"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('support_tag_id23'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_website"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_charles"/>
+        <field name="partner_phone">(870)-931-0505</field>
+        <field name="partner_mobile">+1-541-754-3010</field>
+        <field name="partner_email">charles@2905.com</field>
+        <field name="description">McTaylor Bunk Bed repairing because the legs is broken</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_solved"/>
+        <field name="is_email_send">True</field>
+    </record>
+
+    <record model="ticket.ticket" id="ticket_survey_2" context="{'default_intake_demo_data': True}">
+        <field name="name">Library Table With Partition Broken</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id4"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_ronnie"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('support_tag_id24'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_website"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="partner_phone">(870)-991-0905</field>
+        <field name="partner_mobile">+1-541-754-2010</field>
+        <field name="partner_email">frederick@2905.com</field>
+        <field name="description">Library Table With Partition repairing because the legs is broken</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_solved"/>
+        <field name="is_email_send">True</field>
+    </record>
+
+</odoo>

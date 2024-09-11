@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Rating action -->
+    <record id="rating_rating_action_ticket" model="ir.actions.act_window">
+        <field name="name">Customer Ratings</field>
+        <field name="res_model">rating.rating</field>
+        <field name="view_mode">kanban,pivot,graph</field>
+        <field name="domain">[('res_model', '=', 'ticket.ticket'), ('res_id', '=', active_id), ('consumed', '=', True)]</field>
+        <field name="help" type="html">
+            <p>
+                Customer ratings on tasks. If you have no rating, change your ticket Settings to activate it.
+            </p>
+        </field>
+    </record>
+
+    <!-- Inherit ticket form view -->
+    <record id="support_ticket_view_form_inherit_survey" model="ir.ui.view">
+        <field name="name">ticket.ticket.form.inherit</field>
+        <field name="model">ticket.ticket</field>
+        <field name="inherit_id" ref="sync_helpdesk.support_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="partner_survey_count" type="object" class="oe_stat_button" icon="fa-external-link" attrs="{'invisible': [('count_survey', '=', 0)]}">
+                    <field string="Survey" name="count_survey" widget="statinfo"/>
+                </button>
+                <button name="%(rating_rating_action_ticket)d" type="action" attrs="{'invisible': [('rating_count', '=', 0)]}" class="oe_stat_button" icon="fa-smile-o">
+                    <field name="rating_count" string="Rating" widget="statinfo"/>
+                </button>
+            </div>
+            <group name="ticket_reporter" position="after">
+                <group string="Survey Details">
+                    <field name="is_email_send" string='Survey' attrs="{'readonly':[('is_done','=',True)]}"/>
+                    <field name="survey_token" invisible="1"/>
+                </group>
+            </group>
+            <field name="partner_id" position="attributes">
+                <attribute name="attrs">{'required':[('is_email_send','=',True)], 'readonly':['|', ('is_done','=',True), ('is_cancel','=',True)]}</attribute>
+            </field>
+            <field name="partner_email" position="attributes">
+                <attribute name="attrs">{'required':[('is_email_send','=',True)], 'readonly':['|', ('is_done','=',True), ('is_cancel','=',True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- Inherit ticket stage form view -->
+    <record id="view_support_stage_form_inherit" model="ir.ui.view">
+        <field name="name">ticket.stage.form.inherit</field>
+        <field name="model">ticket.stage</field>
+        <field name="inherit_id" ref="sync_helpdesk.support_stage_view_form"/>
+        <field name="arch" type="xml">
+            <field name='fold' position="after">
+                <field name="survey_template" attrs="{'invisible': [('is_close', '!=', True)]}" context="{'for_ticket':1}"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Inherit ticket kanban view -->
+    <record id="project_task_view_kanban_inherit_rating" model="ir.ui.view">
+        <field name="name">ticket.ticket.view.kanban.inherit.rating</field>
+        <field name="model">ticket.ticket</field>
+        <field name="inherit_id" ref="sync_helpdesk.support_ticket_kanban_view"/>
+        <field name="arch" type="xml">
+            <field name="color" position="after">
+                <field name="rating_last_value"/>
+                <field name="rating_ids"/>
+            </field>
+            <div class="oe_kanban_bottom_left" position="inside">
+                <b t-if="record.rating_ids.raw_value.length">
+                    <span style="font-weight:bold;" class="fa fa-fw mt4 fa-smile-o text-success" t-if="record.rating_last_value.value == 10" title="Latest Rating: Satisfied"/>
+                    <span style="font-weight:bold;" class="fa fa-fw mt4 fa-meh-o text-warning" t-if="record.rating_last_value.value == 5" title="Latest Rating: Not Satisfied"/>
+                    <span style="font-weight:bold;" class="fa fa-fw mt4 fa-frown-o text-danger" t-if="record.rating_last_value.value == 1" title="Latest Rating: Higly Dissatisfied"/>
+                </b>
+            </div>
+        </field>
+    </record>
+
+    <template id="rating_external_page_submit_inherit" inherit_id="rating.rating_external_page_submit">
+        <xpath expr="//t/div//div[1]//form[1]" position="inside">
+            <a id="submit_survey" t-attf-href="/rating/#{token}/#{rate}/submit_survey" class="btn btn-primary" role="button" style="margin-top:8px;">
+                <span>Send More Feedback</span>
+            </a>
+        </xpath>
+    </template>
+
+</odoo>

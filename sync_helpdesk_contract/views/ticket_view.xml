@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit ticket form view -->
+    <record id="support_ticket_view_form_inherit_contract" model="ir.ui.view">
+        <field name="name">ticket.ticket.form.inherit</field>
+        <field name="model">ticket.ticket</field>
+        <field name="inherit_id" ref="sync_helpdesk.support_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="contract_id" domain="[('state', '=', 'open'),('partner_id','=',partner_id)]" attrs="{'readonly':['|', ('is_done','=',True), ('is_cancel','=',True)]}" options="{'no_create_edit': 1}" groups="base.group_user"/>
+                <field name="service_id" context="{'contract_service':contract_id, 'ticket_service':1}" attrs="{'readonly':['|', ('is_done','=',True), ('is_cancel','=',True)]}" options="{'no_create_edit': 1}" groups="base.group_user"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

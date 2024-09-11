@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="contract_receipt">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div style="margin-bottom:20px;" class="row">
+                            <t t-set="address">
+                                <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                                <div t-if="o.partner_id.vat" class="mt16">
+                                    <t t-if="o.company_id.country_id.vat_label" t-esc="o.company_id.country_id.vat_label" id="inv_tax_id_label"/>
+                                    <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/></div>
+                            </t>
+                            <div class="col-3">
+                                <div t-if="o.user_id">
+                                    <div>
+                                        <strong>Assigned to :</strong>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.user_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div t-if="o.product_id">
+                                    <div>
+                                        <strong>Service :</strong>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.product_id"/>
+                                    </div>
+                                </div>
+                                <div t-if="o.parent_id">
+                                    <div>
+                                        <strong>Parent :</strong>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.parent_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6" t-if="o.code">
+                                <h1>Contract # <span t-field="o.code"/></h1>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:10px;">
+                            <div class="col-6">
+                                <div>
+                                    <strong>Contract Date :</strong>
+                                </div>
+                                <div>
+                                    <span t-field="o.date_start"/>
+                                    <strong> To </strong>
+                                    <span t-field="o.date_end"/>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div t-if="o.duration_in_days">
+                                    <div>
+                                        <strong>Duration (In Days) :</strong>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.duration_in_days"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div t-if="o.contract_period">
+                                    <div>
+                                        <strong>Period :</strong>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.contract_period"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="contract_details" class="row" style="margin-bottom:20px;">
+                            <div class="col-12">
+                                <hr/>
+                                <h4><strong>Service Details</strong></h4>
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:20px;">
+                            <div t-if="o.response_hours" class="col-3">
+                                <div>
+                                    <strong><span t-if="o.twenty4_7_hours">24/7 </span> Response Time :</strong>
+                                </div>
+                                <div>
+                                    <span t-field="o.response_hours"/>
+                                </div>
+                            </div>
+                            <div t-if="not o.twenty4_7_hours" class="col-3">
+                                <div>
+                                    <strong>From :</strong>
+                                </div>
+                                <div>
+                                    <span t-field="o.service_hours_from"/>
+                                </div>
+                            </div>
+                            <div t-if="not o.twenty4_7_hours" class="col-3">
+                                <div>
+                                    <strong>To :</strong>
+                                </div>
+                                <div>
+                                    <span t-field="o.service_hours_to"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="service_details" class="row" style="margin-bottom:20px;">
+                            <table t-if="o.service_line_ids" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Used(Qty)</th>
+                                        <th>Remaining(Qty)</th>
+                                        <th>Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.service_line_ids" t-as="s">
+                                        <td><span t-field="s.name"/></td>
+                                        <td><span t-field="s.used_qty"/></td>
+                                        <td><span t-field="s.remaining_qty"/></td>
+                                        <td><span t-field="s.product_uom_qty"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td style="border-top:2px solid;border-bottom:2px solid;">
+                                            <t t-set="used_qty" t-value="sum(line.used_qty for line in o.service_line_ids)"/>
+                                            <strong><span t-esc="used_qty"/> </strong>
+                                        </td>
+                                        <td style="border-top:2px solid;border-bottom:2px solid;">
+                                            <t t-set="remaining_qty" t-value="sum(line.remaining_qty for line in o.service_line_ids)"/>
+                                            <strong><span t-esc="remaining_qty"/></strong>
+                                        </td>
+                                        <td style="border-top:2px solid;border-bottom:2px solid;">
+                                            <t t-set="product_uom_qty" t-value="sum(line.product_uom_qty for line in o.service_line_ids)"/>
+                                            <strong><span t-esc="'%.3f' % product_uom_qty"/></strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin-bottom:20px;">
+                            <h4><strong>Description</strong></h4>
+                            <div t-if="o.description" class="container">
+                                <p t-field="o.description"></p>
+                            </div>
+                            <div t-if="o.has_special_notes" class="container">
+                                <p t-field="o.special_notes"></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

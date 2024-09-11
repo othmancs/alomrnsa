@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Contract Tree View -->
+    <record id="contract_contract_tree_view" model="ir.ui.view">
+        <field name="name">contract.contract.tree.view</field>
+        <field name="model">contract.contract</field>
+        <field name="arch" type="xml">
+            <tree string="Contract">
+                <field name="code"/>
+                <field name="name" string="Name"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="date_start" widget="date"/>
+                <field name="date_end" widget="date"/>
+                <field name="state"/>
+                <field name="user_id" invisible="1"/>
+                <field name="parent_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Contract form view -->
+    <record id="contract_contract_form_view" model="ir.ui.view">
+        <field name="name">contract.contract.form.view</field>
+        <field name="model">contract.contract</field>
+        <field name="arch" type="xml">
+            <form string="Analytic account">
+                <header>
+                    <button name="confirm_state" string="Confirm" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_cancel_draft" states="cancelled" string="Set to Draft" type="object"/>
+                    <button name="set_pending" string="Pending" type="object" states="open"/>
+                    <button name="set_open" string="Re-open" type="object" states="pending" class="btn-primary"/>
+                    <button name="set_contract_open" class="btn-primary" string="Open" type="object" states="progress"/>
+                    <button name="action_cancel" type="object" string="Cancel" states="draft,progress,invoiced"/>
+                    <button name="action_close" type="object" string="Close" states="open,pending"/>
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="confirm,open" statusbar_colors='{"confirm":"white", "pending":"yellow", "open":"green", "cancelled":"red", "close":"red", "progress":"blue"}'/>
+                </header>
+                <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" type="object" name="partner_contract_count" icon="fa-book" attrs="{'invisible': [('contract_count', '=', 0)]}">
+                        <field string="Contract" name="contract_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object" name="contract_ticket_count" icon="fa-book" attrs="{'invisible': [('ticket_count', '=', 0)]}">
+                        <field string="Ticket" name="ticket_count" widget="statinfo"/>
+                    </button>
+                </div>
+                <div class="oe_title">
+                    <h1><field name="code" readonly="1"/></h1>
+                </div>
+                <group colspan="4" col="4">
+                    <field name="name" string="Name" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="product_id" attrs="{'readonly':[('state','!=','draft')]}" domain="[('contract_ok', '=',True)]" context="{'default_contract_ok': True, 'default_detailed_type': 'service'}" />
+                    <field name="parent_id" string="Parent" domain="[('id','!=',analytic_account_id)]" context="{'current_model': 'contract.contract'}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="company_id" select="1" widget="selection" groups="base.group_multi_company" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="analytic_account_id" invisible="1" required="0" attrs="{'readonly':[('state','!=','draft')]}"/>
+                </group>
+                <notebook colspan="4">
+                    <page string="General">
+                        <group string="Contacts">
+                            <group name="contacts">
+                                <field name="partner_id" string="Customer" required="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="contact_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="user_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+                        <group string="Contract Data" colspan="2">
+                            <group>
+                                <field name="contract_length" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="date_start" widget="date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="duration_in_days"/>
+                            </group>
+                            <group colspan="1" col="2">
+                                <field name="contract_period" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="date_end" widget="date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <separator string="Description" colspan="4"/>
+                            <field colspan="4" name="description" nolabel="1"/>
+                            <group>
+                                <field name="has_special_notes"/>
+                            </group>
+                            <field colspan="4" name="special_notes" nolabel="1" attrs="{'required': [('has_special_notes', '=', True)],'invisible': [('has_special_notes', '=', False)]}"/>
+                        </group>
+                    </page>
+                    <page string="Service Details" name="service_details">
+                        <group>
+                            <separator colspan="4" string="Service Hours"/>
+                            <group>
+                                <field name="twenty4_7_hours" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="service_hours_from" widget="float_time" attrs="{'invisible': [('twenty4_7_hours', '=', True)],'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="response_hours" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="service_hours_to" widget="float_time" attrs="{'invisible': [('twenty4_7_hours', '=', True)], 'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <separator string="Service Lines" colspan="4"/>
+                            <field name="service_line_ids" nolabel="1" widget="one2many_list" attrs="{'readonly':[('state','!=','draft')]}">
+                                <form string="Services">
+                                    <group>
+                                        <group>
+                                            <field name="product_id"/>
+                                            <field name="name"/>
+                                        </group>
+                                        <group>
+                                            <field name="product_uom_qty"/>
+                                            <field name="product_uom" nolabel="1" invisible="1"/>
+                                            <field name="used_qty"/>
+                                            <field name="remaining_qty"/>
+                                        </group>
+                                   </group>
+                                </form>
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty" string="Quantity"/>
+                                    <field name="product_uom" string="UoM" invisible="1"/>
+                                    <field name="used_qty"/>
+                                    <field name="remaining_qty"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- contract search view -->
+    <record id="contract_contract_search_view" model="ir.ui.view">
+        <field name="name">contract.contract.search.view</field>
+        <field name="model">contract.contract</field>
+        <field name="arch" type="xml">
+            <search string="Contract">
+                <filter string="New" icon="terp-document-new" name="draft" domain="[('state','=','draft')]" help="New Accounts"/>
+                <filter string="Confirmed" name="Confirmed" domain="[('state','=','confirm')]" help="Confirmed Accounts" icon="terp-check"/>
+                <separator orientation="vertical"/>
+                <filter icon="terp-dolar_ok!" string="To Invoice" name="To Invoice" domain="[('state','=','progress')]" help="Account ready to be invoiced"/>
+                <filter icon="terp-dolar" string="Invoiced" name="Invoiced" domain="[('state','=','invoiced')]" help="Invoiced Accounts"/>
+                <separator orientation="vertical"/>
+                <filter icon="terp-camera_test" string="Current" name="current" domain="[('state','=','open')]" help="Current Accounts"/>
+                <filter icon="terp-gtk-media-pause" string="Pending" name="Pending" domain="[('state','=','pending')]" help="Pending Accounts"/>
+                <filter icon="STOCK_CANCEL" string="Cancelled" name="Cancelled" domain="[('state','=','cancelled')]" help="Cancelled Accounts"/>
+                <filter icon="terp-dialog-close" string="Closed" name="Closed" domain="[('state','=','close')]" help="Closed Accounts"/>
+                <filter string="My Contract" name="my_contract" domain="['|',('user_id','=',uid),('user_id','=',False)]"/>
+                <newline/>
+                <field name="name" filter_domain="['|', ('name','ilike',self),('code','ilike',self)]"/>
+                <field name="product_id"/>
+                <field name="partner_id" />
+                <field name="user_id"/>
+                <newline/>
+                <field name="date_start" widget="date"/>
+                <field name="date_end" widget="date"/>
+                <field name="service_hours_from" string="Service Hours[From]" widget="float_time"/>
+                <field name="service_hours_to" string="Service Hours[To]" widget="float_time"/>
+                <field name="has_special_notes"/>
+                <field name="twenty4_7_hours"/>
+                <newline/>
+                <group expand="0" string="Group By...">
+                    <filter string="State" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Responsible" name="Responsible" domain="[]" context="{'group_by':'user_id'}"/>
+                    <filter string="Customer" name="Customer" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Parent" name="Parent" domain="[]" context="{'group_by':'parent_id'}"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Start Date" name="Start Date" domain="[]" context="{'group_by' : 'date_start'}" />
+                    <filter string="End Date" name="End Date" domain="[]" context="{'group_by' : 'date_end'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Contract action -->
+    <record id="support_contracts_action" model="ir.actions.act_window">
+        <field name="name">Contracts</field>
+        <field name="res_model">contract.contract</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_my_contract':1, 'state': 'draft'}</field>
+    </record>
+</odoo>

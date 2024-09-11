@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit ticket form view -->
+    <record id="sync_helpdesk_escalation_support_ticket_view_form" model="ir.ui.view">
+        <field name="name">ticket.ticket.form</field>
+        <field name="model">ticket.ticket</field>
+        <field name="inherit_id" ref="sync_helpdesk.support_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <button name="assign_ticket_to_self" position="after">
+                <button name="escalate_support_team"
+                    string="Escalate"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', ('is_done','=',True), ('is_cancel','=',True)]}"
+                    groups="sync_helpdesk.group_helpdesk_manager" />
+            </button>
+            <xpath expr="//field[@name='dont_email']" position="after">
+                <field name="escalate" invisible='1'/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <record id="view_support_ticket_filter_inherit_escalation" model="ir.ui.view">
+        <field name="name">ticket.ticket.search.view.inherit</field>
+        <field name="model">ticket.ticket</field>
+        <field name="inherit_id" ref="sync_helpdesk.view_support_ticket_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="after">
+                <field name="escalate"/>
+            </xpath>
+            <xpath expr="//filter[@name='is_close']" position="after">
+                <filter string="Escalate" name="Escalate" domain="[('escalate','=',True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

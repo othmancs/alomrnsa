@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="helpdesk_crm_lead1" model="crm.lead">
+        <field name="name">Apply Polish on Bed</field>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="type">lead</field>
+        <field name="partner_name">Furniture opensides</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="website">www.furniture.com</field>
+        <field name="contact_name">Frederick</field>
+        <field name="email_from">frederick@example.com</field>
+        <field name="function">Consultant</field>
+        <field name="phone">(870)-931-0515</field>
+        <field name="mobile">8569654782</field>
+        <field name="priority">2</field>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_william"/>
+        <field name="tag_ids" eval="[(4, ref('sales_team.categ_oppor3'))]"/>
+        <field name="description">What kind of polish should I use on my furniture?</field>
+    </record>
+
+    <record id="helpdesk_crm_lead2" model="crm.lead">
+        <field name="name">Bolt Issue in Coffee Table</field>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_charles"/>
+        <field name="type">lead</field>
+        <field name="partner_name">American Signature Furniture</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="website">www.AmericanSignature.com</field>
+        <field name="contact_name">Charles</field>
+        <field name="email_from">charles@example.com</field>
+        <field name="function">Consultant</field>
+        <field name="phone">(870)-931-0525</field>
+        <field name="mobile">8569854710</field>
+        <field name="priority">2</field>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_lewis"/>
+        <field name="tag_ids" eval="[(4, ref('sales_team.categ_oppor3'))]"/>
+        <field name="description">I found a  broken bolt under Coffee Table and now it doesn't work. Can this be fixed?</field>
+    </record>
+
+    <record id="helpdesk_lead_ticket1" model="ticket.ticket" context="{'default_intake_demo_data': True}">
+        <field name="name">Apply Polish on Bed</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_harry"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_question"/>
+        <field name="lead_id" ref="helpdesk_crm_lead1"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id13'))]"/>
+        <field name="medium_id" ref="sync_helpdesk_lead.utm_medium_lead"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="partner_phone">(870)-931-0515</field>
+        <field name="partner_mobile">8569654782</field>
+        <field name="partner_email">frederick@example.com</field>
+        <field name="description">What kind of polish should I use on my furniture?</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_in_progress"/>
+    </record>
+
+    <record id="helpdesk_lead_ticket2" model="ticket.ticket" context="{'default_intake_demo_data': True}">
+        <field name="name">Bolt Issue in Coffee Table</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_harry"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=3)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_question"/>
+        <field name="lead_id" ref="helpdesk_crm_lead2"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id14'))]"/>
+        <field name="medium_id" ref="sync_helpdesk_lead.utm_medium_lead"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_charles"/>
+        <field name="partner_phone">(870)-931-0525</field>
+        <field name="partner_mobile">8569854710</field>
+        <field name="partner_email">lewis@example.com</field>
+        <field name="description">I found a  broken bolt under Coffee Table and now it doesn't work. Can this be fixed?</field>
+    </record>
+</odoo>

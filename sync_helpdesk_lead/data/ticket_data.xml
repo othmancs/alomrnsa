@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- UTM Medium -->
+    <record model="utm.medium" id="utm_medium_lead">
+        <field name="name">Lead</field>
+    </record>
+</odoo>

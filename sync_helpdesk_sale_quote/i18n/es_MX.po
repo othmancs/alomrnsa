@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_helpdesk_sale_quote
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-01 18:53+0000\n"
+"PO-Revision-Date: 2024-09-01 18:53+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_helpdesk_sale_quote
+#: model:ir.model.fields,field_description:sync_helpdesk_sale_quote.field_ticket_ticket__sale_count
+msgid "#Quotations"
+msgstr "#Cotizaciones"
+
+#. module: sync_helpdesk_sale_quote
+#: model_terms:product.template,description:sync_helpdesk_sale_quote.wall_cabinets_product_product_template
+msgid ""
+"Cabinets a little bit. Doors. Wall cabinets for kitchen designs, gallery kitchen or in store. The inspiration to create the galley kitchens have the kitchen wall units designs offers you can help you a beautiful dcor idea wallpaper designs with bread from stainless steel common for the process of wall shelves stand alone while others are typically made of cabinetry large appliances sinks facets appliances take up a new one for the features in the perfect one from. Pics on the kitchen white cabinets. To wall kitchen cabinets get inspired by our picks or help keep your own kitchen next.\n"
+"\n"
+"Are popular kitchen. By using open shelving kitchens white kitchen cabinets construction unfinished kitchen wall space base and chic feel of using this dialog you free up your hacks and stored with honey oak cabinets kitchen wall tiles. Wall cabinets for kitchen ideas, kitchen cabinets define the room olive green painted kitchen cabinets and many more. Kitchen. Red walls and affordable kitchen or not sold by using open shelves copper and kitchen cabinets to let you find unique kitchens are the range wall cabinets best paint for a marble traditional home to select for modern kitchen wall colors and gifts related."
+msgstr ""
+
+#. module: sync_helpdesk_sale_quote
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk_sale_quote.support_ticket_view_form
+msgid "Estimate"
+msgstr "Estimar"
+
+#. module: sync_helpdesk_sale_quote
+#. odoo-python
+#: code:addons/sync_helpdesk_sale_quote/models/ticket.py:0
+#, python-format
+msgid "Please select customer for create quotation!"
+msgstr "¡Seleccione el cliente para crear una cotización!"
+
+#. module: sync_helpdesk_sale_quote
+#: model:ir.model.fields,field_description:sync_helpdesk_sale_quote.field_ticket_ticket__sale_quotation_ids
+msgid "Quotations"
+msgstr "Cotizaciones"
+
+#. module: sync_helpdesk_sale_quote
+#: model:ir.model,name:sync_helpdesk_sale_quote.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de Venta"
+
+#. module: sync_helpdesk_sale_quote
+#: model:product.template,name:sync_helpdesk_sale_quote.bar_cabinets_product_product_template
+msgid "Stigen Solid Wood Bar Cabinet"
+msgstr ""
+
+#. module: sync_helpdesk_sale_quote
+#: model_terms:product.template,description:sync_helpdesk_sale_quote.bar_cabinets_product_product_template
+msgid ""
+"The Stigen collection is designed using horizontal slats to bring an element of play to your home.\n"
+"Made with uniform bands of Sheesham wood this collection breaks away from the monotony of flat surfaces to create a dynamic effect.\n"
+"Reflecting designs that are Classic and Contemporary; Woodsworth delivers the right blend of aesthetics and functionality, as well as comfort and promised quality."
+msgstr ""
+
+#. module: sync_helpdesk_sale_quote
+#: model:ir.model,name:sync_helpdesk_sale_quote.model_ticket_ticket
+#: model:ir.model.fields,field_description:sync_helpdesk_sale_quote.field_sale_order__ticket_id
+msgid "Ticket"
+msgstr "Boleto"
+
+#. module: sync_helpdesk_sale_quote
+#: model:product.template,name:sync_helpdesk_sale_quote.wall_cabinets_product_product_template
+msgid "Wall Cabinets"
+msgstr ""

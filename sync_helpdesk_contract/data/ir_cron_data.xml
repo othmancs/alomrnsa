@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Cron for check contract end date -->
+    <record id="contract_end_date_scheduler" model="ir.cron">
+        <field name="name" >Contract End Date</field>
+        <field eval="True" name="active"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="state">code</field>
+        <field name="code">model.scheduler_check_enddate()</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="model_contract_contract"/>
+    </record>
+</odoo>

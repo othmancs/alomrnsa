@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="rating_ticket_1" model="rating.rating">
+        <field name="rating">5</field>
+        <field name="res_model_id" ref="model_ticket_ticket"/>
+        <field model="res.partner" name="rated_partner_id" search="[('id', '=', obj().env['ticket.ticket'].default_get_partner(ref('sync_helpdesk.helpdesk_user_ronnie')))]"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_charles"/>
+        <field name="res_id" ref="sync_helpdesk_survey.ticket_survey_1"/>
+        <field name="consumed">True</field>
+    </record>
+
+    <record id="rating_ticket_2" model="rating.rating">
+        <field name="rating">5</field>
+        <field name="res_model_id" ref="model_ticket_ticket"/>
+        <field model="res.partner" name="rated_partner_id" search="[('id', '=', obj().env['ticket.ticket'].default_get_partner(ref('sync_helpdesk.helpdesk_user_ronnie')))]"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="res_id" ref="sync_helpdesk_survey.ticket_survey_2"/>
+        <field name="consumed">True</field>
+    </record>
+
+</odoo>

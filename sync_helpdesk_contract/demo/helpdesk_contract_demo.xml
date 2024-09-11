@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="helpdesk_analytic_account" model="account.analytic.account">
+        <field name="name">Helpdesk</field>
+        <field name="code">Helpdesk</field>
+        <field name="plan_id" ref="analytic.analytic_plan_internal"/>
+    </record>
+
+    <record id="chair_product" model="product.product">
+        <field name="name">Wing Chair</field>
+        <field name="sale_ok">True</field>
+        <field name="purchase_ok">True</field>
+        <field name="contract_ok">True</field>
+        <field name="type">service</field>
+        <field name="lst_price">500.0</field>
+        <field name="standard_price">400.0</field>
+        <field name="type">service</field>
+        <field name="default_code">WING</field>
+        <field name="categ_id" ref="product.product_category_all"/>
+        <field name="image_1024" type="base64" file="sync_helpdesk_contract/static/img/wing_chair.jpg"/>
+        <field name="contract_length">1</field>
+        <field name="contract_period">months</field>
+        <field name="twenty4_7_hours">True</field>
+        <field name="response_hours">1</field>
+    </record>
+
+    <record id="2_seater_sofa_product" model="product.product">
+        <field name="name">Retro Square Arm Sofa</field>
+        <field name="sale_ok">True</field>
+        <field name="purchase_ok">True</field>
+        <field name="contract_ok">True</field>
+        <field name="type">service</field>
+        <field name="lst_price">700.0</field>
+        <field name="standard_price">550.0</field>
+        <field name="type">service</field>
+        <field name="default_code">ARMSOFA</field>
+        <field name="categ_id" ref="product.product_category_all"/>
+        <field name="image_1024" type="base64" file="sync_helpdesk_contract/static/img/sofa.jpeg"/>
+        <field name="contract_length">1</field>
+        <field name="contract_period">months</field>
+        <field name="service_hours_from">8</field>
+        <field name="service_hours_to">12</field>
+        <field name="response_hours">1</field>
+    </record>
+
+    <record id="chair_service_line" model="product.service.line">
+        <field name="product_id" ref="chair_product"/>
+        <field name="parent_id" ref="chair_product"/>
+        <field name="name">Wheel and Lift service</field>
+        <field name="product_uom_qty">2</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+    </record>
+
+    <record id="2_seater_sofa_service_line" model="product.service.line">
+        <field name="product_id" ref="2_seater_sofa_product"/>
+        <field name="parent_id" ref="2_seater_sofa_product"/>
+        <field name="name">Fabric cover</field>
+        <field name="product_uom_qty">4</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+    </record>
+
+    <record id="helpdesk_contract_chair" model="contract.contract">
+        <field name="name">Chair services</field>
+        <field name="product_id" ref="chair_product"/>
+        <field name="parent_id" ref="helpdesk_analytic_account"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_ryan"/>
+        <field name="contact_id" ref="sync_helpdesk.helpdesk_customer_ryan"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_william"/>
+        <field name="date_start" eval="DateTime.today()"/>
+        <field name="contract_period">months</field>
+        <field name="contract_length">6</field>
+        <field name="date_end" eval="DateTime.today() + relativedelta(months=6,days=-1)"/>
+        <field name="twenty4_7_hours">True</field>
+        <field name="response_hours">1</field>
+        <field name="description">Contract apply on Chair related Issues.That is, Wheel not working, lift issues, Loose legs.</field>
+    </record>
+
+    <record id="helpdesk_contract_2_seater_sofa" model="contract.contract">
+        <field name="name">Sofa Services</field>
+        <field name="product_id" ref="2_seater_sofa_product"/>
+        <field name="parent_id" ref="helpdesk_analytic_account"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_elliott"/>
+        <field name="contact_id" ref="sync_helpdesk.helpdesk_customer_elliott"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_lewis"/>
+        <field name="date_start" eval="DateTime.today()"/>
+        <field name="contract_period">years</field>
+        <field name="contract_length">1</field>
+        <field name="date_end" eval="DateTime.today() + relativedelta(years=1,days=-1)"/>
+        <field name="service_hours_from">8</field>
+        <field name="service_hours_to">12</field>
+        <field name="response_hours">2</field>
+        <field name="description">Contract apply on sofa related Issues.That is, Loose legs, damage fabric cover.</field>
+        <field name="has_special_notes">True</field>
+        <field name="special_notes">Other services not included in contract is billable.</field>
+    </record>
+
+    <function model="contract.contract" name="confirm_state"
+        eval="[[ref('helpdesk_contract_2_seater_sofa')]]"
+        context="{'install_mode': True}"/>
+    <function model="contract.contract" name="confirm_state"
+        eval="[[ref('helpdesk_contract_chair')]]"
+        context="{'install_mode': True}"/>
+    <function model="contract.contract"
+        name="set_contract_open"
+        eval="[[ref('helpdesk_contract_chair'), ref('helpdesk_contract_2_seater_sofa')]]"
+        context="{'install_mode': True}"/>
+
+    <record id="sync_helpdesk.helpdesk_ticket1" model="ticket.ticket" context="{'default_intake_demo_data': True}">
+        <field name="contract_id" ref="helpdesk_contract_chair"/>
+        <field name="service_id" ref="chair_product"/>
+    </record>
+
+    <record id="sync_helpdesk.helpdesk_ticket2" model="ticket.ticket" context="{'default_intake_demo_data': True}">
+        <field name="contract_id" ref="helpdesk_contract_2_seater_sofa"/>
+        <field name="service_id" ref="2_seater_sofa_product"/>
+    </record>
+</odoo>

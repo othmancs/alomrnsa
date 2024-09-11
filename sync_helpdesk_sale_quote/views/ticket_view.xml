@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit ticket form view -->
+    <record id="support_ticket_view_form" model="ir.ui.view">
+        <field name="name">ticket.ticket.form</field>
+        <field name="model">ticket.ticket</field>
+        <field name="inherit_id" ref="sync_helpdesk.support_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="view_quotations"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-usd"
+                    attrs="{'invisible': [('partner_id','=',False)]}">
+                    <field name="sale_count" widget="statinfo" string="Estimate"/>
+                </button>
+                <field name="partner_id" invisible="1"/>
+            </div>
+        </field>
+    </record>
+
+</odoo>

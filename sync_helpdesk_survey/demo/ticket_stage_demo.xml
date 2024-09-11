@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ticket Stage in Survey Template add  -->
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_cancel">
+        <field name="survey_template" ref="sync_helpdesk_survey.rating_ticket_request_email_template"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_solved">
+        <field name="survey_template" ref="sync_helpdesk_survey.rating_ticket_request_email_template"/>
+    </record>
+</odoo>

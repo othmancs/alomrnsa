@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Main Contracts Menu -->
+    <menuitem id="menu_support_allcontracts" name="Contracts" parent="sync_helpdesk.menu_support" sequence="2" groups="sync_helpdesk_contract.group_contract_user"/>
+
+    <menuitem name="Contracts" id="support_contracts_menu" action="support_contracts_action" parent="menu_support_allcontracts" sequence="2" groups="sync_helpdesk_contract.group_contract_user"/>
+    <menuitem name="Products" id="support_products_menu" action="product_service_type_action" parent="menu_support_allcontracts" sequence="3" groups="sync_helpdesk_contract.group_contract_user"/>
+
+    <!-- Report Menu -->
+    <menuitem id="sync_helpdesk.menu_support_reports" name="Reports" parent="sync_helpdesk.menu_support" sequence="9" groups="sync_helpdesk.group_helpdesk_manager,sync_helpdesk_contract.group_contract_manager"/>
+    <menuitem id="menu_support_contract_report" name="Contract" parent="sync_helpdesk.menu_support_reports" action="contract_support_report_action" sequence="2" groups="sync_helpdesk_contract.group_contract_manager"/>
+
+</odoo>

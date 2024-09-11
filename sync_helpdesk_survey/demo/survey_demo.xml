@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- User Feedback Form -->
+    <record model="survey.survey" id="feedback_furn_form">
+        <field name="title">Helpdesk Feedback Form</field>
+        <field name="access_mode">token</field>
+        <field name="users_can_go_back" eval="True" />
+        <field name="description" type="html"><p>&lt;p&gt;This survey should take less than five minutes.&lt;/p&gt;</p></field>
+        <field name="description_done">&lt;p&gt;&lt;/p&gt;</field>
+    </record>
+
+    <record model="survey.question" id="feedback_0_1">
+        <field name="title">Feeback about our services</field>
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form" />
+        <field name="sequence">1</field>
+        <field name="question_type" eval="False" />
+        <field name="is_page" eval="True"/>
+        <field name="description">&lt;p&gt;&lt;/p&gt;</field>
+    </record>
+
+    <!-- Question one -->
+    <record model="survey.question" id="feedback_s_1_1">
+        <field name="page_id" ref="feedback_0_1" />
+        <field name="sequence">1</field>
+        <field name="title">Overall quality of Remote support</field>
+        <field name="question_type">simple_choice</field>
+        <field name="constr_mandatory" eval="True"/>
+    </record>
+
+    <!-- Question one options -->
+    <record id="survey_1_1_1" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_1"/>
+        <field name="sequence">1</field>
+        <field name="value">Very Satisfied</field>
+    </record>
+    <record id="survey_1_1_2" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_1"/>
+        <field name="sequence">2</field>
+        <field name="value">Neatural</field>
+    </record>
+    <record id="survey_1_1_3" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_1"/>
+        <field name="sequence">3</field>
+        <field name="value">Satisfied</field>
+    </record>
+    <record id="survey_1_1_4" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_1"/>
+        <field name="sequence">4</field>
+        <field name="value">Very Unsatisfied</field>
+    </record>
+    <record id="survey_1_1_5" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_1"/>
+        <field name="sequence">5</field>
+        <field name="value">Unsatisfied</field>
+    </record>
+
+    <!-- Question two -->
+    <record model="survey.question" id="feedback_s_1_2">
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="sequence">2</field>
+        <field name="title">Overall quality of the solution</field>
+        <field name="question_type">simple_choice</field>
+        <!-- <field name="display_mode">dropdown</field> -->
+        <field name="constr_mandatory" eval="True"/>
+    </record>
+
+    <!-- Question two options -->
+    <record id="survey_1_2_1" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_2"/>
+        <field name="sequence">1</field>
+        <field name="value">Very Satisfied</field>
+    </record>
+    <record id="survey_1_2_2" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_2"/>
+        <field name="sequence">2</field>
+        <field name="value">Neatural</field>
+    </record>
+    <record id="survey_1_2_3" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_2"/>
+        <field name="sequence">3</field>
+        <field name="value">Satisfied</field>
+    </record>
+    <record id="survey_1_2_4" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_2"/>
+        <field name="sequence">4</field>
+        <field name="value">Very Unsatisfied</field>
+    </record>
+    <record id="survey_1_2_5" model="survey.question.answer">
+        <field name="question_id" ref="feedback_s_1_2"/>
+        <field name="sequence">5</field>
+        <field name="value">Unsatisfied</field>
+    </record>
+
+    <!-- Question Three options -->
+     <record model="survey.question" id="feedback_s_1_3">
+        <field name="page_id" ref="feedback_0_1" />
+        <field name="sequence">3</field>
+        <field name="title">Are you satisfied with our services?</field>
+        <field name="question_type">matrix</field>
+        <field name="matrix_subtype">simple</field>
+        <field name="constr_mandatory" eval="True" />
+    </record>
+
+    <record model="survey.question.answer" id="choice_s_1_1_1">
+        <field name="question_id" ref="feedback_s_1_3"/>
+        <field name="sequence">1</field>
+        <field name="value">Yes</field>
+    </record>
+    <record model="survey.question.answer" id="choice_s_1_1_2">
+        <field name="question_id" ref="feedback_s_1_3"/>
+        <field name="sequence">2</field>
+        <field name="value">No</field>
+    </record>
+    <record model="survey.question.answer" id="choice_s_1_1_3">
+        <field name="question_id" ref="feedback_s_1_3"/>
+        <field name="sequence">1</field>
+        <field name="value">Are you satisfied with our services?</field>
+    </record>
+
+    <!-- Question four options -->
+    <record model="survey.question" id="feedback_s_1_4">
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="sequence">2</field>
+        <field name="title">Comments, suggestions or feedback are all very welcome</field>
+        <field name="question_type">text_box</field>
+    </record>
+
+    <!-- Survey Ticket -->
+    <record id="survey_ticket_1" model="survey.user_input">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="start_datetime" eval="DateTime.today()"/>
+        <field name="state">done</field>
+    </record>
+
+    <record id="survey_line_1" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_1"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_1"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">suggestion</field>
+        <field name="suggested_answer_id" ref="survey_1_1_1"/>
+    </record>
+
+    <record id="survey_line_2" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_1"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_2"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">suggestion</field>
+        <field name="suggested_answer_id" ref="survey_1_2_1"/>
+    </record>
+
+    <record id="survey_line_3" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_1"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_3"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">suggestion</field>
+        <field name="suggested_answer_id" ref="choice_s_1_1_1"/>
+    </record>
+
+    <record id="survey_line_4" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_1"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_4"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">text_box</field>
+        <field name="value_text_box">Yours Repair services is very satisfied to me.</field>
+    </record>
+
+    <record model="ticket.ticket" id="sync_helpdesk_survey.ticket_survey_1">
+        <field model="ticket.ticket" name="survey_token" eval="obj().env['ticket.ticket'].default_get_survey_token(ref('survey_ticket_1'))" />
+    </record>
+
+    <!-- Survey Ticket -->
+    <record id="survey_ticket_2" model="survey.user_input">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="start_datetime" eval="DateTime.today()"/>
+        <field name="state">done</field>
+    </record>
+
+    <record id="survey_line_2_1" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_2"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_1"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">suggestion</field>
+        <field name="suggested_answer_id" ref="survey_1_1_1"/>
+    </record>
+
+    <record id="survey_line_2_2" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_2"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_2"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">suggestion</field>
+        <field name="suggested_answer_id" ref="survey_1_2_1"/>
+    </record>
+
+    <record id="survey_line_2_3" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_2"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_3"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">suggestion</field>
+        <field name="suggested_answer_id" ref="choice_s_1_1_1"/>
+    </record>
+
+    <record id="survey_line_2_4" model="survey.user_input.line">
+        <field name="survey_id" ref="sync_helpdesk_survey.feedback_furn_form"/>
+        <field name="user_input_id" ref="survey_ticket_2"/>
+        <field name="page_id" ref="feedback_0_1"/>
+        <field name="question_id" ref="sync_helpdesk_survey.feedback_s_1_4"/>
+        <field name="value_date" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="answer_type">text_box</field>
+        <field name="value_text_box">Yours Repair services is very satisfied to me.</field>
+    </record>
+
+    <record model="ticket.ticket" id="sync_helpdesk_survey.ticket_survey_2">
+        <field model="ticket.ticket" name="survey_token" eval="obj().env['ticket.ticket'].default_get_survey_token(ref('survey_ticket_2'))"/>
+    </record>
+
+</odoo>
