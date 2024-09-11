@@ -1,0 +1,565 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_gr_operation_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:31+0000\n"
+"PO-Revision-Date: 2023-02-06 08:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__approved_date
+msgid "Approved Date"
+msgstr "Fecha de Aprobación"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__approved_by
+msgid "Approved by"
+msgstr "Aprobado por"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__calculate_company_expense
+msgid "Calculate Company Expense"
+msgstr "Calcular el Gasto de la Empresa"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__client_name
+msgid "Client Name"
+msgstr "Nombre del Cliente"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__company_contribution
+msgid "Company Contribution"
+msgstr "Contribución de la Empresa"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__create_date
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__is_damage
+msgid "Damage"
+msgstr "Daño"
+
+#. module: saudi_hr_gr_operation_request
+#: model:product.product,uom_name:saudi_hr_gr_operation_request.operation_request
+#: model:product.template,uom_name:saudi_hr_gr_operation_request.operation_request_product_template
+msgid "Days"
+msgstr "Días"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Description for Operation Request..."
+msgstr "Descripción para Solicitud de Operación..."
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__display_name
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__documents
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields.selection,name:saudi_hr_gr_operation_request.selection__gr_operations__state__done
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__emp_contribution
+msgid "Employee Contribution"
+msgstr "Contribución del Empleado"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Employee Information"
+msgstr "Información del Empleado"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Expense"
+msgstr "Gastos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__expense_needed
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__expense_needed
+msgid "Expense Needed"
+msgstr "Gasto Necesario"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__expense_note
+msgid "Expense Note"
+msgstr "Nota de Gastos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__expense_ids
+msgid "Expenses"
+msgstr "Gastos"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Filter"
+msgstr "Filtrar"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model,name:saudi_hr_gr_operation_request.model_gr_operations
+msgid "GR Operations"
+msgstr "Operaciones GR"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model,name:saudi_hr_gr_operation_request.model_gr_request_type
+msgid "GR Request type"
+msgstr "GR Tipo de solicitud"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Generate Expense"
+msgstr "Generar Gasto"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_tree
+msgid "Gr Operations"
+msgstr "Operaciones Gr"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Handled By"
+msgstr "Manejado Por"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__handled_by
+msgid "Handled by"
+msgstr "Manejado por"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__id
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__message_needaction
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__message_has_error
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "In Process"
+msgstr "En Proceso"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields.selection,name:saudi_hr_gr_operation_request.selection__gr_operations__state__inprogress
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "In progress"
+msgstr "En progreso"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations____last_update
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__write_date
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualización el"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__documents
+msgid "List of Documents Required"
+msgstr "Lista de Documentos Requeridos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__name
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_request_type__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields.selection,name:saudi_hr_gr_operation_request.selection__gr_operations__state__draft
+msgid "New"
+msgstr "Nuevo"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Cantidad de Acciones"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__type_id
+msgid "Operation"
+msgstr "Operación"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.ui.menu,name:saudi_hr_gr_operation_request.menu_gr_operations
+msgid "Operation Request"
+msgstr "Solicitud de Operación"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.ui.menu,name:saudi_hr_gr_operation_request.menu_gr_operations_config
+msgid "Operation Request Type"
+msgstr "Tipo de Solicitud de Operación"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.actions.act_window,name:saudi_hr_gr_operation_request.action_gr_operations
+msgid "Operations Request"
+msgstr "Solicitud de Operaciones"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.actions.act_window,name:saudi_hr_gr_operation_request.action_gr_operations_type
+msgid "Operations Request Type"
+msgstr "Tipo de Solicitud de Operaciones"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_type_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_type_tree
+msgid "Operations Type"
+msgstr "Tipo de Operaciones"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__company_contribution_amount
+msgid "Paid By Company"
+msgstr "Pagado por la Empresa"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__emp_contribution_amount
+msgid "Paid By Employee"
+msgstr "Pagado por el Empleado"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__payment_mode
+msgid "Payment By"
+msgstr "Pago por"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__project_name
+msgid "Project Name"
+msgstr "Nombre del Proyecto"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Received"
+msgstr "Recibido"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields.selection,name:saudi_hr_gr_operation_request.selection__gr_operations__state__refuse
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Refuse"
+msgstr "Rechazar"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__refused_by
+msgid "Refused by"
+msgstr "Rechazado por"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__refused_date
+msgid "Refused on"
+msgstr "Rechazado el"
+
+#. module: saudi_hr_gr_operation_request
+#: model:mail.message.subtype,description:saudi_hr_gr_operation_request.mt_gr_operations_confirm
+#: model:mail.message.subtype,name:saudi_hr_gr_operation_request.mt_gr_operations_confirm
+msgid "Request Confirmed"
+msgstr "Solicitud Confirmada"
+
+#. module: saudi_hr_gr_operation_request
+#: model:mail.message.subtype,description:saudi_hr_gr_operation_request.mt_gr_operations_new
+#: model:mail.message.subtype,name:saudi_hr_gr_operation_request.mt_gr_operations_new
+msgid "Request Created"
+msgstr "Solicitud Creada"
+
+#. module: saudi_hr_gr_operation_request
+#: model:mail.message.subtype,description:saudi_hr_gr_operation_request.mt_gr_operations_done
+#: model:mail.message.subtype,name:saudi_hr_gr_operation_request.mt_gr_operations_done
+msgid "Request Done"
+msgstr "Solicitud Realizada"
+
+#. module: saudi_hr_gr_operation_request
+#: model:mail.message.subtype,description:saudi_hr_gr_operation_request.mt_gr_operations_refuse
+#: model:mail.message.subtype,name:saudi_hr_gr_operation_request.mt_gr_operations_refuse
+msgid "Request Refused"
+msgstr "Solicitud rechazada"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Required Documents"
+msgstr "Documentos Requeridos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Select Employee"
+msgstr "Seleccionar Empleado"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Select the type of request"
+msgstr "Seleccione el tipo de solicitud"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Set To Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_gr_operation_request
+#: model:mail.message.subtype,name:saudi_hr_gr_operation_request.mt_gr_operations_stage
+msgid "Stage Changed"
+msgstr "Etapa Cambiada"
+
+#. module: saudi_hr_gr_operation_request
+#: model:mail.message.subtype,description:saudi_hr_gr_operation_request.mt_gr_operations_stage
+msgid "Stage changed"
+msgstr "Etapa cambiada"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "State"
+msgstr "Estado"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Submit"
+msgstr "Enviar"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__total
+msgid "Total"
+msgstr ""
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__expense_total
+msgid "Total Expense"
+msgstr "Gasto Total"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Type"
+msgstr "Tipo"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_operations_form
+msgid "Type of Request"
+msgstr "Tipo de Solicitud"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no Leídos"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no Leídos"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Visa that has been approved"
+msgstr "Visa que ha sido aprobada"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Visa that has been done"
+msgstr "Visa que se ha hecho"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Visa that has been in progress"
+msgstr "Visa que ha estado en proceso"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Visa that has been refused"
+msgstr "Visa que ha sido denegada"
+
+#. module: saudi_hr_gr_operation_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_gr_operation_request.gr_opration_filter
+msgid "Visa that has been waiting for approval"
+msgstr "Visa que ha estado esperando aprobación"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields.selection,name:saudi_hr_gr_operation_request.selection__gr_operations__state__confirm
+msgid "Waiting for Approval"
+msgstr "Esperando Aprobación"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,field_description:saudi_hr_gr_operation_request.field_gr_operations__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_gr_operation_request
+#: model:ir.model.fields,help:saudi_hr_gr_operation_request.field_gr_operations__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_gr_operation_request
+#: code:addons/hrms/saudi_hr_gr_operation_request/models/gr_operations.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_gr_operation_request/models/gr_operations.py:0
+#: code:addons/saudi_hr_gr_operation_request/models/gr_operations.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "¡No puede eliminar el registro que está en estado %s!"
+
+#. module: saudi_hr_gr_operation_request
+#: model:product.product,name:saudi_hr_gr_operation_request.operation_request
+#: model:product.template,name:saudi_hr_gr_operation_request.operation_request_product_template
+msgid "child 1"
+msgstr "Solicitud de Operación"

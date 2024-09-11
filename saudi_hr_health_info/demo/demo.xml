@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="fpi_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_update">2018-01-01</field>
+            <field name="height">5</field>
+            <field name="weight">60</field>
+            <field name="blood_pressure">120</field>
+            <field name="blood_group">a+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">regular</field>
+            <field name="alcohol_type">occasionally</field>
+            <field name="stress_level">high_stress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="fpi1_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_update">2018-06-01</field>
+            <field name="height">5.2</field>
+            <field name="weight">72</field>
+            <field name="blood_pressure">128</field>
+            <field name="blood_group">a+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">regular</field>
+            <field name="alcohol_type">occasionally</field>
+            <field name="stress_level">high_stress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="fpi2_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_update">2018-12-01</field>
+            <field name="height">5.3</field>
+            <field name="weight">80</field>
+            <field name="blood_pressure">124</field>
+            <field name="blood_group">a+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">regular</field>
+            <field name="alcohol_type">regular</field>
+            <field name="stress_level">high_stress</field>
+            <field name="physically_inactive">False</field>
+        </record>
+
+        <record id="fp_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_update">2018-01-01</field>
+            <field name="height">4.5</field>
+            <field name="weight">72</field>
+            <field name="blood_pressure">126</field>
+            <field name="blood_group">b+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">occasionally</field>
+            <field name="alcohol_type">regular</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">False</field>
+        </record>
+
+        <record id="fp1_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_update">2018-06-07</field>
+            <field name="height">4.8</field>
+            <field name="weight">68</field>
+            <field name="blood_pressure">124</field>
+            <field name="blood_group">b+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">occasionally</field>
+            <field name="alcohol_type">occasionally</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">False</field>
+        </record>
+
+        <record id="fp2_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_update">2018-12-01</field>
+            <field name="height">4.9</field>
+            <field name="weight">71</field>
+            <field name="blood_pressure">121</field>
+            <field name="blood_group">b+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">regular</field>
+            <field name="alcohol_type">regular</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">False</field>
+        </record>
+
+        <record id="fp3_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_update">2019-01-01</field>
+            <field name="height">5.1</field>
+            <field name="weight">77</field>
+            <field name="blood_pressure">127</field>
+            <field name="blood_group">b+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">regular</field>
+            <field name="alcohol_type">regular</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="qdp_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="check_update">2018-01-01</field>
+            <field name="height">6.3</field>
+            <field name="weight">69</field>
+            <field name="blood_pressure">116</field>
+            <field name="blood_group">ab+</field>
+            <field name="is_smoking">False</field>
+            <field name="is_alcohol">False</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="qdp1_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="check_update">2018-06-01</field>
+            <field name="height">6.5</field>
+            <field name="weight">71</field>
+            <field name="blood_pressure">125</field>
+            <field name="blood_group">ab+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">regular</field>
+            <field name="alcohol_type">regular</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="jep_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_update">2018-01-07</field>
+            <field name="height">5.7</field>
+            <field name="weight">88</field>
+            <field name="blood_pressure">117</field>
+            <field name="blood_group">o+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">False</field>
+            <field name="smoking_type">occasionally</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="jep1_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_update">2018-06-01</field>
+            <field name="height">5.8</field>
+            <field name="weight">82</field>
+            <field name="blood_pressure">126</field>
+            <field name="blood_group">o+</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">False</field>
+            <field name="smoking_type">occasionally</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="stw_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_update">2018-01-30</field>
+            <field name="height">4.7</field>
+            <field name="weight">62</field>
+            <field name="blood_pressure">122</field>
+            <field name="blood_group">a-</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">occasionally</field>
+            <field name="alcohol_type">regular</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+
+        <record id="stw1_employee_health_info" model="emp.health.info">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_update">2018-01-31</field>
+            <field name="height">4.8</field>
+            <field name="weight">68</field>
+            <field name="blood_pressure">122</field>
+            <field name="blood_group">a-</field>
+            <field name="is_smoking">True</field>
+            <field name="is_alcohol">True</field>
+            <field name="smoking_type">occasionally</field>
+            <field name="alcohol_type">regular</field>
+            <field name="stress_level">distress</field>
+            <field name="physically_inactive">True</field>
+        </record>
+    </data>
+</odoo>

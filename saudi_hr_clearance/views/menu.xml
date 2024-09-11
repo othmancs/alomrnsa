@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Employee Clearance -->
+    <menuitem id="menu_emp_clearance_all"
+        name="Employee Clearance"
+        parent="saudi_hr.menu_operation_request"
+        action="menu_hr_employee_clearance_view"
+        sequence="8" />
+    <menuitem id="menu_clearance_department"
+        name="Clearance Department"
+        parent="hr.menu_human_resources_configuration"
+        action="menu_clearance_data"
+        groups="hr.group_hr_manager"
+        sequence="12" />
+</odoo>

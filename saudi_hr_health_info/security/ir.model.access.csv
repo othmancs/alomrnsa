@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_emp_health_info_officer,emp.health.info.officer,model_emp_health_info,hr.group_hr_user,1,1,1,1
+access_emp_health_info_user,emp.health.info.user,model_emp_health_info,base.group_user,1,0,0,0

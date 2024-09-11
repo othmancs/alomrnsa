@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_grade
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 07:21+0000\n"
+"PO-Revision-Date: 2022-05-30 07:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_grade
+#: model_terms:ir.actions.act_window,help:saudi_hr_grade.action_hr_grade
+msgid "Click to define a new Grade."
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model,name:saudi_hr_grade.model_hr_employee
+msgid "Employee"
+msgstr "Employé"
+
+#. module: saudi_hr_grade
+#: model:ir.actions.act_window,name:saudi_hr_grade.action_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_employee__grade_id
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_job__grade_id
+#: model:ir.ui.menu,name:saudi_hr_grade.menu_hr_grade
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_grade_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_grade_tree
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_hr_employee_grade_filter
+msgid "Grade"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model,name:saudi_hr_grade.model_hr_grade
+msgid "Grade Description"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model,name:saudi_hr_grade.model_hr_job
+msgid "HR Job"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__is_above_manager
+msgid "Is Above Manager"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_grade_form
+msgid "JOB"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__hr_job_ids
+msgid "Job"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__name
+msgid "Name"
+msgstr ""
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,help:saudi_hr_grade.field_hr_grade__is_above_manager
+msgid "Tick this if grade is above manager level."
+msgstr ""

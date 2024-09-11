@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_helth_inherit_from" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="priority" eval="70"/>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[2]" position="after">
+                <page string="Health Information">
+                    <field name='emp_health_ids'>
+                        <form string="Employee Health">
+                            <group>
+                               <group>
+                                    <field name="check_update"/>
+                                    <field name='height'/>
+                                    <field name="weight"/>
+                                    <field name='blood_group'/>
+                                    <label for="is_smoking" invisible="1" />
+                                    <div class="o_address_format" invisible="1" >
+                                        <field name="is_smoking" class="o_address_city"/>
+                                        <field name="smoking_type" class="o_address_state" style="width:50%" attrs="{'invisible': [('is_smoking','=', False)], 'required': [('is_smoking','=', True)]}"/>
+                                    </div>
+                                    <label for="is_alcohol" invisible="1" />
+                                    <div class="o_address_format" invisible="1">
+                                        <field name="is_alcohol" class="o_address_city" />
+                                        <field name="alcohol_type" class="o_address_state" style="width:50%" attrs="{'invisible': [('is_alcohol','=', False)],'required': [('is_alcohol','=', True)]}"/>
+                                    </div>
+                                </group>
+                                <group invisible="1">
+                                    <field name="blood_pressure"/>
+                                    <field name='stress_level'/>
+                                    <field name="bmi_calculation"/>
+                                    <field name='physically_inactive'/>
+                                </group>
+                            </group>
+                        </form>
+                        <tree string="Employee Health">
+                            <field name="check_update"/>
+                            <field name="height"/>
+                            <field name='weight'/>
+                            <field name="blood_group"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

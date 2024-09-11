@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* saudi_hr_grade
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-24 06:53+0000\n"
+"PO-Revision-Date: 2018-12-24 06:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_grade
+#: model_terms:ir.actions.act_window,help:saudi_hr_grade.action_hr_grade
+msgid "Click to define a new Grade."
+msgstr "انقر لتحديد تقدير جديد."
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: saudi_hr_grade
+#: model:ir.model,name:saudi_hr_grade.model_hr_employee
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: saudi_hr_grade
+#: model:ir.actions.act_window,name:saudi_hr_grade.action_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_employee__grade_id
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_job__grade_id
+#: model:ir.ui.menu,name:saudi_hr_grade.menu_hr_grade
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_grade_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_grade_tree
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_hr_employee_grade_filter
+msgid "Grade"
+msgstr "درجة"
+
+#. module: saudi_hr_grade
+#: model:ir.model,name:saudi_hr_grade.model_hr_grade
+msgid "Grade Description"
+msgstr "وصف الصف"
+
+#. module: saudi_hr_grade
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_hr_grade_filter
+msgid "Group By..."
+msgstr "تجميع حسب.."
+
+#. module: saudi_hr_grade
+#: model:ir.model,name:saudi_hr_grade.model_hr_job
+msgid "HR Job"
+msgstr "وظيفة الموارد البشرية"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__is_above_manager
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_hr_grade_filter
+msgid "Is Above Manager"
+msgstr "هو مدير أعلاه"
+
+#. module: saudi_hr_grade
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_grade_form
+msgid "JOB"
+msgstr "وظيفة"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__hr_job_ids
+msgid "Job"
+msgstr "وظيفة"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,field_description:saudi_hr_grade.field_hr_grade__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: saudi_hr_grade
+#: model_terms:ir.ui.view,arch_db:saudi_hr_grade.view_hr_grade_filter
+msgid "Search Grade"
+msgstr "درجة البحث"
+
+#. module: saudi_hr_grade
+#: model:ir.model.fields,help:saudi_hr_grade.field_hr_grade__is_above_manager
+msgid "Tick this if grade is above manager level."
+msgstr "حدد هذا إذا كان التقدير أعلى من مستوى المدير."
+

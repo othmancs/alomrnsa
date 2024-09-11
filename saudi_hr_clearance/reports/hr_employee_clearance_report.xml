@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_employee_clearance" model="ir.actions.report">
+        <field name="name">Employee Clearance Report</field>
+        <field name="model">hr.employee.clearance</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_clearance.report_employee_clearance</field>
+        <field name="report_file">saudi_hr_clearance.report_employee_clearance</field>
+        <field name="print_report_name">'Employee Clearance Report'</field>
+        <field name="binding_model_id" ref="model_hr_employee_clearance"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_employee_clearance_template">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="col mt32 mb32">
+                    <div class="text-center">
+                        <center>
+                            <h2>
+                                <strong>
+                                    <span t-esc="o.employee_id.name"/>
+                                    <span t-esc="o.employee_id.middle_name"/>
+                                    <span t-esc="o.employee_id.last_name"/>
+                                </strong>
+                            </h2>
+                        </center>
+                    </div>
+                </div>
+                <div class="row mt32">
+                    <div class="col-2 bm-2" t-if="o.department_id">
+                        <strong>Department:</strong>
+                        <p t-field="o.department_id.name"/>
+                    </div>
+                    <div class="col-2 bm-2" t-if="o.company_id">
+                        <strong>Company:</strong>
+                        <p t-field="o.company_id.name"/>
+                    </div>
+                    <div class="col-2 bm-2" t-if="o.seniority_date">
+                        <strong>Seniority Date:</strong>
+                        <p t-field="o.seniority_date"/>
+                    </div>
+                    <div class="col-2 bm-2" t-if="o.last_working_day">
+                        <strong>Last Working Day:</strong>
+                        <p t-field="o.last_working_day"/>
+                    </div>
+                    <div class="col-2 bm-2" t-if="o.employee_id.work_email">
+                        <strong>Email:</strong>
+                        <p t-field="o.employee_id.work_email"/>
+                    </div>
+                    <div class="col-2 bm-2" t-if="o.employee_id.work_phone">
+                        <strong>Contact Phone:</strong>
+                        <p t-field="o.employee_id.work_phone"/>
+                    </div>
+                </div>
+                <div class="col mt32" name="employee_dept">
+                    <table class="table table-striped table-border border-black" style="border-top: solid black;">
+                        <thread>
+                            <tr>
+                                <th>
+                                    <h4>
+                                        <center><span><strong>Employee Department</strong></span></center>
+                                    </h4>
+                                </th></tr>
+                            <table class="table table-border table-striped border-black">
+                                <thread>
+                                    <tr>
+                                        <th style="border: 2px solid black;"><span>Item</span></th>
+                                        <th style="border: 2px solid black;"><span>Status</span></th>
+                                        <th style="border: 2px solid black;"><span>Handled By</span></th>
+                                        <th style="border: 2px solid black;"><span>Last Update By</span></th>
+                                        <th style="border: 2px solid black;"><span>Last Updated On</span></th>
+                                        <th style="border: 2px solid black;"><span>Remarks</span></th>
+                                    </tr>
+                                </thread>
+                                <tbody>
+                                    <t t-foreach="o.employee_dept_ids" t-as="line">
+                                        <tr>
+                                            <tr>
+                                                <td style="border: 2px solid black;"><span t-field="line.item"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.item_state"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.handled_by"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.write_uid"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.write_date" t-options="{'widget': 'date'}"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.remarks"/></td>
+                                            </tr>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </thread>
+                    </table>
+                </div>
+
+                <div class="col mt32" name="finance_dept">
+                    <table class="table table-striped table-border border-black" style="border-top: solid black;">
+                        <thread>
+                            <th>
+                                <h4>
+                                    <center><span><strong>Finance Department</strong></span></center>
+                                </h4>
+                            </th>
+                            <table class="table table-striped table-border border-black" style="border: 2px solid black;">
+                                <thread>
+                                    <tr>
+                                        <th style="border: 2px solid black;"><span>Item</span></th>
+                                        <th style="border: 2px solid black;"><span>Status</span></th>
+                                        <th style="border: 2px solid black;"><span>Handled By</span></th>
+                                        <th style="border: 2px solid black;"><span>Last Update By</span></th>
+                                        <th style="border: 2px solid black;"><span>Last Updated On</span></th>
+                                        <th style="border: 2px solid black;"><span>Remarks</span></th>
+                                    </tr>
+                                </thread>
+                                <tbody>
+                                    <t t-foreach="o.finance_dept_ids" t-as="line">
+                                        <tr>
+                                            <tr>
+                                                <td style="border: 2px solid black;"><span t-field="line.item"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.item_state"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.handled_by"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.write_uid"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.write_date" t-options="{'widget': 'date'}"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.remarks"/></td>
+                                            </tr>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </thread>
+                    </table>
+                </div>
+                <div class="col mt32" name="hr_dept">
+                    <table class="table table-striped table-border border-black" style="border-top: solid black;">
+                        <thread>
+                            <tr>
+                                <th>
+                                    <h4>
+                                        <center><span><strong>HR Department</strong></span></center>
+                                    </h4>
+                                </th>
+                            </tr>
+                            <table class="table table-border border-black table-striped" style="border: 2px solid black;">
+                                <thread>
+                                    <tr>
+                                        <tr>
+                                            <th style="border: 2px solid black;"><span>Item</span></th>
+                                            <th style="border: 2px solid black;"><span>Status</span></th>
+                                            <th style="border: 2px solid black;"><span>Handled By</span></th>
+                                            <th style="border: 2px solid black;"><span>Last Update By</span></th>
+                                            <th style="border: 2px solid black;"><span>Last Updated On</span></th>
+                                            <th style="border: 2px solid black;"><span>Remarks</span></th>
+                                        </tr>
+                                    </tr>
+                                </thread>
+                                <tbody>
+                                    <t t-foreach="o.admin_dept_ids" t-as="line">
+                                        <tr>
+                                            <tr>
+                                                <td style="border: 2px solid black;"><span t-field="line.item"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.item_state"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.handled_by"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.write_uid"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.write_date" t-options="{'widget': 'date'}"/></td>
+                                                <td style="border: 2px solid black;"><span t-field="line.remarks"/></td>
+                                            </tr>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </thread>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_employee_clearance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="saudi_hr_clearance.report_employee_clearance_template"/>
+            </t>
+        </t>
+    </template>
+</odoo>

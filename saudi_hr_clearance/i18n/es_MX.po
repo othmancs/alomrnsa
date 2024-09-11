@@ -1,0 +1,741 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_clearance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-25 19:00+0000\n"
+"PO-Revision-Date: 2024-08-25 19:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_clearance.py:0
+#, python-format
+msgid "%s's EOS is already Generated."
+msgstr "El EOS de %s ya está generado."
+
+#. module: saudi_hr_clearance
+#: model:ir.actions.report,print_report_name:saudi_hr_clearance.action_report_employee_clearance
+msgid "'Employee Clearance Report'"
+msgstr "'Informe de Liquidación del Empleado'"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span><strong>Employee Department</strong></span>"
+msgstr "<span><strong>Departamento del Empleado</strong></span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span><strong>Finance Department</strong></span>"
+msgstr "<span><strong>Departamento de Finanzas</strong></span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span><strong>HR Department</strong></span>"
+msgstr "<span><strong>Departamento de RRHH</strong></span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span>Handled By</span>"
+msgstr "<span>Manejado por</span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span>Item</span>"
+msgstr "<span>Artículo</span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span>Last Update By</span>"
+msgstr "<span>Última Actualización por</span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span>Last Updated On</span>"
+msgstr "<span>Última Actualización el</span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span>Remarks</span>"
+msgstr "<span>Comentarios</span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<span>Status</span>"
+msgstr "<span>Estado</span>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<strong>Company:</strong>"
+msgstr "<strong>Empresa:</strong>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<strong>Contact Phone:</strong>"
+msgstr "<strong>Teléfono de Contacto:</strong>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<strong>Department:</strong>"
+msgstr "<strong>Departamento:</strong>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<strong>Email:</strong>"
+msgstr "<strong>Correo Electrónico:</strong>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<strong>Last Working Day:</strong>"
+msgstr "<strong>Último Día Laborable:</strong>"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.report_employee_clearance_template
+msgid "<strong>Seniority Date:</strong>"
+msgstr "<strong>Antigüedad:</strong>"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department__department_type__admin
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department_data__department_type__admin
+msgid "Admin"
+msgstr "Administrador"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__admin_dept_id
+msgid "Admin Department"
+msgstr "Departamento Administrativo"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__admin_dept_ids
+msgid "Admin Departments"
+msgstr "Departamentos Administrativos"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__approved_date
+msgid "Approved Date"
+msgstr "Fecha de Aprobación"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__approved_by
+msgid "Approved by"
+msgstr "Aprobado por"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.clearance_data_form_view1
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Calculate EOS"
+msgstr "Calcular EOS"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee__clearance_count
+msgid "Clearance"
+msgstr "Autorización"
+
+#. module: saudi_hr_clearance
+#: model:ir.actions.act_window,name:saudi_hr_clearance.menu_clearance_data
+#: model:ir.model,name:saudi_hr_clearance.model_clearance_department
+#: model:ir.ui.menu,name:saudi_hr_clearance.menu_clearance_department
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.clearance_data_form_view1
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.clearance_data_tree_view1
+msgid "Clearance Department"
+msgstr "Departamento de Liquidación"
+
+#. module: saudi_hr_clearance
+#: model:ir.model,name:saudi_hr_clearance.model_clearance_department_data
+msgid "Clearance Department Data"
+msgstr "Datos del Departamento de Liquidación"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_eos__clearance_mandatory_for_eos
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_res_config_settings__clearance_mandatory_for_eos
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.res_config_eos_form_view
+msgid "Clearance Mandatory for EOS"
+msgstr "Autorización Obligatoria para EOS"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.res_config_eos_form_view
+msgid "Clearance Mandatory for End of Service."
+msgstr "Autorización Obligatoria para Fin de Servicio."
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_inherit_form
+msgid "Clearances"
+msgstr "Liquidaciones"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.actions.act_window,help:saudi_hr_clearance.menu_clearance_data
+msgid "Click to Add Clearance Department Details."
+msgstr "Haga clic para Agregar Detalles del Departamento de liquidación."
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.actions.act_window,help:saudi_hr_clearance.menu_hr_employee_clearance_view
+msgid "Click to Add Employee Clearance Details."
+msgstr "Haga Clic para Agregar Detalles de Liquidación de Empleados."
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__company_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_clearance_filter
+msgid "Company"
+msgstr "Compañia"
+
+#. module: saudi_hr_clearance
+#: model:ir.model,name:saudi_hr_clearance.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_eos_inherit_form
+msgid "Create Clearance"
+msgstr "Crear Liquidación"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__create_date
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__create_date
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_15
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_18
+msgid "Damages Paid (if any)"
+msgstr "Daños Pagados (si corresponde)"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__eos_type__death
+msgid "Death"
+msgstr "Muerte"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_clearance_filter
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__department_type
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__department_type
+msgid "Department Type"
+msgstr "Tipo de Departamento"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__display_name
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__display_name
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__state__done
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "EOS"
+msgstr ""
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__eos_count
+msgid "EOS Count"
+msgstr "Recuento de EOS"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__eos_type
+msgid "EOS Type"
+msgstr "Tipo de EOS"
+
+#. module: saudi_hr_clearance
+#: model:ir.model,name:saudi_hr_clearance.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_clearance_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee.py:0
+#: model:ir.actions.act_window,name:saudi_hr_clearance.menu_hr_employee_clearance_view
+#: model:ir.model,name:saudi_hr_clearance.model_hr_employee_clearance
+#: model:ir.ui.menu,name:saudi_hr_clearance.menu_emp_clearance_all
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_tree_view
+#, python-format
+msgid "Employee Clearance"
+msgstr "Liquidación de Empleados"
+
+#. module: saudi_hr_clearance
+#: model:ir.actions.report,name:saudi_hr_clearance.action_report_employee_clearance
+msgid "Employee Clearance Report"
+msgstr "Informe de Liquidación de Empleados"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__employee_dept_id
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__employee_dept_ids
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department__department_type__emp_dept
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department_data__department_type__emp_dept
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Employee Department"
+msgstr "Departamento del Empleado"
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_clearance.py:0
+#, python-format
+msgid "Employee Eos"
+msgstr "EOS del Empleado"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Employee Information"
+msgstr "Información del Empleado"
+
+#. module: saudi_hr_clearance
+#: model:ir.model,name:saudi_hr_clearance.model_hr_employee_eos
+msgid "End of Service Indemnity (EOS)"
+msgstr "Indemnización por Fin de Servicio (EOS)"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department__department_type__finance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department_data__department_type__finance
+msgid "Finance"
+msgstr "Finanzas"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__finance_dept_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Finance Department"
+msgstr "Departamento de Finanzas"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__finance_dept_ids
+msgid "Finance Departments"
+msgstr "Departamentos de Finanzas"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_clearance_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "HR Department"
+msgstr "Departamento de RRHH"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__handled_by
+msgid "Handled by"
+msgstr "A Cargo de"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__id
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__id
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_10
+msgid "ID Card"
+msgstr "Credencial"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,help:saudi_hr_clearance.field_hr_employee_clearance__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, hay nuevos mensajes y requieren su atención."
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,help:saudi_hr_clearance.field_hr_employee_clearance__message_has_error
+#: model:ir.model.fields,help:saudi_hr_clearance.field_hr_employee_clearance__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_13
+msgid "Insurance Card"
+msgstr "Tarjeta del Seguro"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_27
+msgid "Insurance Premium Paid"
+msgstr "Prima de Seguro Pagada"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_7
+msgid "Iqama/Residence"
+msgstr "Iqama/Residencia"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__item
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__item
+msgid "Item"
+msgstr "Artículo"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__is_employee_leaving
+msgid "Last Clearance"
+msgstr "Última Liquidación"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__last_working_day
+msgid "Last Day of Work"
+msgstr "Ultimo Día de Trabajo"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department____last_update
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data____last_update
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__write_date
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__write_date
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualización en"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_28
+msgid "Loan Paid"
+msgstr "Préstamo Pagado"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__location
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__line_manager_id
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_22
+msgid "Medical Deductibles"
+msgstr "Deducibles Médicos"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department,item:saudi_hr_clearance.clearance_dept_12
+msgid "Mobile Phone + SIM Card/Pager"
+msgstr "Teléfono Móvil + Tarjeta SIM/Localizador"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department__item_state__na
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department_data__item_state__na
+msgid "N/A"
+msgstr ""
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department__item_state__no
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department_data__item_state__no
+msgid "NO"
+msgstr ""
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__employee_name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.clearance_data_form_view1
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Next"
+msgstr "Siguiente"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,help:saudi_hr_clearance.field_hr_employee_clearance__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Cantidad de mensajes que requieren una acción"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,help:saudi_hr_clearance.field_hr_employee_clearance__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Cantidad de mensajes con error de entrega"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_9
+msgid "Office Key"
+msgstr "Clave de Oficina"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_8
+msgid "Passport Final Exit Checked"
+msgstr "Salida Final de Pasaporte Comprobada"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__passport_no
+msgid "Passport No"
+msgstr "Pasaporte No"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_6
+msgid "Passport submitted for Final Exit"
+msgstr "Pasaporte Enviado para Salida Final"
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_clearance.py:0
+#, python-format
+msgid "Please Update Employee Department Status."
+msgstr "Por Favor, Actualice el Estado del Departamento del Empleado"
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_clearance.py:0
+#, python-format
+msgid "Please Update Finance Department Status."
+msgstr "Actualice el estado del Departamento de Finanzas."
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_clearance.py:0
+#, python-format
+msgid "Please Update HR Department Status."
+msgstr "Actualice el estado del departamento de RRHH."
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__state__refuse
+msgid "Refused"
+msgstr "Rechazado"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__remarks
+msgid "Remarks"
+msgstr "Observaciones"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__eos_type__resignation
+msgid "Resignation"
+msgstr "Resignación"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_clearance_filter
+msgid "Search Employee Clearance"
+msgstr "Buscar Liquidación de Empleados"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Select Employee..."
+msgstr "Seleccionar empleado..."
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__seniority_date
+msgid "Seniority Date"
+msgstr "Fecha de antigüedad"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.hr_employee_clearance_form_view1
+msgid "Set to Draft"
+msgstr "Establecer Como Borrador"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department__item_state
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_clearance_department_data__item_state
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department,item:saudi_hr_clearance.clearance_dept_14
+msgid "Telephone Bills Paid"
+msgstr "Facturas Telefónicas Pagadas"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__eos_type__termination
+msgid "Termination"
+msgstr "Despido"
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_eos.py:0
+#, python-format
+msgid ""
+"There is a no clearance for this employee please create clearance first."
+msgstr ""
+"No hay una autorización para este empleado, por favor cree primero una "
+"autorización."
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_26
+msgid "Ticket issued to Employee"
+msgstr "Boleto emitido al empleado"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_21
+msgid "Time Sheet Received"
+msgstr "Hoja de Tiempo Recibida"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__state__finance_dept
+msgid "Waiting Admin Approval"
+msgstr "Esperando la Aprobación del Administrador"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__state__admin_dept
+msgid "Waiting Done"
+msgstr "Esperando Terminado"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__state__emp_dept
+msgid "Waiting Finance Approval"
+msgstr "Esperando Aprobación Financiera"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__hr_employee_clearance__state__confirm
+msgid "Waiting Manager Approval"
+msgstr "Esperando la Aprobación del Gerente"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,field_description:saudi_hr_clearance.field_hr_employee_clearance__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields,help:saudi_hr_clearance.field_hr_employee_clearance__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_clearance
+#: model:clearance.department.data,item:saudi_hr_clearance.clearance_dept_29
+msgid "Work Handover"
+msgstr "Entrega de trabajo"
+
+#. module: saudi_hr_clearance
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department__item_state__yes
+#: model:ir.model.fields.selection,name:saudi_hr_clearance.selection__clearance_department_data__item_state__yes
+msgid "YES"
+msgstr "SI"
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_clearance.py:0
+#, python-format
+msgid "You are not modify departments data please contact your administrator."
+msgstr ""
+"No puede modificar los datos de los departamentos, póngase en contacto con "
+"su administrador."
+
+#. module: saudi_hr_clearance
+#. odoo-python
+#: code:addons/saudi_hr_clearance/models/hr_employee_clearance.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "¡No puede eliminar el registro que está en estado %s!"
+
+#. module: saudi_hr_clearance
+#: model_terms:ir.ui.view,arch_db:saudi_hr_clearance.view_employee_clearance_filter
+msgid "company"
+msgstr "compañia"

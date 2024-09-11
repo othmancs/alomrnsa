@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="hr_employee_clearance_jth" model="hr.employee.clearance">
+            <field name="employee_id" ref="hr.employee_jth"/>
+            <field name="email">zaakhtar@example.com</field>
+            <field name="contact_phone">+3281813986</field>
+            <field name="hr_dept">True</field>
+            <field name="finance_dept">True</field>
+        </record>
+
+        <record id="hr_employee_clearance_fme" model="hr.employee.clearance">
+            <field name="employee_id" ref="hr.employee_fme"/>
+            <field name="email">jalalaziz@example.com</field>
+            <field name="contact_phone">3281814678</field>
+            <field name="hr_dept">True</field>
+            <field name="finance_dept">True</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_11">
+            <field name="department_type">admin</field>
+            <field name="item">Other ID Card/Medical Card</field>
+            <field name="item_state">na</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_16">
+            <field name="department_type">admin</field>
+            <field name="item">Villa Key</field>
+            <field name="item_state">na</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_17">
+            <field name="department_type">admin</field>
+            <field name="item">Vehicle Plate/Door #</field>
+            <field name="item_state">na</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_19">
+            <field name="department_type">admin</field>
+            <field name="item">Fuel Book</field>
+            <field name="item_state">na</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_20">
+            <field name="department_type">admin</field>
+            <field name="item">Vehicle Key / Pvt. Car sticker removed</field>
+            <field name="item_state">na</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_23">
+            <field name="department_type">finance</field>
+            <field name="item">Final Settlement Prepared</field>
+            <field name="item_state">na</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_24">
+            <field name="department_type">finance</field>
+            <field name="item">Final Settlement Agreed</field>
+            <field name="item_state">na</field>
+        </record>
+
+        <record model="clearance.department.data" id="saudi_hr_clearance.clearance_dept_25">
+            <field name="department_type">finance</field>
+            <field name="item">Final Settlement Paid</field>
+            <field name="item_state">na</field>
+        </record>
+    </data>
+</odoo>

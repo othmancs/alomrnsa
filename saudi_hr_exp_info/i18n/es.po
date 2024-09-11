@@ -1,0 +1,725 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_exp_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-27 12:49+0000\n"
+"PO-Revision-Date: 2024-08-27 12:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_exp_info
+#: model:mail.template,body_html:saudi_hr_exp_info.email_template_employment_reference
+msgid ""
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                <p>Hello <t t-out=\"object.contact_name\"></t>,</p>\n"
+"\n"
+"                <p>\n"
+"                    I am <t t-out=\"object.env.user.name\"></t> from <t t-out=\"object.env.user.company_id.name\"></t> Pvt.Ltd.\n"
+"                    This is with regard to referral check of <t t-out=\"object.employee_id.name or ''\"></t>, who worked with you as <t t-out=\"object.job_title\"></t>.\n"
+"                    Can you please let me know the following details about him/her:\n"
+"                </p>\n"
+"                <ul>\n"
+"                    <li>Period of Employment:</li>\n"
+"                    <li>Designation:</li>\n"
+"                    <li>Reason for leaving the organization:</li>\n"
+"                    <li>Exit formalities:Completed / Uncompleted</li>\n"
+"                    <li>Verified By:</li>\n"
+"                </ul>\n"
+"                <p>It would be very kind if you could spare a few minutes and provide your feedback.</p>\n"
+"                <p>Your cooperation and quick response by return e-mail would be highly appreciated.</p>\n"
+"                <p>Thanks and Regards,</p>\n"
+"                HR Manager\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                <p>Hola <t t-out=\"object.contact_name\"/>,</p>\n"
+"\n"
+"                <p>Yo soy <t t-out=\"object.env.user.name\"/> de <t t-out=\"object.env.user.company_id.name\"/> Pvt.Ltd. Esto es con respecto a la verificación de referencias de <t t-out=\"object.employee_id.name or ''\"/>, que trabajó con usted como <t t-out=\"object.job_title\"/>. ¿Puedes darme los siguientes detalles sobre él/ella? </p>\n"
+"                <ul>\n"
+"                    <li>Período de empleo:</li>\n"
+"                    <li>Designación:</li>\n"
+"                    <li>Razón para dejar la organización:</li>\n"
+"                    <li>Trámites de salida: Completado / Incompleto</li>\n"
+"                    <li>Verificado por:</li>\n"
+"                </ul>\n"
+"                <p>Sería muy amable si pudiera dedicar unos minutos y brindar sus comentarios.</p>\n"
+"                <p>Su cooperación y rápida respuesta por correo electrónico serían muy apreciadas.</p>\n"
+"                <p>Gracias y Saludos,</p>\n"
+"                Gerente de recursos humanos\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr_exp_info
+#: model:mail.template,body_html:saudi_hr_exp_info.cerificate_expiry_notification
+msgid ""
+"<p>Hello <t t-out=\"object.employee_id.name\"></t>,</p><br>\n"
+"            <p style=\"color:red\">Your Certificate <b><t t-out=\"object.name\"></t>\n"
+"                </b> has been expired on <t t-out=\"object.expiry_date\"></t>.\n"
+"            </p><br>\n"
+"            <p>Thank you,</p>\n"
+"            <p><t t-out=\"object.company_id.name\"></t></p>\n"
+"        "
+msgstr ""
+"<p>Hola <t t-out=\"object.employee_id.name\"/>,</p><br/>\n"
+"        <p style=\"color:red\">Su certificado <b><t t-out=\"object.name             \"/></b> ha caducado el <t t-out=\"object.expiry_date\"/>.</p><br/>\n"
+"        <p>Gracias,</p>\n"
+"        <p><t t-out=\"object.company_id.name\"/></p>\n"
+"        "
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid ""
+"<select class=\"form-control custom-select custom-select-md qualification-program-month\">\n"
+"                                            <option value=\"1\">January</option>\n"
+"                                            <option value=\"2\">February</option>\n"
+"                                            <option value=\"3\">March</option>\n"
+"                                            <option value=\"4\">April</option>\n"
+"                                            <option value=\"5\">May</option>\n"
+"                                            <option value=\"6\">June</option>\n"
+"                                            <option value=\"7\">July</option>\n"
+"                                            <option value=\"8\">August</option>\n"
+"                                            <option value=\"9\">September</option>\n"
+"                                            <option value=\"10\">October</option>\n"
+"                                            <option value=\"11\">November</option>\n"
+"                                            <option value=\"12\">December</option>\n"
+"                                    </select>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid ""
+"<select class=\"form-control custom-select custom-select-md qualification-program-status\">\n"
+"                                            <option value=\"completed\">Completed</option>\n"
+"                                            <option value=\"ongoing\">Ongoing</option>\n"
+"                                    </select>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span aria-hidden=\"true\">x</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid ""
+"<span class=\"btn btn-primary remove_resume\">\n"
+"                        Remove Resume\n"
+"                    </span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Certification Name</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Company Name</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Contact Email</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Contact Name</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Contact Phone No</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Contact Title</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid ""
+"<span class=\"mr-2\">Current Job</span>\n"
+"                                    <select class=\"form-control custom-select custom-select-md experience-current-job\">\n"
+"                                            <option value=\"yes\">Yes</option>\n"
+"                                            <option value=\"no\">No</option>\n"
+"                                    </select>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Date Of Expiry</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Date Of Issue</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Issuing Organization</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Job Title</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Location</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Month</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Program Status</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Program</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Registraion No.</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Time Period (From)</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Time Period (To)</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">University</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span class=\"mr-2\">Year</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "<span>Drag and drop resume here</span>"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Activities"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__activities
+msgid "Activities and Societies"
+msgstr "Actividades y Asociaciones"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Add Certification"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Add Experience"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Add Qualification"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Add a Line"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_experience__state__approve
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__4
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__4
+msgid "April"
+msgstr "Abril"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__8
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__8
+msgid "August"
+msgstr "Agosto"
+
+#. module: saudi_hr_exp_info
+#: model:ir.actions.server,name:saudi_hr_exp_info.certificate_expiry_notification_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_exp_info.certificate_expiry_notification
+msgid "Certificate Expire Notification"
+msgstr "Notificación de Vencimiento del Certificado"
+
+#. module: saudi_hr_exp_info
+#: model:mail.template,name:saudi_hr_exp_info.cerificate_expiry_notification
+#: model:mail.template,subject:saudi_hr_exp_info.cerificate_expiry_notification
+msgid "Certificate Expiry Notification"
+msgstr "Notificación de cCducidad del Certificado"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Certificates"
+msgstr "Certificados"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Certification"
+msgstr "Certificación"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Certification Name"
+msgstr "Nombre de Certificación"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_employee__certification_ids
+msgid "Certifications"
+msgstr "Certificaciones"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Close"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__company_id
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__company_id
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__company
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Company Name"
+msgstr "Nombre de la Compañía"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__program_type__completed
+msgid "Completed"
+msgstr "Terminado"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__contact_email
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__contact_email
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__contact_email
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Contact Email"
+msgstr "Email de Contacto"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__contact_name
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__contact_name
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__contact_name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Contact Name"
+msgstr "Nombre de Contacto"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__contact_phone
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__contact_phone
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__contact_phone
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Contact Phone No"
+msgstr "Número de Teléfono de Contacto"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__contact_title
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Contact Title"
+msgstr "Título del Contacto"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__create_date
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__create_date
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__is_current_job
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Current Job"
+msgstr "Empleo Actual"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Date Of Expiry"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__expiry_date
+msgid "Date of Expiry"
+msgstr "Fecha de Expiración"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__issue_date
+msgid "Date of Issue"
+msgstr "Fecha de Emisión"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__attended_date_from
+msgid "Dates Attended(from)"
+msgstr "Fechas de Asistencia (desde)"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__attended_date_to
+msgid "Dates Attended(to)"
+msgstr "Fechas de Asistencia (hasta)"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__12
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__12
+msgid "December"
+msgstr "Diciembre"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__description
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__display_name
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__display_name
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_experience__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Education and Experience"
+msgstr "Educación y Experiencia"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model,name:saudi_hr_exp_info.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_exp_info
+#: model:mail.template,name:saudi_hr_exp_info.email_template_employment_reference
+#: model:mail.template,report_name:saudi_hr_exp_info.email_template_employment_reference
+#: model:mail.template,subject:saudi_hr_exp_info.email_template_employment_reference
+msgid "Employment Reference Check"
+msgstr "Verificación de Referencia Laboral"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Experience"
+msgstr "Experiencia"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__2
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__2
+msgid "February"
+msgstr "Febrero"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__field_of_study
+msgid "Field of Study"
+msgstr "Campo de Estudio"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__grade
+msgid "Grade(GPA)"
+msgstr "Grado (GPA)"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model,name:saudi_hr_exp_info.model_hr_certification
+msgid "HR Certification"
+msgstr "Certificación de RRHH"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model,name:saudi_hr_exp_info.model_hr_experience
+msgid "HR Experience"
+msgstr "Experiencia en RRHH"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model,name:saudi_hr_exp_info.model_hr_qualification
+msgid "HR Qualification"
+msgstr "Cualificación de RRHH"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__id
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__id
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Issue Date"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__organization_name
+msgid "Issuing Organization"
+msgstr "Organización Emisora"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__1
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__1
+msgid "January"
+msgstr "Enero"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__job_title
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Job Title"
+msgstr "Título Profesional"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__7
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__7
+msgid "July"
+msgstr "Julio"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__6
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__6
+msgid "June"
+msgstr "Junio"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification____last_update
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience____last_update
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification____last_update
+msgid "Last Modified on"
+msgstr "Modificado por última vez el"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización Por"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__write_date
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__write_date
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualización en"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__location
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__3
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__3
+msgid "March"
+msgstr "Marzo"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__5
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__5
+msgid "May"
+msgstr "Mayo"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__certification_month
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__completion_month
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Month"
+msgstr "Mes"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_experience__is_current_job__no
+msgid "No"
+msgstr "No"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__11
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__11
+msgid "November"
+msgstr "Noviembre"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__10
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__10
+msgid "October"
+msgstr "Octubre"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__program_type__ongoing
+msgid "Ongoing"
+msgstr "En curso"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Organization Name"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__percentage
+msgid "Percentage"
+msgstr "Porcentaje"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_employee__experience_ids
+msgid "Previous Experience"
+msgstr "Experiencia Previa"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__degree_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Program"
+msgstr "Programa"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__program_type
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Program Status"
+msgstr "Estatus del Programa"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Qualification"
+msgstr "Calificación"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_employee__qualification_ids
+msgid "Qualifications"
+msgstr "Calificaciones"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Refuse"
+msgstr "Rechazar"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_experience__state__refuse
+msgid "Refused"
+msgstr "Rechazado"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__reg_no
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Registration No."
+msgstr "No. de registro"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Save changes"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.hr_exp_info_view_employee_form
+msgid "Send Email"
+msgstr "Enviar Correo Electrónico"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_certification__certification_month__9
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_qualification__completion_month__9
+msgid "September"
+msgstr "Septiembre"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Time Period(From)"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Time Period(To)"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__time_period_from
+msgid "Time Period(from)"
+msgstr "Período de tiempo(desde)"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_experience__time_period_to
+msgid "Time Period(to)"
+msgstr "Período de tiempo(hasta)"
+
+#. module: saudi_hr_exp_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "University"
+msgstr ""
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__university_id
+msgid "University Name"
+msgstr "Nombre de la Universidad"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_certification__certification_year
+#: model:ir.model.fields,field_description:saudi_hr_exp_info.field_hr_qualification__completion_year
+#: model_terms:ir.ui.view,arch_db:saudi_hr_exp_info.employee_fill_private_info_inherited
+msgid "Year"
+msgstr "Año"
+
+#. module: saudi_hr_exp_info
+#: model:ir.model.fields.selection,name:saudi_hr_exp_info.selection__hr_experience__is_current_job__yes
+msgid "Yes"
+msgstr "Si"

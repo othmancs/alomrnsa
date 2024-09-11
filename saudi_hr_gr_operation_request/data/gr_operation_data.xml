@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+    <!-- Operation Request Type-->
+    <record id="gr_operation1" model="gr.request.type">
+        <field name="name">Family Visa Request</field>
+        <field name="documents">1. Original bachelor or master degree attested by Embassy and Ministry of Foreign Affairs and to be translated in Arabic language.
+2. Original marriage certificate attested by Embassy and Ministry of Foreign Affairs and to be translated in Arabic language.
+3. Wife’s and kid's passport first page copy.
+4. kid's original birth certificate attested by Embassy and Ministry of Foreign Affairs.
+5. Letter from SOCPA if the position in Iqama is ‘’account’’.
+6. Pay 2000 fee from MOI system from any bank.
+7. Child's Medical Report(Vaccination).</field>
+    </record>
+
+    <record id="gr_operation2" model="gr.request.type">
+        <field name="name">Changing Profession</field>
+        <field name="documents">1. The original certificate Authenticated by the Ministry of Foreign Affairs in his country. Then Cultural Attache of the Embassy then the Embassy.
+2. Original Iqama.
+3. One Photo.
+4. Original Passport.
+5. Joining Certification to Council of Accountants (If he is accountant).
+6. Joining Certification to Council of Engineers (If he is engineer).</field>
+    </record>
+
+    <record id="operation_request" model="product.product">
+        <field name="list_price">500.0</field>
+        <field name="standard_price">500.0</field>
+        <field name="type">service</field>
+        <field name="name">Operation Request</field>
+        <field name="default_code">OR</field>
+        <field name="uom_id" ref="uom.product_uom_day"/>
+        <field name="uom_po_id" ref="uom.product_uom_day"/>
+        <field name="categ_id" ref="product.cat_expense"/>
+        <field name="can_be_expensed" eval="True" />
+    </record>
+
+    <!-- GR Operations related subtypes for messaging / Chatter -->
+
+    <record id="mt_gr_operations_new" model="mail.message.subtype">
+        <field name="name">Request Created</field>
+        <field name="res_model">gr.operations</field>
+        <field name="default" eval="False"/>
+        <field name="description">Request Created</field>
+    </record>
+    <record id="mt_gr_operations_confirm" model="mail.message.subtype">
+        <field name="name">Request Confirmed</field>
+        <field name="res_model">gr.operations</field>
+        <field name="description">Request Confirmed</field>
+    </record>
+    <record id="mt_gr_operations_done" model="mail.message.subtype">
+        <field name="name">Request Done</field>
+        <field name="res_model">gr.operations</field>
+        <field name="description">Request Done</field>
+    </record>
+    <record id="mt_gr_operations_refuse" model="mail.message.subtype">
+        <field name="name">Request Refused</field>
+        <field name="res_model">gr.operations</field>
+        <field name="default" eval="False"/>
+        <field name="description">Request Refused</field>
+    </record>
+    <record id="mt_gr_operations_stage" model="mail.message.subtype">
+        <field name="name">Stage Changed</field>
+        <field name="res_model">gr.operations</field>
+        <field name="default" eval="False"/>
+        <field name="description">Stage changed</field>
+    </record>
+</odoo>

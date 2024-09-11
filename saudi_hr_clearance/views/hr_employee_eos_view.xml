@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_employee_eos_inherit_form" model="ir.ui.view">
+        <field name="name">hr.employee.eos.inherited.form</field>
+        <field name="model">hr.employee.eos</field>
+        <field name="inherit_id" ref="saudi_hr_eos.view_employee_eos_form"/>
+        <field name="arch" type="xml">
+            <button name="calc_eos" position="after">
+                <button name="create_clearance"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', ('clearance_mandatory_for_eos', '=', False), ('state', '!=', 'draft')]}"
+                    string="Create Clearance"
+                    groups="hr.group_hr_user" />
+            </button>
+            <field name="employee_id" position="before">
+                <field name="clearance_mandatory_for_eos" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

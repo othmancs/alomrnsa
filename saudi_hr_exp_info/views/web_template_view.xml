@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="employee_fill_private_info_inherited" inherit_id="saudi_hr.employee_fill_private_info">
+        <xpath expr="//div[hasclass('dependent_right_block')]" position="inside">
+            <div id="dropZone" style="width: 100%;">
+                <span>Drag and drop resume here</span>
+            </div>
+            <div id="dropPDF" />
+        </xpath>
+        <xpath expr="//div[hasclass('below-dependent-block')]" position="after">
+            <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-4 pr-0" style="text-align: end;">
+                    <span class="btn btn-primary remove_resume">
+                        Remove Resume
+                    </span>
+                </div>
+            </div>
+            <input type="hidden" name="dropped_resume_filename" id="dropped_resume_filename" />
+            <input type="hidden" name="dropped_resume" id="dropped_resume" />
+        </xpath>
+    	<xpath expr="//div[hasclass('allergies-health-condition')]" position="after">
+    		<div class="row">
+                <h6 class="col-12 pl-0 o_horizontal_separator">Qualification</h6>
+            </div>
+            <div class="row mb16">
+                <table class="table table-sm o_main_table">
+                    <thead>
+                       <tr>
+                          <th>University</th>
+                          <th>Program Status</th>
+                          <th>Program</th>
+                          <th>Month</th>
+                          <th>Year</th>
+                          <th>Contact Name</th>
+                          <th>Contact Phone No</th>
+                          <th>Contact Email</th>
+                          <th>Activities</th>
+                          <th>Description</th>
+                       </tr>
+                    </thead>
+                    <tbody class="qualification_body">
+                        <tr class="qualification_add_line_row">
+                            <td colspan="10">
+                                <a href="#" class="qualification_add_a_line">Add a Line</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal fade" id="qualificationAddLine" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Add Qualification</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">University</span>
+                                    <!-- name="university_name"  -->
+                                    <input type="text" class="form-control qualification-university-name" />
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Name</span>
+                                    <!-- name="contact_name"  -->
+                                    <input type="text" class="form-control qualification-contact-name" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Program</span>
+                                    <select class="form-control custom-select custom-select-md qualification-program">
+                                         <!-- name="address_home_id" -->
+                                        <t t-foreach="degree_programs" t-as="program">
+                                            <option t-att-value="program.id"><t t-out="program.name" /></option>
+                                        </t>
+                                    </select>
+                                    <!-- <input type="text" name="program_id" class="form-control" /> -->
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Email</span>
+                                    <!-- name="contact_email"  -->
+                                    <input type="text" class="form-control qualification-contact-email" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Program Status</span>
+                                    <!-- <input type="text" name="program_status" class="form-control" /> -->
+                                    <select class="form-control custom-select custom-select-md qualification-program-status">
+                                            <option value="completed">Completed</option>
+                                            <option value="ongoing">Ongoing</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Phone No</span>
+                                    <!-- name="university_name"  -->
+                                    <input type="text" class="form-control qualification-phone" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Month</span>
+                                    <!-- <input type="text" name="month" class="form-control" /> -->
+                                    <select class="form-control custom-select custom-select-md qualification-program-month">
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5">May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Year</span>
+                                    <input type="text" class="form-control qualification-year" />
+                                </div>
+                            </div>
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <!-- name="activities_and_societies"  -->
+                                    <textarea class="form-control w-100 qualification-activities-societies" />
+                                </div>
+                            </div>
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <!-- name="description"  -->
+                                    <textarea class="form-control w-100 qualification-description" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary save_qualification">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h6 class="col-12 pl-0 o_horizontal_separator">Certification</h6>
+            </div>
+            <div class="row mb16">
+                <table class="table table-sm o_main_table">
+                    <thead>
+                       <tr>
+                          <th>Certification Name</th>
+                          <th>Organization Name</th>
+                          <th>Issue Date</th>
+                          <th>Date Of Expiry</th>
+                          <th>Registration No.</th>
+                          <th>Contact Name</th>
+                          <th>Contact Phone No</th>
+                          <th>Contact Email</th>
+                       </tr>
+                    </thead>
+                    <tbody class="certification_body">
+                        <tr class="certification_add_line_row">
+                            <td colspan="8">
+                                <a href="#" class="certification_add_a_line">Add a Line</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal fade" id="certificationAddLine" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Add Certification</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Certification Name</span>
+                                    <!-- name="university_name"  -->
+                                    <input type="text" class="form-control certification-certification-name" />
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Issuing Organization</span>
+                                    <!-- name="contact_name"  -->
+                                    <input type="text" class="form-control certification-issuing-organization" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Date Of Issue</span>
+                                    <t t-set="datepickerID" t-value="'certification_date_of_issue'"/>
+                                    <div class="s_website_form_date input-group date" t-att-id="datepickerID" data-target-input="nearest">
+                                        <input
+                                            type="text"
+                                            class="form-control datetimepicker-input s_website_form_input certification-date-of-issue"
+                                            t-attf-data-target="##{datepickerID}"
+                                            style="height: auto;"
+                                        />
+                                        <!-- name="work_permit_expiration_date" -->
+                                        <div class="input-group-append" t-attf-data-target="##{datepickerID}" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Registraion No.</span>
+                                    <!-- name="contact_email"  -->
+                                    <input type="text" class="form-control certification-registration" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Name</span>
+                                     <!-- name="program_status" -->
+                                    <input type="text" class="form-control certification-contact-name" />
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Phone No</span>
+                                     <!-- name="university_name" -->
+                                    <input type="text" class="form-control certification-contact-phone" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Email</span>
+                                    <input type="text" class="form-control certification-contact-email" />
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Date Of Expiry</span>
+                                    <t t-set="datepickerID" t-value="'certification_date_of_expiry'"/>
+                                    <div class="s_website_form_date input-group date" t-att-id="datepickerID" data-target-input="nearest">
+                                        <input
+                                            type="text"
+                                            class="form-control datetimepicker-input s_website_form_input certification-date-of-expiry"
+                                            t-attf-data-target="##{datepickerID}"
+                                            style="height: auto;"
+                                        />
+                                        <!-- name="work_permit_expiration_date" -->
+                                        <div class="input-group-append" t-attf-data-target="##{datepickerID}" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary save_certification">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h6 class="col-12 pl-0 o_horizontal_separator">Experience</h6>
+            </div>
+            <div class="row mb16">
+                <table class="table table-sm o_main_table">
+                    <thead>
+                       <tr>
+                          <th>Current Job</th>
+                          <th>Company Name</th>
+                          <th>Job Title</th>
+                          <th>Location</th>
+                          <th>Time Period(From)</th>
+                          <th>Time Period(To)</th>
+                          <th>Contact Name</th>
+                          <th>Contact Phone No</th>
+                          <th>Contact Email</th>
+                          <th>Contact Title</th>
+                          <th>Description</th>
+                       </tr>
+                    </thead>
+                    <tbody class="experience_body">
+                        <tr class="experience_add_line_row">
+                            <td colspan="11">
+                                <a href="#" class="experience_add_a_line">Add a Line</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal fade" id="ExperienceAddLine" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Add Experience</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Current Job</span>
+                                    <select class="form-control custom-select custom-select-md experience-current-job">
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                    </select>
+                                    <!-- name="current_job"  -->
+
+                                    <!-- <input type="text" class="form-control experience-current-job" /> -->
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Name</span>
+                                    <!-- name="contact_name"  -->
+                                    <input type="text" class="form-control experience-contact-name" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Company Name</span>
+                                    <!-- name="company_name"  -->
+                                    <input type="text" class="form-control experience-company-name" />
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Phone No</span>
+                                    <!-- name="contact_phone_no"  -->
+                                    <input type="text" class="form-control experience-contact-phone" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Job Title</span>
+                                     <!-- name="job_title" -->
+                                    <input type="text" class="form-control experience-job-title" />
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Email</span>
+                                    <!-- name="contact_email"  -->
+                                    <input type="text" class="form-control experience-contact-email" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Location</span>
+                                     <!-- name="location" -->
+                                    <input type="text" class="form-control experience-location" />
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Contact Title</span>
+                                     <!-- name="contact_title" -->
+                                    <input type="text" class="form-control experience-contact-title" />
+                                </div>
+                            </div>
+                            <div class="row mt8">
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Time Period (From)</span>
+                                    <t t-set="datepickerID" t-value="'experience_time_period_from'"/>
+                                    <div class="s_website_form_date input-group date" t-att-id="datepickerID" data-target-input="nearest">
+                                        <input
+                                            type="text"
+                                            class="form-control datetimepicker-input s_website_form_input experience-time-period-from"
+                                            t-attf-data-target="##{datepickerID}"
+                                            style="height: auto;"
+                                        />
+                                        <!-- name="work_permit_expiration_date" -->
+                                        <div class="input-group-append" t-attf-data-target="##{datepickerID}" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                    <!-- <input type="text" name="time_period_from" class="form-control" /> -->
+                                </div>
+                                <div class="col-md-6 d-flex">
+                                    <span class="mr-2">Time Period (To)</span>
+                                    <t t-set="datepickerID" t-value="'experience_time_period_to'"/>
+                                    <div class="s_website_form_date input-group date" t-att-id="datepickerID" data-target-input="nearest">
+                                        <input
+                                            type="text"
+                                            class="form-control datetimepicker-input s_website_form_input experience-time-period-to"
+                                            t-attf-data-target="##{datepickerID}"
+                                            style="height: auto;"
+                                        />
+                                        <!-- name="work_permit_expiration_date" -->
+                                        <div class="input-group-append" t-attf-data-target="##{datepickerID}" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <!-- name="description"  -->
+                                    <textarea class="form-control w-100 experience-description" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary save_experience">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

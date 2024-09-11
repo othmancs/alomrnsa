@@ -1,0 +1,186 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* saudi_hr_health_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-26 06:35+0000\n"
+"PO-Revision-Date: 2018-12-26 06:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,blood_group:0
+msgid "AB+"
+msgstr "AB+"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,blood_group:0
+msgid "AB-"
+msgstr "AB-"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__is_alcohol
+msgid "Alcohol"
+msgstr "كحول"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__alcohol_type
+msgid "Alcohol Type"
+msgstr "نوع الكحول"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__bmi_calculation
+msgid "BMI Calculation"
+msgstr "حساب مؤشر كتلة الجسم"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__blood_group
+msgid "Blood Group"
+msgstr "فصيلة الدم"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__blood_pressure
+msgid "Blood Pressure"
+msgstr "ضغط الدم"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__check_update
+msgid "Check update"
+msgstr "اختر التحديث"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__cholesterol
+msgid "Cholesterol"
+msgstr "كولسترول"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,stress_level:0
+msgid "Distress"
+msgstr "محنة"
+
+#. module: saudi_hr_health_info
+#: model:ir.model,name:saudi_hr_health_info.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: saudi_hr_health_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr_health_info.view_employee_form_helth_inherit_from
+msgid "Employee Health"
+msgstr "صحة الموظف"
+
+#. module: saudi_hr_health_info
+#: model:ir.model,name:saudi_hr_health_info.model_emp_health_info
+msgid "Employee Health Details"
+msgstr "تفاصيل الصحة الموظف"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_hr_employee__emp_health_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_health_info.view_employee_form_helth_inherit_from
+msgid "Health Information"
+msgstr "معلومات صحية"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__height
+msgid "Height(feet)"
+msgstr "قدم ارتفاع)"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,stress_level:0
+msgid "High Stress"
+msgstr "التوتر العالي"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,bmi_calculation:0
+msgid "Normal Weight"
+msgstr "الوزن الطبيعي"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,alcohol_type:0
+#: selection:emp.health.info,smoking_type:0
+msgid "Occasionally"
+msgstr "من حين اخر"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,bmi_calculation:0
+msgid "Over Weight"
+msgstr "على الوزن"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__physically_inactive
+msgid "Physically Inactive"
+msgstr "غير نشط جسديا"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,alcohol_type:0
+#: selection:emp.health.info,smoking_type:0
+msgid "Regular"
+msgstr "منتظم"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__is_smoking
+msgid "Smoking"
+msgstr "تدخين"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__smoking_type
+msgid "Smoking Type"
+msgstr "نوع التدخين"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__stress_level
+msgid "Stress Level"
+msgstr "مستوى الإجهاد"
+
+#. module: saudi_hr_health_info
+#: selection:emp.health.info,bmi_calculation:0
+msgid "Under Weight"
+msgstr "تحت الوزن"
+
+#. module: saudi_hr_health_info
+#: model:ir.model.fields,field_description:saudi_hr_health_info.field_emp_health_info__weight
+msgid "Weight(kg)"
+msgstr "الوزن (كلغ)"
+

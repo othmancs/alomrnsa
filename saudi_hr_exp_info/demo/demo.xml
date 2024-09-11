@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="fp_employee_experience" model="hr.experience">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="is_current_job">yes</field>
+            <field name="location">Jeddah 21511 KSA</field>
+            <field name="company">Agrolait</field>
+            <field name="job_title">Experienced Developer</field>
+            <field name="contact_name">Michel Fletcher</field>
+            <field name="contact_email">michel.fletcher@agrolait.example.com</field>
+            <field name="time_period_from">2018-11-01</field>
+            <field name="time_period_to" eval="(DateTime.today())"/>
+            <field name="contact_phone">+32696571888</field>
+        </record>
+
+        <record id="qdp_employee_experience" model="hr.experience">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="is_current_job">yes</field>
+            <field name="location">Amman 11184 Jordan saudi arabia</field>
+            <field name="company">ASUSTeK</field>
+            <field name="job_title">Chief Executive Officer</field>
+            <field name="contact_name">Joseph Walters</field>
+            <field name="contact_email">joseph.walters@example.com</field>
+            <field name="time_period_from">2016-06-30</field>
+            <field name="time_period_to" eval="(DateTime.today())"/>
+            <field name="contact_phone">+32696571777</field>
+        </record>
+
+        <record id="fpi_employee_experience" model="hr.experience">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="is_current_job">yes</field>
+            <field name="location">Jeddah 21511 KSA</field>
+            <field name="company">Axelor</field>
+            <field name="job_title">Consultant</field>
+            <field name="contact_name">Laith Jubair</field>
+            <field name="contact_email">laith.jubair@axelor.example.com</field>
+            <field name="time_period_from">2017-06-30</field>
+            <field name="time_period_to" eval="(DateTime.today())"/>
+            <field name="contact_phone">+32696555666</field>
+        </record>
+
+        <record id="jep_employee_experience" model="hr.experience">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="is_current_job">yes</field>
+            <field name="location">King Abdullah road, Al werod area,</field>
+            <field name="company">Camptocamp</field>
+            <field name="job_title">Professional Services</field>
+            <field name="contact_name">Luc Maurer</field>
+            <field name="contact_email">luc.maurer@camptocamp.example.com</field>
+            <field name="time_period_from">2018-01-01</field>
+            <field name="time_period_to" eval="(DateTime.today())"/>
+            <field name="contact_phone">+32696571666</field>
+        </record>
+
+        <record id="stw_employee_experience" model="hr.experience">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="is_current_job">yes</field>
+            <field name="location">Dammam Khobar Highway</field>
+            <field name="company">Think Big Systems</field>
+            <field name="job_title">Experienced Developer</field>
+            <field name="contact_name">George Wilson</field>
+            <field name="contact_email">george.wilson@thinkbig.example.com</field>
+            <field name="time_period_from">2017-01-07</field>
+            <field name="time_period_to" eval="(DateTime.today())"/>
+            <field name="contact_phone">+32486571630</field>
+        </record>
+
+        <!--   Employee Qualification  -->
+        <record id="fp_employee_qualification" model="hr.qualification">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="degree_id" ref="hr_recruitment.degree_graduate"/>
+            <field name="university_id">Al Yamamah University</field>
+            <field name="attended_date_to" eval="(DateTime.today() - relativedelta(years=5,months=2, days=3)).strftime('%Y-%m-%d')"/>
+            <field name="contact_name">Ahmed said</field>
+            <field name="program_type">completed</field>
+            <field name="contact_email">said123@example.com</field>
+            <field name="contact_phone">3212657010</field>
+            <field name="completion_month">7</field>
+            <field name="completion_year">2015</field>
+        </record>
+
+        <record id="qdp_employee_qualification" model="hr.qualification">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="degree_id" ref="hr_recruitment.degree_bachelor"/>
+            <field name="university_id">King Saud University</field>
+            <field name="attended_date_to" eval="(DateTime.today() - relativedelta(years=5,months=2, days=3)).strftime('%Y-%m-%d')"/>
+            <field name="contact_name">Niaz wasem</field>
+            <field name="program_type">completed</field>
+            <field name="contact_email">niaz123@example.com</field>
+            <field name="contact_phone">3212459870</field>
+            <field name="completion_month">7</field>
+            <field name="completion_year">2014</field>
+        </record>
+
+        <record id="fpi_employee_qualification" model="hr.qualification">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="degree_id" ref="hr_recruitment.degree_licenced"/>
+            <field name="university_id">Najran University</field>
+            <field name="attended_date_to" eval="(DateTime.today() - relativedelta(years=7,months=2, days=3)).strftime('%Y-%m-%d')"/>
+            <field name="program_type">completed</field>
+            <field name="contact_name">Laifq assaf</field>
+            <field name="contact_email">assaf89@example.com</field>
+            <field name="contact_phone">3782227011</field>
+            <field name="completion_month">7</field>
+            <field name="completion_year">2013</field>
+        </record>
+
+        <record id="jep_employee_qualification" model="hr.qualification">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="degree_id" ref="hr_recruitment.degree_bac5"/>
+            <field name="university_id">Stanford University</field>
+            <field name="attended_date_to" eval="(DateTime.today() - relativedelta(years=5,months=2, days=3)).strftime('%Y-%m-%d')"/>
+            <field name="program_type">completed</field>
+            <field name="contact_name">Albert Brooks</field>
+            <field name="contact_email">albert123@example.com</field>
+            <field name="contact_phone">3255888277</field>
+            <field name="completion_month">7</field>
+            <field name="completion_year">2014</field>
+        </record>
+
+        <record id="stw_employee_qualification" model="hr.qualification">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="degree_id" ref="hr_recruitment.degree_graduate"/>
+            <field name="university_id">Najran University</field>
+            <field name="attended_date_to" eval="(DateTime.today() - relativedelta(years=5,months=2, days=3)).strftime('%Y-%m-%d')"/>
+            <field name="program_type">completed</field>
+            <field name="contact_name">Atabuk Haq</field>
+            <field name="contact_email">atabuk56@example.com</field>
+            <field name="contact_phone">3219865258</field>
+            <field name="completion_month">7</field>
+            <field name="completion_year">2015</field>
+        </record>
+
+         <!-- Employee Certification -->
+        <record id="fp_employee_certification" model="hr.certification">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="name">Sun Certified Java Developer</field>
+            <field name="organization_name">Oracle</field>
+            <field name="issue_date">2013-07-01</field>
+            <field name="expiry_date" eval="(DateTime.today())" />
+            <field name="reg_no">987456</field>
+            <field name="contact_name">Laith Jhon</field>
+            <field name="contact_phone">+32506571630</field>
+            <field name="contact_email">laith.jhon@example.com</field>
+        </record>
+
+        <record id="qdp_employee_certification" model="hr.certification">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="name">Certified Sales Executive</field>
+            <field name="organization_name">SMEI</field>
+            <field name="issue_date">2013-01-01</field>
+            <field name="expiry_date" eval="(DateTime.today())" />
+            <field name="reg_no">852741</field>
+            <field name="contact_name">Laith Mercy</field>
+            <field name="contact_phone">+32506571630</field>
+            <field name="contact_email">laith.mercy@example.com</field>
+        </record>
+
+        <record id="fpi_employee_certification" model="hr.certification">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="name">Sun Certified Web Component Developer</field>
+            <field name="organization_name">Oracle</field>
+            <field name="issue_date">2013-01-01</field>
+            <field name="expiry_date" eval="(DateTime.today())"/>
+            <field name="reg_no">369852</field>
+            <field name="contact_name">Laith Yashin</field>
+            <field name="contact_phone">+32486571630</field>
+            <field name="contact_email">laith.yashin@example.com</field>
+        </record>
+
+        <record id="jep_employee_certification" model="hr.certification">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="name">SQL Server certification</field>
+            <field name="organization_name">Microsoft</field>
+            <field name="issue_date">2012-01-01</field>
+            <field name="expiry_date" eval="(DateTime.today())"/>
+            <field name="reg_no">369852</field>
+            <field name="contact_name">Jhon Yashin</field>
+            <field name="contact_phone">+32486575530</field>
+            <field name="contact_email">jhon.yashin@example.com</field>
+        </record>
+
+        <record id="stw_employee_certification" model="hr.certification">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="name">Apple Certified Support Professional</field>
+            <field name="organization_name">Apple</field>
+            <field name="issue_date">2014-01-01</field>
+            <field name="expiry_date" eval="(DateTime.today())"/>
+            <field name="reg_no">369852</field>
+            <field name="contact_name">Zoya Yashin</field>
+            <field name="contact_phone">+32486575560</field>
+            <field name="contact_email">zoya.yashin@example.com</field>
+        </record>
+    </data>
+</odoo>

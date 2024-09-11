@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_employee_inherit_form" model="ir.ui.view">
+        <field name="name">hr.employee.inherited.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_clearance"
+                        type="object"
+                        attrs="{'invisible': [('clearance_count', '=', 0)]}"
+                        class="oe_stat_button"
+                        icon="fa-book">
+                    <field name="clearance_count" widget="statinfo" string="Clearances"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>
