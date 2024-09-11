@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="al_hr_contract_amendment" model="transfer.employee">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="hr_contract_id" ref="hr_contract.hr_contract_al"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="new_department_id" ref="hr.dep_rd"/>
+            <field name="new_job_id" ref="hr.job_cto"/>
+            <field name="new_branch_id" ref="saudi_hr_branch.jeddah_office"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="qdp_hr_contract_amendment" model="transfer.employee">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="hr_contract_id" ref="hr_contract.hr_contract_qdp"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="new_department_id" ref="hr.dep_rd"/>
+            <field name="new_job_id" ref="hr.job_cto"/>
+            <field name="new_branch_id" ref="saudi_hr_branch.riyadh_office"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="fpi_hr_contract_amendment" model="transfer.employee">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="hr_contract_id" ref="hr_contract.hr_contract_fpi"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="new_department_id" ref="hr.dep_rd"/>
+            <field name="new_job_id" ref="hr.job_cto"/>
+            <field name="new_branch_id" ref="saudi_hr_branch.riyadh_office"/>
+            <field name="state">confirm</field>
+        </record>
+
+        <record id="jep_hr_contract_amendment" model="transfer.employee">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="hr_contract_id" ref="saudi_hr_contract.jep_hr_contract"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="new_department_id" ref="hr.dep_management"/>
+            <field name="new_job_id" ref="hr.job_ceo"/>
+            <field name="new_branch_id" ref="saudi_hr_branch.riyadh_office"/>
+            <field name="state">validate</field>
+        </record>
+
+        <record id="stw_hr_contract_amendment" model="transfer.employee">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="hr_contract_id" ref="hr_contract.hr_contract_stw"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="new_department_id" ref="hr.dep_rd"/>
+            <field name="new_job_id" ref="hr.job_cto"/>
+            <field name="new_branch_id" ref="saudi_hr_branch.jeddah_office"/>
+            <field name="state">approve</field>
+        </record>
+    </data>
+</odoo>

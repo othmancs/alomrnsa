@@ -1,0 +1,161 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_dependent
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 07:17+0000\n"
+"PO-Revision-Date: 2022-05-30 07:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields.selection,name:saudi_hr_dependent.selection__employee_dependent__relation__child
+msgid "Child"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model_terms:ir.actions.act_window,help:saudi_hr_dependent.action_employee_dependent
+msgid "Click to define a new Dependent."
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.employee_dependent_view_form
+msgid "Country of Person"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__birthdate
+msgid "Date of Birth"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.actions.act_window,name:saudi_hr_dependent.action_employee_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_res_documents__dependent_id
+#: model:ir.ui.menu,name:saudi_hr_dependent.menu_emp_dependent
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.employee_dependent_view_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.employee_dependent_view_tree
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.saudi_hr_dependent_view_employee_form
+msgid "Dependent"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_hr_employee__dependent_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.saudi_hr_dependent_view_employee_form
+msgid "Dependents"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__document_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.employee_dependent_view_form
+msgid "Document"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model,name:saudi_hr_dependent.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__employee_id
+#: model:ir.model.fields.selection,name:saudi_hr_dependent.selection__employee_dependent__dependent_type__employee
+msgid "Employee"
+msgstr "Employé"
+
+#. module: saudi_hr_dependent
+#: model:ir.model,name:saudi_hr_dependent.model_employee_dependent
+msgid "Employee dependent information"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields.selection,name:saudi_hr_dependent.selection__employee_dependent__dependent_type__family
+msgid "Family"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,help:saudi_hr_dependent.field_employee_dependent__name
+msgid "Name of the dependent"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__name
+msgid "Name(As in Passport)"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__nationality
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.employee_dependent_view_tree
+msgid "Nationality"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields.selection,name:saudi_hr_dependent.selection__employee_dependent__dependent_type__new_born
+msgid "New Born Baby"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model_terms:ir.ui.view,arch_db:saudi_hr_dependent.employee_dependent_view_form
+msgid "Personal Information"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__relation
+msgid "Relation"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model,name:saudi_hr_dependent.model_res_documents
+msgid "Res Documents"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields.selection,name:saudi_hr_dependent.selection__employee_dependent__relation__spouse
+msgid "Spouse"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_hr_employee__dependent_count
+msgid "Total Dependents"
+msgstr ""
+
+#. module: saudi_hr_dependent
+#: model:ir.model.fields,field_description:saudi_hr_dependent.field_employee_dependent__dependent_type
+msgid "Type"
+msgstr ""

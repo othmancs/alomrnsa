@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="fpi_employee_dependent" model="employee.dependent">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="name">Abdul</field>
+            <field name="arabic_name">بلال</field>
+            <field name="birthdate">1988-02-10</field>
+            <field name="nationality" ref="base.sa"/>
+            <field name="relation">child</field>
+            <field name="religion">muslim</field>
+            <field name="document_ids" eval="[(6, 0, [ref('res_documents.fpi_employee_documents1')])]"/>
+        </record>
+
+        <record id="al_employee_dependent" model="employee.dependent">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="name">Rahul</field>
+            <field name="arabic_name">راهول</field>
+            <field name="birthdate">1988-10-10</field>
+            <field name="nationality" ref="base.sa"/>
+            <field name="relation">spouse</field>
+            <field name="religion">muslim</field>
+            <field name="document_ids" eval="[(6, 0, [ref('res_documents.fp_employee_documents2')])]"/>
+        </record>
+
+        <record id="qdp_employee_dependent" model="employee.dependent">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="name">Bilal</field>
+            <field name="arabic_name">بلال</field>
+            <field name="birthdate">1991-02-10</field>
+            <field name="nationality" ref="base.sa"/>
+            <field name="relation">child</field>
+            <field name="religion">muslim</field>
+            <field name="document_ids" eval="[(6, 0, [ref('res_documents.qdp_employee_documents1')])]"/>
+        </record>
+
+        <record id="jep_employee_documents1" model="employee.dependent">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="name">Danial</field>
+            <field name="arabic_name">دانيال</field>
+            <field name="birthdate">1989-02-10</field>
+            <field name="nationality" ref="base.sa"/>
+            <field name="relation">child</field>
+            <field name="religion">muslim</field>
+            <field name="document_ids" eval="[(6, 0, [ref('res_documents.jep_employee_documents')])]"/>
+        </record>
+
+        <record id="stw_employee_documents1" model="employee.dependent">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="name">Fareeda</field>
+            <field name="arabic_name">فريدة</field>
+            <field name="birthdate">1979-02-10</field>
+            <field name="nationality" ref="base.sa"/>
+            <field name="relation">child</field>
+            <field name="religion">muslim</field>
+            <field name="document_ids" eval="[(6, 0, [ref('res_documents.stw_employee_documents1')])]"/>
+        </record>
+    </data>
+</odoo>

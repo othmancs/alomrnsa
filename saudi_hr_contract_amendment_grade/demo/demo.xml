@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="saudi_hr_contract_amendment.al_hr_contract_amendment" model="transfer.employee">
+            <field name="grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+            <field name="new_grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+        </record>
+
+        <record id="saudi_hr_contract_amendment.qdp_hr_contract_amendment" model="transfer.employee">
+            <field name="grade_id" ref="saudi_hr_grade.employee_grade_b"/>
+            <field name="new_grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+        </record>
+
+        <record id="saudi_hr_contract_amendment.fpi_hr_contract_amendment" model="transfer.employee">
+            <field name="grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+            <field name="new_grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+        </record>
+
+        <record id="saudi_hr_contract_amendment.jep_hr_contract_amendment" model="transfer.employee">
+            <field name="grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+            <field name="new_grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+        </record>
+
+        <record id="saudi_hr_contract_amendment.stw_hr_contract_amendment" model="transfer.employee">
+            <field name="grade_id" ref="saudi_hr_grade.employee_grade_b"/>
+            <field name="new_grade_id" ref="saudi_hr_grade.employee_grade_a"/>
+        </record>
+    </data>
+</odoo>

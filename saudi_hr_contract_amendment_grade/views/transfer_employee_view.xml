@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="transfer_employee_form_view_inherit" model="ir.ui.view">
+        <field name="name">transfer.employee.form</field>
+        <field name="model">transfer.employee</field>
+        <field name= "inherit_id" ref="saudi_hr_contract_amendment.transfer_employee_form_view"/>
+        <field name="arch" type="xml">
+            <field name="job_id" position="after">
+                <field name="grade_id"/>
+            </field>
+            <field name="new_job_id" position="after">
+                <field name="new_grade_id" placeholder='New Grade' attrs="{'readonly':[('state','!=','draft')]}" domain="[('hr_job_ids','=',new_job_id)]" required="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="transfer_employee_tree_view_inherit" model="ir.ui.view">
+        <field name="name">transfer.employee.tree</field>
+        <field name="model">transfer.employee</field>
+        <field name="inherit_id" ref="saudi_hr_contract_amendment.transfer_employee_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="new_department_id" position="after">
+                <field name="grade_id"/>
+                <field name="new_grade_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

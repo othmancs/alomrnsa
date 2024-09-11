@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="hr_contract.hr_contract_al" model="hr.contract">
+        <field name="name">Rahul Contract</field>
+        <field name="employee_id" ref="hr.employee_al"/>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="struct_id" ref="sync_hr_payroll.structure_base"/>
+        <field name="wage">15000</field>
+        <field name="date_start" eval="DateTime.today()"/>
+        <field name="date_end" eval="(DateTime.today() + relativedelta(years=1))"/>
+        <field name="signon_bonus">True</field>
+        <field name="state">open</field>
+        <field name="signon_bonus_amount">15000</field>
+        <field name="period_ids" eval="[(6, 0, [ref('hr_fiscal_year.year_period_january')])]"/>
+    </record>
+
+    <record id="hr_contract.hr_contract_fpi" model="hr.contract">
+        <field name="name">Abdul Contract</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="employee_id" ref="hr.employee_fpi"/>
+        <field name="struct_id" ref="sync_hr_payroll.structure_base"/>
+        <field name="wage">20000</field>
+        <field name="date_start" eval="DateTime.today()"/>
+        <field name="date_end" eval="(DateTime.today() + relativedelta(years=1))"/>
+        <field name="state">open</field>
+        <field name="period_ids" eval="[(6, 0, [ref('hr_fiscal_year.year_period_february')])]"/>
+    </record>
+
+    <record id="hr_contract.hr_contract_qdp" model="hr.contract">
+        <field name="name">Bilal Contract</field>
+        <field name="employee_id" ref="hr.employee_qdp"/>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="struct_id" ref="sync_hr_payroll.structure_base"/>
+        <field name="wage">20000</field>
+        <field name="date_start" eval="DateTime.today()"/>
+        <field name="date_end" eval="(DateTime.today() + relativedelta(years=1))"/>
+        <field name="signon_bonus">True</field>
+        <field name="state">open</field>
+        <field name="signon_bonus_amount">2500</field>
+        <field name="period_ids" eval="[(6, 0, [ref('hr_fiscal_year.year_period_january')])]"/>
+    </record>
+
+    <record id="jep_hr_contract" model="hr.contract">
+        <field name="name">Danial Contract</field>
+        <field name="employee_id" ref="hr.employee_jep"/>
+        <field name="department_id" ref="hr.dep_ps"/>
+        <field name="struct_id" ref="sync_hr_payroll.structure_base"/>
+        <field name="wage">30000</field>
+        <field name="date_start" eval="DateTime.today()"/>
+        <field name="date_end" eval="(DateTime.today() + relativedelta(years=1))"/>
+        <field name="signon_bonus">True</field>
+        <field name="state">open</field>
+        <field name="signon_bonus_amount">2000</field>
+        <field name="period_ids" eval="[(6, 0, [ref('hr_fiscal_year.year_period_march')])]"/>
+    </record>
+
+    <record id="hr_contract.hr_contract_stw" model="hr.contract">
+        <field name="name">Fareeda Contract</field>
+        <field name="employee_id" ref="hr.employee_stw"/>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="struct_id" ref="sync_hr_payroll.structure_base"/>
+        <field name="wage">40000</field>
+        <field name="date_start" eval="DateTime.today()"/>
+        <field name="date_end" eval="(DateTime.today() + relativedelta(years=1))"/>
+        <field name="signon_bonus">True</field>
+        <field name="state">open</field>
+        <field name="signon_bonus_amount">1500</field>
+        <field name="period_ids" eval="[(6, 0, [ref('hr_fiscal_year.year_period_march')])]"/>
+    </record>
+</odoo>

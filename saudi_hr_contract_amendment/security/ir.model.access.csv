@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transfer_employee_hof,access_transfer_employee_hof,model_transfer_employee,saudi_hr.group_hof,1,1,1,0
+access_transfer_employee_officer,access_transfer_employee_officer,model_transfer_employee,hr.group_hr_user,1,1,0,0
+access_transfer_employee_manager,access_transfer_employee_manager,model_transfer_employee,hr.group_hr_manager,1,1,1,1
+access_transfer_line_manager,access.transfer.line.manager,model_transfer_employee,saudi_hr.group_line_manager,1,1,1,0
+access_transfer_finance_manager,access.transfer.finance.manager,model_transfer_employee,account.group_account_manager,1,1,1,0
+access_transfer_base_user,access.transfer.base.user,model_transfer_employee,base.group_user,1,0,0,0

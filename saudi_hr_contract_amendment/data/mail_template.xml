@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Email template contract updation -->
+        <record id="hr_contract_amendment_updation_email" model="mail.template">
+            <field name="name">Notification Contract Amendment Updation</field>
+            <field name="model_id" ref="model_transfer_employee"/>
+            <field name="email_from">{{object.employee_id.company_id.email or ''}}</field>
+            <field name="email_to">{{object.employee_id.work_email or ''}}</field>
+            <field name="subject">Contract Amendment</field>
+            <field name="body_html" type="html">
+                    <p>Hello <t t-out="object.employee_id.name"/>,</p>
+                    <p>AMENDMENT TO CONTRACT Employment Agreement
+                    Between your company
+                    and <t t-out="object.employee_id.name"/> dated <b><t t-out="object.effective_date or ''"/></b>.
+                    </p>
+                    <p>
+                    The following amendments/add to above referenced contract will be made effective from <b><t t-out="object.hr_contract_id.date_start"/> <t t-out="object.job_id and object.job_id.name or ''"/></b> in the above reference contract your company and <b><t t-out="object.employee_id.name"/></b>
+                    acknowledge that as of <b><t t-out="object.effective_date or ''"/></b> the employee will from <b><t t-out="object.department_id.name"/></b> to <b><t t-out="object.new_department_id.name"/></b>
+                    the employees <b><t t-out="object.job_id and object.job_id.name or ''"/>
+                    </b>
+                    <t t-if="ctx['grade']">
+                        <b><t t-out="object.grade_id and object.grade_id.name or ''"/></b>
+                    </t>
+                     and <b><t t-out="object.department_id.name"/></b> will be replaced with <b><t t-out="object.new_job_id and object.new_job_id.name or ''"/> ,
+                     <t t-if="ctx['grade']">
+                     <t t-out="object.new_grade_id and object.new_grade_id.name or ''"/>,
+                     </t>
+                     <t t-out="object.new_department_id.name"/></b>
+                    </p>
+                    <p>your current base location <b><t t-out="object.branch_id.name"/></b> will change to <b><t t-out="object.new_branch_id.name"/></b></p>
+                    <p>Thank you,</p>
+                    <p><t t-out="object.employee_id.company_id.name"/></p>
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,496 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_contract_amendment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 07:13+0000\n"
+"PO-Revision-Date: 2022-05-30 07:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_contract_amendment
+#: model:mail.template,body_html:saudi_hr_contract_amendment.hr_contract_amendment_updation_email
+msgid ""
+"<p>Hello <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                    <p>AMENDMENT TO CONTRACT Employment Agreement\n"
+"                    Between your company\n"
+"                    and <t t-out=\"object.employee_id.name\"/> dated <b><t t-out=\"object.effective_date or ''\"/></b>.\n"
+"                    </p>\n"
+"                    <p>\n"
+"                    The following amendments/add to above referenced contract will be made effective from <b><t t-out=\"object.hr_contract_id.date_start\"/> <t t-out=\"object.job_id and object.job_id.name or ''\"/></b> in the above reference contract your company and <b><t t-out=\"object.employee_id.name\"/></b>\n"
+"                    acknowledge that as of <b><t t-out=\"object.effective_date or ''\"/></b> the employee will from <b><t t-out=\"object.department_id.name\"/></b> to <b><t t-out=\"object.new_department_id.name\"/></b>\n"
+"                    the employees <b><t t-out=\"object.job_id and object.job_id.name or ''\"/>\n"
+"                    </b>\n"
+"                    <t t-if=\"ctx['grade']\">\n"
+"                        <b><t t-out=\"object.grade_id and object.grade_id.name or ''\"/></b>\n"
+"                    </t>\n"
+"                     and <b><t t-out=\"object.department_id.name\"/></b> will be replaced with <b><t t-out=\"object.new_job_id and object.new_job_id.name or ''\"/> ,\n"
+"                     <t t-if=\"ctx['grade']\">\n"
+"                     <t t-out=\"object.new_grade_id and object.new_grade_id.name or ''\"/>,\n"
+"                     </t>\n"
+"                     <t t-out=\"object.new_department_id.name\"/></b>\n"
+"                    </p>\n"
+"                    <p>your current base location <b><t t-out=\"object.branch_id.name\"/></b> will change to <b><t t-out=\"object.new_branch_id.name\"/></b></p>\n"
+"                    <p>Thank you,</p>\n"
+"                    <p><t t-out=\"object.employee_id.company_id.name\"/></p>\n"
+"            "
+msgstr ""
+"<p>Hello <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                    <p>MODIFICACIÓN DEL CONTRATO Acuerdo de Trabajo\n"
+"                    Entre su empresa\n"
+"                    y <t t-out=\"object.employee_id.name\"/> con fecha <b><t t-out=\"object.effective_date or ''\"/></b>.\n"
+"                    </p>\n"
+"                    <p>\n"
+"                    Las siguientes enmiendas/añadidos al contrato mencionado anteriormente entrarán en vigencia a partir de  <b><t t-out=\"object.hr_contract_id.date_start\"/> <t t-out=\"object.job_id and object.job_id.name or ''\"/></b> en el contrato de referencia anterior su empresa y <b><t t-out=\"object.employee_id.name\"/></b>\n"
+"                    reconozce que a partir de <b><t t-out=\"object.effective_date or ''\"/></b> el empleado de <b><t t-out=\"object.department_id.name\"/></b> a <b><t t-out=\"object.new_department_id.name\"/></b>\n"
+"                    los empleados <b><t t-out=\"object.job_id and object.job_id.name or ''\"/>\n"
+"                    </b>\n"
+"                    <t t-if=\"ctx['grade']\">\n"
+"                        <b><t t-out=\"object.grade_id and object.grade_id.name or ''\"/></b>\n"
+"                    </t>\n"
+"                     y <b><t t-out=\"object.department_id.name\"/></b> serán reemplazados por <b><t t-out=\"object.new_job_id and object.new_job_id.name or ''\"/> ,\n"
+"                     <t t-if=\"ctx['grade']\">\n"
+"                     <t t-out=\"object.new_grade_id and object.new_grade_id.name or ''\"/>,\n"
+"                     </t>\n"
+"                     <t t-out=\"object.new_department_id.name\"/></b>\n"
+"                    </p>\n"
+"                    <p>su ubicación base actual <b><t t-out=\"object.branch_id.name\"/></b> cambiará a <b><t t-out=\"object.new_branch_id.name\"/></b></p>\n"
+"                    <p>Gracias,</p>\n"
+"                    <p><t t-out=\"object.employee_id.company_id.name\"/></p>\n"
+"            "
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__analytic_account_id
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__new_analytic_account_id
+msgid "Analytic Account"
+msgstr "Cuenta Analítica"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__analytic_tag_ids
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__new_analytic_tag_ids
+msgid "Analytic Tags"
+msgstr "Etiquetas de análisis"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields.selection,name:saudi_hr_contract_amendment.selection__transfer_employee__state__approve
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Approved"
+msgstr "Aprobada"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__approved_date
+msgid "Approved Date"
+msgstr "Fecha de Aprobación"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__approved_by
+msgid "Approved by"
+msgstr "Aprobado por"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields.selection,name:saudi_hr_contract_amendment.selection__transfer_employee__state__cancel
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__hr_contract_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.actions.act_window,name:saudi_hr_contract_amendment.action_transfer_employee_view
+#: model:ir.ui.menu,name:saudi_hr_contract_amendment.menu_transfer_employee
+#: model:mail.template,subject:saudi_hr_contract_amendment.hr_contract_amendment_updation_email
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_tree_view
+msgid "Contract Amendment"
+msgstr "Modificación del Contrato"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.actions.server,name:saudi_hr_contract_amendment.contract_amendment_updation_cron_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_contract_amendment.contract_amendment_updation_cron
+#: model:ir.cron,name:saudi_hr_contract_amendment.contract_amendment_updation_cron
+msgid "Contract Amendment Updation"
+msgstr "Actualización de la Modificación del Contrato"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Contract Information"
+msgstr "Información del Contrato"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Description"
+msgstr ""
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__display_name
+msgid "Display Name"
+msgstr "Descripción"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields.selection,name:saudi_hr_contract_amendment.selection__transfer_employee__state__done
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields.selection,name:saudi_hr_contract_amendment.selection__transfer_employee__state__draft
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__effective_date
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Effective Date"
+msgstr "Fecha Efectiva"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Employee Information"
+msgstr "Información del Empleado"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Filter"
+msgstr "Filtro"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "From"
+msgstr "Desde"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "From Department"
+msgstr "Desde el Departamento"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__job_id
+msgid "From Job"
+msgstr "Desde el trabajo"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "From Job Position"
+msgstr "Desde el Puesto de Trabajo"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__branch_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "From Office"
+msgstr "Desde la Oficina"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__message_needaction
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__message_has_error
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "New Job"
+msgstr "Nuevo Trabajo"
+
+#. module: saudi_hr_contract_amendment
+#: model:mail.template,name:saudi_hr_contract_amendment.hr_contract_amendment_updation_email
+msgid "Notification Contract Amendment Updation"
+msgstr "Notificación de Actualización de Modificación del Contrato"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Cantidad de Acciones"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de Errores"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: saudi_hr_contract_amendment
+#: code:addons/saudi_hr_contract_amendment/models/transfer_employee.py:0
+#, python-format
+msgid "Please define contract for selected Employee!"
+msgstr "Por favor, defina el contrato para el empleado seleccionado!"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Select Employee running contract..."
+msgstr "Seleccione Contrato en ejecución del Empleado..."
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Select Employee..."
+msgstr "Seleccione Empleado..."
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Set to Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__state
+msgid "State"
+msgstr "Estado"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "To"
+msgstr "A"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__new_department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "To Department"
+msgstr "Al Departamento"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__new_job_id
+msgid "To Job"
+msgstr "Al Trabajo"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "To Job Position"
+msgstr "A la Posición de Trabajo"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__new_branch_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "To Office"
+msgstr "A la Oficina"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model,name:saudi_hr_contract_amendment.model_transfer_employee
+msgid "Transfer Employee"
+msgstr "Transferir Empleado"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no Leídos"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no Leídos"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_form_view
+msgid "Validate"
+msgstr "Validar"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__validated_date
+msgid "Validated Date"
+msgstr "Fecha Validada"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__validated_by
+msgid "Validated by"
+msgstr "Validado por"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid  "Visa                     that has been approved"
+msgstr "Visa                     que ha sido aprobada"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Visa that                     has been refused"
+msgstr "Visa que                     ha sido rechazada"
+
+#. module: saudi_hr_contract_amendment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract_amendment.transfer_employee_filter
+msgid "Visa that                     has been waiting for approval"
+msgstr "Visa que                     ha estado esperando la aprobación"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields.selection,name:saudi_hr_contract_amendment.selection__transfer_employee__state__validate
+msgid "Waiting HR department Approval"
+msgstr "Esperando la Aprobación del Departamento de RRHH"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields.selection,name:saudi_hr_contract_amendment.selection__transfer_employee__state__confirm
+msgid "Waiting Manager Approval"
+msgstr "Esperando la Aprobación del Gerente"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,field_description:saudi_hr_contract_amendment.field_transfer_employee__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_contract_amendment
+#: model:ir.model.fields,help:saudi_hr_contract_amendment.field_transfer_employee__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_contract_amendment
+#: code:addons/saudi_hr_contract_amendment/models/transfer_employee.py:0
+#, python-format
+msgid "You Can not Done the Contract Amendment Because Effective Date is %s."
+msgstr "No Puede Realizar la Modificación del Contrato Porque la Fecha de Vigencia es %s."
+
+#. module: saudi_hr_contract_amendment
+#: code:addons/saudi_hr_contract_amendment/models/transfer_employee.py:0
+#, python-format
+msgid ""
+"You can't Confirm Contract Amendment because %s have Prohibit Benefit "
+"Upgrades Warning."
+msgstr ""
+"No puede Confirmar la Modificación del Contrato porque %s tiene el Beneficio Prohibido "
+"Advertencia de Actualizaciones."
+
+#. module: saudi_hr_contract_amendment
+#: code:addons/saudi_hr_contract_amendment/models/transfer_employee.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "¡No puede eliminar el registro que está en estado %s!"

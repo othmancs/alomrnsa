@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* saudi_hr_bonus_grade
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-24 09:49+0000\n"
+"PO-Revision-Date: 2018-12-24 09:49+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_bonus_grade
+#: model:ir.model,name:saudi_hr_bonus_grade.model_employee_bonus
+msgid "Employee Bonus"
+msgstr "مكافأة الموظف"
+
+#. module: saudi_hr_bonus_grade
+#: model:ir.model,name:saudi_hr_bonus_grade.model_employee_bonus_lines
+msgid "Employee Bonus Lines"
+msgstr "الموظفين مكافأة الخطوط"
+
+#. module: saudi_hr_bonus_grade
+#: model:ir.model.fields,field_description:saudi_hr_bonus_grade.field_employee_bonus__grade_id
+#: model:ir.model.fields,field_description:saudi_hr_bonus_grade.field_employee_bonus_lines__grade_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus_grade.hr_bonus_grade_view_employee_bonus_filter
+msgid "Grade"
+msgstr "درجة"
+
+#. module: saudi_hr_bonus_grade
+#: model:ir.model.fields,field_description:saudi_hr_bonus_grade.field_employee_bonus_lines__new_grade_id
+msgid "To Grade"
+msgstr "إلى الصف"
+

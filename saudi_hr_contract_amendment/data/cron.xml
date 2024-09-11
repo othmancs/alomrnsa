@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <data noupdate="1">
+        <!-- Cron for Contract Updation -->
+        <record model="ir.cron" id="contract_amendment_updation_cron">
+            <field name="name">Contract Amendment Updation</field>
+            <field name="model_id" ref="model_transfer_employee"/>
+            <field name="state">code</field>
+            <field name="code">model.check_contract_amendment_effective_date()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+    </data>
+</odoo>
