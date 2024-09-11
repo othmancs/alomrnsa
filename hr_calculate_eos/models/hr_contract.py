@@ -10,6 +10,7 @@ class Employee(models.Model):
     service_years = fields.Float(string='Service Years', compute='_compute_service_years')
     basic_salary = fields.Float(string='Basic Salary', related='employee_id.contract_id.wage')
     eos_amount = fields.Float(string='End of Service Amount', compute='_compute_eos_amount')
+    schedule_pay = fields.Selection(related='structure_type_id.default_struct_id.schedule_pay', depends=())
 
     def _compute_service_years(self):
         # for record in self:
