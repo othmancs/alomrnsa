@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_vacations_allocation_tree_view" model="ir.ui.view">
+        <field name="name">hr.vacations.allocation.tree.view</field>
+        <field name="model">hr.vacations.allocation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="employee_id" />
+                <field name="from_date" />
+                <field name="to_date" />
+                <field name="state" />
+                <field name="duration" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_vacations_allocation_form_view" model="ir.ui.view">
+        <field name="name">hr.vacations.allocation.form.view</field>
+        <field name="model">hr.vacations.allocation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="confirm" type="object" string="Confirm" class="btn-primary" attrs="{'invisible': [('state', '!=', 'draft')]}" />
+                    <button name="approve" type="object" string="Approve" class="btn-primary" attrs="{'invisible': [('state', '!=', 'confirm')]}" />
+                    <button name="refuse" type="object" string="Refuse" attrs="{'invisible': [('state', '!=', 'confirm')]}" />
+                    <button name="cancel" type="object" string="Cancel" attrs="{'invisible': [('state', '!=', 'validate')]}" />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" required="1" />
+                            <field name="from_date" required="1" />
+                            <field name="to_date" required="1" />
+                            <field name="duration" />
+                            <field name="remaining_duration" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_vacations_allocation_action" model="ir.actions.act_window">
+        <field name="name">Vacation Allocations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.vacations.allocation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_hr_vacations_allocation"
+        name="Vacations Allocation"
+        parent="hr_holidays.menu_hr_holidays_approvals"
+        action="hr_vacations_allocation_action"
+        sequence="2"/>
+
+</odoo>

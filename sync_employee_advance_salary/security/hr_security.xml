@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="hr_rule_advance_salary_employee" model="ir.rule">
+            <field name="name">Personal Advance Salary</field>
+            <field ref="model_hr_advance_salary" name="model_id"/>
+            <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="hr_rule_advance_salary" model="ir.rule">
+            <field name="name">Advance Salary Request HR Manager</field>
+            <field ref="model_hr_advance_salary" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        </record>
+
+        <record id="hr_rule_advance_salary_account_manager" model="ir.rule">
+            <field name="name">Advance Salary Request Account Manager</field>
+            <field ref="model_hr_advance_salary" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+        </record>
+
+        <record id="hr_rule_advance_salary_multi" model="ir.rule">
+            <field name="name">Advance Salary multi company rule</field>
+            <field name="model_id" ref="model_hr_advance_salary"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <!-- Skip installment -->
+        <record id="hr_rule_skip_installment_employee" model="ir.rule">
+            <field name="name">Personal Skip Installment</field>
+            <field ref="model_skip_salary_installment" name="model_id"/>
+            <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="hr_rule_skip_installment_manager" model="ir.rule">
+            <field name="name">Skip Installment Request HR Manager</field>
+            <field ref="model_skip_salary_installment" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        </record>
+
+        <record id="hr_skip_installment_account_manager" model="ir.rule">
+            <field name="name">Skip Installment Request Account Manager</field>
+            <field ref="model_hr_advance_salary" name="model_id"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+        </record>
+
+        <record id="hr_rule_skip_installment_multi" model="ir.rule">
+            <field name="name">Skip Installment multi company rule</field>
+            <field name="model_id" ref="model_skip_salary_installment"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+
+    </data>
+</odoo>

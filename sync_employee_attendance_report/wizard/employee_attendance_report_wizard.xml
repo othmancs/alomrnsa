@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="employee_attendance_report_wizard_view">
+            <field name="name">Employee Attendance Report</field>
+            <field name="model">attendance.recap.report.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="select_all"/>
+                    </group>
+                    <group>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_start" style="width:100px" />
+                        </group>
+                        <group>
+                            <field name="date_end" style="width:100px" />
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="get_report" string="Print" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_attendance_report_wizard_record" model="ir.actions.act_window">
+            <field name="name">Employee Attendance Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">attendance.recap.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="employee_attendance_report_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

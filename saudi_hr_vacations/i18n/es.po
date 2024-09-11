@@ -1,0 +1,675 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_vacations
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-26 10:36+0000\n"
+"PO-Revision-Date: 2024-08-26 10:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_vacation_change_enddate_form
+msgid "<span class=\"fs-4 ms-2 fw-bold\">or</span>"
+msgstr "<span class=\"fs-4 ms-2 fw-bold\">o</span>"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Advance Salary"
+msgstr "Salario Adelantado"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Advance Salary Details"
+msgstr "Detalles del Salario Adelantado"
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_advance_salary
+msgid "Advance Salary Request"
+msgstr "Solicitud de Anticipo de Salario"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__advance_salary_ids
+msgid "Advance salary"
+msgstr "Sueldo Adelantado"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.hr_vacations_allocation_form_view
+msgid "Approve"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacations_allocation__state__validate
+msgid "Approved"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacation__state__cancel
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacations_allocation__state__cancel
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.hr_vacations_allocation_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_vacation_change_enddate_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__cancelled_by
+msgid "Cancelled By"
+msgstr "Cancelado por"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__cancelled_date
+msgid "Cancelled Date"
+msgstr "Fecha de Cancelación"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Change Vacation Duration"
+msgstr "Cambiar Duración de Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_change_enddate_wizard
+msgid "Change Vacation End Date"
+msgstr "Cambiar Fecha de Fin de Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacation__state__confirm
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.hr_vacations_allocation_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__contract_id
+msgid "Contract"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Create Leave"
+msgstr "Crear Permiso"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__create_date
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__create_date
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__enddate
+msgid "Current End Date"
+msgstr "Fecha de Finalización Actual"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Direct Manager Approval"
+msgstr "Aprobación Directa del Gerente"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__direct_manager_approved_by
+msgid "Direct Manager Approval By"
+msgstr "Aprobación Directa del Gerente Por"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacation__state__direct_manager
+msgid "Direct Manager Approved"
+msgstr "Aprobado Directamente por Gerente"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__direct_manager_approved_date
+msgid "Direct Manager Approved Date"
+msgstr "Fecha de la Aprobación Directa del Gerente"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__display_name
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__display_name
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacation__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__duration
+msgid "Duration"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_vacations
+#: model:ir.actions.act_window,name:saudi_hr_vacations.act_hr_employee_advance_salary_form_view
+msgid "Employee Advance Salary"
+msgstr "Salario por Adelantado del Empleado"
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato de empleado"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__date_to
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Finance Manager Approval"
+msgstr "Aprobación del Gerente de Finanzas"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacation__state__finance_manager
+msgid "Finance Manager Approved"
+msgstr "Aprobado por Gerente de Finanzas"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__financial_manager_approved_by
+msgid "Financial Manager Approval By"
+msgstr "Aprobación del Gerente Financiero por"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__financial_manager_approved_date
+msgid "Financial Manager Approved Date"
+msgstr "Fecha de Aprobación por el Gerente Financiero"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de fuente impresionante, p.ej. fa-tareas"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__from_date
+msgid "From Date"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "HR Manager Approval"
+msgstr "Aprobación del Gerente de RR.HH."
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__hr_manager_approved_by
+msgid "HR Manager Approval By"
+msgstr "Aprobación del Gerente de RR.HH. por"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacation__state__hr_manager
+msgid "HR Manager Approved"
+msgstr " Aprobado por Gerente de RR.HH."
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__hr_manager_approved_date
+msgid "HR Manager Approved Date"
+msgstr "Fecha de Aprobación por el Gerente de RR. HH."
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_vacation
+msgid "HR Vacation"
+msgstr "Vacaciones de RR.HH."
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_vacations_allocation
+msgid "HR Vacations Allocation"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_visa
+msgid "HR Visa"
+msgstr "Visa de RR.HH."
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__id
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__id
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__message_has_error
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__job_id
+msgid "Job Position"
+msgstr "Puesto de Trabajo"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_res_config_settings__join_work_after_vacation
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacation__state__join_work_after_vacation
+msgid "Join Work After Vacation"
+msgstr "Unirse al Trabajo Después de Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Join to Work"
+msgstr "Unirse al Trabajo"
+
+#. module: saudi_hr_vacations
+#. odoo-python
+#: code:addons/saudi_hr_vacations/models/hr_vacations.py:0
+#, python-format
+msgid "Kindly provide the 'Return to Work Date' information."
+msgstr ""
+"Amablemente Proporcione la Información de la 'Fecha de regreso al trabajo'."
+
+#. module: saudi_hr_vacations
+#. odoo-python
+#: code:addons/saudi_hr_vacations/wizard/change_date_wizard.py:0
+#, python-format
+msgid ""
+"Kindly update/create Time off request. Vacation End date is changed to "
+msgstr ""
+"Por favor, actualice/cree una solicitud de tiempo libre. La fecha de "
+"finalización de las vacaciones se cambia a"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard____last_update
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation____last_update
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__write_date
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__write_date
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__hr_leave_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Leaves"
+msgstr "Licencias"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de mi Actividad"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__name
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__new_enddate
+msgid "New End Date"
+msgstr "Nueva Fecha Final"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Siguiente Actividad del Calendario de Eventos"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha Límite de la Próxima Actividad"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la Siguiente Actividad"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente Tipo de Actividad"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__vacation_days
+msgid "No. of Vacation Days"
+msgstr "Nº de Días de Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__branch_id
+msgid "Office"
+msgstr "Oficina"
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de Pago"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacations_allocation__state__refuse
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.hr_vacations_allocation_form_view
+msgid "Refuse"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__remaining_duration
+msgid "Remaining Duration"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__remaining_vacation_days
+msgid "Remaining Vacation Days"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__return_to_work_date
+msgid "Return to Work Date"
+msgstr "Fecha de Regreso al Trabajo"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_support_config_settings_hr_vacation
+msgid ""
+"Select this if its compulsory that employee need to update vacation status "
+"to joined after coming back to vacation."
+msgstr ""
+"Seleccione esto si es obligatorio que el empleado actualice su estado de "
+"vacaciones para unirse después de volver de sus vacaciones."
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__date_start
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__state
+msgid "State"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencido: la fecha de vencimiento ya pasó\n"
+"Hoy: la fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: saudi_hr_vacations
+#: model:ir.model,name:saudi_hr_vacations.model_hr_leave
+msgid "Time Off"
+msgstr "Tiempo Libre"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacations_allocation__state__confirm
+msgid "To Approve"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacations_allocation__to_date
+msgid "To Date"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields.selection,name:saudi_hr_vacations.selection__hr_vacations_allocation__state__draft
+msgid "To Submit"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: saudi_hr_vacations
+#. odoo-python
+#: code:addons/saudi_hr_vacations/models/hr_vacations.py:0
+#, python-format
+msgid "Update EndDate"
+msgstr "Actualizar Fecha de Finalización"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_vacation_change_enddate_form
+msgid "Update Vacation End Date"
+msgstr "Actualizar Fecha de Fin de Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_change_enddate_wizard__vacation_id
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_advance_salary__hr_vacation_id
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_leave__hr_vacation_id
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_visa__hr_vacation_id
+msgid "Vacation"
+msgstr "Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_contract__vacation_allocation_ids
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_employee__vacation_allocation_ids
+msgid "Vacation Allocation"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.actions.act_window,name:saudi_hr_vacations.hr_vacations_allocation_action
+msgid "Vacation Allocations"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.ui.menu,name:saudi_hr_vacations.menu_hr_vacation
+msgid "Vacation Request"
+msgstr "Solicitud de Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.actions.act_window,name:saudi_hr_vacations.hr_employee_vacation_my
+#: model:ir.ui.menu,name:saudi_hr_vacations.hr_employee_vacation_menu_my
+msgid "Vacation Requests"
+msgstr "Solicitud de Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.actions.act_window,name:saudi_hr_vacations.action_hr_vacation
+#: model:ir.ui.menu,name:saudi_hr_vacations.hr_holidays_menu_hr_vacation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.hr_contract_view_inherit_form2_inherited
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.hr_form_view_inherited
+msgid "Vacations"
+msgstr "Vacaciones"
+
+#. module: saudi_hr_vacations
+#: model:ir.ui.menu,name:saudi_hr_vacations.menu_hr_vacations_allocation
+msgid "Vacations Allocation"
+msgstr ""
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__visa_ids
+msgid "Visa"
+msgstr "Visa"
+
+#. module: saudi_hr_vacations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Visa Details"
+msgstr "Detalles de la Visa"
+
+#. module: saudi_hr_vacations
+#: model:ir.actions.act_window,name:saudi_hr_vacations.action_hr_visa_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_vacations.view_hr_employee_vacation_form
+msgid "Visa Request"
+msgstr "Solicitud de Visa"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,field_description:saudi_hr_vacations.field_hr_vacation__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_vacations
+#: model:ir.model.fields,help:saudi_hr_vacations.field_hr_vacation__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_vacations
+#. odoo-python
+#: code:addons/saudi_hr_vacations/models/hr_vacations.py:0
+#, python-format
+msgid ""
+"You can not set multiple vacations that overlaps on the same day for the "
+"same employee."
+msgstr ""
+"No puede configurar varias vacaciones que se superponen en el mismo día para"
+" el mismo empleado."
+
+#. module: saudi_hr_vacations
+#. odoo-python
+#: code:addons/saudi_hr_vacations/models/hr_payslip.py:0
+#, python-format
+msgid ""
+"You can't able to create Payslip for this month duration of %s employee."
+msgstr ""
+"No puede crear el comprobante de pago para la duración de este mes de %s "
+"empleado."

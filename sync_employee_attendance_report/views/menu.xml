@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem
+        id="menu_hr_hr_attendance_report"
+        name="Reporting"
+        parent="hr_attendance.menu_hr_attendance_report"
+        sequence="30"
+        groups="hr_attendance.group_hr_attendance_user"
+        action="hr_attendance.hr_attendance_report_action"
+        />
+
+    <menuitem id="emp_attendance_report_data_menu"
+            parent="hr_attendance.menu_hr_attendance_report"
+            name="Employee Attendance Report"
+            action="employee_attendance_report_wizard_record"
+            />
+</odoo>

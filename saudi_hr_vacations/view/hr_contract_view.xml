@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_contract_view_inherit_form2_inherited" model="ir.ui.view">
+        <field name="name">hr.contract.view.inherit.form2.inherited</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="saudi_hr_contract.hr_contract_view_inherit_form2" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="vacation_allocation" string='Vacations'>
+                    <field name="vacation_allocation_ids" context="{'default_employee_id': employee_id}" domain="[('employee_id', '=', employee_id)]">
+                        <tree>
+                            <field name="employee_id" />
+                            <field name="from_date" />
+                            <field name="to_date" />
+                            <field name="state" />
+                            <field name="duration" />
+                            <field name="remaining_duration" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_form_view_inherited" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherited</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="saudi_hr.hr_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="vacations" string="Vacations">
+                    <field name="vacation_allocation_ids" readonly="1" force_save="1">
+                        <tree>
+                            <field name="employee_id" />
+                            <field name="from_date" />
+                            <field name="to_date" />
+                            <field name="state" />
+                            <field name="duration" />
+                            <field name="remaining_duration" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

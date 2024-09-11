@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_hr_visa_form_view" model="ir.actions.act_window">
+        <field name="name">Visa Request</field>
+        <field name="res_model">hr.visa</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="act_hr_employee_advance_salary_form_view" model="ir.actions.act_window">
+        <field name="name">Employee Advance Salary</field>
+        <field name="res_model">hr.advance.salary</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_hr_employee_vacation_form" model="ir.ui.view">
+        <field name="name">hr.vacation.form</field>
+        <field name="model">hr.vacation</field>
+        <field name="priority">32</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" states="draft" class="oe_highlight"/>
+                    <button name="action_direct_manager_approval" type="object" string="Direct Manager Approval" states="confirm" groups="saudi_hr.group_line_manager,hr_holidays.group_hr_holidays_responsible" class="oe_highlight"/>
+                    <button name="action_finance_manager_approval" type="object" string="Finance Manager Approval" states="direct_manager" groups="account.group_account_manager" class="oe_highlight"/>
+                    <button name="action_hr_manager_approval" type="object" string="HR Manager Approval" states="finance_manager" groups="hr.group_hr_manager" class="oe_highlight"/>
+                    <button name="%(hr_holidays.hr_leave_action_my_request)d" type="action" string="Create Leave" states="hr_manager" context="{'default_hr_vacation_id': id, 'default_employee_id': employee_id, 'default_date_from': date_start, 'default_date_to': date_to}" class="oe_highlight"/>
+                    <button name="%(action_hr_visa_form_view)d" type="action" string="Visa Request" states="hr_manager" context="{'default_hr_vacation_id': id, 'default_employee_id': employee_id, 'default_requested_date_from': date_start}" class="oe_highlight"/>
+                    <button name="%(act_hr_employee_advance_salary_form_view)d" type="action" string="Advance Salary" states="hr_manager" context="{'default_hr_vacation_id': id, 'default_employee_id': employee_id, 'default_request_date': date_start, 'default_payment_start_date': date_start, 'date_start':date_start, 'date_to': date_to}" class="oe_highlight"/>
+                    <button name="action_join_to_work" type="object" string="Join to Work" states="hr_manager"/>
+                    <button name="action_changed_enddate" type="object" string="Change Vacation Duration" groups="hr.group_hr_manager" states="hr_manager,join_work_after_vacation"/>
+                    <button name="action_cancel" type="object" string="Cancel" groups="hr.group_hr_user" states="draft,confirm,direct_manager,finance_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly='1'/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" invisible="1"/>
+                            <field name="department_id" invisible="1"/>
+                            <field name="job_id" invisible="1"/>
+                            <field name="branch_id" invisible="1"/>
+                            <field name="date_start" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            <field name="date_to" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            <field name="return_to_work_date" states="hr_manager,join_work_after_vacation" attrs="{'readonly': [('state', '=', 'join_work_after_vacation')]}"/>
+                            <field name="vacation_days"/>
+                        </group>
+                        <group>
+                            <field name="remaining_vacation_days" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Leaves" attrs="{'invisible': [('hr_leave_ids', '=', [])]}">
+                            <field name="hr_leave_ids" readonly="1">
+                                <tree>
+                                    <field name="holiday_status_id"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="duration_display"/>
+                                    <field name="name"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Visa Details" attrs="{'invisible': [('visa_ids', '=', [])]}">
+                            <field name="visa_ids" readonly="1"/>
+                        </page>
+                        <page string="Advance Salary Details" attrs="{'invisible': [('advance_salary_ids', '=', [])]}">
+                            <field name="advance_salary_ids">
+                                <tree create="0" delete="1">
+                                    <field name="employee_id"/>
+                                    <field name="request_date"/>
+                                    <field name="currency_id"/>
+                                    <field name="job_id"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Extra Information" groups="base.group_no_one">
+                            <group>
+                                <group>
+                                    <field name="create_uid" readonly="1"/>
+                                    <field name="direct_manager_approved_by" readonly="1"/>
+                                    <field name="financial_manager_approved_by" readonly="1"/>
+                                    <field name="hr_manager_approved_by" readonly="1"/>
+                                    <field name="cancelled_by" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="create_date" readonly="1"/>
+                                    <field name="direct_manager_approved_date" readonly="1"/>
+                                    <field name="financial_manager_approved_date" readonly="1"/>
+                                    <field name="hr_manager_approved_date" readonly="1"/>
+                                    <field name="cancelled_date" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--Salary Structure Form view for users -->
+    <record id="view_hr_employee_vacation_form_manager" model="ir.ui.view">
+        <field name="name">hr.vacation.form.manager</field>
+        <field name="model">hr.vacation</field>
+        <field name="mode">primary</field>
+        <field name="priority">16</field>
+        <field name="inherit_id" ref="view_hr_employee_vacation_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group" position="before">
+                <group>
+                    <field name="employee_id" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                    <field name="department_id" force_save="1"/>
+                    <field name="job_id" force_save="1"/>
+                    <field name="branch_id" force_save="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_employee_vacation_my" model="ir.actions.act_window">
+        <field name="name">Vacation Requests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.vacation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[('employee_id.user_id', '=', uid)]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree'}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('saudi_hr_vacations.view_hr_employee_vacation_form')})]"/>
+    </record>
+
+    <record id="view_hr_employee_vacation_tree" model="ir.ui.view">
+        <field name="name">hr.vacation.tree</field>
+        <field name="model">hr.vacation</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name"/>
+                <field name="employee_id" widget="many2one_avatar_employee"/>
+                <field name="date_start"/>
+                <field name="date_to"/>
+                <field name="vacation_days"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hr_vacation">
+        <field name="name">Vacations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.vacation</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="domain">[]</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree'}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('saudi_hr_vacations.view_hr_employee_vacation_form_manager')})]"/>
+    </record>
+
+    <menuitem
+        id="hr_holidays_menu_hr_vacation"
+        name="Vacations"
+        parent="hr_holidays.menu_hr_holidays_approvals"
+        groups="hr.group_hr_user,saudi_hr.group_line_manager,hr_holidays.group_hr_holidays_user"
+        sequence="8"/>
+
+    <menuitem
+        id="menu_hr_vacation"
+        name="Vacation Request"
+        parent="hr_holidays_menu_hr_vacation"
+        action="action_hr_vacation"
+        sequence="1"/>
+
+    <menuitem
+        id="hr_employee_vacation_menu_my"
+        parent="hr_holidays.menu_hr_holidays_my_leaves"
+        action="hr_employee_vacation_my"
+        sequence="5"/>
+
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_advance_salary_payment_form" model="ir.ui.view">
+        <field name="name">advance.salary.payment.form</field>
+        <field name="model">advance.salary.payment</field>
+        <field name="arch" type="xml">
+            <form string="Advance Salary Payment">
+                <sheet>
+                    <group>
+                        <field name="advance_salary_id" readonly="1"/>
+                        <group>
+                            <label for="amount"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="amount"/>
+                                <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                       groups="base.group_multi_currency" invisible="1"/>
+                            </div>
+                            <field name="journal_id" widget="selection" domain="[('type', 'in', ['cash', 'bank'])]"/>
+                        </group>
+                        <group>
+                            <field name="payment_date"/>
+                            <field name="account_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string='Validate' name="action_validate_payment" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

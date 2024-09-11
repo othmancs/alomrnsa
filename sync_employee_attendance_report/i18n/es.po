@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_employee_attendance_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 08:38+0000\n"
+"PO-Revision-Date: 2022-05-30 08:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "<b>Department: </b>"
+msgstr "<b>Departamento: </b>"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "<b>Employee Attendance Report</b>"
+msgstr "<b>Informe de asistencia de empleado</b>"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "<b>Employee Name: </b>"
+msgstr "<b>Nombre del empleado: </b>"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "<strong>Total Hours : </strong>"
+msgstr "<strong>Houras totales : </strong>"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "Attendance"
+msgstr "Asistencia "
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.employee_attendance_report_wizard_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: sync_employee_attendance_report
+#: model:ir.actions.act_window,name:sync_employee_attendance_report.employee_attendance_report_wizard_record
+#: model:ir.actions.report,name:sync_employee_attendance_report.recap_report
+#: model:ir.model,name:sync_employee_attendance_report.model_report_sync_employee_attendance_report_attendance_report_view
+#: model:ir.ui.menu,name:sync_employee_attendance_report.emp_attendance_report_data_menu
+msgid "Employee Attendance Report"
+msgstr "Informe de asistencia de empleado"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model,name:sync_employee_attendance_report.model_attendance_recap_report_wizard
+msgid "Employee Attendance Report Wizard"
+msgstr "Asistente de Informe de asistencia de empleado"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__employee_ids
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__date_end
+msgid "End Date"
+msgstr "Fecha de termino"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: sync_employee_attendance_report
+#: code:addons/sync_employee_attendance_report/report/employee_attendance_report.py:0
+#, python-format
+msgid "No records Found !"
+msgstr "¡ No se encontraron registros !"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.employee_attendance_report_wizard_view
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: sync_employee_attendance_report
+#: model:ir.ui.menu,name:sync_employee_attendance_report.menu_hr_hr_attendance_report
+msgid "Reporting"
+msgstr "Reportando"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__select_all
+msgid "Select All"
+msgstr "Seleccionar todo"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "Sign In"
+msgstr "Iniciar sesión"
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "Sign Out"
+msgstr "Cerrar sesión"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.fields,field_description:sync_employee_attendance_report.field_attendance_recap_report_wizard__date_start
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#. module: sync_employee_attendance_report
+#: model:ir.model.constraint,message:sync_employee_attendance_report.constraint_attendance_recap_report_wizard_check_date
+msgid ""
+"The Start Date Should be Less Than End Date and End Date Should be Greater "
+"Than Start Date."
+msgstr ""
+"La fecha de inicio debe ser menor que la fecha de finalización y la fecha de
+"finalización debe ser mayor que la fecha de inicio."
+
+#. module: sync_employee_attendance_report
+#: model_terms:ir.ui.view,arch_db:sync_employee_attendance_report.attendance_report_view
+msgid "Worked Hours"
+msgstr "Horas Trabajadas"

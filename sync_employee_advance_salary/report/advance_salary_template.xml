@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_advance_salary">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context({'lang':o.user_id.partner_id.lang})" />
+            <div class="page">
+                <div class="oe_structure"/>
+                <div class="row">
+                    <div class="text-center" style="width: 100%">
+                        <h2><strong> Advance Salary - <t t-esc="o.name"/></strong></h2>
+                    </div>
+                </div><br/>
+                <div class="row">
+                    <div class="text-center" style="width: 100%">
+                        <h4><strong> General Information</strong></h4>
+                    </div>
+                </div><br/>
+                <table class="table table-striped" style="width:100%;border: 1px solid black;" border="1">
+                    <tbody>
+                        <tr>
+                            <td><strong>Employee : </strong><span t-field="o.employee_id"/></td>
+                            <td><strong>Request Date : </strong><span t-field="o.request_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Job Title : </strong><span t-field="o.job_id"/></td>
+                            <td><strong>Request Amount : </strong><span t-field="o.request_amount"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Department : </strong><span t-field="o.department_id"/></td>
+                            <td><strong>Department Manager : </strong><span t-field="o.department_id.manager_id"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <div class="row">
+                    <div class="text-center" style="width: 100%">
+                        <h4><strong> Date </strong></h4>
+                    </div>
+                </div><br/>
+                <table class="table table-striped" style="width:100%;border: 1px solid black;" border="1">
+                    <tbody>
+                        <tr>
+                            <td><strong>Confirm By : </strong><span t-field="o.confirm_by"/></td>
+                            <td><strong>Confirm Date(Employee):</strong><span t-field="o.confirm_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>HR Manager : </strong><span t-field="o.approved1_by"/></td>
+                            <td><strong>Approve Date(HR Manager) : </strong><span t-field="o.approved1_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Payroll Manager : </strong><span t-field="o.approved2_by"/></td>
+                            <td><strong>Approve Date(Payroll Manager) : </strong><span t-field="o.approved2_date" t-options='{"widget": "date"}'/></td>
+                        </tr>
+                    </tbody>
+                </table><br/>
+                <div class="row">
+                    <div class="text-center" style="width: 100%">
+                        <h4><strong> Accounting Information</strong></h4>
+                    </div>
+                </div><br/>
+                <table class="table table-striped" style="width:100%;border: 1px solid black;" border="1">
+                    <tbody>
+                        <tr>
+                            <td><strong>Paid Date : </strong><span t-field="o.paid_date" t-options='{"widget": "date"}'/></td>
+                            <td><strong>Paid By : </strong><span t-field="o.paid_by"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <div class="row mb8">
+                    <strong>Reason for Advance: </strong><span t-field="o.reason"/>
+                </div>
+                <br/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_advancesalary">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="sync_employee_advance_salary.report_advance_salary" t-lang="o.user_id.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</odoo>

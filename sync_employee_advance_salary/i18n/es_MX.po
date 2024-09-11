@@ -1,0 +1,988 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_employee_advance_salary
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:45+0000\n"
+"PO-Revision-Date: 2023-02-06 08:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_employee_advance_salary
+#: model:ir.actions.report,print_report_name:sync_employee_advance_salary.action_report_advance_salary
+msgid "'Advance Salary'"
+msgstr "'Adelanto de Salario'"
+
+#. module: sync_employee_advance_salary
+#: model:mail.template,body_html:sync_employee_advance_salary.email_template_advance_salary_request_done
+msgid ""
+"<p>Dear <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                <p>Your advance salary request process done.</p>\n"
+"                <p>Thank you,</p>\n"
+"                <p style=\"color:#888888;\">\n"
+"                <t t-out=\"object.user_id.name\"/>\n"
+"                </p>\n"
+"            "
+msgstr ""
+"<p>Estimado <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                <p>Tú proceso de solicitud de anticipo de salario está hecho.</p>\n"
+"                <p>Gracias,</p>\n"
+"                <p style=\"color:#888888;\">\n"
+"                <t t-out=\"object.user_id.name\"/>\n"
+"                </p>\n"
+"            "
+
+#. module: sync_employee_advance_salary
+#: model:mail.template,body_html:sync_employee_advance_salary.email_template_advance_salary_request_refuse
+msgid ""
+"<p>Dear <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                <p>Your advance salary request process refused.</p>\n"
+"                <p>Thank you,</p>\n"
+"                <p style=\"color:#888888;\">\n"
+"                <t t-out=\"object.user_id.name\"/>\n"
+"                </p>\n"
+"            "
+msgstr ""
+"<p>Estimado <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                <p>Su proceso de solicitud de anticipo de salario fue rechazado.</p>\n"
+"                <p>Gracias,</p>\n"
+"                <p style=\"color:#888888;\">\n"
+"                <t t-out=\"object.user_id.name\"/>\n"
+"                </p>\n"
+"            "
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong> Accounting Information</strong>"
+msgstr "<strong> Información de Contabilidad</strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong> Date </strong>"
+msgstr "<strong> Fecha </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong> General Information</strong>"
+msgstr "<strong>Información General</strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Approve Date(HR Manager) : </strong>"
+msgstr "<strong>Fecha de aprobación (Gerente de RR. HH.): </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Approve Date(Payroll Manager) : </strong>"
+msgstr "<strong>Fecha de Aprobación (Administrador de Nómina:): </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Confirm By : </strong>"
+msgstr "<strong>Confirmado por: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Confirm Date(Employee):</strong>"
+msgstr "<strong>Fecha de Confirmación (empleado):</strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Department : </strong>"
+msgstr "<strong>Departamento: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Department Manager : </strong>"
+msgstr "<strong>Gerente de Departamento: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Employee : </strong>"
+msgstr "<strong> Empleado: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>HR Manager : </strong>"
+msgstr "<strong>Gerente de RR.HH.: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Job Title : </strong>"
+msgstr "<strong>Puesto: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Paid By : </strong>"
+msgstr "<strong>Pagado Por: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Paid Date : </strong>"
+msgstr "<strong>Fecha de Pago: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Payroll Manager : </strong>"
+msgstr "<strong>Administrador de Nómina: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Reason for Advance: </strong>"
+msgstr "<strong>Razón del Adelanto: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Request Amount : </strong>"
+msgstr "<strong>Importe de la Solicitud: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "<strong>Request Date : </strong>"
+msgstr "<strong>Fecha de Solicitud: </strong>"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Account Information"
+msgstr "Información de la Cuenta"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_needaction
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ícono de Tipo de Actividad"
+
+#. module: sync_employee_advance_salary
+#: model:hr.salary.rule,name:sync_employee_advance_salary.hr_advance_salary_rule
+#: model:ir.actions.act_window,name:sync_employee_advance_salary.act_hr_employee_2_advance_salary
+#: model:ir.actions.report,name:sync_employee_advance_salary.action_report_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__advance_salary_id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__advance_salary_id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__advance_salary_id
+#: model:ir.ui.menu,name:sync_employee_advance_salary.menu_hr_advance_salary
+msgid "Advance Salary"
+msgstr "Sueldo Adelantado"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.report_advance_salary
+msgid "Advance Salary -"
+msgstr "Sueldo Adelantado -"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_employee__advance_salary_count
+msgid "Advance Salary Count"
+msgstr "Recuento de Salario Anticipado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_job__advance_salary_limit
+msgid "Advance Salary Limit (%)"
+msgstr "Límite de Salario Anticipado (%)"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: model:ir.model,name:sync_employee_advance_salary.model_advance_salary_payment
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_advance_salary_payment_form
+#, python-format
+msgid "Advance Salary Payment"
+msgstr "Pago Anticipado de Salario"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model,name:sync_employee_advance_salary.model_hr_advance_salary
+#: model:ir.ui.menu,name:sync_employee_advance_salary.menu_hr_advance_salary_request
+msgid "Advance Salary Request"
+msgstr "Solicitud de Adelanto de Salario"
+
+#. module: sync_employee_advance_salary
+#: model:mail.template,subject:sync_employee_advance_salary.email_template_advance_salary_request_done
+msgid "Advance Salary Request - Done"
+msgstr "Solicitud de Anticipo de Salario - Hecho"
+
+#. module: sync_employee_advance_salary
+#: model:mail.template,subject:sync_employee_advance_salary.email_template_advance_salary_request_refuse
+msgid "Advance Salary Request Refuse"
+msgstr "Solicitud de Anticipo de Salario Rechazada"
+
+#. module: sync_employee_advance_salary
+#: model:mail.template,name:sync_employee_advance_salary.email_template_advance_salary_request_refuse
+msgid "Advance Salary Request Refuse- Send by Email"
+msgstr "Rechazo de solicitud de salario anticipado: enviar por correo electrónico"
+"Rechazo de Solicitud de Salario Anticipado: Enviar por Correo Electrónico"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr.py:0
+#: code:addons/sync_employee_advance_salary/models/hr.py:0
+#, python-format
+msgid "Advance salary limit Range 0 to 100%."
+msgstr "Límite de Anticipo de Salario Rango de 0 a 100%."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__amount_paid
+msgid "Amount Paid"
+msgstr "Importe Pagado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__amount_to_pay
+msgid "Amount to pay"
+msgstr "Monto a pagar"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__state__approve2
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__skip_salary_installment__state__approve
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__approved1_by
+msgid "Approved By(HR)"
+msgstr "Aprobado Por(RR.HH.)"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__approved2_by
+msgid "Approved By(Payroll)"
+msgstr "Aprobado Por(Nómina)"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__approved1_date
+msgid "Approved Date(HR)"
+msgstr "Fecha de Aprobación(RR.HH.)"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__approved2_date
+msgid "Approved Date(Payroll)"
+msgstr "Fecha Aprobada(Nómina)"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__approved_by
+msgid "Approved by"
+msgstr "Aprobado por"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__approved_date
+msgid "Approved on"
+msgstr "Aprobado el"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_attachment_count
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Calculate"
+msgstr "Calcular"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_advance_salary_payment_form
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__skip_salary_installment__state__cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.actions.act_window,help:sync_employee_advance_salary.action_skip_installment
+msgid "Click to define a new request to skip installment."
+msgstr "Haga clic para definir una nueva solicitud para omitir la cuota."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__company_id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__skip_salary_installment__state__confirm
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__confirm_by
+msgid "Confirm By"
+msgstr "Confirmar Por"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__state__confirm
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__confirm_date
+msgid "Confirmed Date"
+msgstr "Fecha de Confirmación"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__create_uid
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__create_uid
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__create_uid
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__create_date
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__create_date
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__create_date
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__currency_id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__currency_id
+msgid "Currency"
+msgstr "Divisa"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__date
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__deduction_amount
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__amount
+msgid "Deduction Amount"
+msgstr "Importe de Deducción"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__display_name
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__display_name
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__display_name
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: sync_employee_advance_salary
+#: model:mail.template,name:sync_employee_advance_salary.email_template_advance_salary_request_done
+msgid "Done Advance Salary Request - Send by Email"
+msgstr "Solicitud Anticipada de Sueldo Realizada - Enviar por Email"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__state__draft
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__skip_salary_installment__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model,name:sync_employee_advance_salary.model_hr_employee
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__employee_id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__employee_id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.actions.act_window,name:sync_employee_advance_salary.act_hr_employee_advance_salary
+msgid "Employee Advance Salary"
+msgstr "Salario Adelantado del Empleado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model,name:sync_employee_advance_salary.model_skip_salary_installment
+msgid "Employee Advance Salary Skip Installment"
+msgstr "Anticipo de Salario de Empleado Saltar Cuota"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Employee Details"
+msgstr "Detalles del Empleado"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Employee's Name"
+msgstr "Nombre del Empleado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__account_id
+msgid "Expense Account"
+msgstr "Cuenta de Gastos"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Extra Info"
+msgstr "Información Adicional"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_form
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__state__approve1
+msgid "First Approval"
+msgstr "Primera Aprobación"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_follower_ids
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_partner_ids
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de fuente impresionante, p.ej. fa-tareas"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__payment__fully
+msgid "Fully"
+msgstr "Completamente"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model,name:sync_employee_advance_salary.model_hr_job
+msgid "HR Job"
+msgstr "Trabajo de RR.HH."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__has_message
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__id
+msgid "ID"
+msgstr ""
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__message_needaction
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__message_unread
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__message_needaction
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__message_has_error
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__message_has_sms_error
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__message_has_error
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_is_follower
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__job_id
+msgid "Job Title"
+msgstr "Cargo"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment____last_update
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary____last_update
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line____last_update
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__write_uid
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__write_uid
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__write_uid
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__write_date
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__write_date
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__write_date
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_main_attachment_id
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_has_error
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_ids
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de mi Actividad"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#, python-format
+msgid "New"
+msgstr "Nuevo"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo Evento del Calendario de Actividades"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha Límite de la Próxima Actividad"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la Siguiente Actividad"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Actividad Siguiente"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_needaction_counter
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Cantidad de Acciones"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_has_error_counter
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__message_needaction_counter
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__message_has_error_counter
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__message_unread_counter
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__state__paid
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__paid_amount
+msgid "Paid Amount"
+msgstr "Importe Pagado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__paid_by
+msgid "Paid By"
+msgstr "Pagado por"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__paid_date
+msgid "Paid Date"
+msgstr "Fecha de Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__payment__partially
+msgid "Partially"
+msgstr "Parcialmente"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model,name:sync_employee_advance_salary.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de Pago"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Payment"
+msgstr "Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__amount
+msgid "Payment Amount"
+msgstr "Importe del Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__payment_date
+msgid "Payment Date"
+msgstr "Fecha de Pago"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Payment Details"
+msgstr "Detalles del Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__duration_month
+msgid "Payment Duration(month)"
+msgstr "Duración del Pago(mes)"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__payment_end_date
+msgid "Payment End Date"
+msgstr "Fecha de Finalización del Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__payment_entry_id
+msgid "Payment Entry"
+msgstr "Entrada de Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_advance_salary_payment__journal_id
+msgid "Payment Method"
+msgstr "Método de Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__payment_start_date
+msgid "Payment Start Date"
+msgstr "Fecha de Inicio de Pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__payment
+msgid "Payment based on "
+msgstr "Pago Basado en"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#, python-format
+msgid "Payment start date must be greater or equal to request date."
+msgstr "La fecha de inicio del pago debe ser mayor o igual a la fecha de solicitud."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_salary_installment_line__payslip_id
+msgid "Payslip"
+msgstr "Nómina"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Payslip Details"
+msgstr "Detalles de la Nómina"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__payslip_line_ids
+msgid "Payslip Line"
+msgstr "Línea de Nómina"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#, python-format
+msgid "Please enter proper value for Payment Duration"
+msgstr "Ingrese el valor adecuado para la Duración del pago"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__reason
+msgid "Reason for Advance"
+msgstr "Motivo del Adelanto"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+msgid "Reason for Advance.."
+msgstr "Motivo del Adelanto"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__name
+msgid "Reason to Skip"
+msgstr "Razón para Saltar"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/skip_installment.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/skip_installment.py:0
+#: code:addons/sync_employee_advance_salary/models/skip_installment.py:0
+#, python-format
+msgid "Record already exist for this month!"
+msgstr "¡El registro ya existe para este mes!"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__name
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__hr_advance_salary__state__refuse
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_salary_view_form
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_form
+msgid "Refuse"
+msgstr "Rechazar"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__skip_salary_installment__state__refuse
+msgid "Refused"
+msgstr "Rechazado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__refused_by
+msgid "Refused by"
+msgstr "Rechazado por"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__refused_date
+msgid "Refused on"
+msgstr "Rechazado el"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__request_amount
+msgid "Request Amount"
+msgstr "Importe de la Solicitud"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__request_date
+msgid "Request Date"
+msgstr "Fecha de Solicitud"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#, python-format
+msgid ""
+"Requested amount exceed the advance salary amount limit \n"
+"Please contact your HR Manager."
+msgstr ""
+"El monto solicitado supera el límite del monto del salario adelantado \n"
+"Por favor, póngase en contacto con su Gerente de RR.HH."
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#, python-format
+msgid "Requested amount must be greater than 0"
+msgstr "El monto solicitado debe ser mayor a 0"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_form
+msgid "Reset to Draft"
+msgstr "Restablecer a Borrador"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_has_sms_error
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model,name:sync_employee_advance_salary.model_salary_installment_line
+msgid "Salary Installment Line"
+msgstr "Línea de Cuota de Salario"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.hr_employee_advance_view_form
+msgid "Salary Request"
+msgstr "Solicitud de Sueldo"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_form
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_skip_salary_installment_tree
+msgid "Skip Advance Salary Installment Details"
+msgstr "Omitir Detalles de la Cuota de Salario Anticipado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.actions.act_window,name:sync_employee_advance_salary.action_skip_installment
+msgid "Skip Installment"
+msgstr "Omitir Cuota"
+
+#. module: sync_employee_advance_salary
+#: model:ir.ui.menu,name:sync_employee_advance_salary.menu_skip_installment
+msgid "Skip Installment Request"
+msgstr "Solicitud de Omitir cuota"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__state
+msgid "State"
+msgstr "Estado"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencido: La fecha de vencimiento ya pasó\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de la actividad de excepción en el registro."
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_unread
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no leídos"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__message_unread_counter
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no Leídos"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__user_id
+msgid "User"
+msgstr "Usuario"
+
+#. module: sync_employee_advance_salary
+#: model_terms:ir.ui.view,arch_db:sync_employee_advance_salary.view_advance_salary_payment_form
+msgid "Validate"
+msgstr "Validar"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields.selection,name:sync_employee_advance_salary.selection__skip_salary_installment__state__open
+msgid "Waiting Approval"
+msgstr "Esperando Aprobación"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_hr_advance_salary__website_message_ids
+#: model:ir.model.fields,field_description:sync_employee_advance_salary.field_skip_salary_installment__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: sync_employee_advance_salary
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_hr_advance_salary__website_message_ids
+#: model:ir.model.fields,help:sync_employee_advance_salary.field_skip_salary_installment__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#, python-format
+msgid "You already generate advance salary request which is in process."
+msgstr "Ya generaste una solicitud de anticipo de sueldo la cual se encuentra en proceso."
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/skip_installment.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/skip_installment.py:0
+#: code:addons/sync_employee_advance_salary/models/skip_installment.py:0
+#, python-format
+msgid "You cannot delete a request to skip installment which is in %s state."
+msgstr "No puede eliminar una solicitud para omitir la cuota que se encuentra en estado %s."
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#: code:addons/sync_employee_advance_salary/models/hr_advance_salary.py:0
+#, python-format
+msgid "You cannot remove the record which is not in draft state!"
+msgstr "¡No puede eliminar el registro que no está en estado de borrador!"
+
+#. module: sync_employee_advance_salary
+#: code:addons/hrms/sync_employee_advance_salary/models/skip_installment.py:0
+#: code:addons/odoo-modules/hrms/sync_employee_advance_salary/models/skip_installment.py:0
+#: code:addons/sync_employee_advance_salary/models/skip_installment.py:0
+#, python-format
+msgid "You should approve related advance salary request first"
+msgstr "Primero debe aprobar la solicitud de anticipo de salario relacionada"
+

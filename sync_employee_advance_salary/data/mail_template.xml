@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="email_template_advance_salary_request_done" model="mail.template">
+            <field name="name">Done Advance Salary Request - Send by Email</field>
+            <field name="email_from">{{object.user_id.email}}</field>
+            <field name="email_to">{{object.employee_id.work_email}}</field>
+            <field name="subject">Advance Salary Request - Done</field>
+            <field name="model_id" ref="sync_employee_advance_salary.model_hr_advance_salary"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">{{object.user_id.partner_id.lang}}</field>
+            <field name="body_html" type="html">
+                <p>Dear <t t-out="object.employee_id.name"/>,</p>
+                <p>Your advance salary request process done.</p>
+                <p>Thank you,</p>
+                <p style="color:#888888;">
+                <t t-out="object.user_id.name"/>
+                </p>
+            </field>
+        </record>
+
+        <record id="email_template_advance_salary_request_refuse" model="mail.template">
+            <field name="name">Advance Salary Request Refuse- Send by Email</field>
+            <field name="email_from">{{object.user_id.email}}</field>
+            <field name="email_to">{{object.employee_id.work_email}}</field>
+            <field name="subject">Advance Salary Request Refuse</field>
+            <field name="model_id" ref="sync_employee_advance_salary.model_hr_advance_salary"/>
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">{{object.user_id.partner_id.lang}}</field>
+            <field name="body_html" type="html">
+                <p>Dear <t t-out="object.employee_id.name"/>,</p>
+                <p>Your advance salary request process refused.</p>
+                <p>Thank you,</p>
+                <p style="color:#888888;">
+                <t t-out="object.user_id.name"/>
+                </p>
+            </field>
+        </record>
+</odoo>
