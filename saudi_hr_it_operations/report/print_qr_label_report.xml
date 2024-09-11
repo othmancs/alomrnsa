@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_producttemplatelabel_qr">
+         <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="product">
+                        <div class="o_label_sheet o_label_dymo" style="overflow:visible">   
+                             <div style="position:absolute; margin-left:190px; margin-bottom:14px; height:1px:width:1px;">
+                                <t t-if="product.qr_code_image">
+                                <img t-att-src="'/web/image/product.template/%s/qr_code_image' % product.id"/>
+                                </t>
+                            </div>  
+                            <div class="ml-3">
+                            <img t-att-src="'data:image/jpg;base64,%s' % to_text(res_company.logo_web)" style="text-align:center; height: 37%; width: 60%; margin-top:5px;"/>
+                            </div>
+                            <div class="ml-3" name="name">
+                                <strong style="text-align:center; font-size:12px">Equipment Name:</strong>
+                                <span t-field="product.name" style="font-size:12px"/>
+                            </div>
+                           
+                            <div class="ml-3" name="default_code">
+                                <strong style="text-align:center; font-size:12px">Equipment SN:</strong>
+                                <span t-field="product.default_code" style="font-size:12px"/>
+                            </div>
+                            <div class="ml-3">
+                                <strong style="text-align:center; font-size:12px">Department:</strong>
+                                <!-- <span t-field="product.department"/> -->
+                            </div>
+                        </div>                        
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+   
+   <record id="paperformat_label_two_by_four" model="report.paperformat">
+        <field name="name">Two By Four QR</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">50</field>
+        <field name="page_width">101</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record>
+    <record id="paperformat_label_four_by_six" model="report.paperformat">
+        <field name="name">Four By Six QR</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">101</field>
+        <field name="page_width">152</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record>
+    <record id="report_product_template_qr_label_two_by_four" model="ir.actions.report">
+        <field name="name">Product QR 2”x4”</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_producttemplatelabel_qr</field>
+        <field name="report_file">saudi_hr_it_operations.report_producttemplatelabel_qr</field>
+        <field name="paperformat_id" ref="saudi_hr_it_operations.paperformat_label_two_by_four"/>
+        <field name="print_report_name">'Products QR Labels - %s' % (object.name)</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_product_template_qr_label_four_by_six" model="ir.actions.report">
+        <field name="name">Product QR 4”x6”</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_producttemplatelabel_qr</field>
+        <field name="report_file">saudi_hr_it_operations.report_producttemplatelabel_qr</field>
+        <field name="paperformat_id" ref="saudi_hr_it_operations.paperformat_label_four_by_six"/>
+        <field name="print_report_name">'Products QR Labels - %s' % (object.name)</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

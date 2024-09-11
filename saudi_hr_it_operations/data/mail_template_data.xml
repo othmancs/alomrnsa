@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <!--Email template -->
+    <record id="email_template_intake_equipments_it_operations" model="mail.template">
+        <field name="name">Intake - Send by Email Equipments</field>
+        <field name="email_from">{{(object.approved_by.email and '%s &lt;%s&gt;' % (object.approved_by.name, object.approved_by.email) or '')}}</field>
+        <field name="subject">{{object.company_id.name}} (Intake {{object.display_name}})</field>
+        <field name="partner_to">{{object.employee_id.user_id.partner_id.id}}</field>
+        <field name="model_id" ref="saudi_hr_it_operations.model_hr_employee_registration"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="lang">{{object.employee_id.user_id.partner_id.lang}}</field>
+        <field name="body_html" type="html">
+            <p>Hello ,</p>
+            <br/><br/><br/>
+            <span>Please find attachment, Related to HR agreement and IT equipments, Fill out the required details, and revert back with signed agreements.</span>
+            <br/><br/><br/><br/><br/>
+            <span>Best Regards</span>
+        </field>
+    </record>
+
+    <record id="email_template_expense_sheet_manager" model="mail.template">
+        <field name="name">Expense Sheet - Send by Email Expense</field>
+        <field name="email_from">{{(ctx['company_mail'])}}</field>
+        <field name="subject">Expense Sheet</field>
+        <field name="partner_to">{{ctx['manager'].partner_id.id}}</field>
+        <field name="model_id" ref="saudi_hr_it_operations.model_hr_expense_sheet"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="lang">{{ctx['manager'].partner_id.lang}}</field>
+        <field name="body_html" type="html">
+            <p>Hello ,</p>
+            <br/><br/><br/>
+            <span>Please find attachment, Related to Expense Sheet.</span>
+            <br/><br/><br/><br/><br/>
+            <span>Best Regards</span>
+        </field>
+    </record>
+
+</odoo>

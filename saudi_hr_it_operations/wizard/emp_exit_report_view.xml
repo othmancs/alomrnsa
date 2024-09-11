@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="employee_exit_reports_view" model="ir.ui.view">
+        <field name="name">emp.exit.wizard.form</field>
+        <field name="model">emp.exit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Emp Exit">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_pdf_reports" string="Print PDF" type="object" class="oe_highlight"/>
+                    <button name="print_excel_reports" string="Print Excel" type="object" class="oe_highlight"/>
+                    <button name="action_view_reports" string="View" type="object" class="oe_highlight"/>
+                    <!-- <button name="%(saudi_hr.action_view_employee_exit_tree)d" string="View" type="action" class="oe_highlight"/> -->
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_exit_reports" model="ir.actions.act_window">
+        <field name="name">Employee Exit Reports</field>
+        <field name="res_model">emp.exit.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="employee_exit_reports_view"/>
+    </record>
+
+    <record id="action_report_emp_exit" model="ir.actions.report">
+        <field name="name">Employee Exit List</field>
+        <field name="model">emp.exit.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_emp_exit</field>
+        <field name="report_file">saudi_hr_it_operations.report_emp_exit</field>
+        <field name="print_report_name">Employee Exit List</field>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="saudi_hr_it_operations.paperformat_emp_exit_report"/>
+    </record>
+
+</odoo>

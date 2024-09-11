@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- add doc id in employee form -->
+    <record id="it_operation_view_employee_form" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- <div name="button_box" position="inside">
+                <button name="action_view_equipment" type="object" class="oe_stat_button" icon="fa-cubes" groups="base.group_user" help="Equipment" string="Equipment Registrations">
+                </button>
+            </div> -->
+            <xpath expr="//notebook/page[@name='hr_settings']" position="after">
+                <page string="IT Equipments">
+                    <field name="equipment_ids" />
+                    <!-- <field name='equipment_registrations'>
+                        <tree create="0" edit="0">
+                            <field name="item"/>
+                            <field name="category_id"/>
+                            <field name="item_state"/>
+                            <field name="handled_by"/>
+                            <field name="remarks"/>
+                        </tree>
+                    </field> -->
+                </page>
+            </xpath>
+            <field name="address_home_id" position="attributes">
+                <attribute name="domain">['|', ('company_id', '=', False), ('company_id', '=', company_id), ('customer_rank', '=', 0), ('supplier_rank', '=', 0)]</attribute>
+                <attribute name="widget">res_partner_many2one</attribute>
+                <attribute name="options">{'always_reload': True}</attribute>
+                 <!-- widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options="{&quot;always_reload&quot;: True}" -->
+            </field>
+        </field>
+    </record>
+
+    <record id="it_operation_view_employee_form_inherited" model="ir.ui.view">
+        <field name="name">res.partner.form.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="is_equipment" invisible="1" />
+            </field>
+            <xpath expr="//form" position="attributes">
+                <attribute name="js_class">saudi_hr_it_operations_form_view</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

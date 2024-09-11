@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="hr_employee_registration_form_view" model="ir.ui.view">
+        <field name="name">hr.employee.registration.form</field>
+        <field name="model">hr.employee.registration</field>
+        <field name="arch" type="xml">
+            <form string="Employee Asset Registration">
+                <header>
+                    <button name="register_confirm" string="Confirm" states="draft" type="object" class="oe_highlight" groups="saudi_hr_it_operations.group_it_helpdesk_user"/>
+                    <button name="register_receive" string="Receive" states="confirm" type="object" class="oe_highlight" groups="hr.group_hr_user" />
+                    <button name="register_validate" string="Validate" states="receive" type="object" class="oe_highlight" groups="hr.group_hr_user"/>
+                    <button name="register_approve" string="Approve" states="validate" type="object" class="oe_highlight" groups="hr.group_hr_manager"/>
+                    <button name="action_send_intake" type="object" string='Send Intake' class="btn-primary" />
+                    <button name="register_done" string="Done" states="approve" type="object" class="oe_highlight" groups="hr.group_hr_manager"/>
+                    <button name="register_cancel" string="Refuse" states="confirm,inprogress,approve,validate,receive" type="object" />
+                    <button name="set_to_draft" string="Set to Draft" states="done,refuse" type="object" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm" statusbar_colors='{"new":"blue","validate":"red","cancel":"red"}' />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_pickings" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('total_pickings', '=', 0)]}">
+                            <field name="total_pickings" widget="statinfo" string="Transfer"/>
+                        </button>
+                    </div>
+                    <group string="Employee Information" col="4">
+                        <field name="employee_id"  placeholder='Select Employee...' attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="registration_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="department_id" readonly="1" force_save="1"/>
+                        <field name="handled_by" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    </group>
+                    <group string="IT Department" col="4">
+                        <field name="it_dept_ids" nolabel="1" attrs="{'readonly':[('state','!=','draft')]}">
+                            <tree editable="bottom">
+                                <field name="item"/>
+                                <field name="product_id" domain="[('detailed_type', 'in', ['product', 'consu'])]" required="1" />
+                                <field name="product_qty" required="1" />
+                                <field name="category_id"/>
+                                <field name="item_state"/>
+                                <field name="handled_by"/>
+                                <field name="remarks"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <notebook>
+                        <page string="Extra Information" groups="base.group_no_one">
+                            <group name="extra_info" col="4">
+                                <field name="create_uid" readonly="1"/>
+                                <field name="create_date" readonly="1"/>
+                                <field name="write_uid" readonly="1"/>
+                                <field name="write_date" readonly="1"/>
+                                <field name="validated_by" attrs="{'invisible':[('validated_by','=',False)]}" />
+                                <field name="validated_date" attrs="{'invisible':[('validated_date','=',False)]}" />
+                                <field name="approved_by" attrs="{'invisible':[('approved_by','=',False)]}" />
+                                <field name="approved_date" attrs="{'invisible':[('approved_date','=',False)]}" />
+                                <field name="company_id" />
+                            </group>
+                            <group invisible="1">
+                                <field name="picking_ids" />
+                            </group>
+                            <group string='Equipment Details'>
+                                <field name="employee_equipments_fields_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="equipment_registration_id" readonly="1" force_save="1" />
+                                        <field name="question_name" readonly="1" force_save="1" />
+                                        <field name="answer" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_employee_registration_tree_view" model="ir.ui.view">
+        <field name="name">hr.employee.registration.tree</field>
+        <field name="model">hr.employee.registration</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Asset Registration" sample="1">
+                <field name="employee_id" widget="many2one_avatar_employee"/>
+                <field name="activity_ids" widget="list_activity" optional="show"/>
+                <field name="department_id"/>
+                <field name="registration_date" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_employee_registration_kanban_view" model="ir.ui.view">
+        <field name="name">hr.employee.registration.kanban</field>
+        <field name="model">hr.employee.registration</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="employee_id"/>
+                <field name="department_id" />
+                <field name="handled_by" />
+                <field name="create_date" />
+                <field name="state" />
+                <field name="activity_state"/>
+                <progressbar field="activity_state" colors="{&quot;planned&quot;: &quot;success&quot;, &quot;today&quot;: &quot;warning&quot;, &quot;overdue&quot;: &quot;danger&quot;}"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb16">
+                                <div class="o_kanban_record_headings mt4">
+                                    <strong class="o_kanban_record_title"><span><t t-esc="record.employee_id.value"/></span></strong>
+                                </div>
+                                <strong><field name="department_id" /></strong>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left text-muted">
+                                    <span><t t-esc="record.handled_by.value"/> <t t-esc="record.create_date.value"/></span>
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default', 'done': 'success'}}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="hr_employee_registration_filter" model="ir.ui.view">
+        <field name="name">hr.employee.registration.search</field>
+        <field name="model">hr.employee.registration</field>
+        <field name="arch" type="xml">
+            <search string="Filter">
+                <field name="state"/>
+                <filter name="draft" string="Draft" domain="[('state','=',('draft'))]"/>
+                <filter name="confirm" string="Waiting for Approval" domain="[('state','=',('confirm'))]" />
+                <filter name="receive" string="Received" domain="[('state','=',('receive'))]" />
+                <filter name="validate" string="Validate" domain="[('state','=',('validate'))]" />
+                <filter name="approve" string="Approved" domain="[('state','=',('approve'))]" />
+                <filter name="done" string="Done" domain="[('state','=',('done'))]"/>
+                <filter name="refuse" string="Refused" domain="[('state','=',('refuse'))]" />
+                <group expand="0" string="Group By...">
+                    <filter name="group_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                    <filter name="group_department" string="Department" context="{'group_by':'department_id'}"/>
+                    <filter string="Registration Date" name="month" context="{'group_by':'registration_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_employee_registration" model="ir.actions.act_window">
+        <field name="name">Employee Asset Registration</field>
+        <field name="res_model">hr.employee.registration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="menu_employee_registration_view" model="ir.actions.act_window">
+        <field name="name">Employee Asset Registration</field>
+        <field name="res_model">hr.employee.registration</field>
+        <!--field name="search_view_id" ref="view_hr_employee_eos_filter"/-->
+        <field name="view_id" ref="hr_employee_registration_tree_view"/>
+        <field name="view_mode">tree,kanban,pivot,activity,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to Register Employee.
+           </p>
+        </field>
+    </record>
+
+    <record id="equipment_registration_tree_view" model="ir.ui.view">
+        <field name="name">equipment.registration.tree</field>
+        <field name="model">equipment.registration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="item"/>
+                <field name="product_id" />
+                <field name="category_id"/>
+                <field name="item_state"/>
+                <field name="reg_id" required="1" string="Employee"/>
+                <field name="handled_by"/>
+                <field name="remarks"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_equipment_registration" model="ir.actions.act_window">
+        <field name="name">Equipment Registration</field>
+        <field name="res_model">equipment.registration</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="equipment_registration_filter" model="ir.ui.view">
+        <field name="name">equipment.registration.search</field>
+        <field name="model">equipment.registration</field>
+        <field name="arch" type="xml">
+            <search string="Filter">
+                <group expand="0" string="Group By...">
+                    <filter name="group_employee" string="Employee" context="{'group_by':'reg_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="handled_by" />
+                    <field name="reg_id" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_equipment_registration_helpdesk" model="ir.actions.act_window">
+        <field name="name">Equipments</field>
+        <field name="res_model">equipment.registration</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_employee': 1}</field>
+        <field name="search_view_id" ref="saudi_hr_it_operations.equipment_registration_filter" />
+    </record>
+
+</odoo>

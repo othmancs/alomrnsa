@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_emp_exit">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="text-center">
+                            <span>
+                                <h3>Employee Exit Reports</h3>
+                            </span>
+                        </div>
+                        <table class="table table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-4">Team #</th>
+                                    <th class="col-xs-4">First Name</th>
+                                    <th class="col-xs-4">Plant </th>
+                                    <th class="col-xs-4">Job Title </th>
+                                    <th class="col-xs-4">Status </th>
+                                    <th class="col-xs-4">Contact Name </th>
+                                    <th class="col-xs-4">Telephone </th>
+                                    <th class="col-xs-4">Last Day Worked </th>
+                                    <th class="col-xs-4">Hire Date</th>
+                                    <th class="col-xs-4">Reg. Rate </th>
+                                    <th class="col-xs-4">Rehire</th>
+                                    <th class="col-xs-4 ">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.get_exit_records()" t-as="rec">
+                                    <t t-set="emp" t-value="rec.employee_id"/>
+                                    <td class="col-xs-4"><span t-esc="emp.code"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.name"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.branch_id.name"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.job_id.name"/></td>
+                                    <td class="col-xs-4"><span t-esc="rec.exit_type.name"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.address_home_id.name"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.phone"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.date_of_leave"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.date_of_join"/></td>
+                                    <td class="col-xs-4"><span t-esc="o.get_reg_rate(emp)"/></td>
+                                    <td class="col-xs-4"><span t-esc="rec.rehire"/></td>
+                                    <td class="col-xs-4" style="word-warp: break-word;"><span t-esc="rec.hr_notes"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

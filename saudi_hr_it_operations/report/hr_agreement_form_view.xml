@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_hr_agreement">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="docs"/>
+                <t t-foreach="docs" t-as="equipment">
+                    <table class="table table-bordered table-hover text-center mt16 table-comparator">
+                        <tbody>
+                            <tr>
+                                <td style="width:20%">
+                                    Date
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">
+                                    Employee Name
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <t t-set="count" t-value="0.0" />
+                    <t t-set="equipment_list" t-value="equipment_data or {}" />
+                    <t t-foreach="equipment_list" t-as="equipment">
+                        <t t-set="count" t-value="count + 1" />
+                        <span><b><t t-esc="count" /> <t t-esc="equipment" /> Information</b></span>
+                        <table class="table table-bordered table-hover text-center mt16 table-comparator">
+                            <tbody>
+                                <t t-foreach="equipment_list[equipment]" t-as="question">
+                                    <tr>
+                                        <td style="width:20%">
+                                            <t t-esc="question" />
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <br/><br/><br/>
+                    <span><b>3.0 ACKOWLEGDMENT</b></span><br/><br/>
+                    <span>
+                        I understand that the items listed above have been issued to me free of charge. These items are the property of Essex Weld Solutions and must be returned in good condition upon layoff or termination of employment agreement. If the items listed above are not returned the costs indicated above will be deducted from my last pay cheque.
+                    </span><br/><br/>
+                    <span>
+                        If the items need to be replaced, they can be returned for a free replacement. If the old item is not returned, the cost listed above will be deducted off the following weeks pay cheque. 
+                    </span><br/><br/>
+                    <span>
+                        While laptop computers are made to withstand certain rigors of portable use, be mindful of the fact that they are still delicate electronic systems.  Employees or departments are encouraged to follow these guidelines while laptops are in their possession: 
+                    </span><br/><br/>
+                    <div style="margin-right:15px;">
+                        <ul class="list-unstyled">
+                            <ul>
+                                <li>It is best to hibernate or turn off the laptop before it is to be moved.  A sudden shock can damage the hard drive if it is in use at the time.
+                                </li>
+                                <li>
+                                    When transporting the laptop and a carrying case is provided, it is always best to store the laptop in it.
+                                </li>
+                                <li>
+                                    Laptops are very attractive to thieves so when in pubic, always be aware of the location of the laptop.
+                                </li>
+                                <li>
+                                    The laptop is protected by virus-checking software.  Be sure to attach the laptop periodically to the network or the Internet so that the software can download the latest updates.
+                                </li>
+                                <li>
+                                    It is best to periodically check your portable media, such as USB flash drives, to keep them clean of viruses and such.
+                                </li>
+                                <li>
+                                    Do not install any software onto the laptop that is not supported or licensed by the Essex Weld without permission.
+                                </li>
+                                <li>
+                                    Do not cache or save passwords in your browser since provides access to web-based applications such as PDF if your laptop has been stolen or misplaced.
+                                </li>
+                                <li>
+                                    Never leave the laptop for extended periods of time in a vehicle.  Extreme cold or heat can damage the components of the laptop.  If this should happen, let the laptop warm up or cool down to room temperature before attempting to use it.
+                                </li>
+                                <li>
+                                    When traveling by commercial carriers (such as airlines), do not store the laptop in checked luggage such as a suitcase.  Devices used to screen checked luggage will destroy the contents of the disk drive, rendering the laptop unusable.  Scanners used to screen passengers and carry-on bags at security checkpoints are safe when used on laptops.
+                                </li>
+                                <li>
+                                    Report any damaged, lost, or stolen laptop immediately to your supervisor.  
+                                </li>
+                            </ul>
+                        </ul>
+                    </div><br/><br/>
+                    <span>
+                        Employees or departments who are entrusted with laptop computers have the responsibility for taking appropriate precautions in preventing damage, loss, or theft of laptops.  Employees or their departments may be responsible for certain costs in repairing or replacing laptops due to negligence or intentional misconduct.  Therefore, employees must adhere to the above guidelines.
+                    </span><br/><br/><br/><br/>
+                    <span><b>4.0 BACKUP</b></span><br/>
+                    <span>
+                        You are responsible for maintaining an appropriate backup of your laptop computer, especially of the work-related documents and data files created during the normal course of your job responsibilities.  It is prudent and expected that you establish a process of copying the data files you use on the laptop to your “U:” drive storage area (or other appropriate network storage such as an external hard drive) as an added precaution against data loss.
+                    </span><br/><br/>
+                    <span>
+                        I have read, understand and accept the terms and conditions of this tool requisition.
+                    </span><br/><br/><br/>
+                    <div class="container">
+                        <div class="row">
+                            <div class='col-6'>
+                                <div class='col-12'>
+                                    _______________________________ 
+                                </div>
+                                <div class='col-12'>
+                                    Employee Signature 
+                                </div>                      
+                            </div>
+                            <div class='col-6'>
+                                <div class='col-12'>
+                                    _______________________________
+                                </div>
+                                <div class='col-12'>
+                                    IT Signature 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-6'>
+                                <div class='col-12'>
+                                    _______________________________ 
+                                </div>
+                                <div class='col-12'>
+                                    Date
+                                </div>                      
+                            </div>
+                            <div class='col-6'>
+                                <div class='col-12'>
+                                    _______________________________
+                                </div>
+                                <div class='col-12'>
+                                    Date 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="report_template_hr_agreement" model="ir.actions.report">
+        <field name="name">HR Agreement</field>
+        <field name="model">hr.employee.registration</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_hr_agreement</field>
+        <field name="report_file">saudi_hr_it_operations.report_hr_agreement</field>
+        <field name="binding_type">report</field>
+        <!-- <field name="binding_model_id" ref="model_hr_employee_registration"/> -->
+        <field name="attachment">('Agreement'+(object.display_name or '').replace('/','')+'.pdf')</field>
+    </record>
+</odoo>

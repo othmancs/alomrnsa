@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="emp_equipment_fields_wizard_form" model="ir.ui.view">
+        <field name="name">emp.equipment.fields.wizard.form</field>
+        <field name="model">emp.equipment.fields.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="employee_registraion_id" invisible="1" />
+                </group>
+                <group>
+                    <field name="equipment_fields_line_wizard_ids" context="{'default_employee_registraion_id': employee_registraion_id}" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="equipment_registration_id" context="{'default_employee_registraion_id': context.get('default_employee_registraion_id')}" options="{'no_create': True}" required="1" />
+                            <field name="question_name" required="1" />
+                            <!-- <field name="answer" required="1" /> -->
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="confirm" string="Confirm" type="object" class="btn-primary" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

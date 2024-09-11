@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="job_requisition_view_hr_job_form" model="ir.ui.view">
+        <field name="name">HR Job</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_hr_job_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='address_id']" position="after">
+                <separator string='Salary'/>
+                <field name="min_salary"/>
+                <field name="max_salary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

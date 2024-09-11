@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+       <record id="hr_it_operations_1" model="maintenance.equipment.request">
+            <field name="name">Equipment Category 1</field>
+            <field name="category_id" ref="maintenance.equipment_software"/>
+            <field name="assign_to">department</field>
+            <field name="department_id" ref="hr.dep_management"/>
+            <field name="description">Need Software Equipment for Software</field>
+        </record>
+
+        <record id="hr_it_operations_2" model="maintenance.equipment.request">
+            <field name="name">Equipment Category 2</field>
+            <field name="category_id" ref="maintenance.equipment_computer"/>
+            <field name="assign_to">employee</field>
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="description">Need Computer Equipment for Computer</field>
+        </record>
+
+        <record id="hr_it_operations_3" model="maintenance.equipment.request">
+            <field name="name">Equipment Category 3</field>
+            <field name="category_id" ref="maintenance.equipment_phone"/>
+            <field name="assign_to">other</field>
+            <field name="employee_id" ref="hr.employee_jgo"/>
+            <field name="department_id" ref="hr.dep_rd"/>
+            <field name="description">Need Phone Equipment for Phone</field>
+        </record>
+
+        <record id="hr_it_operations_4" model="maintenance.equipment.request">
+            <field name="name">Equipment Category 4</field>
+            <field name="category_id" ref="maintenance.equipment_monitor"/>
+            <field name="assign_to">department</field>
+            <field name="department_id" ref="hr.dep_rd"/>
+            <field name="state"></field>
+            <field name="description">Need Monitor Equipment for Monitor</field>
+        </record>
+
+        <record id="hr_it_operations_5" model="maintenance.equipment.request">
+            <field name="name">Equipment Category 5</field>
+            <field name="category_id" ref="maintenance.equipment_printer"/>
+            <field name="assign_to">employee</field>
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="state">confirm</field>
+            <field name="description">Need Printer Equipment for Printer</field>
+        </record>
+    </data>
+</odoo>

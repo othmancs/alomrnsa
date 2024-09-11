@@ -1,0 +1,770 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_it_operations
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 06:49+0000\n"
+"PO-Revision-Date: 2022-05-30 06:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_needaction
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__state__approve
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__hr_employee_registration__state__approve
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__approved_date
+msgid "Approved Date"
+msgstr "Fecha de Aprobación"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__approved_by
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__approved_by
+msgid "Approved by"
+msgstr "Aprobado por"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__approved_date
+msgid "Approved on"
+msgstr "Aprobado en"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+msgid "Assign To"
+msgstr "Asignar a"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_attachment_count
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__calculate_company_expense
+msgid "Calculate Company Expense"
+msgstr "Calcular Gastos de la Empresa"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.actions.act_window,help:saudi_hr_it_operations.menu_employee_registration_view
+msgid "Click to Register Employee."
+msgstr "Haga Clic para Registrar al Empleado."
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.actions.act_window,help:saudi_hr_it_operations.action_maintenance_equipment_request
+msgid "Click to add an equipment request."
+msgstr "Haga clic para agregar una solicitud de equipo."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__company_contribution
+msgid "Company Contribution"
+msgstr "Contribución de la Empresa"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__create_date
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__create_date
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: saudi_hr_it_operations
+#: model:product.product,uom_name:saudi_hr_it_operations.it_product
+#: model:product.template,uom_name:saudi_hr_it_operations.it_product_product_template
+msgid "Days"
+msgstr "Días"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__department_id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__department_id
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__assign_to__department
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__display_name
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__display_name
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__hr_employee_registration__state__done
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__hr_employee_registration__state__draft
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__state__draft
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__email
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__employee_id
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__assign_to__employee
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__emp_contribution
+msgid "Employee Contribution"
+msgstr "Contribución del Empleado"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+msgid "Employee Information"
+msgstr "Información del Empleado"
+
+#. module: saudi_hr_it_operations
+#: model:ir.actions.act_window,name:saudi_hr_it_operations.action_hr_employee_registration
+#: model:ir.actions.act_window,name:saudi_hr_it_operations.menu_employee_registration_view
+#: model:ir.model,name:saudi_hr_it_operations.model_hr_employee_registration
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__emp_registration_id
+#: model:ir.ui.menu,name:saudi_hr_it_operations.menu_emp_reg_all
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_tree_view
+msgid "Employee Registration"
+msgstr "Registro de Empleados"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#, python-format
+msgid "Equiment Request is in %s state."
+msgstr "La solicitud de equipo está en estado %s."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__equipment_id
+msgid "Equipment"
+msgstr "Equipo"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__category_id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__category_id
+msgid "Equipment Category"
+msgstr "Categoría de Equipo"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model,name:saudi_hr_it_operations.model_equipment_registration
+msgid "Equipment Registration"
+msgstr "Registro de Equipo"
+
+#. module: saudi_hr_it_operations
+#: model:ir.actions.act_window,name:saudi_hr_it_operations.action_maintenance_equipment_request
+#: model:ir.ui.menu,name:saudi_hr_it_operations.menu_equipment_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_tree
+msgid "Equipment Request"
+msgstr "Solicitud de Equipo"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#, python-format
+msgid "Equipment Returned."
+msgstr "Equipo Devuelto."
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Expense"
+msgstr "Gastos"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Expense Details"
+msgstr "Detalles de Gastos"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__expense_note
+msgid "Expense Note"
+msgstr "Nota de Gastos"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid ""
+"Expense Total should be either greater then 0 or company contribution should"
+" not be more that total expense"
+msgstr ""
+"El total de gastos debe ser mayor que 0 o la contribución de la empresa no debe "
+"ser mas que gasto total"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__expense_ids
+#, python-format
+msgid "Expenses"
+msgstr "Gastos"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+msgid "Filter"
+msgstr "Filtrar"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_follower_ids
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_partner_ids
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Generate Expense"
+msgstr "Generar Gasto"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__handled_by
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__handled_by
+msgid "Handled by"
+msgstr "Manejado por"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__has_message
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_it_operations
+#: model:ir.module.category,name:saudi_hr_it_operations.category_helpdesk
+msgid "Helpdesk"
+msgstr "Servicio de Asistencia"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__reg_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+msgid "IT Department"
+msgstr "Departamento de TI"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__it_dept_ids
+msgid "IT Departments"
+msgstr "Departamentos de TI"
+
+#. module: saudi_hr_it_operations
+#: model:ir.ui.menu,name:saudi_hr_it_operations.menu_it_operations
+msgid "IT Operations"
+msgstr "Operaciones de TI"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__message_needaction
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__message_unread
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__message_needaction
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__message_has_error
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__message_has_sms_error
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__message_has_error
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__is_expense
+msgid "Is Expense?"
+msgstr "¿Es un gasto?"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_is_follower
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: saudi_hr_it_operations
+#: model:product.product,name:saudi_hr_it_operations.it_product
+#: model:product.template,name:saudi_hr_it_operations.it_product_product_template
+msgid "It Expenses"
+msgstr "Gastos de TI"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__item
+msgid "Item"
+msgstr "Artículo"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration____last_update
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration____last_update
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__write_date
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__write_date
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_main_attachment_id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model,name:saudi_hr_it_operations.model_maintenance_equipment
+msgid "Maintenance Equipment"
+msgstr "Equipo de Mantenimiento"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model,name:saudi_hr_it_operations.model_maintenance_equipment_request
+msgid "Maintenance Equipment Request"
+msgstr "Solicitud de Equipo de Mantenimiento"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model,name:saudi_hr_it_operations.model_maintenance_request
+msgid "Maintenance Request"
+msgstr "Petición de Mantenimiento"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model,name:saudi_hr_it_operations.model_maintenance_team
+msgid "Maintenance Teams"
+msgstr "Equipos de Mantenimiento"
+
+#. module: saudi_hr_it_operations
+#: model:res.groups,name:saudi_hr_it_operations.group_it_helpdesk_manager
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_has_error
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_ids
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__equipment_registration__item_state__na
+msgid "N/A"
+msgstr "N/A"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__equipment_registration__item_state__no
+msgid "NO"
+msgstr "NO"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__employee_name
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Note"
+msgstr "Nota"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_needaction_counter
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_has_error_counter
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__message_needaction_counter
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__message_has_error_counter
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__message_unread_counter
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment__branch_id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_request__branch_id
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_team__branch_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_equipment_request_view_search_inherit
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_equipment_view_search_inherit
+msgid "Office"
+msgstr "Oficina"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__assign_to__other
+msgid "Other"
+msgstr "Otro"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__company_contribution_amount
+msgid "Paid By Company"
+msgstr "Pagado por la Empresa"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__emp_contribution_amount
+msgid "Paid By Employee"
+msgstr "Pagado por el empleado"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__payment_mode
+msgid "Payment By"
+msgstr "Pago por"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#, python-format
+msgid "Please Assign Manager of %s"
+msgstr "Asigne el Administrador de %s"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#, python-format
+msgid "Please Select Employee or Department."
+msgstr "Por favor seleccione Empleado o Departamento."
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/maintenance.py:0
+#, python-format
+msgid "Preventive Maintenance - %s"
+msgstr "Mantenimiento Preventivo - %s"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Put the description of equipment here"
+msgstr "Ponga la descripción del equipo aquí"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+msgid "Receive"
+msgstr "Recibir"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__hr_employee_registration__state__receive
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+msgid "Received"
+msgstr "Recibido"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__state__refuse
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Refuse"
+msgstr ""
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__hr_employee_registration__state__refuse
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+msgid "Refused"
+msgstr "Rechazar"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__refused_by
+msgid "Refused by"
+msgstr "Rechazado por"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__refused_date
+msgid "Refused on"
+msgstr "Rechazado el"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__registration_date
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+msgid "Registration Date"
+msgstr "Fecha de Registro"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid "Related user of employee must have partner."
+msgstr "El usuario relacionado del empleado debe tener pareja."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__remarks
+msgid "Remarks"
+msgstr "El usuario relacionado del empleado debe tener pareja."
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid "Request Approved."
+msgstr "Solicitud Aprobada"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid "Request Confirmed."
+msgstr Solicitud confirmada."
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid "Request Created."
+msgstr "Solicitud Creada."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__request_date
+msgid "Request Date"
+msgstr "Fecha de Solicitud"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid "Request Refused."
+msgstr "Solicitud Rechazada."
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid "Request Validated."
+msgstr "Solicitud Validada."
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Return"
+msgstr "Volver"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__return_date
+msgid "Return Date"
+msgstr "Fecha de Regreso"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__state__return
+msgid "Returned"
+msgstr "Devuelto"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_has_sms_error
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+msgid "Select Employee..."
+msgstr "Seleccionar Empleado..."
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Set to Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_equipment_registration__item_state
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__state
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Subject"
+msgstr "Sujeto"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.constraint,message:saudi_hr_it_operations.constraint_hr_employee_registration_employee_unique
+msgid "This employee registration process is already done."
+msgstr "Este proceso de registro de empleados ya está hecho."
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__expense_total
+msgid "Total Expense"
+msgstr "Gasto Total"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_unread
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no Leídos"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__message_unread_counter
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no Leídos"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__assign_to
+msgid "Used By"
+msgstr "Usado Por"
+
+#. module: saudi_hr_it_operations
+#: model:res.groups,name:saudi_hr_it_operations.group_it_helpdesk_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.search_view_equipment_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.view_maintenance_equipment_request_form
+msgid "Validate"
+msgstr "Validar"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__hr_employee_registration__state__validate
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__state__validate
+msgid "Validated"
+msgstr "Validado"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__validated_date
+msgid "Validated Date"
+msgstr "Fecha Validada"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__validated_by
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__validated_by
+msgid "Validated by"
+msgstr "Validado por"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__validated_date
+msgid "Validated on"
+msgstr "Validado el"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__hr_employee_registration__state__confirm
+msgid "Waiting Approval"
+msgstr "Esperando Aprovación"
+
+#. module: saudi_hr_it_operations
+#: model_terms:ir.ui.view,arch_db:saudi_hr_it_operations.hr_employee_registration_filter
+msgid "Waiting for Approval"
+msgstr "A la Espera de la Aprobación"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__maintenance_equipment_request__state__confirm
+msgid "Waiting for Approve"
+msgstr "Esperando Aprobar"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_hr_employee_registration__website_message_ids
+#: model:ir.model.fields,field_description:saudi_hr_it_operations.field_maintenance_equipment_request__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_hr_employee_registration__website_message_ids
+#: model:ir.model.fields,help:saudi_hr_it_operations.field_maintenance_equipment_request__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_it_operations
+#: model:ir.model.fields.selection,name:saudi_hr_it_operations.selection__equipment_registration__item_state__yes
+msgid "YES"
+msgstr "SI"
+
+#. module: saudi_hr_it_operations
+#: code:addons/saudi_hr_it_operations/models/equipment.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_employee_deregistration.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_employee_registration.py:0
+#: code:addons/saudi_hr_it_operations/models/hr_it_operations.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "¡No puede eliminar el registro que está en estado %s!"

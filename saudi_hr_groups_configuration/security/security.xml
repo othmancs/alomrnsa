@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- HR Groups Configuration Multi Branch Rule  -->
+    <!--<record model="ir.rule" id="hr_groups_configuration_branch_rule_global">
+        <field name="name">HR Groups Configuration multi-branch</field>
+        <field name="model_id" ref="saudi_hr_groups_configuration.model_hr_groups_configuration"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('branch_id', '=', False), ('branch_id', 'in', user.branch_ids.ids)]</field>
+    </record>-->
+</odoo>

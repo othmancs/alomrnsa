@@ -1,0 +1,165 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_groups_configuration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:32+0000\n"
+"PO-Revision-Date: 2023-02-06 08:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "Admin"
+msgstr "Administrador"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__admin_ids
+msgid "Admins"
+msgstr "Administradores"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_employee__branch_id
+msgid "Branch"
+msgstr "Rama"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "Branch Details"
+msgstr "Detalles de la Sucursal"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.actions.act_window,help:saudi_hr_groups_configuration.action_view_hr_groups_config
+msgid "Click to define Group Configuration."
+msgstr "Haga clic para definir la Configuración del Grupo."
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model,name:saudi_hr_groups_configuration.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "Finance"
+msgstr "Finanzas"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__finance_ids
+msgid "Finances"
+msgstr "Finanzas"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "GR"
+msgstr ""
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__gr_ids
+msgid "GRs"
+msgstr ""
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.actions.act_window,name:saudi_hr_groups_configuration.action_view_hr_groups_config
+#: model:ir.ui.menu,name:saudi_hr_groups_configuration.menu_hr_groups_config_action
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_tree
+msgid "Groups Configuration"
+msgstr "Configuración de Grupos"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "HR"
+msgstr "RR.HH."
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model,name:saudi_hr_groups_configuration.model_hr_groups_configuration
+msgid "HR Groups Configuration"
+msgstr "Configuración de Grupos de RR.HH."
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "HR Groups Configurations"
+msgstr "Configuraciones de grupos de RR.HH."
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__hr_ids
+msgid "HRs"
+msgstr "RR.HH."
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__helpdesk_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "Helpdesks"
+msgstr "Servicios de Asistencia"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "HoP"
+msgstr ""
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__hop_ids
+msgid "HoPs"
+msgstr ""
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__branch_id
+msgid "Office"
+msgstr "Oficina"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.constraint,message:saudi_hr_groups_configuration.constraint_hr_groups_configuration_unique_branch_id
+msgid "Office must be unique per Configuration!"
+msgstr "¡La oficina debe ser única por Configuración!"
+
+#. module: saudi_hr_groups_configuration
+#: model:ir.model.fields,field_description:saudi_hr_groups_configuration.field_hr_groups_configuration__talent_acquisition_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "Recruitment"
+msgstr "Reclutamiento"
+
+#. module: saudi_hr_groups_configuration
+#: model_terms:ir.ui.view,arch_db:saudi_hr_groups_configuration.hr_groups_config_form
+msgid "Select Office..."
+msgstr "Seleccione Oficina..."

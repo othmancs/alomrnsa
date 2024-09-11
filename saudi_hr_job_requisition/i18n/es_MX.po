@@ -1,0 +1,608 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_job_requisition
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:34+0000\n"
+"PO-Revision-Date: 2023-02-06 08:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__is_account_manager
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_res_config_settings__account_manager
+msgid "Account Manager"
+msgstr "Gerente de Cuentas"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.res_config_account_form_view
+msgid "Account Process"
+msgstr "Proceso de Cuenta"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__approved_by_hof
+msgid "Approved by HOF"
+msgstr "Aprobado por HOF"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__approved_hof_date
+msgid "Approved by HOF on"
+msgstr "Aprobado por HOF el"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__approved_by_hop
+msgid "Approved by HOP"
+msgstr "Aprobado por HOP"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__approved_hop_date
+msgid "Approved by HOP on"
+msgstr "Aprobado por HOP el"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__approved_by_recruiter
+msgid "Approved by Recruiter"
+msgstr "Aprobado por el Reclutador"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__approved_recruiter_date
+msgid "Approved by Recruiter on"
+msgstr "Aprobado por el Reclutador el"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__approx_cost
+msgid "Approx Cost"
+msgstr "Costo Aproximado"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Archivos Adjuntos"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__no_of_employee
+msgid "Current Number of Employees"
+msgstr "Número Actual de Empleados"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__no_of_current_recruitment
+msgid "Current month Recruitment"
+msgstr "Reclutamiento del mes Actual"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__department_id
+msgid "Department for which requisition required"
+msgstr "Departamento para el que se Requiere Requisición"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__draft
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__employee_ids
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__end_date
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Enter Name of Job Requisition"
+msgstr "Ingrese el Nombre de la Solicitud de Trabajo"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__no_of_recruitment
+msgid "Expected in Recruitment"
+msgstr "Esperado en Reclutamiento"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Filter"
+msgstr "Filtrar"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__approved1
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "First Approved"
+msgstr "Aprobado Primero"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model,name:saudi_hr_job_requisition.model_hr_job
+msgid "HR Job"
+msgstr "Trabajo de recursos humanos"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model,name:saudi_hr_job_requisition.model_hr_job_requisition
+msgid "HR Job Requisition"
+msgstr "Solicitud de Trabajo de RR.HH."
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "HR Requisition Form"
+msgstr "Formulario de Solicitud de RR.HH."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__hold
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Hold"
+msgstr "Espera"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__id
+msgid "ID"
+msgstr "identificación"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__message_needaction
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__message_has_error
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__job_id
+msgid "Job"
+msgstr "Trabajo"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Job Description"
+msgstr "Descripción del Trabajo"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Job Position"
+msgstr "Puesto de Trabajo"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.actions.act_window,name:saudi_hr_job_requisition.action_hr_requisition
+#: model:ir.ui.menu,name:saudi_hr_job_requisition.menu_hr_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Job Requisition"
+msgstr "Solicitud de Trabajo"
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Job Requistion Confirmed."
+msgstr "Solicitud de Trabajo Confirmada."
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Job Requistion Done"
+msgstr "Solicitud de Trabajo Realizada"
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Job Requistion Hold."
+msgstr "Retención de Solicitud de Trabajo."
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Job Requistion Launch."
+msgstr "Lanzamiento de Solicitud de Trabajo."
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Job Requistion Reject."
+msgstr "Rechazo de Solicitud de Trabajo."
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Job Requistion Set to Draft"
+msgstr "Solicitud de Trabajo Establecida como Borrador"
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Job Requistion approved."
+msgstr "Solicitud de Trabajo Aprobada."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__job_id
+msgid "Job for which requisition required"
+msgstr "Trabajo para el cual se requiere requisición"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Job requisition that has been approved"
+msgstr "Solicitud de trabajo que ha sido aprobada"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Job requisition that has been refused"
+msgstr "Solicitud de trabajo que ha sido rechazada"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Job requisition that has been waiting for approval"
+msgstr "Solicitud de trabajo que ha estado esperando aprobación"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__launch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Launch"
+msgstr "Lanzar"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job__max_salary
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__max_salary
+msgid "Maximum Salary"
+msgstr "Salario Máximo"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Mention the list of requirements here..."
+msgstr "Menciona aquí la lista de requisitos.."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job__min_salary
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__min_salary
+msgid "Minimum Salary"
+msgstr "Salario Mínimo"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__name
+msgid "Name of Requisition"
+msgstr "Nombre de la Solicitud"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__no_of_employee
+msgid "Number of employees currently occupying this job position."
+msgstr "Número de empleados que actualmente ocupan este puesto de trabajo."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Put the description here..."
+msgstr "Pon aquí la descripción..."
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__rejected
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__rejected_by
+msgid "Rejected by"
+msgstr "Rechazado por"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__rejected_date
+msgid "Rejected on"
+msgstr "Rechazado el"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__requirements
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Requirements"
+msgstr "Requisitos"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model,name:saudi_hr_job_requisition.model_res_config_settings
+msgid "ResConfigSettings"
+msgstr "AjustesConfigRes"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.job_requisition_view_hr_job_form
+msgid "Salary"
+msgstr "Salario"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__approved2
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Second Approved"
+msgstr "Segundo Aprobado"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Select Department"
+msgstr "Seleccionar Departamento"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Select Job"
+msgstr "Seleccionar Trabajo"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Set To Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.res_config_account_form_view
+msgid "Skip Installment"
+msgstr "Omitir Cuota"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__start_date
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "Start Date must be greater then End Date."
+msgstr "La fecha de inicio debe ser mayor que la Fecha de Finalización."
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "State"
+msgstr "Estado"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_requisition_form
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid ""
+"There is already a job requisition for this job position which is not "
+"launched yet."
+msgstr ""
+"Ya hay una solicitud de trabajo para este puesto de trabajo que no se ha "
+"lanzado todavía."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__expected_employees
+msgid "Total Forecasted Employees"
+msgstr "Total de Empleados Previstos"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no Leídos"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no Leídos"
+
+#. module: saudi_hr_job_requisition
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.res_config_account_form_view
+msgid "Use to show account related details."
+msgstr "Úselo para mostrar detalles relacionados con la cuenta."
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__user_id
+msgid "User"
+msgstr "Usuario"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields.selection,name:saudi_hr_job_requisition.selection__hr_job_requisition__state__confirm
+#: model_terms:ir.ui.view,arch_db:saudi_hr_job_requisition.hr_job_requisition_filter
+msgid "Waiting Approval"
+msgstr "Esperando Aprovación"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,field_description:saudi_hr_job_requisition.field_hr_job_requisition__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_job_requisition
+#: model:ir.model.fields,help:saudi_hr_job_requisition.field_hr_job_requisition__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "¡No puede eliminar el registro que está en estado %s!"
+
+#. module: saudi_hr_job_requisition
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#: code:addons/saudi_hr_job_requisition/models/hr_job_requistion.py:0
+#, python-format
+msgid ""
+"You have no rights to confirm this record please contact your "
+"administrator!!"
+msgstr ""
+"!!No tiene permiso para confirmar este registro, comuníquese con su "
+"administrador!!"
+

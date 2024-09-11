@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="product_template_form_view_inherited" model="ir.ui.view">
+        <field name="name">product.template.only.form.it.operations</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_open_label_layout']" position="after">
+                <button name="print_qr_label_action" type="object" string="Print QR Label" groups="base.group_no_one"/>
+            </xpath>
+            <xpath expr="//div[@name='options']" position="inside">
+                <span class="d-inline-block">
+                    <field name="is_equipment"/>
+                    <label for="is_equipment"/>
+                </span>
+            </xpath>
+            <field name="categ_id" position="after">
+                <field name="equipment_company_id" invisible="1" readonly="1" force_save="1" />
+            </field>
+          <!--   <xpath expr="//notebook" position="inside">
+                <page name="qr_code" string="QR Code">
+                    <group>
+                        <field name="qr_code" invisible="1"/>
+                        <field name="qr_code_image" widget="image" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath> -->
+        </field>
+    </record>
+
+    <record id="view_stock_product_template_tree_inherited" model="ir.ui.view">
+        <field name="name">product.template.stock.tree.inherit.equipment</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_stock_product_template_tree" />
+        <field name="arch" type="xml">
+            <field name="responsible_id" position="before">
+                <field name="is_equipment" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view_inherited" model="ir.ui.view">
+        <field name="name">product.template.product.tree.it.operations</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="print_qr_label_action" type="object" string="Print QR Label" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_product_form_view_inherited" model="ir.ui.view">
+        <field name="name">product.template.only.form.it.operations</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+             <xpath expr="//notebook" position="inside">
+                <page name="qr_code" string="QR Code">
+                    <group>
+                        <field name="qr_code" invisible="1"/>
+                        <field name="qr_code_image" widget="image" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+            <field name="categ_id" position="after">
+                <field name="equipment_company_id" readonly="1" force_save="1" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

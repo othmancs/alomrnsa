@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <!-- <record model="equipment.registration" id="saudi_hr_it_operations.equipment_registration_1">
+            <field name="handled_by" ref="hr.employee_qdp"/>
+            <field name="remarks"></field>
+        </record>
+        <record model="equipment.registration" id="saudi_hr_it_operations.equipment_registration_2">
+            <field name="handled_by" ref="hr.employee_stw"/>
+            <field name="remarks">Laptop/Desktop</field>
+        </record>
+        <record model="equipment.registration" id="saudi_hr_it_operations.equipment_registration_3">
+            <field name="handled_by" ref="hr.employee_qdp"/>
+            <field name="remarks">Laptop/Desktop</field>
+        </record>
+        <record model="equipment.registration" id="saudi_hr_it_operations.equipment_registration_4">
+            <field name="handled_by" ref="hr.employee_stw"/>
+            <field name="remarks">Laptop/Desktop</field>
+        </record>
+        <record model="equipment.registration" id="saudi_hr_it_operations.equipment_registration_5">
+            <field name="handled_by" ref="hr.employee_qdp"/>
+            <field name="remarks">Laptop/Desktop</field>
+        </record> -->
+
+        <record id="hr_employee_registration_0" model="hr.employee.registration">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="handled_by" ref="hr.employee_jgo"/>
+        </record>
+
+        <record id="hr_employee_registration_1" model="hr.employee.registration">
+            <field name="employee_id" ref="hr.employee_jgo"/>
+            <field name="handled_by" ref="hr.employee_qdp"/>
+        </record>
+
+        <record id="hr_employee_registration_2" model="hr.employee.registration">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="handled_by" ref="hr.employee_fpi"/>
+        </record>
+
+        <record id="hr_employee_registration_3" model="hr.employee.registration">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="handled_by" ref="hr.employee_qdp"/>
+            <field name="state">receive</field>
+        </record>
+
+        <record id="hr_employee_registration_4" model="hr.employee.registration">
+            <field name="employee_id" ref="hr.employee_jve"/>
+            <field name="handled_by" ref="hr.employee_fpi"/>
+            <field name="state">validate</field>
+        </record>
+
+        <record id="hr_employee_registration_5" model="hr.employee.registration">
+            <field name="employee_id" ref="hr.employee_ngh"/>
+            <field name="handled_by" ref="hr.employee_jve"/>
+            <field name="state">done</field>
+        </record>
+    </data>
+</odoo>

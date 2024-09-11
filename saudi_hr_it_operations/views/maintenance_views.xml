@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_equipment_request_view_form_inherit" model="ir.ui.view">
+        <field name="name">equipment.request.form</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <field name="equipment_id" position="attributes">
+                <attribute name="domain">{'default_company_id':company_id, 'default_category_id':category_id, 'check_shop_equipment': True}</attribute>
+            </field>
+            <field name="equipment_id" position="before">
+                <field name="company_id" position="move" />
+            </field>
+            <field name="company_id" position="after">
+                <field name="branch_id" groups="saudi_hr_branch.group_company_branch" options="{'no_create': True}" context="{'company_id': company_id}" invisible="1" />
+                <field name="department_id"  options="{'no_create': True}" context="{'company_id': company_id}"/>
+            </field>
+            <field name="maintenance_team_id" position="attributes">
+                <attribute name="context">{'branch_id':branch_id}</attribute>
+                <attribute name="groups">saudi_hr_branch.group_company_branch</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_equipment_category_view_form_inherit" model="ir.ui.view">
+        <field name="name">equipment.category.form.inherited</field>
+        <field name="model">maintenance.equipment.category</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_category_view_form"/>
+        <field name="arch" type="xml">
+            <field name="technician_user_id" position="attributes">
+                <attribute name="options">{'no_open': True}</attribute>
+            </field>
+            <field name="technician_user_id" position="after">
+                <field name="parent_id" />
+                <field name="equipment_category_type" />
+            </field>
+            <field name="company_id" position="attributes">
+                <attribute name="options">{'no_open': True}</attribute>
+            </field>
+            <field name="parent_id" position="before">
+                <field name="company_id" position="move" />
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_equipment_request_view_tree_inherit" model="ir.ui.view">
+        <field name="name">equipment.request.tree</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="company_id" invisible="1"/>
+                <field name="branch_id" groups="saudi_hr_branch.group_company_branch" options="{'no_create': True}" context="{'company_id': company_id}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_equipment_request_view_search_inherit" model="ir.ui.view">
+        <field name="name">equipment.request.search</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_search"/>
+        <field name="arch" type="xml">
+            <filter name="stages" position="after">
+                <filter string='Office' name="branch_id" domain="[]" context="{'group_by' : 'branch_id'}" groups="saudi_hr_branch.group_company_branch"/>
+            </filter>
+            <xpath expr="//search" position="inside">
+                <searchpanel>
+                    <field name="user_id" icon="fa-building"/>
+                    <field name="company_id"/>
+                    <field name="department_id"/>
+                </searchpanel>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_equipment_view_form_inherit" model="ir.ui.view">
+        <field name="name">equipment.form</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[hasclass('oe_button_box')]" position="inside">
+                <button name="create_repair_order" type="object" icon="fa-bars">
+                    <span>Create Repair Order</span>
+                </button>
+                <button name="open_submitted_inspection" attrs="{'invisible': [('equipment_category_type', '=', 'office')]}" class="oe_stat_button" type="object" icon="fa-bars">
+                    <span>Submitted Inspections</span>
+                </button>
+                <button name="open_run_inspection" attrs="{'invisible': [('equipment_category_type', '=', 'office')]}" class="oe_stat_button" type="object" icon="fa-bars">
+                    <span>Run Inspections</span>
+                </button>
+                <button name="open_quants" class="oe_stat_button" type="object" icon="fa-cubes">
+                    <span>Stock</span>
+                </button>
+                <button name="open_product" class="oe_stat_button" type="object" icon="fa-bars">
+                    <span>Product</span>
+                </button>
+            </xpath>
+            <field name="company_id" position="after">
+                <field name="product_category_id" />
+                <field name="branch_id" groups="saudi_hr_branch.group_company_branch" options="{'no_create': True}" context="{'company_id': company_id}"/>
+            </field>
+
+            <field name="maintenance_team_id" position="attributes">
+                <attribute name="context">{'default_company_id':company_id, 'default_branch_id': branch_id, 'branch_id':branch_id}</attribute>
+                <attribute name="groups">saudi_hr_branch.group_company_branch</attribute>
+            </field>
+            <field name="technician_user_id" position="after">
+                <field name="inspection_form_id" domain="[('equipment_company_id', 'in', [company_id, False]), ('equipment_category_id', 'in', [category_id, False]), ('department_id', 'in', [department_id, False])]" />
+                <field name="inspection_qr_code" invisible="1" />
+            </field>
+            <field name="maintenance_team_id" position="after">
+                <field name="department_id" options="{'no_create_edit': True, 'no_create': True}" />
+            </field>
+            <field name="serial_no" position="after">
+                <field name="equipment_category_type" invisible="1" />
+                <field name="system_cpu" />
+                <field name="system_ram" />
+                <field name="system_storage" />
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="domain">[('company_id', 'in', [company_id, False]), ('is_equipment', '=', True)]</attribute>
+                <attribute name="context">{'default_is_equipment': True}</attribute>
+            </field>
+            <field name="category_id" position="before">
+                <field name="company_id" position="move" />
+            </field>
+            <field name="category_id" position="attributes">
+                <attribute name="options">{'no_create_edit': True, 'no_create': True}</attribute>
+                <attribute name="domain">[('company_id', 'in', [company_id, False])]</attribute>
+            </field>
+            <page name="maintenance" position="after">
+                <page name="attachments" string="Attachments">
+                    <field name="attachments" widget="many2many_binary"/>
+                </page>
+            </page>
+            <xpath expr="//group/group" position="attributes">
+                <attribute name="style">width: 40%;</attribute>
+            </xpath>
+            <xpath expr="//group/group[2]" position="attributes">
+                <attribute name="style">width: 30%;</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <field name="image" widget="image" invisible="1"/>
+            </xpath>
+            <!-- <xpath expr="//group" position="inside"> -->
+                <!-- <group style="width: 30%;" attrs="{'invisible': [('serial_no', '=', False)]}">
+                </group> -->
+            <!-- </xpath> -->
+            <xpath expr="//notebook" position="inside">
+                <page name="maintenance_history" string="Maintenace History">
+                    <field name="maintenance_equipment_histories" nolabel="1" />
+                </page>
+                <page name="barcode_qr_serial" string='Barcode/QR Code' attrs="{'invisible': [('serial_no', '=', False)]}">
+                    <group>
+                        <group style="width: 40%;">
+                            <div style="width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;">
+                                <widget name="BarCode128Equipment"/>
+                                <field name="name" class="d-flex justify-content-center" nolabel="1" readonly="1" force_save="1"/>
+                            </div>
+                        </group>
+                        <group style="width: 30%;">
+                            <div>
+                                <field name="qr_code_image" widget="image" nolabel="1"/>
+                                <field name="name" style="margin-left: 50px;" nolabel="1" readonly="1" force_save="1"/>
+                            </div>
+                            <!-- <field name="product_id" /> -->
+                        </group>
+                        <group style="width: 30%;" string="Inspection">
+                            <div>
+                                <field name="inspection_qr_code_image" widget="image" nolabel="1" />
+                                <field name="inspection_form_id" style="margin-left: 50px;" nolabel="1" readonly="1" force_save="1"/>
+                            </div>
+                        </group>
+                    </group>
+                    <div class="barcode_image float-right">
+                    </div>
+                </page>
+                <page string="Inspections" attrs="{'invisible': [('equipment_category_type', '=', 'office')]}">
+                    <field name="submitted_inspections_ids">
+                        <tree editable="bottom" create="0" delete="0">
+                            <field name="employee_id" readonly="1" force_save="1" />
+                            <field name="status" readonly="1" force_save="1" />
+                            <field name="shift_id" readonly="1" force_save="1" />
+                            <field name="submit_date" readonly="1" force_save="1" />
+                            <field name="odometer_reading" readonly="1" force_save="1" />
+                            <field name="equipment_form_id" readonly="1" force_save="1" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="equipment_run_inspection_form_view" model="ir.ui.view">
+        <field name="name">equipment.run.inspection.form</field>
+        <field name="model">equipment.run.inspection</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" class="btn-primary" string="Submit" attrs="{'invisible': [('state', '!=', 'draft')]}" />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1" force_save="1" />
+                            <field name="equipment_id" readonly="1" force_save="1" />
+                            <field name="scanned_barcode" invisible="1" />
+                            <field name="employee_id" />
+                            <field name="shift_id" />
+                            <field name="inspection_selection" />
+                        </group>
+                        <group>
+                            <field name="department_id" />
+                            <field name="date" />
+                            <field name="equipment_form_id" invisible="1" />
+                            <field name="odometer_reading" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Inspection">
+                            <field name="run_inspenction_line_ids">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name" readonly="1" force_save="1" />
+                                    <field name="inspection_selection" />
+                                    <field name="description" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_equipment_view_kanban_inherit" model="ir.ui.view">
+        <field name="name">equipment.kanban</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
+        <field name="arch" type="xml">
+            <div class="oe_kanban_bottom_left" position='before'>
+                <div class="barcode_images float-right">
+                    <button name="%(action_report_split_scanner)d" type="action" class="btn btn-primary">
+                        <span>Print Label</span>
+                    </button>
+                </div>
+            </div>
+            <div  class="oe_kanban_content" position='before'>
+                <div style="width: 23%; left:180px;" class="barcode_image float-right">
+                    <field name="qr_code_image" style="position:absolute; left:50px" widget="image" nolabel="1"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="maintenance.maintenance_request_action_reports" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,form,calendar,graph,pivot,activity</field>
+    </record>
+
+    <menuitem id="maintenance.maintenance_request_reporting" name="Maintenance Requests" action="" />
+
+    <record id="hr_equipment_view_tree_inherit" model="ir.ui.view">
+        <field name="name">equipment.tree</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="multi_edit">1</attribute>
+            </xpath>
+            <field name="assign_date" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="name" position="after">
+                <field name="activity_ids" widget="list_activity" optional="show"/>
+            </field>
+            <field name="company_id" position="after">
+                <field name="company_id" invisible="1"/>
+                <field name="branch_id" groups="saudi_hr_branch.group_company_branch" options="{'no_create': True}" context="{'company_id': company_id}"/>
+                <field name="inspection_schedule" />
+                <field name="inspection_form_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_equipment_category_view_tree_inherited" model="ir.ui.view">
+        <field name="name">equipment.category.tree.inherited</field>
+        <field name="model">maintenance.equipment.category</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_category_view_tree" />
+        <field name="arch" type="xml">
+            <field name="technician_user_id" position="after">
+                <field name="equipment_category_type" />
+                <field name="display_name" />
+                <field name="parent_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_equipment_view_search_inherit" model="ir.ui.view">
+        <field name="name">equipment.search</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_search"/>
+        <field name="arch" type="xml">
+            <filter name="vendor" position="after">
+                <filter string='Office' name="branch_id" domain="[]" context="{'group_by' : 'branch_id'}" groups="saudi_hr_branch.group_company_branch"/>
+            </filter>
+            <xpath expr="//search/group" position="inside">
+                <filter string='Company' name="company" domain="[]" context="{'group_by': 'company_id'}" />
+                <filter string='Request Date' name="request_date" domain="[]" context="{'group_by': 'create_date'}"/>
+                <filter string='Schedule Date' name="schedule_date" domain="[]" context="{'group_by': 'assign_date'}"/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <searchpanel>
+                    <field name="company_id" />
+                    <field name="category_id" />
+                    <field name="department_id" />
+                    <field name="inspection_form_id" string="Assigned Inspection Form" />
+                    <field name="employee_id" icon="fa-building"/>
+                </searchpanel>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="maintenance_team_view_form_inherit" model="ir.ui.view">
+        <field name="name">maintenance.team.form</field>
+        <field name="model">maintenance.team</field>
+        <field name="inherit_id" ref="maintenance.maintenance_team_view_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="company_id" invisible="1"/>
+                <field name="branch_id" groups="saudi_hr_branch.group_company_branch" options="{'no_create': True}" context="{'company_id': company_id}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="maintenance_equipment_calendar_view" model="ir.ui.view">
+        <field name="name">maintenance.equipment.calendar.view</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+             <!-- color="stage_id" -->
+            <calendar string="Equipments" date_start="assign_date">
+                <field name="employee_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="maintenance_equipment_pivot_view" model="ir.ui.view">
+        <field name="name">maintenance.equipment.pivot.view</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+             <!-- color="stage_id" -->
+            <pivot string="Equipments">
+                <field name="category_id" type="col" />
+                <field name="employee_id"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="maintenance_equipment_graph_view" model="ir.ui.view">
+        <field name="name">maintenance.equipment.graph.view</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="arch" type="xml">
+            <graph string="Equipments" type="bar">
+                <field name="assign_date" interval="month" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="maintenance_team_view_tree_inherit" model="ir.ui.view">
+        <field name="name">maintenance.team.tree</field>
+        <field name="model">maintenance.team</field>
+        <field name="inherit_id" ref="maintenance.maintenance_team_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="company_id" invisible="1"/>
+                <field name="branch_id" groups="saudi_hr_branch.group_company_branch" options="{'no_create': True}" context="{'company_id': company_id}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="equipment_inspection_form_view_tree" model="ir.ui.view">
+        <field name="name">equipment.inspection.form.view.tree</field>
+        <field name="model">equipment.inspection.form</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="schedule_selection" />
+                <field name="inspection_form_no" />
+                <field name="equipment_company_id" />
+                <field name="equipment_category_id" />
+                <field name="department_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="equipment_inspection_form_view_form" model="ir.ui.view">
+        <field name="name">equipment.inspection.form.view.form</field>
+        <field name="model">equipment.inspection.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="inspection_form_no" />
+                            <field name="inspection_form_version_no" />
+                            <field name="schedule_selection" />
+                        </group>
+                        <group>
+                            <field name="equipment_company_id" />
+                            <field name="equipment_category_id" domain="[('company_id', 'in', [equipment_company_id, False])]" />
+                            <field name="department_id" domain="[('company_id', '=', [equipment_company_id, False])]" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Check Points">
+                            <field name="equipment_inspection_form_line_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Inspection List">
+                            <field name="submitted_inspections_form_ids">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="submit_date" readonly="1" force_save="1" />
+                                    <field name="status" readonly="1" force_save="1" />
+                                    <field name="equipment_id" readonly="1" force_save="1" />
+                                    <field name="shift_id" readonly="1" force_save="1" />
+                                    <field name="odometer_reading" readonly="1" force_save="1" />
+                                    <field name="employee_id" readonly="1" force_save="1" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="equipment_inspection_form_view_search" model="ir.ui.view">
+        <field name="name">equipment.inspection.form.view.search</field>
+        <field name="model">equipment.inspection.form</field>
+        <field name="arch" type="xml">
+            <search>
+                <searchpanel>
+                    <field name="equipment_company_id" string="Company" enable_counters="1" />
+                    <field name="equipment_category_id" string="Equipment Category" enable_counters="1" />
+                    <field name="department_id" string="Department" enable_counters="1" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="equipment_submit_inspection_tree" model="ir.ui.view">
+        <field name="name">equipment.submit.inspection.tree.view</field>
+        <field name="model">equipment.submit.inspection</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0" edit="0">
+                <field name="submit_date" readonly="1" force_save="1" />
+                <field name="status" readonly="1" force_save="1" />
+                <field name="equipment_id" readonly="1" force_save="1" />
+                <field name="shift_id" readonly="1" force_save="1" />
+                <field name="odometer_reading" readonly="1" force_save="1" />
+                <field name="employee_id" readonly="1" force_save="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="equipment_submit_inspection_form" model="ir.ui.view">
+        <field name="name">equipment.submit.inspection.form.view</field>
+        <field name="model">equipment.submit.inspection</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0" edit="0">
+                <sheet>
+                    <group>
+                        <field name="equipment_id" readonly="1" force_save="1" />
+                        <field name="employee_id" readonly="1" force_save="1" />
+                        <field name="shift_id" readonly="1" force_save="1" />
+                        <field name="odometer_reading" readonly="1" force_save="1" />
+                        <field name="status" readonly="1" force_save="1" />
+                        <field name="submit_date" readonly="1" force_save="1" />
+                        <field name="equipment_form_id" readonly="1" force_save="1" />
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="submitted_inspection_line_ids">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name" readonly="1" force_save="1" />
+                                    <field name="inspection_selection" readonly="1" force_save="1" />
+                                    <field name="description" readonly="1" force_save="1" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_equipment_submit_inspection" model="ir.actions.act_window">
+        <field name="name">Submitted Inspection</field>
+        <field name="res_model">equipment.submit.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            There is no any submitted equipment.
+          </p>
+        </field>
+    </record>
+
+    <record id="equipment_failed_submit_inspection_calendar_view" model="ir.ui.view">
+        <field name="name">equipment.submit.inspection.calendar.view</field>
+        <field name="model">equipment.submit.inspection</field>
+        <field name="arch" type="xml">
+             <!-- color="stage_id" -->
+            <calendar string="Equipments" date_start="submit_date">
+                <field name="employee_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="equipment_failed_submit_inspection_pivot_view" model="ir.ui.view">
+        <field name="name">equipment.submit.inspection.pivot.view</field>
+        <field name="model">equipment.submit.inspection</field>
+        <field name="arch" type="xml">
+             <!-- color="stage_id" -->
+            <pivot string="Equipments">
+                <field name="equipment_form_id" type="col" />
+                <field name="employee_id"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="equipment_failed_submit_inspection_graph_view" model="ir.ui.view">
+        <field name="name">equipment.submit.inspection.graph.view</field>
+        <field name="model">equipment.submit.inspection</field>
+        <field name="arch" type="xml">
+            <graph string="Equipments" type="bar">
+                <field name="submit_date" interval="month" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="equipment_failed_submit_inspection_search" model="ir.ui.view">
+        <field name="name">equipment.submit.inspection.search.view</field>
+        <field name="model">equipment.submit.inspection</field>
+        <field name="arch" type="xml">
+            <search>
+                <searchpanel>
+                    <field name="equipment_id" />
+                    <field name="employee_id" />
+                    <field name="equipment_form_id" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_equipment_failed_submit_inspection" model="ir.actions.act_window">
+        <field name="name">Failed Submitted Inspection</field>
+        <field name="res_model">equipment.submit.inspection</field>
+        <field name="view_mode">tree,calendar,pivot,graph,form</field>
+        <field name="domain">[('status', '=', 'fail')]</field>
+        <field name="search_view_id" ref="equipment_failed_submit_inspection_search" />
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            There is no any Failed Submitted equipment.
+          </p>
+        </field>
+    </record>
+
+    <record id="action_equipment_run_inspection" model="ir.actions.act_window">
+        <field name="name">Run Inspection</field>
+        <field name="res_model">equipment.run.inspection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add an Equipment Inspection Form.
+          </p>
+        </field>
+    </record>
+
+    <record id="action_equipment_inspection_form" model="ir.actions.act_window">
+        <field name="name">Inspection Form</field>
+        <field name="res_model">equipment.inspection.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="equipment_inspection_form_view_search"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add an Equipment Inspection Form.
+          </p>
+        </field>
+    </record>
+
+    <record id="maintenance.hr_equipment_request_action" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,form,pivot,graph,calendar,activity</field>
+    </record>
+
+    <record id="hr_equipment_category_view_search_inherited" model="ir.ui.view">
+        <field name="name">equipment.category.search.inherited</field>
+        <field name="model">maintenance.equipment.category</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_category_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter string="Category Type" name="group_category_type" domain="[]" context="{'group_by' : 'equipment_category_type'}"/>
+                <filter string="Company" name="group_company" domain="[]" context="{'group_by' : 'company_id'}"/>
+            </xpath>
+            <xpath expr="//search" position="inside">
+                <searchpanel>
+                    <field name="company_id" string="Company" enable_counters="1" />
+                    <field name="equipment_category_type" string="Type" enable_counters="1" />
+                    <!-- <field name="technician_user_id" string="Assigned User" enable_counters="1" /> -->
+                </searchpanel>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="maintenance.hr_equipment_category_action" model="ir.actions.act_window">
+        <field name="context">{'search_default_group_category_type': 1, 'search_default_group_company': 1}</field>
+    </record>
+
+    <menuitem
+        id="maintenance.menu_maintenance_title"
+        name="Maintenance"
+        sequence="19"
+        parent="hr.menu_hr_root"/>
+
+    <menuitem
+        id="maintenance.menu_m_reports"
+        name="Maintenance"
+        parent="saudi_hr.menu_reports"
+        groups="maintenance.group_equipment_manager,base.group_user"
+        sequence="10"/>
+
+        <!-- <menuitem id="menu_support_failed_inspection_report" name="Failed Inspection" parent="maintenance.maintenance_reporting" action="action_equipment_failed_submit_inspection" sequence="21"/> -->
+
+    <menuitem
+        id="maintenance.menu_maintenance_configuration"
+        name="Maintenance"
+        parent="hr.menu_human_resources_configuration"
+        groups="maintenance.group_equipment_manager"
+        sequence="100"/>
+</odoo>

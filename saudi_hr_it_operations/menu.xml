@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_it_operations" name="Equipment Request" sequence="4" parent="hr.menu_hr_root"/>
+    <menuitem action="menu_employee_registration_view" id="menu_emp_reg_all" name="Employee Asset Registration" parent="hr.menu_hr_employee_payroll" groups="hr.group_hr_user" sequence="1"/>
+    <!-- <menuitem action="menu_employee_deregistration_view" id="menu_emp_dereg_all" name="Employee De-Registration" sequence="2" parent="menu_it_operations" groups="base.group_user"/>
+    <menuitem id="menu_child_of_it_operations" name="Equipment Request" parent="menu_it_operations" sequence="3" action="action_it_operations" /> -->
+
+    <menuitem id="menu_equipment_request" name="Equipment Request" parent="menu_it_operations" sequence="3" action="action_maintenance_equipment_request" />
+    <menuitem id="menu_exit_procedure" name="Exit Procedure" parent="hr.menu_hr_employee_payroll" sequence="4" action="action_emp_exit_procedure" />
+    <menuitem id="menu_exit_type" name="Exit Type" parent="menu_it_operations" sequence="5" action="action_emp_exit_type" />
+
+    <menuitem id="emp_birthday_list_reports" parent="saudi_hr.menu_reports"
+                sequence="3" name="Employees Exit List"
+                action="saudi_hr_it_operations.action_employee_exit_reports" groups="hr.group_hr_user"/>
+</odoo>

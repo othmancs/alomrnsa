@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_intake_equipments">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="docs"/>
+                <t t-foreach="docs" t-as="equipment">
+                    <h4 class="text-center">IT Request Form</h4>
+                    <br/>
+                    <table class="table table-bordered table-hover text-center mt16 table-comparator">
+                        <thead>
+                            <tr>
+                                <th colspan="2">User and Department Information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width:20%">
+                                    Name
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">
+                                    Position/Title
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">
+                                    Department
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">
+                                    Manager
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4 class="text-center">Requested Action</h4>
+                    <table class="table table-bordered table-hover text-center mt16 table-comparator">
+                        <input type="checkbox" style="margin-right:5px;"> Create a New User Account</input><br/>
+                        <input type="checkbox" style="margin-right:5px;"> Deactivate a Current User Account</input><br/>
+                        <input type="checkbox" style="margin-right:5px;"> Modify an Existing User Account</input><br/><br/>
+                        <thead>
+                            <tr>
+                                <th colspan="2">User Account Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width:20%">
+                                    Login Access
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">
+                                    Email
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">
+                                    Department/Company
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-hover text-center mt16 table-comparator">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Other Requirements</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" style="text-align: left;">
+                                    Edata (Specify Required Access):
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: left;">
+                                    Email
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: left;">
+                                    Desk Phone with Extension:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: left;">
+                                    Company Cell Phone:
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: left;">
+                                    Specialized Electronic Equipment: (Provide as much detail as possible)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: left;">
+                                    Specialized Software: (i.e. Accounting, estimating, etc.  Provide as much detail as possible)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <div class="row" style="width:100%;">
+                        <div class="col-12 w-100" style="width:100%">
+                            <span style="margin-right:5px;">Permanent Change</span> <input type="checkbox" style="margin-right:5px;"/><span style="margin-right:5px;"> Temporary Change</span> <input type="checkbox" style="margin-right:5px;"/> (Indicate date to end:_________________)
+                        </div>
+                    </div>
+                    <br/>
+                    <h4 class="text-center">Approval Signatures</h4>
+                    <table class="table table-bordered table-hover text-center mt16 table-comparator">
+                        <thead>
+                            <tr>
+                                <th style="width:25%"></th>
+                                <th>Name</th>
+                                <th>Signature</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width:25%">Manager</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="width:25%">Human Resources</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="width:25%">Vice President/President</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span><b>Note:</b> Vice President or President signature required for Company phone, Specialized Electronic equipment or specialized software.</span>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="report_template_intake_equipments" model="ir.actions.report">
+        <field name="name">Intake Equipments</field>
+        <field name="model">hr.employee.registration</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_intake_equipments</field>
+        <field name="report_file">saudi_hr_it_operations.report_intake_equipments</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" ref="model_hr_employee_registration"/>
+        <field name="attachment">('Intake_'+(object.display_name or '').replace('/','')+'.pdf')</field>
+    </record>
+</odoo>

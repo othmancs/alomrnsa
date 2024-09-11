@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+	<record id="view_hr_expense_sheet_form_inherited" model="ir.ui.view">
+		<field name="name">hr.expense.sheet.form.inherited</field>
+		<field name="model">hr.expense.sheet</field>
+		<field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
+		<field name="arch" type="xml">
+			<button name="reset_expense_sheets" position="after">
+				<button name="send_mail_expense" type="object" string="Send Expense Sheet" />
+			</button>
+		</field>
+	</record>
+</odoo>

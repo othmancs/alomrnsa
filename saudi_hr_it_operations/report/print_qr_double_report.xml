@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_producttemplatelabel_qrs">
+         <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="equipment">
+                        <div class="ml-3">
+                            <div style="position:absolute;left:8px; margin-top:1px; height:1px:width:1px;">
+                                <img t-att-src="'/web/image/product.template/%s/qr_code_image' % equipment.product_id.product_tmpl_id.id" style="height: 160px;"/>
+                                <br/><span style="margin-left: 35px;" t-esc="equipment.product_id.name"/>
+                            </div>
+                            <div style="position:absolute;left:8px; margin-top:1px; height:1px:width:1px; margin-left: 200px;">
+                                <img t-att-src="'/web/image/product.template/%s/qr_code_image' % equipment.product_id.product_tmpl_id.id" style="height: 160px;" />
+                                <br/><span style="margin-left: 35px;" t-esc="equipment.product_id.name"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_qr_inspection_label_qrs">
+         <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="equipment">
+                        <div class="ml-3">
+                            <div style="position:absolute;left:8px; margin-top:1px; height:1px:width:1px;">
+                                <img t-att-src="'/web/image/maintenance.equipment/%s/inspection_qr_code_image' % equipment.id" style="height: 180px;"/>
+                                <br/><span style="margin-left: 35px;" t-esc="equipment.inspection_form_id.inspection_form_no"/>
+                            </div>
+                            <div style="position:absolute;left:8px; margin-top:1px; height:1px:width:1px; margin-left: 200px;">
+                                <img t-att-src="'/web/image/maintenance.equipment/%s/inspection_qr_code_image' % equipment.id" style="height: 180px;" />
+                                <br/><span style="margin-left: 35px;" t-esc="equipment.inspection_form_id.inspection_form_no"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_producttemplatelabel_barcodes">
+         <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="equipment">
+                        <div>
+                            <div style="position:absolute;margin-top:25px; height:1px:width:1px;">
+                                <span t-out="equipment.serial_no" t-options="{'widget': 'barcode', 'width': 210, 'height': 50}"/>
+                                <br/><span style="margin-left: 60px;" t-esc="equipment.product_id.name"/>
+                            </div>
+                            <div style="position:absolute;margin-top:25px; height:1px:width:1px; margin-left: 200px;">
+                                <span t-out="equipment.serial_no" t-options="{'widget': 'barcode', 'width': 210, 'height': 50}"/>
+                                <br/><span style="margin-left: 60px;" t-esc="equipment.product_id.name"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- <div t-out="serial_no" style="padding:0" t-options="{'widget': 'barcode', 'quiet': 0, 'symbology': 'auto', 'img_style': barcode_size}"/> -->
+
+    <record id="paperformat_label_two_by_four_split" model="report.paperformat">
+        <field name="name">Two By Four QR</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">50</field>
+        <field name="page_width">101</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="paperformat_label_qr_inspection" model="report.paperformat">
+        <field name="name">QR Inspection</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">70</field>
+        <field name="page_width">101</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="action_report_split_scanner" model="ir.actions.report">
+        <field name="name">QR Code Label</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_producttemplatelabel_qrs</field>
+        <field name="report_file">saudi_hr_it_operations.report_producttemplatelabel_qrs</field>
+        <field name="paperformat_id" ref="saudi_hr_it_operations.paperformat_label_two_by_four_split"/>
+        <field name="binding_model_id" ref="model_maintenance_equipment"/>
+        <field name="print_report_name">'Split QR - %s' % (object.name)</field>
+    </record>
+
+    <record id="action_report_qr_inspection" model="ir.actions.report">
+        <field name="name">QR Code Inspection Label</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_qr_inspection_label_qrs</field>
+        <field name="report_file">saudi_hr_it_operations.report_qr_inspection_label_qrs</field>
+        <field name="paperformat_id" ref="saudi_hr_it_operations.paperformat_label_qr_inspection"/>
+        <field name="binding_model_id" ref="model_maintenance_equipment"/>
+        <field name="print_report_name">'Split QR Inspection - %s' % (object.name)</field>
+    </record>
+
+    <record id="action_report_split_scanner_barcodes" model="ir.actions.report">
+        <field name="name">Barcode Label</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_it_operations.report_producttemplatelabel_barcodes</field>
+        <field name="report_file">saudi_hr_it_operations.report_producttemplatelabel_barcodes</field>
+        <field name="paperformat_id" ref="saudi_hr_it_operations.paperformat_label_two_by_four_split"/>
+        <field name="binding_model_id" ref="model_maintenance_equipment"/>
+        <field name="print_report_name">'Split Barcode - %s' % (object.name)</field>
+    </record>
+
+</odoo>

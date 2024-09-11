@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="emp_exit_type_tree" model="ir.ui.view">
+        <field name="name">emp.exit.type.form</field>
+        <field name="model">emp.exit.type</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" required='1'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_emp_exit_type" model="ir.actions.act_window">
+        <field name="name">Employee Exit Type</field>
+        <field name="res_model">emp.exit.type</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="emp_exit_type_tree"/>
+    </record>
+
+    <record id="emp_exit_procedure_form_view" model="ir.ui.view">
+        <field name="name">emp.exit.procedure.form</field>
+        <field name="model">emp.exit.procedure</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_plant_approved" type="object" string="Plant manager Approval" class="btn-primary" states="draft"/>
+                    <button name="action_accounting_approved" type="object" string="Accounting Approval" class="btn-primary" states="plant_approved"/>
+                    <button name="action_payroll_approved" type="object" string="HR Payroll Approval" class="btn-primary" states="accounting_approved"/>
+                    <button name="action_hr_manager_approved" type="object" string="HR Manager Approval" class="btn-primary" states="hr_payroll_approved"/>
+                    <button name="action_cancel" type="object" string="Cancel" states="draft,plant_approved,accounting_approved,hr_payroll_approved"/>
+                    <button name="action_set_draft" type="object" string="Set to Draft" states="cancel"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                    </div>
+                    <div class="oe_title">
+                        <label for="employee_id"/>
+                        <h1>
+                            <field name="employee_id" attrs="{'readonly': [('state', 'not in', ['draft'])]}" options="{'no_create': True, 'no_create_edit': True}" required="1"/>
+                        </h1>
+                    </div>
+                    <group name='plant_manager' string='Plant Manager'>
+                        <group>
+                            <field name="exit_type" attrs="{'readonly': [('state', 'not in', ['draft'])]}" required="1"/>
+                            <field name="uniform_returned" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                            <field name="equipment_ids" widget="many2many_tags" attrs="{'readonly': [('state', 'not in', ['draft'])]}" domain="[('employee_id', '=', employee_id)]" options="{'no_create': True}" />
+                            <field name="equipment_returned" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                            <field name="hire_date"/>
+                            <field name="last_date" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                        </group>
+                        <group>
+                            <field name="employee_code"/>
+                            <field name="rehire" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                            <field name="manager_notes" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                        </group>
+                    </group>
+                    <group name='accounting_department' string='Accounting Department' attrs="{'invisible': [('state', 'in', ['draft'])]}">
+                        <group>
+                            <field name="generated_roe" attrs="{'readonly': [('state', 'not in', ['plant_approved'])], 'invisible': [('state', '=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="terminate_in_bv" attrs="{'readonly': [('state', 'not in', ['plant_approved'])], 'invisible': [('state', '=', 'draft')]}"/>
+                        </group>
+                        <label for="accounting_notes" attrs="{'invisible': [('state', 'in', ['draft'])]}"/>
+                        <field name="accounting_notes" attrs="{'readonly': [('state', 'not in', ['plant_approved'])], 'invisible': [('state', '=', 'draft')]}"/>
+                    </group>
+                    <group name='hr_payroll' string='Human Resources Payroll' attrs="{'invisible': [('state', 'in', ['draft', 'plant_approved'])]}">
+                        <group>
+                            <field name="deduction_uniforms" attrs="{'readonly': [('state', 'not in', ['accounting_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved'])]}"/>
+                            <field name="deduction_tools" attrs="{'readonly': [('state', 'not in', ['accounting_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved'])]}"/>
+                            <field name="vacation_pay" attrs="{'readonly': [('state', 'not in', ['accounting_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved'])]}"/>
+                        </group>
+                        <group>
+                            <field name="final_cheque" attrs="{'readonly': [('state', 'not in', ['accounting_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved'])]}"/>
+                            <field name="cancel_benefits" attrs="{'readonly': [('state', 'not in', ['accounting_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved'])]}"/>
+                        </group>
+                    </group>
+                    <group name='hr' string='Human Resources' attrs="{'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}">
+                        <group>
+                            <field name="edit_training_matrix" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="edit_employee_count_report" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="edit_employee_tracker" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="plant_wage_tracker" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="individual_wage_tracker" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="obsolete_emp_in_hr_drive" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                        </group>
+                        <group>
+                            <field name="edit_bday_list" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="remove_from_calendar" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="edit_attendance_tracking" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="deactivate_pdf" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="deactivate_email" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="obtain_company_keys" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                            <field name="obtain_company_phone" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                        </group>
+                        <label for="hr_notes" attrs="{'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved', 'accounting_approved'])]}"/>
+                        <field name="hr_notes" attrs="{'readonly': [('state', 'not in', ['hr_payroll_approved'])], 'invisible': [('state', 'in', ['draft', 'plant_approved', 'accounting_approved'])]}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="emp_exit_procedure_tree_view" model="ir.ui.view">
+        <field name="name">emp.exit.procedure.tree</field>
+        <field name="model">emp.exit.procedure</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="exit_type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_emp_exit_procedure" model="ir.actions.act_window">
+        <field name="name">Employee Exit Procedure</field>
+        <field name="res_model">emp.exit.procedure</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="emp_exit_procedure_tree_view"/>
+    </record>
+</odoo>
