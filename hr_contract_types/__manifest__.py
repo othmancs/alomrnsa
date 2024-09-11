@@ -12,7 +12,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': 'https://www.cybrosys.com',
-    'depends': ['hr', 'hr_contract'],
+    'depends': ['base','hr', 'hr_contract'],
     'data': [
         'security/ir.model.access.csv',
         'views/contract_view.xml',
@@ -23,4 +23,4 @@
     'auto_install': False,
     'application': False,
     'license': 'AGPL-3',
-}
+} 
