@@ -20,9 +20,9 @@
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="currency_id" invisible="1"/>
             </xpath>
-<!--             <xpath expr="//group[@name='top_info_left']//div" position="after">
+            <xpath expr="//group[@name='top_info_left']//div" position="after">
                 <field name="schedule_pay"/>
-            </xpath> -->
+            </xpath>
             <xpath expr="//page[@name='information']" position="after">
                 <page string="Allowances" name="allowance">
                     <group>
