@@ -9,6 +9,7 @@ from odoo.exceptions import UserError
 class HRContract(models.Model):
     _name = 'hr.contract'
     _inherit = ['mail.thread', 'hr.contract']
+    schedule_pay = fields.Selection(related='structure_type_id.default_struct_id.schedule_pay',string='Schedule Pay',store=True)
 
     signon_bonus = fields.Boolean('Sign on Bonus')
     signon_bonus_amount = fields.Float('Bonus Amount', digits=(16, 2), help="Mention the Sign on Bonus amount.")
