@@ -19,3 +19,9 @@ class ContractInherit(models.Model):
     type_id = fields.Many2one('hr.contract.type', string="Employee Category",
                               required=True, help="Employee category",
                               default=lambda self: self.env['hr.contract.type'].search([], limit=1))
+    
+    schedule_pay = fields.Selection([
+        ('monthly', 'Monthly'),
+        ('quarterly', 'Quarterly'),
+        ('yearly', 'Yearly')
+    ], string='Schedule Pay', default='monthly')
