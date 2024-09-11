@@ -1,0 +1,33 @@
+<field name="domain_force">[(1, '=', 1)]<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="business_card_print_view" model="ir.ui.view">
+        <field name="name">business.card.form</field>
+        <field name="model">business.card</field>
+        <field name="arch" type="xml">
+            <form string="Business Card">
+                <group>
+                    <h3 attrs="{'invisible': [('excel_file', '!=', False)]}">Are you sure you want to print Business Card.</h3>
+                    <field name="excel_file" filename="filename" readonly="1"
+                           attrs="{'invisible': [('excel_file', '=', False)]}"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="print_business_card" string="Print" type="object" class="oe_highlight"/>
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_business_card_report_form" model="ir.actions.act_window">
+        <field name="name">Business Card</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">business.card</field>
+        <field name="binding_model_id" ref="model_hr_employee_card"/>
+        <field name="view_mode">tree,form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="business_card_print_view"/>
+    </record>
+
+</odoo>

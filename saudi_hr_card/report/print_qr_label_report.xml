@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_qr_code">
+         <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="employee">
+                        <div class="o_label_sheet o_label_dymo" style="overflow:visible">   
+                             <div style="position:absolute;left:70px; top:44px; height:1px:width:1px;">
+                                <t t-if="employee.employee_id">
+                                <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', employee.employee_id.id, 600, 50)" style="position:absolute; margin-left:65px; width:250px; height:45px;"/>
+                                </t>
+                            </div>  
+                            <div class="ml-3" t-if="employee.company_id">
+                                <img t-if="employee.company_id.logo" t-att-src="image_data_uri(employee.company_id.logo)" alt="Company Logo"
+                                     style="text-align:center; height:30%; width:40%; margin-top:44px;"/>
+                            </div>
+                            <div class="ml-3" name="name">
+                                <span t-field="employee.employee_id" style="position:absolute; left:200px; top:88px; font-size:15px"/>
+                            </div>
+                        </div>                        
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <record id="paperformat_label_two_by_four_split_barcode" model="report.paperformat">
+        <field name="name">Two By Four QR</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">50</field>
+        <field name="page_width">101</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record> 
+
+    <record id="action_report_qr_label" model="ir.actions.report">
+        <field name="name">Qr Label</field>
+        <field name="model">hr.employee.card</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_card.report_qr_code</field>
+        <field name="report_file">saudi_hr_card.report_qr_code</field>
+        <field name="paperformat_id" ref="saudi_hr_card.paperformat_label_two_by_four_split_barcode"/>
+        <field name="print_report_name">'QR Label'</field>
+    </record>
+
+</odoo>

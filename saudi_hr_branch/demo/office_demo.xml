@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="jeddah_office" model="hr.branch">
+            <field name="name">Jeddah</field>
+            <field name="code">Jed</field>
+            <field name="company_name">YourCompany</field>
+            <field name="street">Makkah Highway</field>
+            <field name="street2">Al-Jawhara industrial Area </field>
+            <field name="po_box_no">70674</field>
+            <field name="city">Jeddah</field>
+            <field name="zip">21577</field>
+            <field name="country">Saudi Arabia</field>
+            <field name="phone">+3218564825</field>
+            <field name="mobile">+966 12 620 9495</field>
+            <field name="arabic_name">جدة</field>
+            <field name="company_arabic_name">شركتك</field>
+            <field name="arabic_street">طريق مكة</field>
+            <field name="arabic_street2">منطقة الجوهرة الصناعية</field>
+            <field name="arabic_city">جدة</field>
+            <field name="arabic_country">المملكة العربية السعودية</field>
+            <field name="phone">+3218253698</field>
+            <field name="mobile">+966 14 392 3800</field>
+        </record>
+
+        <record id="riyadh_office" model="hr.branch">
+            <field name="name">Riyadh</field>
+            <field name="code">Riy</field>
+            <field name="arabic_name">الرياض</field>
+            <field name="company_name">YourCompany</field>
+            <field name="street">King Fahad Road </field>
+            <field name="street2">Legend Tower close to STC Building</field>
+            <field name="po_box_no">91626</field>
+            <field name="city">Malaz</field>
+            <field name="zip">21577</field>
+            <field name="country">Saudi Arabia</field>
+            <field name="phone">+3218564888</field>
+            <field name="mobile">+966 11 218-1881</field>
+            <field name="arabic_name">جدة</field>
+            <field name="company_arabic_name">شركتك</field>
+            <field name="arabic_street">طريق الملك فهد</field>
+            <field name="arabic_street2">برج الأسطورة بالقرب من مبنى شركة الاتصالات السعودية</field>
+            <field name="arabic_city">الملز</field>
+            <field name="arabic_country">المملكة العربية السعودية</field>
+            <field name="phone">+3218259898</field>
+            <field name="mobile">+966 14 392 3899</field>
+        </record>
+
+        <record id="al_khobar_office" model="hr.branch">
+            <field name="name">Al Khobar</field>
+            <field name="code">Al</field>
+            <field name="company_name">YourCompany</field>
+            <field name="street">Royal Commission Shareh Al-Aziziah</field>
+            <field name="street2">Ain Al-Nawa, Hara-2, Madkhal-3, Villa 19</field>
+            <field name="po_box_no">91626</field>
+            <field name="city">Yanbu</field>
+            <field name="zip">30799</field>
+            <field name="country">Saudi Arabia</field>
+            <field name="arabic_name">الخبر</field>
+            <field name="company_arabic_name">شركتك</field>
+            <field name="arabic_street">الهيئة الملكية شاريح العزيزية</field>
+            <field name="arabic_street2">عين الناوة ، هارا -2 ، مدخال -3 ، فيلا 19</field>
+            <field name="arabic_city">ينبع</field>
+            <field name="arabic_country">المملكة العربية السعودية</field>
+            <field name="phone">+3218564999</field>
+            <field name="mobile">+966 14 392 3800 </field>
+        </record>
+    </data>
+</odoo>

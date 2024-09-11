@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rules -->
+    <record id="card_emp_rule" model="ir.rule">
+        <field name="name">Employee Card</field>
+        <field name="model_id" ref="model_hr_employee_card"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+    </record>
+    <record id="card_officer_rule" model="ir.rule">
+        <field name="name">Officer Card</field>
+        <field name="model_id" ref="model_hr_employee_card"/>
+        <field name="global" eval="True"/>
+        <field name="groups"  eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- HR Employee Card Multi Branch Rule  -->
+    <!--<record model="ir.rule" id="hr_employee_card_branch_rule_global">
+        <field name="name">HR Employee Card multi-branch</field>
+        <field name="model_id" ref="saudi_hr_card.model_hr_employee_card"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('branch_id', '=', False), ('branch_id', 'in', user.branch_ids.ids)]</field>
+    </record>-->
+</odoo>

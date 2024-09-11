@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_employee_idcard">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="s">
+                <t t-call="web.basic_layout">
+                <style type="text/css">
+                    .front_side{
+                        width: 6cm;
+                        height: 9.1cm;
+                    }
+                    .back_side{
+                        width: 6cm;
+                        height: 9.1cm;
+                    }
+                    .label__title {
+                        color: #293239;
+                    }
+                    .label__value {
+                        color: #c89645;
+                    }
+                </style>
+                <div class="page">
+                    <div style="display:table;margin: auto">
+                        <div class="row">
+                            <!-- Front Side-->
+                            <center style="display:table;margin:10px;overflow: hidden;border: 1px solid #dee2e6;padding-top:1px;padding-left:1px;border-radius: 2px;">
+                                <div class="front_side" style="background-image: url(/saudi_hr_card/static/src/image/al_sahal_id_card_front.png);background-size: 100%;background-position: center center;background-repeat: no-repeat;">
+                                    <div class="col-12 p-0 pl-1">
+                                        <div class="text-left">
+<!--                                            <img t-att-src="'data:image/jpg;base64,%s' % to_text(s.company_id.logo)" style="width: auto;height: 32px;"/>-->
+                                            <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" alt="Company Logo" style="width: auto;height: 32px;"/>
+                                        </div>
+                                        <!-- <div style="color:white;align:center;">
+                                            <span t-field="s.company_id"/>
+                                        </div> -->
+                                    </div>
+                                    <div class="image">
+                                        <img t-att-src="'data:image/jpg;base64,%s' % to_text(s.employee_id.image_1920)" style="height: 98px;width: 98px;margin-top: 21px;margin-bottom: 8px;border-radius: 5px;position: relative;left: 0.5px;"/>
+                                    </div>
+                                    <table style="font-size: 10px;width: 95%;margin: auto;">
+                                        <tr>
+                                            <td colspan="3"><center><h3><strong>
+                                            <span class="label__title" t-field="s.employee_id.name"/><br/>
+                                            </strong></h3>
+                                            <h5>
+                                            <span class="label__value" t-field="s.job_id.name"/>
+                                            </h5></center>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label__title" style="margin-left:3px"/><strong>Card No</strong></td>
+                                            <td>: </td>
+                                            <td><span class="label__value" style="margin-left:3px" t-field="s.card_no"/></td>
+                                        </tr>
+                                        <tr t-if="s.department_id">
+                                            <td><span class="label__title" style="margin-left:3px"/><strong>Department</strong></td>
+                                            <td>: </td>
+                                            <td><span class="label__value" style="margin-left:3px" t-field="s.department_id.name"/></td>
+                                        </tr>
+                                        <tr t-if="s.employee_id.gender">
+                                            <td><span class="label__title" style="margin-left:3px"/><strong>Gender</strong></td>
+                                            <td>: </td>
+                                            <td><span class="label__value" style="margin-left:3px" t-field="s.employee_id.gender"/></td>
+                                        </tr>
+                                        <tr t-if="s.employee_id.birthday">
+                                            <td width="43%"><span style="margin-left:3px" class="label__title"/><strong>Birth Date</strong></td>
+                                            <td>: </td>
+                                            <td><span class="label__value" style="margin-left:3px" t-field="s.employee_id.birthday"/></td>
+                                        </tr>
+                                        <tr t-if="s.blood_group">
+                                            <td width="43%"><span style="margin-left:3px" class="label__title"/><strong>Blood Group</strong></td>
+                                            <td>: </td>
+                                            <td><span class="label__value" style="margin-left:3px" t-field="s.blood_group"/></td>
+                                        </tr>
+                                        <tr t-if="s.employee_id and s.employee_id.barcode">
+                                            <td colspan="3"><img alt="barcode" t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', s.employee_id.barcode, 600, 80)" style="max-height:50pt;max-width:100%;margin-top:10px;" align="center"/></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </center>
+                            <!-- Back Side-->
+                            <center style="display:table;margin:auto;margin:10px;padding-top:1px;padding-left:1px;overflow: hidden;border: 1px solid #dee2e6;border-radius: 2px;">
+                                <div class="front_side" style="background-image: url(/saudi_hr_card/static/src/image/al_sahal_id_card_back.png);background-size: 100%;background-position: center center;background-repeat: no-repeat;">
+                                    <div class="row m-0">
+                                        <!-- <div class="row"> -->
+                                        <center>
+                                            <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" alt="Company Logo" style="width: 70px;margin-bottom: 34px;margin-left: 5px;margin-top: 6px;"/>
+                                        </center>
+                                        <!-- </div> -->
+                                    </div>
+
+                                    <div class="row m-0">
+                                        <t t-if="s.employee_id.address_home_id">
+                                            <table style="font-size: 10px;width: 95%;margin: auto;" class="text-center">
+                                                <tr>
+                                                    <td class="border-bottom: 1px solid #c89645;padding-bottom: 2px;"><span/><strong>Address</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color:#c89645;">
+                                                    <span t-field="s.employee_id.address_home_id.street"/>
+                                                    <span t-if="s.employee_id.address_home_id.street">,<br/></span>
+                                                    <span t-field="s.employee_id.address_home_id.street2"/>
+                                                    <span t-if="s.employee_id.address_home_id.street2">,<br/></span>
+                                                    <span t-field="s.employee_id.address_home_id.city"/>-<span t-field="s.employee_id.address_home_id.zip"/>
+                                                    <span t-if="s.employee_id.address_home_id.city">,<br/></span>
+                                                    <span t-field="s.employee_id.address_home_id.state_id"/>
+                                                    <span t-if="s.employee_id.address_home_id.state_id">,<br/></span>
+                                                    <span t-field="s.employee_id.address_home_id.country_id"/>
+                                                    <span t-if="s.employee_id.address_home_id.country_id">.<br/></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Mobile</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color:#c89645;"><span t-field="s.employee_id.address_home_id.mobile"/><br/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>E-Mail</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color:#c89645;"><span t-field="s.employee_id.address_home_id.email"/></td>
+                                                </tr>
+                                            </table>
+                                        </t>
+                                    </div>
+                                    <br/>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_employee_idcard" model="ir.actions.report">
+        <field name="name">Print ID card</field>
+        <field name="model">hr.employee.card</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_card.report_employee_idcard</field>
+        <field name="report_file">saudi_hr_card.report_employee_idcard</field>
+        <field name="print_report_name">'ID Card'</field>
+    </record>
+
+</odoo>

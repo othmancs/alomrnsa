@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="department_id_saudi_hr" model="hr.career.development">
+            <field name="department_id" ref="hr.dep_rd"/>
+        </record>
+
+        <record id="dep_management1_saudi_hr" model="hr.career.development">
+            <field name="department_id" ref="hr.dep_management"/>
+        </record>
+
+        <record id="dep_ps_saudi_hr" model="hr.career.development">
+            <field name="department_id" ref="hr.dep_ps"/>
+        </record>
+
+        <record id="dep_management2_saudi_hr" model="hr.career.development">
+            <field name="department_id" ref="hr.dep_management"/>
+        </record>
+
+        <record id="dep_rd_saudi_hr" model="hr.career.development">
+            <field name="department_id" ref="hr.dep_rd"/>
+        </record>
+
+        <record id="hr_career_development_lines" model="hr.career.development.lines">
+            <field name="career_id" ref="department_id_saudi_hr"/>
+            <field name="global_functional_level">Marketing</field>
+            <field name="job_ids" eval="[(4, ref('hr.job_consultant'))] "/>
+            <field name="milestones">Starting your first full-time, career-type job. That's a big step!</field>
+            <field name="avg_no_of_years">3</field>
+            <field name="technical">Coding,Cloud Hosting Services,Configure Database Software</field>
+            <field name="softskills">Time Management,Communication</field>
+            <field name="other_non_mendatory">Writer/Editor, Book Publishing,Freelance Editor</field>
+        </record>
+
+        <record id="hr_career_development_lines1" model="hr.career.development.lines">
+            <field name="career_id" ref="dep_management1_saudi_hr"/>
+            <field name="global_functional_level">Production operation</field>
+            <field name="job_ids" eval="[(4, ref('hr.job_marketing'))]"/>
+            <field name="avg_no_of_years">2</field>
+            <field name="milestones">Your first business trip.</field>
+            <field name="technical">Coding,Data Analysis,Data Analytics</field>
+            <field name="softskills">Time Management,Leadership,Ability to Work Under Pressure</field>
+            <field name="other_non_mendatory">Arts,Book Publishing,Web Developer,Nonprofit Job</field>
+        </record>
+
+         <record id="hr_career_development_lines2" model="hr.career.development.lines">
+            <field name="career_id" ref="dep_ps_saudi_hr"/>
+            <field name="global_functional_level">Human resource management</field>
+            <field name="job_ids" eval="[(4, ref('hr.job_developer')),(4, ref('hr.job_hrm'))]"/>
+            <field name="milestones">Your first blog post.</field>
+            <field name="technical">Coding,Communication,Business Analytics,Cloud Hosting Services</field>
+            <field name="avg_no_of_years">1.5</field>
+            <field name="softskills">Leadership,Adaptability,Decision Making</field>
+            <field name="other_non_mendatory">Arts,Management,Lawyer</field>
+        </record>
+
+         <record id="hr_career_development_lines3" model="hr.career.development.lines">
+            <field name="career_id" ref="dep_management2_saudi_hr"/>
+            <field name="global_functional_level">Research And Development</field>
+            <field name="job_ids" eval="[(4, ref('hr.job_marketing')),(4, ref('hr.job_hrm'))]"/>
+            <field name="milestones">Your first time managing a project.</field>
+            <field name="technical">Coding,Networks,Agile Development</field>
+            <field name="softskills">Adaptability,Teamwork,Self-motivation</field>
+            <field name="avg_no_of_years">2.5</field>
+            <field name="other_non_mendatory">Arts,Architect,Music Conductor,Human Resources</field>
+        </record>
+
+         <record id="hr_career_development_lines4" model="hr.career.development.lines">
+            <field name="career_id" ref="dep_rd_saudi_hr"/>
+            <field name="global_functional_level">Production Operation</field>
+            <field name="job_ids" eval="[(4, ref('hr.job_marketing')),(4, ref('hr.job_developer'))]"/>
+            <field name="milestones">Your first international business trip.</field>
+            <field name="technical">Coding,Communication,Audit Database Access and Requests,Big Data</field>
+            <field name="avg_no_of_years">3</field>
+            <field name="softskills">Teamwork,Adaptability,Creativity</field>
+            <field name="other_non_mendatory">Arts,Music Conductor,Accountant, Human Resources</field>
+        </record>
+    </data>
+</odoo>

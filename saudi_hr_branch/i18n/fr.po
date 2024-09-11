@@ -1,0 +1,187 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_branch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 06:42+0000\n"
+"PO-Revision-Date: 2022-05-30 06:42+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "Address"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "Address Details"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__city
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "City"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__code
+msgid "Code"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__company_id
+msgid "Company"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__company_arabic_name
+msgid "Company Arabic Name"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__company_name
+msgid "Company Name"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "Company name"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model,name:saudi_hr_branch.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__country
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "Country"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_res_config_settings__group_group_company_branch
+#: model:res.groups,name:saudi_hr_branch.group_company_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.branch_res_config_settings_view_form
+msgid "Multi Branch"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.actions.act_window,name:saudi_hr_branch.action_hr_branch
+#: model:ir.ui.menu,name:saudi_hr_branch.menu_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "Office"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__name
+msgid "Office Name"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_tree_view
+msgid "Office tree"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "P.O. Box"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__po_box_no
+msgid "P.O.Box"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.branch_res_config_settings_view_form
+msgid "Show Company Branch in employee form."
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.branch_res_config_settings_view_form
+msgid "Skip Installment"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__street
+msgid "Street"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "Street..."
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__street2
+msgid "Street2"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__phone
+msgid "Tel"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model,name:saudi_hr_branch.model_hr_branch
+msgid "To Manage Multiple Branch within one Company."
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model_terms:ir.ui.view,arch_db:saudi_hr_branch.hr_branch_form_view
+msgid "ZIP"
+msgstr ""
+
+#. module: saudi_hr_branch
+#: model:ir.model.fields,field_description:saudi_hr_branch.field_hr_branch__zip
+msgid "Zip"
+msgstr ""

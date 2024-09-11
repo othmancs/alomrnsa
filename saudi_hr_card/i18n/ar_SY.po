@@ -1,0 +1,556 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* saudi_hr_card
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-24 06:29+0000\n"
+"PO-Revision-Date: 2018-12-24 06:29+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.report_employee_idcard
+msgid "<span style=\"margin-left:5px;\"/><span><strong>Mail</strong></span>"
+msgstr "<span style=\"margin-left:5px;\"/><span><strong>بريد</strong></span>"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.report_employee_idcard
+msgid "<span style=\"margin-left:5px;\"/><strong>Address</strong>"
+msgstr "<span style=\"margin-left:5px;\"/><strong>عنوان</strong>"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.report_employee_idcard
+msgid "<span style=\"margin-left:5px;\"/><strong>Birth Date</strong>"
+msgstr "<span style=\"margin-left:5px;\"/><strong>تاريخ الولادة</strong>"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.report_employee_idcard
+msgid "<span style=\"margin-left:5px;\"/><strong>Department</strong>"
+msgstr "<span style=\"margin-left:5px;\"/><strong> قسم، أقسام</strong>"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.report_employee_idcard
+msgid "<span style=\"margin-left:5px;\"/><strong>Gender</strong>"
+msgstr "<span style=\"margin-left:5px;\"/><strong>جنس</strong>"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.report_employee_idcard
+msgid "<span style=\"margin-left:5px;\"/><strong>Mobile</strong>"
+msgstr "<span style=\"margin-left:5px;\"/><strong>التليفون المحمول</strong>"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,card_type:0
+msgid "Access Card"
+msgstr "بطاقة دخول"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__access_type
+msgid "Access Type"
+msgstr "نوع الوصول"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__approved_by
+msgid "Approved By"
+msgstr "تمت الموافقة عليه من قبل"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__approved_date
+msgid "Approved Date"
+msgstr "تاريخ الموافقة"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.business_card_print_view
+msgid "Are you sure you want to print Business Card."
+msgstr "هل أنت متأكد من أنك تريد طباعة بطاقة العمل."
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,card_type:0
+#: model:ir.actions.act_window,name:saudi_hr_card.action_business_card_report_form
+#: model:ir.model,name:saudi_hr_card.model_business_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.business_card_print_view
+msgid "Business Card"
+msgstr "بطاقة الأعمال"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.business_card_print_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: saudi_hr_card
+#: code:addons/saudi_hr_card/models/hr_employee_card.py:65
+#, python-format
+msgid "Card Confirmed."
+msgstr "تم تأكيد البطاقة."
+
+#. module: saudi_hr_card
+#: code:addons/saudi_hr_card/models/hr_employee_card.py:102
+#, python-format
+msgid "Card Created."
+msgstr "بطاقة تم إنشاؤها."
+
+#. module: saudi_hr_card
+#: code:addons/saudi_hr_card/models/hr_employee_card.py:74
+#, python-format
+msgid "Card Done."
+msgstr "البطاقة تم."
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Card Information"
+msgstr "معلومات البطاقة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__card_no
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Card No"
+msgstr "لا بطاقة"
+
+#. module: saudi_hr_card
+#: code:addons/saudi_hr_card/models/hr_employee_card.py:92
+#, python-format
+msgid "Card Refused."
+msgstr "رفض بطاقة."
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__card_type
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Card Type"
+msgstr "نوع البطاقة"
+
+#. module: saudi_hr_card
+#: code:addons/saudi_hr_card/models/hr_employee_card.py:83
+#, python-format
+msgid "Card is in progress."
+msgstr "البطاقة قيد التقدم."
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__company_id
+msgid "Company"
+msgstr "شركة"   
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Confirm"
+msgstr "تؤكد"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Confirmed"
+msgstr "تم تأكيد"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,status:0
+msgid "Consultant"
+msgstr "مستشار"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,status:0
+msgid "Contractor"
+msgstr "مقاول"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__create_uid
+msgid "Created by"
+msgstr "صنع من قبل"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__create_date
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Department"
+msgstr " قسم، أقسام"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Description"
+msgstr "وصف"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__display_name
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Done"
+msgstr "فعله"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,state:0
+msgid "Draft"
+msgstr "مشروع"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Employee"
+msgstr "موظف"
+
+#. module: saudi_hr_card
+#: model:ir.actions.act_window,name:saudi_hr_card.action_hr_employee_card_view
+#: model:ir.ui.menu,name:saudi_hr_card.menu_hr_employee_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_tree_view
+msgid "Employee Card"
+msgstr "بطاقة الموظف"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Employee Information"
+msgstr "معلومات الموظف"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__excel_file
+msgid "Excel File"
+msgstr "ملف اكسل"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Extra Information"
+msgstr "معلومات اضافية"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__filename
+msgid "File Name"
+msgstr "اسم الملف"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,access_type:0
+msgid "Full"
+msgstr "كامل"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Group By..."
+msgstr "تجميع حسب.."
+
+#. module: saudi_hr_card
+#: model:ir.model,name:saudi_hr_card.model_hr_employee_card
+msgid "HR Employee Card"
+msgstr "بطاقة موظف الموارد البشرية"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__id
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,card_type:0
+msgid "ID Card"
+msgstr "بطاقة الهوية"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,help:saudi_hr_card.field_hr_employee_card__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,help:saudi_hr_card.field_hr_employee_card__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,help:saudi_hr_card.field_hr_employee_card__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "In Progress"
+msgstr "في تقدم"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Inprogress"
+msgstr "في تقدم"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_is_follower
+msgid "Is Follower"
+msgstr "هو أتباع"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card____last_update
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل على"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_business_card__write_date
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,access_type:0
+msgid "Limited"
+msgstr "محدود"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,reason:0
+msgid "Lost Card"
+msgstr "البطاقة المفقودة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__status
+msgid "Member Status"
+msgstr "حالة العضو"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Month"
+msgstr "الشهر"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,reason:0
+msgid "New Card"
+msgstr "بطاقة جديدة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,help:saudi_hr_card.field_hr_employee_card__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,help:saudi_hr_card.field_hr_employee_card__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,help:saudi_hr_card.field_hr_employee_card__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__branch_id
+msgid "Office"
+msgstr "مكتب. مقر. مركز"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__period_of_stay
+msgid "Period of Stay"
+msgstr "مدة الاقامة"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,status:0
+msgid "Permanent"
+msgstr "دائم"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.business_card_print_view
+msgid "Print"
+msgstr "طباعة"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Print Card"
+msgstr "بطاقة الطباعة"
+
+#. module: saudi_hr_card
+#: model:ir.actions.report,name:saudi_hr_card.action_report_employee_idcard
+msgid "Print ID card"
+msgstr "طباعة بطاقة الهوية"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Put the description here..."
+msgstr "ضع الوصف هنا ..."
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__reason
+msgid "Reason"
+msgstr "السبب"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Refuse"
+msgstr "رفض"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Refused"
+msgstr "رفض"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__refused_by
+msgid "Refused By"
+msgstr "رفض بواسطة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__refused_date
+msgid "Refused Date"
+msgstr "تاريخ رفض"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,reason:0
+msgid "Replace for Damaged"
+msgstr "لاستبدال التالف"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__requested_date
+msgid "Requested Date"
+msgstr "التاريخ المطلوب"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Search Employee Card"
+msgstr "بحث بطاقة الموظف"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,status:0
+msgid "Secondee"
+msgstr "منتدب"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Select Employee"
+msgstr "اختر الموظف"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.hr_employee_card_form_view
+msgid "Set to Draft"
+msgstr "تعيين كمسودة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "Status"
+msgstr "الحالة"
+
+#. module: saudi_hr_card
+#: model_terms:ir.ui.view,arch_db:saudi_hr_card.view_hr_employee_card_filter
+msgid "To Approve"
+msgstr "للموافقة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,status:0
+msgid "Visitor"
+msgstr "زائر"
+
+#. module: saudi_hr_card
+#: selection:hr.employee.card,state:0
+msgid "Waiting Approval"
+msgstr "في انتظار الموافقة"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,help:saudi_hr_card.field_hr_employee_card__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__work_email
+msgid "Work Email"
+msgstr "البريد الإلكتروني للعمل"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__work_mobile
+msgid "Work Mobile"
+msgstr "محمول العمل"
+
+#. module: saudi_hr_card
+#: model:ir.model.fields,field_description:saudi_hr_card.field_hr_employee_card__work_phone
+msgid "Work Telephone"
+msgstr "هاتف العمل"
+
+#. module: saudi_hr_card
+#: code:addons/saudi_hr_card/wizard/business_card.py:25
+#, python-format			
+msgid "You can not print business card."
+msgstr "لا يمكنك طباعة بطاقة العمل."
+
+#. module: saudi_hr_card
+#: code:addons/saudi_hr_card/models/hr_employee_card.py:24
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "لا يمكنك إزالة السجل الموجود في حالة٪ s!"
+

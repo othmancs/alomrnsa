@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_employee_access_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="s">
+                <t t-call="web.basic_layout">
+                    <style type="text/css">
+                        .label__title{
+                            color: white;
+                            font-size:18px;
+                        }
+                    </style>
+                    <div class="page">
+                        <div style="display:table;margin: auto">
+                            <div class="row">
+                                <center>
+                                    <br/>
+                                    <div style="background-image: url(/saudi_hr_card/static/src/image/acard.png);height: 580px;width: 370px;border: 1px solid black;background-size: 100%;background-position: center center;background-repeat: no-repeat;">
+                                        <div class="col-12 p-0 pl-1">
+                                            <div class="text-center">
+                                                <img t-if="s.company_id.logo" t-att-src="image_data_uri(s.company_id.logo)" alt="Company Logo" style="width: 200px;height: 65px;"/>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <img t-if="s.employee_id.image_1920" t-att-src="image_data_uri(s.employee_id.image_1920)" style="border-radius: 50%; width: 44.5%; position: relative; top: 33px;" alt="Avatar"/>
+                                        </div>
+                                        <br/> <br/>
+                                        <center><strong>
+                                            <span class="label__title" t-field="s.employee_id.name"/>
+                                            <span class="label__title" t-field="s.employee_id.middle_name"/>
+                                            <span class="label__title" t-field="s.employee_id.last_name"/><br/>
+                                        </strong></center>
+                                        <br/>
+
+                                        <table style="color: white;font-size:14px;width: 95%;margin: auto;">
+                                            <tr t-if="s.employee_id and s.employee_id.code">
+                                                <td><span style="margin-left:3px"/><strong>Employee Code</strong></td>
+                                                <td>: </td>
+                                                <td><span style="margin-left:3px" t-field="s.employee_id.code"/></td>
+                                            </tr>
+                                            <tr t-if="s.department_id">
+                                                <td><span style="margin-left:3px"/><strong>Department</strong></td>
+                                                <td>: </td>
+                                                <td><span style="margin-left:3px" t-field="s.department_id.name"/></td>
+                                            </tr>
+                                            <tr t-if="s.employee_id and s.employee_id.job_id and s.employee_id.job_id.name">
+                                                <td><span style="margin-left:3px"/><strong>Job Position</strong></td>
+                                                <td>: </td>
+                                                <td><span style="margin-left:3px" t-field="s.employee_id.job_id.name"/></td>
+                                            </tr>
+                                            <tr t-if="s.employee_id and s.employee_id.mobile_phone">
+                                                <td><span style="margin-left:3px"/><strong>Mobile</strong></td>
+                                                <td>: </td>
+                                                <td><span style="margin-left:3px" t-field="s.employee_id.mobile_phone"/></td>
+                                            </tr>
+                                        </table>
+                                        <br/><br/><br/><br/>
+                                        <div class="col-12 p-0 pl-1">
+                                            <div class="text-center">
+                                                <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', s.qr_code, 600, 50)" style="width:55px;height:55px;"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_employee_access_card" model="ir.actions.report">
+        <field name="name">Print Access card</field>
+        <field name="model">hr.employee.card</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_card.report_employee_access_card</field>
+        <field name="report_file">saudi_hr_card.report_employee_access_card</field>
+        <field name="print_report_name">'Access Card - %s' % (object.employee_id.name)</field>
+        <field name="binding_model_id" eval="False" />
+    </record>
+
+</odoo>

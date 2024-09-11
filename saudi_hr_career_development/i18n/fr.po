@@ -1,0 +1,136 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_career_development
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 06:43+0000\n"
+"PO-Revision-Date: 2022-05-30 06:43+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__avg_no_of_years
+msgid "Average No. of Years"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__career_id
+#: model:ir.ui.menu,name:saudi_hr_career_development.menu_hr_career_development
+#: model_terms:ir.ui.view,arch_db:saudi_hr_career_development.hr_career_development_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_career_development.hr_career_development_tree_view
+msgid "Career Development"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model_terms:ir.ui.view,arch_db:saudi_hr_career_development.hr_career_development_form_view
+msgid "Career Development Lines"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.actions.act_window,name:saudi_hr_career_development.action_hr_career_development
+msgid "Career Development Paths"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__career_line_ids
+msgid "Career Development functions"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__create_date
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__department_id
+msgid "Department"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__display_name
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model,name:saudi_hr_career_development.model_hr_career_development_lines
+msgid "Employee Career Development Lines"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model,name:saudi_hr_career_development.model_hr_career_development
+msgid "Employee Career Development Path"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model_terms:ir.ui.view,arch_db:saudi_hr_career_development.hr_career_development_form_view
+msgid "Function Levels"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__global_functional_level
+msgid "Global Functional Level"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__id
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__job_ids
+msgid "Job Positions"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development____last_update
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development__write_date
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__milestones
+msgid "Milestones"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__other_non_mendatory
+msgid "Other Non Mendatory"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__softskills
+msgid "Soft Skills"
+msgstr ""
+
+#. module: saudi_hr_career_development
+#: model:ir.model.fields,field_description:saudi_hr_career_development.field_hr_career_development_lines__technical
+msgid "Technical"
+msgstr ""
