@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_config_settings_saudi_hr" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.saudi.hr</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='hr']/div[hasclass('o_settings_container')]" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <label for="hr_id"/>
+                        <div class="text-muted">
+                            Set default HR to manage your employee HR.
+                        </div>
+                        <div>
+                            <field name="hr_id" required="1"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <label for="enrolled_months"/>
+                        <div class="text-muted">
+                            Set enrolled duration for Employees.
+                        </div>
+                        <div>
+                            <field name="enrolled_months" required="1"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_report_employee_active_pivot" model="ir.ui.view">
+         <field name="name">employee.active.list.view</field>
+         <field name="model">employee.active.list.view</field>
+         <field name="arch" type="xml">
+             <pivot string="Sales Analysis" sample="1">
+                <field name="job_id" type="row"/>
+                <field name="company_id" type="col"/>
+                <field name="actual_emp" type="measure"/>
+                <field name="required_emp" type="measure"/>
+                <field name="diff" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+
+    <record id="action_employee_list_view" model="ir.actions.act_window">
+        <field name="name">Employee Active List</field>
+        <field name="res_model">employee.active.list.view</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id"></field>
+    </record>
+
+
+    <record id="employee_active_list_report_wizard" model="ir.ui.view">
+        <field name="name">employee.active.list.reports.form</field>
+        <field name="model">employee.active.list.reports</field>
+        <field name="arch" type="xml">
+            <form string="Employee Active List Report">
+                <group>
+                    <group>
+                        <!-- Todo  domain="[('company_id', 'in', company_ids)]" -->
+                        <field name="job_ids" required="1" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>
+                    </group>
+                    <group>
+                        <field name="company_ids" required="1" domain="[('id', 'in', allowed_company_ids)]" groups="base.group_multi_company" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="generate_employee_active_list_excel_report" string="Print Excel" type="object" class="oe_highlight"/>
+                    <button name="generate_employee_active_list_pdf_report" string="Print PDF" type="object" class="oe_highlight"/>
+                    <button name="%(action_employee_list_view)d" type="action" string="View" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_active_list_report_wizard" model="ir.actions.act_window">
+        <field name="name">Employee Active List Report</field>
+        <field name="res_model">employee.active.list.reports</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="employee_active_list_report_wizard"/>
+    </record>
+
+    <record id="action_report_employee_active" model="ir.actions.report">
+        <field name="name">Employee Active</field>
+        <field name="model">employee.active.list.reports</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr.report_active_employee</field>
+        <field name="report_file">saudi_hr.report_active_employee</field>
+        <field name="print_report_name">'Employee Active List'</field>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

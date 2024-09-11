@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_employee_head_count">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="text-center">
+                            <span>
+                                <h3><t t-esc="o.based_on"/> wise Employees</h3>
+                            </span>
+                        </div>
+                        <table class="table table-condensed" t-foreach="o.get_dept()" t-as="data">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <span t-esc="o.based_on"/> : <span t-esc="data"/>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Total : <span t-esc="o.total_emp(data)"/></th>
+                                </tr>
+                                <tr>
+                                    <th class="col-xs-4">Code</th>
+                                    <th class="col-xs-4">Name</th>
+                                    <th class="col-xs-4">Joining Date</th>
+                                    <th class="col-xs-4">Location</th>
+                                    <th class="col-xs-4 text-right">Status</th>
+                                </tr>
+                            </thead>
+                             <tbody t-foreach="o.get_emp(data)" t-as="emp">
+                                <tr><td class="col-xs-4"><span t-esc="emp.get('code')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('name')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('joining_date')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('location')"/></td>
+                                    <td class="col-xs-4 text-right"><span t-esc="emp.get('status')"/></td>
+                                </tr>
+                            </tbody><br></br>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="employee_reports_print_view" model="ir.ui.view">
+        <field name="name">employee.head.count.form</field>
+        <field name="model">employee.head.count</field>
+        <field name="arch" type="xml">
+            <form string="Employee Reports">
+                <group>
+                    <group>
+                        <field name="based_on" required="1"/>
+                        <field name="branch_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_write': True}"/>
+                    </group>
+                    <group>
+                        <field name="department_ids" widget="many2many_tags" attrs="{'invisible':[('based_on', 'not in', 'Department')]}" options="{'color_field': 'color'}"/>
+                        <field name="job_ids" widget="many2many_tags" attrs="{'invisible':[('based_on', 'not in', 'Job')]}" options="{'color_field': 'color'}"/>
+                        <field name="manager_ids" widget="many2many_tags" attrs="{'invisible':[('based_on', 'not in', 'Manager')]}" domain="[('manager', '=', True)]" options="{'color_field': 'color'}"/>
+                        <field name="employee_status"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_reports" string="Print PDF" type="object" class="oe_highlight"/>
+                    <button name="print_excel_reports" string="Print Excel" type="object" class="oe_highlight"/>
+                    <button name="action_view_reports" string="View" type="object" class="oe_highlight"/>
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_reports_form" model="ir.actions.act_window">
+        <field name="name">Employee Reports</field>
+        <field name="res_model">employee.head.count</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="employee_reports_print_view"/>
+    </record>
+
+    <record id="action_report_hr_employee" model="ir.actions.report">
+        <field name="name">Head Count</field>
+        <field name="model">employee.head.count</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr.report_employee_head_count</field>
+        <field name="report_file">saudi_hr.report_employee_head_count</field>
+        <field name="print_report_name">'Head Counts'</field>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

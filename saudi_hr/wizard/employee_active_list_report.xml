@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_active_employee">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="text-center">
+                            <span>
+                                <h2><center><strong>Employee Active List</strong></center></h2>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <t t-set="red" t-value="0"/>
+                            <t t-set="green" t-value="0"/>
+                            <t t-set="yellow" t-value="0"/>
+                            <table style="font-size:12px;border-spacing: 0px;">
+                                <t t-foreach="o.company_ids" t-as="cmp">
+                                    <t t-set="total_act_emp" t-value="0"/>
+                                    <t t-set="total_req_emp" t-value="0"/>
+                                    <t t-set="total_diff_emp" t-value="0"/>
+
+                                    <tr style="height: 25px !important;background-color: #FFFFFF;">
+                                        <td colspan="4"></td>
+                                    </tr>
+                                    <tr style="font-size:16px;text-align:center;">
+                                        <td colspan="4">
+                                            <strong><span t-esc="cmp.name"/></strong>
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:center;border: 1px solid black">
+                                        <td/>
+                                        <td style="border: 1px solid black" width="1%"><strong>Actual</strong></td>
+                                        <td style="border: 1px solid black" width="1%"><strong>Required</strong></td>
+                                        <td style="border: 1px solid black" width="1%"><strong>+/-</strong></td>
+                                    </tr>
+                                    <tr t-foreach="empl" t-as="emp">
+                                        <t t-if="emp.get('company_id')==cmp.name">
+                                            <t t-set="total_emp" t-value="0"/>
+                                            <t t-set="total_emp" t-value="emp.get('no_of_emp')-emp.get('req_emp')"/>
+                                            <t t-set="green" t-value="emp.get('no_of_emp')==emp.get('req_emp')"/>
+                                            <t t-set="yellow" t-value="emp.get('no_of_emp') &gt; emp.get('req_emp')"/> <t t-set="red" t-value="emp.get('no_of_emp') &lt; emp.get('req_emp')"/>
+
+                                            <td style="padding-left:5px;border: 1px solid black" width="19%">
+                                                <strong><span t-esc="emp.get('job')"/></strong>
+                                            </td>
+                                            <td width="1%" style="text-align:center;border: 1px solid black"><span t-esc="emp.get('no_of_emp')"/></td>
+                                            <td width="1%" style="text-align:center;border: 1px solid black"><span t-esc="emp.get('req_emp')"/></td>
+
+                                            <t t-if="red">
+                                                <td width="1%" style="background-color:red;text-align:center;border: 1px solid black"><span t-esc="total_emp"/></td>
+                                            </t>
+                                            <t t-if="green">
+                                                <td width="1%" style="background-color:green;text-align:center;border: 1px solid black"><span t-esc="total_emp"/></td>
+                                            </t>
+                                            <t t-if="yellow">
+                                                <td width="1%" style="background-color:yellow;text-align:center;border: 1px solid black">
+                                                    <span t-esc="total_emp"/></td>
+                                            </t>
+
+                                            <t t-set="total_act_emp" t-value="total_act_emp+emp.get('no_of_emp')"/>
+                                            <t t-set="total_req_emp" t-value="total_req_emp+emp.get('req_emp')"/>
+                                            <t t-set="total_diff_emp" t-value="total_act_emp-total_req_emp"/>
+                                        </t>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:5px;border: 1px solid black" width="19%"><strong>TOTALS EE'S AT EACH SHOP</strong></td>
+                                        <td width="1%" style="text-align:center;border: 1px solid black"><span t-esc="total_act_emp"/></td>
+                                        <td width="1%" style="text-align:center;border: 1px solid black"><span t-esc="total_req_emp"/></td>
+                                        <td width="1%" style="text-align:center;border: 1px solid black"><span t-esc="total_diff_emp"/></td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

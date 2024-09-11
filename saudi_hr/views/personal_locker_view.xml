@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="ews_employee_locker_tracker_tree_view" model="ir.ui.view">
+        <field name="name">ews.employee.locker.tracker.tree.view</field>
+        <field name="model">ews.employee.locker.tracker</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="number" required="1"/>
+                <field name="employee_code" />
+                <field name="employee_id" required="1"/>
+                <field name="locker_combination" required="1"/>
+                <field name="locker_serial_number" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_view_ews_employee_locker_tracker_tree" model="ir.actions.act_window">
+        <field name="name">Employees Locker Tracker</field>
+        <field name="res_model">ews.employee.locker.tracker</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="ews_employee_personal_vehicle_tree_view" model="ir.ui.view">
+        <field name="name">ews.employee.personal.vehicle.tree.view</field>
+        <field name="model">ews.employee.personal.vehicle</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="employee_id" required="1"/>
+                <field name="ee_number" required="1"/>
+                <field name="plant_name" required="1"/>
+                <field name="department_id" />
+                <field name="vehicle_number_plate" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_view_ews_employee_personal_vehicle_tree" model="ir.actions.act_window">
+        <field name="name">Employees Personal Vehicle</field>
+        <field name="res_model">ews.employee.personal.vehicle</field>
+        <field name="view_mode">tree</field>
+    </record>
+</odoo>

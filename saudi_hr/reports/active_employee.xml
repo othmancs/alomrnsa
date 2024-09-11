@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <template id="print_active_employee">
+         <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-call="web.html_container">
+                    <div class="text-center">
+                        <span>
+                            <h3>Active Employees</h3>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <th>Department</th>
+                                    <th>Position </th>
+                                    <th>Work Location</th>
+                                    <th>EWS Cell</th>
+                                    <th>Personal Cell</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="employee">
+                                    <tr>
+                                        <td><span t-field="employee.name"/><span t-field="employee.middle_name"/> <span t-field="employee.last_name"/></td>
+                                        <td><span t-field="employee.department_id.name"/></td>
+                                        <td><span t-field="employee.job_id.name"/></td>
+                                        <td><span t-field="employee.work_location_id"/></td>     
+                                        <td><span t-field="employee.mobile_phone"/></td>
+                                        <td><span t-field="employee.work_phone"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <record id="hr_employee_print_badge" model="ir.actions.report">
+		<field name="name">Active Employee</field>
+		<field name="model">hr.employee</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">saudi_hr.print_active_employee</field>
+		<field name="report_file">saudi_hr.print_active_employee</field>
+		<field name="print_report_name">'Active Employee - %s' % (object.name).replace('/', '')</field>
+		<field name="binding_model_id" ref="model_hr_employee"/>
+		<field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

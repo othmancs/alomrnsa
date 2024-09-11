@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="jeddah_group_configuration" model="hr.groups.configuration">
+        <field name="branch_id" ref="saudi_hr_branch.jeddah_office"/>
+        <field name="gr_ids" eval="[(6, 0, [ref('hr.employee_mit')])]"/>
+        <field name="hr_ids" eval="[(6, 0, [ref('hr.employee_stw')])]"/>
+        <field name="admin_ids" eval="[(6, 0, [ref('hr.employee_han')])]"/>
+        <field name="finance_ids" eval="[(6, 0, [ref('hr.employee_mit')])]"/>
+        <field name="helpdesk_ids" eval="[(6, 0, [ref('hr.employee_mit')])]"/>
+        <field name="talent_acquisition_ids" eval="[(6, 0, [ref('hr.employee_han')])]"/>
+        <field name="hop_ids" eval="[(6, 0, [ref('hr.employee_mit'), ref('hr.employee_stw')])]"/>
+    </record>
+
+    <record id="riyadh_group_configuration" model="hr.groups.configuration">
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="gr_ids" eval="[(6, 0, [ref('hr.employee_admin')])]"/>
+        <field name="hr_ids" eval="[(6, 0, [ref('hr.employee_qdp')])]"/>
+        <field name="admin_ids" eval="[(6, 0, [ref('hr.employee_admin')])]"/>
+        <field name="finance_ids" eval="[(6, 0, [ref('hr.employee_fpi')])]"/>
+        <field name="helpdesk_ids" eval="[(6, 0, [ref('hr.employee_fpi')])]"/>
+        <field name="talent_acquisition_ids" eval="[(6, 0, [ref('hr.employee_niv')])]"/>
+        <field name="hop_ids" eval="[(6, 0, [ref('hr.employee_jep')])]"/>
+    </record>
+</odoo>

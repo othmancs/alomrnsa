@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_birthday_wish" model="ir.cron">
+        <field name="name">Birthday Wish: Send Birthday Wishes</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="state">code</field>
+        <field name="code">model.birthday_reminder()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+        <field name="doall" eval="True"/>
+    </record>
+
+    <record id="ir_cron_employee_enrollment" model="ir.cron">
+        <field name="name">Employee Enrollment</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="state">code</field>
+        <field name="code">model.employee_enrollment()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+        <field name="doall" eval="True"/>
+        <field name="priority">5</field>
+    </record>
+</odoo>

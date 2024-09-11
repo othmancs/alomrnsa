@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="category_organization" model="ir.module.category">
+        <field name="name">Organization</field>
+        <field name="sequence">22</field>
+    </record>
+
+    <record id="group_line_manager" model="res.groups">
+        <field name="name">Line Manager</field>
+        <field name="category_id" ref="category_organization"/>
+    </record>
+    <record id="group_hof" model="res.groups">
+        <field name="name">Head of Department</field>
+        <field name="category_id" ref="category_organization"/>
+        <field name="implied_ids" eval="[(4, ref('group_line_manager'))]"/>
+    </record>
+
+    <!-- Group GR -->
+    <record id="category_gr" model="ir.module.category">
+        <field name="name">GR</field>
+        <field name="sequence">19</field>
+    </record>
+
+    <record id="group_gr_officer" model="res.groups">
+        <field name="name">Officer</field>
+        <field name="category_id" ref="category_gr"/>
+    </record>
+
+    <record id="group_gr_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="category_gr"/>
+        <field name="implied_ids" eval="[(4, ref('saudi_hr.group_gr_officer'))]"/>
+    </record>
+
+</odoo>

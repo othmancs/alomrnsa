@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="employee_public_directory">
+        <t t-call="website.layout">
+            <div id="wrap" class="container s_website_form">
+                <table class="table table-md">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Extension</th>
+                            <th>Cell #</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data" t-as="job">
+                            <tr style="background-color: black; color: white;">
+                                <td><span t-esc="list(job.keys())[0].name"></span></td>
+                                <td><span t-esc="list(job.keys())[0].company_id.sudo().name"></span></td>
+                                <td><span t-esc="list(job.keys())[0].company_id.sudo().phone"></span></td>
+                                <td></td>
+                            </tr>
+                            <t t-foreach="list(job.values())" t-as="employees">
+                                <tr t-foreach="employees" t-as="emp">
+                                    <td><span t-esc="emp.display_name" /></td>
+                                    <td></td>
+                                    <td><span t-esc="emp.work_phone" /></td>
+                                    <td><span t-esc="emp.work_email" /></td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <record id="menu_employee_directory" model="website.menu">
+        <field name="name">Employee Directory</field>
+        <field name="url">/employee/public_directory</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">10</field>
+    </record>
+</odoo>

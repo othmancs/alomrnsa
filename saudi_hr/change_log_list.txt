@@ -1,0 +1,6 @@
+============
+Changes:
+[Field]: is_line_manager to is_hod
+[Field Label]: Head of Function to Head of department
+[Field]: Consider coach_id as Head of Department
+[Field]: Consider parent_id as Manager

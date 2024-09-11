@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="hr.employee_admin" model="hr.employee">
+        <!-- Work information -->
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1443.jpg"/>
+        <field name="name">Abdul</field>
+        <field name="middle_name">Shakib</field>
+        <field name="last_name">Nasser</field>
+        <field name="work_email">abdul@example.com</field>
+        <field name="work_phone">+3281813700</field>
+        <field name="mobile_phone">+3281813700</field>
+        <field name="department_id" ref="hr.dep_management"/>
+        <field name="job_id" ref="hr.job_ceo"/>
+        <field name="job_title">Chief Executive Officer</field>
+        <field name="arabic_name">عبد</field>
+        <field name="manager">True</field>
+        <field name="is_hod">True</field>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <!-- Private information -->
+        <field name="country_id" ref="base.sa"/>
+        <field name="religion">muslim</field>
+        <field name="identification_id">3647 5055 7272</field>
+        <field name="passport_id">J8566997</field>
+        <field name="gender">male</field>
+        <field name="marital">married</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1988-02-10</field>
+        <field name="children">2</field>
+        <field name="visa_no">4012888888881881</field>
+        <field name="permit_no">WPN005</field>
+        <field name="visa_expire">2022-07-10</field>
+        <field name="emergency_contact">1-888-588-0999</field>
+        <field name="emergency_phone">1-855-588-0999</field>
+        <field name="km_home_work">5</field>
+        <field name="spouse_number">1-855-888-0999</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="birthday">1985-01-11</field>
+        <field name="place_of_birth">Riyadh</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Biomedical Sciences</field>
+        <field name="study_school">Al Huda International School</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_2')])]"/>
+        <field name="date_of_join" eval="(DateTime.today())"/>
+        <field name="code">emp01</field>
+        <field name="employee_status">hired</field>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <!-- hr setting -->
+        <!-- <field name="medic_exam">2019-06-09</field>
+        <field name="vehicle">Mercedes</field> -->
+    </record>
+
+    <record id="hr.employee_qdp" model="hr.employee">
+        <field name="name">Bilal</field>
+        <field name="middle_name">Ali</field>
+        <field name="user_id" ref="saudi_hr.user_hr_officer"/>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="arabic_name">بلال</field>
+        <field name="last_name">Pathan</field>
+        <field name="birthday">1985-02-10</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(months=7, days=1)).strftime('%Y-%m-%d')" />
+        <field name="code">emp07</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="employee_status">hired</field>
+        <field name="gender">male</field>
+        <field name="work_phone">+3281813700</field>
+        <field name="work_email">bilalpth@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/2327.jpg"/>
+        <field name="parent_id" ref="hr.employee_admin"/>
+        <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="mobile_phone">+3281813777</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 5055 7272</field>
+        <field name="passport_id">J8566112</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1988-02-10</field>
+        <field name="children">1</field>
+        <field name="visa_no">4088888888881881</field>
+        <field name="permit_no">WPN015</field>
+        <field name="visa_expire">2020-08-10</field>
+        <field name="emergency_contact">1-888-588-0679</field>
+        <field name="emergency_phone">1-885-888-0999</field>
+        <field name="km_home_work">4</field>
+        <field name="spouse_number">1-855-888-9999</field>
+        <field name="ksa_address_id" ref="base.res_partner_2"/>
+        <field name="place_of_birth">Jeddah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">master of computer application</field>
+        <field name="study_school">Alfazal International School</field>
+        <!-- <field name="medic_exam">2020-06-09</field>
+        <field name="vehicle">Mercedes</field> -->
+    </record>
+
+    <record id="hr.employee_fpi" model="hr.employee">
+        <field name="user_id" ref="saudi_hr.user_gr_assistant"/>
+        <field name="name">Abdul</field>
+        <field name="middle_name">Shakib</field>
+        <field name="last_name">Omar</field>
+        <field name="arabic_name">بلال</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="birthday">1987-07-06</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=7,months=6, days=1)).strftime('%Y-%m-%d')" />
+        <field name="code">emp08</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="work_phone">+3281816877</field>
+        <field name="work_email">abdulomar@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1818.jpg"/>
+        <field name="mobile_phone">+3288883700</field>
+        <field name="parent_id" ref="hr.employee_jve"/>
+        <field name="coach_id" ref="hr.employee_jve"/>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 5055 7552</field>
+        <field name="passport_id">J8566337</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1972-02-10</field>
+        <field name="children">2</field>
+        <field name="visa_no">4088888877441881</field>
+        <field name="permit_no">WPN115</field>
+        <field name="visa_expire">2024-08-10</field>
+        <field name="emergency_contact">1-888-788-0679</field>
+        <field name="emergency_phone">1-885-968-0999</field>
+        <field name="km_home_work">4</field>
+        <field name="spouse_number">1-855-888-9889</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Jeddah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Engineering</field>
+        <field name="study_school">Alfazal International School</field>
+        <!-- <field name="medic_exam">2020-06-09</field>
+        <field name="vehicle">Honda city</field> -->
+    </record>
+
+    <record id="hr.employee_jep" model="hr.employee">
+        <field name="user_id" ref="saudi_hr.user_line_manager"/>
+        <field name="name">Danial</field>
+        <field name="middle_name">Juned</field>
+        <field name="arabic_name">دانيال</field>
+        <field name="department_id" ref="hr.dep_ps"/>
+        <field name="job_id" ref="hr.job_consultant"/>
+        <field name="job_title">Consultant</field>
+        <field name="manager">True</field>
+        <field name="work_phone">+3282823200</field>
+        <field name="last_name">peter</field>
+        <field name="birthday">1985-10-07</field>
+        <field name="date_of_join" eval="(DateTime.today())" />
+        <field name="code">emp14</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="gender">male</field>
+        <field name="work_email">danial321@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1760.jpg"/>
+        <field name="mobile_phone">+3281813797</field>
+        <field name="parent_id" ref="hr.employee_admin"/>
+        <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="religion">non-muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 5520 7272</field>
+        <field name="passport_id">J8566732</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1971-08-10</field>
+        <field name="children">3</field>
+        <field name="visa_no">4088888877455889</field>
+        <field name="permit_no">WPN215</field>
+        <field name="visa_expire">2021-08-09</field>
+        <field name="emergency_contact">1-786-788-0679</field>
+        <field name="emergency_phone">1-885-786-0999</field>
+        <field name="km_home_work">12</field>
+        <field name="spouse_number">1-855-539-9889</field>
+        <field name="ksa_address_id" ref="base.res_partner_2"/>
+        <field name="place_of_birth">Makkah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Engineering</field>
+        <field name="study_school">Alfazal International School</field>
+        <!-- <field name="medic_exam">2019-06-09</field>
+        <field name="vehicle">Honda city</field> -->
+    </record>
+
+    <record id="hr.employee_stw" model="hr.employee">
+        <field name="user_id" ref="saudi_hr.user_hr_manager"/>
+        <field name="name">Fareeda</field>
+        <field name="middle_name">Hanif</field>
+        <field name="arabic_name">فريدة</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">Khan</field>
+        <field name="birthday">1990-08-10</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=4,months=1, days=1)).strftime('%Y-%m-%d')" />
+        <field name="employee_status">hired</field>
+        <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="gender">female</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.jeddah_office"/>
+        <field name="code">emp05</field>
+        <field name="work_phone">+3281813978</field>
+        <field name="work_email">fkhan@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1853.jpg"/>
+        <field name="parent_id" ref="hr.employee_jve"/>
+        <field name="coach_id" ref="hr.employee_jve"/>
+        <field name="mobile_phone">+3281813799</field>
+        <field name="manager">True</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 3578 7372</field>
+        <field name="passport_id">J8566842</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1973-08-10</field>
+        <field name="children">2</field>
+        <field name="visa_no">4085147677455889</field>
+        <field name="permit_no">WPN225</field>
+        <field name="visa_expire">2022-01-06</field>
+        <field name="emergency_contact">1-786-684-0679</field>
+        <field name="emergency_phone">1-885-416-0999</field>
+        <field name="km_home_work">14</field>
+        <field name="spouse_number">1-855-539-9889</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Jeddah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Engineering</field>
+        <field name="study_school">Alfazal International School</field>
+        <!-- <field name="medic_exam">2022-06-09</field>
+        <field name="vehicle">Honda city</field> -->
+    </record>
+
+    <record id="hr.employee_al" model="hr.employee">
+        <field name="user_id" ref="saudi_hr.user_hr_employee"/>
+        <field name="name">Rahul</field>
+        <field name="middle_name">Saddam</field>
+        <field name="arabic_name">راهول</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_cto"/>
+        <field name="job_title">Chief Technical Officer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_3')])]"/>
+        <field name="last_name">Khanna</field>
+        <field name="birthday">1987-11-10</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=2,months=1, days=10)).strftime('%Y-%m-%d')" />
+        <field name="code">emp02</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="employee_status">hired</field>
+        <field name="parent_id" ref="hr.employee_admin"/>
+        <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="work_phone">+3281813115</field>
+        <field name="work_email">rahul123@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1007.jpg"/>
+        <field name="mobile_phone">+3281813778</field>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 3055 7572</field>
+        <field name="passport_id">J8566812</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1972-04-10</field>
+        <field name="children">1</field>
+        <field name="visa_no">4085147677454963</field>
+        <field name="permit_no">WPN325</field>
+        <field name="visa_expire">2020-01-06</field>
+        <field name="emergency_contact">1-785-624-0679</field>
+        <field name="emergency_phone">1-845-416-0999</field>
+        <field name="km_home_work">9</field>
+        <field name="spouse_number">1-855-539-2697</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Jeddah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Engineering</field>
+        <field name="study_school">Alfazal International School</field>
+        <!-- <field name="medic_exam">2020-06-09</field>
+        <field name="vehicle">Honda city</field> -->
+    </record>
+
+    <record id="hr.employee_mit" model="hr.employee">
+        <field name="user_id" ref="saudi_hr.user_gr_officer"/>
+        <field name="name">Husaam</field>
+        <field name="middle_name">Anish</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">Udeen</field>
+        <field name="birthday">1987-11-08</field>
+        <field name="date_of_join" eval="(DateTime.today())" />
+        <field name="code">emp03</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.pk"/>
+        <field name="branch_id" ref="saudi_hr_branch.jeddah_office"/>
+        <field name="work_phone">+3281811546</field>
+        <field name="mobile_phone">+32486571630</field>
+        <field name="work_email">husaan98@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1238.jpg"/>
+        <field name="parent_id" ref="hr.employee_stw"/>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 3650 7362</field>
+        <field name="passport_id">J8566255</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1968-04-10</field>
+        <field name="children">1</field>
+        <field name="visa_no">458967677454963</field>
+        <field name="permit_no">WPN625</field>
+        <field name="visa_expire">2022-05-06</field>
+        <field name="emergency_contact">1-785-624-1256</field>
+        <field name="emergency_phone">1-845-416-2354</field>
+        <field name="km_home_work">12</field>
+        <field name="spouse_number">1-855-758-2697</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Jeddah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Master of compurer application</field>
+        <field name="study_school">Alfazal International School</field>
+        <!-- <field name="medic_exam">2019-06-09</field>
+        <field name="vehicle">Honda city</field> -->
+    </record>
+
+    <record id="hr.employee_niv" model="hr.employee">
+        <field name="name">Shafeeq</field>
+        <field name="middle_name">Zaved</field>
+        <field name="arabic_name">شفيق</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">Khan</field>
+        <field name="birthday">1990-08-10</field>
+        <field name="date_of_join" eval="(DateTime.today())" />
+        <field name="code">emp04</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="gender">male</field>
+        <field name="work_phone">3281813148</field>
+        <field name="work_email">skhan@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1773.jpg"/>
+        <field name="mobile_phone">+32476571630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 8899 7272</field>
+        <field name="passport_id">J8566225</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1970-04-10</field>
+        <field name="children">2</field>
+        <field name="visa_no">444467677454963</field>
+        <field name="permit_no">WPN635</field>
+        <field name="visa_expire">2024-05-06</field>
+        <field name="emergency_contact">1-785-635-1256</field>
+        <field name="emergency_phone">1-845-126-2354</field>
+        <field name="km_home_work">16</field>
+        <field name="spouse_number">1-855-123-2697</field>
+        <field name="ksa_address_id" ref="base.res_partner_2"/>
+        <field name="place_of_birth">Medina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Materials Science</field>
+        <field name="study_school">Al Yasmin International School</field>
+        <!-- <field name="medic_exam">2020-06-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+
+    <record id="hr.employee_chs" model="hr.employee">
+        <field name="name">Mansoor</field>
+        <field name="middle_name">Riyaz</field>
+        <field name="arabic_name">منصور</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">Ali</field>
+        <field name="birthday">1991-11-11</field>
+        <field name="date_of_join" eval="(DateTime.today())"/>
+        <field name="code">emp06</field>
+        <field name="employee_status">hired</field>
+         <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="gender">male</field>
+        <field name="work_phone">3281813977</field>
+        <field name="work_email">mansali@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/2215.jpg"/>
+        <field name="mobile_phone">+32486871630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 4856 7272</field>
+        <field name="passport_id">J8566112</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1971-04-10</field>
+        <field name="children">3</field>
+        <field name="visa_no">444478697454963</field>
+        <field name="permit_no">WPN356</field>
+        <field name="visa_expire">2022-05-10</field>
+        <field name="emergency_contact">1-785-225-1256</field>
+        <field name="emergency_phone">1-845-756-2354</field>
+        <field name="km_home_work">14</field>
+        <field name="spouse_number">1-855-123-1540</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Medina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Materials Science</field>
+        <field name="study_school">The Learning Caravan International School</field>
+        <!-- <field name="medic_exam">2019-12-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+
+    <record id="hr.employee_fme" model="hr.employee">
+        <field name="name">Jalaal</field>
+        <field name="middle_name">Rafhic</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">Aziz</field>
+        <field name="birthday">1991-07-06</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=5,months=2, days=3)).strftime('%Y-%m-%d')" />
+        <field name="code">emp22</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="work_phone">3281814678</field>
+        <field name="work_email">jalalaziz@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1813.jpg"/>
+        <field name="date_of_leave" eval="(DateTime.today())"/>
+        <field name="mobile_phone">+32476571630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 5055 4532</field>
+        <field name="passport_id">J85665520</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1973-12-01</field>
+        <field name="children">2</field>
+        <field name="visa_no">558878697454963</field>
+        <field name="permit_no">WPN786</field>
+        <field name="visa_expire">2024-05-10</field>
+        <field name="emergency_contact">1-785-129-1256</field>
+        <field name="emergency_phone">1-845-756-694</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-855-123-4032</field>
+        <field name="ksa_address_id" ref="base.res_partner_2"/>
+        <field name="place_of_birth">Munawwarah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Materials Science</field>
+        <field name="study_school">Pakistan International School Riyadh</field>
+        <!-- <field name="medic_exam">2020-11-22</field>
+        <field name="vehicle">Honda city</field> -->
+    </record>
+
+    <record id="hr.employee_jth" model="hr.employee">
+        <field name="name">Zaheena</field>
+        <field name="middle_name">Yashin</field>
+        <field name="department_id" ref="hr.dep_ps"/>
+        <field name="job_id" ref="hr.job_consultant"/>
+        <field name="job_title">Consultant</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">Sheikh</field>
+        <field name="birthday">1991-04-01</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=1,months=2, days=0)).strftime('%Y-%m-%d')" />
+        <field name="date_of_leave" eval="(DateTime.today())"/>
+        <field name="code">emp09</field>
+        <field name="country_id" ref="base.in"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="employee_status">hired</field>
+         <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="gender">female</field>
+        <field name="work_phone">+3281813986</field>
+        <field name="work_email">zaakhtar@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1851.jpg"/>
+        <field name="mobile_phone">+32486571610</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 5055 7272</field>
+        <field name="passport_id">J8566112</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1969-12-10</field>
+        <field name="children">2</field>
+        <field name="visa_no">123658697454963</field>
+        <field name="permit_no">WPN543</field>
+        <field name="visa_expire">2022-10-10</field>
+        <field name="emergency_contact">1-712-129-1256</field>
+        <field name="emergency_phone">1-845-726-694</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-855-123-1532</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Madina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Materials Science</field>
+        <field name="study_school">The Learning Caravan International School</field>
+        <!-- <field name="medic_exam">2020-11-09</field>
+        <field name="vehicle">Honda city</field> -->
+    </record>
+
+    <record id="hr.employee_ngh" model="hr.employee">
+        <field name="name">Shaadin</field>
+        <field name="middle_name">Soyeb</field>
+        <field name="department_id" ref="hr.dep_sales"/>
+        <field name="job_id" ref="hr.job_marketing"/>
+        <field name="job_title">Marketing and Community Manager</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">Habibi</field>
+        <field name="birthday">1985-07-01</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=2,months=2, days=2)).strftime('%Y-%m-%d')" />
+        <field name="code">emp10</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="work_phone">3281813962</field>
+        <field name="work_email">shaadhab@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1421.jpg"/>
+        <field name="mobile_phone">+32486571600</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 7474 7272</field>
+        <field name="passport_id">J8566625</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1974-12-01</field>
+        <field name="children">2</field>
+        <field name="visa_no">785478697454963</field>
+        <field name="permit_no">WPN735</field>
+        <field name="visa_expire">2022-09-10</field>
+        <field name="emergency_contact">1-185-129-1256</field>
+        <field name="emergency_phone">1-845-756-694</field>
+        <field name="km_home_work">11</field>
+        <field name="spouse_number">1-155-123-4032</field>
+        <field name="ksa_address_id" ref="base.res_partner_2"/>
+        <field name="place_of_birth">Munawwarah</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Materials Science</field>
+        <field name="study_school">Pakistan International School Riyadh</field>
+        <!-- <field name="medic_exam">2020-11-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+
+    <record id="hr.employee_vad" model="hr.employee">
+        <field name="name">Mukhtaar</field>
+        <field name="middle_name">Munir</field>
+        <field name="arabic_name">المختار</field>
+        <field name="department_id" ref="hr.dep_administration"/>
+        <field name="job_id" ref="hr.job_hrm"/>
+        <field name="job_title">Human Resources Manager</field>
+        <field name="category_ids" eval="[(6, 0, [ref('hr.employee_category_4')])]"/>
+        <field name="last_name">abu</field>
+        <field name="birthday">1983-05-01</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=2,months=3, days=1)).strftime('%Y-%m-%d')" />
+        <field name="code">emp11</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="work_phone">3281816976</field>
+        <field name="work_email">mukhtarabu@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1603.jpg"/>
+        <field name="mobile_phone">+32486571730</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">1736 7474 7272</field>
+        <field name="passport_id">J8564625</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1974-12-01</field>
+        <field name="children">3</field>
+        <field name="visa_no">596478697454963</field>
+        <field name="permit_no">WPN567</field>
+        <field name="visa_expire">2021-09-10</field>
+        <field name="emergency_contact">1-182-129-1256</field>
+        <field name="emergency_phone">1-845-763-694</field>
+        <field name="km_home_work">15</field>
+        <field name="spouse_number">1-155-123-3042</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">madina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Materials Science</field>
+        <field name="study_school">Dunes International Schools</field>
+        <!-- <field name="medic_exam">2021-05-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+
+    <record id="hr.employee_han" model="hr.employee">
+        <field name="name">Sabeeh</field>
+        <field name="middle_name">Shami</field>
+        <field name="arabic_name">صبيح</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="work_phone">3282823613</field>
+        <field name="last_name">Akram</field>
+        <field name="employee_status">hired</field>
+        <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.pk"/>
+        <field name="branch_id" ref="saudi_hr_branch.jeddah_office"/>
+        <field name="birthday">1987-07-06</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=1,months=1, days=1)).strftime('%Y-%m-%d')" />
+        <field name="code">emp12</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1644.jpg"/>
+        <field name="mobile_phone">+32486576630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 7434 7272</field>
+        <field name="passport_id">J8555225</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1974-12-11</field>
+        <field name="children">4</field>
+        <field name="visa_no">116478697454963</field>
+        <field name="permit_no">WPN333</field>
+        <field name="visa_expire">2022-09-10</field>
+        <field name="emergency_contact">1-182-129-1256</field>
+        <field name="emergency_phone">1-845-763-6444</field>
+        <field name="km_home_work">04</field>
+        <field name="spouse_number">1-155-123-3342</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Madina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Mechanical Engineering</field>
+        <field name="study_school">New Al Wurood International School</field>
+        <!-- <field name="medic_exam">2022-11-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+
+    <record id="hr.employee_jve" model="hr.employee">
+        <field name="user_id" ref="saudi_hr.user_hod"/>
+        <field name="name">Usaamah</field>
+        <field name="middle_name">Ramjan</field>
+        <field name="arabic_name">أسامة</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="work_phone">3282825348</field>
+        <field name="last_name">Somani</field>
+        <field name="birthday">1985-07-03</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=1,months=1, days=1)).strftime('%Y-%m-%d')" />
+        <field name="code">emp13</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="gender">male</field>
+        <field name="work_email">usaamah@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1725.jpg"/>
+        <field name="mobile_phone">+32486571666</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="manager">True</field>
+        <field name="is_hod">True</field>
+        <field name="identification_id">4736 7454 7272</field>
+        <field name="passport_id">J8562625</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1973-12-01</field>
+        <field name="children">2</field>
+        <field name="visa_no">325478697454963</field>
+        <field name="permit_no">WPN373</field>
+        <field name="visa_expire">2022-10-10</field>
+        <field name="emergency_contact">1-112-129-1256</field>
+        <field name="emergency_phone">1-825-763-6444</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-135-123-3342</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">MAdina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Mechanical Engineering</field>
+        <field name="study_school">Madina English School</field>
+        <!-- <field name="medic_exam">2021-10-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+
+    <record id="hr.employee_jod" model="hr.employee">
+        <field name="name">Jacob</field>
+        <field name="middle_name">Juned</field>
+        <field name="arabic_name">يعقوب</field>
+        <field name="department_id" ref="hr.dep_sales"/>
+        <field name="job_id" ref="hr.job_marketing"/>
+        <field name="job_title">Marketing and Community Manager</field>
+        <field name="work_phone">3282823500</field>
+        <field name="last_name">James</field>
+        <field name="birthday">1984-07-04</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=5,months=6, days=2)).strftime('%Y-%m-%d')" />
+        <field name="code">emp15</field>
+        <field name="employee_status">hired</field>
+        <field name="coach_id" ref="hr.employee_admin"/>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.uk"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="work_email">jacobjames@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1814.jpg"/>
+        <field name="parent_id" ref="hr.employee_jve"/>
+        <field name="coach_id" ref="hr.employee_jve"/>
+        <field name="mobile_phone">+32486771630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 7474 7372</field>
+        <field name="passport_id">J8568625</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1973-12-11</field>
+        <field name="children">2</field>
+        <field name="visa_no">3254521697454963</field>
+        <field name="permit_no">WPN235</field>
+        <field name="visa_expire">2022-10-10</field>
+        <field name="emergency_contact">1-222-129-1256</field>
+        <field name="emergency_phone">1-825-773-6444</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-135-133-3342</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">MAdina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Mechanical Engineering</field>
+        <field name="study_school">Madina English School</field>
+        <!-- <field name="medic_exam">2022-10-09</field>
+        <field name="vehicle">Honda City</field> -->
+    </record>
+
+    <record id="hr.employee_jog" model="hr.employee">
+        <field name="name">Mokbul</field>
+        <field name="middle_name">Iqubal</field>
+        <field name="department_id" ref="hr.dep_rd"/>
+        <field name="job_id" ref="hr.job_developer"/>
+        <field name="job_title">Experienced Developer</field>
+        <field name="work_phone">3282823500</field>
+        <field name="last_name">Khan</field>
+        <field name="birthday">1986-06-07</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=4,months=1, days=8)).strftime('%Y-%m-%d')" />
+        <field name="code">emp16</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_2"/>
+        <field name="gender">male</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.al_khobar_office"/>
+        <field name="work_email">jog@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/2307.jpg"/>
+        <field name="mobile_phone">+32489571630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 7844 7272</field>
+        <field name="passport_id">J8366625</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1973-12-11</field>
+        <field name="children">2</field>
+        <field name="visa_no">3254521697454963</field>
+        <field name="permit_no">WPN235</field>
+        <field name="visa_expire">2022-10-10</field>
+        <field name="emergency_contact">1-222-129-1256</field>
+        <field name="emergency_phone">1-825-773-6444</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-135-133-3342</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">MAdina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Mechanical Engineering</field>
+        <field name="study_school">Madina English School</field>
+        <!-- <field name="medic_exam">2022-10-09</field>
+        <field name="vehicle">Honda City</field> -->
+    </record>
+
+    <record id="hr.employee_jgo" model="hr.employee">
+        <field name="name">Mahja</field>
+        <field name="middle_name">Ibrahim</field>
+        <field name="department_id" ref="hr.dep_ps"/>
+        <field name="job_id" ref="hr.job_consultant"/>
+        <field name="job_title">Consultant</field>
+        <!-- <field name="work_location">Riyadh</field> -->
+        <field name="last_name">Gonzalez</field>
+        <field name="birthday">1988-05-06</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=2,months=2, days=7)).strftime('%Y-%m-%d')" />
+        <field name="code">emp17</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.al_khobar_office"/>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="gender">male</field>
+        <field name="work_phone">+3282823500</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/2306.jpg"/>
+        <field name="mobile_phone">+32286571630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 7864 7272</field>
+        <field name="passport_id">J8564625</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Alrashid</field>
+        <field name="spouse_birthdate">1973-11-04</field>
+        <field name="children">1</field>
+        <field name="visa_no">3254544447454963</field>
+        <field name="permit_no">WPN337</field>
+        <field name="visa_expire">2022-08-10</field>
+        <field name="emergency_contact">1-222-129-1216</field>
+        <field name="emergency_phone">1-825-773-4444</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-135-133-3332</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Madina</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Mechanical Engineering</field>
+        <field name="study_school">Saud International School</field>
+        <!-- <field name="medic_exam">2021-10-09</field>
+        <field name="vehicle">Honda City</field> -->
+    </record>
+
+    <record id="hr.employee_lur" model="hr.employee">
+        <field name="name">Mohammed</field>
+        <field name="middle_name">Hussein</field>
+        <field name="arabic_name">محمد</field>
+        <field name="department_id" ref="hr.dep_sales"/>
+        <field name="job_id" ref="hr.job_marketing"/>
+        <field name="job_title">Marketing and Community Manager</field>
+        <field name="work_phone">3282823500</field>
+        <field name="last_name">Madani</field>
+        <field name="birthday">1985-05-06</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=1,months=6, days=8)).strftime('%Y-%m-%d')" />
+        <field name="code">emp18</field>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="gender">male</field>
+        <field name="work_email">noWong@example.com</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1780.jpg"/>
+        <field name="mobile_phone">+32447571630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 7474 7172</field>
+        <field name="passport_id">J8566624</field>
+        <field name='nominee_id' ref="base.res_partner_12"/>
+        <field name="spouse_complete_name">Samer Mahja</field>
+        <field name="spouse_birthdate">1973-11-04</field>
+        <field name="children">1</field>
+        <field name="visa_no">3254459447454963</field>
+        <field name="permit_no">WPN697</field>
+        <field name="visa_expire">2022-08-03</field>
+        <field name="emergency_contact">1-222-129-5866</field>
+        <field name="emergency_phone">1-825-773-8899</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-135-133-3782</field>
+        <field name="ksa_address_id" ref="base.res_partner_12"/>
+        <field name="place_of_birth">Riyadh</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Mechanical Engineering</field>
+        <field name="study_school">New International School, Riyadh</field>
+        <!-- <field name="medic_exam">2019-10-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+
+    <record id="hr.employee_hne" model="hr.employee">
+        <field name="name">Umar</field>
+        <field name="middle_name">Hussein</field>
+        <field name="arabic_name">عمر</field>
+        <field name="department_id" ref="hr.dep_ps"/>
+        <field name="job_id" ref="hr.job_consultant"/>
+        <field name="job_title">Consultant</field>
+        <field name="last_name">Gaddafi</field>
+        <field name="birthday">1987-05-07</field>
+        <field name="date_of_join" eval="(DateTime.today() - relativedelta(years=3,months=-2, days=1)).strftime('%Y-%m-%d')" />
+        <field name="code">emp19</field>
+        <field name="employee_status">hired</field>
+        <field name="address_id" ref="base.res_partner_12"/>
+        <field name="country_id" ref="base.sa"/>
+        <field name="branch_id" ref="saudi_hr_branch.riyadh_office"/>
+        <field name="gender">male</field>
+        <field name="work_email">umargaddafi@example.com</field>
+        <field name="work_phone">3282823120</field>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/3100.jpg"/>
+        <field name="mobile_phone">+32444471630</field>
+        <field name="religion">muslim</field>
+        <field name="marital">married</field>
+        <field name="identification_id">4736 7474 7272</field>
+        <field name="passport_id">J8567625</field>
+        <field name='nominee_id' ref="base.res_partner_2"/>
+        <field name="spouse_complete_name">Mohammed Mahja</field>
+        <field name="spouse_birthdate">1973-07-04</field>
+        <field name="children">3</field>
+        <field name="visa_no">3254786957454963</field>
+        <field name="permit_no">WPN372</field>
+        <field name="visa_expire">2022-08-12</field>
+        <field name="emergency_contact">1-222-129-1234</field>
+        <field name="emergency_phone">1-825-773-5236</field>
+        <field name="km_home_work">13</field>
+        <field name="spouse_number">1-135-133-8844</field>
+        <field name="ksa_address_id" ref="base.res_partner_2"/>
+        <field name="place_of_birth">Falcons</field>
+        <field name="country_of_birth" ref="base.sa"/>
+        <field name="study_field">Mechanical Engineering</field>
+        <field name="study_school">Udhailiyah School (Falcons)</field>
+        <!-- <field name="medic_exam">2019-10-09</field>
+        <field name="vehicle">Fortuner</field> -->
+    </record>
+</odoo>

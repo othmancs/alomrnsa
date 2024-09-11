@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_education_certificate_tree" model="ir.ui.view">
+        <field name="name">education.certificate.tree</field>
+        <field name="model">education.certificate</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_education_certificate">
+        <field name="name">Education Certificate</field>
+        <field name="res_model">education.certificate</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to define Education Certificate.
+          </p>
+        </field>
+    </record>
+
+    <record id="view_education_study_tree" model="ir.ui.view">
+        <field name="name">education.study.tree</field>
+        <field name="model">education.study</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_education_study">
+        <field name="name">Education Study</field>
+        <field name="res_model">education.study</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to define Education Study.
+          </p>
+        </field>
+    </record>
+
+    <record id="view_education_school_tree" model="ir.ui.view">
+        <field name="name">education.school.tree</field>
+        <field name="model">education.school</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_education_school">
+        <field name="name">Education School</field>
+        <field name="res_model">education.school</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to define Education School.
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_employee_education" name="Education" parent="hr.menu_human_resources_configuration" sequence="11" groups="hr.group_hr_manager"/>
+
+    <menuitem id="menu_employee_certificate" name="Certificate" action="action_view_education_certificate" parent="menu_employee_education" sequence="1" groups="hr.group_hr_manager"/>
+
+    <menuitem id="menu_employee_study" name="Study" action="action_view_education_study" parent="menu_employee_education" sequence="2" groups="hr.group_hr_manager"/>
+
+    <menuitem id="menu_employee_school" name="School" action="action_view_education_school" parent="menu_employee_education" sequence="3" groups="hr.group_hr_manager"/>
+</odoo>

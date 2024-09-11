@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="new_joining_employee_reports_view" model="ir.ui.view">
+        <field name="name">joining.employee.reports.form</field>
+        <field name="model">joining.employee.reports</field>
+        <field name="arch" type="xml">
+            <form string="Joining Employee Reports">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_reports" string="Print" type="object" class="oe_highlight"/>
+                    or
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_joining_employee_reports_form" model="ir.actions.act_window">
+        <field name="name">Joining Employee Reports</field>
+        <field name="res_model">joining.employee.reports</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="new_joining_employee_reports_view"/>
+    </record>
+
+    <record id="action_report_joining_employee" model="ir.actions.report">
+        <field name="name">New Joining Employee</field>
+        <field name="model">joining.employee.reports</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr.report_new_joining_employee</field>
+        <field name="report_file">saudi_hr.report_new_joining_employee</field>
+        <field name="print_report_name">'New Joining Employee'</field>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

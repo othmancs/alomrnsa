@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="employee_birthday_list_reports_view" model="ir.ui.view">
+        <field name="name">employee.birthday.list.form</field>
+        <field name="model">employee.birthday.list</field>
+        <field name="arch" type="xml">
+            <form string="Bithday List">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_pdf_reports" string="Print PDF" type="object" class="oe_highlight"/>
+                    <button name="print_excel_reports" string="Print Excel" type="object" class="oe_highlight"/>
+                    <button name="action_view_reports" string="View" type="object" class="oe_highlight"/>
+                    <!-- <button name="%(saudi_hr.action_view_employee_birthday_tree)d" string="View" type="action" class="oe_highlight"/> -->
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_birthday_list_reports" model="ir.actions.act_window">
+        <field name="name">Employee Birthday Reports</field>
+        <field name="res_model">employee.birthday.list</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="employee_birthday_list_reports_view"/>
+    </record>
+
+    <record id="action_report_birthday_list" model="ir.actions.report">
+        <field name="name">Employee Birthday List</field>
+        <field name="model">employee.birthday.list</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr.report_emp_birthday_list</field>
+        <field name="report_file">saudi_hr.report_emp_birthday_list</field>
+        <field name="print_report_name">Employee Bithday List</field>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

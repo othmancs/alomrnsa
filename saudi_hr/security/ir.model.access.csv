@@ -1,0 +1,18 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hr.access_hr_employee_system_user,hr.employee system user,hr.model_hr_employee,base.group_user,1,0,0,0
+access_hr_employee_hof,access_hr_employee_hof,model_hr_employee,saudi_hr.group_hof,1,1,1,0
+access_education_certificate,access_education_certificate,model_education_certificate,base.group_user,1,0,0,0
+access_education_certificate_manager,access_education_certificate_manager,model_education_certificate,hr.group_hr_manager,1,1,1,1
+access_education_study,access_education_study,model_education_study,base.group_user,1,0,0,0
+access_education_study_manager,access_education_study_manager,model_education_study,hr.group_hr_manager,1,1,1,1
+access_import_employee,access_import_employee,model_import_employee,hr.group_hr_manager,1,1,1,1
+access_education_school,access_education_school,model_education_school,base.group_user,1,0,0,0
+access_education_school_manager,access_education_school_manager,model_education_school,hr.group_hr_manager,1,1,1,1
+access_employee_head_count,access_employee_head_count,model_employee_head_count,base.group_user,1,1,1,1
+access_joining_employee_reports,access_joining_employee_reports,model_joining_employee_reports,base.group_user,1,1,1,1
+
+access_active_employee_reports,access_active_employee_reports,model_employee_active_list_reports,base.group_user,1,1,1,1
+saudi_hr.access_employee_birthday_list,access_employee_birthday_list,saudi_hr.model_employee_birthday_list,base.group_user,1,1,1,1
+saudi_hr.access_employee_active_list_view,access_employee_active_list_view,saudi_hr.model_employee_active_list_view,base.group_user,1,1,1,1
+access_ews_employee_locker_tracker,access_ews_employee_locker_tracker,model_ews_employee_locker_tracker,,1,1,1,1
+access_ews_employee_personal_vehicle,access_ews_employee_personal_vehicle,model_ews_employee_personal_vehicle,,1,1,1,1

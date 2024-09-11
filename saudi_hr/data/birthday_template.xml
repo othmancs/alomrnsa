@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+     <record id="email_template_birthday" model="mail.template">
+        <field name="name">Birthday</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="email_from">{{ (object.company_id.email) }}</field>
+        <field name="email_to">{{ (object.work_email) }}</field>
+        <field name="subject">Birthday Wishes</field>
+        <field name="body_html" type="html">
+            <div>
+                Hi <strong><t t-out="object.name or ''"></t></strong>,<br/><br/>
+                Wish you very Happy Birthday from <t t-out="object.company_id.name or ''"></t>.
+                You are one of the most valuable employee of <t t-out="object.company_id.name or ''"></t>. 
+                <br/>On your precious day we wish good luck and success full year ahead.<br/>
+                Party Hard Stay Safe.<br/><br/>
+                Best Wishes<br/>
+                <t t-out="object.company_id.name or ''"></t>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+</odoo>

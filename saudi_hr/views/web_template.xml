@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="employee_fill_private_info">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                 <!-- s_website_form -->
+                <form action="/employee/submit" class="employee_private_info" role="form" method="POST" enctype="multipart/form-data"
+                    >
+                    <!-- s_website_form  -->
+                    <input type="hidden" name="employee" t-att-value="employee.id" />
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="o_horizontal_separator">Private Contact</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Address</span>
+                                </div>
+                                <div class="col-9">
+                                    <div>
+                                        <input type="text" placeholder="Street" class="form-control" name="address_home_street" />
+                                    </div>
+                                    <div class="pt-2">
+                                        <input type="text" placeholder="Street" class="form-control" name="address_home_street_two" />
+                                    </div>
+                                    <div class="row pt-2">
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder="City" class="form-control" name="address_home_city" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control custom-select custom-select-md address_home_state_id" name="address_home_state_id">
+                                                <!-- <t t-foreach="emp_languages" t-as="language">
+                                                    <option t-att-value="language.code"><t t-out="language.name" /></option>
+                                                </t> -->
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" placeholder="Zip" class="form-control" name="address_home_zip" />
+                                        </div>
+                                    </div>
+                                    <div class="pt-2">
+                                        <select class="form-control custom-select custom-select-md address_home_country_id" name="address_home_country_id">
+                                            <t t-foreach="countries" t-as="country">
+                                                <option t-att-value="country.id"><t t-out="country.name" /></option>
+                                            </t>
+                                        </select>
+                                    </div>
+                                    <!-- <select class="form-control custom-select custom-select-md" name="address_home_id">
+                                        <t t-foreach="partners" t-as="partner">
+                                            <option t-att-value="partner.id"><t t-out="partner.name" /></option>
+                                        </t>
+                                    </select> -->
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Language</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="lang">
+                                        <t t-foreach="emp_languages" t-as="language">
+                                            <option t-att-value="language.code"><t t-out="language.name" /></option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Email</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="private_email" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Phone</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="number" name="phone" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Home-Work Distance (KM)</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="number" name="km_home_work" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="o_horizontal_separator">Citizenship</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Nationality</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="country_id">
+                                        <t t-foreach="countries" t-as="country">
+                                            <option t-att-value="country.id"><t t-out="country.name" /></option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>SIN</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="identification_id" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Passport No</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="passport_id" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Gender</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Date of Birth</span>
+                                </div>
+                                <div class="col-9">
+                                    <t t-set="datepickerID" t-value="'date_of_borth'"/>
+                                    <div class="s_website_form_date input-group date" t-att-id="datepickerID" data-target-input="nearest">
+                                        <input
+                                                type="text"
+                                                class="form-control datetimepicker-input s_website_form_input"
+                                                t-attf-data-target="##{datepickerID}"
+                                                name="birthday"
+                                        />
+                                        <div class="input-group-append" t-attf-data-target="##{datepickerID}" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Place of Birth</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="place_of_birth" class="form-control" />
+                                </div>
+                            </div> -->
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Country of Birth</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="country_of_birth">
+                                        <t t-foreach="countries" t-as="country">
+                                            <option t-att-value="country.id"><t t-out="country.name" /></option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="o_horizontal_separator">Marital Status</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Marital Status</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="marital">
+                                        <option value="single">Single</option>
+                                        <option value="married">Married</option>
+                                        <option value="cohabitant">Legal Cohabitant</option>
+                                        <option value="widower">Widower</option>
+                                        <option value="divorced">Divorced</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Name of Nominee</span>
+                                </div>
+                                <div class="col-9"> -->
+                                    <!-- <select class="form-control custom-select custom-select-md" name="nominee_id">
+                                        <t t-foreach="partners" t-as="partner">
+                                            <option t-att-value="partner.id"><t t-out="partner.name" /></option>
+                                        </t>
+                                    </select> -->
+                                    <!-- <input type="text" name="name_of_nominee" class="form-control" />
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="col-6">
+                            <h6 class="o_horizontal_separator">Dependent</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Number of Children</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="number" name="children" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row below-dependent-block">
+                        <div class="col-6 dependent_left_block">
+                        </div>
+                        <div class="col-6 dependent_right_block">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="o_horizontal_separator">Emergency</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Emergency Contact</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="emergency_contact" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Emergency Phone</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="emergency_phone" class="form-control" />
+                                </div>
+                            </div>
+                            <h6 class="o_horizontal_separator">Employee Personal Vehicle</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Make/Mode/Color</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="ee_number" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Plate</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="vehicle_number_plate" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="o_horizontal_separator">Work Permit</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Visa No</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="visa_no" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Work Permit No</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" name="permit_no" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Visa Expire Date</span>
+                                </div>
+                                <div class="col-9">
+                                    <t t-set="datepickerID" t-value="'visa_expire'"/>
+                                    <div class="s_website_form_date input-group date" t-att-id="datepickerID" data-target-input="nearest">
+                                        <input
+                                                type="text"
+                                                class="form-control datetimepicker-input s_website_form_input"
+                                                t-attf-data-target="##{datepickerID}"
+                                                name="visa_expire"
+                                        />
+                                        <div class="input-group-append" t-attf-data-target="##{datepickerID}" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Work Permit Expiration Date</span>
+                                </div>
+                                <div class="col-9">
+                                    <t t-set="datepickerID" t-value="'work_permit_expiration_date'"/>
+                                    <div class="s_website_form_date input-group date" t-att-id="datepickerID" data-target-input="nearest">
+                                        <input
+                                                type="text"
+                                                class="form-control datetimepicker-input s_website_form_input"
+                                                t-attf-data-target="##{datepickerID}"
+                                                name="work_permit_expiration_date"
+                                        />
+                                        <div class="input-group-append" t-attf-data-target="##{datepickerID}" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Work Permit</span>
+                                </div>
+                                <div class="col-9">
+                                    <input type="file" name="has_work_permit" class="form-control o_forum_file_upload" accept="image/*,application/pdf" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row education-top-block">
+                        <div class="col-6">
+                            <h6 class="o_horizontal_separator">Education</h6>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Certificate Level</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="certificate_id">
+                                        <t t-foreach="certificates" t-as="certificate">
+                                            <option t-att-value="certificate.id"><t t-out="certificate.name" /></option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>Field of Study</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="study_id">
+                                        <t t-foreach="studies" t-as="study">
+                                            <option t-att-value="study.id"><t t-out="study.name" /></option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-3">
+                                    <span>School</span>
+                                </div>
+                                <div class="col-9">
+                                    <select class="form-control custom-select custom-select-md" name="school_id">
+                                        <t t-foreach="schools" t-as="school">
+                                            <option t-att-value="school.id"><t t-out="school.name" /></option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 education_right_block">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="col-12 pl-0 o_horizontal_separator">Allergies and Notable Health Conditions</h6>
+                    </div>
+                    <div class="row mb16 allergies-health-condition">
+                        <textarea name="allergies_and_notable_health_conditions" class="form-control" />
+                    </div>
+                    
+                    <div class="row justify-content-end">
+                        <button type="submit" class="btn btn-primary mb16">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="employee_sumbitted_private_info">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <h5>Your private information has been submitted!</h5>
+            </div>
+        </t>
+    </template>
+
+    <template id="employee_error_private_info_save">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <h5>Your private information can not be updated due to following reason!</h5>
+                <span t-out="error" />
+            </div>
+        </t>
+    </template>
+
+    <template id="employee_error_private_info">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <h5>You are not authorized to submit your private information!</h5>
+                <br/>
+                <h6>Reasons:</h6>
+                <ul>
+                    <li>You are trying submit private information of another employee.</li>
+                    <li>Private Information is already submitted.</li>
+                    <li>Entered url is not valid.</li>
+                </ul>
+            </div>
+        </t>
+    </template>
+</odoo>

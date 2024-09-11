@@ -1,0 +1,1603 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-10 06:21+0000\n"
+"PO-Revision-Date: 2023-07-10 06:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr
+#: model:mail.template,body_html:saudi_hr.notification_employee_retirement
+msgid ""
+"\n"
+"                    % set emp = ctx.get('employees')\n"
+"                    <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                        <p>Hello ${object.name}</p>\n"
+"                        <p>This Employees ${emp} have only '6' month are remaining for Retirement.</p>\n"
+"                        <p>Regards,</p>\n"
+"                        <p>${object.company_id.name}</p>\n"
+"                    </div>\n"
+"                    \n"
+"            "
+msgstr ""
+"\n"
+"                    % set emp = ctx.get('employees')\n"
+"                    <div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                        <p>Hola ${object.name}</p>\n"
+"                        <p>Estos empleados ${emp} tienen solo '6' meses para la jubilación.</p>\n"
+"                        <p>Saludos,</p>\n"
+"                        <p>${object.company_id.name}</p>\n"
+"                    </div>\n"
+"                    \n"
+"            "
+
+#. module: saudi_hr
+#: model:ir.actions.report,print_report_name:saudi_hr.hr_employee_print_badge
+msgid "'Active Employee - %s' % (object.name).replace('/', '')"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.actions.report,print_report_name:saudi_hr.action_report_employee_active
+msgid "'Employee Active List'"
+msgstr "'Lista Activa de Empleados'"
+
+#. module: saudi_hr
+#: model:ir.actions.report,print_report_name:saudi_hr.action_report_hr_employee
+msgid "'Head Counts'"
+msgstr "'Recuentos de Personas'"
+
+#. module: saudi_hr
+#: model:ir.actions.report,print_report_name:saudi_hr.action_report_joining_employee
+msgid "'New Joining Employee'"
+msgstr "'Nuevo Empleado Incorporado'"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "<b>End Date : </b>"
+msgstr "<b>Fecha de Finalización: </b>"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "<b>Start Date : </b>"
+msgstr "<b>Fecha de Inicio: </b>"
+
+#. module: saudi_hr
+#: model:mail.template,body_html:saudi_hr.email_template_birthday
+msgid ""
+"<div>\n"
+"                Hi <strong><t t-out=\"object.name or ''\"/></strong>,<br/><br/>\n"
+"                Wish you very Happy Birthday from <t t-out=\"object.company_id.name or ''\"/>.\n"
+"                You are one of the most valuable employee of <t t-out=\"object.company_id.name or ''\"/>. \n"
+"                <br/>On your precious day we wish good luck and success full year ahead.<br/>\n"
+"                Party Hard Stay Safe.<br/><br/>\n"
+"                Best Wishes<br/>\n"
+"                <t t-out=\"object.company_id.name or ''\"/>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div>\n"
+"                Hola <strong><t t-out=\"object.name or ''\"/></strong>,<br/><br/>\n"
+"                Te deseamos un feliz cumpleaños de parte de  <t t-out=\"object.company_id.name or ''\"/>.\n"
+"                Eres uno de los empleados más valiosos de <t t-out=\"object.company_id.name or ''\"/>. \n"
+"                <br/>En su precioso día, le deseamos buena suerte y éxito durante todo el año.<br/>\n"
+"                Festeja duro y mantente a salvo.<br/><br/>\n"
+"                Los mejores deseos<br/>\n"
+"                <t t-out=\"object.company_id.name or ''\"/>\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr
+#: model:mail.template,body_html:saudi_hr.mail_template_employee_manager_hr_evaluation
+msgid ""
+"<p>Hello,<br/><br/>\n"
+"\n"
+"                Defaulted User Information has been used, requiring your verification.<br/>\n"
+"                Please make the appropriate personal changes to your account.\n"
+"                <br/>\n"
+"                <!-- <t out=\"\" -->\n"
+"                <a t-att-href=\"ctx['access_token_url']\"><t t-out=\"ctx['access_token_url']\"/></a>\n"
+"                <br/>\n"
+"                <br/>\n"
+"                Regards</p>\n"
+"            "
+msgstr ""
+"<p>Hello,<br/><br/>\n"
+"\n"
+"                Se utilizó información por defecto, por lo que se requiere confirmación.<br/>\n"
+"                Por favor realice los cambios que considere necesarios a su cuenta.\n"
+"                <br/>\n"
+"                <!-- <t out=\"\" -->\n"
+"                <a t-att-href=\"ctx['access_token_url']\"><t t-out=\"ctx['access_token_url']\"/></a>\n"
+"                <br/>\n"
+"                <br/>\n"
+"                Regards</p>\n"
+"            "
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid ""
+"<select class=\"form-control custom-select custom-select-md\" name=\"gender\">\n"
+"                                        <option value=\"male\">Male</option>\n"
+"                                        <option value=\"female\">Female</option>\n"
+"                                        <option value=\"other\">Other</option>\n"
+"                                    </select>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid ""
+"<select class=\"form-control custom-select custom-select-md\" name=\"marital\">\n"
+"                                        <option value=\"single\">Single</option>\n"
+"                                        <option value=\"married\">Married</option>\n"
+"                                        <option value=\"cohabitant\">Legal Cohabitant</option>\n"
+"                                        <option value=\"widower\">Widower</option>\n"
+"                                        <option value=\"divorced\">Divorced</option>\n"
+"                                    </select>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Address</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Certificate Level</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Country of Birth</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Date of Birth</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Emergency Contact</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Emergency Phone</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Field of Study</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Gender</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Home-Work Distance</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Language</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Marital Status</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Name of Nominee</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Nationality</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Number of Children</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Passport No</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Place of Birth</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>SIN</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>School</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Visa Expire Date</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Visa No</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Work Permit Expiration Date</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Work Permit No</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "<span>Work Permit</span>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_active_employee
+msgid "<strong>+/-</strong>"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_active_employee
+msgid "<strong>Actual</strong>"
+msgstr "<strong>Real</strong>"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_active_employee
+msgid "<strong>Employee Active List</strong>"
+msgstr "<strong>Lista Activa de Empleados</strong>"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "<strong>End Date: </strong>"
+msgstr "<strong>Fecha de Finalización: </strong>"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_active_employee
+msgid "<strong>Required</strong>"
+msgstr "<strong>Obligatorio</strong>"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "<strong>Start Date: </strong>"
+msgstr "<strong>Fecha de Inicio: </strong>"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_active_employee
+msgid "<strong>TOTALS EE'S AT EACH SHOP</strong>"
+msgstr "<strong>TOTALES DE EE'S EN CADA TIENDA</strong>"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__state_selection__done
+msgid "Active"
+msgstr "Activo"
+
+#. module: saudi_hr
+#: model:ir.actions.report,name:saudi_hr.hr_employee_print_badge
+#: model:ir.model,name:saudi_hr.model_report_saudi_hr_report_active_employee
+msgid "Active Employee"
+msgstr "Empleado Activo"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.print_active_employee
+msgid "Active Employees"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view__actual_emp
+msgid "Actual"
+msgstr "Real"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Add a Line"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__age
+msgid "Age"
+msgstr "Edad"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__allergies_and_notable_health_conditions
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Allergies and Notable Health Conditions"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__attachment_ids
+msgid "Attachments"
+msgstr "Archivos Adjuntos"
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_action_res_partner_bank_form_inherit
+msgid "Bank Accounts"
+msgstr "Cuentas Bancarias"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__based_on
+msgid "Based on"
+msgstr "Basado en"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__benefit_ref
+msgid "Benefit ID"
+msgstr "ID de beneficio"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__is_benefits_enrolled
+msgid "Benefits Enrolled"
+msgstr "Beneficios Inscritos"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Benefits Enrolment"
+msgstr "Inscripción de Beneficios"
+
+#. module: saudi_hr
+#: model:mail.template,name:saudi_hr.email_template_birthday
+msgid "Birthday"
+msgstr "Cumpleaños"
+
+#. module: saudi_hr
+#: model:ir.actions.server,name:saudi_hr.ir_cron_birthday_wish_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr.ir_cron_birthday_wish
+#: model:ir.cron,name:saudi_hr.ir_cron_birthday_wish
+msgid "Birthday Wish: Send Birthday Wishes"
+msgstr "Deseo de Cumpleaños: Enviar Feseos de Cumpleaños"
+
+#. module: saudi_hr
+#: model:mail.template,subject:saudi_hr.email_template_birthday
+msgid "Birthday Wishes"
+msgstr "Deseos de Cumpleaños"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_birthday_list_reports_view
+msgid "Bithday List"
+msgstr "Lista de Cumpleaños"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__import_employee__file_type__csv
+msgid "CSV File"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_active_list_report_wizard
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_birthday_list_reports_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_reports_print_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.import_employee_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.new_joining_employee_reports_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_employee_certificate
+msgid "Certificate"
+msgstr "Certificado"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__certificate_id
+msgid "Certificate Level"
+msgstr "Nivel de Certificado"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Certification"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Certification Name"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,help:saudi_hr.field_res_partner__institute
+#: model:ir.model.fields,help:saudi_hr.field_res_users__institute
+msgid "Check this box if this contact is a institute."
+msgstr "Marque esta casilla si este contacto es una Institución."
+
+#. module: saudi_hr
+#: model:ir.model.fields,help:saudi_hr.field_res_partner__employee
+#: model:ir.model.fields,help:saudi_hr.field_res_users__employee
+msgid "Check this box if this contact is an Employee."
+msgstr "Selecciona la casilla si el contacto es un Empleado"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Citizenship"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.actions.act_window,help:saudi_hr.action_view_education_certificate
+msgid "Click to define Education Certificate."
+msgstr "Haga clic para definir el Certificado de Educación."
+
+#. module: saudi_hr
+#: model_terms:ir.actions.act_window,help:saudi_hr.action_view_education_school
+msgid "Click to define Education School."
+msgstr "Haga clic para definir la Escuela de Educación."
+
+#. module: saudi_hr
+#: model_terms:ir.actions.act_window,help:saudi_hr.action_view_education_study
+msgid "Click to define Education Study."
+msgstr "Haga clic para definir el Estudio de la Educación."
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__code
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_employee_head_count
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "Code"
+msgstr "Código"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__company_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view__company_id
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__sponsored_by__company
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_department_filter_inherit
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Company Name"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Contact Email"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Contact Name"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Contact Phone No"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Contact Title"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__create_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__create_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__create_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__create_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__create_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__create_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__create_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__create_date
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__create_date
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__create_date
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__create_date
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__create_date
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__create_date
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__create_date
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Current Job"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Current Month Birthday"
+msgstr "Mes actual Cumpleaños"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Current Month Exit"
+msgstr "Salir del Mes Actual"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_job__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_work_location__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_report_saudi_hr_report_active_employee__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_report_saudi_hr_report_emp_birthday_list__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_report_saudi_hr_report_new_joining_employee__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_res_config_settings__dms_directory_ids
+#: model:ir.model.fields,field_description:saudi_hr.field_res_partner__dms_directory_ids
+msgid "DMS Directories"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__date_month
+msgid "Date Month"
+msgstr "Fecha Mes"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Date Of Expiry"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "Day"
+msgstr "Día"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__department_ids
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__based_on__department
+#: model_terms:ir.ui.view,arch_db:saudi_hr.print_active_employee
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/import_employee.py:0
+#, python-format
+msgid "Department Field can not be Empty !"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Dependent"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__display_name
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "EMP #"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.print_active_employee
+msgid "EWS Cell"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_employee_education
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Education"
+msgstr "Educación"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_view_education_certificate
+#: model:ir.model,name:saudi_hr.model_education_certificate
+msgid "Education Certificate"
+msgstr "Certificado de Educación"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_view_education_school
+#: model:ir.model,name:saudi_hr.model_education_school
+msgid "Education School"
+msgstr "Escuela de Educación"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_view_education_study
+#: model:ir.model,name:saudi_hr.model_education_study
+msgid "Education Study"
+msgstr "Estudio de Educación"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Emergency"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr.field_res_partner__employee
+#: model:ir.model.fields,field_description:saudi_hr.field_res_users__employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/employee_head_count_report.py:0
+#, python-format
+msgid "Employee "
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.actions.report,name:saudi_hr.action_report_employee_active
+msgid "Employee Active"
+msgstr "Empleado Activo"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_employee_list_view
+#: model:ir.model,name:saudi_hr.model_employee_active_list_reports
+#: model:ir.ui.menu,name:saudi_hr.menu_employee_active_list_report
+msgid "Employee Active List"
+msgstr "Lista Activa de Empleados"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_employee_active_list_report_wizard
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_active_list_report_wizard
+msgid "Employee Active List Report"
+msgstr "Informe de Lista Activa de Empleados"
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_employee_active_list_view
+msgid "Employee Active List View"
+msgstr "Vista de Lista Activa de Empleados"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/emp_birthday_list.py:0
+#, python-format
+msgid "Employee Birthday"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.actions.report,name:saudi_hr.action_report_birthday_list
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "Employee Birthday List"
+msgstr "Lista de Cumpleaños de los Empleados"
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_employee_birthday_list
+msgid "Employee Birthday List Report"
+msgstr "Informe de Lista de Cumpleaños de Empleados"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_employee_birthday_list_reports
+msgid "Employee Birthday Reports"
+msgstr "Informes de Cumpleaños de los Empleados"
+
+#. module: saudi_hr
+#: model:ir.actions.report,print_report_name:saudi_hr.action_report_birthday_list
+msgid "Employee Bithday List"
+msgstr "Lista de Cumpleaños de Empleados"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Employee Code"
+msgstr "Código de Empleado"
+
+#. module: saudi_hr
+#: model:ir.model.constraint,message:saudi_hr.constraint_hr_employee_unique_emp_code
+msgid "Employee Code must be unique!"
+msgstr "¡El Código de empleado debe ser único!"
+
+#. module: saudi_hr
+#: model:ir.actions.server,name:saudi_hr.ir_cron_employee_enrollment_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr.ir_cron_employee_enrollment
+#: model:ir.cron,name:saudi_hr.ir_cron_employee_enrollment
+msgid "Employee Enrollment"
+msgstr "Inscripción de Empleados"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Employee Exit"
+msgstr "Salida del Empleado"
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_employee_head_count
+msgid "Employee Head Count Report"
+msgstr "Informe de Recuento de Empleados"
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_joining_employee_reports
+msgid "Employee Joining Reports"
+msgstr "Informes de Incorporación de Empleados"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/import_employee.py:0
+#, python-format
+msgid "Employee Name is Required !"
+msgstr ""
+
+#. module: saudi_hr
+#: model:mail.template,name:saudi_hr.mail_template_employee_manager_hr_evaluation
+msgid "Employee Personal Information: Send by Email"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_employee_reports_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_reports_print_view
+msgid "Employee Reports"
+msgstr "Informes de Empleados"
+
+#. module: saudi_hr
+#: model:ir.actions.server,name:saudi_hr.employee_retirement_notification_cron_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr.employee_retirement_notification_cron
+#: model:ir.cron,name:saudi_hr.employee_retirement_notification_cron
+msgid "Employee Retirement Notification"
+msgstr "Notificación de Jubilación del Empleado"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Employee State"
+msgstr "Estado del Empleado"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__employee_type
+msgid "Employee Type"
+msgstr "Tipo de Empleado"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Employee's Name"
+msgstr "Nombre del Empleado"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_employee_pivot_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_work_location_form_view_inherited
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_view_employee_birthday_tree
+#: model:ir.ui.menu,name:saudi_hr.emp_birthday_list_reports
+msgid "Employees Birthday List"
+msgstr "Lista de Cumpleaños de los Empleados"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_view_employee_exit_tree
+msgid "Employees Exit List"
+msgstr "Lista de Salida de Empleados"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Employment"
+msgstr "Empleo"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__employee_status
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__employee_status
+msgid "Employment Status"
+msgstr "Estatus de Empleo"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__end_date
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__end_date
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_res_config_settings__enrolled_months
+msgid "Enrolling Duration"
+msgstr "Duración de la Inscripción"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_error_private_info
+msgid "Entered url is not valid."
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Experience"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/models/hr.py:0
+#, python-format
+msgid "Female Employee's age must be greater than 21."
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__study_id
+msgid "Field of Study"
+msgstr "Campo de Estudio"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__file_type
+msgid "File Type"
+msgstr ""
+
+#. module: saudi_hr
+#: model:mail.template,subject:saudi_hr.mail_template_employee_manager_hr_evaluation
+msgid "Fill Information"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Fill Private info by Employee"
+msgstr ""
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/reports/employee_active_list.py:0
+#: code:addons/saudi_hr/reports/report_emp_birthday_list.py:0
+#: code:addons/saudi_hr/reports/report_new_joining_employee.py:0
+#, python-format
+msgid "Form content is missing, this report cannot be printed."
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.print_active_employee
+msgid "Full Name"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.module.category,name:saudi_hr.category_gr
+msgid "GR"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_gr
+msgid "GR Operations"
+msgstr "Operaciones GR"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Gender"
+msgstr "Género"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_department_filter_inherit
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__hr_id
+#: model:ir.model.fields,field_description:saudi_hr.field_res_config_settings__hr_id
+msgid "HR"
+msgstr "HH.RR."
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_hr_job
+msgid "HR Job"
+msgstr "Trabajo de RR.HH."
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/models/hr.py:0
+#, python-format
+msgid "Happy Birthday %s ! <br/> Many many happy returns of the day !"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.actions.report,name:saudi_hr.action_report_hr_employee
+msgid "Head Count"
+msgstr "Recuento de Personas"
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_employee_reports
+msgid "Head Counts"
+msgstr "Recuentos de Personas"
+
+#. module: saudi_hr
+#: model:ir.model.fields,help:saudi_hr.field_hr_employee__is_hod
+#: model:res.groups,name:saudi_hr.group_hof
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_department_form_inherit
+msgid "Head of Department"
+msgstr "Jefe de Departamento"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "Hire Date"
+msgstr "Fecha de Contratación"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__employee_status__hired
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__employee_status__hired
+msgid "Hired"
+msgstr "Contratado"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__id
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__id
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__id
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__id
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view__id
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__id
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__id
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__id
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.import_employee_form_view
+msgid "Import"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_import_employee
+msgid "Import Employee"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.import_employee_wizard_action
+#: model:ir.ui.menu,name:saudi_hr.import_employee_menu
+#: model_terms:ir.ui.view,arch_db:saudi_hr.import_employee_form_view
+msgid "Import Employees"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_res_partner__institute
+#: model:ir.model.fields,field_description:saudi_hr.field_res_users__institute
+msgid "Institute"
+msgstr "Instituto"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__employee_type__intern
+msgid "Intern"
+msgstr "Interno"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__is_hod
+msgid "Is HOD"
+msgstr "Es HOD"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__manager
+msgid "Is a Manager"
+msgstr "Es un Gerente"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Issue Date"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view__job_id
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__job_ids
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__based_on__job
+msgid "Job"
+msgstr "Trabajo"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__job_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "Job Position"
+msgstr "Puesto de Trabajo"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_work_location__job_positions
+msgid "Job Positions"
+msgstr "Puestos de Trabajo"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Job Title"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__date_of_join
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_employee_head_count
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Joining Date"
+msgstr "Fecha de Incorporación"
+
+#. module: saudi_hr
+#: model:ir.actions.act_window,name:saudi_hr.action_joining_employee_reports_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr.new_joining_employee_reports_view
+msgid "Joining Employee Reports"
+msgstr "Informes de Empleados a Unirse"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__employee_status__loa
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__employee_status__loa
+msgid "LOA"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee____last_update
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__last_name
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Last Name"
+msgstr "Apellido"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__write_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__write_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__write_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__write_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__write_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__write_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__write_uid
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__write_date
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__write_date
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__write_date
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_reports__write_date
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__write_date
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__write_date
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__write_date
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__employee_status__layoff
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__employee_status__layoff
+msgid "Layoff"
+msgstr "Suspender"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__date_of_leave
+msgid "Leaving Date"
+msgstr "Fecha de Salida"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/models/hr.py:0
+#, python-format
+msgid "Leaving Date Must Be Greater Than Joining Date."
+msgstr ""
+
+#. module: saudi_hr
+#: model:res.groups,name:saudi_hr.group_line_manager
+msgid "Line Manager"
+msgstr "Gerente de Línea"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_employee_head_count
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__branch_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_job_form_inherit
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/models/hr.py:0
+#, python-format
+msgid "Male employee's age must be greater than 18"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_head_count__manager_ids
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__based_on__manager
+#: model:res.groups,name:saudi_hr.group_gr_manager
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Marital Status"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__middle_name
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Middle Name"
+msgstr "Segundo Nombre"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "Month"
+msgstr "Mes"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__duration_in_months
+msgid "Month(s) in Organization"
+msgstr "Mes(es) en la Organización"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_education_certificate__name
+#: model:ir.model.fields,field_description:saudi_hr.field_education_school__name
+#: model:ir.model.fields,field_description:saudi_hr.field_education_study__name
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_employee_head_count
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/models/hr.py:0
+#, python-format
+msgid "Name Should be unique!"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__nominee_id
+msgid "Name of Nominee"
+msgstr "Nombre del Nominado"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Nationality"
+msgstr "Nacionalidad"
+
+#. module: saudi_hr
+#: model:ir.actions.report,name:saudi_hr.action_report_joining_employee
+#: model:ir.model,name:saudi_hr.model_report_saudi_hr_report_emp_birthday_list
+#: model:ir.model,name:saudi_hr.model_report_saudi_hr_report_new_joining_employee
+msgid "New Joining Employee"
+msgstr "Empleado Nuevo que se une"
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_joining_employee_reports
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "New Joining Employees"
+msgstr "Empleados Nuevos que se unen"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__state_selection__non_active
+msgid "Non Active"
+msgstr "No activo"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__note
+msgid "Note"
+msgstr "Nota"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Notes"
+msgstr "Notas"
+
+#. module: saudi_hr
+#: model:mail.template,name:saudi_hr.notification_employee_retirement
+#: model:mail.template,report_name:saudi_hr.notification_employee_retirement
+#: model:mail.template,subject:saudi_hr.notification_employee_retirement
+msgid "Notification For Employee Retirement"
+msgstr "Notificación de Jubilación de Empleados"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Office"
+msgstr "Oficina"
+
+#. module: saudi_hr
+#: model:res.groups,name:saudi_hr.group_gr_officer
+msgid "Officer"
+msgstr "Oficial"
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_operation_request
+msgid "Operation Request"
+msgstr "Solicitud de operación"
+
+#. module: saudi_hr
+#: model:ir.module.category,name:saudi_hr.category_organization
+msgid "Organization"
+msgstr "Organización"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Organization Name"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__sponsored_by__other
+msgid "Other"
+msgstr "Otro"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__employee_type__parttime
+msgid "Part Time"
+msgstr "Tiempo Parcial"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__personal_access_token
+msgid "Personal Access Token"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.print_active_employee
+msgid "Personal Cell"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "Plant"
+msgstr "Planta"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/import_employee.py:0
+#: code:addons/saudi_hr/wizard/import_employee.py:0
+#, python-format
+msgid "Please Select Valid File Format !"
+msgstr ""
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/import_employee.py:0
+#, python-format
+msgid "Please Upload File to Import Employee !"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.constraint,message:saudi_hr.constraint_joining_employee_reports_date_check
+msgid "Please enter valid date"
+msgstr "Por favor, introduzca una fecha válida"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.print_active_employee
+msgid "Position"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.new_joining_employee_reports_view
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_active_list_report_wizard
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_birthday_list_reports_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_reports_print_view
+msgid "Print Excel"
+msgstr "Imprimir Excel"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_active_list_report_wizard
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_birthday_list_reports_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_reports_print_view
+msgid "Print PDF"
+msgstr "Imprimir PDF"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Private Contact"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_error_private_info
+msgid "Private Information is already submitted."
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__profession
+msgid "Profession"
+msgstr "Profesión"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Program"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Program Status"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Qualification"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__employee_status__quit
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__employee_status__quit
+msgid "Quit"
+msgstr "Salir"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_error_private_info
+msgid "Reasons:"
+msgstr ""
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/employee_head_count_report.py:0
+#, python-format
+msgid "Record Not Found!"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__reference_by
+msgid "Reference By"
+msgstr "Referencia por"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Registration No."
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_reports
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Reports"
+msgstr "Informes"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_active_list_view__required_emp
+msgid "Required"
+msgstr "Requerido"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_job__req_emp
+msgid "Required Employee"
+msgstr "Empleado Requerido"
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_res_config_settings
+msgid "ResConfigSettings"
+msgstr "AjustesConfigRes"
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_res_partner
+msgid "ResPartner"
+msgstr "Socio Res."
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_report_employee_active_pivot
+msgid "Sales Analysis"
+msgstr "Análisis de ventas"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__school_id
+#: model:ir.ui.menu,name:saudi_hr.menu_employee_school
+msgid "School"
+msgstr "Escuela"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__second_job_id
+msgid "Second job Position"
+msgstr "Segundo puesto de trabajo"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__service_year
+msgid "Service Year"
+msgstr "Año de servicio"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_config_settings_saudi_hr
+msgid "Set default HR to manage your employee HR."
+msgstr ""
+"Establezca RR.HH. predeterminados para administrar los RR.HH. de sus "
+"empleados."
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_config_settings_saudi_hr
+msgid "Set enrolled duration for Employees."
+msgstr "Establecer duración de Inscripción para Empleados."
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__sponsored_by
+msgid "Sponsored By"
+msgstr "Patrocinado por"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__spouse_number
+msgid "Spouse Phone Number"
+msgstr "Número de Teléfono del Cónyuge"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_employee_birthday_list__start_date
+#: model:ir.model.fields,field_description:saudi_hr.field_joining_employee_reports__start_date
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__state_selection
+msgid "State"
+msgstr "Estado"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_employee_head_count
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_new_joining_employee
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr
+#: model:ir.ui.menu,name:saudi_hr.menu_employee_study
+msgid "Study"
+msgstr "Estudiar"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Submit"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__employee_head_count__employee_status__terminated
+#: model:ir.model.fields.selection,name:saudi_hr.selection__hr_employee__employee_status__terminated
+msgid "Terminated"
+msgstr "Terminado"
+
+#. module: saudi_hr
+#: model:ir.model.fields,help:saudi_hr.field_hr_employee__employee_type
+msgid ""
+"The employee type. Although the primary purpose may seem to categorize "
+"employees, this field has also an impact in the Contract History. Only "
+"Employee type is supposed to be under contract and will have a Contract "
+"History."
+msgstr ""
+"El tipo de empleado. Aunque el propósito principal pueda parecer el de "
+"categorizar a los empleados, este campo también tiene un impacto en el "
+"historial de contratos. Solo el tipo de empleado se supone que está bajo "
+"contrato y tendrá un historial de contratos."
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Time Period(From)"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Time Period(To)"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.view_saudi_hr_employee_filter
+msgid "Today Exit"
+msgstr "Hoy Salir"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/models/hr.py:0
+#, python-format
+msgid "Too many active contracts for employee %s"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_employee_head_count
+msgid "Total :"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_work_location__total_employees
+msgid "Total Employees"
+msgstr "Total de empleados"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_employee__total_service_year
+msgid "Total Service Year"
+msgstr "Año de Servicio Total"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "University"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_import_employee__file
+msgid "Upload File"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.import_employee_form_view
+msgid "Upload Your File"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_active_list_report_wizard
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_birthday_list_reports_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_reports_print_view
+msgid "View"
+msgstr "Ver"
+
+#. module: saudi_hr
+#: model:ir.model,name:saudi_hr.model_hr_work_location
+#: model_terms:ir.ui.view,arch_db:saudi_hr.print_active_employee
+msgid "Work Location"
+msgstr "Ubicación de trabajo"
+
+#. module: saudi_hr
+#: model:ir.model.fields,field_description:saudi_hr.field_hr_job__work_locations
+msgid "Work Locations"
+msgstr "Ubicaciones de trabajo"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+msgid "Work Permit"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.hr_form_view
+msgid "Workstation Location"
+msgstr "Ubicación de la estación de trabajo"
+
+#. module: saudi_hr
+#: code:addons/saudi_hr/wizard/import_employee.py:0
+#, python-format
+msgid "Wrong Date Format ! Date Should be in format YYYY/MM/DD"
+msgstr ""
+
+#. module: saudi_hr
+#: model:ir.model.fields.selection,name:saudi_hr.selection__import_employee__file_type__xls
+msgid "XLS File"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_fill_private_info
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_emp_birthday_list
+msgid "Year"
+msgstr "Año"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_error_private_info
+msgid "You are not authorized to submit your private information!"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_error_private_info
+msgid "You are trying submit private information of another employee."
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_error_private_info_save
+msgid "Your private information can not be updated due to following reason!"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.employee_sumbitted_private_info
+msgid "Your private information has been submitted!"
+msgstr ""
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.new_joining_employee_reports_view
+msgid "or"
+msgstr "o"
+
+#. module: saudi_hr
+#: model_terms:ir.ui.view,arch_db:saudi_hr.report_employee_head_count
+msgid "wise Employees"
+msgstr "Empleados sabiosSS"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="import_employee_form_view" model="ir.ui.view">
+            <field name="name">import.employee.wizard.view</field>
+            <field name="model">import.employee</field>
+            <field name="arch" type="xml">
+            <form string="Import Employees">
+                <group>
+                    <group>
+                        <field name="file_type" widget="radio"/>
+                    </group>
+                    <group>
+                        <field name="file" placeholder="Upload Your File"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="import_employee" string="Import" type="object" icon="fa-download" class="btn btn-primary active"/>
+                    <button string="Cancel" special="cancel" icon="fa-times" class="btn btn-danger"  />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <!-- Import Employee Wizard Action -->
+        <record id="import_employee_wizard_action" model="ir.actions.act_window">
+            <field name="name">Import Employees</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.employee</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

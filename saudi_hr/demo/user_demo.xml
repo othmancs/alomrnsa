@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="user_hr_employee" model="res.users">
+        <field name="name">Rahul</field>
+        <field name="login">hr_employee@example.com</field>
+        <field name="email">hr_employee@example.com</field>
+        <field name="password">1</field>
+        <field name="groups_id" eval="[(4,ref('base.group_user'))]"/>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1007.jpg"/>
+    </record>
+
+    <record id="user_hr_officer" model="res.users">
+        <field name="name">Bilal</field>
+        <field name="login">hr_officer@example.com</field>
+        <field name="email">hr_officer@example.com</field>
+        <field name="password">1</field>
+        <field name="groups_id" eval="[(4,ref('hr.group_hr_user'))]"/>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/2327.jpg"/>
+    </record>
+
+    <record id="user_hr_manager" model="res.users">
+        <field name="name">Fareeda</field>
+        <field name="login">hr_manager@example.com</field>
+        <field name="email">hr_manager@example.com</field>
+        <field name="password">1</field>
+        <field name="groups_id" eval="[(4,ref('hr.group_hr_manager'))]"/>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1853.jpg"/>
+    </record>
+
+    <record id="user_gr_assistant" model="res.users">
+        <field name="name">Abdul</field>
+        <field name="login">gr_officer@example.com</field>
+        <field name="email">gr_officert@example.com</field>
+        <field name="password">1</field>
+        <field name="groups_id" eval="[(4, ref('saudi_hr.group_gr_officer')), (4, ref('base.group_user'))]"/>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1818.jpg"/>
+    </record>
+
+    <record id="user_gr_officer" model="res.users">
+        <field name="name">Husaam</field>
+        <field name="login">gr_manager@example.com</field>
+        <field name="email">gr_manager@example.com</field>
+        <field name="password">1</field>
+        <field name="groups_id" eval="[(4, ref('saudi_hr.group_gr_manager')), (4, ref('base.group_user'))]"/>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1238.jpg"/>
+    </record>
+
+    <record id="user_line_manager" model="res.users">
+        <field name="name">Danial</field>
+        <field name="login">line_manager@example.com</field>
+        <field name="email">line_manager@example.com</field>
+        <field name="password">1</field>
+        <field name="groups_id" eval="[(4, ref('saudi_hr.group_line_manager')), (4, ref('base.group_user'))]"/>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1760.jpg"/>
+    </record>
+
+    <record id="user_hod" model="res.users">
+        <field name="name">Usaamah</field>
+        <field name="login">hod@example.com</field>
+        <field name="email">hod@example.com</field>
+        <field name="password">1</field>
+        <field name="groups_id" eval="[(4, ref('saudi_hr.group_hof')), (4, ref('base.group_user'))]"/>
+        <field name="image_1920" type="base64" file="saudi_hr/static/src/img/1725.jpg"/>
+    </record>
+</odoo>

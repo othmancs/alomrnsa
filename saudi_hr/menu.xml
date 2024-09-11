@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <menuitem id="hr.menu_human_resources_configuration" name="Configuration" parent="hr.menu_hr_root" groups="group_gr_officer,hr.group_hr_user,group_line_manager,group_hof" sequence="99"/>
+        <!-- <menuitem id="menu_gr" name="GR Operations" sequence="14" web_icon="saudi_hr_gr_operation_request,static/description/icon.png"/> -->
+        <menuitem id="import_employee_menu" name="Import Employees" action="import_employee_wizard_action" parent="hr.menu_hr_employee_payroll" groups="hr.group_hr_manager" />
+        <menuitem id="ews_employee_locker_menu" name="Employee Lockers" action="action_view_ews_employee_locker_tracker_tree" parent="hr.menu_hr_employee_payroll" groups="hr.group_hr_manager" />
+        <menuitem id="ews_employee_personal_vehicle_menu" name="Employee Personal Vehicles" action="action_view_ews_employee_personal_vehicle_tree" parent="hr.menu_hr_employee_payroll" groups="hr.group_hr_manager" />
+        <menuitem id="menu_gr" name="GR Operations" sequence="14" parent="hr.menu_hr_root"/>
+        <menuitem action="hr.open_view_categ_form" id="hr.menu_view_employee_category_form" parent="hr.menu_human_resources_configuration" sequence="1" groups="base.group_no_one,hr.group_hr_user"/>
+        <menuitem action="base.action_res_partner_bank_account_form" id="menu_action_res_partner_bank_form_inherit" parent="hr.menu_human_resources_configuration"/>
+        <menuitem id="saudi_hr_groups_configuration.menu_hr_groups_config_action" parent="hr.menu_human_resources_configuration" sequence="0" action="saudi_hr_groups_configuration.action_view_hr_groups_config" groups="hr.group_hr_manager"/>
+
+        <!-- menu for reports -->
+        <menuitem id="menu_reports" parent="hr.menu_hr_root" sequence="18" name="Reports" groups="hr.group_hr_user"/>
+        <menuitem id="menu_employee_reports" parent="saudi_hr.menu_reports" sequence="1" name="Head Counts" action="saudi_hr.action_employee_reports_form" groups="hr.group_hr_user"/>
+        <menuitem id="menu_joining_employee_reports" parent="saudi_hr.menu_reports"
+                  sequence="2" name="New Joining Employees"
+                  action="saudi_hr.action_joining_employee_reports_form" groups="hr.group_hr_user"/>
+        <menuitem id="emp_birthday_list_reports" parent="saudi_hr.menu_reports"
+                  sequence="3" name="Employees Birthday List"
+                  action="saudi_hr.action_employee_birthday_list_reports" groups="hr.group_hr_user"/>
+        <menuitem id="menu_operation_request" parent="hr.menu_hr_root" name="Operation Request"
+                  sequence="10" groups="base.group_user"/>
+
+      <!-- menu for Employee Active List Report -->
+      <menuitem id="menu_employee_active_list_report" parent="saudi_hr.menu_reports" sequence="3" name="Employee Active List" action="saudi_hr.action_employee_active_list_report_wizard" />
+
+</odoo>
