@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_survey_feedback_manager,access_hr_survey_feedback_manager,model_hr_survey_feedback,hr.group_hr_manager,1,1,1,1
+access_hr_survey_feedback_talent_acquisition_assistant,access_hr_survey_feedback_talent_acquisition_assistant,model_hr_survey_feedback,hr.group_hr_user,1,1,1,0
+access_hr_applicant_user,hr.applicant.user,model_hr_applicant,base.group_user,1,0,0,0
+access_interview_log_reports_user,access_interview_log_reports_user,model_interview_log_reports,base.group_user,1,1,1,1
+access_hr_applicant_hire_reason,access_hr_applicant_hire_reason,model_hr_applicant_hire_reason,base.group_user,1,1,1,1

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="email_template_create_attendee" model="mail.template">
+        <field name="name">Overtime Validate</field>
+        <field name="model_id" ref="model_analytic_overtime_attendee"/>
+        <field name="email_from">{{ctx.get('email_from')}}</field>
+        <field name="email_to">{{ctx.get('mail_to')}}</field>
+        <field name="partner_to">{{object.employee_id.user_id.partner_id.id}}</field>
+        <field name="subject">{{object.analytic_overtime_id.name}}</field>
+        <field name="body_html" type="html">
+            <head>
+                <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+                <title>
+                    <t t-out="object.analytic_overtime_id.name"/>
+                </title>
+            </head>
+            <body>
+                <table border="0" cellspacing="10" cellpadding="0" width="100%%"
+                       style="font-family: Arial, Sans-serif; font-size: 14">
+                    <tr>
+                        <td width="100%%">Hello<t t-out="object.employee_id.name"/>,
+                        </td>
+                    </tr>
+                    <br/>
+                    <br/>
+                    <tr>
+                        <td width="100%%">For
+                            <i>
+                                <t t-out="object.env.user.company_id.name"/>
+                            </i>
+                            , You are requested for the overtime works during the following session
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table cellspacing="0" cellpadding="5" border="0" summary=""
+                       style="width: 100%; font-family: Arial, Sans-serif; border: 1px Solid #ccc; background-color: #f6f6f6">
+                    <tr valign="center" align="center">
+                        <td bgcolor="DFDFDF">
+                            <h3>
+                                <t t-out="object.analytic_overtime_id.name"/>
+                            </h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table cellpadding="8" cellspacing="0" border="0"
+                                   style="font-size: 14" summary="Eventdetails" bgcolor="f6f6f6"
+                                   width="90%%">
+                                <tr>
+                                    <td width="21%%">
+                                        <div>
+                                            <b>Start Date</b>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <b>:</b>
+                                    </td>
+                                    <td>
+                                        <t t-out="object.analytic_overtime_id.date"/>
+                                    </td>
+                                    <td width="15%%">
+                                        <div>
+                                            <b>End Date</b>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <b>:</b>
+                                    </td>
+                                    <td width="25%%">
+                                        <t t-out="object.analytic_overtime_id.end_date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="21%%">
+                                        <div>
+                                            <b>Daily Overtime Duration</b>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <b>:</b>
+                                    </td>
+                                    <td>
+                                        <t t-out="object.analytic_overtime_id.duration or 0"/>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <td>
+                                        <b>Description</b>
+                                    </td>
+                                    <td>
+                                        <b>:</b>
+                                    </td>
+                                    <td colspan="3">
+                                        <t t-out="object.analytic_overtime_id.description or '-'"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table border="0" cellspacing="10" cellpadding="0" width="100%%"
+                       style="font-family: Arial, Sans-serif; font-size: 14">
+                    <tr>
+                        <td width="100%%">From:</td>
+                    </tr>
+                    <tr>
+                        <td width="100%%">
+                            <t t-out="object.user_id.name or 'Odoo User'"/>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <td width="100%%">-
+                            <font color="a7a7a7">-------------------------</font>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100%%">
+                            <font color="a7a7a7">
+                                <t t-out="object.user_id.signature or ''"/>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellspacing="10" cellpadding="0" width="100%%"
+                       style="font-family: Arial, Sans-serif; font-size: 14">
+                    <tr>
+                        <td width="100%%">You can submit your Response, through your login</td>
+                    </tr>
+                </table>
+            </body>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+</odoo>

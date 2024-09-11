@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_hr_job_tree_inherited">
+        <field name="name">hr.job.tree.inherited</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_hr_job_tree"/>
+        <field name="arch" type="xml">
+            <field name="department_id" position="before">
+                <field name="location_id" />
+                <field name="jd_number" />
+                <field name="user_id" />
+                <field name="department_number" />
+                <field name="company_number" />
+            </field>
+            <xpath expr="//tree" position="inside">
+                <header>
+                    <button name="set_open" string="Stop Recruitment" type="object" groups="base.group_user"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_hr_job_tree_inherit_website_inherited">
+        <field name="name">hr.job.tree.website.inherited</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="website_hr_recruitment.view_hr_job_tree_inherit_website"/>
+        <field name="arch" type="xml">
+            <field name="website_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_hr_job_form_inherit">
+        <field name="name">hr.job.form</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_hr_job_form"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="attributes">
+                <attribute name="required">1</attribute>
+                <attribute name="domain">[('share', '=', False), ('employee_id', '!=', False)]</attribute>
+            </field>
+            <field name="user_id" position="after">
+                <field name="jd_number"/>
+                <field name="location_id" />
+            </field>
+            <field name="department_id" position="after">
+                <field name="department_number" />
+            </field>
+            <field name="company_id" position="after">
+                <field name="company_number" />
+            </field>
+        </field>
+    </record>
+
+    <record id="survey.action_survey_form" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form,activity</field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_recruitment_stage_form">
+        <field name="name">hr.recruitment.stage.form</field>
+        <field name="model">hr.recruitment.stage</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_recruitment_stage_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fold']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+               <field name="state"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_recruitment_feedback_form" model="ir.ui.view">
+        <field name="name">Survey.feedback.form</field>
+        <field name="model">hr.survey.feedback</field>
+        <field name="arch" type="xml">
+            <form string="Feedback form">
+                <group col="4">
+                    <field name="stage_id" invisible="1"/>
+                    <field name="feedback_by" invisible="1"/>
+                    <field name="given_rate"  required="1"/>
+                    <field name="next_round_required"/>
+                    <field name="employee_id" attrs="{'invisible':[('next_round_required','=',False)] ,'required':[('next_round_required','=',True)]}" />
+                </group>
+                <separator string="Response Information" colspan="4"/>
+                <field name="comment" required="1"/>
+                <footer>
+                    <button name="feedback_save" string="move_to_next_stage" type="object" class="oe_highlight" attrs="{'invisible':[('next_round_required','=',True)]}"/>
+                    <button name="feedback_save" string="Ok" type="object" class="oe_highlight" attrs="{'invisible':[('next_round_required','=',False)]}"/>
+                    or
+                    <button name="cancel" string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_recruitment_feedback">
+        <field name="name">Feedback Information</field>
+        <field name="res_model">hr.survey.feedback</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'is_view':'feedback'}</field>
+        <field name="target">new</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_recruitment_refuse">
+        <field name="name">Refuse Information</field>
+        <field name="res_model">hr.survey.feedback</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'is_view':'refuse'}</field>
+        <field name="target">new</field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_hr_applicant_view_tree">
+        <field name="name">Jobs - Recruitment Tree</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.crm_case_tree_view_job"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="branch_id"/>
+            </field>
+            <field name="create_date" position="after">
+                <field name="schedule_date"/>
+                <field name="is_hire_not_hire"/>
+                <field name="reason_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="inherit_hr_applicant_view_form">
+        <field name="name">Jobs - Recruitment Form</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <group>
+                    <group>
+                        <field name="is_existing_emp"/>
+                    </group>
+                    <group>
+                        <field name="existing_employee_id" domain="[('active', '=', False)]" attrs="{'invisible': [('is_existing_emp', '=', False)], 'required': [('is_existing_emp', '!=', False)]}" options="{'no_create_edit': True, 'no_create': True}"/>
+                    </group>
+                </group>
+            </xpath>
+            <field name="user_id" position="attributes">
+                <attribute name="domain">[('share', '=', False), ('employee_id', '!=', False)]</attribute>
+            </field>
+            <xpath expr="//form/header/button[@name='create_employee_from_applicant']" position="replace">
+                <button name="case_close_with_emp" string="Hire &amp; Create Employee" type="object" class="oe_highlight" attrs="{'invisible':['|','|', '|', ('emp_id','!=',False),('feedback_done','=',False),('state','!=','verification'), ('is_hire_not_hire', '=', 'no')]}" />
+            </xpath>
+            <xpath expr="//form/header/button[@name='archive_applicant']" position="replace">
+                <button name='%(action_recruitment_refuse)d' string="Refuse"
+                        type="action"
+                        attrs="{'invisible':[('state','in',['done','cancel'])]}" /> attrs="{'invisible':['|',('state','in',['done','cancel']),'&amp;',('interview_required','=',True),('is_survey','=',False)] }"
+            </xpath>
+            <xpath expr="//form/header/button[1]" position="before">
+                <button string="Send Offer Letter" name="send_offer_letter" type="object" attrs="{'invisible':['|','|', '|', ('emp_id','!=',False),('feedback_done','=',False),
+                        ('state','!=','verification'), ('is_hire_not_hire', '=', 'no')]}" class="oe_highlight" />
+                <button name='%(action_recruitment_feedback)d' string="Feedback"
+                        type="action" class="oe_highlight"
+                        attrs="{'invisible':[('state','in',['verification','done','cancel'])]}" /> <!-- attrs="{'invisible':['|',('state','in',['verification','done','cancel']),'&amp;',('interview_required','=',True),('is_survey','=',False)] }" -->
+                <button name='%(action_recruitment_feedback)d' string="Feedback"
+                    type="action" class="oe_highlight" context="{'move_to_next_stage': True}"
+                    attrs="{'invisible':['|',('state','!=','verification'),('feedback_done','=',True)]}" />
+            </xpath>
+            <field name="name" position="attributes">
+                <attribute name="placeholder">Application Name</attribute>
+            </field>
+            <field name="partner_name" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="categ_ids" position="attributes">
+                <attribute name="placeholder">e.g. Part Time</attribute>
+            </field>
+            <field name="partner_id" position="after">
+                <label for="street" string="Address"/>
+                <div>
+                    <field name="street" placeholder="Street..." required="1"/>
+                    <field name="street2"/>
+                    <div class="address_format">
+                        <field name="city" placeholder="City" style="width: 40%%"
+                            required="1"/>
+                        <field name="state_id" class="oe_no_button" placeholder="State"
+                            style="width: 37%%" options='{"no_open": True}'/>
+                        <field name="zip" placeholder="ZIP" style="width: 20%%"/>
+                    </div>
+                    <field name="country_id" placeholder="Country"/>
+                </div>
+            </field>
+            <field name="email_from" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="partner_mobile" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute name="string">Recruiter</attribute>
+            </field>
+            <field name="source_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('source_type','!=','external')]}</attribute>
+            </field>
+            <field name="source_id" position="before">
+                <field name="source_type"/>
+            </field>
+            <field name="source_id" position="after">
+                <field name="internal_reference" attrs="{'invisible': [('source_type','!=','internal')]}" />
+                <field name="schedule_date" widget="date"/>
+                <field name="is_hire_not_hire" attrs="{'required':[('feedback_done','=',True)]}"/>
+                <field name="reason_id" attrs="{'required':[('feedback_done','=',True)], 'invisible':[('is_hire_not_hire','=', False)]}"/>
+            </field>
+            <field name="source_id" position="after">
+                <field name="state" invisible="1"/>
+                <field name="feedback_done" invisible="1"/>
+            </field>
+            <field name="department_id" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <!-- job_id and department_id position change -->
+            <field name="job_id" position="replace"/>
+            <field name="department_id" position="after">
+                <field name="job_id" required="1"/>
+                <field name="branch_id" />
+            </field>
+            <xpath expr="//notebook" position="inside">
+                <page string="Personal" name="personal">
+                    <group>
+                        <group>
+                            <field name="date_of_birth"/>
+                            <field name="gender" required="1"/>
+                            <field name="marital_status"/>
+                        </group>
+                        <group>
+                            <field name="join_immedietly"/>
+                            <field name="joining_date"/>
+                        </group>
+                        <group>
+                            <field name="not_joining_reason" attrs="{'invisible':[('join_immedietly','!=','no')]}"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Attachments">
+                    <group>
+                        <field name="attachment_ids" widget="many2many_binary" nolabel="1"/>
+                    </group>
+                </page>
+                <page string="Feedback">
+                    <field name="feedback_ids" nolabel="1" readonly="1">
+                        <tree string="Feedback info.">
+                            <field name="stage_id"/>
+                            <field name="comment"/>
+                            <field name="given_rate"/>
+                            <field name="feedback_by"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="stage_id"/>
+                                <field name="feedback_by"/>
+                                <field name="given_rate"/>
+                            </group>
+                            <separator string="Response Information" colspan="4"/>
+                            <field name="comment" required="1"/>
+                        </form>
+                    </field>
+                </page>
+                <page string="Extra Information" groups="base.group_no_one">
+                    <group name="extra_info" col="4">
+                        <field name="create_uid" readonly="1"/>
+                        <field name="create_date" readonly="1"/>
+                        <field name="write_uid" readonly="1"/>
+                        <field name="write_date" readonly="1"/>
+                        <field name="hired_by"
+                            attrs="{'invisible':[('hired_by','=',False)]}"/>
+                        <field name="hired_date"
+                            attrs="{'invisible':[('hired_date','=',False)]}" />
+                        <field name="refused_by"
+                            attrs="{'invisible':[('refused_by','=',False)]}" />
+                        <field name="refuse_date"
+                            attrs="{'invisible':[('refuse_date','=',False)]}" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_applicant_view_tree_inherit" model="ir.ui.view">
+        <field name="name">hr.applicant.tree</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.crm_case_tree_view_job"/>
+        <field name="arch" type="xml">
+            <field name="create_date" position="after">
+                <field name="schedule_date" widget="date" optional="show"/>
+                <field name="feedback_done" invisible="1"/>
+                <field name="is_hire_not_hire" attrs="{'required':[('feedback_done','=',True)]}" optional="show"/>
+                <field name="reason_id" attrs="{'required':[('feedback_done','=',True)], 'invisible':[('is_hire_not_hire','=', False)]}" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_applicant_view_search_bis_inherit" model="ir.ui.view">
+        <field name="name">hr.applicant.search.view</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_search_bis"/>
+        <field name="arch" type="xml">
+            <filter name="filter_date_last_stage_update" position="after">
+                <filter string="Interview Scheduled Date" name="schedule_date" date="schedule_date"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="hr_recruitment.action_hr_job" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,activity,form</field>
+    </record>
+
+    <record id="hr_recruitment.action_hr_job_config" model="ir.actions.act_window">
+        <field name="name">Recruitment of Job Positions</field>
+        <field name="context">{'search_default_in_position': 1}</field>
+    </record>
+
+    <record id="portal_user_new_applicant_action" model="ir.actions.act_window">
+        <field name="name">Applications</field>
+        <field name="res_model">hr.applicant</field>
+        <field name="view_mode">form,calendar</field>
+        <field name="view_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="context">{"portal":'True'}</field>
+        <field name="search_view_id" ref="hr_recruitment.hr_applicant_view_search_bis"/>
+        <field name="target">current</field>
+        <field name="help"  type="html">
+            <p class="oe_view_nocontent_create">
+                Click to register a new Applications.
+            </p>
+        </field>
+    </record>
+
+    <record id="hr_applicant_hire_reason_view_form" model="ir.ui.view">
+        <field name="name">applicant.hire.reason.tree</field>
+        <field name="model">hr.applicant.hire.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Hire and Not Hire Applicant Reason" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_applicant_hire_reason_action" model="ir.actions.act_window">
+        <field name="name">Hired/Not Hired Reason</field>
+        <field name="res_model">hr.applicant.hire.reason</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

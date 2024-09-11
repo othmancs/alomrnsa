@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+        <record model="hr.recruitment.stage" id="hr_recruitment.stage_job1">
+            <field name="name">Start Screening</field>
+            <field name="state">draft</field>
+            <field name="sequence">1</field>
+        </record>
+        <record model="hr.recruitment.stage" id="hr_recruitment.stage_job2">
+            <field name="name">First Interview</field>
+            <field name="sequence">2</field>
+            <field name="state">open</field>
+            <field name="template_id" ref="hr_recruitment.email_template_data_applicant_interest"/>
+        </record>
+        <record model="hr.recruitment.stage" id="hr_recruitment.stage_job3">
+            <field name="name">Second Interview</field>
+            <field name="sequence">3</field>
+            <field name="state">open</field>
+        </record>
+        <record model="hr.recruitment.stage" id="stage_job6">
+            <field name="name">HR Interview</field>
+            <field name="sequence">4</field>
+            <field name="state">open</field>
+        </record>
+        <record model="hr.recruitment.stage" id="stage_job7">
+            <field name="name">Initial Qualification</field>
+            <field name="sequence">5</field>
+            <field name="state">verification</field>
+        </record>
+        <record model="hr.recruitment.stage" id="hr_recruitment.stage_job4">
+            <field name="name">Contract Proposal</field>
+            <field name="sequence">6</field>
+            <field name="state">verification</field>
+        </record>
+        <record model="hr.recruitment.stage" id="hr_recruitment.stage_job5">
+            <field name="name">Contract Signed</field>
+            <field name="sequence">7</field>
+            <field name="template_id" ref="hr_recruitment.email_template_data_applicant_congratulations"/>
+            <field name="state">done</field>
+        </record>
+        <record model="hr.recruitment.stage" id="stage_job8">
+            <field name="name">Refuse</field>
+            <field name="state">cancel</field>
+            <field name="sequence">8</field>
+            <field name="template_id" ref="hr_recruitment.email_template_data_applicant_refuse"/>
+            <field name="fold" eval="True" />
+        </record>
+
+        <!--Email template -->
+        <record id="email_template_create_applicant" model="mail.template">
+            <field name="name">New Candidate</field>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="subject">Response to Job Application : (Ref {{object.name or 'n/a' }})</field>
+            <field name="partner_to">{{object.job_id.user_id.partner_id.id}}</field>
+            <field name="model_id" ref="saudi_hr_recruitment_custom.model_hr_applicant" />
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                    <p>Dear <t t-out="object.job_id.user_id.partner_id.name"/>,</p>
+
+                    <p style="margin-left: 30px;">
+                       You have received Job Application for <b><t t-out="object.job_id.name or ''"/></b> in <b><t t-out="object.department_id.name or ''"/></b> Department.
+                    </p>
+                    <br/>
+                    Sincerely,
+                    <br/>
+                    <br/>
+                    HR Department,
+                </div>
+            </field>
+        </record>
+
+        <!--Applicant Acknowledgement Email template -->
+        <record id="email_template_applicant_acknowledge" model="mail.template">
+            <field name="name">HR New Candidate Acknowledge- Send by Email</field>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="subject">Response to Job Application : (Ref {{object.name or 'n/a' }})</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="model_id" ref="saudi_hr_recruitment_custom.model_hr_applicant" />
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+                    <p>Dear  <t t-out="object.partner_name"/>,</p>
+
+                    <p style="margin-left: 30px;">
+                       We have received your resume. Thank you for your interest in <b><t t-out="object.user_id.company_id.name or ''"/></b>. We will forward your resume to departments with openings that match your skills, background, and education.
+                    </p>
+                    <p style="margin-left: 30px;">
+                       If we find a match, we will contact you to schedule an interview. Otherwise, we will keep your resume on file for one year from application date. We will review your resume against any positions that become available during that time. Please do not resubmit your resume.
+                    </p>
+                    <p style="margin-left: 30px;">
+                       Again, we appreciate your interest in <b><t t-out="object.user_id.company_id.name or ''"/></b>. We wish you the best of luck in your job search.
+                    </p>
+                    <br/>
+                    Sincerely,
+                    <br/>
+                    <br/>
+                    HR Department,
+                </div>
+            </field>
+        </record>
+
+        <!-- Applicant Offer Letter Email template -->
+        <record id="email_template_applicant_offer" model="mail.template">
+            <field name="name">Candidate Offer Latter- Send by Email</field>
+            <field name="email_from">{{object.company_id.email}}</field>
+            <field name="subject">Job Offer Letter : (Ref {{object.name or 'n/a' }})</field>
+            <field name="partner_to"></field>
+            <field name="model_id" ref="saudi_hr_recruitment_custom.model_hr_applicant" />
+            <field name="auto_delete" eval="True" />
+            <field name="body_html" type="html">
+                <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+                    <p>Dear  <t t-out="object.partner_name"/>,</p>
+
+                    <p style="margin-left: 30px;">
+                       It is our pleasure to confirm our offer of employment to you as a <b><t t-out="object.job_id.name or ''"/></b> at <b><t t-out="object.company_id.name or ''"/></b>. In this position, you will report directly to <b><t t-out="object.department_id.manager_id and object.department_id.manager_id.name or ''"/></b> beginning <b><t t-out="object.joining_date or ''"/></b>.
+                    </p>
+                    <p style="margin-left: 30px;">
+                       Your salary will be <b><t t-out="object.salary_proposed or ''"/></b> per year. Paychecks are issued once per a month, beginning with your first paycheck on <b>[PAYCHECK DATE]</b>.
+                    </p>
+                    <p style="margin-left: 30px;">
+                       We will provide relocation assistance in the amount of <b><t t-out="('%02d')%(((object.salary_proposed/1.35)*0.25)*6)"/></b>. If you leave <b><t t-out="object.company_id.name or ''"/></b> before one year of continuous employment, you are required to return the total amount of relocation assistance.
+                    </p>
+                    <p style="margin-left: 30px;">
+                       You will be eligible for medical and dental benefits beginning on your first day of employment. Vacation accrues at a rate of <b>[NUMBER]</b> hours per month. You will be eligible to take accrued vacation after <b>[NUMBER]</b> months of continuous employment.
+                    </p>
+                    <br/>
+                    Sincerely,
+                    <br/>
+                    <br/>
+                    HR Department,
+                </div>
+            </field>
+        </record>
+
+        <record id="email_template_reminder_for_next_round" model="mail.template">
+            <field name="name">Reminder for next round</field>
+            <field name="email_from">{{'noreply@localhost'}}</field>
+            <field name="email_to">{{object.employee_id.work_email}}</field>
+            <field name="subject">Reminder for next round</field>
+            <field name="model_id" ref="saudi_hr_recruitment_custom.model_hr_survey_feedback" />
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html" type="html">
+                <p>Hello <t t-out="object.employee_id.name"/>,</p>
+                <p>You are responsible person for the next round.</p>
+                <p>Thanks,</p>
+                <p><t t-out="object.env.user.name"/></p>
+            </field>
+        </record>
+    </data>
+</odoo>

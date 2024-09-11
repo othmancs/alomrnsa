@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_timesheet_sheet_form_inherit" model="ir.ui.view">
+        <field name="name">hr.timesheet.sheet.form.inherit</field>
+        <field name="model">hr_timesheet.sheet</field>
+        <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_timesheet_confirm']" position="before">
+                <button name="compute_timesheet" states="draft" string="Compute Timesheet" type="object" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+               <page string="Attendance">
+                    <group>
+                        <group>
+                            <field name="total_attendance" widget="float_time"/>
+                            <field name="total_difference" widget="float_time"/>
+                        </group>
+                        <group>
+                            <field name="total_overtime" widget="float_time"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="period_ids" nolabel="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="total_attendance" widget="float_time" sum="Total"/>
+                                <field name="total_working_hours" sum="Total"/>
+                                <field name="total_timesheet" widget="float_time" sum="Total Timesheet"/>
+                                <field name="total_overtime" widget="float_time" sum="Total"/>
+                                <field name="total_difference" widget="float_time" sum="Total"/>
+                                <field name="reason"/>
+                            </tree>
+                        </field>
+                    </group>
+               </page>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="hr_timesheet.timesheet_menu_root"
+            name="Timesheets"
+            sequence="75"
+            groups="hr_timesheet.group_hr_timesheet_user"
+            web_icon="saudi_hr_timesheet_sheet,static/description/timesheets.png"/>
+
+    <menuitem id="hr_timesheet.hr_timesheet_menu_configuration" name="Timesheet Settings" parent="hr.menu_human_resources_configuration"
+        action="hr_timesheet.hr_timesheet_config_settings_action" groups="base.group_system" sequence="100"/>
+
+    <menuitem id="hr_timesheet.menu_timesheets_reports_timesheet"
+            name="Timesheets"
+            parent="saudi_hr.menu_reports"
+            groups="hr_timesheet.group_timesheet_manager"
+            sequence="10"/>
+
+    <menuitem id="hr_timesheet_attendance.menu_hr_timesheet_attendance_report"
+                  parent="saudi_hr.menu_reports"
+                  action="hr_timesheet_attendance.action_hr_timesheet_attendance_report"
+                  name="Timesheet / Attendance"/>
+
+
+    <record id="project.open_view_project_all_group_stage" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <record id="edit_project_inherited" model="ir.ui.view">
+        <field name="name">project.project.form.inherited</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="department_id" domain="[('company_id', 'in', [company_id, False])]" />
+            </field>
+        </field>
+    </record>
+
+    <menuitem id="hr_timesheet_sheet_project" name="Project" groups="project.group_project_manager,project.group_project_user" sequence="10" parent="hr.menu_hr_root" />
+
+    <menuitem id="hr_timesheet_sheet_menu_projects_group_stage" name="Projects" parent="hr_timesheet_sheet_project" sequence="1" action="project.open_view_project_all_group_stage" />
+
+    <menuitem id="hr_timesheet_sheet_menu_project_management" name="My Tasks" parent="hr_timesheet_sheet_project" sequence="2" action="project.action_view_all_task" />
+
+    <menuitem id="hr_timesheet_sheet_menu_project_report_task_analysis" name="Tasks Analysis" parent="saudi_hr.menu_reports" action="project.action_project_task_user_tree" sequence="10" />
+
+    <menuitem id="hr_timesheet_sheet_rating_rating_menu_project" name="Customer Ratings" parent="saudi_hr.menu_reports" action="project.rating_rating_action_project_report" sequence="40" />
+
+    <menuitem id="hr_timesheet_sheet_menu_project_config" name="Project" parent="hr.menu_human_resources_configuration"
+            sequence="100" groups="project.group_project_manager"/>
+
+    <menuitem id="hr_timesheet_sheet_project_config_settings_menu_action" name="Settings" parent="hr_timesheet_sheet_menu_project_config" action="project.project_config_settings_action" />
+
+    <menuitem id="hr_timesheet_sheet_menu_project_config_project_stage" name="Project Stages" parent="hr_timesheet_sheet_menu_project_config" action="project.project_project_stage_configure" sequence="9" />
+
+    <menuitem id="hr_timesheet_sheet_menu_project_config_project" name="Task Stages" parent="hr_timesheet_sheet_menu_project_config" action="project.open_task_type_form" sequence="10" />
+
+    <menuitem id="hr_timesheet_sheet_menu_project_tags_act" name="Tags" parent="hr_timesheet_sheet_menu_project_config" action="project.project_tags_action" sequence="10" />
+
+    <menuitem id="hr_timesheet_sheet_project_menu_config_activity_type" name="Activity Types" parent="hr_timesheet_sheet_menu_project_config" action="project.mail_activity_type_action_config_project_types" sequence="10" />
+
+</odoo>

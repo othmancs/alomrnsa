@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="hr_recruitment_custom_inherit_form">
+        <field name="name">hr.recruitment.custom.inherit.form</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='send_offer_letter']" position="after">
+                <button name="processed_visa"
+                    type="object"
+                    string="View VISA Request"
+                    class="oe_highlight"
+                    help="New Employee Visa Request"
+                    attrs="{'invisible':['|',('state','!=','done'), ('rec_visa_id', '!=', False)]}" />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_get_created_emp_visa"
+                    class="oe_stat_button"
+                    icon="fa-plane"
+                    type="object"
+                    attrs="{'invisible': [('rec_visa_id', '=', False)]}">
+                    <field name="rec_visa_id" widget="statinfo" string="Visa"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

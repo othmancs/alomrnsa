@@ -1,0 +1,674 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_visa_recruiter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 07:36+0000\n"
+"PO-Revision-Date: 2022-05-30 07:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_visa_recruiter
+#: model:mail.template,body_html:saudi_hr_visa_recruiter.email_template_recruiter_visa_received
+msgid ""
+"<p>Hello <b><t t-out=\"object.employee_id.name\"/></b>,</p>\n"
+"                <p>we get your request for <t t-out=\"object.reason_of_visa\"/> on <t t-out=\"ctx.get('create_date')\"/>. Recently we received it. so you can collect it from our branch.</p>\n"
+"                <p>Thank you</p>\n"
+"                <p><t t-out=\"(object.env.user.name)\"/></p>\n"
+"        "
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__approved_date_from
+msgid "Approved Date From"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__approved_date_to
+msgid "Approved Date To"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__reason_of_visa__business_visit_visa
+msgid "Business Visit Visa"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__calculate_company_expense
+msgid "Calculate Company Expense"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__employee_rec_family_visa__relation__child
+msgid "Child"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__company_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Company"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__company_contribution
+msgid "Company Contribution"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__state__confirm
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Confirm"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model,name:saudi_hr_visa_recruiter.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__contact_person_ids
+msgid "Contact Person"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Contact Persons in KSA"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__create_date
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_tree
+msgid "Date From"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_tree
+msgid "Date To"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__birth_date
+msgid "Date of Birth"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:product.product,uom_name:saudi_hr_visa_recruiter.hr_visa_request
+#: model:product.template,uom_name:saudi_hr_visa_recruiter.hr_visa_request_product_template
+msgid "Days"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Department"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__requested_date_from
+msgid "Departure Date"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Description"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__display_name
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__email
+msgid "Email"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Email Id.."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Employee"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__emp_contribution
+msgid "Employee Contribution"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model,name:saudi_hr_visa_recruiter.model_employee_rec_family_visa
+msgid "Employee Family Visa"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Employee Information"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: code:addons/saudi_hr_visa_recruiter/models/hr_employee_rec_visa.py:0
+#, python-format
+msgid "Error! Approved Date From must be less than Approved Date To."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: code:addons/saudi_hr_visa_recruiter/models/hr_employee_rec_visa.py:0
+#, python-format
+msgid "Error! Departure Date must be less than Return Date."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Expense"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__expense_note
+msgid "Expense Note"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__expense_ids
+msgid "Expenses"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Extra Information"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__visa_for__family
+msgid "Family"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__family_visa_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Family Details"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__employee_rec_family_visa__gender__female
+msgid "Female"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Filter"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__gender
+msgid "Gender"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Generate Expense"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Group By..."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model,name:saudi_hr_visa_recruiter.model_hr_employee_rec_visa
+msgid "HR Employee Visa requested by recruiter"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__handled_by_id
+msgid "Handled by"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__id
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__id_number
+msgid "ID Number"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_needaction
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_has_error
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__state__inprogress
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "In Progress"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__visa_for__individual
+msgid "Individual"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa____last_update
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__write_date
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__required_documents
+msgid "List of Documents Required"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__employee_rec_family_visa__gender__male
+msgid "Male"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__member_name
+msgid "Member Name (As in Passport)"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Month(s)"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__visa_type__multi
+msgid "Multiple"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__nationality
+msgid "Nationality"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__reason_of_visa__new_join_employee
+msgid "New Work Visa"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Notes"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__company_contribution_amount
+msgid "Paid By Company"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__emp_contribution_amount
+msgid "Paid By Employee"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__payment_mode
+msgid "Payment By"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: code:addons/saudi_hr_visa_recruiter/models/hr_employee_rec_visa.py:0
+#, python-format
+msgid ""
+"Please Enter Values For Visa Number, Approved Date From and Approved Date To"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Put the description here"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Reason of Visa"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__state__received
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Received"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.actions.act_window,name:saudi_hr_visa_recruiter.action_hr_employee_rec_visa
+#: model:ir.ui.menu,name:saudi_hr_visa_recruiter.menu_hr_employee_rec_visa
+msgid "Recruiter Visa Request"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Refuse"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__state__refused
+msgid "Refused"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__relation
+msgid "Relation"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__request_by_id
+msgid "Request by"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Required Documents"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__requested_date_to
+msgid "Return Date"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Select Department"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Select Employee"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Set as Draft"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__visa_type__single
+msgid "Single"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__employee_rec_family_visa__relation__spouse
+msgid "Spouse"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "State"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Submit"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__state__draft
+msgid "To Submit"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__expense_total
+msgid "Total Expense"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__visa_type
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Type"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__reason_of_visa
+msgid "Type of Visa"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_employee_rec_family_visa__visa_id
+#: model:product.product,name:saudi_hr_visa_recruiter.hr_visa_request
+#: model:product.template,name:saudi_hr_visa_recruiter.hr_visa_request_product_template
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Visa"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__period_of_stay
+msgid "Visa Duration"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__visa_for
+msgid "Visa For"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+msgid "Visa Information"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:mail.template,subject:saudi_hr_visa_recruiter.email_template_recruiter_visa_received
+msgid "Visa Notification for {{object.reason_of_visa}}"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__visa_ref
+msgid "Visa Number"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.hr_employee_rec_visa_tree
+msgid "Visa Request"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: code:addons/saudi_hr_visa_recruiter/models/hr_employee_rec_visa.py:0
+#, python-format
+msgid "Visa Request Created."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: code:addons/saudi_hr_visa_recruiter/models/hr_employee_rec_visa.py:0
+#, python-format
+msgid "Visa Request Received."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: code:addons/saudi_hr_visa_recruiter/models/hr_employee_rec_visa.py:0
+#, python-format
+msgid "Visa Request Refused."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__visa_title
+msgid "Visa Title"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:mail.template,name:saudi_hr_visa_recruiter.email_template_recruiter_visa_received
+msgid "Visa Validate"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Visa that has been refused"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Visa that has been waiting for approval of Manager."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_visa_recruiter.view_hr_employee_rec_visa_filter
+msgid "Visa that has sent for process."
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,help:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields.selection,name:saudi_hr_visa_recruiter.selection__hr_employee_rec_visa__reason_of_visa__commercial_visit_visa
+msgid "Work Visit Visa"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: code:addons/saudi_hr_visa_recruiter/models/hr_employee_rec_visa.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_hr_employee_rec_visa__name
+msgid "name"
+msgstr ""
+
+#. module: saudi_hr_visa_recruiter
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_res_partner__rec_user_id
+#: model:ir.model.fields,field_description:saudi_hr_visa_recruiter.field_res_users__rec_user_id
+msgid "partner"
+msgstr ""

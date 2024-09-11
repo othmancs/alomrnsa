@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rules -->
+    <record id="overtime_response_emp_rule" model="ir.rule">
+        <field name="name">Employee Overtime Response</field>
+        <field name="model_id" ref="model_analytic_overtime_attendee"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+    </record>
+    <record id="overtime_response_manager_rule" model="ir.rule">
+        <field name="name">Manager Overtime Response</field>
+        <field name="model_id" ref="model_analytic_overtime_attendee"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="domain_force">['|',('user_id.company_id','=',False),('user_id.company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="overtime_manager_rule" model="ir.rule">
+        <field name="name">Manager Overtime Response</field>
+        <field name="model_id" ref="model_analytic_overtime"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        <field name="domain_force">['|', ('user_id', '=', False), ('user_id','=',user.id)]</field>
+    </record>
+
+    <!-- Analytic overtime Multi Branch Rule  -->
+    <!--<record model="ir.rule" id="analytic_overtime_branch_rule_global">
+        <field name="name">Analytic overtime multi-branch</field>
+        <field name="model_id" ref="saudi_hr_overtime_request.model_analytic_overtime"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('branch_ids', '=', False), ('branch_ids', 'in', user.branch_ids.ids)]</field>
+    </record>-->
+</odoo>

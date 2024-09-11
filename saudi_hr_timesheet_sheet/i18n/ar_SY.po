@@ -1,0 +1,158 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_timesheet_sheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-28 13:29+0000\n"
+"PO-Revision-Date: 2024-08-28 13:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model,name:saudi_hr_timesheet_sheet.model_hr_attendance
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__total_attendance
+msgid "Attendance"
+msgstr "حضور"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__name
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_project_project__department_id
+msgid "Department"
+msgstr "قسم"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__total_difference
+msgid "Difference"
+msgstr "الفرق"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__holiday_ids
+msgid "Leave Request"
+msgstr "طلب الاجازة"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:hr.salary.rule,name:saudi_hr_timesheet_sheet.hr_salary_rule_overtime_allowance
+msgid "Normal Working Day Overtime Allowance"
+msgstr "بدل العمل الإضافي ليوم العمل العادي"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__total_overtime
+msgid "Overtime"
+msgstr "متأخر، بعد فوات الوقت"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_payslip_worked_days__overtime_hours
+msgid "Overtime Hours"
+msgstr "ساعات العمل الإضافي"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model,name:saudi_hr_timesheet_sheet.model_hr_payslip
+msgid "Pay Slip"
+msgstr "ظرف المرتب"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model,name:saudi_hr_timesheet_sheet.model_hr_payslip_worked_days
+msgid "Payslip Worked Days"
+msgstr "ايام عمل قسيمه الدفع "
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model,name:saudi_hr_timesheet_sheet.model_project_project
+msgid "Project"
+msgstr "المشروع"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:hr.salary.rule,name:saudi_hr_timesheet_sheet.hr_salary_rule_public_holiday_overtime_allowance
+msgid "Public Holiday Overtime Allowance"
+msgstr "بدل العمل الإضافي لعطلة عامة"
+
+#. module: saudi_hr_timesheet_sheet
+#. odoo-python
+#: code:addons/saudi_hr_timesheet_sheet/models/hr_payroll.py:0
+#, python-format
+msgid "Public Holiday Working Days paid at 250%"
+msgstr "أيام عمل العطلة العامة المدفوعة بنسبة 250٪"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__reason
+msgid "Reason"
+msgstr "السبب"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model,name:saudi_hr_timesheet_sheet.model_hr_timesheet_sheet_sheet_day
+msgid "Timesheets by Period"
+msgstr "الجداول الزمنية حسب الفترة"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__total_timesheet
+msgid "Total Timesheet"
+msgstr "سجل الدوام الكلي"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:hr.salary.rule,name:saudi_hr_timesheet_sheet.hr_salary_rule_weekend_overtime_allowance
+msgid "Weekend Day Overtime Allowance"
+msgstr "بدل العمل الإضافي ليوم عطلة نهاية الأسبوع"
+
+#. module: saudi_hr_timesheet_sheet
+#. odoo-python
+#: code:addons/saudi_hr_timesheet_sheet/models/hr_payroll.py:0
+#, python-format
+msgid "Weekends Working Days paid at 200%"
+msgstr "أيام العمل في عطلة نهاية الأسبوع المدفوعة بنسبة 200 ٪"
+
+#. module: saudi_hr_timesheet_sheet
+#: model:ir.model.fields,field_description:saudi_hr_timesheet_sheet.field_hr_timesheet_sheet_sheet_day__total_working_hours
+msgid "Working Hours"
+msgstr "ساعات العمل"
+
+#. module: saudi_hr_timesheet_sheet
+#. odoo-python
+#: code:addons/saudi_hr_timesheet_sheet/models/hr_payroll.py:0
+#, python-format
+msgid "You can not generate 2 different year payslip!"
+msgstr "لا يمكنك توليد 2 سنة مختلفة payslip!"

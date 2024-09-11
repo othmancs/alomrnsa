@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rules -->
+    <record id="rec_visa_emp_rule" model="ir.rule">
+        <field name="name">Employee Recruiter Visa</field>
+        <field name="model_id" ref="model_hr_employee_rec_visa"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="domain_force">['|', ('message_partner_ids', '=', user.partner_id.id), ('employee_id.user_id','=',user.id)]</field>
+    </record>
+
+    <record id="rec_visa_officer_rule" model="ir.rule">
+        <field name="name">GR Officer Recruiter Visa</field>
+        <field name="model_id" ref="model_hr_employee_rec_visa"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('message_partner_ids', 'child_of', [user.partner_id.id]), '|', ('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="employee_family_rec_visa_emp_rule" model="ir.rule">
+        <field name="name">Employee Family Visa</field>
+        <field name="model_id" ref="model_employee_rec_family_visa"/>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+    </record>
+
+    <record id="employee_family_rec_visa_officer_rule" model="ir.rule">
+        <field name="name">GR Officer Family Visa</field>
+        <field name="model_id" ref="model_employee_rec_family_visa"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('visa_id.company_id','=',False),('visa_id.company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

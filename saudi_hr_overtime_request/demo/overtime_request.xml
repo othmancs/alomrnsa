@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="fp_overtime_request" model="analytic.overtime">
+            <field name="name">Demo of Project</field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="duration">3</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta( days=7)).strftime('%Y-%m-%d')" />
+            <field name="state">tentative</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="target">office</field>
+            <field name="branch_ids" eval="[(4, ref('saudi_hr_branch.riyadh_office')),(4, ref('saudi_hr_branch.al_khobar_office'))]"/>
+        </record>
+
+        <record id="fp_overtime_request1" model="analytic.overtime">
+            <field name="name">Debrand Module website</field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="duration">5</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta( days=5)).strftime('%Y-%m-%d')"/>
+            <field name="state">tentative</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="target">department</field>
+            <field name="department_ids" eval="[(4, ref('hr.dep_management')),(4, ref('hr.dep_rd'))]"/>
+        </record>
+
+        <record id="fp_overtime_request2" model="analytic.overtime">
+            <field name="name"> Website Sales Coupon and Promotion</field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="duration">6</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta( days=8)).strftime('%Y-%m-%d')" />
+            <field name="state">tentative</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="target">job</field>
+            <field name="job_ids" eval="[(4, ref('hr.job_cto')),(4, ref('hr.job_consultant'))]"/>
+        </record>
+
+        <record id="fp_overtime_request3" model="analytic.overtime">
+            <field name="name">Subscription Dashboard KPI</field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="duration">6</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta( days=5)).strftime('%Y-%m-%d')" />
+            <field name="state">tentative</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="target">office</field>
+            <field name="branch_ids" eval="[(4, ref('saudi_hr_branch.riyadh_office')),(4, ref('saudi_hr_branch.al_khobar_office'))]"/>
+        </record>
+
+        <record id="fp_overtime_request4" model="analytic.overtime">
+            <field name="name">MRP industry specific demo data </field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="duration">5</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta( days=5)).strftime('%Y-%m-%d')" />
+            <field name="state">tentative</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="target">department</field>
+            <field name="department_ids" eval="[(4, ref('hr.dep_management')),(4, ref('hr.dep_rd'))]"/>
+        </record>
+
+        <record id="fp_overtime_request4" model="analytic.overtime">
+            <field name="name">MRP industry specific demo data </field>
+            <field name="date" eval="(DateTime.today())"/>
+            <field name="duration">5</field>
+            <field name="end_date" eval="(DateTime.today() + relativedelta( days=5)).strftime('%Y-%m-%d')" />
+            <field name="state">tentative</field>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="target">job</field>
+            <field name="job_ids" eval="[(4, ref('hr.job_cto')),(4, ref('hr.job_consultant'))]"/>
+
+        </record>
+
+        <record id="analytic_overtime_attendee_one" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_al"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_two" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_fpi"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_three" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request1"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_qdp"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_four" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request1"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_jep"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_five" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request2"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_jep"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_six" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request2"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_qdp"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_seven" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request3"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_qdp"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_eight" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request3"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_stw"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_nine" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request3"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_jep"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_ten" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request4"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_qdp"/>
+        </record>
+
+        <record id="analytic_overtime_attendee_eleven" model="analytic.overtime.attendee">
+           <field name="analytic_overtime_id" ref="fp_overtime_request4"/>
+           <field name="state">needs-action</field>
+           <field name="user_id" ref="base.user_admin"/>
+           <field name="employee_id" ref="hr.employee_stw"/>
+        </record>
+
+
+    </data>
+</odoo>

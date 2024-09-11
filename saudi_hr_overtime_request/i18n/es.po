@@ -1,0 +1,660 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_overtime_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 06:56+0000\n"
+"PO-Revision-Date: 2022-05-30 06:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_overtime_request
+#: model:mail.template,body_html:saudi_hr_overtime_request.email_template_create_attendee
+msgid ""
+"<head><meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\"/>\n"
+"    <title><t t-out=\"object.analytic_overtime_id.name\"/></title>\n"
+"    </head>\n"
+"    <body>\n"
+"    <table border=\"0\" cellspacing=\"10\" cellpadding=\"0\" width=\"100%\" style=\"font-family: Arial, Sans-serif; font-size: 14\">\n"
+"        <tr>\n"
+"            <td width=\"100%\">Hello <t t-out=\"object.employee_id.name\"/>,</td>\n"
+"        </tr>\n"
+"        <br/><br/>\n"
+"        <tr>\n"
+"            <td width=\"100%\">For <i><t t-out=\"object.env.user.company_id.name\"/></i>, You are requested for the overtime works during the following session</td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <br/>\n"
+"    <table cellspacing=\"0\" cellpadding=\"5\" border=\"0\" summary=\"\" style=\"width: 100%; font-family: Arial, Sans-serif; border: 1px Solid #ccc; background-color: #f6f6f6\">\n"
+"        <tr valign=\"center\" align=\"center\">\n"
+"            <td bgcolor=\"DFDFDF\">\n"
+"            <h3><t t-out=\"object.analytic_overtime_id.name\"/></h3>\n"
+"            </td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td>\n"
+"            <table cellpadding=\"8\" cellspacing=\"0\" border=\"0\" style=\"font-size: 14\" summary=\"Eventdetails\" bgcolor=\"f6f6f6\" width=\"90%\">\n"
+"                <tr>\n"
+"                    <td width=\"21%\">\n"
+"                    <div><b>Start Date</b></div>\n"
+"                    </td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td><t t-out=\"object.analytic_overtime_id.date\"/></td>\n"
+"                    <td width=\"15%\">\n"
+"                    <div><b>End Date</b></div>\n"
+"                    </td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td width=\"25%\"><t t-out=\"object.analytic_overtime_id.end_date\"/></td>\n"
+"                </tr>\n"
+"                <tr>\n"
+"                    <td width=\"21%\">\n"
+"                    <div><b>Daily Overtime Duration</b></div>\n"
+"                    </td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td><t t-out=\"object.analytic_overtime_id.duration or 0\"/></td>\n"
+"                </tr>\n"
+"                <tr valign=\"top\">\n"
+"                    <td><b>Description</b></td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td colspan=\"3\"><t t-out=\"object.analytic_overtime_id.description or '-'\"/></td>\n"
+"                </tr>\n"
+"            </table>\n"
+"            </td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <br/>\n"
+"    <table border=\"0\" cellspacing=\"10\" cellpadding=\"0\" width=\"100%\" style=\"font-family: Arial, Sans-serif; font-size: 14\">\n"
+"        <tr>\n"
+"            <td width=\"100%\">From:</td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td width=\"100%\"><t t-out=\"object.user_id.name or 'Odoo User'\"/></td>\n"
+"        </tr>\n"
+"        <tr valign=\"top\">\n"
+"            <td width=\"100%\">-<font color=\"a7a7a7\">-------------------------</font></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td width=\"100%\"> <font color=\"a7a7a7\"><t t-out=\"object.user_id.signature or ''\"/></font></td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <table border=\"0\" cellspacing=\"10\" cellpadding=\"0\" width=\"100%\" style=\"font-family: Arial, Sans-serif; font-size: 14\">\n"
+"        <tr>\n"
+"            <td width=\"100%\">You can submit your Response, through your login</td>\n"
+"        </tr>\n"
+"    </table>\n"
+"</body>\n"
+"        "
+msgstr ""
+"<head><meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\"/>\n"
+"    <title><t t-out=\"object.analytic_overtime_id.name\"/></title>\n"
+"    </head>\n"
+"    <body>\n"
+"    <table border=\"0\" cellspacing=\"10\" cellpadding=\"0\" width=\"100%\" style=\"font-family: Arial, Sans-serif; font-size: 14\">\n"
+"        <tr>\n"
+"            <td width=\"100%\">Hola <t t-out=\"object.employee_id.name\"/>,</td>\n"
+"        </tr>\n"
+"        <br/><br/>\n"
+"        <tr>\n"
+"            <td width=\"100%\">Para <i><t t-out=\"object.env.user.company_id.name\"/></i>, se le solicitan horas extras durante la siguiente sesión</td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <br/>\n"
+"    <table cellspacing=\"0\" cellpadding=\"5\" border=\"0\" summary=\"\" style=\"width: 100%; font-family: Arial, Sans-serif; border: 1px Solid #ccc; background-color: #f6f6f6\">\n"
+"        <tr valign=\"center\" align=\"center\">\n"
+"            <td bgcolor=\"DFDFDF\">\n"
+"            <h3><t t-out=\"object.analytic_overtime_id.name\"/></h3>\n"
+"            </td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td>\n"
+"            <table cellpadding=\"8\" cellspacing=\"0\" border=\"0\" style=\"font-size: 14\" summary=\"Eventdetails\" bgcolor=\"f6f6f6\" width=\"90%\">\n"
+"                <tr>\n"
+"                    <td width=\"21%\">\n"
+"                    <div><b>Fecha de Inicio</b></div>\n"
+"                    </td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td><t t-out=\"object.analytic_overtime_id.date\"/></td>\n"
+"                    <td width=\"15%\">\n"
+"                    <div><b>Fecha de Finalización</b></div>\n"
+"                    </td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td width=\"25%\"><t t-out=\"object.analytic_overtime_id.end_date\"/></td>\n"
+"                </tr>\n"
+"                <tr>\n"
+"                    <td width=\"21%\">\n"
+"                    <div><b>Duración diaria de horas extra</b></div>\n"
+"                    </td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td><t t-out=\"object.analytic_overtime_id.duration or 0\"/></td>\n"
+"                </tr>\n"
+"                <tr valign=\"top\">\n"
+"                    <td><b>Descripción</b></td>\n"
+"                    <td><b>:</b></td>\n"
+"                    <td colspan=\"3\"><t t-out=\"object.analytic_overtime_id.description or '-'\"/></td>\n"
+"                </tr>\n"
+"            </table>\n"
+"            </td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <br/>\n"
+"    <table border=\"0\" cellspacing=\"10\" cellpadding=\"0\" width=\"100%\" style=\"font-family: Arial, Sans-serif; font-size: 14\">\n"
+"        <tr>\n"
+"            <td width=\"100%\">De:</td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td width=\"100%\"><t t-out=\"object.user_id.name or 'Odoo User'\"/></td>\n"
+"        </tr>\n"
+"        <tr valign=\"top\">\n"
+"            <td width=\"100%\">-<font color=\"a7a7a7\">-------------------------</font></td>\n"
+"        </tr>\n"
+"        <tr>\n"
+"            <td width=\"100%\"> <font color=\"a7a7a7\"><t t-out=\"object.user_id.signature or ''\"/></font></td>\n"
+"        </tr>\n"
+"    </table>\n"
+"    <table border=\"0\" cellspacing=\"10\" cellpadding=\"0\" width=\"100%\" style=\"font-family: Arial, Sans-serif; font-size: 14\">\n"
+"        <tr>\n"
+"            <td width=\"100%\">Puede enviar su Respuesta, a través de su inicio de sesión</td>\n"
+"        </tr>\n"
+"    </table>\n"
+"</body>\n"
+"        "
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Accept"
+msgstr "Aceptar"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime_attendee__state__accepted
+msgid "Accepted"
+msgstr "Aceptado"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_needaction
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model,name:saudi_hr_overtime_request.model_analytic_overtime
+#: model:ir.ui.menu,name:saudi_hr_overtime_request.menu_analytic_overtime
+msgid "Analytic Overtime"
+msgstr "Horas Extra Analíticas"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model,name:saudi_hr_overtime_request.model_analytic_overtime_attendee
+msgid "Analytic Overtime Attendee"
+msgstr "Participante de Horas Extra Analíticas"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.actions.act_window,name:saudi_hr_overtime_request.action_view_analytic_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__analytic_overtime_id
+#: model:ir.ui.menu,name:saudi_hr_overtime_request.menu_analytic_overtime_action
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_tree_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Analytic Overtime Request"
+msgstr "Solicitud de Horas Extra Analíticas"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.actions.act_window,name:saudi_hr_overtime_request.action_view_analytic_overtime_response
+#: model:ir.ui.menu,name:saudi_hr_overtime_request.menu_action_view_analytic_overtime_response
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.overtime_attendees_response_obj
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.overtime_attendees_response_obj_tree
+msgid "Analytic Overtime Response"
+msgstr "Respuesta Analítica de Horas Extra"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_attachment_count
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__attendee_ids
+msgid "Attendees"
+msgstr "Participantes"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.actions.act_window,help:saudi_hr_overtime_request.action_view_analytic_overtime
+msgid "Click to define Analytic Overtime Request."
+msgstr "Haga Clic Para Definir la Solicitud de Horas Extra Analíticas."
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.actions.act_window,help:saudi_hr_overtime_request.action_view_analytic_overtime_response
+msgid "Click to define Analytic Overtime Response."
+msgstr "Haga Clic para definir la Respuesta Analítica de Horas Extra."
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__company_ids
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__target__company
+msgid "Company Wise"
+msgstr "Por Compañía"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.overtime_attendees_response_obj
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__state__confirmed
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__create_date
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__duration
+msgid "Daily Duration"
+msgstr "Duración Diaria"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.overtime_attendees_response_obj
+msgid "Decline"
+msgstr "Rechazar"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime_attendee__state__declined
+msgid "Declined"
+msgstr "Rechazado"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__target__department
+msgid "Department Wise"
+msgstr "Por Departamento"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__department_ids
+msgid "Departments"
+msgstr "Departamentos"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__description
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Description"
+msgstr "Descripción"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__display_name
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__state__done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__state__tentative
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__email
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__email
+msgid "Email of Invited Person"
+msgstr "Correo Electrónico de la Persona Invitada"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__end_date
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_tree_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Event"
+msgstr "Evento"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_follower_ids
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_partner_ids
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "From"
+msgstr "De"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.view_hr_overtime_req_filter
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__has_message
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__id
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__message_needaction
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__message_unread
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_needaction
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__message_has_error
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__message_has_sms_error
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_has_error
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_overtime_request
+#: code:addons/saudi_hr_overtime_request/models/analytic_overtime_request.py:0
+#, python-format
+msgid ""
+"In order to delete a confirmed analytic overtime request, you must set to "
+"draft it before!"
+msgstr ""
+"Para eliminar una solicitud analítica confirmada de horas extra, "
+"¡debe establecerlo como borrador antes!"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Invitation Detail"
+msgstr "Detalle de la Invitación"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Invitation details"
+msgstr "Detalles de la Invitación"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_is_follower
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__job_ids
+msgid "JOB Profiles"
+msgstr "Perfiles de Trabajo"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__target__job
+msgid "Job Profile Wise"
+msgstr "Perfil de Trabajo"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime____last_update
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__write_date
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__mail_sent
+msgid "Mail Sent"
+msgstr "Correo Enviado"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_main_attachment_id
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_has_error
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_ids
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_needaction_counter
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Cantidad de Acciones"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_has_error_counter
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__message_needaction_counter
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__message_has_error_counter
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__message_unread_counter
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__target__office
+msgid "Office Wise"
+msgstr "En Cuanto a la Oficina"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__branch_ids
+msgid "Offices"
+msgstr "Oficinas"
+
+#. module: saudi_hr_overtime_request
+#: model:mail.template,name:saudi_hr_overtime_request.email_template_create_attendee
+msgid "Overtime Validate"
+msgstr "Validación de Horas Extras"
+
+#. module: saudi_hr_overtime_request
+#: code:addons/saudi_hr_overtime_request/models/analytic_overtime_request.py:0
+#, python-format
+msgid "Please assign user to %s."
+msgstr "Asigne el usuario a %s."
+
+#. module: saudi_hr_overtime_request
+#: code:addons/saudi_hr_overtime_request/models/analytic_overtime_request.py:0
+#, python-format
+msgid "Please create some invitation details!"
+msgstr "¡Crea algunos detalles de invitación!"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__user_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_has_sms_error
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.view_hr_overtime_req_filter
+msgid "Search Overtime Request"
+msgstr "Buscar Solicitud de Horas Extras"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Send mail"
+msgstr "Enviar Correo"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Set to Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__date
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_tree_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.constraint,message:saudi_hr_overtime_request.constraint_analytic_overtime_check_dates
+msgid "Start Date must be greater than End Date!"
+msgstr "¡La Fecha de inicio debe ser mayor que la Fecha de Finalización!"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__state
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.view_hr_overtime_req_filter
+msgid "Status"
+msgstr "Estado"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__state
+msgid "Status of the attendee's participation"
+msgstr "Estado de la participación del participante"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__target
+msgid "Target Group"
+msgstr "Grupo Objetivo"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__name
+msgid "Task Name"
+msgstr "Nombre de la Rarea"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_tree_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Task Summary"
+msgstr "Resumen de Tareas"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "To"
+msgstr "Para"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_unread
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no Leídos"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__message_unread_counter
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no Leídos"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__user_id
+msgid "User"
+msgstr "Usuario"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Validate"
+msgstr "Validar"
+
+#. module: saudi_hr_overtime_request
+#: model_terms:ir.ui.view,arch_db:saudi_hr_overtime_request.l10n_sa_analytic_overtime_view
+msgid "Visibility"
+msgstr "Visibilidad"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime__state__waiting
+#: model:ir.model.fields.selection,name:saudi_hr_overtime_request.selection__analytic_overtime_attendee__state__needs-action
+msgid "Waiting Answer"
+msgstr "Esperando Respuesta"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime__website_message_ids
+#: model:ir.model.fields,field_description:saudi_hr_overtime_request.field_analytic_overtime_attendee__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_overtime_request
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime__website_message_ids
+#: model:ir.model.fields,help:saudi_hr_overtime_request.field_analytic_overtime_attendee__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_overtime_request
+#: model:mail.template,subject:saudi_hr_overtime_request.email_template_create_attendee
+msgid "{{object.analytic_overtime_id.name}}"
+msgstr "{{object.analytic_overtime_id.name}}"

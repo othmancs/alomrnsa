@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Application Base -->
+    <!-- Recruitment Root Menu -->
+    <menuitem id="hr_recruitment.menu_hr_recruitment_root"
+        name="Recruitment"
+        groups="hr.group_hr_user"
+        parent="hr.menu_hr_root"
+        sequence="3" />
+
+    <!-- HR menu configuration-->
+    <menuitem id="hr_recruitment.menu_crm_case_categ0_act_job"
+        name="Applications"
+        parent="hr_recruitment.menu_hr_recruitment_root"
+        action="hr_recruitment.crm_case_categ0_act_job"
+        groups="hr.group_hr_user"
+        sequence="2" />
+
+    <!-- configuration menu -->
+    <menuitem id="hr_recruitment.menu_hr_recruitment_configuration"
+        name="Recruitment"
+        parent="hr.menu_human_resources_configuration"
+        sequence="100" />
+
+    <menuitem id="hr_recruitment.report_hr_recruitment"
+        name="Recruitment"
+        parent="saudi_hr.menu_reports"
+        sequence="99" />
+
+    <menuitem id="menu_hr_applicant_hire_reason"
+        action="hr_applicant_hire_reason_action"
+        parent="hr_recruitment.menu_hr_recruitment_configuration"
+        sequence="10" />
+
+    <menuitem id="interview_report"
+        name="Interview Log Report"
+        parent="saudi_hr.menu_reports"
+        action="action_interview_log_report_wizard"
+        sequence="3" />
+</odoo>

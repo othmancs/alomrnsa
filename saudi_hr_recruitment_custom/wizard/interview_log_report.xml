@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_interview_log">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="text-center">
+                            <span>
+                                <h3>Interview Log Report</h3>
+                            </span>
+                        </div>
+
+                        <div class="row mt32 mb32">
+                            <div class="text-center">
+                                <strong>From:</strong>
+                                <span t-field="o.start_date"/>
+                                <strong>To:</strong>
+                                <span t-field="o.end_date"/>
+                            </div>
+                        </div>
+
+                        <table class="table table-condensed">
+                            <thead>
+                                <th>NAME</th>
+                                <th>DATE APPLIED</th>
+                                <th>SCHEDULED INTERVIEW</th>
+                                <th>LOCATION</th>
+                                <th>POSITION</th>
+                                <th>YES/NO</th>
+                                <th>REASON</th>
+                            </thead>
+                            <tbody t-foreach="applicant" t-as="app">
+                                <tr>
+                                    <td><span t-esc="app.partner_name"/></td>
+                                    <td><span t-field="app.create_date" t-options='{"widget": "date","format": "d MMMM yy"}'/></td>
+                                    <td><span t-field="app.schedule_date" t-options='{"widget": "date","format": "d MMMM yy"}'/></td>
+                                    <td><span t-esc="app.branch_id.name"/></td>
+                                    <td><span t-esc="app.job_id.name"/></td>
+                                    <td>
+                                        <t t-if="app.is_hire_not_hire == 'yes'">Yes</t>
+                                        <t t-if="app.is_hire_not_hire == 'no'">No</t>
+                                    </td>
+                                    <td><span t-esc="app.reason_id.name"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
