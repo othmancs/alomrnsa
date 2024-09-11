@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_helpdesk_user,res.partner.helpdesk_user,base.model_res_partner,sync_helpdesk.group_helpdesk_user,1,1,1,1
+access_ir_cron_helpdesk_user,ir.cron.helpdesk_user,base.model_ir_cron,sync_helpdesk.group_helpdesk_user,1,1,1,0

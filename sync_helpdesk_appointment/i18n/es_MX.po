@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_helpdesk_appointment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 09:16+0000\n"
+"PO-Revision-Date: 2023-02-06 09:16+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model.fields,field_description:sync_helpdesk_appointment.field_ticket_ticket__appointment_ids
+msgid "Appointment"
+msgstr "Cita"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model.fields,field_description:sync_helpdesk_appointment.field_calendar_event__appointment_type
+msgid "Appointment Type"
+msgstr "Tipo de Cita"
+
+#. module: sync_helpdesk_appointment
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk_appointment.support_ticket_view_form
+msgid "Appointments"
+msgstr "Citas"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model,name:sync_helpdesk_appointment.model_calendar_event
+msgid "Calendar Event"
+msgstr "Calendario de Eventos"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model.fields.selection,name:sync_helpdesk_appointment.selection__calendar_event__appointment_type__onsite
+msgid "Onsite"
+msgstr "En el Sitio"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model.fields,field_description:sync_helpdesk_appointment.field_calendar_event__ticket_count
+#: model:ir.model.fields,field_description:sync_helpdesk_appointment.field_ticket_ticket__appointment_count
+msgid "Orders"
+msgstr "Órdenes"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model.fields.selection,name:sync_helpdesk_appointment.selection__calendar_event__appointment_type__our_office
+msgid "Our Office"
+msgstr "Nuestra Oficina"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model.fields.selection,name:sync_helpdesk_appointment.selection__calendar_event__appointment_type__phone
+msgid "Phone Call"
+msgstr "Llamada Telefónica"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model.fields.selection,name:sync_helpdesk_appointment.selection__calendar_event__appointment_type__remote_support
+msgid "Remote Support"
+msgstr "Soporte Remoto"
+
+#. module: sync_helpdesk_appointment
+#: model:ir.model,name:sync_helpdesk_appointment.model_ticket_ticket
+#: model:ir.model.fields,field_description:sync_helpdesk_appointment.field_calendar_event__ticket_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk_appointment.sync_helpdesk_appointment_view_calendar_event_form
+msgid "Ticket"
+msgstr ""
+

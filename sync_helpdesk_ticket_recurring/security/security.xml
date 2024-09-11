@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <!-- <record id="ticket_subscription_user" model="ir.rule">
+        <field name="name">Ticket User: Subscription</field>
+        <field name="model_id" ref="sync_subscription.model_subscription_subscription"/>
+        <field name="groups" eval="[(4, ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="domain_force">['|', ('ticket_id.user_id', '=', False), ('ticket_id.user_id', '=', user.id)]</field>
+    </record>
+
+    <record id="ticket_subscription_manager" model="ir.rule">
+        <field name="name">Ticket Manager: Subscription</field>
+        <field name="model_id" ref="sync_subscription.model_subscription_subscription"/>
+        <field name="groups" eval="[(4, ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id]), ('ticket_id', '!=', False), ('ticket_id.team_id', 'child_of', [user.support_team_id.id])]</field>
+    </record>  -->
+
+</odoo>

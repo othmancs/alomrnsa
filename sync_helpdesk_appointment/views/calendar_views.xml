@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Inherit calendar event form view -->
+    <record id="sync_helpdesk_appointment_view_calendar_event_form" model="ir.ui.view">
+        <field name="name">calendar.event.form</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button  float-right" type="object" name="show_ticket" icon="fa-ticket" attrs="{'invisible': [('ticket_count', '=', 0)]}">
+                    <field string="Ticket" name="ticket_count" widget="statinfo"/>
+                </button>
+            </div>
+            <field name="alarm_ids" position="after">
+                <field name="appointment_type"/>
+                <field name="ticket_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

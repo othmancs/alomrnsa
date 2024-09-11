@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <menuitem name="Recurring Tickets" id="support_recurring_ticket_menu" action="action_subscription_ticket_form" parent="sync_helpdesk.menu_support_alltickets" sequence="1"/> -->
+
+</odoo>

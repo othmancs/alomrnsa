@@ -1,0 +1,324 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_hr_skill
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-29 08:33+0000\n"
+"PO-Revision-Date: 2024-08-29 08:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_hr_skill
+#: model:mail.template,body_html:sync_hr_skill.email_template_employment_reference
+msgid ""
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                <p>Hello <t t-out=\"object.contact_name\"></t>,</p>\n"
+"\n"
+"                <p>I am <t t-out=\"object.env.user.name\"></t> from <t t-out=\"object.env.user.company_id.name\"></t> Pvt.Ltd.\n"
+"                This is with regard to referral check of <t t-out=\"object.employee_id.name or ''\"></t>, who worked with you as <t t-out=\"object.job_title\"></t>.\n"
+"                Can you please let me know the following details about him/her:</p>\n"
+"                <ul>\n"
+"                    <li>Period of Employment:</li>\n"
+"                    <li>Designation:</li>\n"
+"                    <li>Reason for leaving the organization:</li>\n"
+"                    <li>Exit formalities:Completed / Uncompleted</li>\n"
+"                    <li>Verified By:</li>\n"
+"                </ul>\n"
+"                <p>It would be very kind if you could spare a few minutes and provide your feedback.</p>\n"
+"                <p>Your cooperation and quick response by return e-mail would be highly appreciated.</p>\n"
+"                <p>Thanks &amp; Regards,</p>\n"
+"                HR Manager\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:mail.template,body_html:sync_hr_skill.cerificate_expiry_notification
+msgid ""
+"<p>Hello <t t-out=\"object.employee_id.name\"></t>,</p><br>\n"
+"        <p style=\"color:red\">Your Certificate <b><t t-out=\"object.name\"></t></b> has been expired on <t t-out=\"object.date_end\"></t>.</p><br>\n"
+"        <p>Thank you,</p>\n"
+"        <p><t t-out=\"object.company_id.name\"></t></p>\n"
+"        "
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__activities
+msgid "Activities and Societies"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__applicant_id
+msgid "Applicant"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model_terms:ir.ui.view,arch_db:sync_hr_skill.sync_resume_line_view_form
+msgid "Approve"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__state__approve
+msgid "Approved"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__4
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__4
+msgid "April"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__8
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__8
+msgid "August"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.actions.server,name:sync_hr_skill.certificate_expiry_notification_ir_actions_server
+#: model:ir.cron,cron_name:sync_hr_skill.certificate_expiry_notification
+msgid "Certificate Expire Notification"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:mail.template,name:sync_hr_skill.cerificate_expiry_notification
+#: model:mail.template,subject:sync_hr_skill.cerificate_expiry_notification
+msgid "Certificate Expiry Notification"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model_terms:ir.ui.view,arch_db:sync_hr_skill.sync_resume_line_view_form
+msgid "Certification"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__type_code
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line_type__code
+msgid "Code"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__company_id
+msgid "Company"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__company
+msgid "Company Name"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__contact_email
+msgid "Contact Email"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__contact_name
+msgid "Contact Name"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__contact_phone
+msgid "Contact Phone No"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__contact_title
+msgid "Contact Title"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__is_current_job
+msgid "Current Job"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__12
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__12
+msgid "December"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:mail.template,name:sync_hr_skill.email_template_employment_reference
+#: model:mail.template,report_name:sync_hr_skill.email_template_employment_reference
+#: model:mail.template,subject:sync_hr_skill.email_template_employment_reference
+msgid "Employment Reference Check"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model_terms:ir.ui.view,arch_db:sync_hr_skill.sync_resume_line_view_form
+msgid "Experience"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__2
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__2
+msgid "February"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__field_of_study
+msgid "Field of Study"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__grade
+msgid "Grade(GPA)"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__organization_name
+msgid "Issuing Organization"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__1
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__1
+msgid "January"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__job_title
+msgid "Job Title"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__7
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__7
+msgid "July"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__6
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__6
+msgid "June"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__location
+msgid "Location"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__3
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__3
+msgid "March"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__5
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__5
+msgid "May"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__certification_month
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__completion_month
+msgid "Month"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__is_current_job__no
+msgid "No"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__11
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__11
+msgid "November"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__10
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__10
+msgid "October"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__percentage
+msgid "Percentage"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__degree_id
+msgid "Program"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model_terms:ir.ui.view,arch_db:sync_hr_skill.sync_resume_line_view_form
+msgid "Reference"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model_terms:ir.ui.view,arch_db:sync_hr_skill.sync_resume_line_view_form
+msgid "Refuse"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__state__refuse
+msgid "Refused"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__reg_no
+msgid "Registration No."
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model,name:sync_hr_skill.model_hr_resume_line
+msgid "Resume line of an employee"
+msgstr "Ligne de CV d'un employé"
+
+#. module: sync_hr_skill
+#: model_terms:ir.ui.view,arch_db:sync_hr_skill.sync_resume_line_view_form
+msgid "Send Email"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__certification_month__9
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__completion_month__9
+msgid "September"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__state
+msgid "Status"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.constraint,message:sync_hr_skill.constraint_hr_resume_line_type_code_uniq
+msgid "The code of the resume line type must be unique!"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model,name:sync_hr_skill.model_hr_resume_line_type
+msgid "Type of a resume line"
+msgstr "Type d'une ligne de CV"
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__university_id
+msgid "University Name"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__certification_year
+#: model:ir.model.fields,field_description:sync_hr_skill.field_hr_resume_line__completion_year
+msgid "Year"
+msgstr ""
+
+#. module: sync_hr_skill
+#: model:ir.model.fields.selection,name:sync_hr_skill.selection__hr_resume_line__is_current_job__yes
+msgid "Yes"
+msgstr ""

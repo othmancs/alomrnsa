@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Subscription Document for the Ticket -->
+    <!-- <record id="subscription_document_ticket0" model="subscription.document">
+        <field eval="1" name="active"/>
+        <field name="model" ref="sync_helpdesk.model_ticket_ticket"/>
+        <field name="name">Ticket</field>
+    </record> -->
+
+</odoo>

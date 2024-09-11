@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="missing_payslip_details_view" model="ir.ui.view">
+        <field name="name">missing.payslip.details.view</field>
+        <field name="model">hr.payslip</field>
+        <field name="arch" type="xml">
+            <form string="Payslip">
+                <group string="Please Confirm below Payslips:" attrs="{'invisible': [('draft_payslip_data', '=', False)]}">
+                    <field name="draft_payslip_data" nolabel="1"/>
+                </group>
+                <group string="Please Set Email below Employees:" attrs="{'invisible': [('work_email_data', '=', False)]}">
+                    <field name="work_email_data" nolabel="1"/>
+                </group>
+                <footer>
+                    <button string="Ok" class="oe_highlight"  special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

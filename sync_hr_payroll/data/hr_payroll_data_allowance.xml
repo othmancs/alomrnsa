@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Contribution Register -->
+
+        <record id="hr_houserent_register" model="hr.contribution.register">
+            <field name="name">House Rent Allowance Register</field>
+        </record>
+
+        <record id="hr_meal_voucher_register" model="hr.contribution.register">
+            <field name="name">Meal Voucher Register</field>
+        </record>
+
+        <!-- Salary Rules -->
+
+        <record id="hr_salary_rule_houserentallowance1" model="hr.salary.rule">
+            <field name="code">HRA</field>
+            <field name="category_id" ref="sync_hr_payroll.ALW"/>
+            <field name="register_id" ref="hr_houserent_register"/>
+            <field name="name">House Rent Allowance</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (contract.hra_allow == 'fixed_amount' and contract.hra_fixed_amt > 0.0) or (contract.hra_allow == 'percentage' and contract.hra_per > 0.0)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+result = 0
+if contract.hra_allow == 'fixed_amount':
+    result = contract.hra_fixed_amt;
+else:
+    result=contract.wage/100 * contract.hra_per
+            </field>
+            <field name="sequence" eval="5"/>
+        </record>
+
+        <record id="hr_salary_rule_convanceallowance1" model="hr.salary.rule">
+            <field name="code">CA</field>
+            <field name="category_id" ref="sync_hr_payroll.ALW"/>
+            <field name="name">Conveyance Allowance</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (contract.con_allow == 'fixed_amount' and contract.con_fixed_amt > 0.0) or (contract.con_allow == 'percentage' and contract.con_per > 0.0)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+result = 0
+if contract.con_allow == 'fixed_amount':
+    result = contract.con_fixed_amt;
+else:
+    result=contract.wage/100 * contract.con_per
+            </field>
+            <field name="sequence" eval="10"/>
+        </record>
+
+        <record id="hr_salary_rule_ca_gravie" model="hr.salary.rule">
+            <field name="code">CAGG</field>
+            <field name="category_id" ref="sync_hr_payroll.ALW"/>
+            <field name="name">Conveyance Allowance For Gravie</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (contract.congravie_fixed_amt > 0)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.congravie_fixed_amt</field>
+            <field name="sequence" eval="15"/>
+        </record>
+
+        <record id="hr_salary_rule_meal_voucher" model="hr.salary.rule">
+            <field name="code">MA</field>
+            <field name="category_id" ref="sync_hr_payroll.ALW"/>
+            <field name="register_id" ref="hr_meal_voucher_register"/>
+            <field name="name">Meal Voucher</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (contract.meal_fixed_amt > 0)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.meal_fixed_amt</field>
+            <field name="sequence" eval="16"/>
+         </record>
+
+</odoo>

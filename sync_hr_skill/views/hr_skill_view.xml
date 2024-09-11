@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sync_resume_line_view_form" model="ir.ui.view">
+        <field name="name">sync.hr.resume.line.form</field>
+        <field name="model">hr.resume.line</field>
+        <field name="inherit_id" ref="hr_skills.resume_line_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header attrs="{'invisible': [('type_code', '!=', 'EXP')]}">
+                    <button string="Send Email" name="action_send_mail"
+                        type="object" groups="hr.group_hr_user" states="draft,refuse" class="oe_highlight" />
+                    <button string="Approve" name="experience_approve"
+                        type="object" states="draft,refuse" class="oe_highlight" groups="hr.group_hr_user"/>
+                    <button string="Refuse" name="experience_refuse" type="object"
+                        states="draft,approve" class="oe_left" groups="hr.group_hr_user"/>
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="waiting_answer,done" />
+                </header>
+            </xpath>
+            <xpath expr="//group[1]" position="after">
+                <group attrs="{'invisible': [('type_code', '!=', 'EXP')]}">
+                    <group string="Experience">
+                        <field name="is_current_job"/>
+                        <field name="company" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                        <field name="job_title" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                        <field name="location"/>
+                    </group>
+                    <group string="Reference">
+                        <field name="contact_name" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                        <field name="contact_phone"/>
+                        <field name="contact_email" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                        <field name="contact_title"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//group[1]" position="after">
+                <group attrs="{'invisible': [('type_code', '!=', 'CER')]}">
+                    <group string="Certification">
+                        <field name="organization_name" attrs="{'required': [('type_code', '=', 'CER')]}"/>
+                        <field name="certification_month"/>
+                    </group>
+                    <group>
+                        <field name="certification_year"/>
+                        <field name="reg_no"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//group[1]" position="after">
+                <group attrs="{'invisible': [('type_code', '!=', 'EDU')]}">
+                     <group>
+                        <field name="degree_id" attrs="{'required': [('type_code', '=', 'EDU')]}"/>
+                        <field name="university_id"/>
+                        <field name="completion_year"/>
+                        <field name="completion_month"/>
+                    </group>
+                    <group>
+                        <field name="field_of_study"/>
+                        <field name="grade"/>
+                        <field name="activities"/>
+                        <field name="percentage"/>
+                    </group>
+                </group>
+            </xpath>
+            <field name="line_type_id" position="after">
+                <field name="type_code" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="sync_hr_resume_line_type_tree_view" model="ir.ui.view">
+        <field name="name">sync.hr.resume.line.type.tree.view</field>
+        <field name="model">hr.resume.line.type</field>
+        <field name="inherit_id" ref="hr_skills.hr_resume_line_type_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="code"/>
+            </field>
+        </field>
+    </record>
+</odoo>

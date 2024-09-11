@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="helpdesk_appointment_chair" model="calendar.event">
+        <field name="ticket_id" ref="sync_helpdesk.helpdesk_ticket1"/>
+        <field name="name">Wheels not working in Chair issue</field>
+        <field name="partner_ids" model="calendar.event" eval="[(4, ref('sync_helpdesk.helpdesk_customer_ryan')), (4, obj().env['calendar.event'].default_get_partner(ref('sync_helpdesk.helpdesk_user_william')))]"/>
+        <field name="start_date" eval="DateTime.today()"/>
+        <field name="start" eval="DateTime.today()"/>
+        <field name="stop" eval="DateTime.today() + relativedelta(minutes=30)"/>
+        <field name="stop_date" eval="DateTime.today() + relativedelta(minutes=30)"/>
+        <field name="duration">1</field>
+        <field name="categ_ids" eval="[(4, ref('calendar.categ_meet1'))]"/>
+        <field name="alarm_ids" eval="[(4, ref('calendar.alarm_notif_2'))]"/>
+        <field name="appointment_type">onsite</field>
+        <field name="location">3604 Edgewood Road, Jonesboro, 72401.</field>
+        <field name="description">Chair repairing because the lift or the wheels aren't working</field>
+    </record>
+
+    <record id="helpdesk_appointment_sofa" model="calendar.event">
+        <field name="ticket_id" ref="sync_helpdesk.helpdesk_ticket2"/>
+        <field name="name">Damage in fabric 2 Seater Sofa</field>
+        <field name="partner_ids" model="calendar.event" eval="[(4, ref('sync_helpdesk.helpdesk_customer_elliott')), (4, obj().env['calendar.event'].default_get_partner(ref('sync_helpdesk.helpdesk_user_lewis')))]"/>
+        <field name="start_date" eval="DateTime.today()"/>
+        <field name="start" eval="DateTime.today()"/>
+        <field name="stop" eval="DateTime.today() + relativedelta(hours=3)"/>
+        <field name="stop_date" eval="DateTime.today() + relativedelta(hours=3)"/>
+        <field name="duration">1</field>
+        <field name="categ_ids" eval="[(4, ref('calendar.categ_meet1'))]"/>
+        <field name="alarm_ids" eval="[(4, ref('calendar.alarm_notif_2'))]"/>
+        <field name="appointment_type">onsite</field>
+        <field name="location">3444 Edgewood Road, Jonesboro, 72401.</field>
+        <field name="description">2 Seater Sofa repairing because of damage it's fabric</field>
+    </record>
+
+    <record id="helpdesk_appointment_bed" model="calendar.event">
+        <field name="ticket_id" ref="sync_helpdesk.helpdesk_ticket3"/>
+        <field name="name">Damaged leg of Sleigh Bed</field>
+        <field name="partner_ids" model="calendar.event" eval="[(4, ref('sync_helpdesk.helpdesk_customer_ryan')), (4, obj().env['calendar.event'].default_get_partner(ref('sync_helpdesk.helpdesk_user_joseph')))]"/>
+        <field name="start_date" eval="DateTime.today()"/>
+        <field name="start" eval="DateTime.today()"/>
+        <field name="stop" eval="DateTime.today() + relativedelta(hours=1)"/>
+        <field name="stop_date" eval="DateTime.today() + relativedelta(hours=1)"/>
+        <field name="duration">1</field>
+        <field name="categ_ids" eval="[(4, ref('calendar.categ_meet1'))]"/>
+        <field name="alarm_ids" eval="[(4, ref('calendar.alarm_notif_1'))]"/>
+        <field name="appointment_type">onsite</field>
+        <field name="location">3644 Edgewood Road, Jonesboro, 72401.</field>
+        <field name="description">Sleigh Bed repairing because damaged it's leg</field>
+    </record>
+</odoo>

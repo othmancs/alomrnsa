@@ -1,0 +1,1796 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_hr_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 10:08+0000\n"
+"PO-Revision-Date: 2022-05-30 10:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr "%s (copiar)"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.report,print_report_name:sync_hr_payroll.action_report_payslip
+msgid "'Payslip - %s' % (object.employee_id.name)"
+msgstr "Nómina - %s' % (objeto.employee_id.name)"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.report,print_report_name:sync_hr_payroll.payslip_details_report
+msgid "'Payslip Details - %s' % (object.employee_id.name)"
+msgstr "'Detalles de Nómina - %s' % (objeto.employee_id.name)"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.report,print_report_name:sync_hr_payroll.action_contribution_register
+msgid "'Payslip Lines By Contribution Register'"
+msgstr "'Registro de Líneas de Nómina por Cotización'"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip__state
+msgid ""
+"* When the payslip is created the status is 'Draft'\n"
+"                \n"
+"* If the payslip is under verification, the status is 'Waiting'.\n"
+"                \n"
+"* If the payslip is confirmed then status is set to 'Done'.\n"
+"                \n"
+"* When user cancel payslip the status is 'Rejected'."
+msgstr ""
+"* Cuando se crea la nómina, el estado es 'Borrador'\n"
+"                \n"
+"* Si la nómina está en verificación, el estado es 'En espera'.\n"
+"                \n"
+"* Si se confirma la nómina, el estado se establece en 'Listo'.\n"
+"                \n"
+"* Cuando el usuario cancela la nómina, el estado es 'Rechazado."
+
+#. module: sync_hr_payroll
+#: model:mail.template,body_html:sync_hr_payroll.send_payslip_mail
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                    Dear Employee.\n"
+"                    <br/><br/>\n"
+"                        Your Payslip Detail Find In  Attachment.\n"
+"                    <br/><br/>\n"
+"                    Thank you\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin: 0px; padding: 0px; font-size: 13px;\">\n"
+"                    Estimado Empleado.\n"
+"                    <br/><br/>\n"
+"                        Los detalles de su nómina se encuentran en un archivo adjunto.\n"
+"                    <br/><br/>\n"
+"                    Gracias\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_by_employees
+msgid ""
+"<span colspan=\"4\" nolabel=\"1\">Este asistente generará recibos de pago para todos"
+" selected employee(s) based on the dates and credit note specified on "
+"Payslips Run.</span>"
+msgstr ""
+"<span colspan=\"4\" nolabel=\"1\">This wizard will generate payslips for all"
+" los empleados seleccionados según las fechas y la nota de crédito especificada en "
+"la Ejecución de Nóminas.</span>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Address</strong>"
+msgstr "<strong>Dirección</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Authorized signature</strong>"
+msgstr "<strong>Firma autorizada</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Bank Account</strong>"
+msgstr "<strong>Cuenta Bancaria</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+msgid "<strong>Date From:</strong>"
+msgstr "<strong>Fecha Desde:</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Date From</strong>"
+msgstr "<strong>Fecha Desde</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+msgid "<strong>Date To:</strong>"
+msgstr "<string>Fecha Hasta:</string>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Date To</strong>"
+msgstr "<string>Fecha Hasta</string>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Designation</strong>"
+msgstr "<strong>Designación</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Email</strong>"
+msgstr "<strong>Correo Electrónico</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Identification No</strong>"
+msgstr "<strong>Número de Identificación</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Name</strong>"
+msgstr "<strong>Nombre</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "<strong>Reference</strong>"
+msgstr "<strong>Referencia</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+msgid "<strong>Register Name:</strong>"
+msgstr "<strong>Nombre de Registro:</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+msgid "<strong>Total</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.actions.act_window,help:sync_hr_payroll.action_contribution_register_form
+msgid ""
+"A contribution register is a third party involved in the salary\n"
+"            payment of the employees. It can be the social security, the\n"
+"            state or anyone that collect or inject money on payslips."
+msgstr ""
+"Un registro de cotización es un tercero que interviene en el pago "
+"            de los salarios de los empleados. Puede ser la seguridad social, "
+"            el estado o cualquiera que recaude o inyecte dinero en las nóminas."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_res_config_settings__module_account_accountant
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Accounting"
+msgstr "Contabilidad"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Accounting Information"
+msgstr "Información de Contabilidad"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__active
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.actions.act_window,help:sync_hr_payroll.action_contribution_register_form
+msgid "Add a new contribution register"
+msgstr "Añadir un nuevo registro de cotización"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Add an internal note..."
+msgstr "Añadir una nota interna..."
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_contract_advantage_template_view_form
+msgid "Advantage Name"
+msgstr "Nombre de Ventaja"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule.category,name:sync_hr_payroll.ALW
+msgid "Allowance"
+msgstr "Prestación"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_contract_form_inherit
+msgid "Allowances"
+msgstr "Prestaciones"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_line__condition_select__none
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_salary_rule__condition_select__none
+msgid "Always True"
+msgstr "Siempre Cierto"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__amount
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__amount
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Amount"
+msgstr "Monto"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__amount_select
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__amount_select
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_filter
+msgid "Amount Type"
+msgstr "Tipo de Monto"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__schedule_pay__annually
+msgid "Annually"
+msgstr "Anualmente"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__appears_on_payslip
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__appears_on_payslip
+msgid "Appears on Payslip"
+msgstr "Aparece en Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__condition_python
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__condition_python
+msgid ""
+"Applied this rule for calculation if condition is true. You can specify "
+"condition like basic > 1000."
+msgstr ""
+"Se aplica esta regla para el cálculo si la condición es verdadera. Puede especificar"
+"condición básica > 1000.
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.send_payslip_mail_view
+msgid "Are you sure you want to Send Payslip to Employee?"
+msgstr "¿Está seguro de que desea enviar el comprobante de pago al empleado?"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule,name:sync_hr_payroll.hr_rule_basic
+#: model:hr.salary.rule.category,name:sync_hr_payroll.BASIC
+msgid "Basic"
+msgstr "Básico"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__schedule_pay__bi-monthly
+msgid "Bi-monthly"
+msgstr "Bimestral"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__schedule_pay__bi-weekly
+msgid "Bi-weekly"
+msgstr "Bisemanal"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_form
+msgid "Calculations"
+msgstr "Cálculos"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.send_payslip_mail_view
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_payslip_lines_contribution_register
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Cancel Payslip"
+msgstr "Cancelar Nómina"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "Cannot cancel a payslip that is done."
+msgstr "No se puede cancelar una nómina que está hecha."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__category_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__category_id
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_rule_filter
+msgid "Category"
+msgstr "Categoría"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "Child Rules"
+msgstr "Reglas Secundarias"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__child_ids
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__child_ids
+msgid "Child Salary Rule"
+msgstr "Regla Secundaria de Salario"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__children_ids
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__children_ids
+msgid "Children"
+msgstr "Hijos"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "Children Definition"
+msgstr "Definición de Hijos"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_run__state__close
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__code
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__code
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__code
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__code
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__code
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__code
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__code
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Code"
+msgstr "Código"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payroll_structure_view_kanban
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_view_kanban
+msgid "Code:"
+msgstr "Código:"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__company_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__company_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__company_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__company_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__company_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule.category,name:sync_hr_payroll.COMP
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "Company Contribution"
+msgstr "Aporte de la Compañía"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "Computation"
+msgstr "Cálculo"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Compute Sheet"
+msgstr "Hoja de Cálculo"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__condition_select
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__condition_select
+msgid "Condition Based on"
+msgstr "Condición Basada en"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "Conditions"
+msgstr "Condiciones"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: sync_hr_payroll
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_hr_payroll_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_form
+msgid "Confirm Payslip"
+msgstr "Confirmar Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__contract_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__contract_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__contract_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__contract_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.hr_contract_advantage_template_action
+#: model:ir.ui.menu,name:sync_hr_payroll.hr_contract_advantage_template_menu_action
+msgid "Contract Advantage Templates"
+msgstr "Plantillas de Ventaja de Contrato"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_contribution_register_form
+msgid "Contribution"
+msgstr "Aporte"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_contribution_register
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__register_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__register_id
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_filter
+msgid "Contribution Register"
+msgstr "Registro de Aportes"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_payslip_lines_contribution_register
+msgid "Contribution Register's Payslip Lines"
+msgstr "Líneas de Nómina del Registro de Cotizaciones"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_contribution_register_form
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_action_hr_contribution_register_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_contribution_register_filter
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_contribution_register_tree
+msgid "Contribution Registers"
+msgstr "Registros de Aportes"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule,name:sync_hr_payroll.hr_salary_rule_convanceallowance1
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__con_allow
+msgid "Conveyance Allowance"
+msgstr "Subsidio de Transporte"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule,name:sync_hr_payroll.hr_salary_rule_ca_gravie
+msgid "Conveyance Allowance For Gravie"
+msgstr "Subsidio de Transporte para Gravie"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__congravie_fixed_amt
+msgid "Conveyance Allowance For Gravie Fixed Amount"
+msgstr "Subsidio de Transporte para Cantidad Fija de Gravie"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__create_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_send_payslip_mail__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__create_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_send_payslip_mail__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__credit_note
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__credit_note
+msgid "Credit Note"
+msgstr "Nota de Crédito"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__date_from
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__date_start
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__date_from
+msgid "Date From"
+msgstr "Fecha de"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__date_to
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__date_end
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__date_to
+msgid "Date To"
+msgstr "Fecha Hasta"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule.category,name:sync_hr_payroll.DED
+msgid "Deduction"
+msgstr "Deducción"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__default_value
+msgid "Default value for this advantage"
+msgstr "Valor por defecto de esta ventaja"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_contract__schedule_pay
+msgid "Defines the frequency of the wage payment."
+msgstr "Define la frecuencia del pago del salario."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip__struct_id
+msgid ""
+"Defines the rules that have to be applied to this payslip, accordingly to "
+"the contract chosen. If you let empty the field contract, this field isn't "
+"mandatory anymore and thus the rules applied will be all the rules set on "
+"the structure of all contracts of the employee valid for the chosen period"
+msgstr ""
+"Define las reglas que deben aplicarse a este recibo de pago, de acuerdo con "
+"el contrato elegido. Si deja vacío el campo contrato, este campo ya no es "
+"obligatorio y por lo tanto, las reglas aplicadas serán todas las reglas establecidas "
+"en la estructura de todos los contratos del empleado válidos por el período elegido"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__note
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__note
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__note
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__note
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__note
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_contribution_register_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Details By Salary Rule Category"
+msgstr "Detalles por Categoría de Regla Salarial"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__details_by_salary_rule_category
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Details by Salary Rule Category"
+msgstr "Detalles por Categoría de Regla Salarial"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__display_name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_send_payslip_mail__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip__state__done
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_filter
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "Done"
+msgstr "Hecho"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_filter
+msgid "Done Payslip Batches"
+msgstr "Lotes de Nómina Hechos"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "Done Slip"
+msgstr "Papeleta Hecha"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip__state__draft
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_run__state__draft
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_filter
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_filter
+msgid "Draft Payslip Batches"
+msgstr "Borrador de Lotes de Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__draft_payslip_data
+msgid "Draft Payslip Data"
+msgstr "Borrador de Datos de Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "Draft Slip"
+msgstr "Borrador de Papeleta"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_res_config_settings__duplicate_payslip_restrict
+msgid "Duplicate Payslip Restrict"
+msgstr "Restricción de Nómina Duplicada"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_employee
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__employee_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__employee_id
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato de empleado"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_employee_grade_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payroll_structure_list_view
+msgid "Employee Function"
+msgstr "Función del Empleado"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_view_hr_payslip_form
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_department_tree
+msgid "Employee Payslips"
+msgstr "Nóminas de Empleados"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_contract_advantage_template
+msgid "Employee's Advantage on Contract"
+msgstr "Ventaja del Empleado en el Contrato"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_contract__resource_calendar_id
+msgid "Employee's working schedule."
+msgstr "Horario de trabajo del empleado."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees__employee_ids
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_by_employees
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_filter
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "Error! You cannot create recursive hierarchy of Salary Rule Category."
+msgstr "¡Error! No puede crear una jerarquía recursiva de Categoría de Regla Salarial."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "Error! You cannot create recursive hierarchy of Salary Rules."
+msgstr "¡Error! No se puede crear una jerarquía recursiva de Reglas Salariales."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__register_id
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__register_id
+msgid "Eventual third party involved in the salary payment of the employees."
+msgstr "Tercero eventual involucrado en el pago de salarios de los empleados."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__con_fixed_amt
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__hra_fixed_amt
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__tra_fixed_amt
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__amount_fix
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__amount_fix
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__con_allow__fixed_amount
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__hra_allow__fixed_amount
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__trans_allow__fixed_amount
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_line__amount_select__fix
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_salary_rule__amount_select__fix
+msgid "Fixed Amount"
+msgstr "Cantidad Fija"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__amount_percentage
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__amount_percentage
+msgid "For example, enter 50.0 to apply a percentage of 50%"
+msgstr "Por ejemplo, ingrese 50.0 para aplicar un porcentaje del 50%"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/report/report_contribution_register.py:0
+#, python-format
+msgid "Form content is missing, this report cannot be printed."
+msgstr "Falta el contenido del formulario, este informe no se puede imprimir."
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "General"
+msgstr "General"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_by_employees
+msgid "Generate"
+msgstr "Generar"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_hr_payslip_by_employees
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_form
+msgid "Generate Payslips"
+msgstr "Generar Nóminas"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_payslip_employees
+msgid "Generate payslips for all selected employees"
+msgstr "Generar nóminas para todos los empleados seleccionados"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "Global Leaves"
+msgstr "Ausencias Globales"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule,name:sync_hr_payroll.hr_rule_taxable
+#: model:hr.salary.rule.category,name:sync_hr_payroll.GROSS
+msgid "Gross"
+msgstr "Bruto"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_filter
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_rule_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: sync_hr_payroll
+#: model:ir.module.category,description:sync_hr_payroll.module_category_hr_payroll
+msgid "Helps you manage your payrolls."
+msgstr "Te ayuda a administrar tus nóminas"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule,name:sync_hr_payroll.hr_salary_rule_houserentallowance1
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__hra_allow
+msgid "House Rent Allowance"
+msgstr "Subsidio de Alquiler de la Casa"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_send_payslip_mail__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_run__credit_note
+msgid ""
+"If its checked, indicates that all payslips generated from here are refund "
+"payslips."
+msgstr ""
+"Si está marcado, indica que todas las nóminas generadas desde aquí son reembolsables"
+"nóminas."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__active
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__active
+msgid ""
+"If the active field is set to false, it will allow you to hide the salary "
+"rule without removing it."
+msgstr ""
+"Si el campo activo se establece en falso, le permitirá ocultar la regla "
+"de salario sin eliminarla."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip__credit_note
+msgid "Indicates this payslip has a refund of another"
+msgstr "Indica que esta nómina tiene un reembolso de otra"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Input Data"
+msgstr "Introducir Datos"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__input_ids
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__input_ids
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+msgid "Inputs"
+msgstr "Entradas"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__note
+msgid "Internal Note"
+msgstr "Nota Interna"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__is_send
+msgid "Is Send"
+msgstr "Es Enviar"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_view_kanban
+msgid "Is a Blocking Reason?"
+msgstr "¿es un motivo de bloqueo?"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__quantity
+msgid ""
+"It is used in computation for percentage and fixed amount. For e.g. A rule "
+"for Meal Voucher having fixed amount of 1€ per worked day can have its "
+"quantity defined in expression like worked_days.WORK100.number_of_days."
+msgstr ""
+"Se utiliza en el cálculo de porcentaje y cantidad fija. Por ejemplo, una regla"
+"para el Bono Comida con un importe fijo de 1€ por día trabajado puede tener su "
+"cantidad definida en una expresión como worked_days.WORK100.number_of_days."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_input__amount
+msgid ""
+"It is used in computation. For e.g. A rule for sales having 1% commission of"
+" basic salary for per product can defined in expression like result = "
+"inputs.SALEURO.amount * contract.wage*0.01."
+msgstr ""
+"Se usa en el cálculo. Por ejemplo, una regla para ventas que tiene una comisión"
+" del 1% del salario básico por producto puede definirse en expresión como"
+" resultado = inputs.SALEURO.amount * contract.wage*0.01."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register____last_update
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_send_payslip_mail____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__write_uid
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_send_payslip_mail__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_employees__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_payslip_lines_contribution_register__write_date
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_send_payslip_mail__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualización en"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule_category__parent_id
+msgid ""
+"Linking a salary category to its parent is used only for the reporting "
+"purpose."
+msgstr ""
+"La vinculación de una categoría salarial a su matriz se usa solo con "
+"fines informativos."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__lower_bound
+msgid "Lower Bound"
+msgstr "Límite Inferior"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_contract_advantage_template__lower_bound
+msgid "Lower bound authorized by the employer for this advantage"
+msgstr "Límite inferior autorizado por el empleador para esta ventaja"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__paid
+msgid "Made Payment Order ? "
+msgstr "¿Realizó la orden de pago?"
+
+#. module: sync_hr_payroll
+#: model:res.groups,name:sync_hr_payroll.group_hr_payroll_manager
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__condition_range_max
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__condition_range_max
+msgid "Maximum Range"
+msgstr "Rango Maximo"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__meal_fixed_amt
+msgid "Meal Allowance Fixed Amount"
+msgstr "Monto Fijo de la Prestación de Comida"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule,name:sync_hr_payroll.hr_salary_rule_meal_voucher
+msgid "Meal Voucher"
+msgstr "Vale de Comida"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__condition_range_min
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__condition_range_min
+msgid "Minimum Range"
+msgstr "Rango Mínimo"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Miscellaneous"
+msgstr "Misceláneos"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__schedule_pay__monthly
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__name
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__name
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Name"
+msgstr "Nombre" 
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule.category,name:sync_hr_payroll.NET
+msgid "Net"
+msgstr "Neto"
+
+#. module: sync_hr_payroll
+#: model:hr.salary.rule,name:sync_hr_payroll.hr_rule_net
+msgid "Net Salary"
+msgstr "Salario Neto"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "Normal Working Days paid at 100%"
+msgstr "Días Laborables Normales Pagados al 100%"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_category_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__number_of_days
+msgid "Number of Days"
+msgstr "Número de Días"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__number_of_hours
+msgid "Number of Hours"
+msgstr "Número de Horas"
+
+#. module: sync_hr_payroll
+#: model:res.groups,name:sync_hr_payroll.group_hr_payroll_user
+msgid "Officer"
+msgstr "Oficial"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.missing_payslip_details_view
+msgid "Ok"
+msgstr "Ok"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Other Inputs"
+msgstr "Otras Entradas"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__parent_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule_category__parent_id
+msgid "Parent"
+msgstr "Padre"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__parent_rule_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__parent_rule_id
+msgid "Parent Salary Rule"
+msgstr "Regla de Salario de los Padres"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__partner_id
+msgid "Partner"
+msgstr "Compañero"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_payslip
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__payslip_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__slip_id
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__payslip_id
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Pay Slip"
+msgstr "Recibo de Pago"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.report,name:sync_hr_payroll.action_report_payslip
+msgid "PaySlip"
+msgstr "Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "PaySlip Batch"
+msgstr "Lote de Nóminas"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.report,name:sync_hr_payroll.payslip_details_report
+msgid "PaySlip Details"
+msgstr "Detalles de la Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_payslip_lines_contribution_register
+msgid "PaySlip Lines"
+msgstr "Líneas de Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.report,name:sync_hr_payroll.action_contribution_register
+msgid "PaySlip Lines By Contribution Register"
+msgstr "Registro de Líneas de Nómina por Aporte"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+msgid "PaySlip Lines by Contribution Register"
+msgstr "Registro de Líneas de Nómina por Aporte"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+msgid "PaySlip Name"
+msgstr "Nombre de la Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.open_payroll_modules
+#: model:ir.module.category,name:sync_hr_payroll.module_category_hr_payroll
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_hr_payroll_root
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.res_config_settings_view_form
+msgid "Payroll"
+msgstr "Nómina de sueldos"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_report_sync_hr_payroll_report_contributionregister
+msgid "Payroll Contribution Register Report"
+msgstr "Informe de Registro de Aportes de Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.res_config_settings_view_form
+msgid "Payroll Entries"
+msgstr "Entradas de Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payroll_structure_filter
+msgid "Payroll Structures"
+msgstr "Estructuras de Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.missing_payslip_details_view
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Payslip"
+msgstr "Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_payslip_run
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__payslip_run_id
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_filter
+msgid "Payslip Batches"
+msgstr "Lotes de Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.act_payslip_lines
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__payslip_count
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Payslip Computation Details"
+msgstr "Detalles de Cómputo de Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_employee__payslip_count
+msgid "Payslip Count"
+msgstr "Recuento de Nómina"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/wizard/send_payslip_mail.py:0
+#, python-format
+msgid "Payslip Details"
+msgstr "Detalles de la Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_report_sync_hr_payroll_report_payslipdetails
+msgid "Payslip Details Report"
+msgstr "Informe de detalles de nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_payslip_input
+msgid "Payslip Input"
+msgstr "Entrada de Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__input_line_ids
+msgid "Payslip Inputs"
+msgstr "Entradas de Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_payslip_line
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_form
+msgid "Payslip Line"
+msgstr "Línea de Nómina"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__line_ids
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_filter
+msgid "Payslip Lines"
+msgstr "Líneas de nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Payslip Lines by Contribution Register"
+msgstr "Registro de Líneas de Nóminas por Aporte"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_payslip_lines_contribution_register
+msgid "Payslip Lines by Contribution Registers"
+msgstr "Líneas de Nómina por Registros de Cotizaciones"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__name
+msgid "Payslip Name"
+msgstr "Nombre de Nómina"
+
+#. module: sync_hr_payroll
+#: model:mail.template,subject:sync_hr_payroll.send_payslip_mail
+msgid "Payslip To {{object.employee_id.name}}"
+msgstr "Nómina a {{object.employee_id.name}}"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_payslip_worked_days
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__worked_days_line_ids
+msgid "Payslip Worked Days"
+msgstr "Nómina de Días Trabajados"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.act_hr_employee_payslip_list
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_employee__slip_ids
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__slip_ids
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.payroll_hr_employee_view_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_tree
+msgid "Payslips"
+msgstr "Nóminas"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_hr_payslip_run_tree
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_hr_payslip_run
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_tree
+msgid "Payslips Batches"
+msgstr "Lotes de Nóminas"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.act_contribution_reg_payslip_lines
+msgid "Payslips Lines"
+msgstr "Líneas de Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_by_employees
+msgid "Payslips by Employees"
+msgstr "Nóminas de Empleados"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__con_allow__percentage
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__hra_allow__percentage
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__trans_allow__percentage
+msgid "Percentage"
+msgstr "Porcentaje"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__con_per
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__hra_per
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__tra_per
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__amount_percentage
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__amount_percentage
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_line__amount_select__percentage
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_salary_rule__amount_select__percentage
+msgid "Percentage (%)"
+msgstr "Porcentaje (%)"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__amount_percentage_base
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__amount_percentage_base
+msgid "Percentage based on"
+msgstr "Porcentaje basado en"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Period"
+msgstr "Período"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.missing_payslip_details_view
+msgid "Please Confirm below Payslips:"
+msgstr "Por Favor Confirme Debajo de las Nóminas:"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "Please Set %s's %s Email and Confirm Payslip:"
+msgstr "Establezca el Correo Electrónico de %s de %s y Confirme la Nómina:"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.missing_payslip_details_view
+msgid "Please Set Email below Employees:"
+msgstr "Establezca el Correo Electrónico Debajo de los Empleados:"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.res_config_settings_view_form
+msgid "Post payroll slips in accounting"
+msgstr "Publicar recibos de nómina en contabilidad"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_payslip_lines_contribution_register
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__amount_python_compute
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__amount_python_compute
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_line__amount_select__code
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_salary_rule__amount_select__code
+msgid "Python Code"
+msgstr "Código Python"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__condition_python
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__condition_python
+msgid "Python Condition"
+msgstr "Condición de Python"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_line__condition_select__python
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_salary_rule__condition_select__python
+msgid "Python Expression"
+msgstr "Expresión de Python"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__quantity
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+msgid "Quantity/Rate"
+msgstr "Cantidad/Tasa"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Quantity/rate"
+msgstr "Cantidad/tasa"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__schedule_pay__quarterly
+msgid "Quarterly"
+msgstr "Trimestral"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip_line__condition_select__range
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_salary_rule__condition_select__range
+msgid "Range"
+msgstr "Rango"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__condition_range
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__condition_range
+msgid "Range Based on"
+msgstr "Rango Basado en"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__rate
+msgid "Rate (%)"
+msgstr "Tasa (%)"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__code
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__number
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Refund"
+msgstr "Reembolso"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "Refund: "
+msgstr "Reembolso: "
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contribution_register__register_line_ids
+msgid "Register Line"
+msgstr "Línea de Registro"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip__state__cancel
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.res_config_settings_view_form
+msgid "Restrict duplicate payslip for employee in same duration."
+msgstr "Restringir la nómina duplicada para el empleado en la misma duración."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__salary_rule_id
+msgid "Rule"
+msgstr "Regla"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_category_form
+msgid "Salary Categories"
+msgstr "Categorías de Salario"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Salary Computation"
+msgstr "Cálculo de Salario"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_salary_rule
+msgid "Salary Rule"
+msgstr "Regla de Salario"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_hr_salary_rule_category
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_hr_salary_rule_category
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_category_tree
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_salary_rule_category_filter
+msgid "Salary Rule Categories"
+msgstr "Categorías de Reglas Salariales"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_salary_rule_category
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_filter
+msgid "Salary Rule Category"
+msgstr "Categoría de Regla Salarial"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_rule_input
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_rule_input__input_id
+msgid "Salary Rule Input"
+msgstr "Entrada de Regla de Salario"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_salary_rule_form
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payroll_structure__rule_ids
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_action_hr_salary_rule_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_list
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_salary_rule_tree
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_employee_grade_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_rule_filter
+msgid "Salary Rules"
+msgstr "Reglas de Salario"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "Salary Slip of %s for %s"
+msgstr "Recibo de Sueldo de %s para %s"
+
+#. module: sync_hr_payroll
+#: model:ir.model,name:sync_hr_payroll.model_hr_payroll_structure
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__struct_id
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payroll_structure_tree
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_tree
+msgid "Salary Structure"
+msgstr "Estructura Salarial"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_view_hr_payroll_structure_list_form
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_hr_payroll_structure_view
+msgid "Salary Structures"
+msgstr "Estructuras Salariales"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__schedule_pay
+msgid "Scheduled Pay"
+msgstr "Pago Programado"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_filter
+msgid "Search Payslip Batches"
+msgstr "Buscar Lotes de Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_line_filter
+msgid "Search Payslip Lines"
+msgstr "Buscar Líneas de Nómina"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "Search Payslips"
+msgstr "Buscar Nóminas"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_rule_filter
+msgid "Search Salary Rule"
+msgstr "Buscar Regla Salarial"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__schedule_pay__semi-annually
+msgid "Semi-annually"
+msgstr "Semestral"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.send_payslip_mail_view
+msgid "Send"
+msgstr "Enviar"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_send_payslip_mail_view
+#: model:ir.model,name:sync_hr_payroll.model_send_payslip_mail
+msgid "Send Payslip Mail"
+msgstr "Enviar Correo de Nómina"
+
+#. module: sync_hr_payroll
+#: model:mail.template,name:sync_hr_payroll.send_payslip_mail
+msgid "Send Payslip To Employee"
+msgstr "Enviar Nómina al Empleado"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_input__sequence
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__sequence
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_worked_days__sequence
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_salary_rule__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.hr_payslip_run_form
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Set to Draft"
+msgstr "Establecer como Borrador"
+
+#. module: sync_hr_payroll
+#: model:ir.actions.act_window,name:sync_hr_payroll.action_hr_payroll_configuration
+#: model:ir.ui.menu,name:sync_hr_payroll.menu_hr_payroll_global_settings
+msgid "Settings"
+msgstr "Configuración"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_filter
+msgid "States"
+msgstr "Estados"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__state
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_run__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__struct_id
+msgid "Structure"
+msgstr "Estructura"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__code
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__code
+msgid ""
+"The code of salary rules can be used as reference in computation of other "
+"rules. In that case, it is case sensitive."
+msgstr ""
+"El código de normas salariales podrá ser utilizado como referencia en el "
+"cómputo de otras reglas. En ese caso, se distingue entre mayúsculas y minúsculas.
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_input__code
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_worked_days__code
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_rule_input__code
+msgid "The code that can be used in the salary rules"
+msgstr "El código que se puede utilizar en las reglas salariales."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__amount_select
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__amount_select
+msgid "The computation method for the rule amount."
+msgstr "El método de cálculo para el monto de la regla."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_input__contract_id
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_worked_days__contract_id
+msgid "The contract for which applied this input"
+msgstr "El contrato para el que se aplica esta entrada"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__condition_range_max
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__condition_range_max
+msgid "The maximum amount, applied for this rule."
+msgstr "La cantidad máxima, aplicada para esta regla."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__condition_range_min
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__condition_range_min
+msgid "The minimum amount, applied for this rule."
+msgstr "La cantidad mínima, aplicada para esta regla."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_contract.py:0
+#, python-format
+msgid "The value of Conveyance Allowance percentage must be between 1 to 100."
+msgstr "El valor del Porcentaje del Subsidio de Transporte debe estar entre 1 y 100."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_contract.py:0
+#, python-format
+msgid "The value of House Rent Allowance percentage must be between 1 to 100."
+msgstr "El valor del porcentaje de Subsidio de Alquiler de la casa debe estar entre 1 y 100."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_contract.py:0
+#, python-format
+msgid ""
+"The value of Transportation Allowance percentage must be between 1 to 100."
+msgstr ""
+"El valor del porcentaje de Subsidio de Transporte debe estar entre 1 y 100."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__condition_range
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__condition_range
+msgid ""
+"This will be used to compute the % fields values; in general it is on basic,"
+" but you can also use categories code fields in lowercase as a variable "
+"names (hra, ma, lta, etc.) and the variable basic."
+msgstr ""
+"Esto se usará para calcular los valores de % de los campos; en general, es básico,"
+"pero también puede usar campos de código de categorías en minúsculas como una variable"
+"nombres (hra, ma, lta, etc.) y la variable básica."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip_line__total
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_contributionregister
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslip
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.report_payslipdetails
+msgid "Total"
+msgstr "Total"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Total Working Days"
+msgstr "Días laborables totales"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__trans_allow
+msgid "Transportation Allowance"
+msgstr "Subsidio de Transporte"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract_advantage_template__upper_bound
+msgid "Upper Bound"
+msgstr "Límite Superior"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_contract_advantage_template__upper_bound
+msgid "Upper bound authorized by the employer for this advantage"
+msgstr "Límite superior autorizado por el empleador para esta ventaja"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__sequence
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__sequence
+msgid "Use to arrange calculation sequence"
+msgstr "Úselo para organizar la secuencia de cálculo"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__appears_on_payslip
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__appears_on_payslip
+msgid "Used to display the salary rule on payslip."
+msgstr "Se utiliza para mostrar la regla de salario en la nómina."
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_payslip__state__verify
+msgid "Waiting"
+msgstr "Esperando"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields.selection,name:sync_hr_payroll.selection__hr_contract__schedule_pay__weekly
+msgid "Weekly"
+msgstr "Semanalmente"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_payslip__work_email_data
+msgid "Work Email Data"
+msgstr "Datos de Correo Electrónico de Trabajo"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Worked Day"
+msgstr "Día Trabajado"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Worked Days"
+msgstr "Días Trabajados"
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.view_hr_payslip_form
+msgid "Worked Days & Inputs"
+msgstr "Días Trabajados e Insumos"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,field_description:sync_hr_payroll.field_hr_contract__resource_calendar_id
+msgid "Working Schedule"
+msgstr "Programa de trabajo"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "Wrong percentage base or quantity defined for salary rule %s (%s)."
+msgstr "Base de porcentaje incorrecta o cantidad definida para la regla salarial %s (%s)."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "Wrong python code defined for salary rule %s (%s)."
+msgstr "Código de Python incorrecto definido para la regla de salario %s (%s)."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "Wrong python condition defined for salary rule %s (%s)."
+msgstr "Se definió una condición de Python incorrecta para la regla de salario %s (%s)."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "Wrong quantity defined for salary rule %s (%s)."
+msgstr "Cantidad incorrecta definida para la regla de salario %s (%s)."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "Wrong range condition defined for salary rule %s (%s)."
+msgstr "Condición de rango incorrecta definida para la regla de salario %s (%s)."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "You already Refund payslip with same duration of \"%s\".Kindly check Once."
+msgstr "Ya reembolsó la nómina con la misma duración de \"%s\". Por favor, verifíquelo."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid ""
+"You already generated payslip with same duration of \"%s\".Kindly check "
+"Once."
+msgstr ""
+"Ya generó un comprobante de pago con la misma duración de \"%s\". Por favor verifique "
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_salary_rule.py:0
+#, python-format
+msgid "You cannot create a recursive salary structure."
+msgstr "No se puede crear una estructura salarial recursiva."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "You cannot delete a payslip which is not draft or cancelled!"
+msgstr "¡No puedes borrar una nómina que no esté borrada o cancelada!"
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/wizard/hr_payroll_payslips_by_employees.py:0
+#, python-format
+msgid "You must select employee(s) to generate payslip(s)."
+msgstr "Debe seleccionar empleado(s) para generar nómina(s)."
+
+#. module: sync_hr_payroll
+#: code:addons/sync_hr_payroll/models/hr_payslip.py:0
+#, python-format
+msgid "You must set a contract to create a payslip line."
+msgstr "Debe establecer un contrato para crear una línea de nómina."
+
+#. module: sync_hr_payroll
+#: model_terms:ir.ui.view,arch_db:sync_hr_payroll.send_payslip_mail_view
+msgid "or"
+msgstr "o"
+
+#. module: sync_hr_payroll
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_payslip_line__amount_percentage_base
+#: model:ir.model.fields,help:sync_hr_payroll.field_hr_salary_rule__amount_percentage_base
+msgid "result will be affected to a variable"
+msgstr "el resultado se verá afectado a una variable"

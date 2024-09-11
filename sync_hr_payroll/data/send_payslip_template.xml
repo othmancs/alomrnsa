@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="send_payslip_mail" model="mail.template">
+        <field name="name">Send Payslip To Employee</field>
+        <field name="model_id" ref="model_hr_payslip"/>
+        <field name="email_from">{{(user.email or '')}}</field>
+        <field name="subject">Payslip To {{object.employee_id.name}}</field>
+        <field name="email_to">{{object.employee_id.work_email}}</field>
+        <field name="report_template" ref="sync_hr_payroll.action_report_payslip"/>
+        <field name="body_html" type="xml">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear Employee.
+                    <br /><br/>
+                        Your Payslip Detail Find In  Attachment.
+                    <br /><br/>
+                    Thank you
+                </p>
+            </div>
+        </field>
+        <field name="lang">{{object.employee_id.lang}}</field>
+        <field name="auto_delete" eval="False"/>
+   </record>
+</odoo>

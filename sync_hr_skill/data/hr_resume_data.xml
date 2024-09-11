@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="hr_skills.resume_type_experience" model="hr.resume.line.type">
+            <field name="name">Experience</field>
+            <field name="sequence">1</field>
+            <field name="code">EXP</field>
+        </record>
+
+        <record id="hr_skills.resume_type_education" model="hr.resume.line.type">
+            <field name="name">Education</field>
+            <field name="sequence">2</field>
+            <field name="code">EDU</field>
+        </record>
+
+        <record id="resume_type_experience" model="hr.resume.line.type">
+            <field name="name">Certification</field>
+            <field name="sequence">3</field>
+            <field name="code">CER</field>
+        </record>
+    </data>
+</odoo>

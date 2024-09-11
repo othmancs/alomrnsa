@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_helpdesk_ticket_recurring
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 09:55+0000\n"
+"PO-Revision-Date: 2023-02-06 09:55+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_helpdesk_ticket_recurring
+#: model:ir.actions.act_window,name:sync_helpdesk_ticket_recurring.action_document_form_ticket
+msgid "Make Recurring"
+msgstr "Hacer Recurrente"
+
+#. module: sync_helpdesk_ticket_recurring
+#: code:addons/odoo-modules/sync_helpdesk/sync_helpdesk_ticket_recurring/models/subscription.py:0
+#: code:addons/sync_helpdesk/sync_helpdesk_ticket_recurring/models/subscription.py:0
+#: code:addons/sync_helpdesk_ticket_recurring/models/subscription.py:0
+#, python-format
+msgid ""
+"Please provide another source document.\n"
+"This one does not exist!"
+msgstr ""
+"Proporcione otro documento de origen.\n"
+"¡Este no existe!"
+
+#. module: sync_helpdesk_ticket_recurring
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk_ticket_recurring.ticket_recurring_view_subscription_form
+msgid "Recurring Schedule"
+msgstr "Horario Recurrente"
+
+#. module: sync_helpdesk_ticket_recurring
+#: model:ir.actions.act_window,name:sync_helpdesk_ticket_recurring.action_subscription_ticket_form
+#: model:ir.ui.menu,name:sync_helpdesk_ticket_recurring.support_recurring_ticket_menu
+msgid "Recurring Tickets"
+msgstr "Tickets Recurrentes"
+
+#. module: sync_helpdesk_ticket_recurring
+#: model:ir.model,name:sync_helpdesk_ticket_recurring.model_schedule_schedule
+msgid "Schedule"
+msgstr "Horario"
+
+#. module: sync_helpdesk_ticket_recurring
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk_ticket_recurring.ticket_recurring_view_subscription_form
+msgid "Scheduled Tickets"
+msgstr "Tickets Programadas"
+
+#. module: sync_helpdesk_ticket_recurring
+#: model:ir.model,name:sync_helpdesk_ticket_recurring.model_subscription_subscription
+#: model:ir.model.fields,field_description:sync_helpdesk_ticket_recurring.field_schedule_schedule__ticket_subscription_id
+msgid "Subscription"
+msgstr "Suscripción"
+
+#. module: sync_helpdesk_ticket_recurring
+#: model:ir.model,name:sync_helpdesk_ticket_recurring.model_ticket_ticket
+#: model:ir.model.fields,field_description:sync_helpdesk_ticket_recurring.field_schedule_schedule__ticket_id
+#: model:ir.model.fields,field_description:sync_helpdesk_ticket_recurring.field_subscription_subscription__ticket_id
+msgid "Ticket"
+msgstr ""
+
+#. module: sync_helpdesk_ticket_recurring
+#: model:ir.model.fields,field_description:sync_helpdesk_ticket_recurring.field_subscription_subscription__ticket_schedule_ids
+msgid "Ticket Schedule"
+msgstr "Horario de Ticket"
+
+#. module: sync_helpdesk_ticket_recurring
+#: code:addons/odoo-modules/sync_helpdesk/sync_helpdesk_ticket_recurring/models/subscription.py:0
+#: code:addons/sync_helpdesk/sync_helpdesk_ticket_recurring/models/subscription.py:0
+#: code:addons/sync_helpdesk_ticket_recurring/models/subscription.py:0
+#, python-format
+msgid "You can not create recurring ticket which are closed!"
+msgstr "¡No puede crear tickets recurrentes que están cerrados!"

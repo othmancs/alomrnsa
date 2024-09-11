@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit subscription form view for the hide fields -->
+    <!-- <record id="ticket_recurring_view_subscription_form" model="ir.ui.view">
+        <field name="name">subscription.subscription.form</field>
+        <field name="model">subscription.subscription</field>
+        <field name="inherit_id" ref="sync_subscription.view_subscription_form"/>
+        <field name="arch" type="xml">
+            <page name="documents" position="before">
+                <page string="Scheduled Tickets" name="schedule_ticket" attrs="{'invisible': [('ticket_id', '=', False)]}">
+                    <field name="ticket_id" invisible="1"/>
+                    <field name="ticket_schedule_ids" nolabel="1">
+                        <tree id="schedule_tree_view" create="0" edit="0" string="Recurring Schedule" decoration-info="status == 'created'" decoration-muted="status == 'not_created'">
+                            <field name="date"/>
+                            <field name="ticket_id"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+            <field name="cron_id" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </field>
+            <page name="documents" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </page>
+            <page name="note" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </page>
+            <separator name="internal_saparator" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </separator>
+            <field name="notes" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </field>
+            <field name="doc_source" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </field>
+            <field name="active" position="attributes">
+                <attribute name="invisible">context.get('default_model',0)</attribute>
+            </field>
+            <field name="cron_id" position="after">
+                <field name="ticket_id" invisible="1"/>
+            </field>
+        </field>
+    </record> -->
+
+    <!-- Recurring ticket action -->
+    <!-- <record id="action_subscription_ticket_form" model="ir.actions.act_window">
+        <field name="name">Recurring Tickets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">subscription.subscription</field>
+         <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="sync_subscription.view_subscription_tree"/>
+        <field name="search_view_id" ref="sync_subscription.view_subscription_filter"/>
+        <field name="context">{'from_ticket': 1}</field>
+        <field name="domain">[('model','=','ticket.ticket')]</field>
+    </record> -->
+
+    <!-- <record id="action_document_form_ticket" model="ir.actions.act_window">
+        <field name="name">Make Recurring</field>
+        <field name="res_model">subscription.subscription</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_model': 'ticket.ticket'}</field>
+        <field name="binding_model_id" ref="model_ticket_ticket" />
+        <field name="binding_view_types">form</field>
+    </record>   -->
+</odoo>
