@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_penalty_register_tree" model="ir.ui.view">
+        <field name="name">hr.penalty.register..tree</field>
+        <field name="model">hr.penalty.register</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="state == 'refused'" decoration-info="state == 'draft'" string="Penalty Register">
+                <field name="employee_id"/>
+                <field name="pen_date"/>
+                <field name="penalty_id"/>
+                <field name="punishment_ids" widget="many2many_tags" />
+                <field name="deduction_amt"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_penalty_register_search" model="ir.ui.view">
+        <field name="name">hr.penalty.register.search</field>
+        <field name="model">hr.penalty.register</field>
+        <field name="arch" type="xml">
+            <search string="Penalty Register">
+                <field name="employee_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hr_penalty_register_form" model="ir.ui.view">
+        <field name="name">hr.penalty.register.form</field>
+        <field name="model">hr.penalty.register</field>
+        <field name="arch" type="xml">
+            <form string="Penalty Register">
+                <header>
+                    <button name="action_hr_officer" string="HR Officer" type="object" states="draft" class="btn-primary" groups="hr.group_hr_user" />
+                    <button name="action_hr_manager" string="HR Manager" type="object" states="hr_officer" class="btn-primary" groups="hr.group_hr_manager" />
+                    <button name="action_done" string="Done" type="object" states="hr_manager" class="btn-primary" groups="hr.group_hr_manager" />
+                    <button name="action_refused" string="Refuse" type="object" states="hr_officer" class="btn-primary" groups="hr.group_hr_manager" />
+                    <button name="action_redraft" string="Set To Draft" type="object" states="done,refused" class="btn-primary" groups="hr.group_hr_manager" confirm="Are you sure to reset to Draft this record ?"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,hr_officer,hr_manager,done"/>
+
+                    <button name="action_create_warning" string="Create Warning" type="object" class="btn-primary" attrs="{'invisible':['|', '|', ('is_warning','=', False),
+                        ('state','!=','hr_manager'), ('warning_ids','!=', [])]}" groups="hr.group_hr_manager" />
+
+                    <button name="action_create_payment" string="Payment" type="object" 
+                        class="btn-primary" attrs="{'invisible':['|', '|',
+                        ('deduction_value','=','ded_salary'),
+                        ('state','!=','hr_manager'),
+                        ('payment_id','!=', False)
+                        ]}" groups="hr.group_hr_manager" />
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="view_payment" string="Payment"
+                            class="oe_stat_button" icon="fa-book" attrs="{'invisible':[('payment_id','=', False)]}">
+                        </button>
+                        <button type="object" name="view_warning" string="Warning"
+                            class="oe_stat_button" icon="fa-book" attrs="{'invisible':['|', ('is_warning','=', False), ('warning_ids','=', [])]}">
+                        </button>
+                        <button type="object" name="view_termination" string="EOS"
+                            class="oe_stat_button" icon="fa-book" attrs="{'invisible':[('termination_id','=', False)]}" >
+                        </button>
+                        <button type="object" name="view_payslip" string="Payslip"
+                            class="oe_stat_button" icon="fa-book" attrs="{'invisible':[('payslip_id','=', False)]}" >
+                        </button>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="job_id" force_save="1" readonly="1"/>
+                            <field name="department_id" force_save="1" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="pen_date" required="1" attrs="{'readonly':[('state','!=','draft')]}" />
+                        </group>
+                    </group>
+
+                    <group string="Penalty">
+                        <group>
+                            <field name="penalty_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="punishment_ids" widget="many2many_tags" attrs="{'readonly':[('state','!=','draft')]}" />
+                        </group>
+                        <group>
+                            <field name="penalty_number" force_save="1" attrs="{'readonly':[('state','!=','draft')]}" />
+                        </group>
+                    </group>
+
+                    <group string="Penalty Value"  attrs="{'invisible':[('is_penal','!=', True)]}">
+                        <group>
+                            <field name="deduction_value" widget="radio" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="deduction_amt" force_save="1"  attrs="{'readonly':[('state','!=','draft')]}" />
+                        </group>
+                        <group>
+                            <field name="decision" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="journal_id" attrs="{
+                                'readonly':[('state','!=','draft')],
+                                'required':[('deduction_value','=','ded_deduction')],
+                                'invisible': [('deduction_value', '!=', 'ded_deduction')]
+                            }" />
+                        </group>
+                        <group>
+                            <field name="payment_id" invisible="1" />
+                            <field name="warning_ids" invisible="1" />
+                            <field name="payslip_id" invisible="1" />
+                            <field name="is_warning" invisible="1" />
+                            <field name="termination_id" invisible="1" />
+                            <field name="is_penal" invisible="1" />
+                            <field name="is_ded" invisible="1" />
+                            <field name="is_eos" invisible="1" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="acc_committee_ids" widget="many2many_tags"
+                            attrs="{'readonly':[('state','!=','draft')]}" />
+                        <field name="description" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_penalty_register" model="ir.actions.act_window">
+        <field name="name">Penalty Register</field>
+        <field name="res_model">hr.penalty.register</field>
+        <field name="view_mode">search,tree,form</field>
+    </record>
+
+    <menuitem id="menu_action_hr_penalty_register" action="action_hr_penalty_register"
+        parent="hr_penalty.menu_penalty" sequence="1" groups="base.group_user" />
+
+</odoo>

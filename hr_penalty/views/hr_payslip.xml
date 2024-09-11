@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="hr_employee_payslip_view_form" model="ir.ui.view">
+        <field name="name">employee.payslip.view</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="sync_hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='credit_note']" position="after">
+                <field name="pen_reg_ids" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

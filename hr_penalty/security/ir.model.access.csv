@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_penalty_user,access_hr_penalty_user,model_hr_penalty,base.group_user,1,0,0,0
+access_hr_penalty_officer,access_hr_penalty_officer,model_hr_penalty,hr.group_hr_user,1,1,1,0
+access_hr_penalty_manager,access_hr_penalty_manager,model_hr_penalty,hr.group_hr_manager,1,1,1,1
+
+access_hr_penalty_name_user,access_hr_penalty_name_user,model_hr_penalty_name,base.group_user,1,0,0,0
+access_hr_penalty_name_officer,access_hr_penalty_name_officer,model_hr_penalty_name,hr.group_hr_user,1,1,1,0
+access_hr_penalty_name_manager,access_hr_penalty_name_manager,model_hr_penalty_name,hr.group_hr_manager,1,1,1,1
+
+access_hr_punishment_user,access_hr_punishment_user,model_hr_punishment,base.group_user,1,0,0,0
+access_hr_punishment_officer,access_hr_punishment_officer,model_hr_punishment,hr.group_hr_user,1,1,1,0
+access_hr_punishment_manager,access_hr_punishment_manager,model_hr_punishment,hr.group_hr_manager,1,1,1,1
+
+access_hr_penalty_register_user,access_hr_penalty_register_user,model_hr_penalty_register,base.group_user,1,0,0,0
+access_hr_penalty_register_officer,access_hr_penalty_register_officer,model_hr_penalty_register,hr.group_hr_user,1,1,1,0
+access_hr_penalty_register_manager,access_hr_penalty_register_manager,model_hr_penalty_register,hr.group_hr_manager,1,1,1,1

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="hr_employee_penalty_register_view_form" model="ir.ui.view">
+        <field name="name">employee.panelty.register.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <div name="button_box" position="inside">
+                    <button name="view_penalty_register"
+                        class="oe_stat_button"
+                        icon="fa-book"
+                        type="object">
+                    <field name="pen_reg_count" widget="statinfo" string="Penalty"/>
+                    </button>
+                </div>
+            </data>
+        </field>
+    </record>
+
+</odoo>

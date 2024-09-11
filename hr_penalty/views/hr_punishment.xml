@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_punishment_tree" model="ir.ui.view">
+        <field name="name">hr.punishment.tree</field>
+        <field name="model">hr.punishment</field>
+        <field name="arch" type="xml">
+            <tree string="Punishment">
+                <field name="name"/>
+                <field name="p_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_punishment_search" model="ir.ui.view">
+        <field name="name">hr.punishment.search</field>
+        <field name="model">hr.punishment</field>
+        <field name="arch" type="xml">
+            <search string="Punishment">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hr_punishment_form" model="ir.ui.view">
+        <field name="name">hr.penalty.form</field>
+        <field name="model">hr.punishment</field>
+        <field name="arch" type="xml">
+            <form string="Punishment">
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="p_type" />
+                            <field name="punishment_type" attrs="{'invisible':[('p_type','!=','penalty')],
+                            'required':[('p_type','=','penalty')]}"/>
+                        </group>
+                        <group>
+                            <field name="penalty_amt" attrs="{'invisible':['|',('punishment_type','!=','fixed_amount'),('p_type','!=','penalty')],
+                                'required':[('punishment_type','=','fixed_amount')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="punishment_type_amount" attrs="{'invisible':['|',('punishment_type','!=','depend_on_salary'),('p_type','!=','penalty')],
+                                'required':[('punishment_type','=','depend_on_salary')]}"/>
+                        </group>
+                        <group>
+                            <field name="penalty_duration" attrs="{'invisible':['|','|',('punishment_type_amount','!=','duration'), ('punishment_type','=','fixed_amount'),('p_type','!=','penalty')],
+                                'required':[('punishment_type_amount','=','duration')]}" />
+                            <field name="penalty_percentage" attrs="{'invisible':['|','|',('punishment_type_amount','!=','percentage'), ('punishment_type','=','fixed_amount'),('p_type','!=','penalty')],
+                                'required':[('punishment_type_amount','=','percentage')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_punishment" model="ir.actions.act_window">
+        <field name="name">Punishment</field>
+        <field name="res_model">hr.punishment</field>
+        <field name="view_mode">search,tree,form</field>
+    </record>
+
+    <menuitem id="menu_action_hr_punishment" action="action_hr_punishment" 
+        parent="hr_penalty.menu_configuration" sequence="2" groups="hr.group_hr_manager"/>
+
+</odoo>

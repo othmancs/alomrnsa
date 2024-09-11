@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="employee_year" model="year.year">
+            <field name="name" eval="(DateTime.today()).year"></field>
+            <field name="code" eval="(DateTime.today()).year"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=1, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=12, day=31))"></field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="employee_year_1" model="year.year">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).year"></field>
+            <field name="code" eval="(DateTime.today()- relativedelta(years=1)).year"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=1, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=12, day=31))"></field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="year_period_january" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=1,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=1,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=1, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=1, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_february" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=2,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=2,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=2, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=2, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_march" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=3,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=3,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=3, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=3, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_april" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=4,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=4,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=4, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=4, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_may" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=5,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=5,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=5, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=5, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_june" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=6,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=6,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=6, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=6, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_july" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=7,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=7,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=7, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=7, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_augest" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=8,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=8,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=8, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=8, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_september" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=9,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=9,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=9, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=9, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_octomber" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=10,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=10,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=10, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=10, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_november" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=11,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=11,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=11, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=11, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_december" model="year.period">
+            <field name="name" eval="DateTime.today().replace(month=12,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="DateTime.today().replace(month=12,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="(DateTime.today().replace(month=12, day=1))"></field>
+            <field name="date_stop" eval="(DateTime.today().replace(month=12, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year"/>
+        </record>
+
+        <record id="year_period_january_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=1,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=1,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=1, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=1, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_february_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=2,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=2,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=2, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=2, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_march_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=3,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=3,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=3, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=3, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_april_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=4,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=4,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=4, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=4, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_may_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=5,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=5,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=5, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=5, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_june_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=6,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=6,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=6, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=6, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_july_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=7,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=7,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=7, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=7, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_augest_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=8,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=8,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=8, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=8, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_september_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=9,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=9,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=9, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=9, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_octomber_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=10,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=10,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=10, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=10, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_november_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=11,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=11,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=11, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=11, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+
+        <record id="year_period_december_1" model="year.period">
+            <field name="name" eval="(DateTime.today() - relativedelta(years=1)).replace(month=12,day=1).strftime('%m/%Y')"></field>
+            <field name="code" eval="(DateTime.today() - relativedelta(years=1)).replace(month=12,day=1).strftime('%m/%Y')"></field>
+            <field name="date_start" eval="((DateTime.today() - relativedelta(years=1)).replace(month=12, day=1))"></field>
+            <field name="date_stop" eval="((DateTime.today() - relativedelta(years=1)).replace(month=12, day=1)) + relativedelta(day=1, months=+1, days=-1)"></field>
+            <field name="fiscalyear_id" ref="employee_year_1"/>
+        </record>
+    </data>
+</odoo>

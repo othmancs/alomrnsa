@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_issue_warning_view_form" model="ir.ui.view">
+        <field name="name">issue.warning.view</field>
+        <field name="model">issue.warning</field>
+        <field name="inherit_id" ref="hr_warning.hr_warning_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="pen_reg_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

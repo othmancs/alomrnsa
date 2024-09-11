@@ -1,0 +1,251 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_fiscal_year
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 07:22+0000\n"
+"PO-Revision-Date: 2023-02-06 07:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_fiscal_year
+#: model:ir.model,name:hr_fiscal_year.model_year_year
+msgid "Calendar Year For Public Holiday Duration"
+msgstr "Calendario para la Duración de los Días Festivos"
+
+#. module: hr_fiscal_year
+#: model_terms:ir.actions.act_window,help:hr_fiscal_year.action_public_year
+msgid "Click to start a new year."
+msgstr "Haz clic para iniciar un nuevo año."
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__code
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__code
+msgid "Code"
+msgstr "Código"
+
+#. module: hr_fiscal_year
+#: model:ir.model.constraint,message:hr_fiscal_year.constraint_year_year_code_uniq
+msgid "Code must be unique!"
+msgstr "¡El código debe ser único!"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: hr_fiscal_year
+#: model_terms:ir.ui.view,arch_db:hr_fiscal_year.view_public_year_form
+msgid "Create Monthly Periods"
+msgstr "Crear Períodos Mensuales"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__create_uid
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__create_date
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_fiscal_year
+#: model_terms:ir.actions.act_window,help:hr_fiscal_year.action_public_year
+msgid ""
+"Define your company's Public year according to your needs.For example,\n"
+"            if a Public year between January 1, 2020 and December 31, 2020\n"
+"            would be referred to as 2020."
+msgstr ""
+"Defina el Año Público de su empresa de acuerdo a sus necesidades. Por ejemplo,\n"
+"            si es un año público entre el 1 de enero de 2020 y el 31 de diciembre de 2020\n"
+"            sería referido como 2020."
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__display_name
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__date_stop
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__date_stop
+msgid "End of Period"
+msgstr "Fin del Periodo"
+
+#. module: hr_fiscal_year
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#, python-format
+msgid ""
+"Error!\n"
+"The duration of the Period(s) is/are invalid"
+msgstr ""
+"¡Error!\n"
+"La duración de los Períodos no es válida"
+
+#. module: hr_fiscal_year
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#, python-format
+msgid ""
+"Error!\n"
+"The duration of the Period(s) is/are invalid."
+msgstr ""
+"¡Error!\n"
+"La duración de los Períodos no es válida"
+
+#. module: hr_fiscal_year
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#, python-format
+msgid ""
+"Error!\n"
+"The period is invalid. Either some periods are overlapping or the period's dates are not matching the scope of the fiscal year."
+msgstr ""
+"¡Error!\n"
+"El período no es válido. Algunos períodos se superponen o las fechas del período no coinciden con el ámbito del año fiscal."
+
+#. module: hr_fiscal_year
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#, python-format
+msgid ""
+"Error!\n"
+"The start date of a calendar year must precede its end date."
+msgstr ""
+"¡Error!\n"
+"La fecha de inicio de un año calendario debe preceder a su fecha de finalización."
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__fiscalyear_id
+msgid "Fiscal Year"
+msgstr "Año Fiscal"
+
+#. module: hr_fiscal_year
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#, python-format
+msgid "Go to the configuration panel"
+msgstr ""
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__id
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period____last_update
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__write_uid
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__write_date
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: hr_fiscal_year
+#: model_terms:ir.ui.view,arch_db:hr_fiscal_year.view_public_year_form
+msgid "Period"
+msgstr "Período"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__name
+msgid "Period Name"
+msgstr "Nombre del Período"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__period_ids
+msgid "Periods"
+msgstr "Períodos"
+
+#. module: hr_fiscal_year
+#: model:ir.actions.act_window,name:hr_fiscal_year.action_public_year
+#: model:ir.ui.menu,name:hr_fiscal_year.menu_public_year_view
+#: model_terms:ir.ui.view,arch_db:hr_fiscal_year.view_public_year_form
+#: model_terms:ir.ui.view,arch_db:hr_fiscal_year.view_public_year_tree
+msgid "Public Year"
+msgstr "Año Público"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_year__date_start
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: hr_fiscal_year
+#: model:ir.model.fields,field_description:hr_fiscal_year.field_year_period__date_start
+msgid "Start of Period"
+msgstr "Inicio del Período"
+
+#. module: hr_fiscal_year
+#: model:ir.model.constraint,message:hr_fiscal_year.constraint_year_period_name_uniq
+msgid "The name of the period must be unique!"
+msgstr "¡El nombre del período debe ser único!"
+
+#. module: hr_fiscal_year
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#, python-format
+msgid ""
+"There is no period defined for this date: %s.\n"
+"Please go to Configuration/Periods and configure a Year."
+msgstr ""
+"No hay periodo definido para esta fecha: %s.\n"
+"Por favor, vaya a Configuración/Períodos y configure un Año."
+
+#. module: hr_fiscal_year
+#: model_terms:ir.ui.view,arch_db:hr_fiscal_year.view_year_period_tree
+msgid "Year Period"
+msgstr "Período del año"
+
+#. module: hr_fiscal_year
+#: model:ir.model,name:hr_fiscal_year.model_year_period
+msgid "Year period"
+msgstr "Período del año"
+
+#. module: hr_fiscal_year
+#: code:addons/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#: code:addons/odoo-modules/hrms/hr_fiscal_year/models/hr_fiscal_year.py:0
+#, python-format
+msgid "You can not have calendar year that overlaps on same year!"
+msgstr ""
+"¡No puede tener un año en calendario que se superponga en el mismo año!"

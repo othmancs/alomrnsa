@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_penalty_name_tree" model="ir.ui.view">
+        <field name="name">hr.penalty.name.tree</field>
+        <field name="model">hr.penalty.name</field>
+        <field name="arch" type="xml">
+            <tree string="Penalty Name" editable="top">
+                <field name="name" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_penalty_name" model="ir.actions.act_window">
+        <field name="name">Penalty Name</field>
+        <field name="res_model">hr.penalty.name</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="Penalty" id="menu_penalty" sequence="7" parent="hr.menu_hr_root" />
+    <menuitem id="menu_configuration" name="Configuration" parent="hr_penalty.menu_penalty"
+        sequence="2" groups="hr.group_hr_manager" />
+    <menuitem id="menu_action_hr_penalty_name" action="action_hr_penalty_name"
+        parent="hr_penalty.menu_configuration" sequence="3" groups="hr.group_hr_manager"/>
+
+</odoo>
