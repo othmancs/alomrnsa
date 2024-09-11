@@ -22,15 +22,16 @@ class Employee(models.Model):
             record.service_years = (end_date - start_date).days / 365.0       
     @api.depends('employee_id')
     def _compute_eos_amount(self):
-        for record in self:
+                for record in self:
+            if record.service_years < 5:
+                record.eos_amount = record.service_years * record.basic_salary * 0.5
+            else:
+                record.eos_amount = record.service_years * record.basic_salary
+        # for record in self:
             # حساب مبلغ نهاية الخدمة بناءً على القوانين السعودية
             # if record.service_years <= 5:
             #     record.eos_amount = record.service_years * record.contract_id.wage * 0.5
             # else:
             #     record.eos_amount = (5 * record.contract_id.wage * 0.5) + ((record.service_years - 5) * record.contract_id.wage)
-        for record in self:
-            if record.service_years < 5:
-                record.eos_amount = record.service_years * record.basic_salary * 0.5
-            else:
-                record.eos_amount = record.service_years * record.basic_salary
+
  
