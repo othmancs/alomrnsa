@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Pivot View -->
+    <record id="view_report_support_pivot" model="ir.ui.view">
+        <field name="name">ticket.report.pivot</field>
+        <field name="model">ticket.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Ticket Analysis" disable_linking="True">
+                <field name="stage_id" type="row"/>
+                <field name="team_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Report Graph View -->
+    <record id="view_report_support_graph" model="ir.ui.view">
+        <field name="name">ticket.report.graph</field>
+        <field name="model">ticket.report</field>
+        <field name="arch" type="xml">
+            <graph string="Ticket Analysis">
+                <field name="stage_id"/>
+                <field name="team_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Report Custom reports (aka filters) -->
+    <record id="filter_report_support_workload" model="ir.filters">
+        <field name="name">Workload</field>
+        <field name="model_id">ticket.report</field>
+        <field name="user_id" eval="False"/>
+        <field name="context">{'group_by': ['name']}</field>
+    </record>
+
+    <!-- Report Search View --><!-- domain="[('team_ids', '=', 'team_id')]"  -->
+    <record id="view_report_support_filter" model="ir.ui.view">
+        <field name="name">ticket.report.select</field>
+        <field name="model">ticket.report</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <filter name="My Technical Team(s)" string="My Technical Team(s)" context="{'invisible_team': False}" domain="[('team_id.user_id','=',uid)]" help="My Sales Team(s)"/>
+                <separator/>
+                <filter name="My Company" string="My Company" domain="[('company_id.user_ids','=',uid)]" help="My Company" groups="base.group_multi_company"/>
+                <separator/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="user_id" string="Salesperson"/>
+                <field name="team_id" string="Technical Team" context="{'invisible_team': False}"/>
+                <group  expand="0" string="Extended Filters...">
+                    <field name="partner_id" filter_domain="[('partner_id','child_of',self)]"/>
+                    <field name="stage_id"/>
+                    <field name="priority" groups="sync_helpdesk.group_enable_ticket_priority"/>
+                    <field name="categ_id"/>
+                    <!-- <field name="message_last_post"/> -->
+                    <field name="create_date"/>
+                    <field name="deadline" groups="sync_helpdesk.group_enable_due_date"/>
+                    <field name="kanban_state"/>
+                </group>
+                <group  expand="1" string="Group By">
+                    <filter string="Salesperson" name="Salesperson" context="{'group_by':'user_id'}" />
+                    <filter string="Partner" name="partner" context="{'group_by':'partner_id'}" />
+                    <filter string="Stage" name="Stage" context="{'group_by':'stage_id'}" />
+                    <filter string="Category" name="Category" context="{'group_by':'categ_id'}" />
+                    <filter string="Company" name="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                    <separator/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Report Action -->
+    <record id="support_report_action" model="ir.actions.act_window">
+        <field name="name">Ticket Analysis</field>
+        <field name="res_model">ticket.report</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{"search_default_year":1,"search_default_User":1,"search_default_This Month":1,'group_by_no_leaf':1,'group_by':[]}</field>
+        <field name="search_view_id" ref="view_report_support_filter"/>
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="help">Have a general overview of all claims processed in the system by sorting them with specific criteria.</field>
+    </record>
+
+    <record id="support_ticket_report_action" model="ir.actions.act_window">
+        <field name="name">Ticket Analysis</field>
+        <field name="res_model">ticket.report</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_team_id': active_ids, 'search_default_is_open': True}</field>
+        <field name="search_view_id" ref="view_report_support_filter"/>
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="help">Have a general overview of all claims processed in the system by sorting them with specific criteria.</field>
+    </record>
+</odoo>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="group_enable_due_date" model="res.groups">
+        <field name="name">Enable Due Dates</field>
+    </record>
+
+    <record id="group_enable_ticket_priority" model="res.groups">
+        <field name="name">Enable Priority</field>
+    </record>
+
+    <record id="group_share_ticket" model="res.groups">
+        <field name="name">Share Ticket</field>
+    </record>
+
+    <record model="ir.module.category" id="module_category_helpdesk">
+        <field name="name">Helpdesk</field>
+        <field name="description">Helps you manage your Ticket.</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="group_helpdesk_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="sync_helpdesk.module_category_helpdesk"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">User read the own ticket form.</field>
+    </record>
+
+    <record id="group_helpdesk_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="sync_helpdesk.module_category_helpdesk"/>
+        <field name="implied_ids" eval="[(4, ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        <field name="comment">Manager: manage the helpdesk process of the customer.</field>
+    </record>
+
+    <record model="ir.rule" id="ticket_follower_user_rule">
+        <field name="name">Helpdesk/Ticket: user follower</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">[('message_follower_ids.partner_id', '=', user.partner_id.id), ('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+    </record>
+
+    <record model="ir.rule" id="ticket_follower_manager_rule">
+        <field name="name">Helpdesk/Ticket: manager follower</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">[('message_follower_ids.partner_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+    </record>
+
+    <record model="ir.rule" id="ticket_team_history_user_rule">
+        <field name="name">Helpdesk/Ticket: user team history</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">[('user_id.team_history_ids', 'in', [user.support_team_id.id]), ('user_id', '=' ,user.id)]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+    </record>
+
+    <record model="ir.rule" id="ticket_team_history_manager_rule">
+        <field name="name">Helpdesk/Ticket: manager team history</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">[('user_id.team_history_ids', 'in', [user.support_team_id.id])]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+    </record>
+
+    <record model="ir.rule" id="support_company_rule">
+        <field name="name">Helpdesk/Ticket: multi-company</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id', '=', False),
+            ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- <record model="ir.rule" id="support_company_rule">
+        <field name="name">Helpdesk/Ticket: multi-company</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id', '=', False),
+                        ('company_id', 'child_of', [user.company_id.id])]]</field>
+    </record> -->
+
+    <record id="ticket_manager_rule" model="ir.rule">
+        <field name="name">Helpdesk/Ticket: helpdesk manager: see all</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">['|',('team_id', '=', False),
+                        ('team_id', 'child_of', [user.support_team_id.id])]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+    </record>
+
+    <record id="ticket_user_rule" model="ir.rule">
+        <field name="name">Helpdesk/Ticket: User: see own</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">['|', ('user_id', 'in', [user.id,False]), '&amp;', ('user_id', '=', False), ('team_id.member_ids', 'in', [user.id])]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+    </record>
+
+    <record model="ir.rule" id="ticket_portal_user_rule">
+        <field name="name">Helpdesk/Ticket: Portal User: see own</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">[('partner_id', 'in', [user.partner_id.id])]</field>
+        <field name="groups" eval="[(4,ref('base.group_portal'))]"/>
+    </record>
+
+    <record id="ticket_team_manager_rule" model="ir.rule">
+        <field name="name">Helpdesk/Team: team manager: see all</field>
+        <field name="model_id" ref="model_ticket_team"/>
+        <field name="domain_force">['|',('company_id', '=', False),
+            ('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+    </record>
+
+    <!-- <record id="ticket_team_manager_rule" model="ir.rule">
+        <field name="name">Helpdesk/Team: team manager: see all</field>
+        <field name="model_id" ref="model_ticket_team"/>
+        <field name="domain_force">['|',('company_id', '=', False),
+                        ('company_id', 'child_of', [user.company_id.id])]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+    </record> -->
+
+    <record id="ticket_team_user_rule" model="ir.rule">
+        <field name="name">Helpdesk/Team: user: see own</field>
+        <field name="model_id" ref="model_ticket_team"/>
+        <field name="domain_force">['|', '|', ('member_ids', 'in', [user.id]), ('user_id', '=', user.id), ('id', 'child_of', [user.support_team_id.id])]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+    </record>
+
+    <record model="ir.rule" id="ticket_team_follower_rule">
+        <field name="name">Helpdesk/Team: follower</field>
+        <field name="model_id" ref="model_ticket_team"/>
+        <field name="domain_force">[('message_follower_ids.partner_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4,ref('sync_helpdesk.group_helpdesk_user')), (4,ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+    </record>
+
+    <record model="ir.rule" id="ticket_admin_rule">
+        <field name="name">Helpdesk: Admin</field>
+        <field name="model_id" ref="model_ticket_ticket"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4,ref('base.group_system'))]"/>
+    </record>
+</odoo>

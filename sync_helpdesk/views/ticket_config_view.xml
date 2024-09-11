@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ticket tag tree view -->
+    <record id="support_tag_view_tree" model="ir.ui.view">
+        <field name="name">ticket.tag.tree</field>
+        <field name="model">ticket.tag</field>
+        <field name="arch" type="xml">
+            <tree editable="top" string="Tag">
+                <field name="name"/>
+                <field name="color" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Ticket tag action -->
+    <record id="support_tag_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="res_model">ticket.tag</field>
+        <field name="view_id" ref="support_tag_view_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new ticket tag.
+            </p><p>
+                Tags allows to organize tickets.
+            </p>
+        </field>
+    </record>
+
+    <!-- Ticket Team View -->
+    <record id="support_team_view_form" model="ir.ui.view">
+        <field name="name">ticket.team.form</field>
+        <field name="model">ticket.team</field>
+        <field name="arch" type="xml">
+            <form string="Ticket Team">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="team_ticket_count" icon="fa-ticket" attrs="{'invisible': [('ticket_count', '=', 0)]}">
+                            <field string="Ticket" name="ticket_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Ticket team"/>
+                        <h1>
+                            <field name="name" placeholder="Ticket team name..."/>
+                        </h1>
+                        <div name="options_active"/>
+                        <field name="active" invisible="1"/>
+                    </div>
+                    <group>
+                        <group name="left">
+                            <field name="parent_id" domain="[('id', '!=', id)]" options="{'no_create': 1}"/>
+                            <field name="user_id" domain="[('share', '=', False)]" options="{'no_create': 1}" required="1"/>
+                            <field name="show_dashboard"/>
+                            <field name="show_in_hrms" />
+                            <field name="show_in_maintenance" />
+                            <field name="running_tickets" invisible="1"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Email alias">
+                            <group colspan="4">
+                                <div>
+                                    <button name="create_incoming_mail_server" type="object" string="Add" class="oe_stat_button oe_highlight oe_edit_only" attrs="{'invisible':[('username','!=',False)]}" icon="fa-link"/>
+                                    <button name="unlink_incoming_mail_server" type="object" string="Remove" class="oe_stat_button oe_edit_only" attrs="{'invisible':[('username','=',False)]}" icon="fa-chain-broken"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="username" attrs="{'invisible':[('username','=',False)]}"/>
+                            </group>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="members" string="Team Members">
+                            <field name="member_ids" widget="many2many" options="{'not_delete': True}">
+                                <kanban quick_create="false" create="true" delete="true">
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click" style="max-width: 200px">
+                                                <div class="o_kanban_record_top">
+                                                    <img alt="Image" t-att-src="kanban_image('res.users', 'image_small', record.id.raw_value)" height="40" width="40" class="oe_avatar oe_kanban_avatar_smallbox mb0"/>
+                                                    <div class="o_kanban_record_headings ml8">
+                                                        <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                                    </div>
+                                                    <a t-if="! read_only_mode" type="delete" class="text-danger">
+                                                        <i title="Date" class="fa fa-times"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" help="Follow this salesteam to automatically track the events associated to users of this team."/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Ticket Teams Tree View -->
+    <record id="support_team_view_tree" model="ir.ui.view">
+        <field name="name">ticket.team.tree</field>
+        <field name="model">ticket.team</field>
+        <field name="field_parent">child_ids</field>
+        <field name="arch" type="xml">
+            <tree string="Ticket Team">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="active" invisible="1"/>
+                <field name="user_id"/>
+                <field name="member_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Ticket team Search view -->
+    <record id="support_team_search_view" model="ir.ui.view">
+        <field name="name">Ticket Teams - Search</field>
+        <field name="model">ticket.team</field>
+        <field name="arch" type="xml">
+            <search string="Ticket teams Search">
+                <filter name="personal" string="My Teams" domain="['|', ('member_ids', 'in', [uid]), ('user_id', '=', uid)]"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                <field name="name"/>
+                <field name="user_id"/>
+                <group expand="0" string="Group By...">
+                    <filter string="Team Leader" name="Team Leader" domain="[]" context="{'group_by':'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Ticket team action -->
+    <record id="support_technical_team_action" model="ir.actions.act_window">
+        <field name="name">Ticket Teams</field>
+        <field name="res_model">ticket.team</field>
+        <field name="view_id" ref="support_team_view_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click here to define a new technical team.
+            </p><p>
+                Use technical team to organize your different technical persons or
+                departments into separate teams. Each team will work in
+                its own list of opportunities.
+            </p>
+        </field>
+    </record>
+
+    <!-- Ticket stage search view -->
+    <record id="support_stage_search" model="ir.ui.view">
+        <field name="name">Stage - Search</field>
+        <field name="model">ticket.stage</field>
+        <field name="arch" type="xml">
+            <search string="Stage Search">
+                <field name="name"/>
+                <field name="sequence"/>
+                <separator/>
+                <filter string="Is Close" name="inclose" domain="[('is_close','=',True)]"/>
+                <filter string="Is Done" name="is_done" domain="[('is_done','=',True)]"/>
+                <filter string="Is Cancel" name="is_cancel" domain="[('is_cancel','=',True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Ticket stage tree view -->
+    <record id="support_stage_view_tree" model="ir.ui.view">
+        <field name="name">ticket.stage.tree</field>
+        <field name="model">ticket.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Stage">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="is_close"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Ticket stage form view -->
+    <record id="support_stage_view_form" model="ir.ui.view">
+        <field name="name">ticket.stage.form</field>
+        <field name="model">ticket.stage</field>
+        <field name="arch" type="xml">
+            <form string="Stages">
+                <sheet>
+                    <group name="stages">
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence" groups="base.group_no_one"/>
+                            <field name="active" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="categ_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="is_close"/>
+                            <field name="fold"/>
+                            <field name="is_done"/>
+                            <field name="is_cancel"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="automated_email" string="Automated Answer Email Template">
+                            <field name="template_ids" options="{'no_create': True}">
+                                <tree editable="bottom">
+                                    <field name="template_id" context="{'for_ticket':1}"/>
+                                    <field name="default"/>
+                                    <field name="stage_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Ticket stage action -->
+    <record id="support_stage_action" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">ticket.stage</field>
+        <field name="view_id" ref="support_stage_view_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click here to define a new stage.
+            </p><p>
+                Stage allows to organize tickets.
+            </p>
+        </field>
+    </record>
+
+    <!-- Ticket Category (Ticket Type) -->
+    <record id="support_category_tree" model="ir.ui.view">
+        <field name="name">ticket.category.tree</field>
+        <field name="model">ticket.category</field>
+        <field name="arch" type="xml">
+            <tree string="Ticket Categories">
+                <field name="sequence" widget="handle" />
+                <field name="name"/>
+                <field name="code"/>
+                <field name="stage_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="support_category_form" model="ir.ui.view">
+        <field name="name">ticket.category.form</field>
+        <field name="model">ticket.category</field>
+        <field name="arch" type="xml">
+            <form string="Ticket Categories">
+                <group name="category_info" col="4">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="is_default_queue"/>
+                    <field name="team_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="default_team_id" />
+                </group>
+                <separator string="Stages" colspan="2"/>
+                <div>
+                    <field name="stage_ids" widget="many2many" nolabel="1"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_support_category_filter" model="ir.ui.view">
+        <field name="name">Ticket category Search</field>
+        <field name="model">ticket.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Ticket Category">
+                <field name="name" string="Ticket Type"/>
+                <field name="code"/>
+                <field name="stage_ids"/>
+                <separator/>
+                <filter string="Default Type" name="is_default_queue" domain="[('is_default_queue','=', True)]" help="Default Type" />
+            </search>
+        </field>
+    </record>
+
+    <record id="support_category_action" model="ir.actions.act_window">
+        <field name="name">Ticket Type</field>
+        <field name="res_model">ticket.category</field>
+        <field name="view_id" ref="support_category_tree"/>
+        <field name="search_view_id" ref="view_support_category_filter"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a ticket category.
+          </p><p>
+            Create ticket categories to better manage and classify your
+            tickets. Some example of tickets can be: preventive action,
+            corrective action.
+          </p>
+        </field>
+    </record>
+
+</odoo>

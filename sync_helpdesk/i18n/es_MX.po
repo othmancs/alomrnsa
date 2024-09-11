@@ -1,0 +1,2640 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sync_helpdesk
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-02 13:30+0000\n"
+"PO-Revision-Date: 2024-09-02 13:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_partner__ticket_count
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_users__ticket_count
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__ticket_count
+msgid "# Ticket"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__ticket_count
+msgid "#Ticket"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:mail.template,body_html:sync_helpdesk.ticket_cancel_email
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Dear <t t-out=\"object.partner_id.name or 'Madam, Sir'\"></t>,</p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">We are informing that your ticket ID <t t-out=\"object.ticket_no\"></t> is cancelled.</p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Thank you,</p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\">\n"
+"                    </t>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p>Estimado <t t-out=\"object.partner_id.name or 'Señora, Señor'\"/>,</p>\n"
+"                <p>Le informamos que su ticket con ID <t t-out=\"object.ticket_no\"/> está cancelado.</p>\n"
+"                <p>Gracias,</p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\">\n"
+"                    </t>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+
+#. module: sync_helpdesk
+#: model:mail.template,body_html:sync_helpdesk.ticket_creation_email
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Dear <t t-out=\"object.partner_id.name or 'Madam, Sir'\"></t>,</p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Your request <t t-out=\"object.name\"></t> has been received and is being reviewed by our <t t-out=\"object.team_id.name or ''\"></t> team. The reference of your ticket is <t t-out=\"object.ticket_no\"></t>.</p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">To add additional comments, reply to this email.</p>\n"
+"                <br>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Thank you,</p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\"></t>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p>Estimado  <t t-out=\"object.partner_id.name or 'Señora, Señor'\"/>,</p>\n"
+"                <p>Su solicitud <t t-out=\"object.name\"/> ha sido recibida y está siendo revisada por nuestro equipo de <t t-out=\"object.team_id.name or ''\"/>. La referencia de su ticket es <t t-out=\"object.ticket_no\"/>.</p>\n"
+"                <p>Para agregar comentarios adicionales, responda a este correo electrónico.</p>\n"
+"                <br/>\n"
+"                <p>Gracias,</p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\"/>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+
+#. module: sync_helpdesk
+#: model:mail.template,body_html:sync_helpdesk.ticket_done_email
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Dear <t t-out=\"object.partner_id.name or 'Madam, Sir'\"></t>,</p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">we have closed your ticket <t t-out=\"object.ticket_no\"></t>. We hope that the services provided have met your expectations. If you have any more questions or comments, don't hesitate to reply to this e-mail to re-open your ticket. Thank you for your cooperation.</p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Kind regards, </p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\"></t>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p>Estimado  <t t-out=\"object.partner_id.name or 'Señora, Señor'\"/>,</p>\n"
+"                <p>Hemos cerrado su ticket <t t-out=\"object.ticket_no\"/>. Esperamos que los servicios brindados hayan cumplido con sus expectativas. Si tiene más preguntas o comentarios, no dude en responder a este correo electrónico para volver a abrir su ticket. Gracias por su cooperación.</p>\n"
+"                <p>Un saludo cordial, </p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\"/>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+
+#. module: sync_helpdesk
+#: model:mail.template,body_html:sync_helpdesk.ticket_assignation_email
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Dear <t t-out=\"object.user_id.partner_id.name or 'Madam, Sir'\"></t>,</p>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\"><t t-out=\"object.name\"></t> ticket has been assign to you, please check it and start working on it.</p>\n"
+"                <br>\n"
+"                <p style=\"margin:0px 0 12px 0;box-sizing:border-box;\">Thank you,</p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\"></t>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"                <p>Estimado <t t-out=\"object.user_id.partner_id.name or 'Señora, Señor'\"/>,</p>\n"
+"                <p><t t-out=\"object.name\"/> se le ha asignado un ticket, por favor verifíquelo y comience a trabajar en él.</p>\n"
+"                <br/>\n"
+"                <p>Gracias,</p>\n"
+"                <t t-if=\"object.company_id.name and object.company_id.email\">\n"
+"                    <t t-out=\"object.company_id.name\"/>\n"
+"                </t>\n"
+"            </div>\n"
+"        "
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "<i title=\"Date\" class=\"fa fa-times\"/>"
+msgstr "<i title=\"Fecha\" class=\"fa fa-times\"/>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "<span title=\"Due Date\" class=\"fa fa-clock-o\"/>"
+msgstr "<span title=\"Fecha de vencimiento\" class=\"fa fa-clock-o\"/>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "<span>Reports</span>"
+msgstr "<span>Informes</span>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "<span>View Tickets</span>"
+msgstr "<span>Ver Tickets</span>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Assign Team</strong>"
+msgstr "<strong>Asignar Equipo</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Assigned to</strong>"
+msgstr "<strong>Asignado a</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Created</strong>"
+msgstr "<strong>Creado</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Dead Line</strong>"
+msgstr "<strong>Fecha límite</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Description</strong>"
+msgstr "<strong>Descripción</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Email: </strong>"
+msgstr "<strong>Correo electrónico: </strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Origin</strong>"
+msgstr "<fuerte>Origen</fuerte>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Phone: </strong>"
+msgstr "<strong>Teléfono: </strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Subject</strong>"
+msgstr "<strong>Asunto</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Tags</strong>"
+msgstr "<strong>Etiquetas</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Ticket Information</strong>"
+msgstr "<strong>Información del Boleto</strong>"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "<strong>Ticket Type</strong>"
+msgstr "<strong>Tipo de Entrada</strong>"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__access_warning
+msgid "Access warning"
+msgstr "Advertencia de Acceso"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_needaction
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__active
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__active
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__active
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "Add"
+msgstr "Agregar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__res_config_settings__invoice_method__after_repair
+msgid "After Repair"
+msgstr "Después de la Reparación"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_report__priority__0
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_ticket__priority__0
+msgid "All"
+msgstr "Todo"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support_alltickets
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "All Tickets"
+msgstr "Todas las Entradas"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_escalation
+msgid "Allow Escalate Ticket"
+msgstr "Permitir Escalar Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rma_sms
+msgid "Allow RMA SMS"
+msgstr "Permitir RMA SMS"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_subtickets
+msgid "Allow Sub Tickets"
+msgstr "Permitir Entradas Secundarias"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sms
+msgid "Allow Ticket SMS"
+msgstr "Permitir SMS de Entradas"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to Merge tickets."
+msgstr "Permitir Fusionar tickets."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to Share ticket."
+msgstr "Permitir Compartir ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to auto assign SLA on ticket as per contract."
+msgstr ""
+"Permitir la asignación automática de SLA en el ticket según el contrato."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to automatically trigger actions for ticket."
+msgstr "Permitir activar automáticamente acciones para el ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to create RMA Line from delivery order."
+msgstr "Permitir crear Línea RMA a partir de orden de entrega."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to create RMA order for specific products(Repair/Return/Credit)."
+msgstr ""
+"Permitir crear un pedido de RMA para productos "
+"específicos(Reparación/Devolución/Crédito)."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid ""
+"Allow to create contract of customer for specific duration with list of "
+"services."
+msgstr ""
+"Permitir crear un contrato de cliente por una duración específica con una "
+"lista deservicios."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to create invoice for contract services."
+msgstr "Permitir crear facturas por servicios contratados."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid ""
+"Allow to create predefined ticket appointments as per customer contract."
+msgstr ""
+"Permitir crear citas de boletos predefinidas según el contrato del cliente."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to create rework of ticket if customer is not satisfied."
+msgstr ""
+"Permitir crear una reelaboración del ticket si el cliente no está "
+"satisfecho."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to create ticket from lead."
+msgstr "Permitir crear un ticket a partir del prospecto."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to create ticket repair order."
+msgstr "Permitir crear orden de reparación de ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to dynamic change sequence as per ticket type."
+msgstr "Permitir cambio dinámico de secuencia según tipo de ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to generate appointment for specific time duration."
+msgstr "Permitir generar una cita para una duración de tiempo específica."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to generate purchase order."
+msgstr "Permitir generar orden de compra."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to generate recurring ticket as per schedule."
+msgstr "Permitir generar ticket recurrente según programación."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to renew contract for specific duration."
+msgstr "Permitir renovar el contrato por una duración específica."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to sell product only one time."
+msgstr "Permitir vender productos solo una vez."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to send SMS for RMA activities."
+msgstr "Permitir enviar SMS para actividades de RMA."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to send SMS for ticket activities."
+msgstr "Permitir enviar SMS para actividades de tickets."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to send online confirmation quote to vendor."
+msgstr "Permitir enviar cotización de confirmación en línea al proveedor."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to set due date of ticket."
+msgstr "Permitir establecer la fecha de vencimiento del ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow to set priority of ticket."
+msgstr "Permitir establecer la prioridad del ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid ""
+"Allow to show attractive graphs and ticket information as per ticket team."
+msgstr ""
+"Permite mostrar gráficos atractivos e información de ticket según el equipo "
+"de tickets."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Allow your customers to easily rate your services."
+msgstr "Permita que sus clientes califiquen fácilmente sus servicios."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid ""
+"Allows to user create subtickets for assign ticket to other responsible "
+"person."
+msgstr ""
+"Permite al usuario crear subtickets para asignar el ticket a otra persona "
+"responsable."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid ""
+"Allows to user escalate ticket to the parent team if not able to solved."
+msgstr ""
+"Permite al usuario escalar el ticket al equipo principal si no se puede "
+"resolver."
+
+#. module: sync_helpdesk
+#. odoo-python
+#: code:addons/sync_helpdesk/models/ticket_config.py:0
+#, python-format
+msgid "Already one queue is as default queue!"
+msgstr "¡Ya hay una cola como cola predeterminada!"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_website_purchase_quote
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_website_purchase_quote
+msgid "Approval/Decline purchases with Digital signature"
+msgstr "Aprobar/Rechazar compras con Firma Digital"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__work_approved
+msgid "Approved work"
+msgstr "Trabajo aprobado"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Archive"
+msgstr "Archivo"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_search_view
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: sync_helpdesk
+#: model:ticket.team,name:sync_helpdesk.support_team_id7
+msgid "Assembly Team"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__team_id
+msgid "Assign Team"
+msgstr "Asignar Equipo"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__assigned_tickets
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "Assigned Tickets"
+msgstr "Boletos Asignados"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__user_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__user_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Assigned to"
+msgstr "Asignado a"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_attachment_count
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__attachments
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Attachments"
+msgstr "Archivos Adjuntos"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_repair_purchase
+msgid "Auto Create Repair Purchase"
+msgstr "Compra de Reparación de Creación Automática"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid ""
+"Auto create purchase order for refurbs order parts if not available in "
+"warehouse."
+msgstr ""
+"Crear automáticamente una orden de compra para piezas de pedido de "
+"reacondicionamiento si no está disponible en almacén."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_repair_purchase
+msgid "Auto create repair purchase"
+msgstr "Compra de reparación de creación automática"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid ""
+"Auto unassign ticket if user will not perform any operation on ticket on "
+"specific time duration."
+msgstr ""
+"Desasignar ticket automáticamente si el usuario no realizará ninguna "
+"operación en el ticket en un tiempo de duración específico."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__template_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__template_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_stage_view_form
+msgid "Automated Answer Email Template"
+msgstr "Plantilla de correo electrónico de respuesta automática"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__template_ids
+msgid "Automated Answer Email Templates"
+msgstr "Plantillas de correo electrónico de respuesta automática"
+
+#. module: sync_helpdesk
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_awaiting_payment
+msgid "Awaiting Payment"
+msgstr "En Espera de Pago"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.ticket_receipt
+msgid "Barcode"
+msgstr "Código de Barras"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__res_config_settings__invoice_method__b4repair
+msgid "Before Repair"
+msgstr "Antes de la Reparación"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_report__kanban_state__blocked
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_ticket__kanban_state__blocked
+msgid "Blocked"
+msgstr "Bloqueado"
+
+#. module: sync_helpdesk
+#: model:ticket.team,name:sync_helpdesk.support_team_id2
+msgid "Build Team"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "By"
+msgstr "Por"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__campaign_id
+msgid "Campaign"
+msgstr "Campaña"
+
+#. module: sync_helpdesk
+#: model:mail.template,name:sync_helpdesk.ticket_cancel_email
+msgid "Cancel Ticket Request"
+msgstr "Cancelar Solicitud de Boleto"
+
+#. module: sync_helpdesk
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Cancelled Tickets"
+msgstr "Boletos Cancelados"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "Category"
+msgstr "Categoría"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sequence
+msgid "Change Ticket Sequence"
+msgstr "Cambiar Secuencia de Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sequence
+msgid "Change Ticket sequence"
+msgstr "Cambiar Secuencia de Ticket"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Channels"
+msgstr "Canales"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Check product warraanty and perform RMA actions(Repair/Return/Credit)."
+msgstr ""
+"Verifique la garantía del producto y realice acciones de "
+"RMA(Reparación/Devolución/Crédito)."
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_ticket_action
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_ticket_action_catg
+msgid "Click here to add new document"
+msgstr "Haga clic aquí para agregar un nuevo documento"
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_stage_action
+msgid "Click here to define a new stage."
+msgstr "Haga clic aquí para definir una nueva etapa."
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_technical_team_action
+msgid "Click here to define a new technical team."
+msgstr "Haga clic aquí para definir un nuevo equipo técnico."
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_team_dashboard_action
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_team_dashboard_employee_action
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_team_dashboard_maintenace_action
+msgid "Click here to define a new ticket team."
+msgstr "Haga clic aquí para definir un nuevo equipo de ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_tag_action
+msgid "Click to create a new ticket tag."
+msgstr "Haga clic para crear una nueva etiqueta de ticket."
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_category_action
+msgid "Click to create a ticket category."
+msgstr "Haga clic para crear una categoría de entradas."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__is_close
+msgid "Closing Kanban Stags"
+msgstr "Cierre de Etapas Kanban"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__code
+msgid "Code"
+msgstr "Código"
+
+#. module: sync_helpdesk
+#: model:ir.model.constraint,message:sync_helpdesk.constraint_ticket_category_code
+msgid "Code must be unique!"
+msgstr "¡El código debe ser único!"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__color
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__color
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__color
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Color"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__color
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__color
+msgid "Color Index"
+msgstr "Índice de Color"
+
+#. module: sync_helpdesk
+#: model:ticket.team,name:sync_helpdesk.support_team_id4
+msgid "Commercial Sewer Team"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__company_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__company_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__company_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Company"
+msgstr "Empresa"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sla
+msgid ""
+"Configure SLA as per Ticket type and stage for specific duration. \n"
+" Auto assign SLA in ticket as per ticket type and stage."
+msgstr ""
+"Configure SLA según el tipo de ticket y la etapa para una duración específica.\n"
+"Asignación automática de SLA en el ticket según el tipo de ticket y la etapa."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__is_done
+msgid "Consider as a Ticket as a done."
+msgstr "Considerar un Ticket como hecho."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_category__is_default_queue
+msgid "Considered as a default queue."
+msgstr "Considerado como cola por defecto."
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract_invoice
+msgid "Contract Invoice"
+msgstr "Factura de Contrato"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract_renew
+msgid "Contract Renew"
+msgstr "Contrato Renovar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract_sla
+msgid "Contract SLA"
+msgstr "SLA de Contrato"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract
+msgid ""
+"Contract create for specific duration and allow to select services of "
+"contract."
+msgstr ""
+"Crear contrato por una duración específica y permitir seleccionar servicios "
+"decontrato."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_appointment
+msgid "Create Appointment of Ticket"
+msgstr "Crear Cita de Ticket"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Create Date"
+msgstr "Fecha de Creación"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Create Day"
+msgstr "Crear Día"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_lead
+msgid "Create Tickets from Leads (If valid)"
+msgstr "Crear Tickets a partir de clientes potenciales (Si es válido)"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_lead
+msgid "Create Tickets from Leads (if valid)"
+msgstr "Crear Tickets a partir de Clientes Potenciales (si es válido)"
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.open_create_team
+msgid "Create a Team"
+msgstr "Crear un Equipo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract_invoice
+msgid "Create invoice for contract servicable line."
+msgstr "Crear factura para línea de servicio de contrato."
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_category_action
+msgid ""
+"Create ticket categories to better manage and classify your\n"
+"            tickets. Some example of tickets can be: preventive action,\n"
+"            corrective action."
+msgstr ""
+"Cree categorías de entradas para administrar y clasificar mejor sus\n"
+"            tickets. Algunos ejemplos de tickets pueden ser: acción preventiva,\n"
+"            acción correctiva."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__date
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Created"
+msgstr "Creado"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__create_uid
+msgid "Created By"
+msgstr "Creado Por"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__create_date
+msgid "Created On"
+msgstr "Creado El"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__create_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__create_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__create_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__create_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__create_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__create_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__create_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__create_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__create_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__create_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__res_config_settings__sale_warranty_type__current
+msgid "Current Warranty"
+msgstr "Garantía Actual"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__partner_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__partner_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__partner_email
+msgid "Customer Email"
+msgstr "correo Electrónico del Cliente"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Customer Info"
+msgstr "Información del Cliente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__access_url
+msgid "Customer Portal URL"
+msgstr "URL del Portal del Cliente"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Customer Ticket History"
+msgstr "Historial de Tickets del Cliente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_survey
+msgid "Customer fill feedback about ticket."
+msgstr "El cliente completa comentarios sobre el ticket."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_subtickets
+msgid "Customer submit sub issue of ticket."
+msgstr "El cliente envía un subproblema de ticket."
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_team_dashboard_action
+#: model:ir.actions.act_window,name:sync_helpdesk.support_team_dashboard_employee_action
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_dashboard
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support_dashboard
+#: model:ir.ui.menu,name:sync_helpdesk.support_team_dashboard_employee_menu
+#: model:ir.ui.menu,name:sync_helpdesk.support_team_dashboard_main_employee_menu
+#: model:ir.ui.menu,name:sync_helpdesk.support_team_dashboard_maintenance_menu
+msgid "Dashboard"
+msgstr "Tablero"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__deadline
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__deadline
+msgid "Deadline"
+msgstr "Fecha límite"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__default
+msgid "Default"
+msgstr "Predeterminado"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__default_team_id
+msgid "Default Team"
+msgstr "Equipo Predeterminado"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_category_filter
+msgid "Default Type"
+msgstr "Tipo Predeterminado"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Delete"
+msgstr "Borrar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__res_config_settings__rma_delivery_config__delivery_order
+msgid "Delivery Order"
+msgstr "Orden de Entrega"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__description
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__display_name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__display_name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__display_name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__display_name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__display_name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__display_name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__display_name
+msgid "Display Name"
+msgstr "Nombre de Pantalla"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__dont_email
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__dont_email
+msgid "Don't Email"
+msgstr "No Enviar Correo Electrónico"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__is_done
+msgid "Done"
+msgstr "Hecho"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Done Tickets"
+msgstr "Boletos Listos"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Dropdown menu"
+msgstr "Menú desplegable"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Edit"
+msgstr "Editar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__username
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__partner_email
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_mail_template
+#: model:ir.ui.menu,name:sync_helpdesk.support_email_tmeplate_menu
+msgid "Email Templates"
+msgstr "Plantillas de Correo Electrónico"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "Email alias"
+msgstr "Alias de Correo Electrónico"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__work_location_id
+msgid "Employee Location"
+msgstr "Ubicación del empleado"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_emp_reg_all
+msgid "Employee Registration"
+msgstr "Registro de Empleados"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Employee's Hardware Inventory"
+msgstr "Inventario de Hardware del Empleado"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__group_group_enable_due_date
+msgid "Enable Due Date"
+msgstr "Habilitar Fecha de Vencimiento"
+
+#. module: sync_helpdesk
+#: model:res.groups,name:sync_helpdesk.group_enable_due_date
+msgid "Enable Due Dates"
+msgstr "Habilitar Fechas de Vencimiento"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_intake
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_intake
+msgid "Enable Intake Form"
+msgstr "Habilitar Formulario de Admisión"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_intake_timesheet
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_intake_timesheet
+msgid "Enable Intake Timesheet"
+msgstr "Habilitar Parte de Horas de Admisión"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_one_time_use_product
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_one_time_use_product
+msgid "Enable One-Time-Use Inventory Items"
+msgstr "Habilitar Artículos de Inventario de un Solo Uso"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_outtake
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_outtake
+msgid "Enable Outtake Form"
+msgstr "Habilitar Formulario de Salida"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__group_group_enable_ticket_priority
+#: model:res.groups,name:sync_helpdesk.group_enable_ticket_priority
+msgid "Enable Priority"
+msgstr "Habilitar Prioridad"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_purchase
+msgid "Enable Purchase Orders"
+msgstr "Habilitar Órdenes de Compra"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sale_quote
+msgid "Enable Ticket Estimation"
+msgstr "Habilitar Estimación de Tickets"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.main_maintenance_equipment_categories
+msgid "Equipment Categories"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_it_equipments_registration
+msgid "Equipment Registrations"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_equipment_request
+msgid "Equipment Request"
+msgstr "Solicitud de Equipo"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.equipment_maintenance_menu_main
+#: model:ir.ui.menu,name:sync_helpdesk.menu_it_equipments
+msgid "Equipments"
+msgstr "Equipos"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_escalation
+msgid "Escalate ticket to the parent team."
+msgstr "Escalar ticket al equipo principal."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__estimated_cost
+msgid "Estimated Cost"
+msgstr "Costo estimado"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_exit_procedure
+msgid "Exit Procedure"
+msgstr "Procedimiento de Salida"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_exit_type
+msgid "Exit Type"
+msgstr "Tipo de Salida"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__res_config_settings__sale_warranty_type__extend
+msgid "Extend Warranty"
+msgstr "Extender la Garantía"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "Extended Filters..."
+msgstr "Filtros Extendidos..."
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support_failed_inspection_report
+msgid "Failed Inspection"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ticket.team,name:sync_helpdesk.support_team_id6
+msgid "Finishing Team"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__fold
+msgid "Folded"
+msgstr "Doblado"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid ""
+"Follow this salesteam to automatically track the events associated to users "
+"of this team."
+msgstr ""
+"Siga a este equipo de ventas para rastrear automáticamente los eventos "
+"asociados a los usuariosde este equipo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_follower_ids
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_partner_ids
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono de fuente impresionante, p. "
+
+#. module: sync_helpdesk
+#: model:ticket.category,name:sync_helpdesk.queue_type_default_queue
+msgid "General"
+msgstr "Problema General"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "General Configuration"
+msgstr "Configuración General"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Get in touch with you website visitors."
+msgstr "Póngase en contacto con los visitantes de su sitio web."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_search_view
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__has_message
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_report_action
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_ticket_report_action
+msgid ""
+"Have a general overview of all claims processed in the system by sorting "
+"them with specific criteria."
+msgstr ""
+"Tener una visión general de todos los reclamos procesados en el sistema "
+"ordenándolos con criterios específicos."
+
+#. module: sync_helpdesk
+#: model:ir.module.category,name:sync_helpdesk.module_category_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Helpdesk"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_dashboard
+msgid "Helpdesk Dashboard"
+msgstr "Panel del Helpdesk"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_website
+msgid "Helpdesk Website"
+msgstr "Sitio web del Helpdesk"
+
+#. module: sync_helpdesk
+#: model:ir.module.category,description:sync_helpdesk.module_category_helpdesk
+msgid "Helps you manage your Ticket."
+msgstr "Te ayuda a administrar tu Ticket."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_report__priority__2
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_ticket__priority__2
+msgid "High Priority"
+msgstr "Prioridad alta"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "I take it"
+msgstr "Lo tomo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__id
+msgid "ID"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_it_operations
+msgid "IT Operations"
+msgstr "Operaciones de TI"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepcion."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__message_needaction
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__message_has_error
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__message_has_sms_error
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__message_has_error
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__active
+msgid ""
+"If the active field is set to false, it will allow you to hide the technical"
+" team without removing it."
+msgstr ""
+"Si el campo activo se establece en falso, le permitirá ocultar el equipo "
+"técnico sin quitarlo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__active
+msgid ""
+"If the active field is set to false, it will allow you to hide the ticket "
+"without removing it."
+msgstr ""
+"Si el campo activo se establece en falso, le permitirá ocultar el ticketsin "
+"quitarlo."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "Image"
+msgstr "Imagen"
+
+#. module: sync_helpdesk
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_in_progress
+msgid "In Progress"
+msgstr "En Progreso"
+
+#. module: sync_helpdesk
+#. odoo-python
+#: code:addons/sync_helpdesk/models/ticket_config.py:0
+#: model:ir.model,name:sync_helpdesk.model_fetchmail_server
+#, python-format
+msgid "Incoming Mail Server"
+msgstr "Servidor de Correo Entrante"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_equipment_inspection
+msgid "Inspection"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_equipment_inspection_form
+msgid "Inspection Form"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Intake/Outtake"
+msgstr "Admisión/Descarga"
+
+#. module: sync_helpdesk
+#: model:ticket.team,name:sync_helpdesk.support_team_id3
+msgid "Interior Design Team"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__invoice_method
+msgid "Invoice Method"
+msgstr "Método de Factura"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__is_cancel
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__is_cancel
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_stage_search
+msgid "Is Cancel"
+msgstr "Es cancelar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__is_close
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_stage_search
+msgid "Is Close"
+msgstr "Está Cerca"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__is_default_queue
+msgid "Is Default Queue"
+msgstr "Es la Cola Predeterminada"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__is_done
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_stage_search
+msgid "Is Done"
+msgstr "Listo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_is_follower
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_fetchmail_server__is_ticket
+msgid "Is Ticket"
+msgstr "Es Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__work_approved
+msgid "Is work approved to proceed?"
+msgstr "¿Está aprobado el trabajo para continuar?"
+
+#. module: sync_helpdesk
+#: model:ticket.category,name:sync_helpdesk.queue_type_issue
+msgid "Issue"
+msgstr "Problema de Edata+"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__kanban_state
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__kanban_state
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Kanban State"
+msgstr "Estado Kanban"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__kanban_state
+msgid "Kanban state."
+msgstr "Estado Kanban."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_knowledge_base
+msgid "Knowledge Base"
+msgstr "Base de Conocimientos"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category____last_update
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template____last_update
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report____last_update
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage____last_update
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag____last_update
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team____last_update
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__last_change_state_date
+msgid "Last Stage Change"
+msgstr "Cambio de Última Etapa"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Last Stage Change on"
+msgstr "Último Cambio de Etapa en"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_tree
+msgid "Last Update on"
+msgstr "Última Actualización el"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Last Update:"
+msgstr "Última Actualización:"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__write_uid
+msgid "Last Updated By"
+msgstr "Última Actualización por"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__write_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__write_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__write_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__write_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__write_uid
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__write_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__write_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__write_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__write_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__write_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__write_date
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__parent_ticket_id
+msgid "Linked Ticket"
+msgstr "Boleto Vinculado"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_livechat
+msgid "Live Chat"
+msgstr "Chat en Vivo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_report__priority__1
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_ticket__priority__1
+msgid "Low Priority"
+msgstr "Prioridad Baja"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_main_attachment_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunto Principal"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.dashboard_maintenance_menu
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_team_dashboard_maintenace_action
+msgid "Maintenance Dashboard"
+msgstr "Tablero de Mantenimiento"
+
+#. module: sync_helpdesk
+#: model:res.groups,name:sync_helpdesk.group_helpdesk_manager
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: sync_helpdesk
+#: model:res.groups,comment:sync_helpdesk.group_helpdesk_manager
+msgid "Manager: manage the helpdesk process of the customer."
+msgstr "Gestor: gestionar el proceso de helpdesk del cliente."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_merge_ticket
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_merge_ticket
+msgid "Merge Ticket"
+msgstr "Boleto Combinado"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_merge_timesheet
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_merge_timesheet
+msgid "Merge Ticket Timesheets"
+msgstr "Fusionar Partes de Horas de Tickets"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_has_error
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_ids
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__partner_mobile
+msgid "Mobile"
+msgstr "Móvil"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "More <i class=\"fa fa-caret-down\"/>"
+msgstr "Más <i class=\"fa fa-caret-down\"/>"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de mi Actividad"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "My Company"
+msgstr "Mi Empresa"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "My Sales Team(s)"
+msgstr "Mi(s) Equipo(s) de Ventas"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_search_view
+msgid "My Teams"
+msgstr "Mis Equipos"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "My Technical Team(s)"
+msgstr "Mi(s) Equipo(s) Técnico(s)"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "My Tickets"
+msgstr "Mis Entradas"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_tag__name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__partner_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sync_helpdesk
+#. odoo-python
+#: code:addons/sync_helpdesk/models/ticket.py:0
+#: code:addons/sync_helpdesk/models/ticket.py:0
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_issue
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+#, python-format
+msgid "New"
+msgstr "Nuevo"
+
+#. module: sync_helpdesk
+#: model:mail.template,name:sync_helpdesk.ticket_creation_email
+msgid "New Ticket Request"
+msgstr "Solicitud de Nuevo Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Evento del Calendario de Actividad Siguiente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Próxima Fecha Límite de Actividad"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de Actividad Siguiente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente Tipo de Actividad"
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_ticket_action
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_ticket_action_catg
+msgid "No tickets to display."
+msgstr "No hay entradas para mostrar."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_report__kanban_state__normal
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_ticket__kanban_state__normal
+msgid "Normal"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_needaction_counter
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_has_error_counter
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de Errores"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__message_needaction_counter
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__message_has_error_counter
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Numero de mensajes con error de entrega"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_main_it_equipments
+msgid "Office Equipments"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Online confirmation ticket solved."
+msgstr "Ticket de confirmación online solucionado."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Online confirmation ticket timesheet."
+msgstr "Hoja de horas de ticket de confirmación en línea."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Online ticket confirmation for customer."
+msgstr "Confirmación de ticket en línea para el cliente."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Open Tickets"
+msgstr "Boletos Abiertos"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "Opened Tickets Analysis"
+msgstr "Análisis de Tickets Abiertos"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__medium_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__medium_id
+msgid "Origin"
+msgstr "Origen"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Other Info"
+msgstr "Otra Información"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__parent_id
+msgid "Parent Team"
+msgstr "Equipo Principal"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "Partner"
+msgstr "Socio"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Performance"
+msgstr "Rendimiento"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_pivot_view
+msgid "Performance Analysis"
+msgstr "Análisis de Rendimiento"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__partner_phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__access_url
+msgid "Portal Access URL"
+msgstr "URL de Acceso al Portal"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__priority
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__priority
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_product_product
+msgid "Product Variant"
+msgstr "Variante de producto"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.helpdesk_menu_main_pm
+msgid "Project"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Purchase"
+msgstr "Comprar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_purchase
+msgid "Purchase order for order parts"
+msgstr "Orden de compra de piezas de pedido"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__stock_quants
+msgid "Quants"
+msgstr "Cuantas"
+
+#. module: sync_helpdesk
+#: model:ticket.category,name:sync_helpdesk.queue_type_question
+msgid "Question"
+msgstr "Ops - Problema de Mantenimiento del Equipo"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Question and answer section on your website"
+msgstr "Sección de preguntas y respuestas en su sitio web"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__categ_id
+msgid "Queue Type."
+msgstr "Tipo de cola."
+
+#. module: sync_helpdesk
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_quotation_approve
+msgid "Quotation Approve"
+msgstr "Aprobación de cotización"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rma
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rma
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "RMA"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__rma_delivery_config
+msgid "RMA Delivery Configuration"
+msgstr "Configuración de entrega de RMA"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rma_sms
+msgid "RMA SMS"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rma_warranty
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rma_warranty
+msgid "RMA Warranty"
+msgstr "Garantía RMA"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_survey
+msgid "Ratings & Survey"
+msgstr "Calificaciones"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_report__kanban_state__done
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_ticket__kanban_state__done
+msgid "Ready for next stage"
+msgstr "Listo para la siguiente etapa"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Record timesheets on your tickets."
+msgstr "Registro de hojas de tiempo en sus boletos."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_recurring_appointment
+msgid "Recurring Appointment"
+msgstr "Cita Recurrente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_ticket_recurring
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_ticket_recurring
+msgid "Recurring Tickets"
+msgstr "Entradas Recurrentes"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__ticket_no
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Reinvoice time to you customer through tasks."
+msgstr "Refacturar tiempo a su cliente a través de tareas."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "Remove"
+msgstr "Eliminar"
+
+#. module: sync_helpdesk
+#: model:ticket.team,name:sync_helpdesk.support_team_id5
+msgid "Renovation Team"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.repair_order_menu
+msgid "Repair Orders"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__reply_to
+msgid "Reply-To"
+msgstr "Responder a"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support_reports
+msgid "Reports"
+msgstr "Informes"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rework
+msgid "Rework of tickets."
+msgstr "Reelaboración de billetes."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__running_tickets
+msgid "Running Tickets"
+msgstr "Entradas para correr"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sla
+msgid "SLA Policies"
+msgstr "Políticas de SLA"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "SMS"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__message_has_sms_error
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: sync_helpdesk
+#: model:ticket.category,name:sync_helpdesk.queue_type_sales
+msgid "Sale"
+msgstr "Problema"
+
+#. module: sync_helpdesk
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_sending_quotation
+msgid "Sale Quotation Sent"
+msgstr "Cotización de Venta Enviada"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__sale_warranty_type
+msgid "Sale Warranty Type"
+msgstr "Tipo de Garantía de Venta"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Sales &amp; Invoices"
+msgstr "Ventas"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "Salesperson"
+msgstr "Vendedor"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "Search"
+msgstr "Buscar"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_category_filter
+msgid "Search Ticket Category"
+msgstr "Categoría de Ticket de Búsqueda"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__access_token
+msgid "Security Token"
+msgstr "Token de Seguridad"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__invoice_method
+msgid ""
+"Selecting 'Before Repair' or 'After Repair' will allow you to generate "
+"invoice before or after the repair is done respectively. 'No invoice' means "
+"you don't want to generate invoice for this repair order."
+msgstr ""
+"Seleccionar 'Antes de la reparación' o 'Después de la reparación' le "
+"permitirá generar la factura antes o después de que se realice la "
+"reparación, respectivamente. 'Sin factura' significa que no desea generar "
+"una factura para esta orden de reparación."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sale_quote
+msgid "Send Estimation to customer"
+msgstr "Enviar Estimación al cliente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_sms
+msgid "Send SMS to customer."
+msgstr "Enviar SMS al cliente."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Send online confirmation quotation to customer."
+msgstr "Enviar cotización de confirmación en línea al cliente."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__sequence
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__sequence
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Set up your Service Level Agreements to track performance."
+msgstr ""
+"Configure sus Acuerdos de Nivel de Servicio para realizar un seguimiento del"
+" rendimiento."
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.action_support_config
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support_general_settings
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "Settings"
+msgstr "Ajustes"
+
+#. module: sync_helpdesk
+#: model:ir.actions.server,name:sync_helpdesk.model_helpdesk_ticket_action_share
+msgid "Share"
+msgstr "Compartir"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__group_group_share_ticket
+#: model:res.groups,name:sync_helpdesk.group_share_ticket
+msgid "Share Ticket"
+msgstr "Compartir Ticket"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Share presentation and videos, and organize into courses."
+msgstr "Comparta presentaciones y videos, y organícelos en cursos."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__show_dashboard
+msgid "Show in Dashboard"
+msgstr "Mostrar en el Tablero"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__show_in_hrms
+msgid "Show in HRMS"
+msgstr "Mostrar en HRMS"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__show_in_maintenance
+msgid "Show in Maintenance"
+msgstr "Show en Mantenimiento"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__last_change_state_date
+msgid "Show last change state date."
+msgstr "Mostrar fecha del último cambio de estado."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_website_slides
+msgid "Slides"
+msgstr "Diapositivas"
+
+#. module: sync_helpdesk
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_solved
+msgid "Solved"
+msgstr "Resuelto"
+
+#. module: sync_helpdesk
+#: model:mail.template,name:sync_helpdesk.ticket_done_email
+msgid "Solved Ticket Request"
+msgstr "Solicitud de Ticket Resuelta"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__source_id
+msgid "Source"
+msgstr "Fuente"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_category__team_ids
+msgid ""
+"Specific team that uses this stage. Other teams will not be able to see or "
+"use this stage."
+msgstr ""
+"Equipo específico que usa este escenario. Otros equipos no podrán ver o usar"
+" esta etapa."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_mail_template__stage_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__stage_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__stage_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_stage_view_tree
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Stage"
+msgstr "Etapa"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__stage_change_by
+msgid "Stage Change By"
+msgstr "Cambio de Etapa por"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_stage_search
+msgid "Stage Search"
+msgstr "Búsqueda de Etapas"
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_stage_action
+msgid "Stage allows to organize tickets."
+msgstr "Stage permite organizar entradas."
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_stage_action
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__stage_ids
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_category__stage_ids
+#: model:ir.ui.menu,name:sync_helpdesk.support_stages_menu
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_category_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_stage_view_form
+msgid "Stages"
+msgstr "Etapas"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Atrasado: La fecha de vencimiento ya pasó\n"
+"Hoy: La fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__name
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__name
+msgid "Subject"
+msgstr "Asunto"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Subject..."
+msgstr "Asunto..."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Submit and view tickets with an online form."
+msgstr "Enviar y ver boletos con un formulario en línea."
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_equipment_submitted_inspection
+msgid "Submitted Inspection"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:ticket.team,name:sync_helpdesk.support_team_id1
+msgid "Support"
+msgstr "Soporte EWS"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+msgid "Tactical RMM"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_tag_view_tree
+msgid "Tag"
+msgstr "Etiqueta"
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_tag_action
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__tag_ids
+#: model:ir.ui.menu,name:sync_helpdesk.support_tag_menu
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_tag_action
+msgid "Tags allows to organize tickets."
+msgstr "Tags permite organizar entradas."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_category__team_ids
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Team"
+msgstr "Equipo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__user_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_search_view
+msgid "Team Leader"
+msgstr "Jefe de Equipo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__member_ids
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "Team Members"
+msgstr "Miembros del Equipo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_users__team_history_ids
+#: model:ir.ui.menu,name:sync_helpdesk.support_team_act_menu
+msgid "Teams"
+msgstr "Equipos"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_filter
+msgid "Technical Team"
+msgstr "Equipo Técnico"
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.action_email_template_tree_sync_helpdesk
+msgid "Templates"
+msgstr "Plantillas"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__color
+msgid "The color of the team"
+msgstr "El color del equipo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__reply_to
+msgid ""
+"The email address put in the 'Reply-To' of all emails sent by ticket about "
+"cases in this technical team"
+msgstr ""
+"La dirección de correo electrónico incluida en 'Responder a' de todos los "
+"correos electrónicos enviados por ticket sobre casos en este equipo técnico"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_recurring_appointment
+msgid "This installs the module Recurring Appointment."
+msgstr "Esto instala el módulo Cita Recurrente."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract_renew
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_unassign
+msgid "This installs the module contract Renew."
+msgstr "Esto instala el contrato de módulo Renovar."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_contract_sla
+msgid "This installs the module contract SLA."
+msgstr "Esto instala el SLA del contrato del módulo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_website
+msgid "This installs the module helpdesk Website."
+msgstr "Esto instala el sitio web del servicio de asistencia del módulo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_knowledge_base
+msgid "This installs the module knowledge base."
+msgstr "Esto instala la base de conocimientos del módulo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_livechat
+msgid "This installs the module live chat."
+msgstr "Esto instala el módulo de chat en vivo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_website_slides
+msgid "This installs the module website slides."
+msgstr "Esto instala las diapositivas del sitio web del módulo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__campaign_id
+msgid ""
+"This is a name that helps you keep track of your different campaign efforts,"
+" e.g. Fall_Drive, Christmas_Special"
+msgstr ""
+"Este es un nombre que lo ayuda a realizar un seguimiento de sus diferentes "
+"esfuerzos de campaña.por ejemplo, Fall_Drive, Christmas_Special"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__medium_id
+msgid "This is the method of delivery.Ex: Postcard, Email, or Banner Ad"
+msgstr ""
+"Este es el método de entrega.Ej: postal, correo electrónico o banner "
+"publicitario"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__source_id
+msgid ""
+"This is the source of the link, e.g. Search Engine, another domain, or name "
+"of email list"
+msgstr ""
+"Esta es la fuente del enlace, por ejemplo, motor de búsqueda, otro dominio o"
+" nombrede la lista de correo electrónico"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_stage__fold
+msgid ""
+"This stage is folded in the kanban view when there are no records in that "
+"stage to display."
+msgstr ""
+"Esta etapa se pliega en la vista kanban cuando no hay registros en esaetapa "
+"para exhibir."
+
+#. module: sync_helpdesk
+#: model:ir.actions.report,name:sync_helpdesk.action_ticket
+#: model:ir.model,name:sync_helpdesk.model_ticket_ticket
+#: model:mail.message.subtype,description:sync_helpdesk.mt_ticket_stage
+#: model:mail.message.subtype,name:sync_helpdesk.mt_ticket_stage
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_calendar
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Ticket"
+msgstr "Boleto"
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_report_action
+#: model:ir.actions.act_window,name:sync_helpdesk.support_ticket_report_action
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_graph
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_report_support_pivot
+msgid "Ticket Analysis"
+msgstr "Análisis de Tickets"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_appointment
+msgid "Ticket Appointment"
+msgstr "Ticket Cita"
+
+#. module: sync_helpdesk
+#: model:mail.template,name:sync_helpdesk.ticket_assignation_email
+msgid "Ticket Assignation"
+msgstr "Asignación de Entradas"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_automation
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_automation
+msgid "Ticket Automation"
+msgstr "Automatización de Tickets"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_category_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_category_tree
+msgid "Ticket Categories"
+msgstr "Categorías de Tickets"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_ticket_category
+msgid "Ticket Category"
+msgstr "Categoría de Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__customer_ticket_histories
+msgid "Ticket Histories"
+msgstr "Historial de Tickets"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_ticket_mail_template
+msgid "Ticket Mail Template"
+msgstr "Plantilla de Correo de Ticket"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Ticket Month"
+msgstr "Mes del Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__ticket_no
+msgid "Ticket Number."
+msgstr "Número de Ticket."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_refurbs
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_refurbs
+msgid "Ticket Refurbs"
+msgstr "Renovaciones de Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_ticket_report
+msgid "Ticket Report"
+msgstr "Informe de Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_rework
+msgid "Ticket Rework"
+msgstr "Reelaboración de Ticket"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Ticket Search"
+msgstr "Búsqueda de Entradas"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_ticket_stage
+msgid "Ticket Stags"
+msgstr "Ciervos de Entradas"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_ticket_tag
+msgid "Ticket Tag"
+msgstr "Etiqueta de Boleto"
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_ticket_team
+#: model:ir.model.fields,field_description:sync_helpdesk.field_fetchmail_server__team_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_users__support_team_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__team_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__name
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_tree
+msgid "Ticket Team"
+msgstr "Equipo de Boletos"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_users__support_team_id
+msgid ""
+"Ticket Team the user is member of. Used to compute the members of a ticket "
+"team through the inverse one2many"
+msgstr ""
+"Equipo de Ticket del que el usuario es miembro. Se utiliza para calcular los"
+" miembros de un equipo a través del inverso one2many"
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_technical_team_action
+msgid "Ticket Teams"
+msgstr "Equipos de Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_category_action
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_report__categ_id
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_stage__categ_ids
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__categ_id
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_category_filter
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Ticket Type"
+msgstr "Tipo de Ticket"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_unassign
+msgid "Ticket Unassign"
+msgstr "Ticket Desasignado"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "Ticket team"
+msgstr "Equipo de Ticket"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_view_form
+msgid "Ticket team name..."
+msgstr "Nombre del equipo de entradas..."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_team_search_view
+msgid "Ticket teams Search"
+msgstr "Equipos de entradas Buscar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_stage__categ_ids
+msgid "Ticket types."
+msgstr "Tipos de Ticket."
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.support_ticket_action
+#: model:ir.actions.act_window,name:sync_helpdesk.support_ticket_action_catg
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_partner__ticket_ids
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_users__ticket_ids
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__ticket_ids
+#: model:ir.ui.menu,name:sync_helpdesk.menu_support_ticket_report
+#: model:ir.ui.menu,name:sync_helpdesk.support_ticket_config_menu
+#: model:ir.ui.menu,name:sync_helpdesk.support_ticket_menu
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_graph_view
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_form
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_view_tree
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.sync_helpdesk_view_partner_form
+msgid "Tickets"
+msgstr "Entradas"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_timesheet_invoice
+msgid "Timesheet Invoice"
+msgstr "Factura de la Hoja de Tiempo"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_timesheet_invoice
+msgid "Timesheet Invoice."
+msgstr "Factura de la Hoja de Tiempo."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_timesheet
+msgid "Timesheet on Ticket"
+msgstr "Hoja de Tiempo en el Ticket"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Track Hours"
+msgstr "Seguimiento de Horas"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__res_config_settings__rma_delivery_config__tracking_ref
+msgid "Tracking Reference"
+msgstr "Referencia de Seguimiento"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepcion registrada."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Type:"
+msgstr "Tipo:"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.support_queue_type_menu
+msgid "Types"
+msgstr "Tipos"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "Unarchive"
+msgstr "Desarchivar"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Unassigned"
+msgstr "Sin Asignar"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__unassigned_tickets
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_dashboard_kanban_view
+msgid "Unassigned Tickets"
+msgstr "Boletos no Asignados"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Unread Messages"
+msgstr "Mensajes no Leídos"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_report__priority__3
+#: model:ir.model.fields.selection,name:sync_helpdesk.selection__ticket_ticket__priority__3
+msgid "Urgent"
+msgstr "Urgente"
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_technical_team_action
+msgid ""
+"Use technical team to organize your different technical persons or\n"
+"                departments into separate teams. Each team will work in\n"
+"                its own list of opportunities."
+msgstr ""
+"Utilice el equipo técnico para organizar sus diferentes personas técnicas o\n"
+"                departamentos en equipos separados. Cada equipo trabajará en\n"
+"                su propia lista de oportunidadess."
+
+#. module: sync_helpdesk
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_team_dashboard_action
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_team_dashboard_employee_action
+#: model_terms:ir.actions.act_window,help:sync_helpdesk.support_team_dashboard_maintenace_action
+msgid ""
+"Use ticket team to organize your different engineers or\n"
+"                departments into separate teams. Each team will work in\n"
+"                its own list of tickets."
+msgstr ""
+"Use el equipo de tickets para organizar a sus diferentes ingenieros o\n"
+"                departamentos en equipos separados. Cada equipo trabajará en\n"
+"                su propia lista de tickets."
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_stage__sequence
+msgid "Used to order stages. Lower is better."
+msgstr "Utilizado para ordenar etapas. "
+
+#. module: sync_helpdesk
+#: model:ir.model,name:sync_helpdesk.model_res_users
+#: model:res.groups,name:sync_helpdesk.group_helpdesk_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: sync_helpdesk
+#: model:ir.ui.menu,name:sync_helpdesk.menu_user_access
+msgid "User Access"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:res.groups,comment:sync_helpdesk.group_helpdesk_user
+msgid "User read the own ticket form."
+msgstr "Usuario leyó formulario de ticket propio."
+
+#. module: sync_helpdesk
+#: model:ir.actions.act_window,name:sync_helpdesk.partner_helpdesk_action_form
+#: model:ir.ui.menu,name:sync_helpdesk.ticket_customer_menu
+msgid "Users"
+msgstr "Clientes"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_res_config_settings__module_sync_helpdesk_timesheet
+msgid "Users allow to put timesheet entry for ticket wise."
+msgstr "Los usuarios permiten ingresar la hoja de tiempo para el ticket."
+
+#. module: sync_helpdesk
+#: model:ticket.stage,name:sync_helpdesk.stage_ticket_waiting_permission
+msgid "Waiting Permission"
+msgstr "Permiso de Espera"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_config_settings
+msgid "Website"
+msgstr "Sitio web"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_team__website_message_ids
+#: model:ir.model.fields,field_description:sync_helpdesk.field_ticket_ticket__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio web"
+
+#. module: sync_helpdesk
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_team__website_message_ids
+#: model:ir.model.fields,help:sync_helpdesk.field_ticket_ticket__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.view_support_ticket_filter
+msgid "Work Approved"
+msgstr "Trabajo Aprobado"
+
+#. module: sync_helpdesk
+#. odoo-python
+#: code:addons/sync_helpdesk/models/ticket.py:0
+#, python-format
+msgid "You are not a team member, so you can not take this ticket!"
+msgstr "¡No eres miembro del equipo, por lo que no puedes tomar este boleto!"
+
+#. module: sync_helpdesk
+#. odoo-python
+#: code:addons/sync_helpdesk/models/ticket.py:0
+#: code:addons/sync_helpdesk/models/ticket.py:0
+#, python-format
+msgid "You can not assign ticket to other member!"
+msgstr "¡No puede asignar un boleto a otro miembro!"
+
+#. module: sync_helpdesk
+#. odoo-python
+#: code:addons/sync_helpdesk/models/ticket.py:0
+#, python-format
+msgid "You can not delete a ticket which are in done or cancel stage!"
+msgstr ""
+"¡No puede eliminar un ticket que está en etapa de finalización o "
+"cancelación!"
+
+#. module: sync_helpdesk
+#. odoo-python
+#: code:addons/sync_helpdesk/models/ticket_config.py:0
+#, python-format
+msgid "You should not take recursive team."
+msgstr "No deberías tomar un equipo recursivo."
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "kanban_image"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model_terms:ir.ui.view,arch_db:sync_helpdesk.support_ticket_kanban_view
+msgid "oe_kanban_text_red"
+msgstr ""
+
+#. module: sync_helpdesk
+#: model:mail.template,subject:sync_helpdesk.ticket_assignation_email
+msgid "{{object.name}} Ticket Assignation"
+msgstr "{{object.name}} Asignación de Ticket"
+
+#. module: sync_helpdesk
+#: model:mail.template,subject:sync_helpdesk.ticket_cancel_email
+msgid "{{object.name}} Ticket Cancelled"
+msgstr "{{object.name}} Ticket Cancelado"
+
+#. module: sync_helpdesk
+#: model:mail.template,subject:sync_helpdesk.ticket_creation_email
+msgid "{{object.name}} Ticket Creation"
+msgstr "{{object.name}} Creación de tickets"
+
+#. module: sync_helpdesk
+#: model:mail.template,subject:sync_helpdesk.ticket_done_email
+msgid "{{object.name}} Ticket Done"
+msgstr "{{object.name}} Ticket Listo"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit contract form view -->
+    <record id="contract_contract_form_view_inherit_renew" model="ir.ui.view">
+        <field name="name">contract.contract.form.view</field>
+        <field name="model">contract.contract</field>
+        <field name="inherit_id" ref="sync_helpdesk_contract.contract_contract_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='set_pending']" position="after">
+                <button name="renew_contract" string="Renew" states="close" type="object"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

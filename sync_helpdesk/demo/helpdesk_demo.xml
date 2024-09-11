@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- ticket tag -->
+    <record model="ticket.tag" id="support_tag_id1">
+        <field name="name">Furniture</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id2">
+        <field name="name">Electronic</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id3">
+        <field name="name">2 Seater Sofa</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id4">
+        <field name="name">3 Seater Sofa</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id5">
+        <field name="name">4 Seater Sofa</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id6">
+        <field name="name">Arm Chair</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id7">
+        <field name="name">study Chair</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id8">
+        <field name="name">Acapulco Chair</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id9">
+        <field name="name">Street Guard Chair</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id10">
+        <field name="name">Guest Bed</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id11">
+        <field name="name">Divan Bed</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id12">
+        <field name="name">Sleigh Bed</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id13">
+        <field name="name">Wooden Bed</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id14">
+        <field name="name">Shaker Coffee Tables</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id15">
+        <field name="name">Cottage Coffee Tables</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id16">
+        <field name="name">Industrial Coffee Table</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id17">
+        <field name="name">Wall Cabinets</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id18">
+        <field name="name">3 door wardrobe Cabinets</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id19">
+        <field name="name">Desk</field>
+    </record>
+    <record model="ticket.tag" id="support_tag_id20">
+        <field name="name">Dining tables</field>
+    </record>
+
+    <!-- Team -->
+    <record model="ticket.team" id="support_team_id6">
+        <field name="name">Finishing Team</field>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_jack"/>
+        <field name="member_ids" eval="[(4, ref('sync_helpdesk.helpdesk_user_jacob'))]"/>
+        <field name="sequence">5</field>
+    </record>
+    <record model="ticket.team" id="support_team_id2">
+        <field name="name">Build Team</field>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_harry"/>
+        <field name="member_ids" eval="[(4, ref('sync_helpdesk.helpdesk_user_oliver'))]"/>
+        <field name="sequence">1</field>
+    </record>
+    <record model="ticket.team" id="support_team_id3">
+        <field name="name">Interior Design Team</field>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_daniel"/>
+        <field name="member_ids" eval="[(4, ref('sync_helpdesk.helpdesk_user_jenson'))]"/>
+        <field name="parent_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="sequence">3</field>
+    </record>
+    <record model="ticket.team" id="support_team_id4">
+        <field name="name">Commercial Sewer Team</field>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_ronnie"/>
+        <field name="member_ids" eval="[(4,ref('sync_helpdesk.helpdesk_user_joseph'))]"/>
+        <field name="parent_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="sequence">4</field>
+    </record>
+    <record model="ticket.team" id="support_team_id5">
+        <field name="name">Renovation Team</field>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_lewis"/>
+        <field name="member_ids" eval="[(4, ref('sync_helpdesk.helpdesk_user_william'))]"/>
+        <field name="parent_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="sequence">2</field>
+    </record>
+    <record model="ticket.team" id="support_team_id7">
+        <field name="name">Assembly Team</field>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="member_ids" eval="[(4, ref('base.user_admin'))]"/>
+        <field name="parent_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="sequence">6</field>
+    </record>
+
+    <!--ticket type -->
+    <record id="sync_helpdesk.queue_type_question" model="ticket.category">
+        <field name="team_ids" eval="[(4, ref('support_team_id7'))]"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_issue">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_waiting_permission">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_in_progress">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_sending_quotation">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_quotation_approve">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_awaiting_payment">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_cancel">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.stage" id="sync_helpdesk.stage_ticket_solved">
+        <field eval="[(4,ref('sync_helpdesk.queue_type_question')), (4,ref('sync_helpdesk.queue_type_issue'))]" name="categ_ids"/>
+    </record>
+</odoo>

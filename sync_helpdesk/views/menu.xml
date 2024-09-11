@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Ticket main menu -->
+    <menuitem name="Helpdesk" id="menu_support" sequence="2" web_icon="sync_helpdesk,static/description/helpdesk.png" groups="sync_helpdesk.group_helpdesk_user"/>
+
+    <!-- Ticket Dashboard menu -->
+    <menuitem id="menu_support_dashboard" name="Dashboard" parent="menu_support" sequence="1" action="support_team_dashboard_action"/>
+
+    <!-- <menuitem id="ks_google_translator.menu_ks_translation" name="Odoo-Google Translator" parent="menu_support" /> -->
+
+    <!-- ticket ALl Tickets menu -->
+    <menuitem id="menu_support_alltickets" name="All Tickets" parent="menu_support" sequence="2"/>
+    
+    <menuitem name="Tickets" id="support_ticket_menu" action="support_ticket_action" parent="menu_support_alltickets" sequence="1"/>
+    <menuitem id="helpdesk_menu_main_pm" name="Project" action="project.open_view_project_all_group_stage" sequence="2" parent="menu_support" />
+    <menuitem name="Users" id="ticket_customer_menu" action="sync_helpdesk.partner_helpdesk_action_form" parent="menu_support_alltickets" sequence="10"/>
+    <!-- sync_helpdesk.partner_helpdesk_action_form -->
+
+    <!-- Report Menu -->
+    <menuitem id="menu_support_reports" name="Reports" parent="menu_support" sequence="9" groups="sync_helpdesk.group_helpdesk_manager"/>
+    <menuitem id="menu_support_ticket_report" name="Tickets" parent="menu_support_reports" action="support_report_action" sequence="1" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+    <!-- IT Operations menu -->
+    <menuitem id="menu_it_operations" name="IT Operations" parent="menu_support" sequence="11"/>
+    <menuitem action="saudi_hr_it_operations.menu_employee_registration_view" id="menu_emp_reg_all" name="Employee Registration" parent="menu_it_operations" groups="hr.group_hr_user" sequence="1"/>
+    <menuitem id="menu_equipment_request" name="Equipment Request" parent="menu_it_operations" sequence="2" action="saudi_hr_it_operations.action_maintenance_equipment_request" />
+    <menuitem id="menu_exit_procedure" name="Exit Procedure" parent="menu_it_operations" sequence="3" action="saudi_hr_it_operations.action_emp_exit_procedure" />
+    <menuitem id="menu_exit_type" name="Exit Type" parent="menu_it_operations" sequence="4" action="saudi_hr_it_operations.action_emp_exit_type" />
+
+    <!-- IT Equipment menu -->
+    <menuitem id="utm.menu_link_tracker_root" name="Link Tracker" web_icon="sync_helpdesk,static/description/tracker.png" />
+
+    <menuitem id="menu_main_it_equipments" name="Office Equipments" parent="menu_support" sequence="3" />
+
+    <menuitem id="menu_user_access" name="User Access" parent="menu_support" sequence="13" />
+
+    <menuitem id="menu_it_equipments_registration" name="Equipment Registrations" action="saudi_hr_it_operations.action_equipment_registration_helpdesk" parent="menu_main_it_equipments" sequence="1" />
+    <menuitem id="menu_it_equipments" name="Equipments" action="maintenance.hr_equipment_action" parent="menu_main_it_equipments" sequence="2" />
+
+    <!-- Configuration parent maenu -->
+    <menuitem id="menu_support_configuration" name="Configuration" parent="menu_support" sequence="10" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+    <menuitem id="menu_support_general_settings" name="Settings" parent="menu_support_configuration" action="action_support_config" sequence="1" groups="base.group_system"/>
+
+    <menuitem name="Tickets" id="support_ticket_config_menu" parent="menu_support_configuration" sequence="2" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+    <menuitem name="Tags" id="support_tag_menu" action="support_tag_action" parent="support_ticket_config_menu" sequence="1" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+    <menuitem name="Types" id="support_queue_type_menu"
+        action="support_category_action" parent="support_ticket_config_menu" sequence="2" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+    <menuitem name="Teams" action="support_technical_team_action" id="support_team_act_menu" parent="support_ticket_config_menu" sequence="3" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+    <menuitem name="Stages" id="support_stages_menu" action="support_stage_action" parent="support_ticket_config_menu" sequence="5" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+    <menuitem name="Email Templates" id="support_email_tmeplate_menu" action="action_email_template_tree_sync_helpdesk" parent="menu_support_configuration" sequence="15" groups="sync_helpdesk.group_helpdesk_manager"/>
+</odoo>

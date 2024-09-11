@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_ticket_automation" name="Ticket Automation" parent="sync_helpdesk.menu_support_configuration" sequence="50" action="ticket_automation_act" groups="sync_helpdesk.group_helpdesk_manager"/>
+
+</odoo>

@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ticket configuration view -->
+    <record id="view_support_config_settings" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.helpdesk</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="5"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Helpdesk" string="Helpdesk" data-key="sync_helpdesk" groups="sync_helpdesk.group_helpdesk_manager">
+                    <h2>General Configuration</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="group_group_enable_due_date"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="group_group_enable_due_date"/>
+                                <div class="text-muted" id="helpdesk_due_date">
+                                    Allow to set due date of ticket.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="group_group_enable_ticket_priority"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="group_group_enable_ticket_priority"/>
+                                <div class="text-muted" id="helpdesk_priority">
+                                    Allow to set priority of ticket.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="group_group_share_ticket"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="group_group_share_ticket"/>
+                                <div class="text-muted" id="helpdesk_priority">
+                                    Allow to Share ticket.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_dashboard"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_dashboard"/>
+                                <div class="text-muted" id="helpdesk_dashboard">
+                                    Allow to show attractive graphs and ticket information as per ticket team.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_document_attachment"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_document_attachment"/>
+                                <div class="text-muted" id="helpdesk_attachment">
+                                    Allow to upload ticket related documents.
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_sequence"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_sequence"/>
+                                <div class="text-muted" id="helpdesk_sequence">
+                                    Allow to dynamic change sequence as per ticket type.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_merge_ticket"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_merge_ticket"/>
+                                <div class="text-muted" id="helpdesk_merge_ticket">
+                                    Allow to Merge tickets.
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16" attrs="{'invisible': [('module_sync_helpdesk_merge_ticket', '=', False)]}">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_sync_helpdesk_merge_timesheet"/>
+                                        </div>
+                                        <label for="module_sync_helpdesk_merge_timesheet"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_automation"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_automation"/>
+                                <div class="text-muted" id="helpdesk_automation">
+                                    Allow to automatically trigger actions for ticket.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_ticket_recurring"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_ticket_recurring"/>
+                                <div class="text-muted" id="helpdesk_sequence">
+                                    Allow to generate recurring ticket as per schedule.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_one_time_use_product"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_one_time_use_product"/>
+                                <div class="text-muted" id="helpdesk_one_time_use">
+                                    Allow to sell product only one time.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_lead"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_lead"/>
+                                <div class="text-muted" id="helpdesk_lead">
+                                    Allow to create ticket from lead.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_refurbs"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_refurbs"/>
+                                <div class="text-muted" id="helpdesk_refurbs">
+                                    Allow to create ticket repair order.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_appointment"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_appointment"/>
+                                <div class="text-muted" id="helpdesk_appoitment">
+                                    Allow to generate appointment for specific time duration.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_recurring_appointment"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_recurring_appointment"/>
+                                <div class="text-muted" id="helpdesk_recurring_appoitment">
+                                    Allow to create predefined ticket appointments as per customer contract.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_rework"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_rework"/>
+                                <div class="text-muted" id="helpdesk_rework">
+                                    Allow to create rework of ticket if customer is not satisfied.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_subtickets"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_subtickets"/>
+                                <div class="text-muted" id="helpdesk_subtickets">
+                                    Allows to user create subtickets for assign ticket to other responsible person.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_escalation"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_escalation"/>
+                                <div class="text-muted" id="helpdesk_escalation">
+                                    Allows to user escalate ticket to the parent team if not able to solved.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_unassign"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_unassign"/>
+                                <div class="text-muted" id="helpdesk_unassign">
+                                    Auto unassign ticket if user will not perform any operation on ticket on specific time duration.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Intake/Outtake</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_intake"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_intake"/>
+                                <div class="text-muted" id="helpdesk_intake">
+                                    Online ticket confirmation for customer.
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16" attrs="{'invisible': [('module_sync_helpdesk_intake', '=', False)]}">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_sync_helpdesk_intake_timesheet"/>
+                                        </div>
+                                        <label for="module_sync_helpdesk_intake_timesheet"/>
+                                    </div>
+                                    <div class="text-muted" id="helpdesk_intake_timesheet" attrs="{'invisible': [('module_sync_helpdesk_intake', '=', False)]}">
+                                        Online confirmation ticket timesheet.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_outtake"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_outtake"/>
+                                <div class="text-muted" id="helpdesk_outtake">
+                                    Online confirmation ticket solved.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Contract</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_contract"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_contract"/>
+                                <div class="text-muted" id="helpdesk_contract">
+                                    Allow to create contract of customer for specific duration with list of services.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible': [('module_sync_helpdesk_contract', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_contract_invoice"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_contract_invoice"/>
+                                <div class="text-muted" id="helpdesk_contract_invoice">
+                                    Allow to create invoice for contract services.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible': [('module_sync_helpdesk_contract', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_contract_renew"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_contract_renew"/>
+                                <div class="text-muted" id="helpdesk_contract_renew">
+                                    Allow to renew contract for specific duration.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible': [('module_sync_helpdesk_contract', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_contract_sla"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_contract_sla"/>
+                                <div class="text-muted" id="helpdesk_contract_sla">
+                                    Allow to auto assign SLA on ticket as per contract.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>SMS</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible': [('module_sync_helpdesk_rma', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_rma_sms"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_rma_sms"/>
+                                <div class="text-muted" id="helpdesk_rma_sms">
+                                    Allow to send SMS for RMA activities.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_sms"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_sms"/>
+                                <div class="text-muted" id="helpdesk_sms">
+                                    Allow to send SMS for ticket activities.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible': [('module_sales_warranty', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sales_warranty_sms"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sales_warranty_sms"/>
+                                <div class="text-muted" id="helpdesk_warranty_sms">
+                                    Allow to send SMS for sales warranty details.
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <h2>RMA</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_rma"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_rma"/>
+                                <div class="text-muted" id="helpdesk_rma_warranty">
+                                    Allow to create RMA order for specific products(Repair/Return/Credit).
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16" attrs="{'invisible': [('module_sync_helpdesk_rma', '=', False)]}">
+                                        <field name="invoice_method" attrs="{'required': [('module_sync_helpdesk_rma','=',True)]}"/>
+                                    </div>
+                                    <div class="mt16" attrs="{'invisible': [('module_sync_helpdesk_rma', '=', False)]}">
+                                        <div class="text-muted">
+                                            Allow to create RMA Line from delivery order.
+                                        </div>
+                                        <div> 
+                                            <field name="rma_delivery_config" class="o_light_label" widget="radio"/>
+                                        </div>
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_sync_helpdesk_rma_warranty"/>
+                                        </div>
+                                        <label for="module_sync_helpdesk_rma_warranty"/>
+                                        <div class="text-muted" id="helpdesk_rma_warranty">
+                                            Check product warraanty and perform RMA actions(Repair/Return/Credit).
+                                        </div>
+                                    </div>
+                                    <div class="mt16" attrs="{'invisible': [('module_sync_helpdesk_rma', '=', False)]}">
+                                        <label for="sale_warranty_type" attrs="{'invisible': [('module_sync_helpdesk_rma_warranty', '=', False)]}"/>
+                                        <field name="sale_warranty_type" attrs="{'invisible': [('module_sync_helpdesk_rma_warranty', '=', False)], 'required': [('module_sync_helpdesk_rma_warranty','=',True)]}" class="oe_inline"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Sales &amp; Invoices</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_sale_quote"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_sale_quote"/>
+                                <div class="text-muted" id="helpdesk_sale_quote">
+                                    Send online confirmation quotation to customer.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sales_warranty"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sales_warranty"/>
+                                <div class="text-muted" id="helpdesk_sale_warranty">
+                                    Generate sales warranty as per product warranty template.
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_sale_commission"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_sale_commission"/>
+                                <div class="text-muted" >
+                                    Allow to give commission to salesperson as per commission configuration.
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <h2>Purchase</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_purchase"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_purchase"/>
+                                <div class="text-muted" >
+                                    Allow to generate purchase order.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_website_purchase_quote"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_website_purchase_quote"/>
+                                <div class="text-muted" >
+                                    Allow to send online confirmation quote to vendor.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_repair_purchase"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_repair_purchase"/>
+                                <div class="text-muted" id="helpdesk_customer_purchase">
+                                    Auto create purchase order for refurbs order parts if not available in warehouse.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Performance</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_sla"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_sla"/>
+                                <div class="text-muted" id="helpdesk_sla">
+                                    Set up your Service Level Agreements to track performance.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_survey"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_survey"/>
+                                <div class="text-muted" id="helpdesk_survey">
+                                    Allow your customers to easily rate your services.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Track Hours</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_timesheet"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_timesheet"/>
+                                <div class="text-muted" id="helpdesk_timesheet">
+                                    Record timesheets on your tickets.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box" attrs="{'invisible': [('module_sync_helpdesk_timesheet', '=', False)]}">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_timesheet_invoice" attrs="{'required': [('module_sync_helpdesk_timesheet','=',True)]}"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_timesheet_invoice"/>
+                                <div class="text-muted" id="helpdesk_timesheet_invoice">
+                                    Reinvoice time to you customer through tasks.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Channels</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_livechat"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_livechat"/>
+                                <div class="text-muted" id="helpdesk_livechat">
+                                    Get in touch with you website visitors.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Website</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_website"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_website"/>
+                                <div class="text-muted" id="helpdesk_website">
+                                    Submit and view tickets with an online form.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_knowledge_base"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_knowledge_base"/>
+                                <div class="text-muted" id="helpdesk_knowledge_base">
+                                    Question and answer section on your website
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_sync_helpdesk_website_slides"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_sync_helpdesk_website_slides"/>
+                                <div class="text-muted" id="helpdesk_slides">
+                                    Share presentation and videos, and organize into courses.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_support_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="sync_helpdesk.view_support_config_settings"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'sync_helpdesk'}</field>
+    </record>
+
+</odoo>

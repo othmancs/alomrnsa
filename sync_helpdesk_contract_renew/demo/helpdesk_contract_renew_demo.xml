@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="bed_product" model="product.product">
+        <field name="name">Bed</field>
+        <field name="sale_ok">True</field>
+        <field name="purchase_ok">True</field>
+        <field name="contract_ok">True</field>
+        <field name="type">service</field>
+        <field name="lst_price">1000.0</field>
+        <field name="standard_price">900.0</field>
+        <field name="type">service</field>
+        <field name="default_code">BED</field>
+        <field name="categ_id" ref="product.product_category_all"/>
+        <field name="image_1024" type="base64" file="sync_helpdesk_contract_renew/static/img/leather-bed.jpg"/>
+        <field name="contract_length">3</field>
+        <field name="contract_period">months</field>
+        <field name="twenty4_7_hours">True</field>
+        <field name="response_hours">1</field>
+    </record>
+
+    <record id="bed_service_line" model="product.service.line">
+        <field name="product_id" ref="bed_product"/>
+        <field name="parent_id" ref="bed_product"/>
+        <field name="name">Broken Corner</field>
+        <field name="product_uom_qty">4</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+    </record>
+
+    <record id="helpdesk_contract_bed_old" model="contract.contract">
+        <field name="name">Bed Services</field>
+        <field name="product_id" ref="bed_product"/>
+        <field name="parent_id" ref="sync_helpdesk_contract.helpdesk_analytic_account"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_ryan"/>
+        <field name="contact_id" ref="sync_helpdesk.helpdesk_customer_ryan"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_william"/>
+        <field name="date_start" eval="(DateTime.today() - relativedelta(months=3))"/>
+        <field name="contract_period">months</field>
+        <field name="contract_length">3</field>
+        <field name="date_end" eval="(DateTime.today() - relativedelta(days=1))"/>
+        <field name="twenty4_7_hours">True</field>
+        <field name="response_hours">1</field>
+        <field name="description">Contract apply on Bed related Issues.That is, Broken corner, Loose legs.</field>
+    </record>
+
+    <function model="contract.contract" name="confirm_state"
+        eval="[[ref('helpdesk_contract_bed_old')]]"
+        context="{'install_mode': True}"/>
+    <function model="contract.contract"
+        name="set_contract_open"
+        eval="[[ref('helpdesk_contract_bed_old')]]"
+        context="{'install_mode': True}"/>
+    <function model="contract.contract" name="action_close"
+        eval="[ref('helpdesk_contract_bed_old')]"
+        context="{'install_mode': True}"/>
+    <function model="contract.contract" name="renew_contract"
+        eval="[ref('helpdesk_contract_bed_old')]"
+        context="{'install_mode': True}"/>
+
+    <record id="sync_helpdesk.helpdesk_ticket3" model="ticket.ticket" context="{'default_intake_demo_data': True}">
+        <field name="contract_id" ref="helpdesk_contract_bed_old"/>
+        <field name="service_id" ref="bed_product"/>
+    </record>
+</odoo>

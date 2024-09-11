@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Sequence of Ticket -->
+    <record id="sequence_ticket" model="ir.sequence">
+        <field name="name">Ticket#</field>
+        <field name="code">ticket.ticket</field>
+        <field name="prefix">Ticket/</field>
+        <field name="padding">6</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+
+    <record id="mt_ticket_stage" model="mail.message.subtype">
+        <field name="name">Ticket</field>
+        <field name="res_model">ticket.ticket</field>
+        <field name="default" eval="False"/>
+        <field name="description">Ticket</field>
+    </record>
+
+    <!-- Share Button in action menu -->
+    <record id="model_helpdesk_ticket_action_share" model="ir.actions.server">
+        <field name="name">Share</field>
+        <field name="model_id" ref="sync_helpdesk.model_ticket_ticket"/>
+        <field name="binding_model_id" ref="sync_helpdesk.model_ticket_ticket"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_share()</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_share_ticket'))]"/>
+    </record>
+
+    <!-- Team -->
+    <record model="ticket.team" id="support_team_id1">
+        <field name="name">Support</field>
+        <field name="user_id" ref="base.user_admin"/>
+    </record>
+
+    <!--ticket type -->
+    <record id="queue_type_sales" model="ticket.category">
+        <field name="name">Sale</field>
+        <field name="code">S</field>
+    </record>
+    <record id="queue_type_default_queue" model="ticket.category">
+        <field name="name">General</field>
+        <field name="code">G</field>
+        <field name="is_default_queue" eval="True"/>
+    </record>
+    <record id="queue_type_question" model="ticket.category">
+        <field name="name">Question</field>
+        <field name="code">QN</field>
+    </record>
+    <record id="queue_type_issue" model="ticket.category">
+        <field name="name">Issue</field>
+        <field name="code">IS</field>
+    </record>
+
+    <!--ticket Medium -->
+     <record model="utm.medium" id="utm_medium_livechat">
+        <field name="name">Live Chat</field>
+    </record>
+
+    <!-- helpdesk stages -->
+    <record model="ticket.stage" id="stage_ticket_issue">
+        <field name="name">New</field>
+        <field name="sequence">1</field>
+        <field name="fold" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales')), (4,ref('sync_helpdesk.queue_type_default_queue'))]" name="categ_ids"/>
+    </record>
+
+    <record model="ticket.mail.template" id="new_stage_email">
+        <field name="template_id" ref="ticket_creation_email"/>
+        <field name="stage_id" ref="stage_ticket_issue"/>
+        <field name="default" eval="True"/>
+    </record>
+
+    <!-- IN PROGRESS -->
+    <record model="ticket.stage" id="stage_ticket_waiting_permission">
+        <field name="name">Waiting Permission</field>
+        <field name="sequence">2</field>
+        <field name="fold" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales')), (4,ref('sync_helpdesk.queue_type_default_queue'))]" name="categ_ids"/>
+    </record>
+    <record model="ticket.stage" id="stage_ticket_in_progress">
+        <field name="name">In Progress</field>
+        <field name="sequence">3</field>
+        <field name="fold" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales')), (4,ref('sync_helpdesk.queue_type_default_queue'))]" name="categ_ids"/>
+    </record>
+    <record model="ticket.stage" id="stage_ticket_sending_quotation">
+        <field name="name">Sale Quotation Sent</field>
+        <field name="sequence">4</field>
+        <field name="fold" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales'))]" name="categ_ids"/>
+    </record>
+    <record model="ticket.stage" id="stage_ticket_quotation_approve">
+        <field name="name">Quotation Approve</field>
+        <field name="sequence">5</field>
+        <field name="fold" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales'))]" name="categ_ids"/>
+    </record>
+    <record model="ticket.stage" id="stage_ticket_awaiting_payment">
+        <field name="name">Awaiting Payment</field>
+        <field name="sequence">6</field>
+        <field name="fold" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales'))]" name="categ_ids"/>
+    </record>
+    <record model="ticket.stage" id="stage_ticket_cancel">
+        <field name="name">Cancelled</field>
+        <field name="sequence">7</field>
+        <field name="is_close" eval="True"/>
+        <field name="is_cancel" eval="True"/>
+        <field name="fold" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales')), (4,ref('sync_helpdesk.queue_type_default_queue'))]" name="categ_ids"/>
+    </record>
+    <record model="ticket.mail.template" id="cancel_stage_email">
+        <field name="template_id" ref="ticket_cancel_email"/>
+        <field name="stage_id" ref="stage_ticket_cancel"/>
+        <field name="default" eval="True"/>
+    </record>
+    <record model="ticket.stage" id="stage_ticket_solved">
+        <field name="name">Solved</field>
+        <field name="sequence">8</field>
+        <field name="is_close" eval="True"/>
+        <field name="fold" eval="True"/>
+        <field name="is_done" eval="True"/>
+        <field eval="[(4,ref('sync_helpdesk.queue_type_sales')), (4,ref('sync_helpdesk.queue_type_default_queue'))]" name="categ_ids"/>
+    </record>
+    <record model="ticket.mail.template" id="solved_stage_email">
+        <field name="template_id" ref="ticket_done_email"/>
+        <field name="stage_id" ref="stage_ticket_solved"/>
+        <field name="default" eval="True"/>
+    </record>
+</odoo>

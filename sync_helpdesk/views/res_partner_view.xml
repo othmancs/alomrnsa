@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit partner view for add ticket button -->
+    <record id="sync_helpdesk_view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="saudi_hr_it_operations.it_operation_view_employee_form_inherited"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_tickets" type="object"
+                        class="oe_stat_button" icon="fa-ticket">
+                    <field name="ticket_count" widget="statinfo" string="Tickets"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record id="partner_helpdesk_action_form" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.partner</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter" />
+        <field name="view_mode">tree,kanban,form,activity</field>
+        <field name="domain">[]</field>
+        <field name="context">{'res_partner_search_mode': 'customer'}</field>
+    </record>
+
+</odoo>

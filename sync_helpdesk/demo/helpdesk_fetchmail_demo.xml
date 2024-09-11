@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="helpdesk_mail_assembly_team" model="fetchmail.server">
+        <field name="name">Assembly Mail</field>
+        <field name="server_type">imap</field>
+        <field name="server">imap.gmail.com</field>
+        <field name="user">assembly@example.com</field>
+        <field name="password">12345678</field>
+        <field name="is_ticket">True</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id7"/>
+    </record>
+
+    <record id="helpdesk_mail_finishing_team" model="fetchmail.server">
+        <field name="name">Finishing Mail</field>
+        <field name="server_type">imap</field>
+        <field name="server">imap.gmail.com</field>
+        <field name="user">finishing@example.com</field>
+        <field name="password">12345678</field>
+        <field name="is_ticket">True</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id6"/>
+    </record>
+
+    <record id="helpdesk_mail_build_team" model="fetchmail.server">
+        <field name="name">Build Mail</field>
+        <field name="server_type">imap</field>
+        <field name="server">imap.gmail.com</field>
+        <field name="user">build@example.com</field>
+        <field name="password">12345678</field>
+        <field name="is_ticket">True</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id2"/>
+    </record>
+
+    <record id="helpdesk_mail_framing_team" model="fetchmail.server">
+        <field name="name">Framing Mail</field>
+        <field name="server_type">imap</field>
+        <field name="server">imap.gmail.com</field>
+        <field name="user">framing@example.com</field>
+        <field name="password">12345678</field>
+        <field name="is_ticket">True</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id3"/>
+    </record>
+
+    <record id="helpdesk_mail_cutting_team" model="fetchmail.server">
+        <field name="name">Cutting Mail</field>
+        <field name="server_type">imap</field>
+        <field name="server">imap.gmail.com</field>
+        <field name="user">cutting@example.com</field>
+        <field name="password">12345678</field>
+        <field name="is_ticket">True</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id4"/>
+    </record>
+
+    <record id="helpdesk_mail_renovation_team" model="fetchmail.server">
+        <field name="name">Renovation Mail</field>
+        <field name="server_type">imap</field>
+        <field name="server">imap.gmail.com</field>
+        <field name="user">renovation@example.com</field>
+        <field name="password">12345678</field>
+        <field name="is_ticket">True</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id5"/>
+    </record>
+</odoo>

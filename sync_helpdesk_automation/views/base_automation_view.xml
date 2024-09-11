@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ticket automation Action -->
+    <record id="ticket_automation_act" model="ir.actions.act_window">
+        <field name="name">Automated Actions</field>
+        <field name="res_model">base.automation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('model_name', '=', 'ticket.ticket')]</field>
+        <field name="context">{'for_ticket':1}</field>
+        <field name="view_id" ref="base_automation.view_base_automation_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to setup a new ticket automation.
+            </p>
+        </field>
+    </record>
+
+</odoo>

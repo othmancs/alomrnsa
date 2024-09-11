@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ticket_receipt">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div class="row" style="margin-bottom:70px; text-decoration: none;">
+                            <div class="col-6" t-if="o.partner_id">
+                                <div><h5><strong><span t-field="o.partner_name"/></strong></h5></div>
+                                <div t-field="o.partner_id.street"></div>
+                                <div t-if="o.partner_id.city or o.partner_id.zip">
+                                    <span t-field="o.partner_id.city"/>,<span t-field="o.partner_id.zip"/>
+                                </div>
+                                <div t-field="o.partner_id.state_id.name"></div>
+                                <div t-field="o.partner_id.country_id.name"></div>
+                                <div t-if="o.partner_phone">
+                                    <strong>Phone: </strong><span t-field="o.partner_phone"/>
+                                </div>
+                                <div t-if="o.partner_email">
+                                    <strong>Email: </strong><span t-field="o.partner_email"/>
+                                </div>
+                            </div>
+                            <div class="col-6 pull-right">
+                                <div class="row">
+                                    <div class=" offset-2 col-6">
+                                        <t t-if="o.ticket_no">
+                                        <t t-set="content" t-value="o.ticket_no"/></t>
+                                        <t t-if="not o.ticket_no">
+                                        <t t-set="content" t-value="o.name"/></t>
+                                        <img class="barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % ('Code128', content, 250, 50)" alt="Barcode"/>
+                                    </div>
+                                </div>
+                                <div class="row" t-if="o.date">
+                                    <div class="offset-2 col-3">
+                                        <strong>Created</strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <span t-field="o.date"/>
+                                    </div>
+                                </div>
+                                <div class="row" t-if="o.name">
+                                    <div class="offset-2 col-3">
+                                        <strong>Subject</strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <span t-field="o.name"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h4><strong>Ticket Information</strong></h4>
+                        <hr/>
+                        <div class="container" style="margin-bottom:20px; text-decoration: none;">
+                            <div class="row">
+                                <div class="col-3">
+                                    <strong>Ticket Type</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="o.categ_id.name"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <strong>Assign Team</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="o.team_id.name"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <strong>Assigned to</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="o.user_id.name"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <strong>Origin</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="o.medium_id.name"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <strong>Dead Line</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="o.deadline"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <strong>Tags</strong>
+                                </div>
+                                <div class="col-6">
+                                    <t t-foreach="o.tag_ids" t-as="t">
+                                        <div t-field="t.name"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="description">
+                            <hr/>
+                            <h4><strong>Description</strong></h4>
+                            <div class="container">
+                                <p t-field="o.description"></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

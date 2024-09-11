@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="helpdesk_ticket1" model="ticket.ticket">
+        <field name="name">Wheels not working in Chair</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id5"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_william"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id6'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_website"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_ryan"/>
+        <field name="partner_phone">(870)-931-0505</field>
+        <field name="partner_mobile">8569654782</field>
+        <field name="partner_email">ryan@example.com</field>
+        <field name="description">Wheels are not move properly</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_issue"/>
+        <field name="kanban_state">done</field>
+    </record>
+
+    <record id="helpdesk_ticket2" model="ticket.ticket">
+        <field name="name">Damaged fabric of 2 Seater Sofa</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id5"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_lewis"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=4)"/>
+        <field name="priority">3</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id3'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_email"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_elliott"/>
+        <field name="partner_phone">(870)-931-0555</field>
+        <field name="partner_mobile">6869854782</field>
+        <field name="partner_email">elliott@example.com</field>
+        <field name="description">Sofa fabrication are damaged, not properly, please repair it.</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_in_progress"/>
+        <field name="kanban_state">done</field>
+    </record>
+
+    <record id="helpdesk_ticket3" model="ticket.ticket">
+        <field name="name">Damaged leg of Sleigh Bed</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id4"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_joseph"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=3)"/>
+        <field name="priority">2</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id12'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_direct"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_ryan"/>
+        <field name="partner_phone">(870)-931-0505</field>
+        <field name="partner_mobile">8569654782</field>
+        <field name="partner_email">ryan@example.com</field>
+        <field name="description">Top left leg is not put properly, check it and repair it.</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_quotation_approve"/>
+        <field name="kanban_state">done</field>
+    </record>
+
+    <record id="helpdesk_ticket4" model="ticket.ticket">
+        <field name="name">Loose Rungs of Shaker Coffee Tables</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id4"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_ronnie"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=7)"/>
+        <field name="priority">3</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id14'))]"/>
+        <field name="medium_id" ref="sync_helpdesk.utm_medium_livechat"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_elliott"/>
+        <field name="partner_phone">(870)-931-0555</field>
+        <field name="partner_mobile">6869854782</field>
+        <field name="partner_email">elliott@example.com</field>
+        <field name="description">Elliott: Hello,
+Elliott: I have Issue on Shaker Coffee Tables
+Ronnie: what issue on shaker coffee tables?
+Elliott: Loose Rungs and Scratches on coffee table.
+Ronnie: Ok, I will generate your ticket, you got response very soon.
+    </field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_waiting_permission"/>
+    </record>
+
+    <record id="helpdesk_ticket5" model="ticket.ticket">
+        <field name="name">Loose Rungs of Industrial Coffee Table</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id6"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_jack"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=6)"/>
+        <field name="priority">3</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id16'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_website"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_jamie"/>
+        <field name="partner_phone">(870)-931-0535</field>
+        <field name="partner_mobile">8569854692</field>
+        <field name="partner_email">jamie@example.com</field>
+        <field name="description">Issue of Loose Rungs on Industrial Coffee Table</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_waiting_permission"/>
+    </record>
+
+    <record id="helpdesk_ticket6" model="ticket.ticket">
+        <field name="name">Wall Cabinets door damaged</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id3"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_jenson"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=3)"/>
+        <field name="priority">2</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id17'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_email"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_jamie"/>
+        <field name="partner_phone">(870)-931-0535</field>
+        <field name="partner_mobile">8569854692</field>
+        <field name="partner_email">jamie@example.com</field>
+        <field name="description">Wall Cabinets door is broken</field>
+        <field name="is_cancel">True</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_cancel"/>
+    </record>
+
+    <record id="helpdesk_ticket7" model="ticket.ticket">
+        <field name="name">Broken Corners of 3 door wardrobe Cabinets</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id7"/>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=5)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_question"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id18'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_direct"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="partner_phone">(870)-931-0515</field>
+        <field name="partner_mobile">8569654782</field>
+        <field name="partner_email">frederick@example.com</field>
+        <field name="description">Broken Corners in 3 door wardrobe Cabinets repairing</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_in_progress"/>
+    </record>
+
+    <record id="helpdesk_ticket8" model="ticket.ticket">
+        <field name="name">Scratches on Executive Desk</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id6"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_jacob"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=4)"/>
+        <field name="priority">3</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id19'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_direct"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_frederick"/>
+        <field name="partner_phone">(870)-931-0515</field>
+        <field name="partner_mobile">8569654782</field>
+        <field name="partner_email">frederick@example.com</field>
+        <field name="description">Scratches on Executive Desk</field>
+        <field name="is_done">True</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_solved"/>
+    </record>
+
+    <record id="helpdesk_ticket9" model="ticket.ticket">
+        <field name="name">Band leg of Typist Desk</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_harry"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=2)"/>
+        <field name="priority">2</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id19'))]"/>
+        <field name="medium_id" ref="sync_helpdesk.utm_medium_livechat"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_charles"/>
+        <field name="partner_phone">(870)-931-0525</field>
+        <field name="partner_mobile">8569854710</field>
+        <field name="partner_email">charles@example.com</field>
+        <field name="description">Repair Band leg of Typist Desk
+Charles: Hello,
+Charles: I have Issue on Typist Desk.
+Harry: what issue on Typist Desk?
+Charles: Repair Band leg of Typist Desk.
+Harry: Ok, I will generate your ticket and you get response very soon.</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_waiting_permission"/>
+        <field name="kanban_state">done</field>
+    </record>
+
+    <record id="helpdesk_ticket10" model="ticket.ticket">
+        <field name="name">Uneven leg of Dining Tables</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id2"/>
+        <field name="user_id" ref="sync_helpdesk.helpdesk_user_oliver"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=3)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_issue"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id20'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_website"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_charles"/>
+        <field name="partner_phone">(870)-931-0525</field>
+        <field name="partner_mobile">8569854710</field>
+        <field name="partner_email">charles@example.com</field>
+        <field name="description">Issue of Dining Tables because of uneven leg are not proper</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_awaiting_payment"/>
+    </record>
+
+    <record id="helpdesk_ticket11" model="ticket.ticket">
+        <field name="name">Broken Corners and Issue channel of Drawers</field>
+        <field name="team_id" ref="sync_helpdesk.support_team_id7"/>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="deadline" eval="DateTime.today() + relativedelta(days=3)"/>
+        <field name="priority">1</field>
+        <field name="categ_id" ref="sync_helpdesk.queue_type_question"/>
+        <field name="tag_ids" eval="[(4, ref('sync_helpdesk.support_tag_id20'))]"/>
+        <field name="medium_id" ref="utm.utm_medium_website"/>
+        <field name="partner_id" ref="sync_helpdesk.helpdesk_customer_charles"/>
+        <field name="partner_phone">(870)-931-0525</field>
+        <field name="partner_mobile">8569854710</field>
+        <field name="partner_email">charles@example.com</field>
+        <field name="description">Broken Drawer Corners issue and not proper work drawer channel</field>
+        <field name="stage_id" ref="sync_helpdesk.stage_ticket_awaiting_payment"/>
+    </record>
+</odoo>

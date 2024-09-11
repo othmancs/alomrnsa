@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Users -->
+    <record id="helpdesk_user_jack" model="res.users">
+        <field name="name">Jack</field>
+        <field name="login">jack@example.com</field>
+        <field name="email">jack@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-933-1124</field>
+        <field name="mobile">8568635263</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/101.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_jacob" model="res.users">
+        <field name="name">Jacob</field>
+        <field name="login">jacob@example.com</field>
+        <field name="email">jacob@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-931-1124</field>
+        <field name="mobile">9148578452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_manager'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/102.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_harry" model="res.users">
+        <field name="name">Harry</field>
+        <field name="login">harry@example.com</field>
+        <field name="email">harry@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-931-1524</field>
+        <field name="mobile">8563578452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/103.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_oliver" model="res.users">
+        <field name="name">Oliver</field>
+        <field name="login">oliver@example.com</field>
+        <field name="email">oliver@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1224</field>
+        <field name="mobile">9668575452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/104.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_daniel" model="res.users">
+        <field name="name">Daniel</field>
+        <field name="login">daniel@example.com</field>
+        <field name="email">daniel@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-933-1224</field>
+        <field name="mobile">9663675452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/105.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_jenson" model="res.users">
+        <field name="name">Jenson</field>
+        <field name="login">jenson@example.com</field>
+        <field name="email">jenson@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-931-1225</field>
+        <field name="mobile">9668985452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/106.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_ronnie" model="res.users">
+        <field name="name">Ronnie</field>
+        <field name="login">ronnie@example.com</field>
+        <field name="email">ronnie@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1234</field>
+        <field name="mobile">9988575452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/107.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_joseph" model="res.users">
+        <field name="name">Joseph</field>
+        <field name="login">joseph@example.com</field>
+        <field name="email">joseph@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1324</field>
+        <field name="mobile">9468575452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/108.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_lewis" model="res.users">
+        <field name="name">Lewis</field>
+        <field name="login">lewis@example.com</field>
+        <field name="email">lewis@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1124</field>
+        <field name="mobile">3568575452</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/109.jpeg"/>
+    </record>
+
+    <record id="helpdesk_user_william" model="res.users">
+        <field name="name">William</field>
+        <field name="login">william@example.com</field>
+        <field name="email">william@example.com</field>
+        <field name="password">123456</field>
+        <field name="phone">(870)-932-1226</field>
+        <field name="mobile">9668579652</field>
+        <field name="groups_id" eval="[(4,ref('sync_helpdesk.group_helpdesk_user'))]"/>
+        <field name="image_1920" type="base64" file="sync_helpdesk/static/src/img/110.jpeg"/>
+    </record>
+</odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- ticket cancel mail template -->
+    <record id="ticket_cancel_email" model="mail.template">
+        <field name="name">Cancel Ticket Request</field>
+        <field name="model_id" ref="sync_helpdesk.model_ticket_ticket"/>
+        <field name="email_from">{{object.company_id.name}} {{(object.company_id.email or user.email)}}</field>
+        <field name="email_to">{{(object.partner_id and object.partner_email)}}</field>
+        <field name="subject">{{object.name}} Ticket Cancelled</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Dear <t t-out="object.partner_id.name or 'Madam, Sir'"></t>,</p>
+                <p>We are informing that your ticket ID <t t-out="object.ticket_no"></t> is cancelled.</p>
+                <p>Thank you,</p>
+                <t t-if="object.company_id.name and object.company_id.email">
+                    <t t-out="object.company_id.name">
+                    </t>
+                </t>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <!-- ticket done mail template -->
+    <record id="ticket_done_email" model="mail.template">
+        <field name="name">Solved Ticket Request</field>
+        <field name="model_id" ref="sync_helpdesk.model_ticket_ticket"/>
+        <field name="email_from">{{object.company_id.name}} {{(object.company_id.email or user.email)}}</field>
+        <field name="email_to">{{(object.partner_id and object.partner_email)}}</field>
+        <field name="subject">{{object.name}} Ticket Done</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Dear <t t-out="object.partner_id.name or 'Madam, Sir'"></t>,</p>
+                <p>we have closed your ticket <t t-out="object.ticket_no"></t>. We hope that the services provided have met your expectations. If you have any more questions or comments, don't hesitate to reply to this e-mail to re-open your ticket. Thank you for your cooperation.</p>
+                <p>Kind regards, </p>
+                <t t-if="object.company_id.name and object.company_id.email">
+                    <t t-out="object.company_id.name"></t>
+                </t>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <!-- creation ticket mail template -->
+    <record id="ticket_creation_email" model="mail.template">
+        <field name="name">New Ticket Request</field>
+        <field name="model_id" ref="sync_helpdesk.model_ticket_ticket"/>
+        <field name="email_from">{{object.company_id.name}} {{(object.company_id.email or user.email)}}</field>
+        <field name="email_to">{{(object.partner_id and object.partner_email)}}</field>
+        <field name="subject">{{object.name}} Ticket Creation</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Dear <t t-out="object.partner_id.name or 'Madam, Sir'"></t>,</p>
+                <p>Your request <t t-out="object.name"></t> has been received and is being reviewed by our <t t-out="object.team_id.name or ''"></t> team. The reference of your ticket is <t t-out="object.ticket_no"></t>.</p>
+                <p>To add additional comments, reply to this email.</p>
+                <br/>
+                <p>Thank you,</p>
+                <t t-if="object.company_id.name and object.company_id.email">
+                    <t t-out="object.company_id.name"></t>
+                </t>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <!-- Ticket assignation mail template -->
+    <record id="ticket_assignation_email" model="mail.template">
+        <field name="name">Ticket Assignation</field>
+        <field name="model_id" ref="sync_helpdesk.model_ticket_ticket"/>
+        <field name="email_from">{{object.company_id.name}} {{(object.company_id.email or user.email)}}</field>
+        <field name="email_to">{{(object.user_id.partner_id and object.user_id.partner_id.email)}}</field>
+        <field name="subject">{{object.name}} Ticket Assignation</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Dear <t t-out="object.user_id.partner_id.name or 'Madam, Sir'"></t>,</p>
+                <p><t t-out="object.name"></t> ticket has been assign to you, please check it and start working on it.</p>
+                <br/>
+                <p>Thank you,</p>
+                <t t-if="object.company_id.name and object.company_id.email">
+                    <t t-out="object.company_id.name"></t>
+                </t>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <!-- Mail Template Action -->
+    <record model="ir.actions.act_window" id="action_email_template_tree_sync_helpdesk">
+        <field name="name">Templates</field>
+        <field name="res_model">mail.template</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="mail.email_template_tree"/>
+        <field name="search_view_id" ref="mail.view_email_template_search"/>
+        <field name="domain">[('model', '=', 'ticket.ticket')]</field>
+        <field name="context">{'default_model': 'ticket.ticket'}</field>
+    </record>
+</odoo>

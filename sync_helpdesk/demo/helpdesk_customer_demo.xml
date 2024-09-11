@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="helpdesk_customer_ryan" model="res.partner">
+        <field name="name">Ryan</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0505</field>
+        <field name="mobile">8569654782</field>
+        <field name="email">ryan@example.com</field>
+        <field name="function">Sales Executive</field>
+    </record>
+
+    <record id="helpdesk_customer_elliott" model="res.partner">
+        <field name="name">Elliott</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0555</field>
+        <field name="mobile">6869854782</field>
+        <field name="email">elliott@example.com</field>
+        <field name="function">Sales Director</field>
+    </record>
+
+    <record id="helpdesk_customer_jamie" model="res.partner">
+        <field name="name">Jamie</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0535</field>
+        <field name="mobile">8569854692</field>
+        <field name="email">jamie@example.com</field>
+        <field name="function">Developer</field>
+    </record>
+
+    <record id="helpdesk_customer_frederick" model="res.partner">
+        <field name="name">Frederick</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0515</field>
+        <field name="mobile">8569654782</field>
+        <field name="email">frederick@example.com</field>
+        <field name="function">Consultant</field>
+    </record>
+
+    <record id="helpdesk_customer_charles" model="res.partner">
+        <field name="name">Charles</field>
+        <field name="street">3404  Edgewood Road</field>
+        <field name="street2"></field>
+        <field name="city">Jonesboro</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0525</field>
+        <field name="mobile">8569854710</field>
+        <field name="email">charles@example.com</field>
+        <field name="function">Consultant</field>
+    </record>
+</odoo>

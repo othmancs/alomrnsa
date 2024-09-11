@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit fetch mail server view -->
+    <record id="view_support_email_server_form_inherit" model="ir.ui.view">
+        <field name="name">fetchmail.server.form.inherit</field>
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="mail.view_email_server_form"/>
+        <field name="arch" type="xml">
+            <field name="object_id" position="after">
+                <field name="is_ticket" invisible="1"/>
+                <field name="team_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
