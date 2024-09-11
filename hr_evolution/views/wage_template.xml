@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="report_wage_belt">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="text-center">
+                            <span>
+                                <h3>Wage Belt Rank Report</h3>
+                            </span>
+                        </div>
+
+                        <div>
+                            <t t-foreach="o.company_ids" t-as="company" t-key="company.id">
+                                <t t-if="o.get_dept(company)">
+                                    <h3 class="text-center">Location: <span t-esc="company.name"/></h3>
+                                </t>
+                                <table class="table table-condensed" t-foreach="o.get_dept(company)" t-as="department">
+                                    <thead>
+                                        <tr>
+                                            <strong>Department : <span t-esc="department.name"/></strong>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-xs-4">Employee Name</th>
+                                            <th class="col-xs-4">Belt Level</th>
+                                            <th class="col-xs-4">Base Hrly Wage Level (Probation)</th>
+                                            <th class="col-xs-4 text-right">Hrly Wage Level (after 3 months)</th>
+                                            <th class="text-right">Annual evaluations after 3 month probation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody t-foreach="o.get_emp(department)" t-as="emp">
+                                        <tr>
+                                            <td class="col-xs-4"><span t-esc="emp.name"/></td>
+                                            <td class="col-xs-4"><span t-esc="emp.belt_id.name"/></td>
+                                            <td class="col-xs-4 text-right"><span t-esc="'%.2f' % o.get_probation_wage(emp)[0]"/></td>
+                                            <td class="col-xs-4 text-right"><span t-esc="'%.2f' % o.get_current_wage(emp)"/></td>
+                                            <td class="col-xs-4"><span t-esc="o.get_probation_wage(emp)[1]"/></td>
+                                        </tr>
+                                    </tbody>
+                                    <br/>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_wage_belt" model="ir.actions.report">
+        <field name="name">Wage Belt</field>
+        <field name="model">wage.belt.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_evolution.report_wage_belt</field>
+        <field name="report_file">hr_evolution.report_wage_belt</field>
+        <field name="print_report_name">Wage Belt Report</field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

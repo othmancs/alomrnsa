@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="hr_appraisal_survey_inherited_view">
+        <field name="name">hr_appraisal list</field>
+        <field name="model">survey.user_input</field>
+        <field name="priority">1</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                 <field name="appraisal_id"/>
+                 <field name="appraisal_plan_id"/>
+
+            </xpath>
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Evalutor</attribute>
+            </field>
+            <field name="create_date" position="attributes">
+                <attribute name="string">Date of Evaluation</attribute>
+            </field>
+            <field name="user_input_line_ids" position="before">
+                <group>
+                    <group string='Employee Information'>
+                        <field name="employee_id"/>
+                        <field name="emp_code"/>
+                        <field name="emp_joining_date"/>
+                        <field name="emp_sign"/>
+                    </group>
+                </group>
+            </field>
+            <xpath expr="//field[@name='user_input_line_ids']/tree/field[@name='answer_score']" position="after">
+                <field name="value_numerical_box" sum="Total Score"/>
+            </xpath>
+            <field name="user_input_line_ids" position="after">
+                <group class="oe_subtotal_footer oe_right">
+                    <field name="score"/>
+                    <field name="job_skill_belt_level"/>
+                    <field name="belt_level"/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_employee_form_inherit">
+        <field name="name">Employee form</field>
+        <field name="model">hr.employee</field>
+        <field name="priority">1</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_survey_user_input_completed" class="oe_stat_button" string="Survey" icon="fa-pencil-square-o" type="object"/>
+            </div>
+        </field>
+    </record>
+
+    <menuitem name="Surveys"
+        id="survey.menu_surveys"
+        sequence="10"
+        groups="survey.group_survey_user"
+        parent="hr.menu_hr_root"/>
+
+<!--     <record model="ir.ui.view" id="survey_form_inherit">
+        <field name="name">Survey form</field>
+        <field name="model">survey.survey</field>
+        <field name="priority">1</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='question_and_page_ids']/tree/field[@name='question_type']" position="after">
+                <field name="is_job_skill"/>
+                <field name="user_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record> -->
+
+    <record model="ir.ui.view" id="survey_question_form_inherit">
+        <field name="name">Form view for survey question</field>
+        <field name="model">survey.question</field>
+        <field name="inherit_id" ref="survey.survey_question_form"/>
+        <field name="arch" type="xml">
+            <field name="question_type" position="after">
+                <field name="is_job_skill"/>
+                <field name="user_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="survey_user_input_view_form_inherit" model="ir.ui.view">
+        <field name="name">survey.user_input.view.form</field>
+        <field name="model">survey.user_input</field>
+        <field name="inherit_id" ref="survey.survey_user_input_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_input_line_ids']/tree/field[@name='skipped']" position="after">
+                <field name="is_job_skill"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="survey_user_input_line_view_form_inherit" model="ir.ui.view">
+        <field name="name">survey.user_input.line.view.form</field>
+        <field name="model">survey.user_input.line</field>
+        <field name="inherit_id" ref="survey.survey_user_input_line_view_form"/>
+        <field name="arch" type="xml">
+            <field name="skipped" position="after">
+                <field name="is_job_skill" />
+            </field>
+        </field>
+    </record>
+
+
+    <template id="survey_page_print_inherit" inherit_id="survey.survey_page_print">
+        <xpath expr="//div//t[@t-foreach='survey.question_and_page_ids']" position="attributes">
+            <attribute name="t-foreach">survey.question_and_page_ids.filtered(lambda l: not l.user_ids or env.user.id in l.user_ids.ids)</attribute>
+        </xpath>
+    </template>
+
+    <template id="survey_fill_form_in_progress_inherit" inherit_id="survey.survey_fill_form_in_progress">
+        <xpath expr="//t[@t-foreach='survey.question_and_page_ids']" position="attributes">
+            <attribute name="t-foreach">survey.question_and_page_ids.filtered(lambda l: not l.user_ids or env.user.id in l.user_ids.ids)</attribute>
+        </xpath>
+        <xpath expr="//t[@t-foreach='page.question_ids']" position="attributes">
+            <attribute name="t-foreach">page.question_ids.filtered(lambda l: not l.user_ids or env.user.id in l.user_ids.ids)</attribute>
+        </xpath>
+    </template>
+</odoo>

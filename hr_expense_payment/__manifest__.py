@@ -5,13 +5,15 @@
     'name': "Employee Expense Reimbursement in Monthly Salary",
     'summary': "Employee Expense Reimbursement in Monthly Salary",
     'description': """
-To paying employees back in the mohtly salary when they spend their own money while working on company time. These expenses generally occur when an employee is traveling for business.
-""",
-    'author': 'SLNEE',
-    'website': 'http://www.slnee.com',
+        Employee Expense Reimbursement in Monthly Salary
+        To paying employees back in the mohtly salary when they spend their own money while working on company time. These expenses generally occur when an employee is traveling for business.
+        """,
+    'author': 'Synconics Technologies Pvt. Ltd.',
+    'website': 'http://www.synconics.com',
     'category': 'HR',
     'version': '1.0',
-    'depends': ['decimal_precision', 'hr_expense', 'hr_admin', 'hr_payroll'],
+    'license': 'OPL-1',
+    'depends': ['hr_expense', 'saudi_hr_contract', 'sync_hr_payroll_account'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
@@ -27,5 +29,3 @@ To paying employees back in the mohtly salary when they spend their own money wh
     'installable': True,
     'auto_install': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

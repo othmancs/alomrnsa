@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="emp_appraisal_one" model="hr.emp.appraisal">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="appraisal_end_date" eval="(DateTime.today())"/>
+            <field name="state">confirm</field>
+        </record>
+
+        <record id="emp_appraisal_line_one" model="hr.emp.appraisal.plan">
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="execute_by">manager</field>
+            <field name="employee_ids" eval="[(4, ref('hr.employee_fpi')),(4, ref('hr.employee_jep'))]"/>
+            <field name="survey_id" ref="survey.survey_feedback"/>
+            <field name="appraisal_id" ref="emp_appraisal_one"/>
+        </record>
+
+        <record id="emp_appraisal_two" model="hr.emp.appraisal">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="appraisal_end_date" eval="(DateTime.today())"/>
+        </record>
+
+        <record id="emp_appraisal_line_two" model="hr.emp.appraisal.plan">
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="execute_by">employee</field>
+            <field name="employee_ids" eval="[(4, ref('hr.employee_qdp')),(4, ref('hr.employee_jep'))]"/>
+            <field name="survey_id" ref="survey.survey_feedback"/>
+            <field name="appraisal_id" ref="emp_appraisal_two"/>
+        </record>
+
+        <record id="emp_appraisal_three" model="hr.emp.appraisal">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="appraisal_end_date" eval="(DateTime.today())"/>
+            <field name="state">confirm</field>
+        </record>
+
+        <record id="emp_appraisal_line_three" model="hr.emp.appraisal.plan">
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="execute_by">employee</field>
+            <field name="employee_ids" eval="[(4, ref('hr.employee_qdp')),(4, ref('hr.employee_stw'))]"/>
+            <field name="survey_id" ref="survey.survey_feedback"/>
+            <field name="appraisal_id" ref="emp_appraisal_three"/>
+        </record>
+
+        <record id="emp_appraisal_four" model="hr.emp.appraisal">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="appraisal_end_date" eval="(DateTime.today())"/>
+        </record>
+
+        <record id="emp_appraisal_line_four" model="hr.emp.appraisal.plan">
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="execute_by">employee</field>
+            <field name="employee_ids" eval="[(4, ref('hr.employee_qdp')),(4, ref('hr.employee_al'))]"/>
+            <field name="survey_id" ref="survey.survey_feedback"/>
+            <field name="appraisal_id" ref="emp_appraisal_four"/>
+        </record>
+
+        <record id="emp_appraisal_five" model="hr.emp.appraisal">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="appraisal_end_date" eval="(DateTime.today())"/>
+            <field name="state">confirm</field>
+        </record>
+
+        <record id="emp_appraisal_line_five" model="hr.emp.appraisal.plan">
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="execute_by">employee</field>
+            <field name="employee_ids" eval="[(4, ref('hr.employee_qdp')),(4, ref('hr.employee_stw'))]"/>
+            <field name="survey_id" ref="survey.survey_feedback"/>
+            <field name="appraisal_id" ref="emp_appraisal_five"/>
+        </record>
+    </data>
+</odoo>

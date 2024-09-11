@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_emp_appraisal,access_hr_emp_appraisal,model_hr_emp_appraisal,base.group_user,1,0,0,0
+access_hr_emp_appraisal_manager,access_hr_emp_appraisal_manager,model_hr_emp_appraisal,hr.group_hr_manager,1,1,1,1
+access_hr_emp_appraisal_plan_manager,access_hr_emp_appraisal_plan_manager,model_hr_emp_appraisal_plan,hr.group_hr_manager,1,1,1,1
+access_hr_emp_appraisal_plan,access_hr_emp_appraisal_plan,model_hr_emp_appraisal_plan,base.group_user,1,0,0,0
+hr_emp_appraisal.access_survey_schedule,access_survey_schedule,hr_emp_appraisal.model_survey_schedule,base.group_user,1,1,1,1

@@ -1,0 +1,466 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_emp_appraisal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-26 06:34+0000\n"
+"PO-Revision-Date: 2018-12-26 06:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_emp_appraisal
+#: model:mail.template,body_html:hr_emp_appraisal.hr_emp_appraisal_email
+msgid "\n"
+"                <p>Hello ${ctx.get('email_to').name},</p>\n"
+"                <p>Please fill out the following survey related to ${object.employee_id.name} Click here to access the survey.</p>\n"
+"                <center>\n"
+"                    <br/><br/>\n"
+"                    <a href=\"${ctx.get('url')}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">Survey</a>\n"
+"                    <br/><br/><br/>\n"
+"                </center>\n"
+"                <p>Post your response for the appraisal till : ${object.appraisal_end_date} </p>\n"
+"                <p>Thank you,</p>\n"
+"                <p>${object.env.user.name}</p>\n"
+"            "
+msgstr "\n"
+"                <p>مرحبا ${ctx.get('email_to').name},</p>\n"
+"                <p>يرجى ملء الاستبيان التالي المتعلق بـ${object.employee_id.name}انقر هنا للوصول إلى الاستبيان.</p>\n"
+"                <center>\n"
+"                    <br/><br/>\n"
+"                    <a href=\"${ctx.get('url')}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">الدراسة الاستقصائية</a>\n"
+"                    <br/><br/><br/>\n"
+"                </center>\n"
+"                <p>أرسل ردك للتقييم حتى: ${object.appraisal_end_date} </p>\n"
+"                <p>شكرا لكم،</p>\n"
+"                <p>${object.env.user.name}</p>\n"
+"            "
+
+#. module: hr_emp_appraisal
+#: model:mail.template,body_html:hr_emp_appraisal.hr_emp_appraisal_notification_email
+msgid "\n"
+"                <p>Hello ${ctx.get('email_to').name},</p>\n"
+"                <p>Please fill out the survey related to ${object.employee_id.name}</p>\n"
+"                <p>Post your response for the appraisal till : ${object.appraisal_end_date} </p>\n"
+"                <p style=\"color: red;\">Note: If your response already Done then forgive It.</p>\n"
+"                <p>Thank you,</p>\n"
+"                <p>${object.env.user.name}</p>\n"
+"            "
+msgstr "\n"
+"                <p>مرحبا ${ctx.get('email_to').name},</p>\n"
+"                <p>يرجى ملء الاستبيان المتعلق بـ${object.employee_id.name}</p>\n"
+"                <p>أرسل ردك للتقييم حتى:${object.appraisal_end_date} </p>\n"
+"                <p style=\"color: red;\">ملاحظة: إذا كانت إجابتك قد فعلت بالفعل ، فأغفر لها.</p>\n"
+"                <p>شكرا لكم،</p>\n"
+"                <p>${object.env.user.name}</p>\n"
+"            "
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__total_complete_survey_ratio
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__answer_ids
+#: model:ir.ui.menu,name:hr_emp_appraisal.menu_hr_appraisal_answers
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Answers"
+msgstr "الإجابات"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Answers:"
+msgstr "الأجوبة"
+
+#. module: hr_emp_appraisal
+#: model:ir.actions.act_window,name:hr_emp_appraisal.emp_appraisal_action_form
+#: model:ir.model,name:hr_emp_appraisal.model_hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__appraisal_id
+#: model:ir.ui.menu,name:hr_emp_appraisal.menu_hr_appraisal
+#: model:ir.ui.menu,name:hr_emp_appraisal.menu_hr_appraisal_root
+msgid "Appraisal"
+msgstr "توصيه"
+
+#. module: hr_emp_appraisal
+#: model:mail.template,subject:hr_emp_appraisal.hr_emp_appraisal_email
+msgid "Appraisal Form"
+msgstr "استمارة التقييم"
+
+#. module: hr_emp_appraisal
+#: model:ir.actions.server,name:hr_emp_appraisal.appraisal_notification_cron_ir_actions_server
+#: model:ir.cron,cron_name:hr_emp_appraisal.appraisal_notification_cron
+#: model:ir.cron,name:hr_emp_appraisal.appraisal_notification_cron
+#: model:mail.template,subject:hr_emp_appraisal.hr_emp_appraisal_notification_email
+msgid "Appraisal Notification"
+msgstr "إخطار التقييم"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__appraisal_plan_ids
+msgid "Appraisal Plan"
+msgstr "خطة التقييم"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__appraisal_end_date
+msgid "Appriasal Deadline"
+msgstr "الموعد النهائي Appriasal"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__appraisal_plan_id
+msgid "Appriasal Plan"
+msgstr "خطة التقييم"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__appraisal_id
+msgid "Appriasal id"
+msgstr "معرف التقييم"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal,state:0
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal.plan,execute_by:0
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__hr_collaborator
+msgid "Collaborators"
+msgstr "المتعاونين"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal.plan,execute_by:0
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__hr_colleague
+msgid "Colleague"
+msgstr "زميل"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__company_id
+msgid "Company"
+msgstr "المؤسسة"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal,state:0
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__total_complete_survey
+msgid "Count Answers"
+msgstr "إحصاء الإجابات"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__total_sent_survey
+msgid "Count Sent Questions"
+msgstr "عد إرسال الأسئلة"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__create_uid
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__create_date
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Deadline:"
+msgstr "الموعد النهائي"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Delete"
+msgstr "حذف"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__final_evaluation
+msgid "Description"
+msgstr "الوصف"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__display_name
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal,state:0
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Done"
+msgstr "تم"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal,state:0
+msgid "Draft"
+msgstr "مشروع"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Dropdown menu"
+msgstr "القائمة المنسدلة"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Edit"
+msgstr "تحرير"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Emails sent"
+msgstr "رسائل البريد الإلكتروني المرسلة"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal.plan,execute_by:0
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__employee_id
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__is_employee
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Employee's Name"
+msgstr "اسم الموظف"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__employee_ids
+msgid "Employees"
+msgstr "الموظفون"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__execute_by
+msgid "Execute By"
+msgstr "تنفيذ بواسطة"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Extra Information"
+msgstr "معلومات اضافية"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Final Evaluation"
+msgstr "التقييم النهائي"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__final_interview
+msgid "Final Interview"
+msgstr "المقابلة النهائية"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Final Interview:"
+msgstr "المقابلة النهائية:"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__fiscalyear_id
+msgid "Fiscal Year"
+msgstr "السنة المالية"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_hr_emp_appraisal_plan
+msgid "HR Appraisal Plan"
+msgstr "خطة تقييم الموارد البشرية"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__id
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal____last_update
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__write_uid
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__write_date
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal.plan,execute_by:0
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__is_manager
+msgid "Manager"
+msgstr "المدير"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Plan"
+msgstr "خطة"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Send Mail"
+msgstr "ارسل بريد"
+
+#. module: hr_emp_appraisal
+#: selection:hr.emp.appraisal,state:0
+msgid "Sent Mail"
+msgstr "البريد المرسل"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Sent Questions:"
+msgstr "إرسال الأسئلة:"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__sent_mail
+msgid "Sent mail"
+msgstr "البريد المرسل"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Set to Draft"
+msgstr "تعيين كمسودة"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__survey_id
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Survey"
+msgstr "إستفتاء"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_survey_user_input
+msgid "Survey User Input"
+msgstr "مدخلات المستخدم المسح"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: hr_emp_appraisal
+#: code:addons/hr_emp_appraisal/models/hr_emp_appraisal.py:218
+#, python-format
+msgid "You can't submit your Review."
+msgstr "لا يمكنك إرسال المراجعة الخاصة بك."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__color
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__color
+msgid "color Index"
+msgstr "مؤشر اللون"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "oe_kanban_text_red"
+msgstr "oe_kanban_text_red"
+

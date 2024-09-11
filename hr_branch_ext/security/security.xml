@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value eval="[('module', '=', 'multi_branches'),
+                ('name', '=', 'group_multi_branch')]"/>
+        </function>
+        <value eval="{'noupdate': False}" />
+    </function> -->
+
+    <!-- <record model="res.groups" id="multi_branches.group_multi_branch">
+        <field name="implied_ids" eval="[(4, ref('saudi_hr_branch.group_company_branch'))]"/>
+    </record> -->
+
+    <!-- <record model="res.groups" id="saudi_hr_branch.group_company_branch">
+        <field name="implied_ids" eval="[(4, ref('multi_branches.group_multi_branch'))]"/>
+    </record> -->
+
+</odoo>

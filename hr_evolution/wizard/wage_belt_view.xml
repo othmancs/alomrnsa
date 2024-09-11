@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_annual_wage_belt_tree" model="ir.ui.view">
+        <field name="name">wage.belt.view.tree</field>
+        <field name="model">wage.belt.view</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="branch_id"/>
+                <field name="dept_id"/>
+                <field name="employee_id"/>
+                <field name="belt_id"/>
+                <field name="probation_hrly_wage"/>
+                <field name="hrly_wage"/>
+                <field name="probation_note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_annual_wage_belt_filter" model="ir.ui.view">
+        <field name="name">wage.belt.view.search</field>
+        <field name="model">wage.belt.view</field>
+        <field name="arch" type="xml">
+           <search>
+            <field name="branch_id" />
+            <group string="Group By">
+                <filter string="Location" name='group_branch' context="{'group_by':'branch_id'}"/>
+                <filter string="Department" name='group_department_id' context="{'group_by':'dept_id'}"/>
+            </group>
+           </search>
+       </field>
+   </record>
+
+    <record id="action_annual_wage_belt" model="ir.actions.act_window">
+        <field name="name">Wage Belt Report view</field>
+        <field name="res_model">wage.belt.view</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'search_default_group_branch': 1, 'search_default_group_department_id': 1}</field>
+    </record>
+
+    <record id="view_wage_belt_wizard_form" model="ir.ui.view">
+        <field name="name">wage.belt.wizard.form</field>
+        <field name="model">wage.belt.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="department_ids" domain="[('company_id', 'in', company_ids)]"
+                                required="1" widget="many2many_tags" options="{'no_create': True, 'no_create_write': True}"/>
+                        </group>
+                        <group>
+                            <field name="company_ids" domain="[('id', 'in', allowed_company_ids)]"
+                                widget="many2many_tags" options="{'no_create': True, 'no_create_write': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_excel" string="Print Excel" class="btn-primary" type="object"/>
+                    <button name="print_pdf" string="Print PDF" class="btn-primary" type="object"/>
+                    <button name="%(action_annual_wage_belt)d" string="View" class="btn-primary" type="action" context="{'department_ids': department_ids}"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wage_belt_wizard" model="ir.actions.act_window">
+        <field name="name">Wage Belt</field>
+        <field name="res_model">wage.belt.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_wage_belt_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_wage_belt_wizard" name="Wage Belt Report"
+        parent="menu_main_hr_evolution" sequence="5" action="action_wage_belt_wizard"/>
+
+</odoo>

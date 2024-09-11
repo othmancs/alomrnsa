@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_annual_wage">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="text-center">
+                            <span>
+                                <h3>Annual Wage Report</h3>
+                            </span>
+                        </div>
+                        <table class="table table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th class="col-xs-4">Team #</th>
+                                    <th class="col-xs-4">Team Member</th>
+                                    <th class="col-xs-4">Dept.</th>
+                                    <th class="col-xs-4">Location</th>
+                                    <th class="col-xs-4">Hire Date</th>
+                                    <th class="col-xs-4">Evaluation Completion Date <t t-esc="o.get_previous_year()"/></th>
+                                    <th class="col-xs-4">Evaluation Completion Date <t t-esc="o.get_current_year()"/></th>
+                                    <th class="col-xs-4">Belt Level Rating <t t-esc="o.get_previous_year()"/></th>
+                                    <th class="col-xs-4">Job Level Rating <t t-esc="o.get_current_year()"/></th>
+                                    <th class="col-xs-4">Belt Level Rating <t t-esc="o.get_current_year()"/></th>
+                                    <th class="col-xs-4">Current Wage</th>
+                                    <th class="col-xs-4">Current Belt Pay Level</th>
+                                    <th class="col-xs-4">Promote to next Belt Pay Level</th>
+                                    <th class="col-xs-4">Plant Manager's Recommended New Wage Level</th>
+                                    <th class="col-xs-4">Year of Service</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr t-foreach="o.get_employee_list()" t-as="emp">
+                                    <td class="col-xs-4"><span t-esc="emp.get('code')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('name')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('dept')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('location')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('hire_date')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('previous_completion_date')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('current_completion_date')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('previous_belt_level_rating')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('job_level_rating')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('belt_level_rating')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('current_wage')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('current_belt_pay_level')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('next_belt_pay_level')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('new_wage_level')"/></td>
+                                    <td class="col-xs-4"><span t-esc="emp.get('total_year')"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_annual_wage" model="ir.actions.report">
+        <field name="name">Annual Wage</field>
+        <field name="model">annual.wage.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_evolution.report_annual_wage</field>
+        <field name="report_file">hr_evolution.report_annual_wage</field>
+        <field name="print_report_name">Annual Wage</field>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="saudi_hr_it_operations.paperformat_emp_exit_report"/>
+    </record>
+</odoo>

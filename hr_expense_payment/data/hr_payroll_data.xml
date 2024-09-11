@@ -22,7 +22,7 @@
     <!-- Expense Deduction -->
     <record id="hr_salary_rule_employee_expense_deduction" model="hr.salary.rule">
         <field name="name">Employee Expense Deduction</field>
-        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="category_id" ref="sync_hr_payroll.DED"/>
         <field name="code">EXPENSE</field>
         <field name="sequence" eval="116"/>
         <field name="condition_select">python</field>
@@ -32,7 +32,7 @@
     </record>
 
     <!-- Salary Structure -->
-    <record id="hr_payroll.structure_base" model="hr.payroll.structure">
+    <record id="sync_hr_payroll.structure_base" model="hr.payroll.structure">
         <field name="name">Company Salary Structures</field>
         <field name="rule_ids" eval="[(4,ref('hr_salary_rule_employee_expense_deduction')), (4,ref('hr_salary_rule_employee_expense_reimburse'))]" />
         <field name="company_id" ref="base.main_company"/>

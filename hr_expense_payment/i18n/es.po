@@ -1,0 +1,309 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_expense_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 10:37+0000\n"
+"PO-Revision-Date: 2022-05-30 10:37+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_needaction
+msgid "Action Needed"
+msgstr "Accion Necesaria"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Adjuntos"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields.selection,name:hr_expense_payment.selection__hr_expense_payment__payment_mode__both
+msgid "Both"
+msgstr "Ambos"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__calculate_company_expense
+msgid "Calculate Company Expense"
+msgstr "Calcular el Gasto de la Empresa"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields.selection,name:hr_expense_payment.selection__hr_expense_payment__payment_mode__company_account
+msgid "Company"
+msgstr "Compañia"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense__company_contribution
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__company_contribution
+msgid "Company Contribution"
+msgstr "Contribución de la Empresa"
+
+#. module: hr_expense_payment
+#: code:addons/hr_expense_payment/models/hr_expense.py:0
+#, python-format
+msgid "Company Paid should not be more then total expense."
+msgstr "El pago de la compañía no debe ser más que el gasto total."
+
+#. module: hr_expense_payment
+#: code:addons/hr_expense_payment/models/hr_expense.py:0
+#, python-format
+msgid ""
+"Contribution should be either greater then 0 or should not be more that "
+"total expense"
+msgstr ""
+"La contribución debe ser mayor que 0 o no debe ser mayor que el"
+"gasto total"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields.selection,name:hr_expense_payment.selection__hr_expense_payment__payment_mode__own_account
+msgid "Employee (to reimburse)"
+msgstr "Empleado (a reembolsar)"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense__emp_contribution
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__emp_contribution
+msgid "Employee Contribution"
+msgstr "Contribución del Empleado"
+
+#. module: hr_expense_payment
+#: model:hr.salary.rule,name:hr_expense_payment.hr_salary_rule_employee_expense_deduction
+msgid "Employee Expense Deduction"
+msgstr "Deducción de Gastos de Empleados"
+
+#. module: hr_expense_payment
+#: model:hr.salary.rule,name:hr_expense_payment.hr_salary_rule_employee_expense_reimburse
+msgid "Employee Expense Reimburse"
+msgstr "Reembolso de Gastos de Empleados"
+
+#. module: hr_expense_payment
+#: code:addons/hr_expense_payment/models/hr_expense.py:0
+#, python-format
+msgid "Employee Paid amount should not be more than total expense."
+msgstr "El monto pagado por el empleado no debe ser mayor que el gasto total."
+
+#. module: hr_expense_payment
+#: code:addons/hr_expense_payment/models/hr_expense.py:0
+#, python-format
+msgid ""
+"Employee and Company paid by amount should be equal to total expense amount."
+msgstr ""
+"El monto pagado por el empleado y la compañía debe ser igual al monto total del gasto."
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__expense_note
+msgid "Expense Note"
+msgstr "Nota de Gastos"
+
+#. module: hr_expense_payment
+#: model:ir.model,name:hr_expense_payment.model_hr_expense_sheet
+msgid "Expense Report"
+msgstr "Informe de Gastos"
+
+#. module: hr_expense_payment
+#: code:addons/hr_expense_payment/models/hr_expense.py:0
+#, python-format
+msgid "Expenses"
+msgstr "Gastos"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: hr_expense_payment
+#: model:ir.model,name:hr_expense_payment.model_hr_expense
+msgid "Hr Expense"
+msgstr "Gasto RH"
+
+#. module: hr_expense_payment
+#: model:ir.model,name:hr_expense_payment.model_hr_expense_payment
+msgid "Hr Expense Payment"
+msgstr "Pago de Gastos RH"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__message_needaction
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__message_has_error
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense__include_salary
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_sheet__include_salary
+msgid "Include in Salary"
+msgstr "Incluir en el Salario"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización en"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunto Principal"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: hr_expense_payment
+#: code:addons/hr_expense_payment/models/hr_expense.py:0
+#, python-format
+msgid "No any expense need to create!"
+msgstr "¡ No es necesario crear ningún gasto!"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_sheet__not_inc_sal_amt
+msgid "Not Include Salary Amount Total"
+msgstr "No Incluir Importe Total del Salario"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__company_contribution_amount
+msgid "Paid By Company"
+msgstr "Pagado por La Compañia"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__emp_contribution_amount
+msgid "Paid By Employee"
+msgstr "Pagado Por Empleado"
+
+#. module: hr_expense_payment
+#: model:ir.model,name:hr_expense_payment.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Boleta de pago"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__payment_mode
+msgid "Payment By"
+msgstr "Pago por"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense__slip_id
+msgid "Payslip"
+msgstr "Nómina"
+
+#. module: hr_expense_payment
+#: code:addons/hr_expense_payment/models/hr_expense.py:0
+#, python-format
+msgid "Please define expense products"
+msgstr "Por favor, defina productos de gastos"
+
+#. module: hr_expense_payment
+#: model:hr.salary.rule.category,name:hr_expense_payment.REIMBURSE
+msgid "Reimburse"
+msgstr "Reembolsar"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error al entrega SMS"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no leídos"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no leídos"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,field_description:hr_expense_payment.field_hr_expense_payment__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: hr_expense_payment
+#: model:ir.model.fields,help:hr_expense_payment.field_hr_expense_payment__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación por sitio web"

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_hr_applicant_skill_view_form" model="ir.ui.view">
+        <field name="name">Jobs - Recruitment Form</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='personal']" position="after">
+                <page string="Resume">
+                    <separator string="Resume Details"/>
+                    <field name="resume_line_ids">
+                        <tree string="Resume">
+                            <field name="name"/>
+                            <field name="line_type_id"/>
+                            <field name="date_start"/>
+                        </tree>
+                        <form string="Resumé">
+                            <header attrs="{'invisible': [('type_code', '!=', 'EXP')]}">
+                                <button string="Send Email" name="action_send_mail"
+                                    type="object" groups="hr.group_hr_user" states="draft,refuse" class="oe_highlight" />
+                                <button string="Approve" name="experience_approve"
+                                    type="object" states="draft,refuse" class="oe_highlight" groups="hr.group_hr_user"/>
+                                <button string="Refuse" name="experience_refuse" type="object"
+                                    states="draft,approve" class="oe_left" groups="hr.group_hr_user"/>
+                                <field name="state" widget="statusbar"
+                                statusbar_visible="waiting_answer,done" />
+                            </header>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only"/>
+                                <h1>
+                                    <field name="name" placeholder="Title" required="True"/>
+                                </h1>
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="line_type_id"/>
+                                    <field name="type_code" invisible="1"/>
+                                    <field name="display_type" invisible="1"/>
+                                </group>
+                                <group>
+                                    <field name="date_start" required="True"/>
+                                    <field name="date_end"/>
+                                </group>
+                            </group>
+                            <group attrs="{'invisible': [('type_code', '!=', 'EXP')]}">
+                                <group string="Experience">
+                                    <field name="is_current_job"/>
+                                    <field name="company" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                                    <field name="job_title" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                                    <field name="location"/>
+                                </group>
+                                <group string="Reference">
+                                    <field name="contact_name" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                                    <field name="contact_phone"/>
+                                    <field name="contact_email" attrs="{'required':[('type_code', '=', 'EXP')]}"/>
+                                    <field name="contact_title"/>
+                                </group>
+                            </group>
+                            <group string="Certification" attrs="{'invisible': [('type_code', '!=', 'CER')]}">
+                                <group>
+                                    <field name="organization_name" attrs="{'required': [('type_code', '=', 'CER')]}"/>
+                                    <field name="certification_month"/>
+                                </group>
+                                <group>
+                                    <field name="certification_year"/>
+                                    <field name="reg_no"/>
+                                </group>
+                            </group>
+                            <group string="Education Details" attrs="{'invisible': [('type_code', '!=', 'EDU')]}">
+                                <group>
+                                    <field name="degree_id" attrs="{'required': [('type_code', '=', 'EDU')]}"/>
+                                    <field name="university_id"/>
+                                    <field name="completion_year"/>
+                                    <field name="completion_month"/>
+                                </group>
+                                <group>
+                                    <field name="field_of_study"/>
+                                    <field name="grade"/>
+                                    <field name="activities"/>
+                                    <field name="percentage"/>
+                                </group>
+                            </group>
+                            <field name="description" placeholder="Description"/>
+                        </form>
+                    </field>
+                    <separator string="Skills Details"/>
+                    <field name="employee_skill_ids">
+                        <tree>
+                            <field name="skill_type_id" invisible="1"/>
+                            <field name="skill_id"/>
+                            <field name="skill_level_id"/>
+                            <field name="level_progress" widget="progressbar"/>
+                        </tree>
+                        <form string="Skills">
+                            <sheet>
+                                <group>
+                                    <group>
+                                        <field name="skill_type_id"/>
+                                        <field name="skill_id" domain="[('skill_type_id', '=', skill_type_id)]"/>
+                                    </group>
+                                    <group>
+                                        <field name="skill_level_id" domain="[('skill_type_id', '=', skill_type_id)]"/>
+                                        <field name="level_progress" widget="progressbar"/>
+                                    </group>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

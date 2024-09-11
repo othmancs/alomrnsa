@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo noupdate="0">
+    <!-- Cron for Contract Updation -->
+    <record model="ir.cron" id="appraisal_notification_cron">
+        <field name="name">Appraisal Notification</field>
+        <field name="model_id" ref="model_hr_emp_appraisal"/>
+        <field name="state">code</field>
+        <field name="code">model.check_appraisal_end_date()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+    <record model="ir.cron" id="appraisal_annual_survey">
+        <field name="name">Create Evalution</field>
+        <field name="model_id" ref="model_survey_schedule"/>
+        <field name="state">code</field>
+        <field name="code">model.action_create_evalution()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

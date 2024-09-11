@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_annual_wage_sql_tree" model="ir.ui.view">
+        <field name="name">annual.wage.sql.tree</field>
+        <field name="model">annual.wage.sql</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="emp_no"/>
+                <field name="emp_name"/>
+                <field name="service_year"/>
+                <field name="belt_id"/>
+                <field name="department_id"/>
+                <field name="current_wage"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_annual_wage_sql_graph" model="ir.ui.view">
+        <field name="name">annual.wage.sql.graph</field>
+        <field name="model">annual.wage.sql</field>
+        <field name="arch" type="xml">
+            <graph string="Annual Wage" type="line" sample="1">
+                <field name="emp_name" type="row"/>
+                <field name="service_year" type="row"/>
+                <field name="belt_id" type="row"/>
+                <field name="department_id" type="row"/>
+                <field name="current_wage" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_annual_wage_sql_search_view" model="ir.ui.view">
+        <field name="name">annual.wage.sql.search</field>
+        <field name="model">annual.wage.sql</field>
+        <field name="arch" type="xml">
+           <search>
+                <field name="service_year" />
+                <field name="belt_id" />
+                <field name="department_id" />
+                <group string="Group By">
+                    <filter string="Department" name='group_department_id' context="{'group_by':'department_id'}"/>
+                    <filter string="Year of service" name='service_year' context="{'group_by':'service_year'}"/>
+                    <filter string="Belt Level" name='group_belt_id' context="{'group_by':'belt_id'}"/>
+                    <filter string="Current Wage" name='current_wage' context="{'group_by':'current_wage'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_annual_wage_sql_reports" model="ir.actions.act_window">
+        <field name="name">Annual Wage SQL Reports</field>
+        <field name="res_model">annual.wage.sql</field>
+        <field name="view_mode">tree,graph</field>
+        <field name="context">{'search_default_group_belt_id': 1}</field>
+    </record>
+
+    <record id="view_annual_wage_report_form" model="ir.ui.view">
+        <field name="name">annual.wage.report.form</field>
+        <field name="model">annual.wage.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="year_id" required='1' options="{'no_create': True, 'no_create_edit': True}"/>
+                        <field name="min_wage" required="1"/>
+                        <field name="class_interval" required="1"/>
+                    </group>
+                    <group>
+                        <field name='company_id' required='1'/>
+                        <field name="max_wage" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_pdf_reports" string="Print PDF" type="object" class="oe_highlight"/>
+                    <button name="print_excel_reports" string="Print Excel" type="object" class="oe_highlight"/>
+                    <button string="View" name="%(action_annual_wage_sql_reports)d" type="action" class="btn-primary"/>
+                    <button class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_annual_wage_reports" model="ir.actions.act_window">
+        <field name="name">Annual Wage Reports</field>
+        <field name="res_model">annual.wage.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_annual_wage_report_form"/>
+    </record>
+
+    <menuitem id="menu_annual_wage_reports" parent="saudi_hr.menu_reports"
+                sequence="3" name="Annual Wage"
+                action="hr_evolution.action_annual_wage_reports" groups="hr.group_hr_user"/>
+</odoo>

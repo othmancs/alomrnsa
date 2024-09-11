@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="0">
+    <!-- Email template for send Appraisal Form -->
+    <record id="hr_emp_appraisal_email" model="mail.template">
+        <field name="name">HR Appraisal Form</field>
+        <field name="model_id" ref="model_hr_emp_appraisal"/>
+        <field name="email_from">{{object.env.user.email or ''}}</field>
+        <field name="email_to">{{ctx.get('email_to').work_email}}</field>
+        <field name="subject">Appraisal Form</field>
+        <field name="body_html" type="html">
+            <p>Hello <t t-out="ctx.get('email_to').name"/>,</p>
+            <p>Please fill out the following survey related to <t t-out="object.employee_id.name"/> Click here to access the survey.</p>
+            <center>
+                <br/><br/>
+                <a t-att-href="ctx.get('url')" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">Survey</a>
+                <br/><br/><br/>
+            </center>
+            <p>Post your response for the appraisal till : <t t-out="object.appraisal_end_date"/> </p>
+            <p>Thank you,</p>
+            <p><t t-out="object.env.user.name"/></p>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id="hr_emp_appraisal_notification_email" model="mail.template">
+        <field name="name">HR Appraisal Notification</field>
+        <field name="model_id" ref="model_hr_emp_appraisal"/>
+        <field name="email_from">{{object.env.user.email or ''}}</field>
+        <field name="email_to">{{ctx.get('email_to').work_email}}</field>
+        <field name="subject">Appraisal Notification</field>
+        <field name="body_html" type="html">
+            <p>Hello <t t-out="ctx.get('email_to').name"/>,</p>
+            <p>Please fill out the survey related to <t t-out="object.employee_id.name"/></p>
+            <p>Post your response for the appraisal till : <t t-out="object.appraisal_end_date"/> </p>
+            <p style="color: red;">Note: If your response already Done then forgive It.</p>
+            <p>Thank you,</p>
+            <p><t t-out="object.env.user.name"/></p>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id="hr_emp_appraisal_send_review_notification" model="mail.template">
+        <field name="name">Review Submission</field>
+        <field name="model_id" ref="survey.model_survey_survey"/>
+        <field name="email_from">{{object.env.user.email or ''}}</field>
+        <field name="email_to">{{object.env.user.email or ''}}</field>
+        <field name="subject">Review Submission</field>
+        <field name="body_html" type="html">
+            <p>Hello,</p>
+            <p>Your survey is submitted successfully.</p>
+            <center>
+                <br/><br/>
+                <a t-att-href="ctx.get('url')" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">Survey Review</a>
+                <br/><br/><br/>
+            </center>
+            <p>Thank you,</p>
+            <p><t t-out="object.env.user.name"/></p>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+</odoo>

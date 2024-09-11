@@ -1,0 +1,742 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_evolution
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-23 20:41+0000\n"
+"PO-Revision-Date: 2024-08-23 20:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.product_template_form_view_inherit
+msgid ""
+"<span>\n"
+"                            Safety Document\n"
+"                        </span>"
+msgstr ""
+"<span>\n"
+"                            Documento De Seguridad\n"
+"                        </span>"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_annual_belt_report
+msgid "Annual Belt Report"
+msgstr "Informe Anual de la Correa"
+
+#. module: hr_evolution
+#: model:ir.actions.report,name:hr_evolution.action_report_annual_wage
+#: model:ir.actions.report,print_report_name:hr_evolution.action_report_annual_wage
+#: model:ir.model,name:hr_evolution.model_report_hr_evolution_report_annual_wage
+#: model:ir.ui.menu,name:hr_evolution.menu_annual_wage_reports
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_sql_graph
+msgid "Annual Wage"
+msgstr "Salario Anual"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_annual_wage_report
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Annual Wage Report"
+msgstr "Informe Anual de Salarios"
+
+#. module: hr_evolution
+#: model:ir.actions.act_window,name:hr_evolution.action_annual_wage_reports
+msgid "Annual Wage Reports"
+msgstr "Informes Salariales Anuales"
+
+#. module: hr_evolution
+#: model:ir.actions.act_window,name:hr_evolution.action_annual_wage_sql_reports
+msgid "Annual Wage SQL Reports"
+msgstr "Informes SQL de Salarios Anuales"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_annual_wage_sql
+msgid "Annual Wage Sql View"
+msgstr "Vista Sql de Salario Anual"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__probation_note
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+msgid "Annual evaluations after 3 month probation"
+msgstr "Evaluaciones anuales después de 3 meses de libertad condicional"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de Archivos Adjuntos"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__attachment_ids
+msgid "Attachments"
+msgstr "Archivos Adjuntos"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__probation_hrly_wage
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+msgid "Base Hrly Wage Level (Probation)"
+msgstr "Nivel de Salario Base por Hora (Período de Prueba)"
+
+#. module: hr_evolution
+#: model:ir.actions.act_window,name:hr_evolution.action_belt_level
+#: model:ir.model,name:hr_evolution.model_belt_level
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__name
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_employee__belt_id
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_employee__belt_level_id
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__belt_id
+#: model:ir.ui.menu,name:hr_evolution.menu_belt_level
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_sql_search_view
+msgid "Belt Level"
+msgstr "Nivel de la Correa"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Belt Level Rating"
+msgstr "Clasificación del Nivel de la Correa"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__belt_id
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__belt_id
+msgid "Belt level"
+msgstr "Nivel de correa"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_report_form
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_wage_belt_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__class_interval
+msgid "Class Interval"
+msgstr "Intervalo de Clase"
+
+#. module: hr_evolution
+#. odoo-python
+#: code:addons/hr_evolution/wizard/annual_wage.py:0
+#, python-format
+msgid "Class Interval must be greater than 0."
+msgstr "El Intervalo de clase debe ser mayor que 0."
+
+#. module: hr_evolution
+#: model_terms:ir.actions.act_window,help:hr_evolution.action_safety_document
+msgid "Click to create a new Safety Document."
+msgstr "Haga clic para crear un nuevo Documento de Seguridad."
+
+#. module: hr_evolution
+#: model_terms:ir.actions.act_window,help:hr_evolution.action_belt_level
+msgid "Click to create a new belt level."
+msgstr "Haga clic para crear un nuevo nivel de cinturón."
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__company_id
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__company_ids
+msgid "Company"
+msgstr "Empresa"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_hr_contract_type
+msgid "Contract Type"
+msgstr "Tipo de Contrato"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__create_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__create_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__create_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__create_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__create_date
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__create_date
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__create_date
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__create_date
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Current Belt Pay Level"
+msgstr "Nivel de Pago Actual de la Correa"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__current_wage
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_sql_search_view
+msgid "Current Wage"
+msgstr "Salario Actual"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__expiry_date
+msgid "Date of Expiry"
+msgstr "Fecha de Vencimiento"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__issue_date
+msgid "Date of Issue"
+msgstr "Fecha de Emisión"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__dept_id
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_belt_filter
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_sql_search_view
+msgid "Department"
+msgstr "Departamento"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+msgid "Department :"
+msgstr "Departamento:"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__department_id
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__department_ids
+msgid "Departments"
+msgstr "Departamentos"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Dept."
+msgstr "Depto."
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__display_name
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__display_name
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__display_name
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__display_name
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__display_name
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__display_name
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre de Pantalla"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_hr_employee
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato de Empleado"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+msgid "Employee Name"
+msgstr "Nombre del Empleado"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__emp_no
+msgid "Employee Number"
+msgstr "Número de Empleado"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_emp_probation_review
+msgid "Employee Probation Review"
+msgstr "Revisión del Periodo de Prueba del Empleado"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__no_of_emp
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: hr_evolution
+#. odoo-python
+#: code:addons/hr_evolution/models/belt_level.py:0
+#, python-format
+msgid ""
+"Error!\n"
+"The start date of a calendar year must precede its end date."
+msgstr ""
+"¡Error!\n"
+"La fecha de inicio de un año calendario debe preceder a su fecha de finalización."
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Evaluation Completion Date"
+msgstr "Fecha de Finalización de la Evaluación"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ícono de fuente impresionante, p. "
+
+#. module: hr_evolution
+#. odoo-python
+#: code:addons/hr_evolution/report/annual_wage_report.py:0
+#: code:addons/hr_evolution/report/belt_wage.py:0
+#, python-format
+msgid "Form content is missing, this report cannot be printed."
+msgstr "Falta el contenido del formulario, este informe no se puede imprimir."
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_belt_filter
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_sql_search_view
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Hire Date"
+msgstr "Fecha de Contratación"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__hrly_wage
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+msgid "Hrly Wage Level (after 3 months)"
+msgstr "Nivel de Salario por Hora (después de 3 meses)"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__id
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__id
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__id
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__id
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__id
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__id
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__message_has_error
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_contract_type__is_employeement
+msgid "Is Employeement"
+msgstr "¿Es Empleo?"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_contract_type__is_probation
+msgid "Is Probation"
+msgstr "Es Período de Prueba"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_contract__is_probation
+msgid "Is probation"
+msgstr "Es Período de Prueba"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Job Level Rating"
+msgstr "Calificación de Nivel de Trabajo"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report____last_update
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report____last_update
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql____last_update
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level____last_update
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document____last_update
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view____last_update
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__write_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__write_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__write_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__write_uid
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_belt_report__write_date
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__write_date
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__write_date
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__write_date
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_wage_belt_view__branch_id
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_belt_filter
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+msgid "Location:"
+msgstr "Ubicación:"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunto Principal"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__product_ids
+msgid "Materials"
+msgstr "Materiales"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__max_range
+msgid "Max"
+msgstr ""
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__max_wage
+msgid "Max Wage"
+msgstr "Salario Máximo"
+
+#. module: hr_evolution
+#. odoo-python
+#: code:addons/hr_evolution/wizard/annual_wage.py:0
+#, python-format
+msgid "Max Wage must be greater than Min wage."
+msgstr "El Salario Máximo debe ser mayor que el Salario Mínimo."
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_belt_level__min_range
+msgid "Min"
+msgstr ""
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__min_wage
+msgid "Min Wage"
+msgstr "Salario Mínimo"
+
+#. module: hr_evolution
+#. odoo-python
+#: code:addons/hr_evolution/wizard/annual_wage.py:0
+#, python-format
+msgid "Min Wage and Max Wage must be greater than 0."
+msgstr "Min Wage y Max Wage deben ser mayores que 0."
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de mi Actividad"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__emp_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Actividad Siguiente del Calendario de Evento"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Próxima Fecha Límite de Actividad"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la Siguiente Actividad"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Actividad Siguiente"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_work_location__black_belt_count
+msgid "No. Black Belt"
+msgstr "No. Cinturón Negro"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_work_location__blue_belt_count
+msgid "No. Blue Belt"
+msgstr "No. Cinturón Azul"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_work_location__green_belt_count
+msgid "No. Green Belt"
+msgstr "No. Cinturón Verde"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__notes
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_hr_safety_document
+msgid "Notes"
+msgstr "Notas"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__doc_number
+msgid "Number"
+msgstr "Número"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__issue_place
+msgid "Place of Issue"
+msgstr "Lugar de Emisión"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Plant Manager's Recommended New Wage Level"
+msgstr "Nuevo Nivel de Salario Recomendado por el Gerente de Planta"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_report_form
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_wage_belt_wizard_form
+msgid "Print Excel"
+msgstr "Imprimir Excel"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_report_form
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_wage_belt_wizard_form
+msgid "Print PDF"
+msgstr "Imprimir PDF"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_hr_contract__probation_id
+msgid "Probation"
+msgstr "Período de Prueba"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_product_template
+msgid "Product"
+msgstr "Plantilla de Producto"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Promote to next Belt Pay Level"
+msgstr "Ascender al Siguiente Nivel de Pago de Cinturón"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: hr_evolution
+#: model:ir.actions.act_window,name:hr_evolution.action_safety_document
+#: model:ir.model,name:hr_evolution.model_safety_document
+#: model:ir.model.fields,field_description:hr_evolution.field_product_product__safety_document_id
+#: model:ir.model.fields,field_description:hr_evolution.field_product_template__safety_document_id
+#: model:ir.ui.menu,name:hr_evolution.menu_safety_document
+msgid "Safety Document"
+msgstr "Documento de Seguridad"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_sql__service_year
+msgid "Service Year"
+msgstr "Año de Servicio"
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\\yAtrasado: La Fecha de Vencimiento ya pasó\n"
+"Hoy: La fecha de la Actividad es hoy\\yPlanificado: Actividades futuras."
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Team #"
+msgstr "Equipo #"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Team Member"
+msgstr "Miembro del Equipo"
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_report_form
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_wage_belt_wizard_form
+msgid "View"
+msgstr "Ver"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_emp_probation_review__wage_per_hour
+msgid "Wage (per hour)"
+msgstr "Salario (por hora)"
+
+#. module: hr_evolution
+#. odoo-python
+#: code:addons/hr_evolution/models/belt_level.py:0
+#, python-format
+msgid "Wage (per hour) must be positive!"
+msgstr "¡El salario (por hora) debe ser positivo!"
+
+#. module: hr_evolution
+#: model:ir.actions.act_window,name:hr_evolution.action_wage_belt_wizard
+#: model:ir.actions.report,name:hr_evolution.action_report_wage_belt
+#: model:ir.model,name:hr_evolution.model_report_hr_evolution_report_wage_belt
+#: model:ir.ui.menu,name:hr_evolution.menu_main_hr_evolution
+msgid "Wage Belt"
+msgstr "Salario de Cinturón"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_wage_belt
+msgid "Wage Belt Rank Report"
+msgstr "Informe de Rango Salarial de Cinturón"
+
+#. module: hr_evolution
+#: model:ir.actions.report,print_report_name:hr_evolution.action_report_wage_belt
+#: model:ir.ui.menu,name:hr_evolution.menu_wage_belt_wizard
+msgid "Wage Belt Report"
+msgstr "Informe Salarial de Cinturón"
+
+#. module: hr_evolution
+#: model:ir.actions.act_window,name:hr_evolution.action_annual_wage_belt
+msgid "Wage Belt Report view"
+msgstr "Vista de Informe Salarial de Cinturón"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_wage_belt_view
+msgid "Wage Belt View"
+msgstr "Vista Salarial del Cinturón"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_wage_belt_wizard
+msgid "Wage Belt Wizard"
+msgstr "Asistente Salarial de Cinturón"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_safety_document__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: hr_evolution
+#: model:ir.model.fields,help:hr_evolution.field_safety_document__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: hr_evolution
+#: model:ir.model,name:hr_evolution.model_hr_work_location
+msgid "Work Location"
+msgstr "Ubicación de Trabajo"
+
+#. module: hr_evolution
+#: model:ir.model.fields,field_description:hr_evolution.field_annual_wage_report__year_id
+msgid "Year"
+msgstr "Año"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.report_annual_wage
+msgid "Year of Service"
+msgstr "Año de Servicio"
+
+#. module: hr_evolution
+#: model_terms:ir.ui.view,arch_db:hr_evolution.view_annual_wage_sql_search_view
+msgid "Year of service"
+msgstr "Año de servicio"
+
+#. module: hr_evolution
+#. odoo-python
+#: code:addons/hr_evolution/models/belt_level.py:0
+#, python-format
+msgid "You can not have range that overlaps!"
+msgstr "¡No puedes tener un rango que se superponga!"

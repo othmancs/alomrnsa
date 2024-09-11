@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="hr_work_location_form_view_evolution_inherited" model="ir.ui.view">
+        <field name="name">hr.work.location.view.form.evolution.inherited</field>
+        <field name="model">hr.work.location</field>
+        <field name="inherit_id" ref="saudi_hr.hr_work_location_form_view_inherited" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="green_belt_count" />
+                <field name="blue_belt_count" />
+                <field name="black_belt_count" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_hr_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="job_id" position="after">
+                <field name="belt_id"/>
+                <field name="belt_level_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_employee_tree_view_evolution_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.tree.inherited</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="saudi_hr.hr_employee_tree_view_inherit" />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="belt_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="emp_probation_review_form_inherit" model="ir.ui.view">
+        <field name="name">Probation Plan</field>
+        <field name="model">emp.probation.review</field>
+        <field name="inherit_id" ref="saudi_hr_probation.emp_probation_review_form"/>
+        <field name="arch" type="xml">
+            <field name="probation_complete_date" position="after">
+                <field name="wage_per_hour"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_belt_level_tree" model="ir.ui.view">
+        <field name="name">belt.level.tree</field>
+        <field name="model">belt.level</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" required="1"/>
+                <field name="min_range"/>
+                <field name="max_range"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_belt_level" model="ir.actions.act_window">
+        <field name="name">Belt Level</field>
+        <field name="res_model">belt.level</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_belt_level_tree"/>
+        <field name="help"  type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new belt level.
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_main_hr_evolution" name="Wage Belt" parent="hr.menu_hr_root" sequence="16" />
+    <menuitem id="menu_belt_level" name="Belt Level" parent="menu_main_hr_evolution" sequence="3" action="action_belt_level"/>
+
+    <record id="hr_contract_type_form" model="ir.ui.view">
+        <field name="name">Contract Type</field>
+        <field name="model">hr.contract.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="is_probation"/>
+                        <field name="is_employeement"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_contract_view_form_inherit" model="ir.ui.view">
+        <field name="name">Contract</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <field name="contract_type_id" position="after">
+                <field name="is_probation" invisible="1"/>
+                <field name="probation_id" domain="[('employee_id', '=', employee_id), ('state', '!=', 'refuse')]" attrs="{'invisible': [('is_probation', '!=', True)], 'required':[('is_probation', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_hr_safety_document" model="ir.ui.view">
+        <field name="name">safety.document.form</field>
+        <field name="model">safety.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="doc_number" required="1"/>
+                            <field name="issue_place" required="1"/>
+                            <field name="product_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="issue_date" required="1"/>
+                            <field name="expiry_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                    </group>
+                    <notebook>
+                        <page name="notes" string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_safety_document_tree" model="ir.ui.view">
+        <field name="name">safety.document.tree</field>
+        <field name="model">safety.document</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="doc_number"/>
+                <field name="issue_place"/>
+                <field name="issue_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_safety_document" model="ir.actions.act_window">
+        <field name="name">Safety Document</field>
+        <field name="res_model">safety.document</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hr_safety_document_tree"/>
+        <field name="help"  type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new Safety Document.
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_safety_document" name="Safety Document" parent="hr.menu_hr_employee_payroll" sequence="3" action="action_safety_document"/>
+
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">Product Template form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="safety_document_id" invisible="1"/>
+            </field>
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="open_safety_document" icon="fa-list-ul" type="object" attrs="{'invisible': [('safety_document_id', '=', False)]}">
+                   <div class="o_field_widget o_stat_info">
+                        <span>
+                            Safety Document
+                        </span>
+                   </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hr_evolution.access_belt_level,access_belt_level,hr_evolution.model_belt_level,base.group_user,1,1,1,1
+hr_evolution.access_wage_belt_wizard,access_wage_belt_wizard,hr_evolution.model_wage_belt_wizard,base.group_user,1,1,1,1
+hr_evolution.access_safety_document,access_safety_document,hr_evolution.model_safety_document,base.group_user,1,1,1,1
+hr_evolution.access_annual_wage_report,access_annual_wage_report,hr_evolution.model_annual_wage_report,base.group_user,1,1,1,1
+hr_evolution.access_annual_wage_sql,access_annual_wage_sql,hr_evolution.model_annual_wage_sql,base.group_user,1,1,1,1
+hr_evolution.access_wage_belt_view,access_wage_belt_view,hr_evolution.model_wage_belt_view,base.group_user,1,1,1,1
+hr_evolution.access_annual_belt_report,access_annual_belt_report,hr_evolution.model_annual_belt_report,base.group_user,1,1,1,1

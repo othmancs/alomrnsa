@@ -1,0 +1,700 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_emp_appraisal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 07:20+0000\n"
+"PO-Revision-Date: 2023-02-06 07:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_emp_appraisal
+#: model:mail.template,body_html:hr_emp_appraisal.hr_emp_appraisal_email
+msgid ""
+"<p>Hello <t t-out=\"ctx.get('email_to').name\"/>,</p>\n"
+"            <p>Please fill out the following survey related to <t t-out=\"object.employee_id.name\"/> Click here to access the survey.</p>\n"
+"            <center>\n"
+"                <br/><br/>\n"
+"                <a t-att-href=\"ctx.get('url')\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">Survey</a>\n"
+"                <br/><br/><br/>\n"
+"            </center>\n"
+"            <p>Post your response for the appraisal till : <t t-out=\"object.appraisal_end_date\"/> </p>\n"
+"            <p>Thank you,</p>\n"
+"            <p><t t-out=\"object.env.user.name\"/></p>\n"
+"        "
+msgstr ""
+"<p>Hola <t t-out=\"ctx.get('email_to').name\"/>,</p>\n"
+"            <p> Por favor, complete la siguiente encuesta relacionada con <t t-out=\"object.employee_id.name\"/> Haga clic aquí para acceder a la encuesta.</p>\n"
+"            <center>\n"
+"                <br/><br/>\n"
+"                <a href=\"{{ctx.get('url')}}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">Encuesta</a>\n"
+"                <br/><br/><br/>\n"
+"            </center>\n"
+"            <p>Publique su respuesta para la evaluación hasta: <t t-out=\"object.appraisal_end_date\"/> </p>\n"
+"            <p>Gracias,</p>\n"
+"            <p><t t-out=\"object.env.user.name\"/></p>\n"
+"        "
+
+#. module: hr_emp_appraisal
+#: model:mail.template,body_html:hr_emp_appraisal.hr_emp_appraisal_notification_email
+msgid ""
+"<p>Hello <t t-out=\"ctx.get('email_to').name\"/>,</p>\n"
+"            <p>Please fill out the survey related to <t t-out=\"object.employee_id.name\"/></p>\n"
+"            <p>Post your response for the appraisal till : <t t-out=\"object.appraisal_end_date\"/> </p>\n"
+"            <p style=\"color: red;\">Note: If your response already Done then forgive It.</p>\n"
+"            <p>Thank you,</p>\n"
+"            <p><t t-out=\"object.env.user.name\"/></p>\n"
+"        "
+msgstr ""
+"<p>Hola <t t-out=\"ctx.get('email_to').name\"/>,</p>\n"
+"            <p>Por favor, complete la siguiente encuesta relacionada con <t t-out=\"object.employee_id.name\"/></p>\n"
+"            <p>Publique su respuesta para la evaluación hasta: <t t-out=\"object.appraisal_end_date\"/> </p>\n"
+"            <p style=\"color: red;\">Nota: si su respuesta ya está lista, pase por alto.</p>\n"
+"            <p>Gracias,</p>\n"
+"            <p><t t-out=\"object.env.user.name\"/></p>\n"
+"        "
+
+#. module: hr_emp_appraisal
+#: model:mail.template,body_html:hr_emp_appraisal.hr_emp_appraisal_send_review_notification
+msgid ""
+"<p>Hello,</p>\n"
+"            <p>Your survey is submitted successfully.</p>\n"
+"            <center>\n"
+"                <br/><br/>\n"
+"                <a t-att-href=\"ctx.get('url')\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">Survey Review</a>\n"
+"                <br/><br/><br/>\n"
+"            </center>\n"
+"            <p>Thank you,</p>\n"
+"            <p><t t-out=\"object.env.user.name\"/></p>\n"
+"        "
+msgstr ""
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction
+msgid "Action Needed"
+msgstr "Accion Necesaria"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__total_complete_survey_ratio
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__answer_ids
+#: model:ir.ui.menu,name:hr_emp_appraisal.menu_hr_appraisal_answers
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Answers"
+msgstr "Respuestas"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Answers:"
+msgstr "Respuestas:"
+
+#. module: hr_emp_appraisal
+#: model:ir.actions.act_window,name:hr_emp_appraisal.emp_appraisal_action_form
+#: model:ir.model,name:hr_emp_appraisal.model_hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__appraisal_id
+#: model:ir.ui.menu,name:hr_emp_appraisal.menu_hr_appraisal
+msgid "Appraisal"
+msgstr "Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__appraisal_end_date
+msgid "Appraisal Deadline"
+msgstr "Fecha Límite de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.ui.menu,name:hr_emp_appraisal.menu_hr_appraisal_root
+msgid "Appraisal Evaluation"
+msgstr "Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:mail.template,subject:hr_emp_appraisal.hr_emp_appraisal_email
+msgid "Appraisal Form"
+msgstr "Formulario de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.actions.server,name:hr_emp_appraisal.appraisal_notification_cron_ir_actions_server
+#: model:ir.cron,cron_name:hr_emp_appraisal.appraisal_notification_cron
+#: model:ir.cron,name:hr_emp_appraisal.appraisal_notification_cron
+#: model:mail.template,subject:hr_emp_appraisal.hr_emp_appraisal_notification_email
+msgid "Appraisal Notification"
+msgstr "Notificación de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__appraisal_plan_ids
+msgid "Appraisal Plan"
+msgstr "Plan de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__appraisal_plan_id
+msgid "Appriasal Plan"
+msgstr "Plan de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__appraisal_id
+msgid "Appriasal id"
+msgstr "ID de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de Adjuntos"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__belt_level
+msgid "Belt Level"
+msgstr "Nivel de Cinturón"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__belt_level_rating
+msgid "Belt Level Rating"
+msgstr "Clasificación del Nivel de Cinturón"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__state__cancel
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__emp_code
+msgid "Code"
+msgstr "Código"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__hr_collaborator
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal_plan__execute_by__collaborators
+msgid "Collaborators"
+msgstr "Colaboradores"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__hr_colleague
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal_plan__execute_by__colleague
+msgid "Colleague"
+msgstr "Colega"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__company_id
+msgid "Company"
+msgstr "Compañia"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__state__confirm
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__total_complete_survey
+msgid "Count Answers"
+msgstr "Conteo Respuestas"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__total_sent_survey
+msgid "Count Sent Questions"
+msgstr "Conteo Preguntas Enviadas"
+
+#. module: hr_emp_appraisal
+#: model:ir.actions.server,name:hr_emp_appraisal.appraisal_annual_survey_ir_actions_server
+#: model:ir.cron,cron_name:hr_emp_appraisal.appraisal_annual_survey
+#: model:ir.cron,name:hr_emp_appraisal.appraisal_annual_survey
+msgid "Create Evalution"
+msgstr "Crear Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__create_uid
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__create_uid
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__create_date
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__create_date
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__date_benefit_commence
+msgid "Date Benefits Commence"
+msgstr "Fecha de Inicio de los Beneficios"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_survey_inherited_view
+msgid "Date of Evaluation"
+msgstr "Fecha de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Deadline:"
+msgstr "Fecha Límite"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Delete"
+msgstr "Borrar"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__final_evaluation
+msgid "Description"
+msgstr "Descripción"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__display_name
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__display_name
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__display_name
+msgid "Display Name"
+msgstr "Nombre para Mostrar"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__state__done
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Done"
+msgstr "Hecho"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Dropdown menu"
+msgstr "Menú Desplegable"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Edit"
+msgstr "Editar"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Emails sent"
+msgstr "Correos Enviados"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_hr_employee
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__employee_id
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__is_employee
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__employee_id
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__employee_id
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal_plan__execute_by__employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_survey_inherited_view
+msgid "Employee Information"
+msgstr "Información del Empleado"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Employee's Name"
+msgstr "Nombre del Empleado"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__employee_ids
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__evalution_date
+msgid "Evalution Date"
+msgstr "Fecha de Evaluación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__evalution_created
+msgid "Evalution created?"
+msgstr "¿Evaluación creada?"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_survey_inherited_view
+msgid "Evalutor"
+msgstr "Evaluador"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__execute_by
+msgid "Execute By"
+msgstr "Ejecutar Por"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Extra Information"
+msgstr "Información Extra"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__result__fail
+msgid "Fail"
+msgstr "Falla"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Final Evaluation"
+msgstr "Evaluación Final"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__final_interview
+msgid "Final Interview"
+msgstr "Última Entrevista"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Final Interview:"
+msgstr "Última Entrevista:"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__fiscalyear_id
+msgid "Fiscal Year"
+msgstr "Año Fiscal"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__job_type__ftp
+msgid "Full Time Permanent (FTP)"
+msgstr "Permanente a Tiempo Completo (FTP)"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal_plan__execute_by__hr
+msgid "HR"
+msgstr "RR.HH."
+
+#. module: hr_emp_appraisal
+#: model:mail.template,name:hr_emp_appraisal.hr_emp_appraisal_email
+msgid "HR Appraisal Form"
+msgstr "Formulario de Evaluación RR.HH."
+
+#. module: hr_emp_appraisal
+#: model:mail.template,name:hr_emp_appraisal.hr_emp_appraisal_notification_email
+msgid "HR Appraisal Notification"
+msgstr "Notificación de Evaluación RR.HH."
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_hr_emp_appraisal_plan
+msgid "HR Appraisal Plan"
+msgstr "Plan de Evaluación RH"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__emp_joining_date
+msgid "Hire Date"
+msgstr "Fecha de Contratación"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__id
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__id
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__job_level_rating
+msgid "Job Level Rating"
+msgstr "Calificación de Nivel de Trabajo"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_question__is_job_skill
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input_line__is_job_skill
+msgid "Job Skill"
+msgstr "Habilidad Laboral"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__job_skill_belt_level
+msgid "Job Skill Belt Level"
+msgstr "Nivel de Cinturón de Habilidades Laborales"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__job_type
+msgid "Job Type"
+msgstr "Tipo de Trabajo"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal____last_update
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan____last_update
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__write_uid
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__write_uid
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__write_date
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__write_date
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__is_manager
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal_plan__execute_by__manager
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__next_evalution
+msgid "Next Evalution After days"
+msgstr "Próxima Evaluación Después de Días"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__job_type__ptp
+msgid "Part Time Permanent (PTP)"
+msgstr "Permanente a Tiempo Parcial (PTP)"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__job_type__ptt
+msgid "Part Time Temporary (PTT)"
+msgstr "Temporal a Tiempo Parcial (PTT)"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__result__pass
+msgid "Pass"
+msgstr "Pasar"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Plan"
+msgstr "Plano"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__plant_manager_new_belt_level
+msgid "Plant Manager's Recommended New Wage Level"
+msgstr "Nuevo Nivel de Slario Recomendado por el Gerente de Planta"
+
+#. module: hr_emp_appraisal
+#: code:addons/hr_emp_appraisal/models/hr_emp_appraisal.py:0
+#: code:addons/hrms/hr_emp_appraisal/models/hr_emp_appraisal.py:0
+#: code:addons/odoo-modules/hrms/hr_emp_appraisal/models/hr_emp_appraisal.py:0
+#, python-format
+msgid "Please configure %s work email for send mail."
+msgstr "Configure el correo electrónico de trabajo de %s para enviar correo."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__next_belt_pay_level
+msgid "Promote to next Belt Pay Level"
+msgstr "Ascender al siguiente Nivel de Pago de Cinturón"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__result
+msgid "Result"
+msgstr "Resultado"
+
+#. module: hr_emp_appraisal
+#: model:mail.template,name:hr_emp_appraisal.hr_emp_appraisal_send_review_notification
+#: model:mail.template,subject:hr_emp_appraisal.hr_emp_appraisal_send_review_notification
+msgid "Review Submission"
+msgstr "Revisar Envío"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__score
+msgid "Score"
+msgstr "Puntuación"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Send Mail"
+msgstr "Enviar Correo"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields.selection,name:hr_emp_appraisal.selection__hr_emp_appraisal__state__sent_mail
+msgid "Sent Mail"
+msgstr "Correo Enviado"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "Sent Questions:"
+msgstr "Preguntas Enviadas:"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__sent_mail
+msgid "Sent mail"
+msgstr "Correos Enviados"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+msgid "Set to Draft"
+msgstr "Configurar como Borrador"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_user_input__emp_sign
+msgid "Signature"
+msgstr "Firma"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_survey_survey
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__survey_id
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.view_employee_form_inherit
+msgid "Survey"
+msgstr "Encuesta"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_survey_question
+msgid "Survey Question"
+msgstr "Pregunta de la Encuesta"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_schedule__survey_id
+msgid "Survey Template"
+msgstr "Plantilla de Encuesta"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_survey_user_input
+msgid "Survey User Input"
+msgstr "Encuesta de Opinión de los Usuarios"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_survey_user_input_line
+msgid "Survey User Input Line"
+msgstr "Línea de Entrada del Usuario en la encuesta"
+
+#. module: hr_emp_appraisal
+#: model:ir.model,name:hr_emp_appraisal.model_survey_schedule
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_employee__survey_schedule_ids
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_form_view_inherit
+msgid "Survey schedule"
+msgstr "Horario de la encuesta"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_survey_inherited_view
+msgid "Total Score"
+msgstr "Puntuación Total"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no Leídos"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de Mensajes no Leídos"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_survey_question__user_ids
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__wage_level
+msgid "Wage Level"
+msgstr "Nivel Salarial"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,help:hr_emp_appraisal.field_hr_emp_appraisal__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: hr_emp_appraisal
+#: code:addons/hr_emp_appraisal/models/hr_emp_appraisal.py:0
+#: code:addons/hrms/hr_emp_appraisal/models/hr_emp_appraisal.py:0
+#: code:addons/odoo-modules/hrms/hr_emp_appraisal/models/hr_emp_appraisal.py:0
+#, python-format
+msgid "You can't submit your Review."
+msgstr "No puede enviar su revisión."
+
+#. module: hr_emp_appraisal
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal__color
+#: model:ir.model.fields,field_description:hr_emp_appraisal.field_hr_emp_appraisal_plan__color
+msgid "color Index"
+msgstr "Índice de Color"
+
+#. module: hr_emp_appraisal
+#: model_terms:ir.ui.view,arch_db:hr_emp_appraisal.hr_appraisal_kanban_view
+msgid "oe_kanban_text_red"
+msgstr ""
+
