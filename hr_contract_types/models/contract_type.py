@@ -7,6 +7,7 @@ class ContractType(models.Model):
     _name = 'hr.contract.type'
     _description = 'Contract Type'
     _order = 'sequence, id'
+    sequence = fields.Integer(string='Sequence', default=10)
 
     name = fields.Char(string='Contract Type', required=True, help="Name")
 
