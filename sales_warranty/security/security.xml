@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="warranty_detail_manager_rule" model="ir.rule">
+        <field name="name">Warranty Detail: manager</field>
+        <field name="model_id" ref="model_warranty_detail"/>
+        <field name="domain_force">['|',('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman_all_leads'))]"/>
+    </record>
+    <record id="warranty_detail_user_rule" model="ir.rule">
+        <field name="name">Warranty Detail: user</field>
+        <field name="model_id" ref="model_warranty_detail"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+    </record>
+</odoo>

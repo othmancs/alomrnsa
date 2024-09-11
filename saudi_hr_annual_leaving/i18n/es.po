@@ -1,0 +1,612 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_annual_leaving
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 07:05+0000\n"
+"PO-Revision-Date: 2022-05-30 07:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.view_annual_leaving_by_employees
+msgid ""
+"<span colspan=\"4\" nolabel=\"1\">This wizard will generate annual leaving "
+"records for all selected employee(s) based on leave allocation.</span>"
+msgstr ""
+"<span colspan=\"4\" nolabel=\"1\">Este asistente generará registros de vacaciones "
+"anuales para todos los empleados seleccionados en función de la asignación de vacaciones.</span>"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__allocated_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__allocated_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__allocated_leaves
+msgid "Allocated Leaves"
+msgstr "Licencias Asignadas"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields.selection,name:saudi_hr_annual_leaving.selection__leaves_details_report__leave_type__allocation
+msgid "Allocation Request"
+msgstr "Solicitud de Asignación"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.ui.menu,name:saudi_hr_annual_leaving.menu_hr_annual_leaving
+msgid "Annual Leave Sheet"
+msgstr "Hoja de Vacaciones Anuales"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.actions.act_window,name:saudi_hr_annual_leaving.action_report_annual_leaves
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.annual_leaves_reports_print_view
+msgid "Annual Leaves Report"
+msgstr "Informe de Vacaciones Anuales"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.actions.act_window,name:saudi_hr_annual_leaving.action_view_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__annual_leaving_id
+msgid "Annual Leaving"
+msgstr "Vacaciones Anuales"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_annual_leaves_report
+msgid "Annual Report Wizard"
+msgstr "Asistente de Informe Anual"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__applied_date
+msgid "Applied Date"
+msgstr "Fecha de Aplicación"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.annual_leaves_reports_print_view
+msgid "Are you sure you want to Generate Annual Leaves Report?"
+msgstr "¿Está seguro de que desea Generar un Informe de Vacaciones Anuales?"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields.selection,name:saudi_hr_annual_leaving.selection__leave_encashment__encashment_type__bank_cash
+msgid "Bank/Cash"
+msgstr "Banco/Efectivo"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields.selection,name:saudi_hr_annual_leaving.selection__leave_encashment__encashment_type__by_payslip
+msgid "By Payslip"
+msgstr "Por Nómina"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.annual_leaves_reports_print_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_leaves_reports_wizard
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.leave_encashment_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields.selection,name:saudi_hr_annual_leaving.selection__leave_encashment__encashment_type__carry_forward
+msgid "Carry Forward Next Year"
+msgstr "Transferir al Año Próximo"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.actions.act_window,help:saudi_hr_annual_leaving.action_view_annual_leaving
+msgid "Click to define Employees Annual Leaves."
+msgstr "Haga Clic para definir las Vacaciones Anuales de los Empleados."
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__create_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__create_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees__create_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__create_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__create_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__create_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__create_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__cutdown_leaves_history_ids
+msgid "Cutdown Leave History"
+msgstr "Historial de Licencia por Reducción"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Cutdown Leaves History"
+msgstr "Historial de Licencias por Reducción"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__date_end
+msgid "Date End"
+msgstr "Fecha de Finalización"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__date_start
+msgid "Date Start"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__department_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__display_name
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.leave_encashment_form_view
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__employee_ids
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_leaves_reports_wizard
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Employee Annual Leave"
+msgstr "Vacaciones Anuales del Empleado"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Employee Details"
+msgstr "Detalles del Empleado"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees__employee_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.view_annual_leaving_by_employees
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_cutdown_leaves_history
+msgid ""
+"Employees leaves history which cutdown or encashment from leaves allocation"
+msgstr ""
+"Historial de licencias de empleados que se redujeron o cobraron de la asignación de licencias"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__encashment_days
+msgid "Encashment Days"
+msgstr "Días de cobro"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#, python-format
+msgid "Encashment Days need to be greater than 0!!"
+msgstr "¡Los días de cobro deben ser mayores que 0!"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#, python-format
+msgid "Encashment Days need to be less than Allocation days!!"
+msgstr "¡Los días de cobro deben ser menos que los días de asignación!"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#, python-format
+msgid "Encashment Days need to be less than remaining days of %s Employee !!"
+msgstr "¡Los Días de Cobro deben ser menos que los días restantes de %s Empleado!"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__encashment_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__encashment_leaves
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Encashment Leaves"
+msgstr "Cobro de Licencias"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__applied_date
+msgid "Encashment Report Date"
+msgstr "Fecha de Informe de Cobro"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.leave_encashment_form_view
+msgid "Encashment Report Date is important for Leaves Reports."
+msgstr "La Fecha del Informe de Cobro es importante para los Informes de Licencias."
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__encashment_type
+msgid "Encashment Type"
+msgstr "Tipo de Cobro"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__date_to
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__excel_file
+msgid "Excel File"
+msgstr "Archivo Excel"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.ui.menu,name:saudi_hr_annual_leaving.menu_hr_leave_report
+msgid "Excel Leave Report"
+msgstr "Informe de Licencia en Excel"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.actions.act_window,name:saudi_hr_annual_leaving.action_wizard_report_hr_leaves
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_leaves_reports_wizard
+msgid "Excel Leaves Report"
+msgstr "Informe de Licencias en Excel"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__filename
+msgid "File Name"
+msgstr "Nombre del Archivo"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.view_annual_leaving_by_employees
+msgid "Generate"
+msgstr "Generar"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/models/annual_leaving.py:0
+#, python-format
+msgid "Generate Annual Leaving"
+msgstr "Generar Licencia Anual"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_annual_leaving_employees
+msgid "Generate Annual Leaving Record for all selected employees"
+msgstr "Generar registro de Licencia Anual para los Empleados Seleccionados"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__holiday_status_id
+msgid "Holiday Status"
+msgstr "Estado de Vacaciones"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__is_allocated
+msgid "Is Allocated"
+msgstr "Está Asignado"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details____last_update
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaves_report__write_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__write_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving_employees__write_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__write_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__write_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__write_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__write_date
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__write_date
+msgid "Last Updated on"
+msgstr "Ultima Actualización el"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_leaves_reports_wizard
+msgid "Leave"
+msgstr "Abandonar"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__leave_allocation_id
+msgid "Leave Allocation"
+msgstr "Asignación de Licencias"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#, python-format
+msgid "Leave Allocation need to be different!!"
+msgstr "¡La Asignación de Licencias debe ser diferente!"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Leave Carry Forward"
+msgstr "Llevar Adelante Licencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_leave_encashment
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__leave_encashment_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.leave_encashment_form_view
+msgid "Leave Encashment"
+msgstr "Cobro de Licencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_leave_encashment_details
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__leave_encashment_details_ids
+msgid "Leave Encashment Details"
+msgstr "Detalles del Cobro de la Licencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_hr_leaves_report
+msgid "Leave Report Wizard"
+msgstr "Asistente de Informes de Licencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__holiday_status_ids
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__holiday_status_id
+msgid "Leave Type"
+msgstr "Tipo de Licencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_leaves_details
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__leaves_details_ids
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__leaves_details_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__leave_details_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Leaves Details"
+msgstr "Detalles de Licencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_leaves_details_report
+msgid "Leaves Details Summary / Report"
+msgstr "Resumen de Detalles de Licencias / Informe"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.view_annual_leaving_by_employees
+msgid "Leaving by Employees"
+msgstr "Licencia por Empleados"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__is_maximum_leave_carry_forward
+msgid "Maximum Leave Carry Forward"
+msgstr "Máxima Licencia Acumulada"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__allocation_leave_type_id
+msgid "Next Year Allocation Leave Type"
+msgstr "Asignación del próximo año de Tipo de licencia"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#, python-format
+msgid "No Home Address found for the employee %s, please configure one."
+msgstr "No se encontró la dirección particular del empleado %s, configure una."
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__maximum_leave_carry_forward
+msgid "No. of Maximum Leave Carry Forward"
+msgstr "No. de Licencia Máxima Acumulada"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__number_of_days
+msgid "Number of days"
+msgstr "Número de días"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__branch_id
+msgid "Office"
+msgstr "Oficina"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__journal_id
+msgid "Payment Method"
+msgstr "Método de pago"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__payment_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.annual_leaves_reports_print_view
+msgid "Print"
+msgstr "Impresión"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_leaves_reports_wizard
+msgid "Print Excel"
+msgstr "Imprimir Excel"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields.selection,name:saudi_hr_annual_leaving.selection__leave_encashment__encashment_type__reduse_days
+msgid "Reduce Days"
+msgstr "Reducir los Días"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_cutdown_leaves_history__other_hr_payslip_id
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__remaining_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__remaining_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__remaining_leaves
+msgid "Remaining Leaves"
+msgstr "Licencias Restantes"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__applied_date
+msgid "Report Date"
+msgstr "Fecha del Informe"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__name
+msgid "Report Name"
+msgstr "Nombre del Informe"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__leave_type
+msgid "Request Type"
+msgstr "Tipo de Solicitud"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__date_from
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields.selection,name:saudi_hr_annual_leaving.selection__leaves_details_report__leave_type__request
+msgid "Time Off Request"
+msgstr "Solicitud de Ausencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model,name:saudi_hr_annual_leaving.model_hr_leave_type
+msgid "Time Off Type"
+msgstr "Tipo de Ausencia"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__updated_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__updated_leaves
+msgid "Updated Allocated leaves"
+msgstr "Licencias Asignadas Actualizadas"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_annual_leaving_form_view
+msgid "Updated Leaves Details"
+msgstr "Detalles de Licencias Actualizados"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__used_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__used_leaves
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details_report__used_leaves
+msgid "Used Leaves"
+msgstr "Licencias Usadas"
+
+#. module: saudi_hr_annual_leaving
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_annual_leaving__year_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_hr_leaves_report__year_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment__year_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leave_encashment_details__year_id
+#: model:ir.model.fields,field_description:saudi_hr_annual_leaving.field_leaves_details__year_id
+msgid "Year"
+msgstr "Año"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/models/annual_leaving.py:0
+#, python-format
+msgid "You already done %s leaves details"
+msgstr "Ya has hecho los detalles de licencia de %s"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/generate_annual_leaving.py:0
+#, python-format
+msgid "You already done %s leaves details!!"
+msgstr "¡Ya has hecho los detalles de licencia de %s!"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/annual_leaving_report.py:0
+#, python-format
+msgid ""
+"You are not able to print this report please contact your administrator : %s"
+" "
+msgstr ""
+"No puede imprimir este informe, comuníquese con su administrador: %s"
+" "
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/models/annual_leaving.py:0
+#, python-format
+msgid ""
+"You cannot delete annual leave record which leave details lines are created."
+msgstr ""
+"No puede eliminar el registro de licencia anual en el que se crean líneas de detalles de licencia."
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/models/annual_leaving.py:0
+#, python-format
+msgid ""
+"You cannot delete leaves details line which encashment process already done."
+msgstr ""
+"No puede eliminar la línea de detalles de las hojas cuyo proceso de cobro ya se realizó."
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/models/annual_leaving.py:0
+#, python-format
+msgid "You need to configure Applied Date!!"
+msgstr "¡Necesitas configurar la fecha de aplicación!"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#, python-format
+msgid "You need to select Allocation Leave!!"
+msgstr "¡Tienes que seleccionar la licencia de asignación!"
+
+#. module: saudi_hr_annual_leaving
+#: code:addons/saudi_hr_annual_leaving/models/annual_leaving.py:0
+#: code:addons/saudi_hr_annual_leaving/wizard/leave_encashment.py:0
+#, python-format
+msgid "You need to select Allocation leave type for carry forward!!"
+msgstr "¡Debe seleccionar el tipo de asignación de licencia para continuar!"
+
+#. module: saudi_hr_annual_leaving
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.annual_leaves_reports_print_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_annual_leaving.hr_leaves_reports_wizard
+msgid "or"
+msgstr "o"

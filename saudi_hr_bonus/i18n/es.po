@@ -1,0 +1,1010 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_bonus
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-30 07:07+0000\n"
+"PO-Revision-Date: 2022-05-30 07:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_bonus
+#: model:ir.actions.report,print_report_name:saudi_hr_bonus.action_salary_pramotion_qweb
+msgid "'Salary With Promotion'"
+msgstr "'Salario Con Ascenso'"
+
+#. module: saudi_hr_bonus
+#: model:ir.actions.report,print_report_name:saudi_hr_bonus.action_salary_nopramotion_qweb
+msgid "'Salary Without Promotion'"
+msgstr "'Salario Sin Ascenso'"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "( Effective from"
+msgstr "( Efectivo desde"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+msgid ""
+", and set out a clear development plan that will help you to achieve a "
+"higher rating in the upcoming year."
+msgstr ""
+", y establezca un plan de desarrollo claro que lo ayudará a lograr una "
+"mayor tasan en el próximo año."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__my_pd__1_-_outstanding_performance
+msgid "1 - Outstanding Performance"
+msgstr "1 - Rendimiento Excepcional"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__my_pd__2_-_highly_effective_performance
+msgid "2 - Highly Effective Performance"
+msgstr "2 - Desempeño Altamente Efectivo"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__my_pd__3_-_effective_performance
+msgid "3 - Effective Performance"
+msgstr "3 - Desempeño Efectivo"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__my_pd__4_-_inconsistent_performance
+msgid "4 - Inconsistent Performance"
+msgstr "4 - Rendimiento inconsistente"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "<b>Confirmation of Annual Salary Review </b>"
+msgstr "<b>Confirmación de Revisión Salarial Anual </b>"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "<b>Function: </b>"
+msgstr "<b>Función: </b>"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "<b>Job Position: </b>"
+msgstr "<b>Puesto de Trabajo: </b>"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "<b>Office: </b>"
+msgstr "<b>Oficina: </b>"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "<b>Sub Function: </b>"
+msgstr "<b>Función Secundaria: </b>"
+
+#. module: saudi_hr_bonus
+#: model:mail.template,body_html:saudi_hr_bonus.email_template_salary_no_promotion
+#: model:mail.template,body_html:saudi_hr_bonus.email_template_salary_promotion
+msgid ""
+"<div>\n"
+"\n"
+"                    <p>Dear <t t-out=\"object.employee_id.name or ''\"/>,</p>\n"
+"\n"
+"\n"
+"                    <p> Annual Salary Review </p>\n"
+"\n"
+"\n"
+"                    <span>Thank you,</span><br/>\n"
+"                    <span><t t-out=\"object.env.user.name or ''\"/></span>\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<div>\n"
+"\n"
+"                    <p>Estimado <t t-out=\"object.employee_id.name or ''\"/>,</p>\n"
+"\n"
+"\n"
+"                    <p> Revisión Salarial Anual </p>\n"
+"\n"
+"\n"
+"                    <span>Gracias,</span><br/>\n"
+"                    <span><t t-out=\"object.env.user.name or ''\"/></span>\n"
+"                </div>\n"
+"            "
+
+#. module: saudi_hr_bonus
+#: model:mail.template,body_html:saudi_hr_bonus.hr_bonus_contract_updation_email
+msgid ""
+"<p>Hello <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                    <p>We are informing you that your job position is changing from <t t-out=\"object.job_id.name\"/> to <t t-out=\"object.new_job_id.name\"/> on Effective Date: <t t-out=\"object.effective_date\"/>.</p>\n"
+"                    <p>Thank you,</p>\n"
+"            "
+msgstr ""
+"<p>Hola <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                    <p>Le informamos que su puesto de trabajo está cambiando de <t t-out=\"object.job_id.name\"/> a <t t-out=\"object.new_job_id.name\"/> en la Fecha de entrada en Vigor: <t t-out=\"object.effective_date\"/>.</p>\n"
+"                    <p>Gracias,</p>\n"
+"            "
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__accepted_amount
+msgid "Accepted Amount"
+msgstr "Monto aceptado"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__accepted_hike
+msgid "Accepted Hike(%)"
+msgstr "Alza aceptada (%)"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__accepted_amount
+msgid "Accepted amount on basic salary of the employee"
+msgstr "Importe aceptado sobre el salario base del empleado"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__accepted_hike
+msgid "Accepted hike on basic salary of the employee"
+msgstr "Aumento aceptado en el salario base del empleado"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_needaction
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_needaction
+msgid "Action Needed"
+msgstr "Accion necesaria"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de excepción de actividad"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ícono de Tipo de Actividad"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus__state__approve
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__state__approve
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__approved_date
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__approved_date
+msgid "Approved Date"
+msgstr "Fecha de Aprobación"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__approved_by
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__approved_by
+msgid "Approved by"
+msgstr "Aprobado por"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_attachment_count
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Archivos Adjuntos"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__wage
+msgid "Basic salary of the employee"
+msgstr "Salario básico del empleado"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__bonus
+msgid "Bonus"
+msgstr "Bono"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "Bonus Allocation:"
+msgstr "Asignación de bonos:"
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "Bonus Approved."
+msgstr "Bono Aprobado."
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "Bonus Cancelled."
+msgstr "Bono Cancelado."
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "Bonus Confirmed."
+msgstr "Bono Confirmado."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+msgid "Bonus Information"
+msgstr "Información de Bonificación"
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "Bonus Set to Draft."
+msgstr "Bono Establecido en Borrador."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__bonus
+msgid "Bonus to the employee"
+msgstr "Bonificación al empleado"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "Bonus will be included in your salary."
+msgstr "La bonificación se incluirá en su salario."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__bonus_percentage
+msgid "Bonus(%)"
+msgstr "Bonificación(%)"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__bonus_percentage
+msgid "Bonus(%) to the employee"
+msgstr "Bonificación (%) al empleado"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__state__cancel
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.actions.act_window,help:saudi_hr_bonus.action_view_employee_bonus_lines
+msgid "Click to define Employees Bonus Lines."
+msgstr "Haga clic para definir las líneas de bonificación de empleados."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.actions.act_window,help:saudi_hr_bonus.action_view_employee_bonus
+msgid "Click to define Employees Bonus."
+msgstr "Haga clic para definir el Bono de Empleados."
+
+#. module: saudi_hr_bonus
+#: model:ir.model,name:saudi_hr_bonus.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__company_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "Compose Email"
+msgstr "Redactar correo"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__contract_id
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: saudi_hr_bonus
+#: model:ir.actions.server,name:saudi_hr_bonus.contract_updation_cron_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_bonus.contract_updation_cron
+#: model:ir.cron,name:saudi_hr_bonus.contract_updation_cron
+msgid "Contract Updation"
+msgstr "Actualización de Contrato"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__create_date
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "Dear"
+msgstr "Querido"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__dialogue
+msgid "Dialogue"
+msgstr "Diálogo"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__display_name
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__state__done
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus__state__draft
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+msgid "During the Financial Year"
+msgstr "Durante el Año Fiscal"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__effective_date
+msgid "Effective Date"
+msgstr "Fecha Efectiva"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_bonus
+#: model:hr.salary.rule,name:saudi_hr_bonus.hr_salary_rule_employee_bonus_allowance
+#: model:ir.actions.act_window,name:saudi_hr_bonus.action_view_employee_bonus
+#: model:ir.model,name:saudi_hr_bonus.model_employee_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__employee_bonus_ids
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__employee_bonus_id
+#: model:ir.ui.menu,name:saudi_hr_bonus.menu_employee_bonus
+#: model:ir.ui.menu,name:saudi_hr_bonus.menu_employee_bonus_action
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_tree_view
+msgid "Employee Bonus"
+msgstr "Bono de Empleado"
+
+#. module: saudi_hr_bonus
+#: model:ir.actions.act_window,name:saudi_hr_bonus.action_view_employee_bonus_lines
+#: model:ir.model,name:saudi_hr_bonus.model_employee_bonus_lines
+#: model:ir.ui.menu,name:saudi_hr_bonus.menu_employee_bonus_lines_action
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_tree_view
+msgid "Employee Bonus Lines"
+msgstr "Líneas de bonificación para empleados"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+msgid "Employee Details"
+msgstr "Detalles del empleado"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+msgid "Extra Info."
+msgstr "Información Extra."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "FY"
+msgstr "Año Fiscal"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus__gender__female
+msgid "Female"
+msgstr "Femenino"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid ""
+"Finally we would like to thank you again for all your hard work over the "
+"last 12 months and we very much look forward to take the Firm forward in "
+"what promises to be a very exciting year with a positive outlook."
+msgstr ""
+"Finalmente, nos gustaría darle las gracias de nuevo por todo su arduo trabajo durante los "
+"últimos 12 meses y tenemos muchas ganas de sacar adelante a la Firma en "
+"lo que promete ser un año muy emocionante con una perspectiva positiva."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__fiscalyear_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Fiscal Year"
+msgstr "Año Fiscal"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_follower_ids
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_partner_ids
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ícono de fuente impresionante, p. fa-tasks"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__gender
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+msgid "Gender"
+msgstr "Genero"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__state
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__state
+msgid "Gives the status of Employee Bonus."
+msgstr "Da el estatus de Bono de Empleado."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__has_message
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__id
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__id
+msgid "ID"
+msgstr "ID"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_exception_icon
+msgid "Icon"
+msgstr "Ícono"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ícono para indicar una actividad de excepción."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__message_needaction
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__message_unread
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__message_needaction
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcada, los mensajes nuevos requieren su atención."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__message_has_error
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__message_has_sms_error
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__message_has_error
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_is_follower
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor "
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__is_increase
+msgid "Is Increase"
+msgstr "Es Aumento"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__job_id
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__job_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+msgid "Job Position"
+msgstr "Puesto de Trabajo"
+
+#. module: saudi_hr_bonus
+#: model:mail.template,subject:saudi_hr_bonus.hr_bonus_contract_updation_email
+msgid "Job Position Changing"
+msgstr "Cambio en Puesto de Trabajo"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__date_of_join
+msgid "Joining Date"
+msgstr "Fecha de Incorporación"
+
+#. module: saudi_hr_bonus
+#: model:mail.template,report_name:saudi_hr_bonus.email_template_salary_promotion
+msgid "KSA Salary Promotion"
+msgstr "Aumento salarial KSA"
+
+#. module: saudi_hr_bonus
+#: model:mail.template,report_name:saudi_hr_bonus.email_template_salary_no_promotion
+msgid "KSA Salary Without Promotion"
+msgstr "Salario KSA sin Aumento"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus____last_update
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__write_date
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_main_attachment_id
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo adjunto principal"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus__gender__male
+msgid "Male"
+msgstr "Masculino"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_has_error
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de entrega de mensajes"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_ids
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__period_ids
+msgid "Month(s)"
+msgstr "Mes(es)"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "Monthly Salary:"
+msgstr "Salario Mensual:"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de mi Actividad"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__country_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+msgid "Nationality"
+msgstr "Nacionalidad"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__new_job_id
+msgid "New Job Position"
+msgstr "Nuevo Puesto de Trabajo"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próxima Actividad del Calendario de Eventos"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha Límite de la Próxima Actividad"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la Siguiente Actividad"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente Tipo de Actividad"
+
+#. module: saudi_hr_bonus
+#: model:mail.template,name:saudi_hr_bonus.hr_bonus_contract_updation_email
+msgid "Notification Contract Updation"
+msgstr "Notificación Actualización de Contrato"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_needaction_counter
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__no_of_months
+msgid "Number of Months"
+msgstr "Número de Meses"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_has_error_counter
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__message_needaction_counter
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__message_has_error_counter
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__message_unread_counter
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leídos"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__branch_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+msgid "Office"
+msgstr "Office"
+
+#. module: saudi_hr_bonus
+#: model:ir.model,name:saudi_hr_bonus.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de Pago"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__my_pd
+msgid "Performance Development"
+msgstr "Desarrollo de Rendimiento"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__proposed_amount
+msgid "Proposed Amount"
+msgstr "Cantidad Propuesta"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__proposed_hike
+msgid "Proposed Hike(%)"
+msgstr "Alza Propuesta (%)"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__proposed_amount
+msgid "Proposed amount on basic salary of the employee"
+msgstr "Monto propuesto sobre el salario base del empleado"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__proposed_hike
+msgid "Proposed hike on basic salary of the employee"
+msgstr "Propuesta de alza sobre el salario básico del empleado."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_has_sms_error
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: saudi_hr_bonus
+#: model:mail.template,name:saudi_hr_bonus.email_template_salary_no_promotion
+#: model:mail.template,subject:saudi_hr_bonus.email_template_salary_no_promotion
+msgid "Salary No Promotion"
+msgstr "Salario Sin Ascenso"
+
+#. module: saudi_hr_bonus
+#: model:mail.template,name:saudi_hr_bonus.email_template_salary_promotion
+#: model:mail.template,subject:saudi_hr_bonus.email_template_salary_promotion
+msgid "Salary Promotion"
+msgstr "Aumento Salarial"
+
+#. module: saudi_hr_bonus
+#: model:ir.actions.report,name:saudi_hr_bonus.action_salary_pramotion_qweb
+msgid "Salary With Promotion"
+msgstr "Salario Con Ascenso"
+
+#. module: saudi_hr_bonus
+#: model:ir.actions.report,name:saudi_hr_bonus.action_salary_nopramotion_qweb
+msgid "Salary Without Promotion"
+msgstr "Salario Sin Ascenso"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_filter
+msgid "Search Employee Bonus"
+msgstr "Buscar Bonificación para Empleados"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Search Employee Bonus Lines"
+msgstr "Búsqueda de Líneas de Bonificación para Empleados"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+msgid "Select Employee..."
+msgstr "Seleccionar empleado..."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+msgid "Send Email"
+msgstr "Enviar Correo Electrónico"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.employee_bonus_lines_form
+msgid "Set to Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_res_company__signature_image
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_company_form1
+msgid "Signature"
+msgstr "Firma"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__period_ids
+msgid ""
+"Specify month(s) in which the bonus will be distributed. Bonus will be "
+"distributed in Bonus Amount/Number of Month(s)."
+msgstr ""
+"Especifique los meses en los que se distribuirá la bonificación. La bonificación será "
+"distribuida en bonificación/número de meses."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.view_employee_bonus_lines_filter
+msgid "Stage"
+msgstr "Etapa"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__state
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__state
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estatus basado en actividades\n"
+"Atrasado: la fecha de vencimiento ya pasó\n"
+"Hoy: la fecha de la actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__tcc
+msgid "TCC"
+msgstr "TCC"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__tcc
+msgid "TCC(Total Cash Compensation) of the employee"
+msgstr "TCC (Compensación total de efectivo) al empleado"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid "Thanks &amp; Regards,"
+msgstr "Gracias &amp; Saludos,"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid ""
+"The salary increment has all been undertaken at the functional level and "
+"moderated through the remuneration committee to ensure consistency and "
+"fairness across all functions. We are certain that the end results are fair "
+"and consistent outcomes."
+msgstr ""
+"El incremento salarial se ha realizado todo a nivel funcional y moderado "
+"a través del comité de remuneración para garantizar la coherencia y equidad "
+"en todas las funciones. Estamos seguros de que los resultados finales son justos "
+"y consistentes."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__no_of_months
+msgid "Total number of months"
+msgstr "Número total de meses"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción registrada."
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_unread
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes no leídos"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__message_unread_counter
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes no leídos"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__wage
+msgid "Wage"
+msgstr "Salario"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus__state__confirm
+#: model:ir.model.fields.selection,name:saudi_hr_bonus.selection__employee_bonus_lines__state__confirm
+msgid "Waiting for Approval"
+msgstr "Esperando Aprobación"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid ""
+"We are also able to confirm that we have completed the salary review process"
+" and have set out your information below."
+msgstr ""
+"También podemos confirmar que hemos completado el proceso de revisión salarial "
+"y hemos establecido su información a continuación."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+msgid ""
+"We care greatly about our Employees and their performance and we will work "
+"with you to help you improve your performance and in turn help you to "
+"achieve your potential."
+msgstr ""
+"Nos preocupamos mucho por nuestros Empleados y su desempeño y trabajaremos "
+"con usted para ayudarlo a mejorar su rendimiento y, a su vez, ayudarlo a "
+"alcanzar su potencial."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_pramotion
+msgid ""
+"We know that you have worked hard to help us achieve our goals and we would "
+"like to thank you for all your efforts."
+msgstr ""
+"Sabemos que ha trabajado duro para ayudarnos a lograr nuestros objetivos y "
+"nos gustaría agradecerle por todos sus esfuerzos."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+msgid ""
+"We very much look forward to take the firm forward in what promises to be a "
+"very exciting year with a positive outlook."
+msgstr ""
+"Esperamos con ansias llevar adelante a la firma en lo que promete ser "
+"un año muy emocionante con una perspectiva positiva."
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+msgid ""
+"We would recommend that you sit and talk to your Manager as soon as possible"
+" in order to set your goals for"
+msgstr ""
+"Le recomendamos que se siente y hable con su Gerente lo antes posible para "
+"establecer sus metas sobre"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus__website_message_ids
+#: model:ir.model.fields,field_description:saudi_hr_bonus.field_employee_bonus_lines__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio web"
+
+#. module: saudi_hr_bonus
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus__website_message_ids
+#: model:ir.model.fields,help:saudi_hr_bonus.field_employee_bonus_lines__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "You Can not Done the Bonus Line Because Effective Date is %s."
+msgstr "No puede realizar la línea de bonificación porque la fecha de vigencia es %s."
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "You already create bonus record for this employee, Kindly check!!"
+msgstr "¡Ya ha creado un registro de bonificación para este empleado, por favor verifíquelo!"
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "You can not delete the record for which process is already done!"
+msgstr "¡No puede eliminar el registro cuyo proceso ya se realizó!"
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid ""
+"You can't Confirm Bonus Line because %s have Prohibit Benefit Upgrades "
+"Warning."
+msgstr ""
+"No puede confirmar la línea de bonificación porque %s tiene Prohibir actualizaciones de beneficios"
+"Advertencia."
+
+#. module: saudi_hr_bonus
+#: code:addons/saudi_hr_bonus/models/bonus.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "¡No puede eliminar el registro que está en estado %s!"
+
+#. module: saudi_hr_bonus
+#: model_terms:ir.ui.view,arch_db:saudi_hr_bonus.salary_with_nopramotion
+msgid ""
+"your performance has been graded as unsatisfactory and according to the "
+"Firm’s policy you are not eligible for a salary increment or performance "
+"bonus."
+msgstr ""
+"su desempeño ha sido calificado como insatisfactorio y de acuerdo con la "
+"política de la Firma no es elegible para un incremento salarial o bono "
+"de desempeño."

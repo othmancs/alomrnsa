@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="employee_bonus_al" model="employee.bonus">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="employee_bonus_qdp" model="employee.bonus">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="state">confirm</field>
+        </record>
+
+        <record id="employee_bonus_fpi" model="employee.bonus">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="state">approve</field>
+        </record>
+
+        <record id="employee_bonus_jep" model="employee.bonus">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="employee_bonus_stw" model="employee.bonus">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="employee_bonus_line_al_1" model="employee.bonus.lines">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="new_job_id" ref="hr.job_consultant"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="proposed_hike">70</field>
+            <field name="accepted_hike">50</field>
+            <field name="bonus">50000</field>
+            <field name="tcc">500</field>
+            <field name="my_pd">1 - Outstanding Performance</field>
+            <field name="employee_bonus_id" ref="employee_bonus_al"/>
+            <field name="state">draft</field>
+        </record>
+
+        <record id="employee_bonus_line_qdp_1" model="employee.bonus.lines">
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="new_job_id" ref="hr.job_consultant"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="proposed_hike">80</field>
+            <field name="accepted_hike">70</field>
+            <field name="bonus">60000</field>
+            <field name="tcc">200</field>
+            <field name="my_pd">2 - Highly Effective Performance</field>
+            <field name="employee_bonus_id" ref="employee_bonus_qdp"/>
+            <field name="state">confirm</field>
+        </record>
+
+        <record id="employee_bonus_line_fpi_1" model="employee.bonus.lines">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="new_job_id" ref="hr.job_consultant"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="proposed_hike">70</field>
+            <field name="accepted_hike">40</field>
+            <field name="bonus">50000</field>
+            <field name="tcc">500</field>
+            <field name="my_pd">3 - Effective Performance</field>
+            <field name="employee_bonus_id" ref="employee_bonus_fpi"/>
+            <field name="state">approve</field>
+        </record>
+
+        <record id="employee_bonus_line_jep_1" model="employee.bonus.lines">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="new_job_id" ref="hr.job_ceo"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="proposed_hike">50</field>
+            <field name="accepted_hike">30</field>
+            <field name="bonus">50000</field>
+            <field name="tcc">500</field>
+            <field name="my_pd">4 - Inconsistent Performance</field>
+            <field name="employee_bonus_id" ref="employee_bonus_jep"/>
+            <field name="state">done</field>
+        </record>
+
+        <record id="employee_bonus_line_stw_1" model="employee.bonus.lines">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="fiscalyear_id" ref="hr_fiscal_year.employee_year"/>
+            <field name="new_job_id" ref="hr.job_consultant"/>
+            <field name="effective_date" eval="DateTime.today()"/>
+            <field name="proposed_hike">80</field>
+            <field name="accepted_hike">60</field>
+            <field name="bonus">5000</field>
+            <field name="tcc">800</field>
+            <field name="my_pd">1 - Outstanding Performance</field>
+            <field name="employee_bonus_id" ref="employee_bonus_stw"/>
+            <field name="state">draft</field>
+        </record>
+    </data>
+</odoo>

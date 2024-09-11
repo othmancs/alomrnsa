@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Warranty tree view -->
+    <record id="warranty_detail_tree_view" model="ir.ui.view">
+        <field name="name">warranty.detail.tree</field>
+        <field name="model">warranty.detail</field>
+        <field name="arch" type="xml">
+            <tree string="Warranty Details">
+                <field name="warranty_no"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="serial_id" groups="stock.group_production_lot"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="template_id"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Warranty form view -->
+    <record id="warranty_detail_form_view" model="ir.ui.view">
+        <field name="name">warranty.detail.form</field>
+        <field name="model">warranty.detail</field>
+        <field name="arch" type="xml">
+            <form string="Warranty Detail">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" states="draft" class="btn-primary" />
+                    <button name="action_create_invoice" type="object" string="Create Invoice" class="btn-primary" attrs="{'invisible': ['|', ('state','!=', 'confirm'), ('invoice_id','!=',False)]}"/>
+                    <button name="action_running" type="object" string="Start" attrs="{'invisible': ['|',('state','!=','confirm'), ('is_invoice_paid','=', False)]}" class="btn-primary" />
+                    <button name="action_cancel" type="object" string="Cancel" states="draft,confirm" class="btn-primary" />
+                    <button name="action_expiry" type="object" string="Expire" states="running" class="btn-primary"/>
+                    <button name="action_renew" type="object" string="Renew" attrs="{'invisible': ['|', ('state','not in', ['expired']), '|', ('is_renewed','=',True), ('is_renewable','=',False)]}" class="btn-primary" />
+                    <button name="set_to_draft" type="object" string="Set to Draft" states="cancel" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,running"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice" type="object"
+                                class="oe_stat_button" icon="fa-pencil-square-o" string="Invoice" attrs="{'invisible': [('invoice_id','=',False)]}"/>
+                        <button name="action_view_parent_warranty" type="object"
+                                class="oe_stat_button" icon="fa-certificate" string="Parent Warranty" attrs="{'invisible': [('parent_id','=',False)]}"/>
+                        <button name="action_view_child_warranties" type="object"
+                                class="oe_stat_button" icon="fa-certificate" string="Renew Warranties" attrs="{'invisible': [('warranty_ids','=',[])]}"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="warranty_no"/></h1>
+                    </div>
+                    <group>
+                        <group name="customer" string="Customer">
+                            <field name="partner_id"/>
+                            <field name="partner_phone"/>
+                            <field name="partner_email"/>
+                        </group>
+                        <group name="warranty" string="Warranty">
+                            <field name="template_id" required="1"/>
+                            <field name="user_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="warranty_cost" attrs="{'readonly': [('state', 'not in', ['draft', 'confirm', 'pending'])]}"/>
+                            <field name="warranty_renew_cost" attrs="{'invisible': [('parent_id','=',False)], 'readonly': [('state', 'not in', ['draft', 'confirm', 'pending'])]}"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group date="product" string="Product">
+                            <field name="sale_id" domain="[('partner_id', '=', partner_id)]" options="{'no_create': 1}"/>
+                            <field name="sale_line_id" domain="[('order_id', '=', sale_id),('product_id.tracking', '=', 'serial')]" attrs="{'required': [('sale_id', '!=', False)]}" options="{'no_create': 1}"/>
+                            <field name="product_id" options="{'no_create': 1}" context="{'sale_line_id': sale_line_id}"/>
+                            <field name="serial_id" required="1" domain="[('product_id', '=', product_id)]" groups="stock.group_production_lot" options="{'no_create': 1}"/>
+                        </group>
+                        <group name="date" string="Dates">
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="is_renewable" invisible="1"/>
+                            <field name="is_renewed" invisible="1"/>
+                            <field name="parent_id" invisible="1"/>
+                            <field name="invoice_id" invisible="1"/>
+                            <field name="is_invoice_paid" invisible="1"/>
+                            <field name="warranty_ids" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="warranty_info" string="Warranty Info">
+                            <field name="warranty_info"/>
+                        </page>
+                        <page name="warranty_tc" string="Terms &amp; Conditions">
+                            <field name="warranty_tc"/>
+                        </page>
+                        <page name="other_info" string="Other info">
+                            <group name="history">
+                                <label for="create_date" string="Created"/>
+                                <div>
+                                    <field name="create_date" readonly="1"/> By
+                                    <field name="create_uid" readonly="1"/>
+                                </div>
+                                <label for="write_date" string="Last Update on"/>
+                                <div>
+                                    <field name="write_date" readonly="1"/> By
+                                    <field name="write_uid" readonly="1"/>
+                                </div>
+                                <label for="confirm_by" attrs="{'invisible': [('confirm_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('confirm_by','=',False)]}">
+                                    <field name="confirm_date" readonly="1"/> By
+                                    <field name="confirm_by" readonly="1"/>
+                                </div>
+                                <label for="expired_by" attrs="{'invisible': [('expired_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('expired_by','=',False)]}">
+                                    <field name="expired_date" readonly="1"/> By
+                                    <field name="expired_by" readonly="1"/>
+                                </div>
+                                <label for="cancel_by" attrs="{'invisible': [('cancel_by','=',False)]}"/>
+                                <div attrs="{'invisible': [('cancel_by','=',False)]}">
+                                    <field name="cancel_date" readonly="1"/> By
+                                    <field name="cancel_by" readonly="1"/>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Warranty search view -->
+    <record id="warranty_details_search_view" model="ir.ui.view">
+        <field name="name">warranty.detail.search</field>
+        <field name="model">warranty.detail</field>
+        <field name="arch" type="xml">
+            <search string="Warranty Details">
+                <field name="warranty_no" string="Warranty"/>
+                <field name="partner_id"/>
+                <field name="partner_phone"/>
+                <field name="partner_email"/>
+                <field name="template_id"/>
+                <field name="product_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="warranty_info"/>
+                <field name="warranty_tc"/>
+                <field name="serial_id" groups="stock.group_production_lot"/>
+                <separator/>
+                <group expand="0" string="Group By" name="group_by">
+                    <filter string="Template" name="template_id" context="{'group_by':'template_id'}" />
+                    <filter string="Salesperson" name="user_id" context="{'group_by':'user_id'}" />
+                    <filter string="Customer" name="partner_id" context="{'group_by':'partner_id'}" />
+                    <filter string="Product" name="product_id" context="{'group_by':'product_id'}" />
+                    <filter string="Status" name="state" context="{'group_by':'state'}" />
+                    <filter string="Company" name="company_id" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Warranty action -->
+    <record id="warranty_detail_action_all" model="ir.actions.act_window">
+        <field name="name">Warranty Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">warranty.detail</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to define a new warranty detail record.
+            </p>
+        </field>
+    </record>
+
+</odoo>

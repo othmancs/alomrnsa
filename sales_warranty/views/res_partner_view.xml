@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit partner form view -->
+    <record id="rma_sales_view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object" class="oe_stat_button" icon="fa-certificate" name="action_view_warranty" attrs="{'invisible': [('warranty_count', '=', 0)]}">
+                    <field name="warranty_count" widget="statinfo" string="Warranties" />
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_annual_leaving_by_employees" model="ir.ui.view">
+        <field name="name">annual_leaving_employees</field>
+        <field name="model">annual.leaving.employees</field>
+        <field name="arch" type="xml">
+            <form string="Leaving by Employees">
+                <header>
+                    <button icon="fa-cogs" string="Generate" name="generate_records" type="object" class="oe_highlight"  />
+                </header>
+                <group>
+                    <span colspan="4" nolabel="1">This wizard will generate annual leaving records for all selected employee(s) based on leave allocation.</span>
+                </group>
+                <group colspan="4" >
+                    <separator string="Employees" colspan="4"/>
+                    <newline/>
+                    <field name="employee_ids" nolabel="1"/>
+                </group>
+           </form>
+        </field>
+    </record>
+
+</odoo>

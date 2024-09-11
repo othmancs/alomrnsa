@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="bonus_rule_officer" model="ir.rule">
+        <field name="name">Officer Bonus Rule</field>
+        <field name="model_id" ref="model_employee_bonus"/>
+        <field name="domain_force">['|', ('message_partner_ids', 'child_of', [user.partner_id.id]), '|', ('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
+    </record>
+
+    <record id="bonus_line_rule_officer" model="ir.rule">
+        <field name="name">Officer Bonus line Rule</field>
+        <field name="model_id" ref="model_employee_bonus_lines"/>
+        <field name="domain_force">['|', ('message_partner_ids', 'child_of', [user.partner_id.id]), '|', ('employee_bonus_id.company_id','=',False),('employee_bonus_id.company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4,ref('hr.group_hr_user'))]"/>
+    </record>
+
+    <!-- Employee Bonus Multi Branch Rule  -->
+    <!--<record model="ir.rule" id="employee_bonus_branch_rule_global">
+        <field name="name">Employee Bonus multi-branch</field>
+        <field name="model_id" ref="saudi_hr_bonus.model_employee_bonus"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('branch_id', '=', False), ('branch_id', 'in', user.branch_ids.ids)]</field>
+    </record>-->
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="hr_bonus_contract_updation_email" model="mail.template">
+            <field name="name">Notification Contract Updation</field>
+            <field name="model_id" ref="model_employee_bonus_lines"/>
+            <field name="email_from">{{object.employee_bonus_id.company_id.email or ''}}</field>
+            <field name="email_to">{{object.employee_id.work_email or ''}}</field>
+            <field name="subject">Job Position Changing</field>
+            <field name="body_html" type="html">
+                    <p>Hello <t t-out="object.employee_id.name"/>,</p>
+                    <p>We are inform you that your job position is changing from <t t-out="object.job_id.name"/> to <t t-out="object.new_job_id.name"/> on Effective Date: <t t-out="object.effective_date"/>.</p>
+                    <p>Thank you,</p>
+            </field>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+        <record id="email_template_salary_promotion" model="mail.template">
+            <field name="name">Salary Promotion</field>
+            <field name="model_id" ref="model_employee_bonus_lines"/>
+            <field name="email_from">{{(object.env.user.email and '&quot;%s&quot; &lt;%s&gt;' % (object.env.user.name, object.env.user.email) or '')}}</field>
+            <field name="email_to">{{object.employee_id.work_email or ''}}</field>
+            <field name="subject">Salary Promotion</field>
+            <field name="report_template" ref="saudi_hr_bonus.action_salary_pramotion_qweb"/>
+            <field name="report_name">KSA Salary Promotion</field>
+            <field name="body_html" type="html">
+                <div>
+
+                    <p>Dear <t t-out="object.employee_id.name or ''"/>,</p>
+
+
+                    <p> Annual Salary Review </p>
+
+
+                    <span>Thank you,</span><br/>
+                    <span><t t-out="object.env.user.name or ''"/></span>
+                </div>
+            </field>
+        </record>
+
+        <record id="email_template_salary_no_promotion" model="mail.template">
+            <field name="name">Salary No Promotion</field>
+            <field name="model_id" ref="model_employee_bonus_lines"/>
+            <field name="email_from">{{(object.env.user.email and '&quot;%s&quot; &lt;%s&gt;' % (object.env.user.name, object.env.user.email) or '')}}</field>
+            <field name="email_to">{{object.employee_id.work_email or ''}}</field>
+            <field name="subject">Salary No Promotion</field>
+            <field name="report_template" ref="saudi_hr_bonus.action_salary_nopramotion_qweb"/>
+            <field name="report_name">KSA Salary Without Promotion</field>
+            <field name="body_html" type="html">
+                <div>
+
+                    <p>Dear <t t-out="object.employee_id.name or ''"/>,</p>
+
+
+                    <p> Annual Salary Review </p>
+
+
+                    <span>Thank you,</span><br/>
+                    <span><t t-out="object.env.user.name or ''"/></span>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Users -->
+    <record id="user_eva" model="res.users">
+        <field name="name">Eva</field>
+        <field name="login">eva@gmail.com</field>
+        <field name="email">eva@gmail.com</field>
+        <field name="password">123456</field>
+        <field name="image_1920" type="base64" file="sales_warranty/static/src/img/101.jpeg"/>
+    </record>
+
+    <record id="user_julian" model="res.users">
+        <field name="name">Julian</field>
+        <field name="login">julian@gmail.com</field>
+        <field name="email">julian@gmail.com</field>
+        <field name="password">123456</field>
+        <field name="image_1920" type="base64" file="sales_warranty/static/src/img/102.jpeg"/>
+    </record>
+</odoo>

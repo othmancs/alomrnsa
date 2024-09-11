@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Warranty template tree view -->
+    <record id="warranty_template_tree_view" model="ir.ui.view">
+        <field name="name">warranty.template.tree</field>
+        <field name="model">warranty.template</field>
+        <field name="arch" type="xml">
+            <tree string="Warranty Template">
+                <field name="name"/>
+                <field name="warranty_info"/>
+                <field name="warranty_months"/>
+                <field name="warranty_renew_cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Warranty template form view -->
+    <record id="warranty_template_form_view" model="ir.ui.view">
+        <field name="name">warranty.template.form</field>
+        <field name="model">warranty.template</field>
+        <field name="arch" type="xml">
+            <form string="Warranty Template">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name"/>
+                        <h1><field name="name" placeholder="Name"/></h1>
+                        <div name="options">
+                            <div>
+                                <field name="is_renewable"/>
+                                <label for="is_renewable"/>
+                            </div>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="warranty_months"/>
+                            <field name="warranty_renew_months" attrs="{'invisible': [('is_renewable', '=', False)], 'required':[('is_renewable', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="warranty_cost"/>
+                            <field name="warranty_renew_cost" attrs="{'invisible': [('is_renewable', '=', False)], 'required':[('is_renewable', '=', True)]}"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Warranty Information" name="warranty_information">
+                            <field name="warranty_info" nolabel="1" required="1"/>
+                        </page>
+                        <page string="Terms &amp; Conditions" name="terms_condition">
+                            <field name="warranty_tc" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Warranty template search view -->
+    <record id="warranty_template_search_view" model="ir.ui.view">
+        <field name="name">warranty.template.search</field>
+        <field name="model">warranty.template</field>
+        <field name="arch" type="xml">
+            <search string="Warranty">
+                <field name="name" string="Warranty"/>
+                <field name="warranty_months"/>
+                <field name="warranty_renew_cost"/>
+                <separator/>
+                <filter string="Active" name="active" domain="[('active','=',True)]"/>
+                <filter string="Archive" name="archive" domain="[('active','=',False)]"/>
+                <filter string="Renewable" name="is_renewable" domain="[('is_renewable','=',True)]"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Warranty template action -->
+    <record id="warranty_template_action_all" model="ir.actions.act_window">
+        <field name="name">Warranty</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">warranty.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to define a new warranty template.
+            </p>
+        </field>
+    </record>
+
+</odoo>

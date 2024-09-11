@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="leave_encashment_form_view" model="ir.ui.view">
+        <field name="name">leave.encashment.form</field>
+        <field name="model">leave.encashment</field>
+        <field name="arch" type="xml">
+            <form string="Leave Encashment">
+                <div class="alert alert-warning" role="alert">
+                    <p>Encashment Report Date is important for Leaves Reports.</p>
+                </div>
+                <group>
+                    <group>
+                        <field name="employee_id" readonly="1"/>
+                        <field name="year_id"  invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="encashment_type"/>
+                        <field name="applied_date"/>
+                        <field name="journal_id" attrs="{'invisible': [('encashment_type', 'not in', ['bank_cash'])], 'required': [('encashment_type', 'in', ['bank_cash'])]}" domain="[('type', 'in', ['bank','cash'])]"/>
+                    </group>
+                    <group>
+                        <field name="allocated_leaves"/>
+                        <field name="used_leaves"/>
+                    </group>
+                    <group>
+                        <field name="updated_leaves"/>
+                        <label for="remaining_leaves"/>
+                        <div>
+                            <field name="remaining_leaves" style="width: 30%%"/>
+                            <!-- <button name="leave_carry_forward" string="Leave Carry Forward" help="Leave Carry Forward" type="object" class="oe_highlight" /> -->
+                        </div>
+                    </group>
+                </group>
+                <field name="leave_encashment_details_ids">
+                    <tree editable="bottom">
+                        <field name="leave_allocation_id" options="{'no_create_edit': 1, 'no_open': 1}"/>
+                        <field name="year_id" invisible="1"/>
+                        <field name="encashment_days"/>
+                        <field name="employee_id" invisible="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="generate_leave_allowance" string="Done" type="object" class="oe_highlight"/>
+                    <!--or-->
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

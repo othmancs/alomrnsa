@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="action_salary_pramotion_qweb" model="ir.actions.report">
+        <field name="name">Salary With Promotion</field>
+        <field name="model">employee.bonus.lines</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_bonus.salary_with_pramotion</field>
+        <field name="report_file">saudi_hr_bonus.salary_with_pramotion</field>
+        <field name="binding_model_id" ref="model_employee_bonus_lines"/>
+        <field name="print_report_name">'Salary With Promotion'</field>
+    </record>
+
+    <record id="action_salary_nopramotion_qweb" model="ir.actions.report">
+        <field name="name">Salary Without Promotion</field>
+        <field name="model">employee.bonus.lines</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_bonus.salary_with_nopramotion</field>
+        <field name="report_file">saudi_hr_bonus.salary_with_nopramotion</field>
+        <field name="binding_model_id" ref="model_employee_bonus_lines"/>
+        <field name="print_report_name">'Salary Without Promotion'</field>
+    </record>
+
+</odoo>

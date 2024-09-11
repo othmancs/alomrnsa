@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem name="Warranty" id="menu_warranty" parent="sale.sale_menu_root" sequence="4" groups="sales_team.group_sale_salesman"/>
+
+    <menuitem name="Warranty Details" id="menu_warranty_detail" sequence="1" parent="menu_warranty" action="warranty_detail_action_all" groups="sales_team.group_sale_salesman"/>
+    <menuitem name="Warranty Templates" id="menu_warranty_temp" sequence="2" parent="menu_warranty" action="warranty_template_action_all" groups="sales_team.group_sale_manager"/>
+
+</odoo>

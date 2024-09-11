@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- products -->
+    <record id="treca_interiors_product" model="product.product">
+        <field name="name">Treca Interiors</field>
+        <field name="list_price">1400.0</field>
+        <field name="standard_price">1200.0</field>
+        <field name="type">product</field>
+        <field name="default_code">FURN_0090</field>
+        <field name="barcode">1234567890090</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image_1920" type="base64" file="sales_warranty/static/src/img/treca_interiors.jpeg"/>
+        <field name="tracking">serial</field>
+        <field name="warranty_id" ref="sales_warranty.warranty_template_1"/>
+        <field name="description">
+        </field>
+    </record>
+    <record id="treca_interiors_stock_quant" model="stock.quant">
+        <field name="product_id" ref="treca_interiors_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <!-- stock.lot -->
+    <record id="lot_product_treca_1" model="stock.lot">
+        <field name="name">0000000000091</field>
+        <field name="product_id" ref="treca_interiors_product"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="lot_product_treca_0" model="stock.lot">
+        <field name="name">00000000000901</field>
+        <field name="product_id" ref="treca_interiors_product"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="lot_product_treca_2" model="stock.lot">
+        <field name="name">00000000000902</field>
+        <field name="product_id" ref="treca_interiors_product"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+    <record id="bunching_table_product" model="product.product">
+        <field name="name">Bunching Table</field>
+        <field name="list_price">125.0</field>
+        <field name="standard_price">120.0</field>
+        <field name="type">product</field>
+        <field name="default_code">FURN_0091</field>
+        <field name="barcode">1234567890091</field>
+        <field name="categ_id" ref="product.product_category_5"/>
+        <field name="image_1920" type="base64" file="sales_warranty/static/src/img/bunching_table.jpg"/>
+        <field name="tracking">serial</field>
+        <field name="warranty_id" ref="sales_warranty.warranty_template_2"/>
+        <field name="description">
+        </field>
+    </record>
+
+    <record id="bunching_stock_quant" model="stock.quant">
+        <field name="product_id" ref="bunching_table_product"/>
+        <field name="location_id" ref="stock.stock_location_14"/>
+        <field name="reserved_quantity">10</field>
+        <field name="quantity">20</field>
+    </record>
+
+    <!-- stock.lot -->
+    <record id="lot_product_bunching_1" model="stock.lot">
+        <field name="name">0000000000090</field>
+        <field name="product_id" ref="bunching_table_product"/>
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+</odoo>

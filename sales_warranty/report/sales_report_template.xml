@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_warranty_receipt" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='total']" position="after">
+           <div>
+                <t t-if="doc.warranty_details">
+                    <h4><strong>Warranty Information</strong></h4>
+                    <br/>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Product</th>
+                                <th>Serial No.</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.warranty_details" t-as="t">
+                                <td><span t-field="t.warranty_no"/></td>
+                                <td><span t-field="t.product_id"/></td>
+                                <td><span t-field="t.serial_id"/></td>
+                                <td><span t-field="t.start_date"/></td>
+                                <td><span t-field="t.end_date"/></td>
+                                <td><span t-field="t.state"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>

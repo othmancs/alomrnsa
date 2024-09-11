@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_leave_details_pivot" model="ir.ui.view">
+        <field name="name">leaves.details.report_pivot</field>
+        <field name="model">leaves.details.report</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <pivot string="Time Off Summary">
+                <field name="employee_id" type="row"/>
+                <field name="department_id"/>
+                <field name="allocated_leaves" type="measure"/>
+                <field name="used_leaves" type="measure"/>
+                <field name="remaining_leaves" type="measure"/>
+                <field name="date_from" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_leave_details_graph" model="ir.ui.view">
+        <field name="name">leaves.details.report_graph</field>
+        <field name="model">leaves.details.report</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <graph string="Time Off Summary">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="allocated_leaves"/>
+                <field name="used_leaves"/>
+                <field name="remaining_leaves"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_leaves_details_search" model="ir.ui.view">
+        <field name="name">leaves.details.report.search</field>
+        <field name="model">leaves.details.report</field>
+        <field name="arch" type="xml">
+            <search string="Time off Analysis">
+                <field name="employee_id"/>
+                <separator/>
+                <field name="allocated_leaves"/>
+                <field name="used_leaves"/>
+                <field name="remaining_leaves"/>
+                <group expand="1" string="Group By">
+                    <filter string="Employee" name="group_employee" context="{'group_by':'employee_id'}"/>
+                    <filter string="Department" name="group_department" context="{'group_by':'department_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_leave_details_report" model="ir.actions.act_window">
+        <field name="name">Time Off Analysis</field>
+        <field name="res_model">leaves.details.report</field>
+        <field name="view_mode">graph,pivot,form</field>
+        <field name="view_id" ref="view_leaves_details_search"/>
+        <field name="context">{'search_default_group_employee': 1}</field>
+    </record>
+
+    <menuitem
+        id="menu_hr_leave_details_report_tree"
+        name="Leave Details"
+        parent="hr_holidays.menu_hr_holidays_report"
+        action="action_hr_leave_details_report"
+        sequence="10"/>
+
+</odoo>

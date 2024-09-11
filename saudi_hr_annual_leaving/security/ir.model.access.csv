@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_annual_leaving_manager,access_annual_leaving,model_annual_leaving,hr_holidays.group_hr_holidays_manager,1,1,1,1
+access_annual_leaving_user,access_annual_leaving,model_annual_leaving,base.group_user,1,0,0,0
+access_leaves_details_manager,access_leaves_details,model_leaves_details,hr_holidays.group_hr_holidays_manager,1,1,1,1
+access_leaves_details_user,access_leaves_details,model_leaves_details,base.group_user,1,0,0,0
+access_cutdown_leaves_history_manager,access_cutdown_leaves_history,model_cutdown_leaves_history,hr_holidays.group_hr_holidays_manager,1,1,1,1
+access_cutdown_leaves_history_user,access_cutdown_leaves_history,model_cutdown_leaves_history,base.group_user,1,0,0,0
+access_leaves_details_report,access_leaves_details_report,model_leaves_details_report,base.group_user,1,1,1,1
+access_annual_leaves_report,access_annual_leaves_report,model_annual_leaves_report,base.group_user,1,1,1,1
+access_annual_leaving_employees,access_annual_leaving_employees,model_annual_leaving_employees,base.group_user,1,1,1,1
+access_hr_leaves_report,access_hr_leaves_report,model_hr_leaves_report,base.group_user,1,1,1,1
+access_leave_encashment,access_leave_encashment,model_leave_encashment,base.group_user,1,1,1,1
+access_leave_encashment_details,access_leave_encashment_details,model_leave_encashment_details,base.group_user,1,1,1,1
+

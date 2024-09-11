@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="salary_with_pramotion">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" >
+                        <style>
+                            div{
+                                text-align: left;
+                                face :Helvetica;
+                                font-size:20px;
+                            }
+                            p{
+                              text-align: left;
+                              face :Helvetica;
+                            }
+                        </style>
+                        <p style="font:Helvetica; font-weight: bold; "><span t-esc="time.strftime('%d/%m/%Y')"/></p>
+                        <p style="font:Helvetica; font-weight: bold; ">
+                            [<span t-esc="o.employee_id.code"/>]
+                            <span t-esc="o.employee_id.name"></span>
+                            <span t-esc="o.employee_id.middle_name"></span>
+                            <span t-esc="o.employee_id.last_name"></span>
+                        </p>
+                        <t t-if="o.employee_id.department_id.parent_id">
+                            <p style="font:Helvetica">
+                                <b>Function: </b>
+                                <span t-esc="o.employee_id.department_id.parent_id.name"/>
+                            </p>
+                        </t>
+                        <t t-if="o.employee_id.department_id">
+                            <p style="font:Helvetica;">
+                                <b>Sub Function: </b>
+                                <span t-esc="o.employee_id.department_id.name"/>
+                            </p>
+                        </t>
+                        <p style="font:Helvetica;">
+                            <b>Office: </b>
+                            <span t-esc="o.employee_id.company_id.name"/>
+                        </p>
+                        <p style="font:Helvetica;">
+                            <b>Job Position: </b>
+                            <span t-esc="o.employee_id.job_id.name"/>
+                        </p>
+                        <p style="font:Helvetica; font-size:18px; ">
+                            <center><b>Confirmation of Annual Salary Review </b></center>
+                        </p>
+                        <p style="font:Helvetica; ">Dear <span t-esc="o.employee_id.name"/>,</p>
+                        <p style="font:Helvetica; ">We know that you have worked hard to help us achieve our goals and we would like to thank you for all your efforts.</p>
+                        <p style="font:Helvetica; ">We are also able to confirm that we have completed the salary review process and have set out your information below.</p>
+                        <p style="font:Helvetica; ">The salary increment has all been undertaken at the functional level and moderated through the remuneration committee to ensure consistency and fairness across all functions. We are certain that the end results are fair and consistent outcomes. </p>
+                        <div class="container">
+                                <div class="row" style=" font-weight: bold;">
+                                    <div class="col-xs-6" style="text-align:justify; font-size:20px;">
+                                       <p>FY <span t-field="o.fiscalyear_id.date_start"/> Monthly Salary: <span t-field="o.wage"/> </p>
+                                       <p>FY <span t-field="o.fiscalyear_id.date_start"/> Bonus Allocation: <span t-field="o.bonus"/> </p>
+                                    </div>
+                                    <div class="col-xs-6  text-center">
+                                         <p>( Effective from <span t-field="o.effective_date"/> ) </p>
+                                    </div>
+                                 </div>
+                        </div>
+                        <p style="font:Helvetica; ">Bonus will be included in your salary.</p>
+
+                        <p style="font:Helvetica; ">Finally we would like to thank you again for all your hard work over the last 12 months and we very much look forward to take the Firm forward in what promises to be a very exciting year with a positive outlook.</p>
+
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                Thanks &amp; Regards,
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <span t-esc="o.env.user.name"></span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

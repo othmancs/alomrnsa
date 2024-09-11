@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="annual_leaves_reports_print_view" model="ir.ui.view">
+        <field name="name">annual.leaves.reports.form</field>
+        <field name="model">annual.leaves.report</field>
+        <field name="arch" type="xml">
+            <form string="Annual Leaves Report">
+                <group attrs="{'invisible': [('excel_file', '!=', False)]}">
+                <h2>
+                    Are you sure you want to Generate Annual Leaves Report?
+                </h2>
+                </group>
+                <group attrs="{'invisible': [('excel_file', '=', False)]}">
+                    <field name="excel_file" filename="filename" readonly="1"/>
+                    <field name="filename" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="generate_annual_leave_excel_report" string="Print" type="object" class="oe_highlight"/>
+                    or
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_report_annual_leaves" model="ir.actions.act_window">
+        <field name="name">Annual Leaves Report</field>
+        <field name="res_model">annual.leaves.report</field>
+        <field name="view_id" ref="annual_leaves_reports_print_view"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="saudi_hr_annual_leaving.model_annual_leaving" />
+    </record>
+</odoo>

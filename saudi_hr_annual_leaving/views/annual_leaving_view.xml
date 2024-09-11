@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hr_annual_leaving_form_view" model="ir.ui.view">
+        <field name="name">annual.leaving.form.view</field>
+        <field name="model">annual.leaving</field>
+        <field name="arch" type="xml">
+            <form string="Employee Annual Leave">
+                <header>
+                    <button name="action_annual_leaving_by_employees" string="Generate" type="object" class="oe_highlight"/>
+                    <button name="action_annual_leaving_carry_forward" string="Leave Carry Forward" type="object" class="oe_highlight"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="year_id"/>
+                        <field name="allocation_leave_type_id"/>
+                    </group>
+                    <group>
+                        <field name="is_maximum_leave_carry_forward"/>
+                        <field name="maximum_leave_carry_forward" attrs="{'invisible': [('is_maximum_leave_carry_forward', '=', False)]}"/>
+                        <field name="applied_date"/>
+                    </group>
+                    <field name="leaves_details_ids" context="{'default_year_id': year_id}">
+                        <tree>
+                            <field name="employee_id"/>
+                            <field name="allocated_leaves" readonly="1" force_save="1"/>
+                            <field name="updated_leaves"/>
+                            <field name="used_leaves"/>
+                            <field name="encashment_leaves"/>
+                            <field name="remaining_leaves"/>
+                            <field name="year_id" invisible="1"/>
+                            <button name="leave_encashment" help="Encashment Leaves" type="object" edit="1"
+                                    class="fa fa-money" title="Encashment Leaves"
+                                    context="{'default_employee_id': employee_id,
+                                    'default_allocated_leaves': allocated_leaves, 'default_year_id': year_id,
+                                    'default_used_leaves': used_leaves, 'default_remaining_leaves': remaining_leaves,
+                                    'default_updated_leaves': updated_leaves,
+                                    'default_encashment_leaves': encashment_leaves}"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group string="Employee Details">
+                                    <field name="employee_id" attrs="{'readonly': [('encashment_leaves', '>', 0)]}" options="{'no_create': True}" widget="selection"/>
+                                    <field name="department_id" attrs="{'invisible': [('department_id', '=', False)]}"/>
+                                    <field name="branch_id" attrs="{'invisible': [('department_id', '=', False)]}"/>
+                                    <field name="year_id" invisible="1"/>
+                                </group>
+                                <group></group>
+                                <group string="Leaves Details">
+                                    <field name="allocated_leaves" readonly="1" force_save="1"/>
+                                    <field name="used_leaves"/>
+                                    <field name="remaining_leaves"/>
+                                </group>
+                                <group string="Updated Leaves Details">
+                                    <field name="updated_leaves"/>
+                                    <field name="encashment_leaves"/>
+                                </group>
+                            </group>
+                            <notebook>
+                                <page name="cutdown_leaves_history" string="Cutdown Leaves History">
+                                    <field name="cutdown_leaves_history_ids" readonly="1">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="holiday_status_id"/>
+                                            <field name="other_hr_payslip_id"/>
+                                            <field name="number_of_days"/>
+                                            <field name="date"/>
+                                            <field name='applied_date'/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page name="payment" string="Payments">
+                                    <field name="payment_ids" readonly="1">
+                                        <tree>
+                                            <field name="date"/>
+                                            <field name="name"/>
+                                            <field name="journal_id"/>
+                                            <field name="partner_id"/>
+                                            <field name="amount"/>
+                                            <field name="state"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </form>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_annual_leaving">
+        <field name="name">Annual Leaving</field>
+        <field name="res_model">annual.leaving</field>
+        <field name="search_view_id" ref="hr_annual_leaving_form_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to define Employees Annual Leaves.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hr_annual_leaving" action="action_view_annual_leaving" parent="hr_holidays.menu_hr_holidays_configuration"
+              name="Annual Leave Sheet" sequence="8"/>
+
+</odoo>

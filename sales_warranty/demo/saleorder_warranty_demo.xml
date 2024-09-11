@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Nick customer sale order -->
+    <record id="sale_order_war_1" model="sale.order">
+        <field name="partner_id" ref="sales_warranty.customer_nick"/>
+        <field name="partner_invoice_id" ref="sales_warranty.customer_nick"/>
+        <field name="partner_shipping_id" ref="sales_warranty.customer_nick"/>
+        <field name="user_id" ref="sales_warranty.user_eva"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+        <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+
+    <record id="sale_order_line_war_1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_war_1"/>
+        <field name="name">Treca Interiors</field>
+        <field name="product_id" ref="sales_warranty.treca_interiors_product"/>
+        <field name="product_uom_qty">3</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="price_unit">1400.00</field>
+    </record>
+
+    <!-- Freya Customer Sale order -->
+    <record id="sale_order_war_2" model="sale.order">
+        <field name="partner_id" ref="sales_warranty.customer_freya"/>
+        <field name="partner_invoice_id" ref="sales_warranty.customer_freya"/>
+        <field name="partner_shipping_id" ref="sales_warranty.customer_freya"/>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+        <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+
+    <record id="sale_order_line_war_2" model="sale.order.line">
+        <field name="order_id" ref="sale_order_war_2"/>
+        <field name="name">Bunching Table</field>
+        <field name="product_id" ref="sales_warranty.bunching_table_product"/>
+        <field name="product_uom_qty">3</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="price_unit">125.00</field>
+    </record>
+
+    <!-- Sofia Customer Sale order -->
+    <record id="sale_order_war_3" model="sale.order">
+        <field name="partner_id" ref="sales_warranty.customer_sofia"/>
+        <field name="partner_invoice_id" ref="sales_warranty.customer_sofia"/>
+        <field name="partner_shipping_id" ref="sales_warranty.customer_sofia"/>
+        <field name="user_id" ref="sales_warranty.user_julian"/>
+        <field name="pricelist_id" ref="product.list0"/>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+        <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
+    </record>
+
+    <record id="sale_order_line_war_3" model="sale.order.line">
+        <field name="order_id" ref="sale_order_war_3"/>
+        <field name="name">Bunching Table</field>
+        <field name="product_id" ref="sales_warranty.bunching_table_product"/>
+        <field name="product_uom_qty">3</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="price_unit">125.00</field>
+    </record>
+
+    <record id="sale_order_line_war_4" model="sale.order.line">
+        <field name="order_id" ref="sale_order_war_3"/>
+        <field name="name">Treca Interiors</field>
+        <field name="product_id" ref="sales_warranty.treca_interiors_product"/>
+        <field name="product_uom_qty">3</field>
+        <field name="product_uom" ref="uom.product_uom_unit"/>
+        <field name="price_unit">1400.00</field>
+    </record>
+
+    <!-- Confirm Sale Orders-->
+    <function model="sale.order" name="action_confirm" eval="[ref('sale_order_war_1')]"/>
+    <function model="sale.order" name="action_confirm" eval="[ref('sale_order_war_2')]"/>
+    <function model="sale.order" name="action_confirm" eval="[ref('sale_order_war_3')]"/>
+</odoo>

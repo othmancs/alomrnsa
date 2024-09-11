@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Partners -->
+    <record id="customer_nick" model="res.partner">
+        <field name="name">Nick Jonas</field>
+        <field name="street">UNIT 2050 BOX 490</field>
+        <field name="street2"></field>
+        <field name="city">APO</field>
+        <field name="zip">96522 – 1215</field>
+        <field name="country_id" ref="base.CAD"/>
+        <field name="phone">092 / 555-3333</field>
+        <field name="mobile">1-604-555-5555</field>
+        <field name="email">nick@0936.com</field>
+    </record>
+
+    <record id="customer_sofia" model="res.partner">
+        <field name="name">Sofia</field>
+        <field name="street">2050 Bamako Place Washington</field>
+        <field name="street2"></field>
+        <field name="city">Washington</field>
+        <field name="zip">20521-2050</field>
+        <field name="country_id" ref="base.USD"/>
+        <field name="phone">(541) 754-3010</field>
+        <field name="mobile">+1-541-754-3010</field>
+        <field name="email">sofia@2905.com</field>
+    </record>
+
+    <record id="customer_freya" model="res.partner">
+        <field name="name">Freya</field>
+        <field name="street">Mortgage lender in Franklin</field>
+        <field name="street2"></field>
+        <field name="city">Franklin</field>
+        <field name="zip">72401</field>
+        <field name="country_id" ref="base.us"/>
+        <field name="phone">(870)-931-0502</field>
+        <field name="mobile">+1-541-758-3110</field>
+        <field name="email">freya@999.com</field>
+    </record>
+</odoo>

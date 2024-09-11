@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="salary_with_nopramotion">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" >
+                        <style>
+                            div{
+                                text-align: left;
+                                face :Helvetica;
+                                font-size:20px;
+                            }
+                            p{
+                              text-align: left;
+                              face :Helvetica;
+                            }
+                        </style>
+                        <p style="font:Helvetica; font-weight: bold; "><span t-esc="time.strftime('%d/%m/%Y')"/></p>
+                        <p style="font:Helvetica; font-weight: bold; ">
+                            [<span t-esc="o.employee_id.code"/>]
+                            <span t-esc="o.employee_id.name"></span>
+                            <span t-esc="o.employee_id.middle_name"></span>
+                            <span t-esc="o.employee_id.last_name"></span>
+                        </p>
+                        <t t-if="o.employee_id.department_id.parent_id">
+                            <p style="font:Helvetica">
+                                <b>Function: </b>
+                                <span t-esc="o.employee_id.department_id.parent_id.name"/>
+                            </p>
+                        </t>
+                        <t t-if="o.employee_id.department_id">
+                            <p style="font:Helvetica;">
+                                <b>Sub Function: </b>
+                                <span t-esc="o.employee_id.department_id.name"/>
+                            </p>
+                        </t>
+                        <p style="font:Helvetica;">
+                            <b>Office: </b>
+                            <span t-esc="o.employee_id.company_id.name"/>
+                        </p>
+                        <p style="font:Helvetica;">
+                            <b>Job Position: </b>
+                            <span t-esc="o.employee_id.job_id.name"/>
+                        </p>
+                        <p style="font:Helvetica; font-size:18px; ">
+                            <center>
+                                <b>Confirmation of Annual Salary Review </b>
+                            </center>
+                        </p>
+
+                        <p style="font:Helvetica; ">Dear <span t-esc="o.employee_id.name"/>,</p>
+                        <p style="font:Helvetica; ">During the Financial Year <span t-esc="o.fiscalyear_id.name"></span> your performance has been graded as unsatisfactory and according to the Firm’s policy you are not eligible for a salary increment or performance bonus.</p>
+                        <p style="font:Helvetica; ">We care greatly about our Employees and their performance and we will work with you to help you improve your performance and in turn help you to achieve your potential.</p>
+                        <p style="font:Helvetica; ">We would recommend that you sit and talk to your Manager as soon as possible in order to set your goals for <span t-esc="o.fiscalyear_id.name"></span> , and set out a clear development plan that will help you to achieve a higher rating in the upcoming year. </p>
+
+                        <p style="font:Helvetica; ">We very much look forward to take the firm forward in what promises to be a very exciting year with a positive outlook. </p> <br/>
+
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                Thanks &amp; Regards,
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <span t-esc="o.env.user.name"></span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

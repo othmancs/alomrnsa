@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hr_leaves_reports_wizard" model="ir.ui.view">
+        <field name="name">hr.leaves.reports.form</field>
+        <field name="model">hr.leaves.report</field>
+        <field name="arch" type="xml">
+            <form string="Excel Leaves Report">
+                <group>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="date_start" required='1'/>
+                    </group>
+                    <group>
+                        <field name="year_id"/>
+                        <field name="date_end" required='1'/>
+                    </group>
+                </group>
+                <separator string="Leave"/>
+                <field name="holiday_status_ids"/>
+                <separator string="Employee"/>
+                <field name="employee_ids"/>
+                <footer>
+                    <button name="generate_hr_leave_excel_report" string="Print Excel" type="object" class="oe_highlight"/>
+                    or
+                    <button  class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_report_hr_leaves" model="ir.actions.act_window">
+        <field name="name">Excel Leaves Report</field>
+        <field name="res_model">hr.leaves.report</field>
+        <field name="view_id" ref="hr_leaves_reports_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_hr_leave_report"
+        name="Excel Leave Report"
+        parent="hr_holidays.menu_hr_holidays_report"
+        action="action_wizard_report_hr_leaves"/>
+</odoo>

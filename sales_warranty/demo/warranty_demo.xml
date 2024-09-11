@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Warranty Details -->
+    <record id="warranty_template_1" model="warranty.template">
+        <field name="is_renewable">False</field>
+        <field name="active">1</field>
+        <field name="name">12 Months Warranty</field>
+        <field name="warranty_months">12</field>
+        <field name="warranty_renew_months">0</field>
+        <field name="warranty_renew_cost">0</field>
+        <field name="warranty_cost">50</field>
+        <field name="warranty_info">If there's a problem that's covered by the warranty, the manufacturer will, at its discretion, repair or replace the product or refund the original purchase price product.</field>
+        <field name="warranty_tc">(Twelve) 12 Months Warranty. Under conditions of normal usage we will conduct repairs on any defect in workmanship without any charge to the original purchaser for a one year period from the date of possession of the original purchase. "AS-IS" items carry no warranty and the sale is final (except where prohibited by law)</field>
+    </record>
+
+    <record id="warranty_template_2" model="warranty.template">
+        <field name="is_renewable">True</field>
+        <field name="active">1</field>
+        <field name="name">3 Months Warranty</field>
+        <field name="warranty_months">3</field>
+        <field name="warranty_renew_months">2</field>
+        <field name="warranty_renew_cost">300</field>
+        <field name="warranty_cost">150</field>
+        <field name="warranty_info">If there's a problem that's covered by the warranty, the manufacturer will, at its discretion, repair or replace the product or refund the original purchase price product.</field>
+        <field name="warranty_tc">Three (3) Months Warranty. Under conditions of normal usage we will conduct repairs on any defect in workmanship without any charge to the original purchaser for a one year period from the date of possession of the original purchase. "AS-IS" items carry no warranty and the sale is final (except where prohibited by law)</field>
+    </record>
+
+    <record id="warranty_template_3" model="warranty.template">
+        <field name="is_renewable">False</field>
+        <field name="active">1</field>
+        <field name="name">36 Months Warranty</field>
+        <field name="warranty_months">36</field>
+        <field name="warranty_renew_months">0</field>
+        <field name="warranty_renew_cost">0</field>
+        <field name="warranty_cost">50</field>
+        <field name="warranty_info">If there's a problem that's covered by the warranty, the manufacturer will, at its discretion, repair or replace the product or refund the original purchase price product.</field>
+        <field name="warranty_tc">Thirty six (36) Months Warranty. Under conditions of normal usage we will conduct repairs on any defect in workmanship without any charge to the original purchaser for a one year period from the date of possession of the original purchase. "AS-IS" items carry no warranty and the sale is final (except where prohibited by law)</field>
+    </record>
+
+    <record id="warranty_template_4" model="warranty.template">
+        <field name="is_renewable">True</field>
+        <field name="active">1</field>
+        <field name="name">18 Months Warranty</field>
+        <field name="warranty_months">18</field>
+        <field name="warranty_renew_months">2</field>
+        <field name="warranty_renew_cost">100</field>
+        <field name="warranty_cost">100</field>
+        <field name="warranty_info">If there's a problem that's covered by the warranty, the manufacturer will, at its discretion, repair or replace the product or refund the original purchase price product.</field>
+        <field name="warranty_tc">Eighteen (18) Months Warranty. Under conditions of normal usage we will conduct repairs on any defect in workmanship without any charge to the original purchaser for a one year period from the date of possession of the original purchase. "AS-IS" items carry no warranty and the sale is final (except where prohibited by law)</field>
+    </record>
+</odoo>
