@@ -1,0 +1,681 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_leaves_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:35+0000\n"
+"PO-Revision-Date: 2023-02-06 08:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_leave_allocation.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_leave_allocation.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_allocation.py:0
+#, python-format
+msgid "%s is already assign or used by %s."
+msgstr "%s ya está asignado o utilizado por %s."
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#, python-format
+msgid "'Limit To' should be greater than 'Limit From'!"
+msgstr "¡'Límite hasta' debe ser mayor que 'Límite desde'!"
+
+#. module: saudi_hr_leaves_management
+#: model:mail.template,body_html:saudi_hr_leaves_management.email_template_for_leave_used
+msgid ""
+"<div>\n"
+"                <p>Hello <t t-out=\"ctx.get('hr_id') and ctx.get('hr_id').name or ''\"/>,</p>\n"
+"                <p>Employee <t t-out=\"object.employee_id.name\"/> is used all allocated leaves.</p>\n"
+"                <span>Thank you,</span><br/>\n"
+"                <span><t t-out=\"object.employee_id.company_id.name or ''\"/></span>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div>\n"
+"                <p>Hola  <t t-out=\"ctx.get('hr_id') and ctx.get('hr_id').name or ''\"/>,</p>\n"
+"                <p>El empleado  <t t-out=\"object.employee_id.name\"/> utilizó todos los permisos asignados.</p>\n"
+"                <span>Gracias,</span><br/>\n"
+"                <span><t t-out=\"object.employee_id.company_id.name or ''\"/></span>\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr_leaves_management
+#: model:mail.template,body_html:saudi_hr_leaves_management.email_template_for_leave_monthly_reminder
+msgid ""
+"<div>\n"
+"                <p>Hello <t t-out=\"object.name or ''\"/>,</p>\n"
+"                <p>This Month <t t-out=\"object.remaining_leaves\"/> leaves are accumulate.</p>\n"
+"                <span>Thank you,</span><br/>\n"
+"                <span><t t-out=\"ctx.get('hr_id').name or ''\"/></span>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div>\n"
+"                <p>Hola  <t t-out=\"object.name or ''\"/>,</p>\n"
+"                <p>Este mes <t t-out=\"object.remaining_leaves\"/> licencias se acumulan.</p>\n"
+"                <span>Gracias,</span><br/>\n"
+"                <span><t t-out=\"ctx.get('hr_id').name or ''\"/></span>\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip_worked_days__absence_hours
+msgid "Absence Hour(s)"
+msgstr "Hora(s) de Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__skip
+msgid "Allow to Skip"
+msgstr "Permitir Omitir"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,help:saudi_hr_leaves_management.field_hr_leave_type__skip
+msgid "Allow to Skip Public Holidays"
+msgstr "Permitir Omitir los Días Festivos"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__already_taken
+msgid "Already Taken"
+msgstr "Ya Tomadas"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__already_taken_month
+msgid "Already Taken in current Month"
+msgstr "Ya Apartado en el Mes Actual"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__is_annual_leave
+msgid "Annual Leave"
+msgstr "Vacaciones Anuales"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip__bank_account_id
+msgid "Bank Account Number"
+msgstr "Número de Cuenta Bancaria"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields.selection,name:saudi_hr_leaves_management.selection__hr_holidays_public__state__cancel
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields.selection,name:saudi_hr_leaves_management.selection__hr_holidays_public__state__close
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__create_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__create_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__create_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_employee__current_year_allocation_display
+msgid "Current Year Allocation Display"
+msgstr "Pantalla de Asignación del Año Actual"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_employee__current_year_allocation_used_display
+msgid "Current Year Allocation Used Display"
+msgstr "Visualización Utilizada de la Asignación del Año Actual"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_employee__current_year_remaining_leaves
+msgid "Current Year Remaining Paid Time Off"
+msgstr "Tiempo Libre Pagado Restante del Año Actual"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_employee__current_year_allocation_count
+msgid "Current Year Total number of days allocated."
+msgstr "Año actual Número total de días asignados."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_employee__current_year_allocation_used_count
+msgid "Current Year Total number of days off used"
+msgstr "Año actual Número total de días libres utilizados"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,help:saudi_hr_leaves_management.field_hr_employee__current_year_remaining_leaves
+msgid ""
+"Current Year Total number of paid time off allocated to this employee, "
+"change this value to create allocation/time off request. Total based on all "
+"the time off types without overriding limit."
+msgstr ""
+"Número Total de tiempo libre pagado en el Año Actual, asignado a este empleado, "
+"cambie este valor para crear una solicitud de asignación/tiempo libre. Total basado en todos "
+"los tipos de tiempo libre sin límite superior."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields.selection,name:saudi_hr_leaves_management.selection__hr_leave_type__deduction_by__day
+msgid "Days"
+msgstr "Días"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.edit_holiday_status_form_inherit
+msgid "Deduction"
+msgstr "Deducción"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__deduction_by
+msgid "Deduction By"
+msgstr "Deducción Por"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_detail_management_hr_leave_view_form
+msgid "Details"
+msgstr "Detalles"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__display_name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__display_name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__display_name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields.selection,name:saudi_hr_leaves_management.selection__hr_holidays_public__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,help:saudi_hr_leaves_management.field_hr_payslip__bank_account_id
+msgid "Employee bank salary account"
+msgstr "Cuenta de sueldo del banco del empleado"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__end_date
+msgid "End Date"
+msgstr "Fecha Final"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__leave_id
+msgid "Holiday"
+msgstr "Feriado"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__holidays_id
+msgid "Holiday Calendar Year"
+msgstr "Calendario Festivo Anual"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__line_ids
+msgid "Holiday Dates"
+msgstr "Fechas de Días Festivos"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields.selection,name:saudi_hr_leaves_management.selection__hr_leave_type__deduction_by__hour
+msgid "Hours"
+msgstr "Horas"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__id
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__id
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__id
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public____last_update
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line____last_update
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line____last_update
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__write_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__write_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__write_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__is_deduction
+msgid "Leave Deduction"
+msgstr "Deducción de Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_leave_detail
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave__leave_details
+msgid "Leave Details"
+msgstr "Detalles de Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.hr_leave_rule_line_form
+msgid "Leave Rules"
+msgstr "Normas de Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__leave_type_id
+msgid "Leave Type"
+msgstr "Tipo de Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model:mail.template,name:saudi_hr_leaves_management.email_template_for_leave_used
+msgid "Leave Used"
+msgstr "Dejar usado"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_payroll.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_payroll.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_payroll.py:0
+#, python-format
+msgid "Leave Working Days paid at 100%"
+msgstr "Ausencias en Días Laborables pagadas al 100%"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_leave_allocation.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_leave_allocation.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_allocation.py:0
+#, python-format
+msgid ""
+"Leave request must be in Draft state (\"To Submit\") in order to confirm it."
+msgstr ""
+"La solicitud de ausencia debe estar en estado Borrador (\"Para enviar\") para poder confirmarla."
+
+#. module: saudi_hr_leaves_management
+#: model:hr.salary.rule,name:saudi_hr_leaves_management.hr_salary_rule_leave_deduction
+msgid "Leaves Deduction"
+msgstr "Deducción de Ausencias"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave_rule_line
+msgid "Leaves Rules Line"
+msgstr "Línea de Reglas de Ausencias"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__limit_from
+msgid "Limit From"
+msgstr "Límite Desde"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__limit_to
+msgid "Limit To"
+msgstr "Límite Hasta"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__limit_per
+msgid "Limit(%)"
+msgstr "Límite(%)"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.leave.type,name:saudi_hr_leaves_management.holiday_status_marriage
+msgid "Marriage Leave"
+msgstr "Ausencia por Matrimonio"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.leave.type,name:saudi_hr_leaves_management.holiday_status_maternity
+msgid "Maternity Leave"
+msgstr "Licencia de Maternidad"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.work.entry.type,name:saudi_hr_leaves_management.work_entry_type_maternity_leave
+msgid "Maternity Leave 2022"
+msgstr "Licencia de Maternidad 2022"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.work.entry.type,name:saudi_hr_leaves_management.work_entry_type_maternity_leave_unpaid
+msgid "Maternity Leave Unpaid 2022"
+msgstr "Licencia por Maternidad No Remunerada 2022"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__period_id
+msgid "Month"
+msgstr "Mes"
+
+#. module: saudi_hr_leaves_management
+#: model:mail.template,name:saudi_hr_leaves_management.email_template_for_leave_monthly_reminder
+msgid "Monthly Leave Notification"
+msgstr "Notificación de licencia mensual"
+
+#. module: saudi_hr_leaves_management
+#: model:mail.template,subject:saudi_hr_leaves_management.email_template_for_leave_monthly_reminder
+msgid "Monthly Notification for Leave"
+msgstr "Notificación mensual de licencia"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__next_line_id
+msgid "Next Line"
+msgstr "Línea Siguiente"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_payroll.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_payroll.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_payroll.py:0
+#, python-format
+msgid "Normal Working Days paid at 100%"
+msgstr "Días Laborables Normales pagados al 100%"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave__notes
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__notes
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.edit_holiday_status_form_inherit
+msgid "Notes"
+msgstr "Notas"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.actions.server,name:saudi_hr_leaves_management.ir_cron_check_leave_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_leaves_management.ir_cron_check_leave
+#: model:ir.cron,name:saudi_hr_leaves_management.ir_cron_check_leave
+#: model:mail.template,subject:saudi_hr_leaves_management.email_template_for_leave_used
+msgid "Notification for Leave"
+msgstr "Notificación de licencia"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__one_time_usable
+msgid "One Time Used"
+msgstr "Usado una Vez"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields.selection,name:saudi_hr_leaves_management.selection__hr_holidays_public__state__open
+msgid "Open"
+msgstr "Abierto"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__paid_leave
+msgid "Paid Leave"
+msgstr "Ausencia Pagada"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__leave_hours
+msgid "Paid Leave Hours"
+msgstr "Horas de Ausencia Pagadas"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.leave.type,name:saudi_hr_leaves_management.holiday_status_paternity
+msgid "Paternity Leave"
+msgstr "Licencia de Paternidad"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de Pago"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr "Lotes de Nómina"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_payslip_worked_days
+msgid "Payslip Worked Days"
+msgstr "Nómina Días Trabajados"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_leave.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_leave.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_leave.py:0
+#, python-format
+msgid "Please define public year!"
+msgstr "¡Por favor defina el año público!"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__previous_line_id
+msgid "Previous Line"
+msgstr "Línea Anterior"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_resource_calendar_leaves__public_line_id
+msgid "Public Holiday"
+msgstr "Día Festivo"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.actions.act_window,name:saudi_hr_leaves_management.open_public_holidays_view
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_holidays_public
+#: model:ir.ui.menu,name:saudi_hr_leaves_management.menu_public_holidays_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holiday_line_tree
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_tree
+msgid "Public Holidays"
+msgstr "Días Festivos"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_holidays_public_line
+msgid "Public Holidays Lines"
+msgstr "Líneas de Días Festivos"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_employee_tree_inherit
+msgid "Remaining Allocated Timeoff"
+msgstr "Tiempo libre asignado restante"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Reset to Draft"
+msgstr "Restablecer a Borrador"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__resource_ids
+msgid "Resource"
+msgstr "Recurso"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_resource_mixin
+msgid "Resource Mixin"
+msgstr "Mixin de recursos"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_resource_calendar_leaves
+msgid "Resource Time Off Detail"
+msgstr "Detalle de las ausencias de los recursos"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__rule_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.edit_holiday_status_form_inherit
+msgid "Rules"
+msgstr "Reglas"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Search Leave"
+msgstr "Buscar Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip_run__is_verify
+msgid "Skip Confirmation"
+msgstr "Saltar Confirmación"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__start_date
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#, python-format
+msgid "Take Time Off in and Deduction By both must be hour type!!"
+msgstr "¡¡Tomar Tiempo Libre en y Deducción Por, deben ser de tipo hora!!"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.constraint,message:saudi_hr_leaves_management.constraint_hr_holidays_public_line_date_check
+#: model:ir.model.constraint,message:saudi_hr_leaves_management.constraint_hr_payslip_run_date_check
+msgid "The start date must be anterior to the end date."
+msgstr "La fecha de inicio debe ser anterior a la fecha de finalización."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave
+msgid "Time Off"
+msgstr "Tiempo personal"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave_allocation
+msgid "Time Off Allocation"
+msgstr "Asignación de tiempo personal"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave_type
+msgid "Time Off Type"
+msgstr "Tipo de tiempo libre"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_employee_tree_inherit
+msgid "Total Allocation Timeoff"
+msgstr "Tiempo libre de asignación total"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__total_leave
+msgid "Total Leave"
+msgstr "Total de Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__total_leave_hours
+msgid "Total Leave Hours"
+msgstr "Horas Totales de Ausencia"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_type.py:0
+#, python-format
+msgid "Two (2) Rule Lines for leave are overlapping!"
+msgstr "¡Dos (2) Líneas de Regla para la ausencia se superponen!"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__unpaid_leave
+msgid "Unpaid Leave"
+msgstr "Ausencia sin Goce de Sueldo"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__unpaid_leave_hours
+msgid "Unpaid Leave Hours"
+msgstr "Horas de Ausencia sin Goce de Sueldo"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_employee_tree_inherit
+msgid "Used Timeoff"
+msgstr "Tiempo libre usado"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,help:saudi_hr_leaves_management.field_hr_payslip_run__is_verify
+msgid "While tick payslips will confirmed and paid."
+msgstr "Mientras que las nóminas de ticks se confirmarán y pagarán."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip_worked_days__working_hours
+msgid "Working Hour(s)"
+msgstr "Hora(s) Laboral(es)"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__year_id
+#: model:ir.model.fields.selection,name:saudi_hr_leaves_management.selection__hr_leave_type__deduction_by__year
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Year"
+msgstr "Año"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_public_holidays.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_public_holidays.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_public_holidays.py:0
+#, python-format
+msgid "You can not have holiday that overlaps on same days!"
+msgstr "¡No puede tener vacaciones que se superpongan en los mismos días!"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/hrms/saudi_hr_leaves_management/models/hr_public_holidays.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_leaves_management/models/hr_public_holidays.py:0
+#: code:addons/saudi_hr_leaves_management/models/hr_public_holidays.py:0
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "¡No puede eliminar el registro que está en estado %s!"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_detail_management_hr_leave_view_form
+msgid "already_taken"
+msgstr "ya_apartadas"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_detail_management_hr_leave_view_form
+msgid "already_taken_month"
+msgstr "mes_ya_tomado"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_detail_management_hr_leave_view_form
+msgid "leave_hours"
+msgstr "horas_de_ausencia"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_detail_management_hr_leave_view_form
+msgid "paid_leave"
+msgstr "ausencia_pagada"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_detail_management_hr_leave_view_form
+msgid "unpaid_leave"
+msgstr "ausencia_no_pagada"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_detail_management_hr_leave_view_form
+msgid "unpaid_leave_hours"
+msgstr "horas_de_ausencia_no_pagada"
+

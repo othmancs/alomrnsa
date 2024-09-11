@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record forcecreate="True" id="ir_cron_check_leave" model="ir.cron">
+        <field name="name">Notification for Leave</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=2, minute=0) + relativedelta(day=1,months=+1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall"/>
+        <field name="state">code</field>
+        <field name="code">model.check_leave_monthly()</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+    <record id="email_template_for_leave_monthly_reminder" model="mail.template">
+        <field name="name">Monthly Leave Notification</field>
+        <field name="model_id" ref="model_hr_employee"/>
+        <field name="email_from">{{ctx.get('hr_id') and ctx.get('hr_id').work_email or ''}}</field>
+        <field name="email_to">{{object.work_email or ''}}</field>
+        <field name="subject">Monthly Notification for Leave</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Hello <t t-out="object.name or ''"/>,</p>
+                <p>This Month <t t-out="object.remaining_leaves"/> leaves are accumulate.</p>
+                <span>Thank you,</span><br/>
+                <span><t t-out="ctx.get('hr_id').name or ''"/></span>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id="email_template_for_leave_used" model="mail.template">
+        <field name="name">Leave Used</field>
+        <field name="model_id" ref="model_hr_leave"/>
+        <field name="email_from">{{object.employee_id.company_id.email or ''}}</field>
+        <field name="email_to">{{ctx.get('hr_id') and ctx.get('hr_id').work_email or ''}}</field>
+        <field name="subject">Notification for Leave</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Hello <t t-out="ctx.get('hr_id') and ctx.get('hr_id').name or ''"/>,</p>
+                <p>Employee <t t-out="object.employee_id.name"/> is used all allocated leaves.</p>
+                <span>Thank you,</span><br/>
+                <span><t t-out="object.employee_id.company_id.name or ''"/></span>
+            </div>
+        </field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+</odoo>

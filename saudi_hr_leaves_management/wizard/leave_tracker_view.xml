@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="leave_tracker_reports_view" model="ir.ui.view">
+        <field name="name">leave.tracker.wizard.form</field>
+        <field name="model">leave.tracker.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bithday List">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <!-- <button name="print_pdf_reports" string="Print PDF" type="object" class="oe_highlight"/> -->
+                    <button name="print_excel_reports" string="Print Excel" type="object" class="oe_highlight"/>
+                    <button class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="leave_tracker_wizard_reports" model="ir.actions.act_window">
+        <field name="name">Leave Tracker</field>
+        <field name="res_model">leave.tracker.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="leave_tracker_reports_view"/>
+    </record>
+
+    <!-- <record id="action_leave_tracker_list" model="ir.actions.report">
+        <field name="name">Leave Tracker</field>
+        <field name="model">leave.tracker.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr.report_emp_birthday_list</field>
+        <field name="report_file">saudi_hr.report_emp_birthday_list</field>
+        <field name="print_report_name">Employee Bithday List</field>
+        <field name="binding_type">report</field>
+    </record> -->
+
+</odoo>

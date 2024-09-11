@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="view_hr_loan_operation_tree" model="ir.ui.view">
+        <field name="name">hr.loan.operation.tree</field>
+        <field name="model">hr.loan.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="employee_id" widget="many2one_avatar_employee"/>
+                <field name="loan_operation_type"/>
+                <field name="effective_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_loan_operation_form" model="ir.ui.view">
+        <field name="name">hr.loan.operation.form</field>
+        <field name="model">hr.loan.operation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="confirm_loan_operation" string="Confirm" states="draft" type="object" class="oe_highlight" groups="base.group_user"/>
+                    <button name="set_to_cancel" string="Cancel" states="draft" type="object" groups="base.group_user"/>
+                    <button name="waiting_approval_loan_operation" string="Request Approval" states="confirm" type="object" class="oe_highlight" groups="hr.group_hr_user"/>
+                    <button name="approve_loan_operation" string="Approve" states="open" type="object" class="oe_highlight" groups="account.group_account_manager"/>
+                    <button name="refuse_loan_operation" string="Refuse" states="open,confirm" groups="hr.group_hr_user,account.group_account_manager"
+                                type="object"/>
+                    <button name="set_to_draft" string="Set to Draft" states="refuse" type="object" groups="base.group_user"/>
+                    <field name="accounting_info" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Employee Details">
+                            <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="loan_id" options="{'no_create': True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="department_id"  attrs="{'invisible': [('employee_id', '=', False)]}"/>
+                            <field name="branch_id" groups="saudi_hr_branch.group_company_branch"/>
+                            <field name="company_id"  attrs="{'readonly':[('state','!=','draft')]}"
+                                   options="{'no_create': True}" groups="base.group_multi_company"/>
+                        </group>
+                        <group string="Employee Loan Details" attrs="{'invisible': [('loan_id', '=', False)]}">
+                            <field name="loan_operation_type" attrs="{'readonly':[('state','!=','draft')], 'invisible': [('loan_id', '=', False)]}"/>
+                            <field name="current_loan_amount" attrs="{'invisible': [('loan_id', '=', False)]}"/>
+                            <field name="amount_to_pay" attrs="{'invisible': [('loan_id', '=', False)]}"/>
+                            <field name="operation_applied" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Skip Installment" attrs="{'invisible': ['|', ('loan_id', '=', False), ('loan_operation_type', '!=', 'skip_installment')]}">
+                        <group>
+                            <field name="skip_reason" attrs="{'required': [('loan_operation_type', '=', 'skip_installment')], 'readonly':[('state','!=','draft')]}"/>
+                            <field name="effective_date" attrs="{'required': [('loan_operation_type', '=', 'skip_installment')], 'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                         <group string="Loan Payment Details" attrs="{'invisible': [('loan_operation_type', '!=', 'loan_payment')]}">
+                            <field name="loan_payment_type" widget="radio" options="{'horizontal': true}" attrs="{'required': [('loan_operation_type', '=', 'loan_payment')], 'readonly':[('state','!=','draft')]}"/>
+                            <field name="payment_type" widget="radio" options="{'horizontal': true}" attrs="{'required': [('loan_operation_type', '=', 'loan_payment')], 'required': [('loan_payment_type', '=', 'partially')]}"/>
+                            <field name="payment_amount" attrs="{'invisible':[('loan_payment_type', '=', 'fully')],'required': [('loan_payment_type', '=', 'partially')], 'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                        <group string="Increase Loan Amount"  attrs="{'invisible': [('loan_operation_type', '!=', 'increase_amount')]}">
+                            <field name="loan_amount" attrs="{'required': [('loan_operation_type', '=', 'increase_amount')], 'readonly':[('state','!=','draft')]}"/>
+                            <field name="effective_date" attrs="{'required': [('loan_operation_type', '=', 'increase_amount')], 'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Accounting Information" attrs="{'invisible': [('accounting_info', '=', False)]}" groups="account.group_account_manager">
+                            <group>
+                                <group>
+                                    <field name="journal_id" attrs="{'readonly':[('state', '!=', 'open')], 'required':[('accounting_info', '!=', False)]}"/>
+                                    <field name="treasury_account_id" attrs="{'readonly':[('state', '!=', 'open')], 'required':[('accounting_info', '!=', False)]}" force_save="1"/>
+                                    <field name="emp_account_id" attrs="{'readonly':[('state', '!=', 'open')], 'required':[('accounting_info', '!=', False)]}" force_save="1"/>
+                                </group>
+                                <group>
+                                    <field name="analytic_distribution" attrs="{'readonly':[('state', '!=', 'open')]}" groups="analytic.group_analytic_accounting" force_save="1"/>
+                                    <field name="move_id" attrs="{'invisible':[('move_id', '=', False)]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Extra Information" groups="base.group_no_one" attrs="{'invisible': [('state', '=', 'draft')]}">
+                            <group name="extra_info" col="4">
+                                <field name="create_uid" readonly="1" attrs="{'invisible':[('create_uid','=',False)]}"/>
+                                <field name="create_date" readonly="1" attrs="{'invisible':[('create_date','=',False)]}"/>
+                                <field name="write_uid" readonly="1" attrs="{'invisible':[('write_uid','=',False)]}"/>
+                                <field name="write_date" readonly="1" attrs="{'invisible':[('write_date','=',False)]}"/>
+                                <field name="approved_by" attrs="{'invisible':[('approved_by','=',False)]}"/>
+                                <field name="approved_date" attrs="{'invisible':[('approved_date','=',False)]}"/>
+                                <field name="refused_by" attrs="{'invisible':[('refused_by','=',False)]}"/>
+                                <field name="refused_date" attrs="{'invisible':[('refused_date','=',False)]}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_loan_operation_filter" model="ir.ui.view">
+        <field name="name">hr.loan.operation.filter</field>
+        <field name="model">hr.loan.operation</field>
+        <field name="arch" type="xml">
+            <search string="Search Loan Operation">
+                <separator/>
+                <filter name="filter_approve" domain="[('state','=','draft')]" string="To Approve"/>
+                <filter domain="[('state','=','approve')]" string="Approved" name="approved"/>
+                <separator/>
+                <filter string="My Loan Operations" name="my_loan_operation_type" domain="[('employee_id.user_id','=', uid)]" help="My Loan Operations"/>
+                <separator/>
+                <filter string="My Department Loan Operations" name="filter_my_department_loan_operation" help="My Department Loans" domain="[('department_id.manager_id.user_id','=',uid)]"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="loan_operation_type"/>
+                <group expand="0" string="Group By...">
+                    <filter name="group_request" string="Request Date" context="{'group_by':'effective_date'}"/>
+                    <filter name="group_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                    <filter name="group_department" string="Department"
+                            context="{'group_by':'department_id','set_visible':True}"/>
+                    <filter name="group_status" string="Status" context="{'group_by':'state'}"/>
+                    <filter name="group_loan_operation" string="Loan Operations" context="{'group_by': 'loan_operation_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_loan_operation">
+        <field name="name">Loan Operations</field>
+        <field name="res_model">hr.loan.operation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_my_loan_operation_type':1}</field>
+    </record>
+
+    <menuitem name="Loan Operation Request" id="menu_loan_operation"
+        parent="saudi_hr_loan.menu_hr_loan" action="action_loan_operation" sequence="3"/>
+
+</odoo>

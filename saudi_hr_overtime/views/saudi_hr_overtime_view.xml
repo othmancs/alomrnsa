@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_attendance_view_inherit_hr_overtime" model="ir.ui.view">
+        <field name="name">hr.attendance.view.inherit.overtime.form</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="overtime_hours" widget="float_time"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_contract_view_form_inherit_hr_overtime" model="ir.ui.view">
+        <field name="name">hr.contract.view.inherit.overtime.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='resource_calendar_warning']" position="after">
+                <label for="calculate_overtime"/>
+                <div class="o_address_format">
+                    <field name="calculate_overtime"/>
+                    <label for="working_day_overtime_rate" attrs="{'invisible': [('calculate_overtime','!=',True)]}"/>
+                    <field name="working_day_overtime_rate" attrs="{'invisible': [('calculate_overtime','!=',True)], 'required': [('calculate_overtime','=',True)]}" class="o_address_city"/>
+                </div>
+                <label for="weekend_overtime" attrs="{'invisible': [('calculate_overtime','!=',True)]}"/>
+                <div class="o_address_format">
+                    <field name="weekend_overtime" attrs="{'invisible': [('calculate_overtime','!=',True)]}"/>
+                    <label for="weekend_overtime_rate" attrs="{'invisible': [('weekend_overtime','!=',True)]}"/>
+                    <field name="weekend_overtime_rate" attrs="{'invisible': [('weekend_overtime','!=',True)], 'required': [('weekend_overtime','=',True)]}" class="o_address_city"/>
+                </div>
+                <label for="public_holiday_overtime" attrs="{'invisible': [('calculate_overtime','!=',True)]}"/>
+                <div class="o_address_format">
+                    <field name="public_holiday_overtime" attrs="{'invisible': [('calculate_overtime','!=',True)]}"/>
+                     <label for="public_holiday_overtime_rate" attrs="{'invisible': [('public_holiday_overtime','!=',True)]}"/>
+                    <field name="public_holiday_overtime_rate" attrs="{'invisible': [('public_holiday_overtime','!=',True)], 'required': [('public_holiday_overtime','=',True)]}" class="o_address_city"/>
+                </div>
+                <field name="overtime_limit" class="oe_inline" attrs="{'invisible': [('calculate_overtime','!=',True)]}" widget="float_time"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="view_saudi_hr_employee_filter_inherited_attendance" model="ir.ui.view">
+        <field name="name">Employees</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="saudi_hr.view_saudi_hr_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter name="group_by_last_check_in" string="Last Check In" context="{'group_by': 'last_check_in:month'}" />
+                <filter name="group_by_last_check_out" string="Last Check Out" context="{'group_by': 'last_check_out:month'}" />
+            </xpath>
+        </field>
+    </record> -->
+</odoo>

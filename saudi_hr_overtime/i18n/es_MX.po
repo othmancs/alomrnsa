@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_overtime
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:38+0000\n"
+"PO-Revision-Date: 2023-02-06 08:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_overtime
+#: code:addons/hrms/saudi_hr_overtime/models/saudi_hr_overtime.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_overtime/models/saudi_hr_overtime.py:0
+#: code:addons/saudi_hr_overtime/models/saudi_hr_overtime.py:0
+#, python-format
+msgid "Add user timezone first!!"
+msgstr "¡Agregue la zona horaria del usuario primero!"
+
+#. module: saudi_hr_overtime
+#: model:ir.model,name:saudi_hr_overtime.model_hr_attendance
+msgid "Attendance"
+msgstr "Asistencia"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_attendance__duration
+msgid "Attendance duration"
+msgstr "Duración de la Asistencia"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_contract__calculate_overtime
+msgid "Calculate Overtime"
+msgstr "Calcular Horas Extra"
+
+#. module: saudi_hr_overtime
+#: model:ir.model,name:saudi_hr_overtime.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato de Empleado"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,help:saudi_hr_overtime.field_hr_contract__working_day_overtime_rate
+msgid "Normal working day overtime rate"
+msgstr "Tasa de Horas Extras en Jornada Laboral Normal"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_attendance__overtime_hours
+msgid "Overtime Hours"
+msgstr "Horas Extras"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_contract__overtime_limit
+msgid "Overtime Limit Hours"
+msgstr "Límite de Horas Extras"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_contract__public_holiday_overtime_rate
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_contract__weekend_overtime_rate
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_contract__working_day_overtime_rate
+msgid "Overtime Rate"
+msgstr "Tasa de Horas Extra"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_contract__public_holiday_overtime
+msgid "Public Holiday's Overtime"
+msgstr "Horas Extras en Días Festivos"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,help:saudi_hr_overtime.field_hr_contract__public_holiday_overtime_rate
+msgid "Public holiday's overtime rate"
+msgstr "Tasa de Horas Extras en Días Festivos"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,help:saudi_hr_overtime.field_hr_contract__weekend_overtime_rate
+msgid "Weekend overtime rate"
+msgstr "Tasa de Horas Extras en Fin de Semana"
+
+#. module: saudi_hr_overtime
+#: model:ir.model.fields,field_description:saudi_hr_overtime.field_hr_contract__weekend_overtime
+msgid "Weekend's Overtime"
+msgstr "Horas Extras en Fin de Semana"
+

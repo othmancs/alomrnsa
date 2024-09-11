@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="fpi_saudi_hr_loan" model="hr.loan">
+            <field name="name">Abdul loan</field>
+            <field name="employee_id" ref="hr.employee_fpi" />
+            <field name="start_date" eval="(DateTime.today() + relativedelta( days=15)).strftime('%Y-%m-%d')" />
+            <field name="loan_amount">5000</field>
+            <field name="emi_based_on">duration</field>
+            <field name="state">draft</field>
+            <field name="duration">5</field>
+            <field name="deduction_amount">1000</field>
+            <field name="description">Auto Loans</field>
+        </record>
+
+        <record id="al_saudi_hr_loan" model="hr.loan">
+            <field name="name">Rahul loan</field>
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="start_date" eval="(DateTime.today() + relativedelta( days=13)).strftime('%Y-%m-%d')" />
+            <field name="loan_amount">10000</field>
+            <field name="emi_based_on">amount</field>
+            <field name="deduction_amount">2000</field>
+            <field name="state">draft</field>
+            <field name="description">Personal Loans</field>
+        </record>
+
+        <record id="qdp_saudi_hr_loan" model="hr.loan">
+            <field name="name">Bilal loan</field>
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="start_date" eval="(DateTime.today() + relativedelta( days=20)).strftime('%Y-%m-%d')" />
+            <field name="loan_amount">15000</field>
+            <field name="emi_based_on">duration</field>
+            <field name="state">draft</field>
+            <field name="duration">10</field>
+            <field name="deduction_amount">1500</field>
+            <field name="description">Loans for Veterans</field>
+        </record>
+
+        <record id="jep_saudi_hr_loan" model="hr.loan">
+            <field name="name">Danial loan</field>
+            <field name="employee_id" ref="hr.employee_jep" />
+            <field name="start_date" eval="(DateTime.today() + relativedelta( days=20)).strftime('%Y-%m-%d')" />
+            <field name="loan_amount">15000</field>
+            <field name="emi_based_on">amount</field>
+            <field name="deduction_amount">1000</field>
+            <field name="state">draft</field>
+            <field name="description">Small Business Loans</field>
+        </record>
+
+        <record id="stw_saudi_hr_loan" model="hr.loan">
+            <field name="name">Fareeda loan</field>
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="start_date" eval="(DateTime.today() + relativedelta( days=20)).strftime('%Y-%m-%d')" />
+            <field name="loan_amount">15000</field>
+            <field name="emi_based_on">amount</field>
+            <field name="deduction_amount">1500</field>
+            <field name="state">draft</field>
+            <field name="description">Payday Loans</field>
+        </record>
+
+        <record id="fpi_skip_installment_loan" model="hr.skip.installment">
+            <field name="name">This Month My Financial position poor.</field>
+            <field name="employee_id" ref="hr.employee_fpi" />
+            <field name="loan_id" ref="fpi_saudi_hr_loan"/>
+            <field name="date" eval="(DateTime.today() + relativedelta( months=3)).strftime('%Y-%m-%d')" />
+            <field name="state">draft</field>
+        </record>
+
+        <record id="al_skip_installment_loan" model="hr.skip.installment">
+            <field name="name">There are overdrafts on my bank account.</field>
+            <field name="employee_id" ref="hr.employee_al" />
+            <field name="loan_id" ref="al_saudi_hr_loan"/>
+            <field name="date" eval="(DateTime.today() + relativedelta( months=2)).strftime('%Y-%m-%d')" />
+            <field name="state">draft</field>
+        </record>
+
+        <record id="qdp_skip_installment_loan" model="hr.skip.installment">
+            <field name="name">I have too many existing payday loans.</field>
+            <field name="employee_id" ref="hr.employee_qdp"/>
+            <field name="loan_id" ref="qdp_saudi_hr_loan"/>
+            <field name="date" eval="(DateTime.today() + relativedelta( months=3)).strftime('%Y-%m-%d')" />
+            <field name="state">draft</field>
+        </record>
+
+        <record id="jep_skip_installment_loan" model="hr.skip.installment">
+            <field name="name">This Month My Financial position poor.</field>
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="loan_id" ref="jep_saudi_hr_loan"/>
+            <field name="date" eval="(DateTime.today() + relativedelta( months=2)).strftime('%Y-%m-%d')" />
+            <field name="state">draft</field>
+        </record>
+
+        <record id="stw_skip_installment_loan" model="hr.skip.installment">
+            <field name="name">unable to pay installment.</field>
+            <field name="employee_id" ref="hr.employee_stw" />
+            <field name="loan_id" ref="stw_saudi_hr_loan"/>
+            <field name="date" eval="(DateTime.today() + relativedelta( months=3)).strftime('%Y-%m-%d')" />
+            <field name="state">draft</field>
+        </record>
+
+    </data>
+</odoo>

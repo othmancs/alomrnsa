@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Line manager group -->
+<!--     <record id="saudi_hr.group_line_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('hr_holidays.group_hr_holidays_user'))]"/>
+    </record>
+ -->    <!-- HOF group -->
+<!--     <record id="saudi_hr.group_hof" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('hr_holidays.group_hr_holidays_user'))]"/>
+    </record>
+ -->
+    <!-- Analytic Account Line Manager rules -->
+    <record id="account_analytic_line_manager" model="ir.rule">
+        <field name="name">Account Analytic Line Manager rule</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="domain_force">['|', ('employee_id.user_id', '=', user.id),
+            ('employee_id.parent_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('saudi_hr.group_line_manager'))]"/>
+    </record>
+
+    <!-- Analytic Account Line HOD rules -->
+    <record id="account_analytic_line_rule_hod" model="ir.rule">
+        <field name="name">Account Analytic Line HOD Rule</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="domain_force">['|', '|', '|',('employee_id.user_id', '=', user.id),
+            ('employee_id.parent_id.user_id', '=', user.id),
+            ('employee_id.coach_id.user_id', '=', user.id),
+            '|', '|', ('department_id', '=', False),
+            ('department_id.member_ids.user_id', 'in', [user.id]),
+            ('department_id.manager_id.user_id', '=', user.id)
+            ]</field>
+        <field name="groups" eval="[(4, ref('saudi_hr.group_hof'))]"/>
+    </record>
+
+    <!-- Leave Details Manager rules -->
+    <record id="leave_detail_rule_emp_line_manager" model="ir.rule">
+        <field name="name">Organization Manager rule</field>
+        <field name="model_id" ref="model_leave_detail"/>
+        <field name="domain_force">['|', '|', ('leave_id.employee_id.user_id', '=', user.id),
+            ('leave_id.employee_id.parent_id.user_id', '=', user.id), ('leave_id.message_follower_ids.partner_id', '=', user.partner_id.id)]</field>
+        <field name="groups" eval="[(4, ref('saudi_hr.group_line_manager'))]"/>
+    </record>
+
+    <!-- Leave Details HOD rules -->
+    <record id="leave_detail_rule_head_of_function" model="ir.rule">
+        <field name="name">Organization HOD Rule</field>
+        <field name="model_id" ref="model_leave_detail"/>
+        <field name="domain_force">['|', '|', '|', '|', ('leave_id.employee_id.user_id', '=', user.id),
+            ('leave_id.employee_id.parent_id.user_id', '=', user.id),
+            ('leave_id.employee_id.coach_id.user_id', '=', user.id),
+            ('leave_id.message_follower_ids.partner_id', '=', user.partner_id.id),
+            '|', '|', ('leave_id.department_id', '=', False),
+            ('leave_id.department_id.member_ids.user_id', 'in', [user.id]),
+            ('leave_id.department_id.manager_id.user_id', '=', user.id)
+            ]</field>
+        <field name="groups" eval="[(4, ref('saudi_hr.group_hof'))]"/>
+    </record>
+
+    <!-- Leave Details Officer Rule -->
+    <record id="leave_detail_rule_officer" model="ir.rule">
+        <field name="name">Leaves Officer</field>
+        <field name="model_id" ref="model_leave_detail"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('hr_holidays.group_hr_holidays_user'))]"/>
+    </record>
+
+    <!-- Leave Details Manger Rule -->
+    <record id="leave_detail_rule_manager" model="ir.rule">
+        <field name="name">Leaves Manager</field>
+        <field name="model_id" ref="model_leave_detail"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('hr_holidays.group_hr_holidays_manager'))]"/>
+    </record>
+
+    <!-- Leave Manager rules -->
+    <record id="leave_rule_emp_line_manager" model="ir.rule">
+        <field name="name">Organization Manager Rule</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="domain_force">['|', '|', ('employee_id.user_id', '=', user.id),
+            ('employee_id.parent_id.user_id', '=', user.id),
+            ('message_follower_ids.partner_id', '=', user.partner_id.id)]</field>
+        <field name="perm_read" eval="False"/>
+        <field name="groups" eval="[(4, ref('saudi_hr.group_line_manager'))]"/>
+    </record>
+
+    <!-- Leave HOD rules -->
+    <record id="leave_rule_head_of_function" model="ir.rule">
+        <field name="name">Organization HOD Rule</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="domain_force">['|', '|', '|', '|', ('employee_id.user_id', '=', user.id),
+            ('employee_id.parent_id.user_id', '=', user.id),
+            ('employee_id.coach_id.user_id', '=', user.id),
+            ('message_follower_ids.partner_id', '=', user.partner_id.id),
+            '|', '|', ('department_id', '=', False),
+            ('department_id.member_ids.user_id', 'in', [user.id]),
+            ('department_id.manager_id.user_id', '=', user.id)
+            ]</field>
+        <field name="perm_read" eval="False"/>
+        <field name="groups" eval="[(4, ref('saudi_hr.group_hof'))]"/>
+    </record>
+
+    <!-- Leave Officer rule -->
+    <record id="hr_holidays.hr_leave_rule_officer_update" model="ir.rule">
+        <field name="name">Leaves: officer: create/write/unlink own + managed employee + without department + same or managed department</field>
+        <field name="model_id" ref="model_hr_leave"/>
+        <field name="domain_force">[(1 ,'=', 1)]</field>
+        <field name="perm_read" eval="False"/>
+        <field name="groups" eval="[(4, ref('hr_holidays.group_hr_holidays_user'))]"/>
+    </record>
+
+
+    <record id="resource_leaves_manager" model="ir.rule">
+        <field name="name">Leaves Resources Manager</field>
+        <field name="model_id" ref="hr_holidays.model_resource_calendar_leaves"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('saudi_hr.group_hof')), (4, ref('saudi_hr.group_line_manager'))]"/>
+    </record>
+
+    <!-- &lt;!&ndash; Leave Manager rules &ndash;&gt; -->
+    <!-- <record id="property_rule_holidays_manager" model="ir.rule">
+        <field name="name">Leaves Manager</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('hr_holidays.group_hr_holidays_manager'))]"/>
+    </record>
+ -->
+    <!--&lt;!&ndash; Payroll officer rules &ndash;&gt; -->
+    <!-- <record id="property_rule_holidays_payroll_officer" model="ir.rule">
+        <field name="name">Leaves Payroll Officer</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="domain_force">['|','|', ('employee_id.user_id', '=', user.id), ('employee_id.department_id', '=', False), ('employee_id.department_id.manager_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('sync_hr_payroll.group_hr_payroll_user'))]"/>
+    </record> -->
+
+    <!-- &lt;!&ndash; Payroll manager rules &ndash;&gt; -->
+    <!-- <record id="property_rule_holidays_payroll_manager" model="ir.rule">
+        <field name="name">Leaves Payroll Manager</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('sync_hr_payroll.group_hr_payroll_manager'))]"/>
+    </record> -->
+
+    <!-- Leave Allocation Employee Manager rules -->
+    <record id="leave_allocation_rule_line_manager" model="ir.rule">
+        <field name="name">Allocation organization Manager Rule</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave_allocation"/>
+        <field name="domain_force">['|', '|', ('employee_id.parent_id.user_id', '=', user.id),
+            ('employee_id.coach_id.user_id', '=', user.id), ('message_follower_ids.partner_id','=',user.partner_id.id)]
+        </field>
+        <field name="groups" eval="[(4,ref('saudi_hr.group_line_manager'))]"/>
+    </record>
+
+    <!-- Leave Allocation Employee HOD rules -->
+    <record id="leave_allocation_rule_head_of_function" model="ir.rule">
+        <field name="name">HOD Rule</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave_allocation"/>
+        <field name="domain_force">['|', '|', '|', '|', ('employee_id.user_id', '=', user.id),
+            ('employee_id.parent_id.user_id', '=', user.id),
+            ('employee_id.coach_id.user_id', '=', user.id),
+            ('message_follower_ids.partner_id', '=', user.partner_id.id),
+            '|', '|', ('department_id', '=', False),
+            ('department_id.member_ids.user_id', 'in', [user.id]),
+            ('department_id.manager_id.user_id', '=', user.id)
+            ]</field>
+        <field name="perm_read" eval="False"/>
+        <field name="groups" eval="[(4,ref('saudi_hr.group_hof'))]"/>
+    </record>
+
+    <!-- &lt;!&ndash; Leave Allocation Officer rules &ndash;&gt; -->
+    <record id="hr_holidays.hr_leave_allocation_rule_officer_update" model="ir.rule">
+        <field name="name">Leaves Officer</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave_allocation"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('hr_holidays.group_hr_holidays_user'))]"/>
+    </record>
+</odoo>

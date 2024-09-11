@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_employee_tree_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.tree</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="remaining_leaves" string="Remaining Allocated Timeoff" optional="show"/>
+                <!-- <field name="leaves_count"/>
+                <field name="allocation_count"/>
+                <field name="allocation_used_count"/> -->
+                <field name="allocation_used_display" string="Used Timeoff" optional="show"/>
+                <field name="allocation_display" string="Total Allocation Timeoff" optional="show"/>
+                <!-- <field name="current_year_allocation_count"/>
+                <field name="current_year_allocation_display"/>
+                <field name="current_year_remaining_leaves"/>
+                <field name="current_year_allocation_used_display"/> -->
+            </field>
+        </field>
+    </record>
+
+    <!-- HR holiday Leave Type -->
+    <record model="ir.ui.view" id="edit_holiday_status_form_inherit">
+        <field name="name">hr.leave.type.form.inherit</field>
+        <field name="model">hr.leave.type</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='request_unit']" position="before">
+                <group>
+                    <field name="is_annual_leave"/>
+                    <field name="one_time_usable"/>
+                    <field name="is_deduction"/>
+                    <field name="skip"/>
+                </group>
+            </xpath>
+            <!-- <field name="validity_start" position="attributes">
+                <attribute name="attrs">{'required': [('is_annual_leave', '=', True)]}</attribute>
+            </field>
+            <field name="validity_stop" position="attributes">
+                <attribute name="attrs">{'required': [('is_annual_leave', '=', True)]}</attribute>
+            </field> -->
+            <xpath expr="//group[@name='leave_validation']" poition="after">
+                <group name="notes" string="Notes" colspan="2">
+                    <field name="notes"/>
+                </group>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook attrs="{'invisible': [('is_deduction', '=', False)]}">
+                    <page string="Deduction">
+                        <group>
+                            <group>
+                                <field name="deduction_by" attrs="{'invisible': [('is_deduction', '=', False)],
+                                'required': [('is_deduction', '=', True)]}"/>
+                            </group>
+                        </group>
+                        <separater string="Rules" name="rules"/>
+                            <field name="rule_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="limit_from"/>
+                                    <field name="limit_to"/>
+                                    <field name="limit_per"/>
+                                    <field name="previous_line_id" invisible="1"/>
+                                    <field name="next_line_id" invisible="1"/>
+                                    <field name="leave_type_id" invisible="1"/>
+                                </tree>
+                            </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_leave_rule_line_form" model="ir.ui.view">
+        <field name="name">hr.leave.rule.line.form</field>
+        <field name="model">hr.leave.rule.line</field>
+        <field name="arch" type="xml">
+            <form string="Leave Rules">
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="limit_per"/>
+                        <field name="limit_from"/>
+                        <field name="limit_to"/>
+                        <field name="leave_type_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="saudi_hr_leaves_detail_management_hr_leave_view_form" model="ir.ui.view">
+        <field name="name">hr.leave.view.form.manager</field>
+        <field name="model">hr.leave</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+        <field name="priority" eval="32"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='title']" position="before">
+                <div class="alert alert-warning" role="alert" attrs="{'invisible': [('notes' ,'=', False)]}">
+                    <field name="notes" readonly="1"/>
+                </div>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="send_by_email" type="object" string='Send By Email' class="btn-primary" />
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page name="leave_details" string="Details" groups="hr.group_hr_manager">
+                        <field name="leave_details" nolabel="1">
+                            <tree create="0" edit="0" delete="0">
+                                <field name="name"/>
+                                <field name="already_taken" sum="already_taken"/>
+                                <field name="already_taken_month" sum="already_taken_month"/>
+                                <field name="paid_leave" sum="paid_leave"/>
+                                <field name="unpaid_leave" sum="unpaid_leave"/>
+                                <field name="leave_hours" sum="leave_hours"/>
+                                <field name="unpaid_leave_hours" sum="unpaid_leave_hours"/>
+                                <field name="total_leave" invisible="1"/>
+                                <field name="leave_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

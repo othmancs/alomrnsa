@@ -1,0 +1,16 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="hr_leave_allocation_view_form_manager_inherit">
+        <field name="name">hr.leave.allocation.manager.form.inherit</field>
+        <field name="model">hr.leave.allocation</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_form_manager"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_approve']" position="attributes">
+                <attribute name="groups" add="saudi_hr.group_line_manager" separator=','/>
+            </xpath>
+            <xpath expr="//button[@name='action_refuse']" position="attributes">
+                <attribute name="groups" add="saudi_hr.group_line_manager" separator=','/>
+            </xpath>
+        </field>
+    </record>
+</odoo> -->

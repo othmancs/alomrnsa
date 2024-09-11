@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="hr_contract.hr_contract_al" model="hr.contract">
+            <field name="calculate_overtime">True</field>
+        </record>
+
+        <record id="hr_contract.hr_contract_fpi" model="hr.contract">
+            <field name="calculate_overtime">True</field>
+        </record>
+
+        <record id="hr_contract.hr_contract_qdp" model="hr.contract">
+            <field name="calculate_overtime">True</field>
+        </record>
+
+        <record id="saudi_hr_contract.jep_hr_contract" model="hr.contract">
+            <field name="calculate_overtime">True</field>
+        </record>
+
+        <record id="hr_contract.hr_contract_stw" model="hr.contract">
+            <field name="calculate_overtime">True</field>
+        </record>
+    </data>
+</odoo>

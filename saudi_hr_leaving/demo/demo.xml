@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="saudi_hr_leaving_one" model="hr.employee.leaving">
+            <field name="employee_id" ref="hr.employee_fme"/>
+            <field name="reason">You are looking for better career prospects, professional growth and work opportunities.</field>
+            <field name="description">I am leaving because I want to make a career change from my current industry to a different one.</field>
+            <field name="notice_start_date" eval="(DateTime.today() + relativedelta(days=1))"/>
+            <field name="notice_end_date" eval="(DateTime.today() + relativedelta(months=1))"/>
+        </record>
+
+        <record id="saudi_hr_leaving_two" model="hr.employee.leaving">
+            <field name="employee_id" ref="hr.employee_jth"/>
+            <field name="reason">You want a change in career direction.</field>
+            <field name="description">I feel like I’ve developed as much as I can in my current role and am now seeking new opportunities for career growth.</field>
+            <field name="notice_start_date" eval="(DateTime.today() + relativedelta(days=10))"/>
+            <field name="notice_end_date" eval="(DateTime.today() + relativedelta(months=2))"/>
+        </record>
+    </data>
+</odoo>

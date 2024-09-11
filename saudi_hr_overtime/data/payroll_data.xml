@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="work_entry_type_normal_working_days_overtime" model="hr.work.entry.type">
+            <field name="name">Normal Working Days Overtime</field>
+            <field name="code">WORKINGDAY_OVERTIME</field>
+            <field name="is_leave">False</field>
+            <field name="color">5</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+
+        <record id="work_entry_type_weekend_overtime" model="hr.work.entry.type">
+            <field name="name">Weekend Overtime</field>
+            <field name="code">WEEKEND_OVERTIME</field>
+            <field name="is_leave">False</field>
+            <field name="color">5</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+
+        <record id="work_entry_type_public_holiday_overtime" model="hr.work.entry.type">
+            <field name="name">Public Holidays Overtime</field>
+            <field name="code">HOLIDAY_OVERTIME</field>
+            <field name="is_leave">False</field>
+            <field name="color">5</field>
+            <field name="round_days">HALF</field>
+            <field name="round_days_type">DOWN</field>
+        </record>
+
+        <!-- Overtime Allowance -->
+        <record id="hr_salary_rule_overtime_allowance" model="hr.salary.rule">
+            <field name="name">Normal Working Day Overtime Allowance</field>
+            <field name="category_id" ref="sync_hr_payroll.ALW"/>
+            <field name="code">Overtime</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.WORKINGDAY_OVERTIME and worked_days.WORKINGDAY_OVERTIME.number_of_hours > 0)</field>
+            <field name="sequence" eval="30"/>
+            <field name="amount_select">code</field>
+            <field name="struct_id" ref="hr_payroll_base.payroll_base_structure_002"/>
+            <field name="amount_python_compute">result = (((contract.wage) / 30) / contract.resource_calendar_id.hours_per_day * (worked_days.WORKINGDAY_OVERTIME and worked_days.WORKINGDAY_OVERTIME.number_of_hours or 1)) * (contract.working_day_overtime_rate)</field>
+        </record>
+
+        <!-- Weekend Overtime -->
+        <record id="hr_salary_rule_weekend_overtime_allowance" model="hr.salary.rule">
+            <field name="name">Weekend Day Overtime Allowance</field>
+            <field name="category_id" ref="sync_hr_payroll.ALW"/>
+            <field name="code">Weekend Overtime</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.WEEKEND_OVERTIME and worked_days.WEEKEND_OVERTIME.number_of_hours > 0) and contract.weekend_overtime</field>
+            <field name="sequence" eval="32"/>
+            <field name="amount_select">code</field>
+            <field name="struct_id" ref="hr_payroll_base.payroll_base_structure_002"/>
+            <field name="amount_python_compute">result = (((contract.wage) / 30) / contract.resource_calendar_id.hours_per_day * (worked_days.WEEKEND_OVERTIME and worked_days.WEEKEND_OVERTIME.number_of_hours or 1)) * (contract.weekend_overtime_rate)</field>
+        </record>
+
+        <!-- Public Holiday Overtime -->
+        <record id="hr_salary_rule_public_holiday_overtime_allowance" model="hr.salary.rule">
+            <field name="name">Public Holiday Overtime Allowance</field>
+            <field name="category_id" ref="sync_hr_payroll.ALW"/>
+            <field name="code">Public Holiday Overtime</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = (worked_days.HOLIDAY_OVERTIME and worked_days.HOLIDAY_OVERTIME.number_of_hours > 0) and contract.public_holiday_overtime</field>
+            <field name="sequence" eval="32"/>
+            <field name="amount_select">code</field>
+            <field name="struct_id" ref="hr_payroll_base.payroll_base_structure_002"/>
+            <field name="amount_python_compute">result = (((contract.wage) / 30) / contract.resource_calendar_id.hours_per_day * (worked_days.HOLIDAY_OVERTIME and worked_days.HOLIDAY_OVERTIME.number_of_hours or 1)) * (contract.public_holiday_overtime_rate)</field>
+        </record>
+    </data>
+</odoo>

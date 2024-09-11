@@ -1,0 +1,1163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_loan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-25 15:50+0000\n"
+"PO-Revision-Date: 2024-08-25 15:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid "%s has not any running loan request."
+msgstr "%s no tiene ninguna solicitud de préstamo activa."
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__move_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__move_id
+msgid "Accounting Entry"
+msgstr "Asiento Contable"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__accounting_info
+msgid "Accounting Info"
+msgstr "Información de Contabilidad"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Accounting Information"
+msgstr "Información de Contabilidad"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_needaction
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_needaction
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.res_config_eos_form_view
+msgid "Allow employees to create their own loan."
+msgstr "Permitir a los empleados crear su propio préstamo."
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__amount
+msgid "Amount"
+msgstr "Monto"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__amount_paid
+msgid "Amount Paid"
+msgstr "Monto Pagado"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__amount_to_pay
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__amount_to_pay
+msgid "Amount to Pay"
+msgstr "Monto a Pagar"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__analytic_distribution
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__analytic_distribution
+msgid "Analytic"
+msgstr ""
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__analytic_distribution_search
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__analytic_distribution_search
+msgid "Analytic Distribution Search"
+msgstr ""
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__analytic_precision
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__analytic_precision
+msgid "Analytic Precision"
+msgstr ""
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_form
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__state__approve
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__state__approve
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_skip_installment__state__approve
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__approved_by
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__approved_by
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__approved_by
+msgid "Approved by"
+msgstr "Aprobado por"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__approved_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__approved_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__approved_date
+msgid "Approved on"
+msgstr "Aprobado en"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_attachment_count
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_attachment_count
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Archivos Adjuntos"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__payment_type__by_account
+msgid "By Account"
+msgstr "Por Cuenta"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__emi_based_on__amount
+msgid "By Amount"
+msgstr "Por Monto"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__emi_based_on__duration
+msgid "By Duration"
+msgstr "Por Duración"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__payment_type__by_payslip
+msgid "By Payslip"
+msgstr "Por Nómina"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Calculate"
+msgstr "Calcular"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_employee_loan_line__state__cancel
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.employee_loan_freeze_form_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__state__cancel
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__state__cancel
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_skip_installment__state__cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.res_config_eos_form_view
+msgid "Clearance Mandatory for EOS"
+msgstr "Liquidación Obligatoria para EOS"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.actions.act_window,help:saudi_hr_loan.action_employee_loan
+msgid "Click to define a new loan."
+msgstr "Haga clic para definir un nuevo préstamo."
+
+#. module: saudi_hr_loan
+#: model_terms:ir.actions.act_window,help:saudi_hr_loan.action_skip_installment
+msgid "Click to define a new request to skip installment."
+msgstr "Haga clic para definir una nueva solicitud para omitir la cuota"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__company_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__company_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__company_id
+msgid "Company"
+msgstr "Compañia"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__state__confirm
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__state__confirm
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_skip_installment__state__confirm
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__create_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__create_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__create_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__create_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__create_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__current_loan_amount
+msgid "Current Loan Amount"
+msgstr "Monto de préstamo actual"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Dates"
+msgstr "Fechas"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__deduction_amount
+msgid "Deduction Amount"
+msgstr "Importe de la Deducción"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__department_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__department_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Department"
+msgstr "Departamento"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__display_name
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__display_name
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__display_name
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__display_name
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__display_name
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__state__done
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__state__done
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Done"
+msgstr "Hecho"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__state__draft
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__state__draft
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_skip_installment__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid ""
+"During this month %s has already request for increase amount so kindly check"
+" loan operation request!!"
+msgstr ""
+"Durante este mes, %s ya ha solicitado un aumento del monto, así que por "
+"favor, revise la solicitud de operación de préstamo."
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid ""
+"During this month %s has already request for loan payment so kindly check "
+"loan operation request!!"
+msgstr ""
+"Durante este mes, %s ya ha solicitado el pago del préstamo, así que por "
+"favor revise la solicitud de operación del préstamo!"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid ""
+"During this month %s has already request for skip installment so kindly "
+"check loan operation request!!"
+msgstr ""
+"Durante este mes, %s ya ha solicitado la omisión de la cuota, así que por "
+"favor consulte la solicitud de operación de préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__emi_based_on
+msgid "EMI based on"
+msgstr "EMI basado en"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__operation_applied
+msgid "Effect Applied on Loan?"
+msgstr "¿Efecto Aplicado Sobre el Préstamo?"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__effective_date
+msgid "Effective Date"
+msgstr "Fecha de Entrada en Vigor"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_hr_employee
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__employee_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__employee_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Employee Details"
+msgstr "Detalles del Empleado"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_hr_loan
+#: model:ir.ui.menu,name:saudi_hr_loan.menu_employee_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_tree
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_tree
+msgid "Employee Loan"
+msgstr "Préstamo para Empleado"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__emp_account_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__emp_account_id
+msgid "Employee Loan Account"
+msgstr "Cuenta de Préstamo de Empleado"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Employee Loan Details"
+msgstr "Detalles de Préstamo para el Empleado"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_hr_skip_installment
+msgid "Employee Loan Skip Installment"
+msgstr "Omitir Cuota de Préstamo para Empleados"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_res_config_settings__group_employee_can_request_loan
+#: model:res.groups,name:saudi_hr_loan.group_employee_can_request_loan
+msgid "Employee can Request Loan"
+msgstr "El Empleado Puede Solicitar Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__end_date
+msgid "End Date"
+msgstr "Fecha de Finalización"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_form
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_follower_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_follower_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_partner_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_partner_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Socios)"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__loan_state__freeze
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Freeze"
+msgstr "Congelar"
+
+#. module: saudi_hr_loan
+#: model:ir.actions.act_window,name:saudi_hr_loan.action_employee_loan_freeze
+#: model:ir.model,name:saudi_hr_loan.model_freeze_employee_loan
+msgid "Freeze Employee Loan"
+msgstr "Congelar Préstamo de Empleado"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__loan_payment_type__fully
+msgid "Fully Payment"
+msgstr "Pago Total"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__has_message
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__has_message
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__id
+msgid "ID"
+msgstr ""
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan__message_needaction
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan_operation__message_needaction
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_skip_installment__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan__message_has_error
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan__message_has_sms_error
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan_operation__message_has_error
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan_operation__message_has_sms_error
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_skip_installment__message_has_error
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_skip_installment__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__increase_amount_count
+msgid "Increase Amount Count"
+msgstr "Aumentar la Cantidad de Recuento"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__loan_amount
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__loan_operation_type__increase_amount
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Increase Loan Amount"
+msgstr "Aumentar el Monto del Préstamo"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid "Increase Loan Amount Must be Greater than 0!!"
+msgstr "¡El Aumento de monto de préstamo debe ser mayor que 0!"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__amount
+msgid "Installment Amount"
+msgstr "Importe de la Cuota"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_installment_line
+msgid "Installment Line"
+msgstr "Línea de Cuotas"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__installment_lines
+msgid "Installments"
+msgstr "Cuotas"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Installments Schedule"
+msgstr "Cronograma de Cuotas"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_is_follower
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_is_follower
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__is_loan_freeze
+msgid "Is Loan Freeze"
+msgstr "Está congelado el préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__journal_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan____last_update
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line____last_update
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan____last_update
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation____last_update
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment____last_update
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__write_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__write_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__write_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__write_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__write_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: saudi_hr_loan
+#: model:ir.actions.act_window,name:saudi_hr_loan.action_employee_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__loan_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__loan_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__loan_id
+msgid "Loan"
+msgstr "Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__loan_type__salary
+msgid "Loan Against Salary"
+msgstr "Préstamo Contra Salario"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__loan_type__service
+msgid "Loan Against Service"
+msgstr "Préstamo Contra Servicio"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__loan_amount
+msgid "Loan Amount"
+msgstr "Monto del Préstamo"
+
+#. module: saudi_hr_loan
+#: model:hr.salary.rule,name:saudi_hr_loan.hr_salary_rule_loan
+msgid "Loan Deduction"
+msgstr "Deducción de préstamo"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Loan Details"
+msgstr "Detalles del Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__loan_lines
+msgid "Loan Line"
+msgstr "Línea de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_hr_loan_operation
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__loan_operation_ids
+msgid "Loan Operation"
+msgstr "Operación de Préstamo"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#: model:ir.ui.menu,name:saudi_hr_loan.menu_loan_operation
+#, python-format
+msgid "Loan Operation Request"
+msgstr "Solicitud de Operación de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__loan_operation_type
+msgid "Loan Operation Type"
+msgstr "Tipo de Operación de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.actions.act_window,name:saudi_hr_loan.action_loan_operation
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Loan Operations"
+msgstr "Operaciones de Préstamos"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__loan_operation_type__loan_payment
+msgid "Loan Payment"
+msgstr "Pago de Préstamo"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Loan Payment Details"
+msgstr "Detalles del Pago del Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__due_date
+msgid "Loan Payment End Date"
+msgstr "Fecha de Finalización del Pago del Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__start_date
+msgid "Loan Payment Start Date"
+msgstr "Fecha de Inicio del Pago del Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__loan_payment_type
+msgid "Loan Payment Type"
+msgstr "Tipo de Pago de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_hr_employee_loan_line
+msgid "Loan Pre-Installment Line"
+msgstr "Línea de Precuota de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__loan_id
+msgid "Loan Ref."
+msgstr "Ref. de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__request_date
+msgid "Loan Request Date"
+msgstr "Fecha de Solicitud de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__loan_next_schedule_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_payslip__loan_schedule_id
+msgid "Loan Schedule"
+msgstr "Programa de Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__loan_state
+msgid "Loan Status"
+msgstr "Estado del Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__loan_type
+msgid "Loan Type"
+msgstr "Tipo de Préstamo"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#, python-format
+msgid "Loan payment start date must be greater or equal to loan request date."
+msgstr ""
+"La fecha de inicio del pago del préstamo debe ser mayor o igual que la fecha"
+" de solicitud."
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee__loan_ids
+#: model:ir.ui.menu,name:saudi_hr_loan.menu_hr_loan
+msgid "Loans"
+msgstr "Préstamos"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_main_attachment_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_main_attachment_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_has_error
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_has_error
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensajes"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "My Department Loan Operations"
+msgstr "Operación de Préstamo de Mi Departamento"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "My Department Loans"
+msgstr "Préstamos de mi Departamento"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "My Loan Operations"
+msgstr "Mis Operación de Préstamo"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+msgid "My Loans"
+msgstr "Mis Préstamos"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid "New"
+msgstr "Nuevo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_needaction_counter
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_needaction_counter
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_has_error_counter
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_has_error_counter
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de Errores"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan__message_needaction_counter
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan_operation__message_needaction_counter
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_skip_installment__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan__message_has_error_counter
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan_operation__message_has_error_counter
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_skip_installment__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__branch_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__branch_id
+msgid "Office"
+msgstr "Oficina"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.employee_loan_freeze_form_view
+msgid "Ok"
+msgstr ""
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__operation_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__operation_id
+msgid "Operation"
+msgstr "Operación"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Operation Request"
+msgstr "Solicitud de Operación"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_employee_loan_line__state__paid
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Paid Installments"
+msgstr "Cuotas Pagadas"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__loan_payment_type__partially
+msgid "Partially Payment"
+msgstr "Pago Parcial"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid "Pay Loan Amount Must be Greater than 0!!"
+msgstr "¡El  pago de monto del préstamo debe ser mayor que 0!"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__pay_loan_count
+msgid "Pay Loan Count"
+msgstr "Recuento de pago de préstamos"
+
+#. module: saudi_hr_loan
+#: model:ir.model,name:saudi_hr_loan.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de Pago"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__payment_amount
+msgid "Payment Amount"
+msgstr "Monto del Pago"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__date
+msgid "Payment Date"
+msgstr "Fecha de Pago"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__duration
+msgid "Payment Duration(Months)"
+msgstr "Duración del Pago(meses)"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__payment_type
+msgid "Payment Type"
+msgstr "Tipo de Pago"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid ""
+"Payment amount should be less then loan amount to pay in partially payment!"
+msgstr ""
+"¡El monto del pago debe ser menor que el monto del préstamo para pagar "
+"parcialmente!"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid "Payment amount should be less then loan amount to pay!"
+msgstr "¡El monto del pago debe ser menor que el monto del préstamo a pagar!"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_installment_line__payslip_id
+msgid "Payslip"
+msgstr "Nómina"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__payslip_id
+msgid "Payslip Ref."
+msgstr "Ref. de Nómina"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_employee_loan_line__state__draft
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__percentage_of_gross
+msgid "Percentage of Gross"
+msgstr "Porcentaje del Bruto"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_skip_installment.py:0
+#, python-format
+msgid "Please Cancel Your Pay loan Request"
+msgstr "Por Favor Cancela tu Solicitud de Pago de Préstamo"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#: code:addons/saudi_hr_loan/models/hr_skip_installment.py:0
+#, python-format
+msgid "Please Unfreeze Your Loan."
+msgstr "Por Favor, Descongele su Préstamo."
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_payroll.py:0
+#, python-format
+msgid "Please enter Employee contract first."
+msgstr "Introduzca Primero el Contrato de Empleado."
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#, python-format
+msgid "Please enter proper value for Deduction Amount"
+msgstr "Ingrese el valor adecuado para el monto de la deducción"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#, python-format
+msgid "Please enter proper value for Loan Amount & Loan Interest"
+msgstr ""
+"Ingrese el valor adecuado para el Monto del Préstamo y el Interés del "
+"Préstamo"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#, python-format
+msgid "Please enter proper value for Payment Duration"
+msgstr "Ingrese el Valor Adecuado para la Duración del Pago"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__description
+msgid "Purpose For Loan"
+msgstr "Propósito del Préstamo"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__skip_reason
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__name
+msgid "Reason to Skip"
+msgstr "Motivo para Saltar"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_skip_installment.py:0
+#, python-format
+msgid "Record already exist for this month!"
+msgstr "¡Ya existe registro para este mes!"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__name
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_form
+msgid "Refuse"
+msgstr "Rechazar"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__state__refuse
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__state__refuse
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_skip_installment__state__refuse
+msgid "Refused"
+msgstr "Rechazado"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__refused_by
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__refused_by
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__refused_by
+msgid "Refused by"
+msgstr "Rechazado por"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__refused_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__refused_date
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__refused_date
+msgid "Refused on"
+msgstr "Rechazado el"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Request Approval"
+msgstr ""
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Request Date"
+msgstr "Fecha de Solicitud"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_skip_installment_form
+msgid "Reset to Draft"
+msgstr "Restablecer a Borrador"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__message_has_sms_error
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__message_has_sms_error
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega de SMS"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+msgid "Search Loan"
+msgstr "Buscar Préstamo"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Search Loan Operation"
+msgstr "Buscar Operación de Préstamo"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Set to Draft"
+msgstr "Establecer como Borrador"
+
+#. module: saudi_hr_loan
+#: model:ir.actions.act_window,name:saudi_hr_loan.action_skip_installment
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__loan_operation_type__skip_installment
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_form
+msgid "Skip Installment"
+msgstr "Omitir Cuota"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__skip_installment_count
+msgid "Skip Installment Count"
+msgstr "Omitir Recuento de Cuotas"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_employee_loan_line__state__skip
+msgid "Skipped"
+msgstr "Omitido"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_freeze_employee_loan__start_date
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__state
+msgid "State"
+msgstr "Estado"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_employee_loan_line__state
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__state
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "Status"
+msgstr "Estatus"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid ""
+"There is no any installment schedule are available or already another "
+"operation performed in the installment Schedule."
+msgstr ""
+"No hay ningún cronograma de cuotas disponible o ya se realizó otra operación"
+" en el Cronograma de cuotas."
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#, python-format
+msgid "This employee loan is already in Process."
+msgstr "Este préstamo del empleado ya está en proceso."
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_filter
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_operation_filter
+msgid "To Approve"
+msgstr "Para Aprobar"
+
+#. module: saudi_hr_loan
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Total"
+msgstr ""
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__treasury_account_id
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__treasury_account_id
+msgid "Treasury Account"
+msgstr "Cuenta de Tesorería"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__loan_state__unfreeze
+#: model_terms:ir.ui.view,arch_db:saudi_hr_loan.view_hr_loan_form
+msgid "Unfreeze"
+msgstr "Descongelar"
+
+#. module: saudi_hr_loan
+#: model:ir.actions.server,name:saudi_hr_loan.employee_loan_unfreeze_scheduler_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_loan.employee_loan_unfreeze_scheduler
+msgid "Unfreeze Employee Loan"
+msgstr "Descongelar Préstamo del Empleado"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan__state__open
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_loan_operation__state__open
+#: model:ir.model.fields.selection,name:saudi_hr_loan.selection__hr_skip_installment__state__open
+msgid "Waiting Approval"
+msgstr "Esperando Aprovación"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan__website_message_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_loan_operation__website_message_ids
+#: model:ir.model.fields,field_description:saudi_hr_loan.field_hr_skip_installment__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: saudi_hr_loan
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan__website_message_ids
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_loan_operation__website_message_ids
+#: model:ir.model.fields,help:saudi_hr_loan.field_hr_skip_installment__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#, python-format
+msgid "You can not refuse a loan having any installment!"
+msgstr "¡No se puede rechazar un préstamo que tenga cuotas!"
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan.py:0
+#, python-format
+msgid "You cannot delete a loan which is in %s state."
+msgstr "No puede eliminar un préstamo que se encuentra en estado %s."
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_loan_operation.py:0
+#, python-format
+msgid "You cannot delete a request to Loan Operation which is in %s state."
+msgstr ""
+"No se puede eliminar una solicitud de Operación de Préstamo que se encuentra"
+" en estado %s."
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_skip_installment.py:0
+#, python-format
+msgid "You cannot delete a request to skip installment which is in %s state."
+msgstr ""
+"No puede eliminar una solicitud para omitir la cuota que se encuentra en "
+"estado %s."
+
+#. module: saudi_hr_loan
+#. odoo-python
+#: code:addons/saudi_hr_loan/models/hr_skip_installment.py:0
+#, python-format
+msgid "You should approve related loan first"
+msgstr "Primero debe aprobar el préstamo relacionado"

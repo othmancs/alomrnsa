@@ -1,0 +1,502 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* saudi_hr_leaves_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-04 12:34+0000\n"
+"PO-Revision-Date: 2019-01-04 12:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_allocation.py:31
+#, python-format
+msgid "%s is already assign or used by %s."
+msgstr "تم تعيين٪ s بالفعل أو استخدامها بواسطة٪ s."
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_type.py:22
+#, python-format
+msgid "'Limit To' should be greater than 'Limit From'!"
+msgstr "يجب أن يكون" الحد إلى "أكبر من" الحد من "!"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip_worked_days__absence_hours
+msgid "Absence Hour(s)"
+msgstr "غياب ساعة (ساعات)"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__skip
+msgid "Allow to Skip"
+msgstr "السماح للتخطي"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,help:saudi_hr_leaves_management.field_hr_leave_type__skip
+msgid "Allow to Skip Public Holidays"
+msgstr "السماح للتخطي أيام العطل الرسمية"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__already_taken
+msgid "Already Taken"
+msgstr "مأخوذة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__already_taken_month
+msgid "Already Taken in current Month"
+msgstr "اتخذت بالفعل في الشهر الحالي"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__is_annual_leave
+msgid "Annual Leave"
+msgstr "اجازة سنويه"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip__bank_account_id
+msgid "Bank Account Number"
+msgstr "رقم الحساب المصرفي"
+
+#. module: saudi_hr_leaves_management
+#: selection:hr.holidays.public,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: saudi_hr_leaves_management
+#: selection:hr.holidays.public,state:0
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Close"
+msgstr "قريب"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__company_id
+msgid "Company"
+msgstr "المؤسسة"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__create_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__create_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__create_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__create_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: saudi_hr_leaves_management
+#: selection:hr.leave.type,deduction_by:0
+msgid "Days"
+msgstr "أيام"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.edit_holiday_status_form_inherit
+msgid "Deduction"
+msgstr "المستقطع"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__deduction_by
+msgid "Deduction By"
+msgstr "خصم من قبل"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.saudi_hr_leaves_management_hr_leave_view_form
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__display_name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__display_name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__display_name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: saudi_hr_leaves_management
+#: selection:hr.holidays.public,state:0
+msgid "Draft"
+msgstr "مشروع"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,help:saudi_hr_leaves_management.field_hr_payslip__bank_account_id
+msgid "Employee bank salary account"
+msgstr "الحساب البنكي لراتب الموظف"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__end_date
+msgid "End Date"
+msgstr "تاريخ الإنتهاء"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Group By..."
+msgstr "تجميع حسب.."
+
+#. module: saudi_hr_leaves_management
+#: model:hr.leave.type,name:saudi_hr_leaves_management.holiday_status_hajj
+msgid "Hajj Leave"
+msgstr "إجازة الحج"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__leave_id
+msgid "Holiday"
+msgstr "يوم الاجازة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__holidays_id
+msgid "Holiday Calendar Year"
+msgstr "عطلة التقويم السنة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__line_ids
+msgid "Holiday Dates"
+msgstr "تواريخ العطلات"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__id
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__id
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__id
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public____last_update
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line____last_update
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line____last_update
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__write_uid
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__write_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__write_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__write_date
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave
+msgid "Leave"
+msgstr "مغادرة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__is_deduction
+msgid "Leave Deduction"
+msgstr "اترك الاستقطاع"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_leave_detail
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave__leave_details
+msgid "Leave Details"
+msgstr "اترك التفاصيل"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.hr_leave_rule_line_form
+msgid "Leave Rules"
+msgstr "اترك القواعد"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave_type
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__leave_type_id
+msgid "Leave Type"
+msgstr "نوع الاجازة"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_payroll.py:208
+#, python-format
+msgid "Leave Working Days paid at 100%"
+msgstr "ترك أيام العمل المدفوعة بنسبة 100 ٪"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_allocation.py:18
+#, python-format
+msgid "Leave request must be in Draft state (\"To Submit\") in order to confirm it."
+msgstr "يجب أن يكون طلب الإجازة في حالة المسودة (\ "To Submit \") لتأكيدها."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave_allocation
+msgid "Leaves Allocation"
+msgstr "يترك التخصيص"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.salary.rule,name:saudi_hr_leaves_management.hr_salary_rule_leave_deduction
+msgid "Leaves Deduction"
+msgstr "يترك الخصم"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_leave_rule_line
+msgid "Leaves Rules Line"
+msgstr "يترك القواعد الخط"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__limit_from
+msgid "Limit From"
+msgstr "الحد من"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__limit_to
+msgid "Limit To"
+msgstr "الحد الى"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__limit_per
+msgid "Limit(%)"
+msgstr "الحد (٪)"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.leave.type,name:saudi_hr_leaves_management.holiday_status_marriage
+msgid "Marriage Leave"
+msgstr "إجازة زواج"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.leave.type,name:saudi_hr_leaves_management.holiday_status_maternity
+msgid "Maternity Leave"
+msgstr "إجازة الأمومة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__period_id
+msgid "Month"
+msgstr "الشهر"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__name
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_rule_line__name
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Name"
+msgstr "الاسم"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip__first_month_days
+msgid "No of day(s)"
+msgstr "لا أيام)"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_payroll.py:221
+#, python-format
+msgid "Normal Working Days paid at 100%"
+msgstr "أيام العمل العادية المدفوعة بنسبة 100 ٪"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__one_time_usable
+msgid "One Time Used"
+msgstr "مرة واحدة مستعملة"
+
+#. module: saudi_hr_leaves_management
+#: selection:hr.holidays.public,state:0
+msgid "Open"
+msgstr "فتح"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__paid_leave
+msgid "Paid Leave"
+msgstr "إجازة مدفوعة الأجر"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__leave_hours
+msgid "Paid Leave Hours"
+msgstr "ساعات الإجازات المدفوعة"
+
+#. module: saudi_hr_leaves_management
+#: model:hr.leave.type,name:saudi_hr_leaves_management.holiday_status_paternity
+msgid "Paternity Leave"
+msgstr "إجازة الأبوة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_payslip
+msgid "Pay Slip"
+msgstr "ظرف المرتب"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip__payment_days
+msgid "Payment Day(s)"
+msgstr "يوم (أيام) الدفع"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr "دفعات ظرف المرتب"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_payslip_worked_days
+msgid "Payslip Worked Days"
+msgstr "ايام عمل قسيمه الدفع "
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_leave.py:94
+#, python-format
+msgid "Please define public year!"
+msgstr "يرجى تحديد العام العام!"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_payroll.py:47
+#, python-format
+msgid "Please enter 'Joining Date' of Employee first!"
+msgstr "الرجاء إدخال "تاريخ التسجيل" للموظف أولاً!"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_resource_calendar_leaves__public_line_id
+msgid "Public Holiday"
+msgstr "عطلة رسمية"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.actions.act_window,name:saudi_hr_leaves_management.open_public_holidays_view
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_holidays_public
+#: model:ir.ui.menu,name:saudi_hr_leaves_management.menu_public_holidays_view
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holiday_line_tree
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_tree
+msgid "Public Holidays"
+msgstr "العطل"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_hr_holidays_public_line
+msgid "Public Holidays Lines"
+msgstr "خطوط العطل"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_public_holidays_form
+msgid "Reset to Draft"
+msgstr "إعادة التعيين لمسودة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__resource_ids
+msgid "Resource"
+msgstr "الكائن"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_resource_calendar_leaves
+msgid "Resource Leaves Detail"
+msgstr "الموارد يترك التفاصيل"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model,name:saudi_hr_leaves_management.model_resource_mixin
+msgid "Resource Mixin"
+msgstr "مزيج الموارد"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_leave_type__rule_ids
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.edit_holiday_status_form_inherit
+msgid "Rules"
+msgstr "القواعد"
+
+#. module: saudi_hr_leaves_management
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Search Leave"
+msgstr "بحث الاجازة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip_run__is_verify
+msgid "Skip Confirmation"
+msgstr "تخطي التأكيد"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public_line__start_date
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__state
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Status"
+msgstr "الحالة"
+
+#. module: saudi_hr_leaves_management
+#: sql_constraint:hr.holidays.public.line:0
+#: sql_constraint:hr.payslip.run:0
+msgid "The start date must be anterior to the end date."
+msgstr "يجب أن يكون تاريخ بدء سابقة لتاريخ نهاية."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__total_leave
+msgid "Total Leave"
+msgstr "مجموع الاجازات"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__total_leave_hours
+msgid "Total Leave Hours"
+msgstr "مجموع ساعات الإجازات"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_type.py:28
+#, python-format
+msgid "Two (2) Rule Lines for leave are overlapping!"
+msgstr "اثنين (2) خطوط القاعدة للإجازة متداخلة!"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__unpaid_leave
+msgid "Unpaid Leave"
+msgstr "اثنين (2) خطوط القاعدة للإجازة متداخلة!"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_leave_detail__unpaid_leave_hours
+msgid "Unpaid Leave Hours"
+msgstr "ساعات الإجازة غير المدفوعة"
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,help:saudi_hr_leaves_management.field_hr_payslip_run__is_verify
+msgid "While tick payslips will confirmed and paid."
+msgstr "في حين سيتم تأكيد القسط دفع القراد ودفعها."
+
+#. module: saudi_hr_leaves_management
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_payslip_worked_days__working_hours
+msgid "Working Hour(s)"
+msgstr "ساعات العمل)"
+
+#. module: saudi_hr_leaves_management
+#: selection:hr.leave.type,deduction_by:0
+#: model:ir.model.fields,field_description:saudi_hr_leaves_management.field_hr_holidays_public__year_id
+#: model_terms:ir.ui.view,arch_db:saudi_hr_leaves_management.view_hr_holidays_public_filter
+msgid "Year"
+msgstr "عام"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_leave_type.py:47
+#, python-format
+msgid "You can not allowed multiple leave as a Annual Leave."
+msgstr "لا يمكنك السماح بإجازة متعددة كإجازة سنوية."
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_public_holidays.py:110
+#, python-format
+msgid "You can not have holiday that overlaps on same days!"
+msgstr "لا يمكنك الحصول على عطلة تتداخل في نفس الأيام!"
+
+#. module: saudi_hr_leaves_management
+#: code:addons/saudi_hr_leaves_management/models/hr_public_holidays.py:40
+#, python-format
+msgid "You cannot remove the record which is in %s state!"
+msgstr "لا يمكنك إزالة السجل الموجود في حالة٪ s!"
+

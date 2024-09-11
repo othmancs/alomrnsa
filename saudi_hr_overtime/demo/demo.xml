@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+         <record id="attendance_fpi_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_fpi_one_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_fpi" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_fpi_one" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_fpi_two" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_fpi_one_two" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_fpi_three" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_fpi_one_three" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_fpi_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_fpi_one_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_fpi_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_fpi_one_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_fpi"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_jep" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_one_jep" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_jep_one" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_one_jep_two" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_jep_three" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_one_jep_three" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_jep_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_one_jep_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_jep_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_one_jep_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_jep_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_one_jep_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_jep"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 12:00')"/>
+        </record>
+
+        <record id="attendance_stw_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_two_stw_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_stw" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_two_stw" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_stw_one" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_two_stw_two" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_stw_three" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_two_stw_three" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_stw_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <!-- <record id="attendance_two_stw_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 12:30')"/>
+        </record> -->
+
+        <record id="attendance_stw_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_two_stw_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_stw"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+
+        <record id="attendance_al" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_two_al" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-6)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_al_one" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_al_two" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-5)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_al_three" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_al_three_hafe" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-4)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_al_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_al_three_four" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-3)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_al_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_al_three_five" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-2)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+
+        <record id="attendance_al_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 02:00')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:00')"/>
+        </record>
+
+        <record id="attendance_al_three_six" model="hr.attendance">
+            <field name="employee_id" ref="hr.employee_al"/>
+            <field name="check_in" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 08:30')"/>
+            <field name="check_out" eval="(datetime.now()+relativedelta(days=-1)).strftime('%Y-%m-%d 12:30')"/>
+        </record>
+    </data>
+</odoo>
