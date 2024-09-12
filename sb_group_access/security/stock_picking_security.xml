@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <!-- Group definition -->
+        <record id="group_inv_transfer_add_line" model="res.groups">
+            <field name="name">Inv Transfer Add Line</field>
+            <field name="category_id" ref="module_sale_button_access"/>
+        </record>
+    </data>
+</odoo>

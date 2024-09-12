@@ -252,3 +252,8 @@ msgid ""
 "user in any group cannot do this action\n"
 "            "
 msgstr "يجب أن يكون المستخدم في مجموعته لكى يسطيع القيام بهذه المهام "
+
+#. module: sb_group_access
+#: model:res.groups,name:sb_group_access.group_inv_transfer_add_line
+msgid "Inv Transfer Add Line"
+msgstr "التعديل علي الحركات المخزنية"
