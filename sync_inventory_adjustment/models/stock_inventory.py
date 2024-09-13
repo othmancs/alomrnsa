@@ -100,17 +100,11 @@ class Inventory(models.Model):
     #     'product.category', 'Product Category',
     #     readonly=True, states={'draft': [('readonly', False)]},
     #     help="Specify Product Category to focus your inventory on a particular Category.")
-    # category_id = fields.Many2many(
-    # 'product.category', string='Product Categories',
-    # readonly=True, states={'draft': [('readonly', False)]},
-    # help="Specify Product Categories to focus your inventory on particular Categories.")
-    category_id = fields.Many2one(
-    'product.category', 'Product Category',
+    category_id = fields.Many2many(
+    'product.category', string='Product Categories',
     readonly=True, states={'draft': [('readonly', False)]},
-    help="Specify Product Category to focus your inventory on a particular Category.")
-    exhausted = fields.Boolean('Include Exhausted Products', readonly=True, states={'draft': [('readonly', False)]})
-    memo = fields.Char(string="Note", required=False)
-    
+    help="Specify Product Categories to focus your inventory on particular Categories.")
+
     @api.multi
     def your_method(self):
         for record in self:
