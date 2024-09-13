@@ -414,11 +414,17 @@ class Inventory(models.Model):
             domain += ' AND package_id = %s'
             args += (self.package_id.id,)
         #case 5: Filter on One product category + Exahausted Products
+        # if self.category_id:
+        #     categ_products = Product.search([('categ_id', 'child_of', self.category_id.id)])
+        #     domain += ' AND product_id = ANY (%s)'
+        #     args += (categ_products.ids,)
+        #     products_to_filter |= categ_products
         if self.category_id:
-            categ_products = Product.search([('categ_id', 'child_of', self.category_id.id)])
-            domain += ' AND product_id = ANY (%s)'
-            args += (categ_products.ids,)
-            products_to_filter |= categ_products
+            for category in self.category_id:
+                categ_products = Product.search([('categ_id', 'child_of', category.id)])
+                domain += ' AND product_id = ANY (%s)'
+                args += (categ_products.ids,)
+                products_to_filter |= categ_products
 
         self.env.cr.execute("""SELECT stock_quant.id as quant_id, product_id, sum(quantity) as product_qty, location_id, lot_id as prod_lot_id, package_id, owner_id as partner_id
             FROM stock_quant
