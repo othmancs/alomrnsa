@@ -105,15 +105,7 @@ class Inventory(models.Model):
     readonly=True, states={'draft': [('readonly', False)]},
     help="Specify Product Categories to focus your inventory on particular Categories.")
 
-    @api.multi
-    def your_method(self):
-        for record in self:
-            if len(record.category_id) == 1:
-                category = record.category_id
-                # قم بما تحتاجه هنا
-            else:
-                raise ValueError("Expected singleton: %s" % record.category_id)
-
+   
 
     exhausted = fields.Boolean('Include Exhausted Products', readonly=True, states={'draft': [('readonly', False)]})
     memo = fields.Char(string="Note", required=False, )
