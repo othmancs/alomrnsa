@@ -30,7 +30,12 @@ class SaleOrderLine(models.Model):
             qr_code_image = base64.b64encode(temp.getvalue())
             rec.qr_code_img = qr_code_image
 
+    # @api.onchange('product_id')
+    # def _onchange_product_id_set_warehouse(self):
+    #     for line in self:
+    #         line.product_warehouse_id = line.product_id.categ_id.stock_warehouse_id.id
     @api.onchange('product_id')
     def _onchange_product_id_set_warehouse(self):
         for line in self:
-            line.product_warehouse_id = line.product_id.categ_id.stock_warehouse_id.id
+            line.product_warehouse_id = line.product_id.categ_id.stock_warehouse_ids and line.product_id.categ_id.stock_warehouse_ids[0].id or False
+
