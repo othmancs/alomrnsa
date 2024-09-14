@@ -32,8 +32,9 @@ EOS amount
         "saudi_hr_annual_leaving",
         "saudi_hr_it_operations",
         "hr_payroll",
-        'hr_contract_types',
+        "hr_contract_types",
         "hr_contract",
+        "base", "hr"
     ],
     "data": [
         "security/ir.model.access.csv",
