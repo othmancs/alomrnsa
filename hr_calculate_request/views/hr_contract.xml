@@ -20,7 +20,7 @@
                 <field name="work_years"/>
             </group>
         </xpath>
-    </field>
+    </field> 
 </record>
 
     </data>
