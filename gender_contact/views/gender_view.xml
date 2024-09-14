@@ -32,7 +32,7 @@
                 </xpath>
             </field>
         </record>
-        <record id="view_partner_simple_form_gender" model="ir.ui.view">
+<!--         <record id="view_partner_simple_form_gender" model="ir.ui.view">
     <field name="name">gender_contact</field>
     <field name="model">res.partner</field>
     <field name="arch" type="xml">
@@ -44,8 +44,8 @@
                 <!-- محتوى التنبيه -->
             </div>
         </form>
-    </field>
-</record>
+    </field> -->
+<!-- </record> -->
 
 <!--         <record id="rule_credit_access" model="ir.rule">
     <field name="name">Credit Access Rule</field>
