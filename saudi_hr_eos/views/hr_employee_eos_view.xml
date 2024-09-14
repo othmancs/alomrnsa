@@ -158,6 +158,16 @@
             </search>
         </field>
     </record>
+<record id="view_hr_contract_form" model="ir.ui.view">
+    <field name="name">hr.contract.form</field>
+    <field name="model">hr.contract</field>
+    <field name="arch" type="xml">
+        <form>
+            <!-- تعريف الحقل في واجهة المستخدم -->
+            <field name="schedule_pay"/>
+        </form>
+    </field>
+</record>
 
     <record id="eos_all" model="ir.actions.act_window">
         <field name="name">End of Service Indemnity (EOS)</field>
