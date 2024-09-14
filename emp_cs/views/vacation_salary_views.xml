@@ -1,4 +1,19 @@
 <odoo>
+    <!-- تعريف تسلسل قائمة جديدة -->
+    <menuitem id="menu_vacation_salary" name="Vacation Salaries" parent="hr_payroll.menu_hr_payroll" sequence="10"/>
+
+    <!-- تعريف القائمة الفرعية -->
+    <menuitem id="menu_vacation_salary_management" name="Vacation Salary Management" parent="menu_vacation_salary" action="action_vacation_salary"/>
+
+    <!-- تعريف إجراء عرض الإجازات -->
+    <record id="action_vacation_salary" model="ir.actions.act_window">
+        <field name="name">Vacation Salaries</field>
+        <field name="res_model">vacation.salary</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_vacation_salary_tree"/>
+    </record>
+
+    <!-- تعريف نموذج القائمة -->
     <record id="view_vacation_salary_tree" model="ir.ui.view">
         <field name="name">vacation.salary.tree</field>
         <field name="model">vacation.salary</field>
@@ -31,15 +46,5 @@
                 </sheet>
             </form>
         </field>
-    </record>
-
-    <menuitem id="menu_vacation_salary" name="Vacation Salaries" parent="hr_payroll.menu_hr_payroll" sequence="10"/>
-    <menuitem id="menu_vacation_salary_management" name="Vacation Salary Management" parent="menu_vacation_salary" action="action_vacation_salary"/>
-
-    <record id="action_vacation_salary" model="ir.actions.act_window">
-        <field name="name">Vacation Salaries</field>
-        <field name="res_model">vacation.salary</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_vacation_salary_tree"/>
     </record>
 </odoo>
