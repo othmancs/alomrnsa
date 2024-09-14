@@ -33,7 +33,7 @@
     'maintainer': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
     'depends': ['contacts'],
-    'data': ['views/gender_view.xml'
+    'data': ['views/gender_view.xml',
              'security/customer_type_security.xml',
              ],
     'images': ['static/description/banner.png'],
