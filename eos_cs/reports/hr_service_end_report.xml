@@ -1,0 +1,36 @@
+<odoo>
+    <template id="report_hr_service_end">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>End of Service Report</h2>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th>Service End Date</th>
+                                <th>End of Service Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td t-field="doc.employee_id.name"/>
+                                <td t-field="doc.service_end_date"/>
+                                <td t-field="doc.end_of_service_amount"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report
+        id="hr_service_end_report"
+        string="End of Service Report"
+        model="hr.contract"
+        report_type="qweb-pdf"
+        name="hr_service_end_report.report_hr_service_end"
+        file="hr_service_end_report.report_hr_service_end"
+        attachment_use="False"/>
+</odoo>
