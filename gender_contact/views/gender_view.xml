@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="view_partner_simple_form_gender" model="ir.ui.view">
+<!--         <record id="view_partner_simple_form_gender" model="ir.ui.view">
             <field name="name">gender_contact</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
@@ -16,7 +16,24 @@
                 <field name="customer_type2"/>
             </xpath>
             </field>
-        </record>
+        </record> -->
+        <record id="view_partner_simple_form_gender" model="ir.ui.view">
+    <field name="name">gender_contact</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='vat']" position="after">
+            <field name="gender"
+                   widget="radio"
+                   string="Gender"
+                   attrs="{'invisible':  [('company_type', '=', 'company')]}"/>
+        </xpath>
+        <xpath expr="//field[@name='category_id']" position="after">
+            <field name="customer_type2"/>
+        </xpath>
+    </field>
+</record>
+
         <record id="filter_partner_simple_form_gender" model="ir.ui.view">
             <field name="name">gender_contact_filter</field>
             <field name="model">res.partner</field>
