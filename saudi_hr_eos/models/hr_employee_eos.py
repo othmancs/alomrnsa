@@ -13,6 +13,7 @@ class HrContract(models.Model):
 
     schedule_pay = fields.Many2one('schedule.pay', string='Schedule Pay', related='related_model.schedule_pay')
 class SchedulePay(models.Model):
+    _inherit = 'hr.contract'
     _name = 'schedule.pay'
     
     name = fields.Char(string='Name')
