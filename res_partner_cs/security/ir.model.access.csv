@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_credit_customer,res.partner.credit.customer,model_res_partner,group_credit_customer,1,1,1,1
