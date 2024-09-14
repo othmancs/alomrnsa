@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_vacation_salary_tree" model="ir.ui.view">
+        <field name="name">vacation.salary.tree</field>
+        <field name="model">vacation.salary</field>
+        <field name="arch" type="xml">
+            <tree string="Vacation Salaries">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="vacation_days"/>
+                <field name="salary_amount"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_vacation_salary_form" model="ir.ui.view">
+        <field name="name">vacation.salary.form</field>
+        <field name="model">vacation.salary</field>
+        <field name="arch" type="xml">
+            <form string="Vacation Salary">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="vacation_days"/>
+                        <field name="salary_amount" readonly="1"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_vacation_salary" name="Vacation Salaries" parent="hr_payroll.menu_hr_payroll" sequence="10"/>
+    <menuitem id="menu_vacation_salary_management" name="Vacation Salary Management" parent="menu_vacation_salary" action="action_vacation_salary"/>
+
+    <record id="action_vacation_salary" model="ir.actions.act_window">
+        <field name="name">Vacation Salaries</field>
+        <field name="res_model">vacation.salary</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_vacation_salary_tree"/>
+    </record>
+</odoo>
