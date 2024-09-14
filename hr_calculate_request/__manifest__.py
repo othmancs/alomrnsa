@@ -14,7 +14,6 @@
     'data': [
         'views/hr_contract.xml',
         'reports/hr_contract_reports.xml',
-        'reports/report_hr_contract.py',
     ],
     'demo': [],
     'qweb': [],
