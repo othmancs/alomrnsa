@@ -9,8 +9,7 @@ class HrContract(models.Model):
     end_service_date = fields.Date(string="End of Service Date")
     basic_salary = fields.Float(string="Basic Salary", compute='_compute_basic_salary')
     indemnity_amount = fields.Float(string='EOS Amount', compute='_compute_employee_end_service')
-    vacation_liquidation_amount = fields.Float(string='Vacation Liquidation Amount',
-                                               compute='_compute_vacation_liquidation_amount')
+    vacation_liquidation_amount = fields.Float(string='Vacation Liquidation Amount', compute='_compute_vacation_liquidation_amount')
     work_years = fields.Float(string='Work Years', readonly=True, compute='_compute_work_years')
 
     @api.depends('date_start', 'date_end')
