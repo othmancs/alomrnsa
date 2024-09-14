@@ -1,5 +1,4 @@
-from odoo import models, fields, api
-from odoo.exceptions import AccessError
+from odoo import models, fields
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -8,9 +7,3 @@ class ResPartner(models.Model):
         ('cash', 'Cash'),
         ('credit', 'Credit')
     ], string='Customer Type', default='cash')
-
-    @api.model
-    def create(self, vals):
-        if vals.get('customer_type') == 'credit' and not self.env.user.has_group('your_module.group_credit_customer'):
-            raise AccessError("You do not have the necessary permissions to create a Credit customer.")
-        return super(ResPartner, self).create(vals)
