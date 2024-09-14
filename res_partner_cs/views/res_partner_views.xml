@@ -4,7 +4,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-                <field name="customer_type"/>
+            <xpath expr="//notebook/page[@name='sales_purchases']/group/field[@name='category_id']" position="inside">
+                <field name="customer_type2"/>
+            </xpath>
         </field>
     </record>
 </odoo>
