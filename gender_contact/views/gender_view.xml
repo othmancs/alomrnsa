@@ -6,12 +6,12 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-<!--                 <xpath expr="//field[@name='vat']" position="after">
+                <xpath expr="//field[@name='vat']" position="after">
                     <field name="gender"
                            widget="radio"
                            string="Gender"
                            attrs="{'invisible':  [('company_type', '=', 'company')]}"/>
-                </xpath> -->
+                </xpath>
                             <xpath expr="//field[@name='category_id']" position="after">
                 <field name="customer_type2"/>
             </xpath>
