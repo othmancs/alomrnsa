@@ -1,12 +1,18 @@
 <odoo>
-    <record id="view_partner_form" model="ir.ui.view">
-        <field name="name">res.partner.form.inherit</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='category_id']" position="after">
-                <field name="customer_type"/>
-            </xpath>
-        </field>
-    </record>
+<record id="view_partner_form" model="ir.ui.view">
+    <field name="name">res.partner.form.inherit</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <form string="Partners">
+            <div class="alert alert-warning oe_edit_only" role="alert" attrs="{'invisible': [('same_vat_partner_id', '=', False)]}">
+                A partner with the same <span><span class="o_vat_label">Tax ID</span></span> already exists (<field name="same_vat_partner_id"/>
+            </div>
+            <field name="partner_gid" invisible="True"/>
+            <field name="additional_info" invisible="True"/>
+            <field name="customer_type"/> <!-- تأكد من إضافة هذا الحقل -->
+        </form>
+    </field>
+</record>
+
 </odoo>
