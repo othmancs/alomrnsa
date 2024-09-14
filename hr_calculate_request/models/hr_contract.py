@@ -42,7 +42,7 @@ class HrContract(models.Model):
         first_calculate = (self.basic_salary / 30) * (first_work * 21)
         last_calculate = self.basic_salary * service_years
         return first_calculate + last_calculate
-
+    @api.depends('date_start', 'date_end')
     def _compute_work_years(self):
         for contract in self:
             if contract.date_start and contract.date_end:
@@ -52,7 +52,16 @@ class HrContract(models.Model):
             else:
                 contract.work_years = 0
 
-    work_years = fields.Float(string='Work Years', readonly=True, compute='_compute_work_years')
+    # def _compute_work_years(self):
+    #     for contract in self:
+    #         if contract.date_start and contract.date_end:
+    #             from_date = fields.Date.from_string(contract.date_start)
+    #             end_date = fields.Date.from_string(contract.date_end)
+    #             contract.work_years = (end_date - from_date).days / 365.25
+    #         else:
+    #             contract.work_years = 0
+
+    # work_years = fields.Float(string='Work Years', readonly=True, compute='_compute_work_years')
 
     def _compute_employee_end_service(self):
         for contract in self:
