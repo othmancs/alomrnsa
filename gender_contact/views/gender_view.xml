@@ -32,20 +32,6 @@
                 </xpath>
             </field>
         </record>
-<!--         <record id="view_partner_simple_form_gender" model="ir.ui.view">
-    <field name="name">gender_contact</field>
-    <field name="model">res.partner</field>
-    <field name="arch" type="xml">
-        <form string="Partner">
-            <!-- إزالة الحقل غير الموجود -->
-            <!-- <field name="partner_gid" invisible="True"/> -->
-            <field name="additional_info" invisible="True"/>
-            <div class="alert alert-warning oe_edit_only" role="alert" attrs="{'invisible': [('same_company_registry_partner_id', '=', True)]}">
-                <!-- محتوى التنبيه -->
-            </div>
-        </form>
-    </field> -->
-<!-- </record> -->
 
 <!--         <record id="rule_credit_access" model="ir.rule">
     <field name="name">Credit Access Rule</field>
