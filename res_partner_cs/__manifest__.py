@@ -7,7 +7,7 @@
     'summary': 'Add customer type field to contacts',
     'description': 'This module adds a customer type field (Cash or Credit) to contacts and restricts the creation of Credit customers based on user permissions.',
     'author': 'Your Name',
-    'depends': ['contacts'],
+    'depends': ['base', 'contacts'],
     'data': [
         'security/customer_type_security.xml',
         'security/ir.model.access.csv', 
