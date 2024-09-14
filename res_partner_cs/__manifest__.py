@@ -10,7 +10,7 @@
     'depends': ['contacts'],
     'data': [
         'security/customer_type_security.xml',
-        'security/ir.model.access.csv',
+        'security/ir.model.access.csv', 
         'views/res_partner_views.xml',
     ],
     'installable': True,
