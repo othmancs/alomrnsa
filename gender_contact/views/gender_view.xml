@@ -14,8 +14,6 @@
                 </xpath>
                             <xpath expr="//field[@name='category_id']" position="after">
                 <field name="customer_type2"/>
-
-
             </xpath>
             </field>
         </record>
