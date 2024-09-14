@@ -4,7 +4,10 @@
 from odoo import models, fields, api, _
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError
+class RelatedModel(models.Model):
+    _name = 'related.model'
 
+    schedule_pay = fields.Char(string="Payment Schedule")
 
 class HRContract(models.Model):
     _name = 'hr.contract'
