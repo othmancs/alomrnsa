@@ -13,13 +13,8 @@
                            attrs="{'invisible':  [('company_type', '=', 'company')]}"/>
                 </xpath>
                             <xpath expr="//field[@name='category_id']" position="after">
-<!--                 <field name="customer_type2"/> -->
-                                    <field name="customer_type2" widget="selection">
-        <selection>
-            <item name="cash" string="Cash"/>
-            <item name="credit" string="Credit" groups="your_module.group_credit_access"/>
-        </selection>
-    </field>
+                <field name="customer_type2"/>
+
 
             </xpath>
             </field>
