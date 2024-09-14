@@ -1,11 +1,16 @@
 <odoo>
-    <!-- تعريف تسلسل قائمة جديدة -->
-    <menuitem id="menu_vacation_salary" name="Vacation Salaries" parent="hr_payroll.menu_hr_payroll" sequence="10"/>
-
-    <!-- تعريف القائمة الفرعية -->
-    <menuitem id="menu_vacation_salary_management" name="Vacation Salary Management" parent="menu_vacation_salary" action="action_vacation_salary"/>
-
-    <!-- تعريف إجراء عرض الإجازات -->
+    <!-- تعريف قائمة جديدة -->
+    <menuitem id="menu_vacation_salary" 
+              name="Vacation Salaries" 
+              parent="base.menu_main" 
+              sequence="10"/>
+    
+    <menuitem id="menu_vacation_salary_management" 
+              name="Vacation Salary Management" 
+              parent="menu_vacation_salary" 
+              action="action_vacation_salary"/>
+    
+    <!-- تعريف الإجراء -->
     <record id="action_vacation_salary" model="ir.actions.act_window">
         <field name="name">Vacation Salaries</field>
         <field name="res_model">vacation.salary</field>
