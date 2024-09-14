@@ -8,6 +8,10 @@ from dateutil import relativedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+class HrContract(models.Model):
+    _inherit = 'hr.contract'
+
+    schedule_pay = fields.Many2one('schedule.pay', string='Schedule Pay')
 
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
