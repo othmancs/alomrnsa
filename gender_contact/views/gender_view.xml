@@ -6,18 +6,18 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='vat']" position="after">
+<!--                 <xpath expr="//field[@name='vat']" position="after">
                     <field name="gender"
                            widget="radio"
                            string="Gender"
                            attrs="{'invisible':  [('company_type', '=', 'company')]}"/>
-                </xpath>
+                </xpath> -->
                             <xpath expr="//field[@name='category_id']" position="after">
                 <field name="customer_type2"/>
             </xpath>
             </field>
         </record>
-        <record id="filter_partner_simple_form_gender" model="ir.ui.view">
+<!--         <record id="filter_partner_simple_form_gender" model="ir.ui.view">
             <field name="name">gender_contact_filter</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_res_partner_filter"/>
@@ -31,7 +31,7 @@
                     <filter string="Gender" name="gender" context="{'group_by': 'gender'}"/>
                 </xpath>
             </field>
-        </record>
+        </record> -->
 <!--         <record id="rule_credit_access" model="ir.rule">
     <field name="name">Credit Access Rule</field>
     <field name="model_id" ref="model_res_partner"/>
