@@ -4,15 +4,12 @@
 from odoo import models, fields, api, _
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError
-# class RelatedModel(models.Model):
-#     _name = 'related.model'
-
-    # schedule_pay = fields.Char(string="Payment Schedule")
 
 class HRContract(models.Model):
-    _name = 'hr.contract'
-    _inherit = ['mail.thread', 'hr.contract']
-    
+    _inherit = 'hr.contract'  # استخدام _inherit لتوسيع نموذج موجود
+
+    # إزالة تعريف الحقل المرتبط لأنه ليس موجودًا في نموذج `hr.contract`
+    # إذا كان لديك حقل محدد في نموذج آخر، تأكد من تعريفه في النموذج الصحيح.
     # schedule_pay = fields.Char(related='related_model.schedule_pay', string="Payment Schedule")
 
     signon_bonus = fields.Boolean('Sign on Bonus')
@@ -24,7 +21,7 @@ class HRContract(models.Model):
     notice_end_date = fields.Date('Notice End Date', readonly=True)
     is_leaving = fields.Boolean('Leaving Notice')
     basic = fields.Float('Basic', tracking=True, help='Basic Salary of Employee(value after gross/1.35)')
-    HRA = fields.Float(string='House Rent Allowance', tracking=True, help="HRA of employee (25% of basic)") # , compute='_get_amount'
+    HRA = fields.Float(string='House Rent Allowance', tracking=True, help="HRA of employee (25% of basic)")
     TA = fields.Float(string='Transport Allowance', tracking=True,
                       help="Transport Allowance of employee (10% of Basic)")
     before_notification_day = fields.Integer('Before Notification Days (End Date)', default=60)
@@ -46,7 +43,7 @@ class HRContract(models.Model):
     @api.model
     def run_scheduler(self):
         """
-            sent an email with notification of contract state, automatically sent an email to the client.
+            Send an email with notification of contract state, automatically sent an email to the client.
         """
         contract_ids = self.search([('state', 'in', ['draft', 'open'])])
         try:
