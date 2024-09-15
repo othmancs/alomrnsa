@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_product_form" model="ir.ui.view">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <form string="Product">
+                <!-- إضافة الحقل الجديد إلى واجهة المستخدم -->
+                <sheet>
+                    <group>
+                        <field name="warehouse_cost_ids">
+                            <tree>
+                                <field name="warehouse_id"/>
+                                <field name="cost"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
