@@ -27,6 +27,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     unique_id = fields.Char(string='Unique Id', help="The Unique Sequence no", readonly=True, default='/')
+    other_id = fields.Char(string='Other Id', help="Another unique identifier", index=True)
 
     @api.model
     def create(self, values):
@@ -42,3 +43,4 @@ class ResPartner(models.Model):
                 res.name = '[' + str(company_seq.customer_code) + ']' + str(res.name)
                 company_seq.write({'next_code': company_seq.customer_code + 1})
         return res
+
