@@ -9,6 +9,7 @@ class Employee(models.Model):
     eos_amount = fields.Monetary(string='End of Service Amount', compute='_compute_eos_amount', currency_field='currency_id')
     schedule_pay = fields.Selection(related='structure_type_id.default_struct_id.schedule_pay', depends=())
     currency_id = fields.Many2one('res.currency', string='Currency')
+    structure_type_id = fields.Many2one('hr.payroll.structure.type', string='Structure Type')  # تأكد من وجود هذا الحقل
 
     @api.depends('employee_id')
     def _compute_service_years(self):
