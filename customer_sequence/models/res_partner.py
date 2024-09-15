@@ -27,8 +27,12 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     unique_id = fields.Char(string='Unique Id', help="The Unique Sequence no", readonly=True, default='/')
-    other_id = fields.Char(string='Other Id', help="Another unique identifier", index=True)
-
+    # other_id = fields.Char(string='Other Id', help="Another unique identifier", index=True)
+    @api.model
+    def search_partner_by_other_id(self, other_id_value):
+        # البحث باستخدام حقل other_id
+        partner = self.search([('other_id', '=', other_id_value)], limit=1)
+        return partner
     @api.model
     def create(self, values):
         res = super(ResPartner, self).create(values)
