@@ -5,9 +5,10 @@ class Employee(models.Model):
 
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
     service_years = fields.Float(string='Service Years', compute='_compute_service_years')
-    basic_salary = fields.Float(string='Basic Salary', related='employee_id.contract_id.wage')
-    eos_amount = fields.Float(string='End of Service Amount', compute='_compute_eos_amount')
+    basic_salary = fields.Monetary(string='Basic Salary', related='employee_id.contract_id.wage', currency_field='currency_id')
+    eos_amount = fields.Monetary(string='End of Service Amount', compute='_compute_eos_amount', currency_field='currency_id')
     schedule_pay = fields.Selection(related='structure_type_id.default_struct_id.schedule_pay', depends=())
+    currency_id = fields.Many2one('res.currency', string='Currency')
 
     @api.depends('employee_id')
     def _compute_service_years(self):
