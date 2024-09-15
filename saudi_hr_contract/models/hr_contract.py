@@ -10,7 +10,7 @@ class HRContract(models.Model):
 
     # إزالة تعريف الحقل المرتبط لأنه ليس موجودًا في نموذج `hr.contract`
     # إذا كان لديك حقل محدد في نموذج آخر، تأكد من تعريفه في النموذج الصحيح.
-    # schedule_pay = fields.Char(related='related_model.schedule_pay', string="Payment Schedule")
+    schedule_pay = fields.Char(related='related_model.schedule_pay', string="Payment Schedule")
 
     signon_bonus = fields.Boolean('Sign on Bonus')
     signon_bonus_amount = fields.Float('Bonus Amount', digits=(16, 2), help="Mention the Sign on Bonus amount.")
