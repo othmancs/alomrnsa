@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-<record id="view_hr_contract_form_inherit" model="ir.ui.view">
-    <field name="name">hr.contract.form.inherit</field>
-    <field name="model">hr.contract</field>
-    <field name="inherit_id" ref="hr.hr_contract_form"/>
-    <field name="arch" type="xml">
-<!--         <xpath expr="//header" position="inside">
-            <field name="state" groups="!hr_contract.group_hr_contract_manager" widget="statusbar"/>
-            <field name="state" groups="hr_contract.group_hr_contract_manager" widget="statusbar" options="{'clickable': '1'}"/>
-            <button name="2956" string="Signature Request" attrs="{'invisible': [('employee_id', '=', False)]}" type="action" groups="hr_contract.group_hr_contract_manager"/>
-        </xpath> -->
-        <xpath expr="//sheet" position="inside">
-            <group string="End of Service">
-                <field name="end_service_date"/>
-                <field name="basic_salary"/>
-                <field name="indemnity_amount"/>
-                <field name="vacation_liquidation_amount"/>
-                <field name="work_years"/>
-            </group>
-        </xpath>
-    </field>
-</record>
+        <!-- تعريف المجموعة -->
+        <record id="group_hr_contract_manager" model="res.groups">
+            <field name="name">HR Contract Manager</field>
+            <field name="category_id" ref="base.module_category_human_resources"/>
+        </record>
+
+        <!-- تعديل العرض -->
+        <record id="view_hr_contract_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr.hr_contract_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <field name="state" groups="!hr_contract.group_hr_contract_manager" widget="statusbar"/>
+                    <field name="state" groups="hr_contract.group_hr_contract_manager" widget="statusbar" options="{'clickable': '1'}"/>
+                    <button name="2956" string="Signature Request" attrs="{'invisible': [('employee_id', '=', False)]}" type="action" groups="hr_contract.group_hr_contract_manager"/>
+                </xpath>
+                <xpath expr="//sheet" position="inside">
+                    <group string="End of Service">
+                        <field name="end_service_date"/>
+                        <field name="basic_salary"/>
+                        <field name="indemnity_amount"/>
+                        <field name="vacation_liquidation_amount"/>
+                        <field name="work_years"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
