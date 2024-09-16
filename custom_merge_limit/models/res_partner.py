@@ -1,13 +1,18 @@
-from odoo import models, api
+from odoo import models, api, fields
 from odoo.exceptions import UserError
 
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
+class PartnerMergeWizard(models.TransientModel):
+    _inherit = 'base.partner.merge'
 
+    # Override the default behavior to allow more than 3 contacts
     @api.model
-    def merge_contacts(self, contacts):
-        # تعديل الحد المسموح
-        if len(contacts) > 10:  # تغيير 10 إلى الرقم الذي تريده
-            raise UserError("لا يمكنك دمج أكثر من 10 جهات اتصال معاً.")
-        # افترض أن هناك منطق الدمج هنا
-        # super(ResPartner, self).merge_contacts()
+    def default_get(self, fields_list):
+        res = super(PartnerMergeWizard, self).default_get(fields_list)
+        return res
+
+    def merge_partners(self):
+        # Here you can specify the new limit
+        max_merge_limit = 10  # Allow more than 3 contacts; adjust as needed
+        if len(self.partner_ids) > max_merge_limit:
+            raise UserError(f"لا يمكنك دمج أكثر من {max_merge_limit} جهات اتصال معاً.")
+        return super(PartnerMergeWizard, self).merge_partners()
