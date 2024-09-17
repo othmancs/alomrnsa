@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+
+	<record
+		id="view_quotation_tree_extends_to_add_archive_unarchive_functionality"
+		model="ir.ui.view">
+		<field name="name">view.quotation.tree.extends.to.add.archive.unarchive.functionality
+		</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_quotation_tree" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='state']" position="after">
+				<field name="active" widget="boolean_toggle" />
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

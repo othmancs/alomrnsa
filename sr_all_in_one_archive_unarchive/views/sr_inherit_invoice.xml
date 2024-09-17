@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+
+	<record
+		id="view_invoice_tree_extends_to_add_archive_unarchive_functionality"
+		model="ir.ui.view">
+		<field name="name">view.invoice.tree.extends.to.add.archive.unarchive.functionality
+		</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_invoice_tree" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='payment_state']" position="after">
+				<field name="active" widget="boolean_toggle" />
+			</xpath>
+		</field>
+	</record>
+	
+</odoo>

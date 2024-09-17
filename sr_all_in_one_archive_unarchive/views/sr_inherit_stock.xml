@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+
+	<record
+		id="vpicktree_extends_to_add_archive_unarchive_functionality"
+		model="ir.ui.view">
+		<field name="name">vpicktree.extends.to.add.archive.unarchive.functionality
+		</field>
+		<field name="model">stock.picking</field>
+		<field name="inherit_id" ref="stock.vpicktree" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='state']" position="after">
+				<field name="active" widget="boolean_toggle" />
+			</xpath>
+		</field>
+	</record>
+	
+</odoo>
