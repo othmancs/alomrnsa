@@ -68,11 +68,14 @@ class HrEmployeeEos(models.Model):
     payable_eos = fields.Float(compute=_calc_payable_eos,string='Total Amount')
     remaining_leave = fields.Float('Remaining Leave')
     # account
-    journal_id = fields.Many2one('account.journal', 'Force Journal', help = "The journal used when the eos is done.")
+    journal_id = fields.Many2one('account.journal', 'Force Journal', help="The journal used when the EOS is done.")
     account_move_id = fields.Many2one('account.move', 'Ledger Posting')
-    voucher_id = fields.Many2one('account.voucher', "Employee's Receipt")
-    currency_id = fields.Many2one('res.currency', 'Currency', required=True, readonly=True, states={'draft':[('readonly',False)], 'confirm':[('readonly',False)]}, default=_get_currency)
-    year_id = fields.Many2one('year.year', 'Year', required=True, readonly=True, states={'draft':[('readonly',False)], 'confirm':[('readonly',False)]}, index=True, default=lambda self: self.env['year.year'].find(time.strftime("%Y-%m-%d"), True))
+    currency_id = fields.Many2one('res.currency', 'Currency', required=True, readonly=True, 
+                                   states={'draft': [('readonly', False)], 'confirm': [('readonly', False)]}, 
+                                   default=lambda self: self.env['res.currency'].search([], limit=1))  # تعديل الافتراضي
+    year_id = fields.Many2one('year.year', 'Year', required=True, readonly=True, 
+                               states={'draft': [('readonly', False)], 'confirm': [('readonly', False)]}, 
+                               index=True, default=lambda self: self.env['year.year'].find(time.strftime("%Y-%m-%d"), True))
 
     @api.multi
     def _track_subtype(self, init_values):
@@ -335,11 +338,10 @@ class HrEmployeeEos(models.Model):
     @api.multi
     def account_move_get(self):
         """
-            This method prepare the creation of the account move related to the given expense.
+        This method prepares the creation of the account move related to the given expense.
 
-            :param eos_id: Id of voucher for which we are creating account_move.
-            :return: mapping between fieldname and value of account move to create
-            :rtype: dict
+        :return: mapping between fieldname and value of account move to create
+        :rtype: dict
         """
         self.ensure_one()
         journal_obj = self.env['account.journal']
@@ -347,13 +349,15 @@ class HrEmployeeEos(models.Model):
         date = self.date_confirm
         ref = self.name
         journal_id = False
+        
         if self.journal_id:
             journal_id = self.journal_id.id
         else:
-            journal_id = journal_obj.search([('type', '=', 'purchase'), ('company_id', '=', company_id)])
+            journal_id = journal_obj.search([('type', '=', 'purchase'), ('company_id', '=', company_id)], limit=1)
             if not journal_id:
                 raise UserError(_("No EOS journal found. Please make sure you have a journal with type 'purchase' configured."))
-            journal_id = journal_id[0].id
+            journal_id = journal_id.id
+            
         return self.env['account.move'].account_move_prepare(journal_id, date=date, ref=ref, company_id=company_id)
 
     @api.multi
