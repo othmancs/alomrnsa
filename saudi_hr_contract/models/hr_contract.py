@@ -11,7 +11,25 @@ class HRContract(models.Model):
     # إزالة تعريف الحقل المرتبط لأنه ليس موجودًا في نموذج `hr.contract`
     # إذا كان لديك حقل محدد في نموذج آخر، تأكد من تعريفه في النموذج الصحيح.
     related_model_id = fields.Many2one('related.model', string="Related Model")
-    schedule_pay = fields.Char(related='related_model_id.schedule_pay', string="Payment Schedule")
+# تعريف القيم الممكنة
+payment_frequencies = [
+    ('monthly', 'Monthly'),
+    ('quarterly', 'Quarterly'),
+    ('semi-annually', 'Semi-annually'),
+    ('annually', 'Annually'),
+    ('weekly', 'Weekly'),
+    ('bi-weekly', 'Bi-weekly'),
+    ('bi-monthly', 'Bi-monthly'),
+]
+
+# افترض أن لديك record_id
+record = self.env['hr.contract'].browse(record_id)
+
+# اختر قيمة مناسبة من القائمة، على سبيل المثال 'monthly'
+selected_frequency = 'monthly'  # تأكد من أن هذه القيمة متوافقة مع القائمة
+
+# تحديث الحقل
+record.write({'schedule_pay': selected_frequency})
 
     signon_bonus = fields.Boolean('Sign on Bonus')
     signon_bonus_amount = fields.Float('Bonus Amount', digits=(16, 2), help="Mention the Sign on Bonus amount.")
