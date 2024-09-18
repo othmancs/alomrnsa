@@ -35,11 +35,18 @@ class HrEmployee(models.Model):
         action["context"] = context
         return action
 
+class SourceModel(models.Model):
+    _name = 'source.model'
+    
+    register_ids = fields.One2many('hr.employee.eos', 'register_id', string="Registers")
 
 class HrEmployeeEos(models.Model):
     _name = "hr.employee.eos"
     _inherit = ["mail.thread"]
     _description = "End of Service Indemnity (EOS)"
+
+    register_id = fields.Many2one('source.model', string="Register")
+
     def some_method(self):
         # Search for the calendar
         calendar_records = self.env['resource.calendar'].search([('active', '=', True)])
