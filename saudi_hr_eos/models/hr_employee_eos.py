@@ -40,6 +40,20 @@ class HrEmployeeEos(models.Model):
     _name = "hr.employee.eos"
     _inherit = ["mail.thread"]
     _description = "End of Service Indemnity (EOS)"
+    def some_method(self):
+        # Search for the calendar
+        calendar_records = self.env['resource.calendar'].search([('active', '=', True)])
+        
+        if not calendar_records:
+            raise UserError("No active calendar records found.")
+        elif len(calendar_records) > 1:
+            raise UserError("More than one active calendar found. Please ensure only one is active.")
+
+        calendar = calendar_records.ensure_one()
+
+        # Proceed with the logic using the calendar
+        _logger.info("Using calendar: %s", calendar.name)
+        # Continue with the rest of the method logic
 
     def _get_currency(self):
         """
