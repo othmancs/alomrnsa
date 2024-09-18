@@ -8,34 +8,12 @@ from odoo.exceptions import UserError
 class HRContract(models.Model):
     _inherit = 'hr.contract'  # استخدام _inherit لتوسيع نموذج موجود
 
-    # إزالة تعريف الحقل المرتبط لأنه ليس موجودًا في نموذج `hr.contract`
-    # إذا كان لديك حقل محدد في نموذج آخر، تأكد من تعريفه في النموذج الصحيح.
-    related_model_id = fields.Many2one('related.model', string="Related Model")
-# تعريف القيم الممكنة
-payment_frequencies = [
-    ('monthly', 'Monthly'),
-    ('quarterly', 'Quarterly'),
-    ('semi-annually', 'Semi-annually'),
-    ('annually', 'Annually'),
-    ('weekly', 'Weekly'),
-    ('bi-weekly', 'Bi-weekly'),
-    ('bi-monthly', 'Bi-monthly'),
-]
-
-# افترض أن لديك record_id
-record = self.env['hr.contract'].browse(record_id)
-
-# اختر قيمة مناسبة من القائمة، على سبيل المثال 'monthly'
-selected_frequency = 'monthly'  # تأكد من أن هذه القيمة متوافقة مع القائمة
-
-# تحديث الحقل
-record.write({'schedule_pay': selected_frequency})
-
+    # تعريف الحقول
     signon_bonus = fields.Boolean('Sign on Bonus')
     signon_bonus_amount = fields.Float('Bonus Amount', digits=(16, 2), help="Mention the Sign on Bonus amount.")
     period_ids = fields.Many2many('year.period', string='Month(s)',
-                                  help='Specify month(s) in which the sign on bonus will be distributed. '
-                                       'Bonus will be distributed in Bonus Amount/Number of Month(s).')
+                                   help='Specify month(s) in which the sign on bonus will be distributed. '
+                                        'Bonus will be distributed in Bonus Amount/Number of Month(s).')
     notice_start_date = fields.Date('Notice Start Date', readonly=True)
     notice_end_date = fields.Date('Notice End Date', readonly=True)
     is_leaving = fields.Boolean('Leaving Notice')
@@ -45,17 +23,27 @@ record.write({'schedule_pay': selected_frequency})
                       help="Transport Allowance of employee (10% of Basic)")
     before_notification_day = fields.Integer('Before Notification Days (End Date)', default=60)
     early_notification_day = fields.Integer(string='Early Notification Days (End Date)', default=15)
+    
+    # تعريف القيم الممكنة لجدول الدفع
+    schedule_pay = fields.Selection([
+        ('monthly', 'Monthly'),
+        ('quarterly', 'Quarterly'),
+        ('semi-annually', 'Semi-annually'),
+        ('annually', 'Annually'),
+        ('weekly', 'Weekly'),
+        ('bi-weekly', 'Bi-weekly'),
+        ('bi-monthly', 'Bi-monthly'),
+    ], string='Payment Frequency')
 
-    @api.constrains('wage')
-    def check_wage(self):
+    @api.constrains('basic')
+    def check_basic(self):
         for rec in self:
-            if rec.wage <= 0.0:
-                raise UserError('Please define Wage must be greater than 0.0!')
+            if rec.basic <= 0.0:
+                raise UserError('Please define Basic Salary must be greater than 0.0!')
 
-    @api.onchange('wage')
-    def _onchange_wage(self):
-        if self.wage > 0:
-            self.basic = self.wage / 1.35
+    @api.onchange('basic')
+    def _onchange_basic(self):
+        if self.basic > 0:
             self.HRA = self.basic * 0.25
             self.TA = self.basic * 0.1
 
