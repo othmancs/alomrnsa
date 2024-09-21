@@ -10,9 +10,10 @@ class SaleOrder(models.Model):
     ], string='طريقه الدفع', required=True)
 
     def _prepare_invoice(self):
-        invoice_vals = super(SaleOrder, self)._prepare_invoice()
-        # تعديل القيم أو الحقول الخاصة بالفواتير
+        invoice_vals = super(SaleOrderEditReports, self)._prepare_invoice()  # استخدم الكلاس المباشر
+        # أضف الحقول الخاصة بك هنا
         return invoice_vals
+
     def _prepare_invoice(self):
         invoice_vals = super(SaleOrder, self)._prepare_invoice()
         invoice_vals['payment_method'] = self.payment_method
