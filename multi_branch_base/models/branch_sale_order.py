@@ -28,10 +28,7 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     """inherited sale order"""
     _inherit = 'sale.order'
-    def _prepare_invoice(self):
-        invoice_vals = super(BranchSaleOrder, self)._prepare_invoice()  # استخدم الكلاس المباشر
-        # أضف الحقول الخاصة بك هنا
-        return invoice_vals
+
     @api.model
     def _default_warehouse_id(self):
         """methode to get default warehouse id"""
