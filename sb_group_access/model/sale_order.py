@@ -7,7 +7,10 @@ class SaleAccessButtons(models.Model):
 
     readonly_price = fields.Boolean(string="Belongs to Group", compute='_compute_belongs_to_group')
 
-
+     def _prepare_invoice(self):
+        invoice_vals = super(SaleOrder, self)._prepare_invoice()
+        # إضافة أو تعديل الحقول المطلوبة هنا
+        return invoice_vals
     def action_confirm(self):
         res = super(SaleAccessButtons, self).action_confirm()
         if self.env.user.has_group('sb_group_access.cannot_confirm_sale_orders'):
