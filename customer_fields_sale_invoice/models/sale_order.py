@@ -3,16 +3,17 @@ from odoo import models, fields, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    customer_name = fields.Char(string="Customer Name")
-    customer_phone = fields.Char(string="Customer Phone")
+    customer_name = fields.Char(string="اسم العميل")
+    customer_phone = fields.Char(string="رقم الهاتف")
 
-    @api.model
-    def create(self, vals):
-        """عند إنشاء فاتورة، يتم تمرير اسم ورقم العميل تلقائيًا إلى الفاتورة."""
-        res = super(SaleOrder, self).create(vals)
-        if res:
-            res._create_invoice_vals()
-        return res
+    def _prepare_invoice(self):
+        """إضافة الحقول الخاصة باسم العميل ورقم هاتفه عند إنشاء الفاتورة"""
+        invoice_vals = super(SaleOrder, self)._prepare_invoice()
+        invoice_vals.update({
+            'customer_name': self.customer_name,
+            'customer_phone': self.customer_phone,
+        })
+        return invoice_vals
 
     def _create_invoice_vals(self):
         """تحديث الحقول في الفاتورة عند إنشائها"""
