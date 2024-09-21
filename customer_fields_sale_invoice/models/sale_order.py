@@ -8,11 +8,15 @@ class SaleOrder(models.Model):
 
     def _prepare_invoice(self):
         """إضافة الحقول الخاصة باسم العميل ورقم هاتفه عند إنشاء الفاتورة"""
+        # استدعاء super للتأكد من الحصول على القيم الأصلية
         invoice_vals = super(SaleOrder, self)._prepare_invoice()
-        invoice_vals.update({
-            'customer_name': self.customer_name,
-            'customer_phone': self.customer_phone,
-        })
+        
+        # التحقق من وجود الحقول قبل تحديثها لتجنب التكرار
+        if 'customer_name' not in invoice_vals:
+            invoice_vals['customer_name'] = self.customer_name
+        if 'customer_phone' not in invoice_vals:
+            invoice_vals['customer_phone'] = self.customer_phone
+        
         return invoice_vals
 
     def _create_invoice_vals(self):
