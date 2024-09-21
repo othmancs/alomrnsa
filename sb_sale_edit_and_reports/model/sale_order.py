@@ -8,7 +8,8 @@ class SaleOrder(models.Model):
         ('option1', 'نقدى'),
         ('option2', 'اجل'),
     ], string='طريقه الدفع', required=True)
-
+class SaleOrderEditReports(models.Model):
+    _inherit = 'sale.order'
 
     def _prepare_invoice(self):
         invoice_vals = super(SaleOrder, self)._prepare_invoice()
