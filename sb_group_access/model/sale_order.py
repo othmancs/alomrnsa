@@ -8,9 +8,11 @@ class SaleAccessButtons(models.Model):
     readonly_price = fields.Boolean(string="Belongs to Group", compute='_compute_belongs_to_group')
 
     def _prepare_invoice(self):
-        invoice_vals = super(SaleOrder, self)._prepare_invoice()
-        # إضافة أو تعديل الحقول المطلوبة هنا
+        # تأكد من استخدام super() مع الكلاس الصحيح، الذي هو الكلاس الأب المباشر
+        invoice_vals = super(SaleAccessButtons, self)._prepare_invoice()  # استخدم الاسم الصحيح للكلاس
+        # تعديل أو إضافة الحقول المطلوبة
         return invoice_vals
+
         
     def action_confirm(self):
         res = super(SaleAccessButtons, self).action_confirm()
