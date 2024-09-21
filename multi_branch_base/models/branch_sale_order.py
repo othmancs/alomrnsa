@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-#############################################################################
-#
-#    Cybrosys Technologies Pvt. Ltd.
-#
-#    Copyright (C) 2022-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
@@ -28,7 +21,10 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     """inherited sale order"""
     _inherit = 'sale.order'
-
+    def _prepare_invoice(self):
+        invoice_vals = super(SaleOrder, self)._prepare_invoice()
+        # إضافة الحقول الخاصة بفروع متعددة
+        return invoice_vals
     @api.model
     def _default_warehouse_id(self):
         """methode to get default warehouse id"""
