@@ -1,4 +1,4 @@
-3{
+{
     'name': 'Sale Order No Empty Lines',
     'version': '1.0',
     'category': 'Sales',
