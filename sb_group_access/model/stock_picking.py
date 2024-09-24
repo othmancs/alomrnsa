@@ -9,7 +9,6 @@ class StockPickingSecurity(models.Model):
         compute='_compute_is_line_creation_allowed',
         store=False
     )
-
     @api.depends('state')
     def _compute_is_line_creation_allowed(self):
         for picking in self:

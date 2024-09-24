@@ -18,7 +18,7 @@
         'security/sb_sale_group_access.xml',
         'security/sb_product_group_access.xml',
         'security/sb_inventory_group_access.xml',
-        'security/stock_picking_security.xml',
+        # 'security/stock_picking_security.xml',
         'views/sale_order.xml',
         'views/account_move.xml',
 
