@@ -18,11 +18,4 @@ class SaleOrder(models.Model):
         invoice_vals['created_by_id'] = self.created_by_id.id
         
         return invoice_vals
-    @api.model
-    def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
-        args = args or []
-        domain = ['|', ('customer_name', operator, name), ('customer_phone', operator, name)]
-        return self._search(domain + args, limit=limit, access_rights_uid=name_get_uid)
 
-    # تخصيص الاسم الذي يظهر في القائمة
-    _rec_name = 'customer_name'
