@@ -7,8 +7,7 @@ class SaleOrder(models.Model):
         ('option1', 'نقدى'),
         ('option2', 'اجل'),
     ], string='طريقه الدفع', required=True)
-    customer_name = fields.Char(string="اسم العميل")
-    customer_phone = fields.Char(string="رقم هاتف العميل")
+
 
     def _prepare_invoice(self):
         invoice_vals = super(SaleOrder, self)._prepare_invoice()
