@@ -12,19 +12,6 @@
                 </xpath>
             </field>
         </record>
-        <record id="view_order_form_inherit" model="ir.ui.view">
-        <field name="name">sale.order.form.inherit</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="arch" type="xml">
-            <!-- إضافة الحقول المخصصة في قسم العميل -->
-            <xpath expr="//group[@name='sale_information']" position="inside">
-                <group string="Customer Info">
-                    <field name="customer_name"/>
-                    <field name="customer_phone"/>
-                </group>
-            </xpath>
-        </field>
-    </record>
+
     </data>
 </odoo>
