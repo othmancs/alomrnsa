@@ -7,7 +7,7 @@
         This module allows the management and printing of employee contracts 
         according to the labor laws in Saudi Arabia.
     """,
-    'depends': ['hr', 'report'],
+    'depends': ['hr'],
     'data': [
         'views/employee_contract_views.xml',
         'reports/employee_contract_report.xml',
