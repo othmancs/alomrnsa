@@ -13,9 +13,10 @@ class SaleOrder(models.Model):
             'customer_phone': self.customer_phone,
         })
         return invoice_vals
-    def search_orders_by_customer_info(self, customer_name, customer_phone):
-        orders = self.search([
-            ('customer_name', '=', customer_name),
-            ('customer_phone', '=', customer_phone)
-        ])
-        return orders
+    def name_search_customer_info(self, name='', args=None, operator='ilike', limit=100):
+        if self._context.get('search_by_customer', False):
+            if name:
+                args = args if args else []
+                args.extend(['|', ['customer_name', operator, name], ['customer_phone', operator, name]])
+                name = ''
+        return super(SaleOrder, self).name_search(name=name, args=args, operator=operator, limit=limit)
