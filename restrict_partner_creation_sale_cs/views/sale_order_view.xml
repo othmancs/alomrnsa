@@ -12,10 +12,10 @@
         </field>
     </record>
 
-    <record id="view_order_search_custom" model="ir.ui.view">
+   <record id="view_order_search_custom" model="ir.ui.view">
     <field name="name">sale.order.search.custom</field>
     <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.order.filter.view"/> <!-- التأكد من العرض الصحيح -->
+    <field name="inherit_id" ref="sale.view_order_filter"/> <!-- استخدام XML ID الصحيح -->
     <field name="arch" type="xml">
         <xpath expr="//filter[@name='sale']" position="after">
             <filter string="اسم العميل" name="customer_name" domain="[('customer_name', 'ilike', self)]"/>
@@ -23,6 +23,7 @@
         </xpath>
     </field>
 </record>
+
 
 
 </odoo>
