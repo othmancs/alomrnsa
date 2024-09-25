@@ -15,8 +15,7 @@ class EmployeeContract(models.Model):
     job_title = fields.Char(string='Job Title', required=True)
     terms = fields.Text(string='Terms and Conditions')
 
-  @api.model
-def action_print_contract(self):
-    """Print the employee contract."""
-    return self.env.ref('hr_employee_contract_sa.employee_contract_report').report_action(self, data={'doc_ids': self.ids})
-
+    @api.model
+    def action_print_contract(self):
+        """Print the employee contract."""
+        return self.env.ref('hr_employee_contract_sa.employee_contract_report').report_action(self)
