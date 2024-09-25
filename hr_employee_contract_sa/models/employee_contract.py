@@ -14,3 +14,11 @@ class EmployeeContract(models.Model):
     duration = fields.Integer(string='Contract Duration (Months)')
     job_title = fields.Char(string='Job Title', required=True)
     terms = fields.Text(string='Terms and Conditions')
+class HREmployeeContract(models.Model):
+    _name = 'hr.employee.contract'
+    _description = 'Employee Contract'
+
+    @api.multi
+    def action_print_contract(self):
+        # هنا يمكنك إضافة المنطق لطباعة العقد
+        return self.env.ref('hr_employee_contract_sa.employee_contract_report').report_action(self)
