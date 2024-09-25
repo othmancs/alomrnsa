@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_zk_attendance_tree" model="ir.ui.view">
+        <field name="name">zk.attendance.tree</field>
+        <field name="model">zk.attendance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="zk_attendance_action" model="ir.actions.act_window">
+        <field name="name">Attendance Logs</field>
+        <field name="res_model">zk.attendance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_zk_attendance" name="Attendance Logs" parent="hr.menu_hr_root" action="zk_attendance_action"/>
+</odoo>
