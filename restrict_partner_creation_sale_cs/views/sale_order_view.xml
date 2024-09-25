@@ -12,7 +12,17 @@
         </field>
     </record>
 
-
+<record id="view_sales_order_search" model="ir.ui.view">
+    <field name="name">sale.order.search</field>
+    <field name="model">sale.order</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="customer_name" string="اسم العميل"/>
+            <field name="customer_phone" string="رقم الجوال"/>
+            <filter name="search_by_customer" string="بحث بواسطة العميل" context="{'search_by_customer': True}"/>
+        </search>
+    </field>
+</record>
 
 
 </odoo>
