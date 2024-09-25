@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_restrict_partner_creation_sale_order" model="res.groups">
+        <field name="name">Restrict Partner Creation in Sale Order</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+</odoo>

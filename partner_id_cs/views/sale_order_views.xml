@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_order_form_inherit_partner_creation" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.partner.creation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- نعدل حقل partner_id ليكون غير قابل للإنشاء بناءً على الصلاحية -->
+            <field name="partner_id" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
