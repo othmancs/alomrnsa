@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_custom" model="ir.ui.view">
+        <field name="name">sale.order.form.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="customer_name" />
+                <field name="customer_phone" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add search options -->
+    <record id="view_order_search_custom" model="ir.ui.view">
+        <field name="name">sale.order.search.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='sale']" position="after">
+                <filter string="اسم العميل" name="customer_name" domain="[('customer_name', 'ilike', self)]"/>
+                <filter string="رقم الجوال" name="customer_phone" domain="[('customer_phone', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
