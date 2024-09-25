@@ -13,3 +13,9 @@ class SaleOrder(models.Model):
             'customer_phone': self.customer_phone,
         })
         return invoice_vals
+    def search_orders_by_customer_info(self, customer_name, customer_phone):
+        orders = self.search([
+            ('customer_name', '=', customer_name),
+            ('customer_phone', '=', customer_phone)
+        ])
+        return orders
