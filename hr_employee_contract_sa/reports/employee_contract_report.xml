@@ -1,0 +1,25 @@
+<odoo>
+    <template id="report_employee_contract">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <h2>Employee Contract</h2>
+                <p><strong>Employee:</strong> <t t-esc="doc.employee_id.name"/></p>
+                <p><strong>Contract Date:</strong> <t t-esc="doc.contract_date"/></p>
+                <p><strong>Contract Type:</strong> <t t-esc="doc.contract_type"/></p>
+                <p><strong>Salary:</strong> <t t-esc="doc.salary"/> SAR</p>
+                <p><strong>Duration:</strong> <t t-esc="doc.duration"/> months</p>
+                <p><strong>Job Title:</strong> <t t-esc="doc.job_title"/></p>
+                <h3>Terms and Conditions</h3>
+                <p><t t-esc="doc.terms"/></p>
+            </div>
+        </t>
+    </template>
+
+    <report
+        id="action_report_employee_contract"
+        model="hr.employee.contract"
+        string="Employee Contract"
+        report_type="qweb-pdf"
+        name="hr_employee_contract_sa.report_employee_contract"
+        file="hr_employee_contract_sa.report_employee_contract" />
+</odoo>

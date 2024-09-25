@@ -1,0 +1,32 @@
+<odoo>
+    <record id="view_employee_contract_form" model="ir.ui.view">
+        <field name="name">hr.employee.contract.form</field>
+        <field name="model">hr.employee.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="contract_date"/>
+                        <field name="contract_type"/>
+                        <field name="salary"/>
+                        <field name="duration"/>
+                        <field name="job_title"/>
+                        <field name="terms"/>
+                    </group>
+                    <footer>
+                        <button name="action_print_contract" type="object" string="Print Contract" class="btn-primary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_employee_contract" model="ir.actions.act_window">
+        <field name="name">Employee Contracts</field>
+        <field name="res_model">hr.employee.contract</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_employee_contract" name="Employee Contracts" parent="hr.menu_hr_root" action="action_employee_contract"/>
+</odoo>

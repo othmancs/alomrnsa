@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_contract,access_hr_employee_contract,model_hr_employee_contract,,1,1,1,1
