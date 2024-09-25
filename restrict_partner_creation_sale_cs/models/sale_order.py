@@ -20,3 +20,9 @@ class SaleOrder(models.Model):
                 args.extend(['|', ['customer_name', operator, name], ['customer_phone', operator, name]])
                 name = ''
         return super(SaleOrder, self).name_search(name=name, args=args, operator=operator, limit=limit)
+class SomeOtherModel(models.Model):
+    _name = 'some.other.model'
+
+    def search_sales_orders(self, search_term):
+        orders = self.env['sale.order'].with_context(search_by_customer=True).name_search_customer_info(name=search_term)
+        return orders
