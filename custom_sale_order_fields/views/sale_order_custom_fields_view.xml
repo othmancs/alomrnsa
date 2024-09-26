@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-<record id="view_sale_order_search_inherit" model="ir.ui.view">
+<!-- <record id="view_sale_order_search_inherit" model="ir.ui.view">
     <field name="name">sale.order.search.inherit</field>
     <field name="model">sale.order</field>
     <!-- تأكد من أن هذا المرجع صحيح -->
@@ -11,7 +11,7 @@
             <field name="num_custom"/>
         </xpath>
     </field>
-</record>
+</record> -->
     
     <!-- Optional: Add the custom fields to the sale order form view -->
     <record id="view_sale_order_form_inherit" model="ir.ui.view">
