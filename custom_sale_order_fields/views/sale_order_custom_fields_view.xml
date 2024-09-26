@@ -3,7 +3,7 @@
 <!-- <record id="view_sale_order_search_inherit" model="ir.ui.view">
     <field name="name">sale.order.search.inherit</field>
     <field name="model">sale.order</field>
-    <!-- تأكد من أن هذا المرجع صحيح -->
+
     <field name="inherit_id" ref="sale.view_order_filter"/> 
     <field name="arch" type="xml">
         <xpath expr="//search[1]/field[@name='name']" position="after">
