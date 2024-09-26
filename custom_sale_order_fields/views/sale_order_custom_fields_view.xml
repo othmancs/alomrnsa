@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Inherit the sale order search view -->
+    <record id="view_sale_order_search_inherit" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sale_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search[1]/field[@name='name']" position="after">
+                <field name="اسم العميل"/>
+                <field name="رقم الجوال"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Optional: Add the custom fields to the sale order form view -->
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group>
+                    <field name="اسم العميل"/>
+                    <field name="رقم الجوال"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
