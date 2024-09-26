@@ -4,11 +4,11 @@
     <record id="view_sale_order_search_inherit" model="ir.ui.view">
         <field name="name">sale.order.search.inherit</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sale_order_filter"/>
+        <field name="inherit_id" ref="sale.view_order_search"/>
         <field name="arch" type="xml">
             <xpath expr="//search[1]/field[@name='name']" position="after">
-                <field name="اسم العميل"/>
-                <field name="رقم الجوال"/>
+                <field name="name_custom"/>
+                <field name="num_custom"/>
             </xpath>
         </field>
     </record>
@@ -21,8 +21,8 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
                 <group>
-                    <field name="اسم العميل"/>
-                    <field name="رقم الجوال"/>
+                <field name="name_custom"/>
+                <field name="num_custom"/>
                 </group>
             </xpath>
         </field>
