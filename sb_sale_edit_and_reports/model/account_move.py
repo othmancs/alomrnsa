@@ -9,8 +9,6 @@ class AccountMove(models.Model):
         ('option2', 'اجل'),
     ], string='طريقه الدفع' ,readonly=True)
     created_by_id = fields.Many2one('res.partner', string='انشأ من قبل', domain="[('branch_id', '=', branch_id)]",readonly=True)
-    name_custom = fields.Char(string="اسم العميل")
-    num_custom = fields.Char(string="رقم العميل")
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.move.line'
