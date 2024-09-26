@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-<!-- <record id="view_sale_order_search_inherit" model="ir.ui.view">
-    <field name="name">sale.order.search.inherit</field>
+<record id="view_sale_order_form_inherit" model="ir.ui.view">
+    <field name="name">sale.order.form.inherit</field>
     <field name="model">sale.order</field>
-
-    <field name="inherit_id" ref="sale.view_order_filter"/> 
+    <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
-        <xpath expr="//search[1]/field[@name='name']" position="after">
-            <field name="name_custom"/>
-            <field name="num_custom"/>
+        <xpath expr="//sheet/group" position="inside">
+            <group>
+                <field name="name_custom" string="Customer Name"/>
+                <field name="num_custom" string="Customer Phone"/>
+            </group>
         </xpath>
     </field>
-</record> -->
-    
-    <!-- Optional: Add the custom fields to the sale order form view -->
-    <record id="view_sale_order_form_inherit" model="ir.ui.view">
-        <field name="name">sale.order.form.inherit</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
-                <group>
-                <field name="name_custom"/>
-                <field name="num_custom"/>
-                </group>
-            </xpath>
-        </field>
-    </record>
+</record>
 </odoo>
