@@ -1,10 +1,11 @@
 <odoo>
-    <record id="action_eos_service_end_report" model="ir.actions.act_window">
-        <field name="name">طباعة نهاية الخدمة</field>
-        <field name="res_model">your.model.name</field>
-        <field name="view_mode">form</field>
-        <field name="target">current</field>
-    </record>
+<record id="action_eos_service_end_report" model="ir.actions.act_window">
+    <field name="name">طباعة نهاية الخدمة</field>
+    <field name="res_model">hr.contract</field> <!-- استخدم الاسم الصحيح هنا -->
+    <field name="view_mode">form</field>
+    <field name="target">current</field>
+</record>
+
 
     <record id="view_hr_contract_form_inherit" model="ir.ui.view">
         <field name="name">hr.contract.form.inherit.eos</field>
