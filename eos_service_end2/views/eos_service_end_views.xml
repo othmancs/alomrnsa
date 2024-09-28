@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_eos_service_end_form" model="ir.ui.view">
+        <field name="name">eos.service.end.form</field>
+        <field name="model">contract.contract</field>
+        <field name="arch" type="xml">
+            <form string="حساب نهاية الخدمة">
+                <header>
+                    <button name="%(action_eos_service_end_report)d" type="action" string="طباعة نهاية الخدمة" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="eos_employee_name" required="1"/>
+                        <field name="eos_start_date" required="1"/>
+                        <field name="eos_end_date" required="1"/>
+                        <field name="eos_salary" required="1"/>
+                        <field name="eos_service_years" readonly="1"/>
+                        <field name="eos_service_end_compensation" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_eos_service_end_tree" model="ir.ui.view">
+        <field name="name">eos.service.end.tree</field>
+        <field name="model">contract.contract</field>
+        <field name="arch" type="xml">
+            <tree string="نهاية الخدمة">
+                <field name="eos_employee_name"/>
+                <field name="eos_start_date"/>
+                <field name="eos_end_date"/>
+                <field name="eos_salary"/>
+                <field name="eos_service_years"/>
+                <field name="eos_service_end_compensation"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
