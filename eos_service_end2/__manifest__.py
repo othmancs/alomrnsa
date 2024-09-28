@@ -6,7 +6,7 @@
     'depends': ['base', 'hr_contract'],
     'data': [
         'views/eos_service_end_views.xml',
-        'reports/eos_service_end_report.xml',
+        # 'reports/eos_service_end_report.xml',
     ],
     'installable': True,
     'application': False,
