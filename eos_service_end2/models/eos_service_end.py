@@ -1,8 +1,8 @@
 from odoo import models, fields, api
 from datetime import date
 
-class EosServiceEnd(models.Model):
-    _inherit = 'contract.contract'  # وراثة من نموذج العقود
+class HrContract(models.Model):
+    _inherit = 'hr.contract'  # وراثة من نموذج عقود العمل
 
     eos_employee_name = fields.Char(string='اسم الموظف', required=True)
     eos_start_date = fields.Date(string='تاريخ البداية', required=True)
@@ -26,10 +26,8 @@ class EosServiceEnd(models.Model):
         for record in self:
             if record.eos_service_years > 0:
                 if record.eos_service_years <= 5:
-                    # نصف راتب عن كل سنة من السنوات الخمس الأولى
                     record.eos_service_end_compensation = record.eos_salary / 2 * record.eos_service_years
                 else:
-                    # راتب عن كل سنة من السنوات بعد الخمس سنوات
                     record.eos_service_end_compensation = (record.eos_salary / 2 * 5) + (record.eos_salary * (record.eos_service_years - 5))
             else:
                 record.eos_service_end_compensation = 0.0
