@@ -1,0 +1,26 @@
+<odoo>
+    <report
+        id="action_eos_service_end_report"
+        model="contract.contract"
+        string="طباعة نهاية الخدمة"
+        report_type="qweb-pdf"
+        name="eos_service_end.eos_service_end_report"
+        file="eos_service_end.eos_service_end_report"
+        menu="True"
+    />
+
+    <template id="eos_service_end_report">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>نهاية الخدمة</h2>
+                <p>اسم الموظف: <t t-esc="doc.eos_employee_name"/></p>
+                <p>تاريخ البداية: <t t-esc="doc.eos_start_date"/></p>
+                <p>تاريخ الانتهاء: <t t-esc="doc.eos_end_date"/></p>
+                <p>الراتب الشهري: <t t-esc="doc.eos_salary"/></p>
+                <p>عدد سنوات الخدمة: <t t-esc="doc.eos_service_years"/></p>
+                <p>تعويض نهاية الخدمة: <t t-esc="doc.eos_service_end_compensation"/></p>
+                <p>تاريخ الطباعة: <t t-esc="time.strftime('%Y-%m-%d')"/></p>
+            </div>
+        </t>
+    </template>
+</odoo>
