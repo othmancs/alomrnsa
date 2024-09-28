@@ -1,11 +1,18 @@
 <odoo>
+    <record id="action_eos_service_end_report" model="ir.actions.act_window">
+        <field name="name">طباعة نهاية الخدمة</field>
+        <field name="res_model">your.model.name</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
     <record id="view_hr_contract_form_inherit" model="ir.ui.view">
         <field name="name">hr.contract.form.inherit.eos</field>
         <field name="model">hr.contract</field>
         <field name="arch" type="xml">
             <form string="عقد العمل">
                 <header>
-                    <button name="%(action_eos_service_end_report)d" type="action" string="طباعة نهاية الخدمة" class="oe_highlight"/>
+                    <button name="%(eos_service_end2.action_eos_service_end_report)d" type="action" string="طباعة نهاية الخدمة" class="oe_highlight"/>
                 </header>
                 <sheet>
                     <group>
@@ -32,7 +39,7 @@
                 <field name="eos_salary"/>
                 <field name="eos_service_years"/>
                 <field name="eos_service_end_compensation"/>
-                <button name="%(action_eos_service_end_report)d" type="action" string="طباعة نهاية الخدمة" class="oe_highlight"/>
+                <button name="%(eos_service_end2.action_eos_service_end_report)d" type="action" string="طباعة نهاية الخدمة" class="oe_highlight"/>
             </tree>
         </field>
     </record>
