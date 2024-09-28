@@ -1,7 +1,7 @@
 <odoo>
     <report
         id="action_eos_service_end_report"
-        model="contract.contract"
+        model="hr.contract"
         string="طباعة نهاية الخدمة"
         report_type="qweb-pdf"
         name="eos_service_end.eos_service_end_report"
