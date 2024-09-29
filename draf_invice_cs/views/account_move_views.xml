@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- إضافة الإجراء الجماعي -->
-    <record id="action_reset_to_draft_server" model="ir.actions.server">
-        <field name="name">Reset to Draft</field>
-        <field name="model_id" ref="account.model_account_move"/>
-        <field name="binding_model_id" ref="account.model_account_move"/>
-        <field name="state">multi</field>
-        <field name="binding_view_types">list</field>
-        <field name="binding_type">action</field>
-        <field name="code">env['account.move'].browse(context.get('active_ids')).action_reset_to_draft()</field>
-    </record>
-
-    <!-- تعديل طريقة عرض الشجرة -->
-    <record id="view_account_move_tree_inherit" model="ir.ui.view">
-        <field name="name">account.move.tree.inherit</field>
+    <record id="view_invoice_tree_inherit" model="ir.ui.view">
+        <field name="name">account.move.tree.inherit.batch_reset</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_tree"/>
         <field name="arch" type="xml">
-            <!-- استخدام xpath لإضافة زر في عرض الشجرة -->
-            <xpath expr="//tree" position="inside">
-                <button name="action_reset_to_draft" string="Reset to Draft" type="object"
-                        class="oe_highlight"
-                        attrs="{'invisible': [('state', '!=', 'posted')]}"/>
-            </xpath>
+            <button name="action_reset_to_draft"
+                    string="Reset to Draft"
+                    type="object"
+                    states="posted"
+                    class="btn-secondary"
+                    context="{'form_view_initial_mode': 'edit'}"/>
         </field>
     </record>
 </odoo>
