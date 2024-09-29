@@ -5,12 +5,13 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_tree"/>
         <field name="arch" type="xml">
-            <button name="action_reset_to_draft"
-                    string="Reset to Draft"
-                    type="object"
-                    states="posted"
-                    class="btn-secondary"
-                    context="{'form_view_initial_mode': 'edit'}"/>
+            <xpath expr="//tree" position="buttons">
+                <button name="action_reset_to_draft"
+                        string="Reset to Draft"
+                        type="object"
+                        class="btn-secondary"
+                        context="{'form_view_initial_mode': 'edit'}"/>
+            </xpath>
         </field>
     </record>
 </odoo>
