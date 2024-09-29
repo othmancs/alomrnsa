@@ -18,7 +18,6 @@ from odoo import models, api
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    @api.multi
     def action_reset_to_draft(self):
         for invoice in self:
             if invoice.state == 'posted':
