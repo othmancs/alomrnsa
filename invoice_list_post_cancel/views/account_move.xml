@@ -8,8 +8,8 @@
         <field name="binding_model_id" ref="account.model_account_move"/>
         <field name="binding_view_types">list</field>
         <field name="code">
-            invoices = env['account.move'].browse(context.get('active_ids'))
-            invoices.action_post()  # يمكنك هنا تحديد الإجراء المناسب مثل post أو غيره
+            action = env['account.move'].browse(env.context.get('active_ids'))
+            action.action_post()  # يمكنك هنا تحديد الإجراء المناسب مثل post أو غيره
         </field>
     </record>
 
