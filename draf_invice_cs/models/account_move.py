@@ -4,7 +4,6 @@ from odoo.exceptions import UserError
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    @api.multi
     def action_reset_to_draft(self):
         for move in self:
             # تحقق من أن الفاتورة في حالة منشورة
