@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_end_of_service_wizard_form" model="ir.ui.view">
+        <field name="name">end.of_service.wizard.form</field>
+        <field name="model">end.of_service.wizard</field>
+        <field name="arch" type="xml">
+            <form string="End of Service Report">
+                <group>
+                    <field name="employee_id"/>
+                </group>
+                <footer>
+                    <button string="Generate Report" type="object" name="generate_report" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_end_of_service_wizard" model="ir.actions.act_window">
+        <field name="name">End of Service Report</field>
+        <field name="res_model">end.of_service.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
