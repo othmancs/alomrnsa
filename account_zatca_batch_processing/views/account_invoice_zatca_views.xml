@@ -5,12 +5,9 @@
     <field name="arch" type="xml">
         <tree>
             <field name="name"/>
-            <field name="date"/>
             <field name="amount_total"/>
-            <footer>
-                <button name="action_name" type="object" string="My Button"/>
-            </footer>
         </tree>
     </field>
 </record>
+
 </odoo>
