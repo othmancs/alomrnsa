@@ -46,7 +46,7 @@
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
     <field name="arch" type="xml">
-        <xpath expr="//search[1]/field[@name='name']" position="after">
+      <xpath expr="//search[1]/field[@name='name']" position="before">
             <field name="name_custom"/>
             <field name="num_custom"/>
         </xpath>
