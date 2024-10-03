@@ -17,6 +17,10 @@ class SaleOrder(models.Model):
                 'num_custom': self.num_custom,
             })
         return invoice_vals
+    def get_account_move_views(self):
+        views = self.env['ir.ui.view'].search([('model', '=', 'account.move')])
+        view_names = views.name_get()
+        return view_names
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
