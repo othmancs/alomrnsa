@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
- <!-- تعديل عرض طلب البيع لعرض الحقول المخصصة -->
-    <record id="view_sale_order_form_inherit_custom" model="ir.ui.view">
-        <field name="name">sale.order.form.inherit.custom</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
-                <group>
-                    <field name="name_custom" string="اسم العميل"/>
-                    <field name="num_custom" string="رقم الجوال"/>
-                </group>
-            </xpath>
-        </field>
+<record id="view_sale_order_form_inherit" model="ir.ui.view">
+    <field name="name">sale.order.form.inherit</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//sheet/group" position="inside">
+            <group>
+                <field name="name_custom" string="اسم العميل"/>
+                <field name="num_custom" string="رقم الجوال"/>
+            </group>
+        </xpath>
+    </field>
     </record>
 
     <!-- تعديل عرض الفاتورة لعرض الحقول المخصصة -->
