@@ -28,17 +28,19 @@
             </xpath>
         </field>
     </record>
-    <record id="view_account_move_search_inherit" model="ir.ui.view">
-        <field name="name">account.move.search.inherit</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_search"/>
-        <field name="arch" type="xml">
-        <xpath expr="//search[1]/field[@name='name']" position="after">
-                <field name="name_custom" string="اسم العميل"/>
-                <field name="num_custom" string="رقم الجوال"/>
-            </xpath>
-        </field>
-    </record>
+    
+        <record id="view_account_move_search_inherit" model="ir.ui.view">
+            <field name="name">account.move.search.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="name_custom" string="اسم العميل"/>
+                    <field name="num_custom" string="رقم الجوال"/>
+                </xpath>
+            </field>
+        </record>
+
 
 
 <record id="view_sale_order_search_inherit" model="ir.ui.view">
