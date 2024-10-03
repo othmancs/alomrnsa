@@ -14,7 +14,7 @@
     </field>
     </record>
 
-    <!-- تعديل عرض الفاتورة لعرض الحقول المخصصة -->
+    <!-- تعديل عرض الفاتورة -->
     <record id="view_invoice_form_inherit_custom" model="ir.ui.view">
         <field name="name">account.move.form.inherit.custom</field>
         <field name="model">account.move</field>
@@ -22,7 +22,6 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
                 <group>
-                    <field name="sale_order_id" string="طلب البيع"/>
                     <field name="name_custom" string="اسم العميل"/>
                     <field name="num_custom" string="رقم الجوال"/>
                 </group>
