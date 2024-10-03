@@ -22,8 +22,8 @@
         <field name="arch" type="xml">
             <xpath expr="//sheet/group" position="inside">
                 <group>
-                    <field name="name_custom" string="اسم العميل"/>
-                    <field name="num_custom" string="رقم الجوال"/>
+                    <field name="name_custom" string="اسم العميل" attrs="{'readonly': True}"/>
+                    <field name="num_custom" string="رقم الجوال" attrs="{'readonly': True}"/>
                 </group>
             </xpath>
         </field>
