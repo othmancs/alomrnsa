@@ -53,6 +53,7 @@ class EmpPayslipReport(models.TransientModel):
             file_path = 'Export Payslip Report' + '.xls'
             workbook = xlsxwriter.Workbook('/tmp/' + file_path)
             worksheet = workbook.add_worksheet('Export Payslip Report')
+        worksheet.set_footer('&LPrepared by: Essam Al Mahi&RConfidential')
 
             header_format = workbook.add_format(
                 {'bold': True, 'valign': 'vcenter', 'font_size': 16, 'align': 'center'})
@@ -71,21 +72,22 @@ class EmpPayslipReport(models.TransientModel):
             
             worksheet.set_row(1, 30)  # Set row height
             worksheet.set_row(4, 50)
+            worksheet.set_footer('&LPrepared by: Essam Al Mahi&RConfidential')
 
-            #         if self.company_id.logo:
-            # pil_image = base64_to_image(self.company_id.logo)
-            # pil_image = pil_image.resize((150, 150))
-            # im = pil_image
-            # image_parts = im.split()
-            # r = image_parts[0]
-            # g = image_parts[1]
-            # b = image_parts[2]
-            # img = Image.merge("RGB", (r, g, b))
-            # fo = io.BytesIO()
-            # img.save(fo, format='bmp')
+                    if self.company_id.logo:
+            pil_image = base64_to_image(self.company_id.logo)
+            pil_image = pil_image.resize((150, 150))
+            im = pil_image
+            image_parts = im.split()
+            r = image_parts[0]
+            g = image_parts[1]
+            b = image_parts[2]
+            img = Image.merge("RGB", (r, g, b))
+            fo = io.BytesIO()
+            img.save(fo, format='bmp')
 
-            # worksheet.insert_bitmap_data(fo.getvalue(), row, 4)
-            # Merge Row Columns
+            worksheet.insert_bitmap_data(fo.getvalue(), row, 4)
+            Merge Row Columns
             TITLEHEDER = 'تقرير الراتب'
 
             worksheet.set_column(0, 0, 3)
