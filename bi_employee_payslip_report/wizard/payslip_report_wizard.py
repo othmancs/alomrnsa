@@ -53,7 +53,7 @@ class EmpPayslipReport(models.TransientModel):
             file_path = 'Export Payslip Report' + '.xls'
             workbook = xlsxwriter.Workbook('/tmp/' + file_path)
             worksheet = workbook.add_worksheet('Export Payslip Report')
-        worksheet.set_footer('&LPrepared by: Essam Al Mahi&RConfidential')
+        # worksheet.set_footer('&LPrepared by: Essam Al Mahi&RConfidential')
 
             header_format = workbook.add_format(
                 {'bold': True, 'valign': 'vcenter', 'font_size': 16, 'align': 'center'})
