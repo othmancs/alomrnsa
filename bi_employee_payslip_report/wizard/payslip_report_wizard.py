@@ -87,7 +87,7 @@ class EmpPayslipReport(models.TransientModel):
             # img.save(fo, format='bmp')
 
             worksheet.insert_bitmap_data(fo.getvalue(), row, 4)
-            Merge Row Columns
+            # Merge Row Columns
             TITLEHEDER = 'تقرير الراتب'
 
             worksheet.set_column(0, 0, 3)
