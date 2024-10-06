@@ -74,17 +74,17 @@ class EmpPayslipReport(models.TransientModel):
             worksheet.set_row(4, 50)
             worksheet.set_footer('&LPrepared by: Essam Al Mahi&RConfidential')
 
-                    if self.company_id.logo:
-            pil_image = base64_to_image(self.company_id.logo)
-            pil_image = pil_image.resize((150, 150))
-            im = pil_image
-            image_parts = im.split()
-            r = image_parts[0]
-            g = image_parts[1]
-            b = image_parts[2]
-            img = Image.merge("RGB", (r, g, b))
-            fo = io.BytesIO()
-            img.save(fo, format='bmp')
+            #         if self.company_id.logo:
+            # pil_image = base64_to_image(self.company_id.logo)
+            # pil_image = pil_image.resize((150, 150))
+            # im = pil_image
+            # image_parts = im.split()
+            # r = image_parts[0]
+            # g = image_parts[1]
+            # b = image_parts[2]
+            # img = Image.merge("RGB", (r, g, b))
+            # fo = io.BytesIO()
+            # img.save(fo, format='bmp')
 
             worksheet.insert_bitmap_data(fo.getvalue(), row, 4)
             Merge Row Columns
