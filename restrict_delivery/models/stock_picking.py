@@ -8,13 +8,12 @@ class StockMoveLine(models.Model):
     def _check_quantity_done(self):
         """منع التصديق أو الحفظ إذا كانت الكمية المنفذة أكبر من الكمية المطلوبة في أمر المبيعات."""
         for line in self:
-            if line.move_id.sale_line_id:
-                sale_order_line = line.move_id.sale_line_id
-                if line.quantity_done > sale_order_line.product_uom_qty:
+            sale_order_line = line.move_id.sale_line_id  # احصل على سطر أمر المبيعات المرتبط
+            if sale_order_line:  # تحقق من وجود سطر أمر مبيعات
+                if line.quantity_done > sale_order_line.product_uom_qty:  # استخدم qty_done بدلاً من quantity_done
                     raise ValidationError(
-                        f"لا يمكن تسليم كمية أكبر من الكمية المطلوبة ({sale_order_line.product_uom_qty}) لمنتج {line.product_id.name}."
+                        f"لا يمكن تسليم كمية أكبر من الكمية المحددة ({sale_order_line.product_uom_qty}) في أمر المبيعات لمنتج {line.product_id.name}."
                     )
-
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
