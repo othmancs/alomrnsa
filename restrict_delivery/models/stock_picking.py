@@ -1,22 +1,22 @@
 from odoo import models, api, fields
 from odoo.exceptions import ValidationError, UserError
 
-class StockMove(models.Model):
-    _inherit = 'stock.move'
+# class StockMove(models.Model):
+#     _inherit = 'stock.move'
 
-    @api.constrains('quantity_done')
-    def _check_quantity_done(self):
-        """منع التصديق أو الحفظ إذا كانت الكمية المنفذة أكبر من الكمية المطلوبة في الحركة."""
-        for move in self:
-            if move.quantity_done > move.product_uom_qty:
-                raise ValidationError(
-                    f"لا يمكن التصديق لأن الكمية المنفذة ({move.quantity_done}) أكبر من الكمية المحددة ({move.product_uom_qty}) للمنتج {move.product_id.name}."
-                )
+#     @api.constrains('quantity_done')
+#     def _check_quantity_done(self):
+#         """منع التصديق أو الحفظ إذا كانت الكمية المنفذة أكبر من الكمية المطلوبة في الحركة."""
+#         for move in self:
+#             if move.quantity_done > move.product_uom_qty:
+#                 raise ValidationError(
+#                     f"لا يمكن التصديق لأن الكمية المنفذة ({move.quantity_done}) أكبر من الكمية المحددة ({move.product_uom_qty}) للمنتج {move.product_id.name}."
+#                 )
 
-    def button_validate(self):
-        """التأكد من عدم تجاوز الكمية قبل التصديق."""
-        self._check_quantity_done()  # تأكد من التحقق قبل التصديق
-        return super(StockMove, self).button_validate()  # اتصل بإجراء التصديق الأساسي
+#     def button_validate(self):
+#         """التأكد من عدم تجاوز الكمية قبل التصديق."""
+#         self._check_quantity_done()  # تأكد من التحقق قبل التصديق
+#         return super(StockMove, self).button_validate()  # اتصل بإجراء التصديق الأساسي
 
                     )
 class StockPicking(models.Model):
