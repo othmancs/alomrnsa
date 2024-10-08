@@ -1,18 +1,23 @@
 from odoo import models, api, fields
 from odoo.exceptions import ValidationError, UserError
 
-class StockMoveLine(models.Model):
-    _inherit = 'stock.move.line'
+class StockMove(models.Model):
+    _inherit = 'stock.move'
 
     @api.constrains('quantity_done')
     def _check_quantity_done(self):
-        """منع التصديق أو الحفظ إذا كانت الكمية المنفذة أكبر من الكمية المطلوبة في أمر المبيعات."""
-        for line in self:
-            sale_order_line = line.move_id.sale_line_id  # احصل على سطر أمر المبيعات المرتبط
-            if sale_order_line:  # تحقق من وجود سطر أمر مبيعات
-                if line.quantity_done > sale_order_line.product_uom_qty:  # استخدم qty_done بدلاً من quantity_done
-                    raise ValidationError(
-                        f"لا يمكن تسليم كمية أكبر من الكمية المحددة ({sale_order_line.product_uom_qty}) في أمر المبيعات لمنتج {line.product_id.name}."
+        """منع التصديق أو الحفظ إذا كانت الكمية المنفذة أكبر من الكمية المطلوبة في الحركة."""
+        for move in self:
+            if move.quantity_done > move.product_uom_qty:
+                raise ValidationError(
+                    f"لا يمكن التصديق لأن الكمية المنفذة ({move.quantity_done}) أكبر من الكمية المحددة ({move.product_uom_qty}) للمنتج {move.product_id.name}."
+                )
+
+    def button_validate(self):
+        """التأكد من عدم تجاوز الكمية قبل التصديق."""
+        self._check_quantity_done()  # تأكد من التحقق قبل التصديق
+        return super(StockMove, self).button_validate()  # اتصل بإجراء التصديق الأساسي
+
                     )
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
