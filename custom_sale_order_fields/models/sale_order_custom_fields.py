@@ -28,3 +28,20 @@ class AccountMove(models.Model):
     # إضافة الحقول في نموذج الفاتورة
     name_custom = fields.Char(string="اسم العميل")
     num_custom = fields.Char(string="رقم الجوال")
+
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
+
+    # توريث الحقول في شاشة التوصيل
+    name_custom = fields.Char(string="اسم العميل")
+    num_custom = fields.Char(string="رقم الجوال")
+
+    @api.model
+    def create(self, vals):
+        if 'sale_id' in vals:
+            sale_order = self.env['sale.order'].browse(vals['sale_id'])
+            vals.update({
+                'name_custom': sale_order.name_custom,
+                'num_custom': sale_order.num_custom,
+            })
+        return super(StockPicking, self).create(vals)
