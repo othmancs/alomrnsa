@@ -1,0 +1,40 @@
+<odoo>
+    <report
+        id="action_report_purchase_order"
+        model="purchase.order"
+        string="Purchase Order"
+        report_type="qweb-pdf"
+        name="your_module_name.report_purchase_order"
+        file="your_module_name.report_purchase_order"
+    />
+
+    <template id="report_purchase_order">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <h2>Purchase Order</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Unit Price</th>
+                            <th>Quantity</th>
+                            <th>Additional Cost</th>
+                            <th>Total Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="o.order_line" t-as="line">
+                            <tr>
+                                <td><t t-esc="line.product_id.name"/></td>
+                                <td><t t-esc="line.price_unit"/></td>
+                                <td><t t-esc="line.product_qty"/></td>
+                                <td><t t-esc="line.additional_cost"/></td>
+                                <td><t t-esc="line.total_cost"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>
