@@ -1,12 +1,13 @@
 <odoo>
-    <report
-        id="action_report_purchase_order"
-        model="purchase.order"
-        string="Purchase Order"
-        report_type="qweb-pdf"
-        name="your_module_name.report_purchase_order"
-        file="your_module_name.report_purchase_order"
-    />
+<record id="report_purchase_order" model="ir.actions.report">
+    <field name="name">Purchase Order Report</field>
+    <field name="model">purchase.order</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">Cost_Report_Module.report_purchase_order</field>
+    <field name="report_file">Cost_Report_Module.report_purchase_order</field>
+    <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+    <field name="binding_type">report</field>
+</record>
 
     <template id="report_purchase_order">
         <t t-call="web.basic_layout">
