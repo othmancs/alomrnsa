@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_purchase_order_form_inherit_sar" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.sar</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="total_in_sar" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
