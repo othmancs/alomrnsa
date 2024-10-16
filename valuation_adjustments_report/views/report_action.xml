@@ -1,0 +1,10 @@
+<odoo>
+    <report
+        id="action_report_valuation_adjustments"
+        model="stock.landed.cost"
+        string="Valuation Adjustments Report"
+        report_type="qweb-pdf"
+        name="valuation_adjustments_report.report_valuation_adjustments"
+        file="valuation_adjustments_report.report_valuation_adjustments"
+    />
+</odoo>

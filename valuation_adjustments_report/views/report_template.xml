@@ -1,0 +1,57 @@
+<odoo>
+    <template id="report_valuation_adjustments">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <h3 style="text-align: center; direction: rtl;">تقرير تعديلات التقييم</h3>
+                <table class="table table-condensed" style="direction: rtl; text-align: right;">
+                    <thead>
+                        <tr>
+                            <th>المنتج</th>
+                            <th>الكمية الإجمالية</th>
+                            <th>التكلفة السابقة الإجمالية</th>
+                            <th>التكلفة النهائية الإجمالية</th>
+                            <th>التكلفة المضافة الإجمالية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- تجميع البنود حسب المنتج -->
+                        <t t-set="grouped_lines" t-value="{}"/>
+                        <t t-foreach="doc.valuation_adjustment_lines" t-as="line">
+                            <!-- تعريف متغير مؤقت لمنتج معين -->
+                            <t t-set="product_id" t-value="line.product_id.id"/>
+                            <t t-if="product_id in grouped_lines">
+                                <!-- تحديث القيم إذا كان المنتج موجود مسبقاً -->
+                                <t t-set="temp_dict" t-value="grouped_lines[product_id]"/>
+                                <t t-set="temp_dict['quantity']" t-value="temp_dict['quantity'] + line.quantity"/>
+                                <t t-set="temp_dict['former_cost']" t-value="temp_dict['former_cost'] + line.former_cost"/>
+                                <t t-set="temp_dict['final_cost']" t-value="temp_dict['final_cost'] + line.final_cost"/>
+                                <t t-set="temp_dict['additional_landed_cost']" t-value="temp_dict['additional_landed_cost'] + line.additional_landed_cost"/>
+                            </t>
+                            <t t-else="">
+                                <!-- إضافة منتج جديد في المجموعة -->
+                                <t t-set="grouped_lines[product_id]" t-value="{
+                                    'name': line.product_id.name,
+                                    'quantity': line.quantity,
+                                    'former_cost': line.former_cost,
+                                    'final_cost': line.final_cost,
+                                    'additional_landed_cost': line.additional_landed_cost
+                                }"/>
+                            </t>
+                        </t>
+
+                        <!-- عرض البيانات المجمعة -->
+                        <t t-foreach="grouped_lines.values()" t-as="grouped_line">
+                            <tr>
+                                <td><span t-esc="grouped_line['name']"/></td>
+                                <td><span t-esc="grouped_line['quantity']"/></td>
+                                <td><span t-esc="grouped_line['former_cost']"/></td>
+                                <td><span t-esc="grouped_line['final_cost']"/></td>
+                                <td><span t-esc="grouped_line['additional_landed_cost']"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>
