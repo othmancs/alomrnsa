@@ -1,0 +1,21 @@
+<odoo>
+    <report
+        id="shipment_cost_report"
+        model="stock.landed.cost"
+        string="Landed Cost Product Report"
+        report_type="qweb-pdf"
+        name="product_shipment_cost_report.report_shipment_cost"
+        file="product_shipment_cost_report.report_shipment_cost"
+        print_report_name="'Landed Cost - %s' % (object.name)"
+    />
+
+    <template id="report_shipment_cost">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Landed Cost Report</h2>
+                <p><strong>Shipment:</strong> <span t-field="o.name"/></p>
+                <p><strong>Total Product Cost:</strong> <span t-field="o.product_cost"/></p>
+            </div>
+        </t>
+    </template>
+</odoo>
