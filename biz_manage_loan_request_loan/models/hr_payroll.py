@@ -4,10 +4,10 @@ import babel
 from odoo import models, fields, api, tools, _
 from datetime import datetime
 
-class HrContract(models.Model):
-    _inherit = 'hr.contract'
+# class HrContract(models.Model):
+#     _inherit = 'hr.contract'
 
-    struct_id = fields.Many2one('hr.payroll.structure', string='Payroll Structure')
+#     struct_id = fields.Many2one('hr.payroll.structure', string='Payroll Structure')
 
 class HrPayslipInput(models.Model):
     _inherit = 'hr.payslip.input'
@@ -41,12 +41,12 @@ def onchange_employee(self):
         self.contract_id = self.env['hr.contract'].browse(contract_ids[0])
 
     # Check if struct_id exists before accessing it
-    if self.contract_id and hasattr(self.contract_id, 'struct_id'):
-        if not self.contract_id.struct_id:
-            return
-        self.struct_id = self.contract_id.struct_id
-    else:
-        return  # Handle case when struct_id does not exist
+    # if self.contract_id and hasattr(self.contract_id, 'struct_id'):
+    #     if not self.contract_id.struct_id:
+    #         return
+    #     self.struct_id = self.contract_id.struct_id
+    # else:
+    #     return  # Handle case when struct_id does not exist
 
     # Computation of the salary input
     contracts = self.env['hr.contract'].browse(contract_ids)
