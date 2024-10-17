@@ -47,6 +47,7 @@ class HrPayslip(models.Model):
         for r in worked_days_line_ids:
             worked_days_lines += worked_days_lines.new(r)
         self.worked_days_line_ids = worked_days_lines
+
         if contracts:
             input_line_ids = self.get_inputs(contracts, date_from, date_to)
             input_lines = self.input_line_ids.browse([])
@@ -55,9 +56,17 @@ class HrPayslip(models.Model):
             self.input_line_ids = input_lines
         return
 
+    def get_contract(self, employee, date_from, date_to):
+        """Return contract IDs for the given employee within the specified date range."""
+        contracts = self.env['hr.contract'].search([
+            ('employee_id', '=', employee.id),
+            ('date_start', '<=', date_to),
+            '|', ('date_end', '>=', date_from), ('date_end', '=', False)
+        ])
+        return contracts.ids  # Return a list of contract IDs
+
     def get_inputs(self, contract_ids, date_from, date_to):
-        """This Compute the other inputs to employee payslip.
-                           """
+        """This Compute the other inputs to employee payslip."""
         res = super(HrPayslip, self).get_inputs(contract_ids, date_from, date_to)
         contract_obj = self.env['hr.contract']
         emp_id = contract_obj.browse(contract_ids[0].id).employee_id
