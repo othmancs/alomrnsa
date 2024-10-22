@@ -6,7 +6,7 @@ class SaleOrder(models.Model):
     payment_method = fields.Selection([
         ('option1', 'نقدى'),
         ('option2', 'اجل'),
-    ], string='طريقه الدفع', required=False)
+    ], string='طريقه الدفع', required=True)
 
 
     def _prepare_invoice(self):
