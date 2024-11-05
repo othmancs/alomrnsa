@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
 
+from html.parser import HTMLParser
+# import requests  # If you're fetching HTML from a URL
+
 def formatHtml(text):
     # Remove Windows Linebreaks
     text = text.replace('\r\n', '\n')
@@ -77,3 +80,42 @@ def formatLink(match):
     # Custom anchor found
     else:
         return '<a href="'+g[0]+'">'+g[2]+'</a>'
+
+# Define a custom HTML parser
+class HTMLToTextParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.text = []
+
+    def handle_data(self, data):
+        self.text.append(data)
+
+    def handle_charref(self, name):
+        self.text.append(chr(int(name)))
+
+    def handle_entityref(self, name):
+        # Handle named HTML entities
+        # You can extend this to handle more entities if needed
+        self.text.append(chr(HTMLParser.entitydefs[name]))
+
+    def get_text(self):
+        return ''.join(self.text)
+
+def formatText(html_content):
+    parser = HTMLToTextParser()
+    parser.feed(html_content)
+    return parser.get_text()
+
+# # Example usage:
+# # Replace 'html_content' with your actual HTML content
+# html_content = """
+# <html>
+# <body>
+# <h1>Hello, World!</h1>
+# <p>This is a <b>sample</b> HTML text.</p>
+# </body>
+# </html>
+# """
+
+# plain_text = html_to_text(html_content)
+# print(plain_text)

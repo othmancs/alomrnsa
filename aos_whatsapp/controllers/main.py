@@ -1,5 +1,5 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+import base64
 import hashlib
 import hmac
 import json
@@ -28,7 +28,7 @@ class Webhook(http.Controller):
     @http.route('/webhook/partner', type="json", auth='public', methods=['GET'])
     def webhook_partner(self, **kw):
         get_param = request.env['ir.config_parameter'].sudo().get_param('webhook.url')
-        print ('==s==',get_param,kw)
+        # print ('==s==',get_param,kw)
         return {
             'success': True,
             'status': 'OK',
@@ -84,20 +84,27 @@ class Webhook(http.Controller):
         uuid = kwargs.get('uuid')
         api_key = kwargs.get('x-api-key')
         sender = kwargs.get('sender')
-        message = kwargs.get('message')
+        recipient = kwargs.get('recipient')
+        sendermessage = kwargs.get('message')
         senderkeyhash = kwargs.get('senderkeyhash')
         recipientkeyhash = kwargs.get('recipientkeyhash')
         sendername = kwargs.get('sendername')
+        message_type = kwargs.get('type')
+        filename = kwargs.get('filename')
+        body = kwargs.get('body')
         value = {
+            "message_type": message_type,
             "uuid": uuid, 
             "x-api-key": api_key, 
-            "sender": sender, 
-            "messages": message, 
+            "sender": sender, #NOMOR PENGIRIM DARI CUSTOMER
+            "messages": sendermessage if sendermessage != 'undefined' else '', 
             "sendername": sendername,
             "senderkeyhash": senderkeyhash, 
             "recipientkeyhash": recipientkeyhash,
         }
-        # print ('=webhookpost=',data)
+        # print ('===webhookpost===',value)
+        # print ('=webhookpost=type=',message_type)
+        # print ('=webhookpost=body=',filename)
         # PublicUser = request.env.user
         # if not request.env.user:
         #     PublicUser = request.env['res.users'].sudo().search([('active','=',False),('login','=','public')], limit=1)
@@ -160,16 +167,58 @@ class Webhook(http.Controller):
         #     author_id=Partner.id
         # )
         # return response_data
-        account = request.env['ir.whatsapp_server'].sudo().search([('status','=','authenticated')], order='sequence asc', limit=1)
-
+        domain = [('status','=','authenticated')]
+        if recipient:
+            domain += [('whatsapp_number','=',recipient)]
+        account = request.env['ir.whatsapp_server'].sudo().search(domain, order='sequence asc', limit=1)
         # if not self._check_signature(account):
         #     raise Forbidden()
-        MailChannel = account._process_messages(value)
+        # request.env.cr.execute("INSERT INTO ir_attachment(datas_fname, datas, mimetype, name)"
+        #                     "('sample.pdf', decode('JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PC9UaXRsZSAoMDAxIFNLLURLTSAyMDIyLTIwMjUgUGVuZ3VydXMpCi9Qcm9kdWNlciAoU2tpYS9QREYgbTExOCBHb29', 'base64'), 'application/pdf', 'Sample PDF')", [child_template.id])
+        # for attach_fname, attach_datas in body:
+        # datas_fname, datas, mimetype, name
+        # data_attach = {
+        #     'name': filename or '/',
+        #     'datas': body,
+        #     'res_model': 'mail.channel',
+        #     'res_id': MailChannel.id,
+        #     'type': 'binary',  # override default_type from context, possibly meant for another model!
+        # }
+        #data:application/pdf;base64,isi
+        # attachment_ids = []
+        # filename = messages[message_type].get('filename')
+        # mime_type = messages[message_type].get('mime_type')
+        # caption = messages[message_type].get('caption')
+        # datas = wa_api._get_whatsapp_document(messages[message_type]['id'])
+        # if not filename:
+        #     extension = mimetypes.guess_extension(mime_type) or ''
+        #     filename = message_type + extension
+        # kwargs['attachments'] = [(filename, datas)]
+        # Attachment = request.env['ir.attachment'].sudo()
+        attachments = []
+        if body and 'base64' in body:
+            # mimetype = body.split(',')[0]
+            datas_fname = body.split(',')[1]
+            # data_attach = {
+            #     'name': filename,
+            #     'mimetype': mimetype.split(':')[1].split(';')[0],#'application/pdf',
+            #     'datas': datas_fname,
+            #     # 'res_model': 'mail.channel',
+            #     # 'res_id': MailChannel.id,
+            # }
+            # print ('==datas_fname==',datas_fname)
+            attachments = [(filename, base64.b64decode(datas_fname))]
+            # Attachment = Attachment.create(data_attach)
+            # attachment_ids.append(Attachment.create(data_attach).id)
+        MailChannel  = account._process_messages(value, attachments).sudo()
+        # MailChannel.message_post(attachment_ids=[Attachment.id], message_type='whatsapp', **kwargs)
+        # Attachment.write({'res_model': 'mail.channel', 'res_id': MailChannel.id})
         response_data = {
             'uuid': MailChannel.uuid,
             # 'user_id': user_id,
         }
         return response_data
+
         # _logger.warning("Unknown Template webhook : ")
         # for entry in data['entry']:
         #     account_id = entry['id']

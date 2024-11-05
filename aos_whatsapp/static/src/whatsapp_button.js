@@ -29,7 +29,7 @@ registerPatch({
             // this.chatterOwner.thread.followers.map(follower => ({ follower }));
             // console.log('==model==',this.thread.followers.map(follower => follower.partner.id))
             // console.log('==followers==',this.thread.model,this.thread.id,this,this.thread.followers)
-            console.log('==messaging==',this.thread.model,this.thread.id,this.thread.id)
+            // console.log('==messaging==',this.thread.model,this.thread.id,this.thread.id)
             const partner_ids = this.thread.followers.map(follower => follower.partner.id)
             const action = {
                 type: 'ir.actions.act_window',

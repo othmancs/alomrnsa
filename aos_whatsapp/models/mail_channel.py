@@ -5,6 +5,7 @@ import logging
 import re
 import ast
 import base64
+import time
 from markupsafe import Markup
 
 from datetime import timedelta
@@ -57,6 +58,7 @@ class mailChannel(models.Model):
     channel_type = fields.Selection(
         selection_add=[('whatsapp', 'WhatsApp Conversation')],
         ondelete={'whatsapp': 'cascade'})
+    whatsapp_operator_id = fields.Many2one('res.partner', string='Whatsapp Operator')
     whatsapp_number = fields.Char(string="Phone Number")
     whatsapp_channel_valid_until = fields.Datetime(string="WhatsApp Partner Last Message Datetime", compute="_compute_whatsapp_channel_valid_until")
     whatsapp_partner_id = fields.Many2one(comodel_name='res.partner', string="WhatsApp Partner")
@@ -66,10 +68,26 @@ class mailChannel(models.Model):
     recipientkeyhash = fields.Char()
     #path_id = fields.Many2one('api.rest.path', string="Whatsapp Path")
     
+    def channel_info(self):
+        """---[Extends the channel header by adding the whatsapp operator and the 'anonymous' profile :rtype : list(dict)]---"""
+        channel_infos = super().channel_info()
+        channel_infos_dict = dict((c['id'], c) for c in channel_infos)
+        for channel in self:
+            channel_infos_dict[channel.id]['channel']['anonymous_name'] = channel.anonymous_name
+            channel_infos_dict[channel.id]['channel']['anonymous_country'] = {
+                'code': channel.country_id.code,
+                'id': channel.country_id.id,
+                'name': channel.country_id.name,
+            } if channel.country_id else [('clear',)]
+            if channel.whatsapp_operator_id:
+                display_name = channel.whatsapp_operator_id.user_livechat_username or channel.whatsapp_operator_id.display_name
+                channel_infos_dict[channel.id]['operator_pid'] = (channel.whatsapp_operator_id.id, display_name.replace(',', ''))
+        return list(channel_infos_dict.values())
+
     @api.returns('mail.message', lambda value: value.id)
     def message_post(self, *, message_type='whatsapp', **kwargs):
         message = super(mailChannel, self).message_post(message_type=message_type, **kwargs)
-        print ('===KIRIM BALIK==',self._context)
+        # print ('===KIRIM BALIK==',self._context)
         if not self._context.get('from_odoobot') and self._context.get('uid'):
             self.send_whatsapp_message(self.message_ids, kwargs, message)
         return message
@@ -179,7 +197,7 @@ class mailChannel(models.Model):
         #         ('whatsapp_mail_message_id', 'in', record_messages.ids),
         #     ]
         channel = self.sudo().search(channel_domain, order='create_date desc', limit=1)
-        print ('==_get_whatsapp_channel=channel_domain==',channel,channel_domain)
+        #print ('==_get_whatsapp_channel=channel_domain==',channel,channel_domain)
 
         if responsible_partners:
             channel = channel.filtered(lambda c: all(r in c.channel_member_ids.partner_id for r in responsible_partners))
@@ -242,10 +260,18 @@ class mailChannel(models.Model):
         return html
 
     def send_whatsapp_message(self, message_ids, kwargs, message_id):
-        partner_id = False
-        WhatsappServer = self.env['ir.whatsapp_server']
-        whatsapp_id = WhatsappServer.search([('status','=','authenticated')], order='sequence asc', limit=1)
-        whatsapp_endpoint = 'https://klikodoo.id/api/wa'
+        # print ('==kwargs==',kwargs)
+        start_time = time.time()
+        #whatsapp_number = 
+        # partner_id = False
+        # WhatsappServer = self.env['ir.whatsapp_server']
+        # domain = [('status','=','authenticated')]
+        # if self.whatsapp_number:
+        #     domain += [('whatsapp_number','=',self.whatsapp_number)]
+        # whatsapp_id = WhatsappServer.search(domain, order='sequence asc', limit=1)
+        # whatsapp_endpoint = 'https://klikodoo.id/api/wa'
+        whatsapp_id = self.wa_account_id
+        whatsapp_endpoint = self.env['ir.config_parameter'].sudo().get_param('aos_whatsapp.url_api_whatsapp_server') or 'https://klikodoo.id/api/wa'
         whatsapp_instance = whatsapp_id.klik_key
         whatsapp_token = whatsapp_id.klik_secret
         # if 'author_id' in kwargs and kwargs.get('author_id'):
@@ -254,8 +280,8 @@ class mailChannel(models.Model):
         partner_ids = message_ids.mapped('author_id')
         attachment_ids = message_ids.mapped('attachment_ids')
         whatsapp_numbers = list(filter(None, [*set(message_ids.mapped('whatsapp_numbers'))]))
-        print ('==whatsapp_numbers==',whatsapp_numbers,partner_ids,kwargs)
-        print ('===attachment_ids==',attachment_ids)
+        #print ('==whatsapp_numbers==',whatsapp_numbers,partner_ids,kwargs)
+        #print ('===attachment_ids==',attachment_ids)
         if whatsapp_numbers:#partner_ids and message_id.author_id and not partner_id:
             #print ('-channel_last_seen_partner_ids--',self.channel_last_seen_partner_ids,self.channel_partner_ids)
             #print ('--send_whatsapp_message-from livechat to whatsapp-client',partner_ids, list(filter(None, [*set(whatsapp_numbers)])), kwargs, message_id)
@@ -266,15 +292,16 @@ class mailChannel(models.Model):
             #no_phone_partners = []
             invalid_whatsapp_number_partner = []
             if whatsapp_endpoint and whatsapp_token:
-                status_url = whatsapp_endpoint + '/auth/' + whatsapp_instance + '/' + whatsapp_token + '/status'
+                status_url = whatsapp_endpoint + 'auth/' + whatsapp_instance + '/' + whatsapp_token + '/status'
                 #print ('=status_url==',status_url,partner_id)
                 status_response = requests.get(status_url, data=json.dumps({}), headers={'Content-Type': 'application/json'})
                 json_response_status = json.loads(status_response.text)['result']
                 # status_url = param.get('whatsapp_endpoint') + '/status?token=' + param.get('whatsapp_token')
                 # status_response = requests.get(status_url)
                 # json_response_status = json.loads(status_response.text)
-                #print ('-send_whatsapp_message-',status_response,json_response_status,partner_id,partner_ids,partner_id.name,partner_id.country_id.phone_code, partner_id.mobile,partner_id.whatsapp)
+                #print ('-send_whatsapp_message-',status_url,status_response,json_response_status,whatsapp_number)#,partner_id,partner_ids,partner_id.name,partner_id.country_id.phone_code, partner_id.mobile,partner_id.whatsapp)
                 for whatsapp_number in whatsapp_numbers:
+                    #print ('-send_whatsapp_message-',whatsapp_id,status_url,status_response,json_response_status,whatsapp_number,self.whatsapp_number)
                     if (status_response.status_code == 200 or status_response.status_code == 201) and json_response_status['accountStatus'] == 'authenticated':
                     #if partner_id.country_id.phone_code and partner_id.whatsapp:
                         #whatsapp_msg_number = partner_id.whatsapp
@@ -383,7 +410,7 @@ class mailChannel(models.Model):
                             response = requests.post(url, json.dumps(message_dict), headers=headers)
                         if response.status_code == 201 or response.status_code == 200:
                             _logger.info("\nSend Message successfully")
-                            response_dict = response.json()
+                            # response_dict = response.json()
                                 #message_id.with_context({'from_odoobot': True}).write({'whatsapp_message_id': response_dict.get('id')})
                             # else:
                             #     invalid_whatsapp_number_partner.append(partner_id.name)
@@ -391,6 +418,8 @@ class mailChannel(models.Model):
                         #     no_phone_partners.append(partner_id.name)
                     else:
                         raise UserError(_('Please authorize your mobile number with klikodoo'))
+            time_cost = time.time() - start_time
+            # print ('===time_cost===',time_cost)
             if len(invalid_whatsapp_number_partner) >= 1:
                 raise UserError(_('Please add valid whatsapp number for %s customer')% ', '.join(invalid_whatsapp_number_partner))
 

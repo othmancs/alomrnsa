@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <!--Email template -->
+    
+        <record id="email_template_whatsapp_notification" model="mail.template">
+            <field name="name">Activity Whatsapp</field>
+            <field name="subject">% if object.summary:
+                Schedule Activity | ${object.activity_type_id.name or 'n/a' } - ${object.summary} of document  ${object.res_name}
+                % else:
+                Schedule Activity | ${object.activity_type_id.name or 'n/a' } of document  ${object.res_name}
+                %endif</field>
+            <field name="model_id" ref="mail.model_mail_activity" />
+            <field name="auto_delete" eval="True" />
+            <field name="body_html"><![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        Dear <b>${object.user_id.name},</b><br/><br/>
+                        % if object.summary:
+                        Your Scheduled Activity Reminder ${format_date(object.date_deadline)} | ${object.activity_type_id.name} - ${object.summary} of document ${object.res_name}.<br/><br/>
+                        % else:
+                        Your Scheduled Activity Reminder ${format_date(object.date_deadline)} | ${object.activity_type_id.name} of document ${object.res_name}.<br/><br/>
+                        %endif
+                        <b>State </b>${object.state.title()}<br/>
+                        <b>Notes: </b>${object.note or ''}<br/>
+                        % set website_url = object.env['ir.config_parameter'].sudo().get_param('web.base.url')+'/mail/view?model=mail.activity&res_id='+str(object.id)
+                        ${website_url}
+                    </div>]]>
+            </field>
+        </record>
+
+        
+    </data>
+</odoo>

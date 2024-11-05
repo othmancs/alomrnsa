@@ -81,7 +81,7 @@ class MailThread(models.AbstractModel):
             'mail_message_id': message.id,
             'state': 'outgoing',
         }
-        print ('===sms_base_vals==',sms_base_vals)
+        #print ('===sms_base_vals==',sms_base_vals)
         notif_create_values = [{
             'author_id': message.author_id.id,
             'mail_message_id': message.id,

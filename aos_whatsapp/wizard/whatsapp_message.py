@@ -60,7 +60,7 @@ class WhatsappComposeMessage(models.TransientModel):
         if context.get('active_model'):
             #print ('=context==',context)
             result['model'] = context['active_model']
-            result['subject'] = context['default_subject']
+            result['subject'] = context['default_subject'] if 'default_subject' in context else ''
             #result['model'] = context['active_model']
             #if 'res_id' in fields and 'res_id' not in result:
             if len(context.get('active_ids')) == 1:
@@ -70,15 +70,17 @@ class WhatsappComposeMessage(models.TransientModel):
             #result['res_ids'] = context.get('active_ids') or [context.get('active_id')]
             partners = self.env['res.partner']
             if result['model'] and context['active_model'] and result['model'] == 'res.partner':
-                partners = self.env[result['model']].browse(context['active_model'])
+                partners = self.env[result['model']].browse(context.get('active_ids'))
+                # print ('=partners==',partners,result['model'],context.get('active_ids'))
                 result['model'] = result['model'] or 'res.partner'
                 result['partner_ids'] = [(6, 0, partners.ids)]
 
             wa_template_id = self.env['mail.template']._find_default_for_model(result['model'])
+            # print ('==wa_template_id=')
             if wa_template_id and not result.get('wa_template_id'):
                 result['template_id'] = wa_template_id.id
             elif not wa_template_id and not result.get('wa_template_id'):
-                action = self.env.ref('mail.action_email_template_tree_all')
+                action = self.env.ref('aos_whatsapp.action_whatsapp_template')
                 raise RedirectWarning(_("No template available for this model"), action.id, _("View Templates"))
                 # if self.env.user.has_group('whatsapp.group_whatsapp_admin'):
                 #     action = self.env.ref('mail.action_email_template_tree_all')
@@ -89,6 +91,7 @@ class WhatsappComposeMessage(models.TransientModel):
         #     result['res_ids'] = context.get('active_ids') or [context.get('active_id')]
         if context.get('active_ids') and len(context['active_ids']) > 1:
             result['batch_mode'] = True
+        print ('==WhatsappComposeMessage==',result)
         return result
 
     @api.model
@@ -517,6 +520,7 @@ class WhatsappComposeMessage(models.TransientModel):
                     #print ('--message--',message)
                     attachment_new_ids = []
                     if rec.attachment_ids:
+                        #BUAT TARUH DI MAIL.MESSAGE
                         for attach in rec.attachment_ids:
                             vals = {'filename': attach.name}
                             mimetype = guess_mimetype(base64.b64decode(attach.datas))
@@ -575,7 +579,7 @@ class WhatsappComposeMessage(models.TransientModel):
                                 partners = partner
                         else:
                             partners = record
-                        # print ('===PARTNER==',partner)
+                        print ('===PARTNER==',partner)
                         #if partner.whatsapp:
                         if partners:
                             for partner in partners:
@@ -586,7 +590,7 @@ class WhatsappComposeMessage(models.TransientModel):
                                         'method': 'sendMessage',
                                         'phone': whatsapp,
                                         'chatId': partner.chat_id or '',
-                                        'body': message.replace('_PARTNER_', partner.name).replace('_NUMBER_', origin).replace('_AMOUNT_TOTAL_', str(self.format_amount(amount_total, currency_id)) if currency_id else '').replace('\xa0', ' ').replace('"', "*").replace("'", "*"),
+                                        'body': message,#message.replace('_PARTNER_', partner.name).replace('_NUMBER_', origin).replace('_AMOUNT_TOTAL_', str(self.format_amount(amount_total, currency_id)) if currency_id else '').replace('\xa0', ' ').replace('"', "*").replace("'", "*"),
                                         'origin': origin,
                                         'link': link,
                                     }
@@ -612,6 +616,9 @@ class WhatsappComposeMessage(models.TransientModel):
                                         new_cr.commit()
                                     #ATTACHMENT SENT
                                     elif attachment_new_ids:
+                                        send_message_response = []
+                                        status = 'error'
+                                        i = 1
                                         for att in attachment_new_ids:
                                             message_attach = {
                                                 'method': 'sendFile',
@@ -623,24 +630,42 @@ class WhatsappComposeMessage(models.TransientModel):
                                                 'origin': origin,
                                                 'link': link,
                                             }
-                                            #SENT ATTAHCMENT
+                                            #SENT ATTAHCMENT JIKA BATCH
                                             if message_attach['body']:
                                                 send_attach = {}
                                                 status = 'pending'
-                                                # data_attach = json.dumps(message_attach)
-                                                # #_logger.warning('Failed to send Message to WhatsApp number %s, No attachment found', whatsapp)
-                                                # send_attach = KlikApi.post_request(method='sendFile', data=data_attach)
-                                                # if send_attach.get('message')['sent']:        
-                                                #     status = 'send'                
-                                                #     _logger.warning('Success to send Attachment to WhatsApp number %s', whatsapp)
-                                                # else:
-                                                #     status = 'error'
-                                                #     _logger.warning('Failed to send Attachment to WhatsApp number %s', whatsapp)
-                                                chatID = partner.chat_id if partner.chat_id else whatsapp#send_attach.get('chatID')
-                                                vals = self._prepare_mail_message(self.env.user.partner_id.id, chatID, record and record.id, active_model, texttohtml.formatHtml(message.replace('_PARTNER_', partner.name).replace('_NUMBER_', origin).replace('_AMOUNT_TOTAL_', str(self.format_amount(amount_total, currency_id)) if currency_id else '').replace('\xa0', ' ')), message_attach, rec.subject, [partner.id], rec.attachment_ids, send_attach, status)
-                                                MailMessage += MailMessage.sudo().create(vals)
-                                                #partner.chat_id = chatID
-                                                new_cr.commit()
+                                            # if message_attach['body']:
+                                            #     if rec.batch_mode:
+                                            #         #JIKA BATCH SIMPAN DI MESSAGES
+                                            #         send_attach = {}
+                                            #         status = 'pending'
+                                            #     else:
+                                            #         #JIKA TIDAK BATCH KIRIM LANGSUNG
+                                            #         mimetype = guess_mimetype(base64.b64decode(att['datas']))
+                                            #         if mimetype == 'application/octet-stream':
+                                            #             mimetype = 'video/mp4'
+                                            #         str_mimetype = 'data:' + mimetype + ';base64,'
+                                            #         attachment = str_mimetype + str(att['datas'].decode("utf-8"))
+                                            #         # #KIRIM CAPTION SEKALI SAJA
+                                            #         # message_attach.update({'body': attachment, 'filename': att['filename'], 'caption': message_attach.get('caption') if i == 1 else ''})
+                                            #         #AUTO SEND JIKA 1 AJA
+                                            #         message_attach.update({'body': attachment, 'filename': att['filename'], 'caption': message_attach.get('caption') if i == 1 else ''})
+                                            #         data_message = json.dumps(message_attach)
+                                            #         send_message = KlikApi.post_request(method='sendFile', data=data_message)
+                                            #         if send_message.get('message')['sent']:
+                                            #             status = 'send'
+                                            #             send_message_response.append(attach.name + ': ' + str(send_message))
+                                            #             _logger.warning('Success send Attachment %s to WhatsApp %s', attach.name, message_attach.get('phone'))
+                                            #         else:
+                                            #             status = 'error'
+                                            #             send_message_response.append(attach.name + ': ' + str(send_message))
+                                            #             _logger.warning('Failed send Attachment %s to WhatsApp %s', attach.name, message_attach.get('phone'))
+                                            # i += 1
+                                        chatID = partner.chat_id if partner.chat_id else whatsapp#send_attach.get('chatID')
+                                        vals = self._prepare_mail_message(self.env.user.partner_id.id, chatID, record and record.id, active_model, texttohtml.formatHtml(message.replace('_PARTNER_', partner.name).replace('_NUMBER_', origin).replace('_AMOUNT_TOTAL_', str(self.format_amount(amount_total, currency_id)) if currency_id else '').replace('\xa0', ' ')), message_attach, rec.subject, [partner.id], rec.attachment_ids, send_attach, status)
+                                        MailMessage += MailMessage.sudo().create(vals)
+                                        #partner.chat_id = chatID
+                                        new_cr.commit()
                         # else:
                         #     whatsapp = partner._formatting_mobile_number()
                         #     if partner.whatsapp and partner.whatsapp != '0' and whatsapp not in opt_out_list:                          

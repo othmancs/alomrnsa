@@ -2,7 +2,7 @@
 
 {
     'name': 'Whatsapp Client',
-    'version': '16.0.0.1.0',
+    'version': '16.0.0.3.0',
     'license': 'OPL-1',
     'author': "Alphasoft",
     'sequence': 1,
@@ -12,6 +12,7 @@
     'category': 'Extra Tools',
     'depends': [
         'mail',
+        'im_livechat',
         'base_setup',
         'contacts',
         'phone_validation',
@@ -19,6 +20,7 @@
     'external_dependencies': {'python': ['html2text']},
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_config_parameter.xml',
         'data/whatsapp_data.xml',
         'data/whatsapp_mail_message_cron.xml',
         'views/res_partner_view.xml',

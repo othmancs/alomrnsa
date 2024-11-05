@@ -46,11 +46,11 @@
     </record>
 
 
-    <menuitem id="menu_contacts_whatsapp" 
+    <!-- <menuitem id="menu_contacts_whatsapp" 
         name="Whatsapp" 
         parent="contacts.menu_contacts"
         sequence="25"
-        />
+        /> -->
         
     <record id="action_whatsapp_compose_message_post" model="ir.actions.act_window">
         <field name="name">Whatsapp Message</field>
@@ -67,12 +67,12 @@
          <field name="act_window_id" ref="action_whatsapp_compose_message_post"/>
      </record>
 
-    <menuitem id="whatsapp_post_menu" 
+    <!-- <menuitem id="whatsapp_post_menu" 
         name="Send Message" 
         parent="menu_contacts_whatsapp"
         action="action_whatsapp_compose_message_post"
         sequence="25"
-        />
+        /> -->
        
     <record id="action_whatsapp_compose_message_get" model="ir.actions.act_window">
         <field name="name">Contacts/Groups</field>
@@ -89,12 +89,12 @@
          <field name="act_window_id" ref="action_whatsapp_compose_message_get"/>
      </record>
 
-    <menuitem id="whatsapp_get_menu" 
+    <!-- <menuitem id="whatsapp_get_menu" 
         name="Contacts/Groups" 
         parent="menu_contacts_whatsapp"
         action="action_whatsapp_compose_message_get"
         sequence="35"
-        />
+        /> -->
         
     <record id="action_send_partner_mobile" model="ir.actions.act_window">
         <field name="name">Send Whatsapp</field>

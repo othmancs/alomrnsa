@@ -7,6 +7,8 @@ from odoo.tools.mimetypes import guess_mimetype
 from odoo.exceptions import Warning, UserError
 from datetime import datetime
 import html2text
+from ..klikapi import texttohtml
+
 import threading
 import requests
 import json
@@ -60,44 +62,105 @@ class MailMessage(models.Model):
                 #print ('==sMailMessage==',MailMessage)
                 #if not MailMessage.whatsapp_data
                 get_version = self.env["ir.module.module"].sudo().search([('name','=','base')], limit=1).latest_version
-                for mail in MailMessage:#.filtered(lambda m: m.whatsapp_data):
-                    if not mail.whatsapp_data:
-                        mail.whatsapp_status = 'error'
-                        mail.whatsapp_response = 'No Message Datas'
-                    data = json.loads(str(mail.whatsapp_data.replace("'",'"')))
-                    message_data = {
-                        'chatId': mail.whatsapp_chat_id,
-                        'body': html2text.html2text(mail.body),
-                        'phone': data['phone'] if 'phone' in data else '',
-                        'origin': data['origin'] if 'origin' in data else '',
-                        'link': data['link'] if 'link' in data else '',
-                        'get_version': get_version,
-                    }
-                    if mail.whatsapp_method == 'sendFile' and mail.attachment_ids:
-                        attach = [att for att in mail.attachment_ids][0]#.datas
-                        mimetype = guess_mimetype(base64.b64decode(attach.datas))
-                        if mimetype == 'application/octet-stream':
-                            mimetype = 'video/mp4'
-                        str_mimetype = 'data:' + mimetype + ';base64,'
-                        attachment = str_mimetype + str(attach.datas.decode("utf-8"))
-                        message_data.update({'body': attachment, 'filename': [att for att in mail.attachment_ids][0].name, 'caption': data['caption']})
-                    #print ('==data_message==',message_data)
-                    data_message = json.dumps(message_data)
-                    print ('==data_message==',mail.whatsapp_method)
-                    send_message = KlikApi.post_request(method=mail.whatsapp_method, data=data_message)
-                    if send_message.get('message')['sent']:
-                        mail.whatsapp_status = 'send'
-                        mail.whatsapp_response = send_message
-                        _logger.warning('Success send Message to WhatsApp number %s', data['phone'])
-                    else:
-                        mail.whatsapp_status = 'error'
-                        mail.whatsapp_response = send_message
-                        _logger.warning('Failed send Message to WhatsApp number %s', data['phone'])
-                    #print ('==data_message==',mail,mail.whatsapp_status)
-                    new_cr.commit()
+                for mail in MailMessage.filtered(lambda m: m.whatsapp_data):
+                    try:
+                        if not mail.whatsapp_data:
+                            mail.whatsapp_status = 'error'
+                            mail.whatsapp_response = 'No Message Datas'
+                        # data = json.loads(str(mail.whatsapp_data.replace("'",'"')))
+                        data = str(mail.whatsapp_data).replace("'",'"')
+                        try:
+                            # Load the JSON string
+                            fixed_json_string = json.loads(data)
+                            # Dump the data back to a properly formatted JSON string
+                            data = json.dumps(fixed_json_string, indent=4)
+                            #print(data)
+                        except json.JSONDecodeError as e:
+                            _logger.warning("Invalid JSON: {e}")
+                        data = json.loads(data)
+                        message_data = {
+                            'chatId': mail.whatsapp_chat_id,
+                            'body': texttohtml.formatText(mail.body),#html2text.html2text(mail.body),
+                            'phone': data.get('phone') or '',
+                            'origin': data.get('origin') or '',
+                            'link': data.get('link') or '',
+                            'get_version': get_version,
+                        }
+                        # print ('==body==',mail.body)
+                        # print ('==html2text==',html2text.html2text(mail.body))
+                        if mail.whatsapp_method == 'sendFile' and mail.attachment_ids:
+                            #KLO ADA ATTACHMENT LEBIH DARI SATU
+                            send_message_response = []
+                            whatsapp_status = 'error'
+                            i = 1
+                            # attach = [att for att in mail.attachment_ids][0]#.datas
+                            for attach in mail.attachment_ids:
+                                mimetype = guess_mimetype(base64.b64decode(attach.datas))
+                                if mimetype == 'application/octet-stream':
+                                    mimetype = 'video/mp4'
+                                str_mimetype = 'data:' + mimetype + ';base64,'
+                                attachment = str_mimetype + str(attach.datas.decode("utf-8"))
+                                message_data.update({'body': attachment, 'filename': attach.name, 'caption': data.get('caption') if i == 1 else ''})
+                                data_message = json.dumps(message_data)
+                                send_message = KlikApi.post_request(method=mail.whatsapp_method, data=data_message)
+                                if send_message.get('message')['sent']:
+                                    whatsapp_status = 'send'
+                                    send_message_response.append(attach.name + ': ' + str(send_message))
+                                    # mail.whatsapp_response += send_message
+                                    _logger.warning('%s. Success send Attachment %s to WhatsApp %s', str(i), attach.name, data.get('phone'))
+                                else:
+                                    whatsapp_status = 'error'
+                                    send_message_response.append(attach.name + ': ' + str(send_message))
+                                    # mail.whatsapp_response += send_message
+                                    _logger.warning('%s. Failed send Attachment %s to WhatsApp %s', str(i), attach.name, data.get('phone'))
+                                i += 1
+                            # print ('==send_message_res?ponse==',send_message_response)
+                            mail.whatsapp_status = whatsapp_status
+                            mail.whatsapp_response = '\n'.join(send_message_response)
+                            new_cr.commit()
+                        else:
+                            #KLO GA ADA ATTACHMENT
+                            data_message = json.dumps(message_data)
+                            send_message = KlikApi.post_request(method=mail.whatsapp_method, data=data_message)
+                            if send_message.get('message')['sent']:
+                                mail.whatsapp_status = 'send'
+                                mail.whatsapp_response = send_message
+                                _logger.warning('Success send Message to WhatsApp %s', data.get('phone'))
+                            else:
+                                mail.whatsapp_status = 'error'
+                                mail.whatsapp_response = send_message
+                                _logger.warning('Failed send Message to WhatsApp %s', data.get('phone'))
+                            new_cr.commit()
+                        # if mail.whatsapp_method == 'sendFile' and mail.attachment_ids:
+                        #     attach = [att for att in mail.attachment_ids][0]#.datas
+                        #     mimetype = guess_mimetype(base64.b64decode(attach.datas))
+                        #     if mimetype == 'application/octet-stream':
+                        #         mimetype = 'video/mp4'
+                        #     str_mimetype = 'data:' + mimetype + ';base64,'
+                        #     attachment = str_mimetype + str(attach.datas.decode("utf-8"))
+                        #     message_data.update({'body': attachment, 'filename': [att for att in mail.attachment_ids][0].name, 'caption': data.get('caption')})
+                        # #print ('==data_message==',message_data)
+                        # data_message = json.dumps(message_data)
+                        # # print ('==data_message==',mail.whatsapp_method)
+                        # try:
+                        #     send_message = KlikApi.post_request(method=mail.whatsapp_method, data=data_message)
+                        #     if send_message.get('message')['sent']:
+                        #         mail.whatsapp_status = 'send'
+                        #         mail.whatsapp_response = send_message
+                        #         _logger.warning('Success send Message to WhatsApp number %s', data.get('phone'))
+                        #     else:
+                        #         mail.whatsapp_status = 'error'
+                        #         mail.whatsapp_response = send_message
+                        #         _logger.warning('Failed send Message to WhatsApp number %s', data.get('phone'))
+                        # except:
+                        #     mail.whatsapp_status = 'error'
+                        #     mail.whatsapp_response = 'Response Error on Server'
+                        #     _logger.warning('Failed send Message to WhatsApp number %s', data.get('phone'))
+                        # new_cr.commit()
+                    finally:
+                        pass
         finally:
-            self._cr.rollback()
-            self._cr.close()
+            pass
 
     @api.model
     def resend_whatsapp_mail_message(self):
@@ -105,12 +168,17 @@ class MailMessage(models.Model):
         WhatsappServer = self.env['ir.whatsapp_server']
         whatsapp_ids = WhatsappServer.search([('status','=','authenticated')], order='sequence asc')
         #if len(whatsapp_ids) == 1:            
-        for wserver in whatsapp_ids.filtered(lambda ws: not ast.literal_eval(str(ws.message_response))['block']):
-            #company_id = self.env.user.company_id
-            if wserver.status != 'authenticated':
-                _logger.warning('Whatsapp Authentication Failed!\nConfigure Whatsapp Configuration in General Setting.')
-            KlikApi = wserver.klikapi()
-            KlikApi.auth()
-            thread_start = threading.Thread(target=self._resend_whatsapp_message_resend(KlikApi))
-            thread_start.start()
+        # print ('==resend_whatsapp_mail_message==',whatsapp_ids,whatsapp_ids.mapped('message_response'))#.filtered(lambda ws: not ast.literal_eval(str(ws.message_response))))
+        try:
+            #print ('==resend_whatsapp_mail_message==',whatsapp_ids,whatsapp_ids.mapped('message_response'))
+            for wserver in whatsapp_ids.filtered(lambda ws: not ast.literal_eval(str(ws.message_response))['block']):
+                #company_id = self.env.user.company_id
+                if wserver.status != 'authenticated':
+                    _logger.warning('Whatsapp Authentication Failed!\nConfigure Whatsapp Configuration in General Setting.')
+                KlikApi = wserver.klikapi()
+                KlikApi.auth()
+                thread_start = threading.Thread(target=self._resend_whatsapp_message_resend(KlikApi))
+                thread_start.start()
+        except Exception:
+            _logger.exception('Error while checking whatapp connection')
         return True

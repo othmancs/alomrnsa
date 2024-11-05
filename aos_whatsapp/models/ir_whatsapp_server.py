@@ -75,14 +75,19 @@ class IrWhatsappServer(models.Model):
 
     def klikapi(self):
         self.ensure_one()
-        return KlikApi(self.klik_key, self.klik_secret)
+        APIUrl = self.env['ir.config_parameter'].sudo().get_param('aos_whatsapp.url_klikodoo_whatsapp_server')
+        return KlikApi(APIUrl, self.klik_key, self.klik_secret)
     
     def _get_mail_message_whatsapp(self):
         for was in self:
-            KlikApi = was.klikapi()
-            KlikApi.auth()
-            was.message_counts = KlikApi.get_count()
-            was.message_response = KlikApi.get_limit()
+            try:
+                KlikApi = was.klikapi()
+                KlikApi.auth()
+                was.message_counts = KlikApi.get_count()
+                was.message_response = KlikApi.get_limit()
+            except:
+                was.message_counts = 0
+                was.message_response = ''
 
     
     def _formatting_mobile_number(self, number):
@@ -107,9 +112,6 @@ class IrWhatsappServer(models.Model):
             # return module_rec and re.sub("[^0-9]", '', number) or \
             #     str(rec.partner_id.country_id.phone_code
             #         ) + number
-
-    def klikapi(self):
-        return KlikApi(self.klik_key, self.klik_secret)
     
     def klikapi_status(self):
         #WhatsApp is open on another computer or browser. Click “Use Here” to use WhatsApp in this window.
@@ -210,8 +212,8 @@ A QR code is valid only for 45 seconds. Message sennding will be available right
             create_if_not_found=create_if_not_found,
             related_message=whatsapp_message.whatsapp_message_id,
         )
-
-    def _process_messages(self, value):
+ 
+    def _process_messages(self, value, attachments):
         """
             This method is used for processing messages with the values received via webhook.
             If any whatsapp message template has been sent from this account then it will find the active channel or
@@ -235,7 +237,7 @@ A QR code is valid only for 45 seconds. Message sennding will be available right
         # print ('===messages===',value)
         sender_name = value['sendername']#value.get('contacts', [{}])[0].get('profile', {}).get('name')
         sender_mobile = value['sender']
-        # message_type = value['type']
+        message_type = value['message_type']
         if 'context' in messages:
             # parent_whatsapp_message = self.env['whatsapp.message'].sudo().search([('msg_uid', '=', messages['context'].get('id'))])
             # if parent_whatsapp_message:
@@ -253,8 +255,12 @@ A QR code is valid only for 45 seconds. Message sennding will be available right
             'author_id': self.env['res.partner'].search([('whatsapp','=',sender_mobile)], limit=1).id,#channel.whatsapp_partner_id.id,
             'subtype_xmlid': 'mail.mt_comment',
             'body': messages,
+            'whatsapp_status': 'send',#BIAR GA MASUK SCHEDULER
             # 'parent_id': parent_id.id if parent_id else None
         }
+        # print ('==message_type=',message_type,attachments)
+        if attachments:
+            kwargs['attachments'] = attachments
         # if message_type == 'text':
         #     kwargs['body'] = plaintext2html(messages['text']['body'])
         # elif message_type == 'button':
@@ -300,6 +306,12 @@ A QR code is valid only for 45 seconds. Message sennding will be available right
         # else:
         #     _logger.warning("Unsupported whatsapp message type: %s", messages)
         #     continue
-        # print ('==kwargs==',kwargs)
-        channel.message_post(message_type='whatsapp', **kwargs)
+        # print ('==attachment==',attachment)
+        # invoice.with_context(no_new_invoice=True).message_post(attachment_ids=[attachment.id])
+        # attachment.write({'res_model': 'account.move', 'res_id': invoice.id})
+        message = channel.message_post(message_type='whatsapp', **kwargs)
+        # if attachment:
+        #     message.write({'attachment_ids': [attachment.id]})
+        #     attachment.write({'res_model': 'mail.channel', 'res_id': channel.id})
+        # attachment.sudo().write({'res_id': channel.id})
         return channel

@@ -1,0 +1,33 @@
+# See LICENSE file for full copyright and licensing details.
+
+{
+    'name': 'Whatsapp Activity',
+    'version': '16.0.0.1.0',
+    'license': 'OPL-1',
+    'author': "Alphasoft",
+    'sequence': 1,
+    'website': 'https://www.alphasoft.co.id/',
+    'images':  ['images/main_screenshot.png'],
+    'summary': 'This module is used for Scheduled Activity Whatsapp notification',
+    'category': 'Extra Tools',
+    'depends': ['mail', 'aos_whatsapp'],
+    'data': [
+        # 'data/activity_cancel_template.xml',
+        # 'data/activity_done_template.xml',
+        # 'data/activity_edit_template.xml',
+        'data/activity_template.xml',
+        'data/ir_cron_data.xml',
+        'views/mail_activity_view.xml',
+        #'wizard/whatsapp_compose_view.xml',
+    ],
+    'external_dependencies': {'python': ['html2text']},
+    'demo': [],
+    'test': [],
+    'css': [],
+    'js': [],
+    'price': 0,
+    'currency': 'EUR',
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

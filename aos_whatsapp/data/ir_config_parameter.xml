@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="url_link_whatsapp_server" model="ir.config_parameter" forcecreate="0">
+        <field name="key">aos_whatsapp.url_klikodoo_whatsapp_server</field>
+        <field name="value">https://klikodoo.id/api/wa/</field>
+    </record>
+
+</odoo>

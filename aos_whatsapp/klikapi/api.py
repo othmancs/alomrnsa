@@ -1,21 +1,26 @@
 from odoo import _
 from odoo.exceptions import Warning, UserError
-from odoo.http import request, Response
+from odoo import http, _
+from odoo.http import request
 import json
 import requests
 import html2text
 import datetime
 
 class KlikApi(object):
-    def __init__(self, klik_key, klik_secret, **kwargs):
-        self.APIUrl = 'https://klikodoo.id/api/wa/'
+    def __init__(self, APIUrl, klik_key, klik_secret, **kwargs):
+        # print ('==KlikApi=',klik_key, klik_secret)
+        # APIUrl = request.env['ir.config_parameter'].sudo().get_param('aos_whatsapp.url_api_whatsapp_server')
+        self.APIUrl = APIUrl or 'https://klikodoo.id/api/wa/'
+        # self.APIUrl = 'https://klikodoo.id/api/wa/'
         self.klik_key = klik_key or ''
         self.klik_secret = klik_secret or ''
     
     def auth(self):
         #if not self.klik_key and not self.klik_secret:
-        #    raise UserError(_('Warning! Please add Key and Secret Whatsapp API on General Settings'))
+        #    raise UserError(_('Wazrning! Please add Key and Secret Whatsapp API on General Settings'))
         try:
+            # print ('=KlikApi=auth')
             requests.get(self.APIUrl+'status/'+self.klik_key+'/'+self.klik_secret, headers={'Content-Type': 'application/json'})
         except (requests.exceptions.HTTPError,
                 requests.exceptions.RequestException,
@@ -42,15 +47,14 @@ class KlikApi(object):
         url = self.APIUrl + 'count/' + self.klik_key +'/' + self.klik_secret
         data_req = requests.get(url, data=json.dumps(data), headers={'Content-Type': 'application/json'})
         res = json.loads(data_req.text)
-        #print ('===res===',res)
         return res.get('result') and res['result'] or {}
     
     def get_limit(self):
         data = {}
         url = self.APIUrl + 'limit/' + self.klik_key +'/' + self.klik_secret
-        data_req = requests.get(url, data=json.dumps(data), headers={'Content-Type': 'application/json'})
+        data_req = requests.get(url, data=json.dumps(data), headers={'Content-Type': 'application/json'}, timeout=5)
         res = json.loads(data_req.text)
-        #print ('===res===',res)
+        print ('===get_limit===',data_req,res)
         return res.get('result') and res['result'] or {}
     
     def get_number(self):
@@ -82,7 +86,7 @@ class KlikApi(object):
         response = requests.post(url, json=data_s, headers={'Content-Type': 'application/json'})
         if response.status_code == 200:
             message1 = json.loads(response.text)
-            print ('===message1=',message1)
+            # print ('===message1=',message1)
             message = message1.get('result').get('message')
             chatID = message.get('id') and message.get('id').split('_')[1]
             return {'chatID': chatID, 'message': message}
