@@ -41,9 +41,9 @@
                     </page>
                 </xpath>
                 <!-- إضافة الحقل schedule_pay -->
-                <xpath expr="//page[@name='information']//group[@name='salary']" position="after">
+<!--                 <xpath expr="//page[@name='information']//group[@name='salary']" position="after">
                     <field name="schedule_pay" string="Payment Frequency" />
-                </xpath>
+                </xpath> -->
             </field>
         </record>
 
