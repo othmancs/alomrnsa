@@ -25,15 +25,15 @@ class HRContract(models.Model):
     early_notification_day = fields.Integer(string='Early Notification Days (End Date)', default=15)
     
     # تعريف القيم الممكنة لجدول الدفع
-    schedule_pay = fields.Selection([
-        ('monthly', 'Monthly'),
-        ('quarterly', 'Quarterly'),
-        ('semi-annually', 'Semi-annually'),
-        ('annually', 'Annually'),
-        ('weekly', 'Weekly'),
-        ('bi-weekly', 'Bi-weekly'),
-        ('bi-monthly', 'Bi-monthly'),
-    ], string='Payment Frequency')
+    # schedule_pay = fields.Selection([
+    #     ('monthly', 'Monthly'),
+    #     ('quarterly', 'Quarterly'),
+    #     ('semi-annually', 'Semi-annually'),
+    #     ('annually', 'Annually'),
+    #     ('weekly', 'Weekly'),
+    #     ('bi-weekly', 'Bi-weekly'),
+    #     ('bi-monthly', 'Bi-monthly'),
+    # ], string='Payment Frequency')
 
     @api.constrains('basic')
     def check_basic(self):
