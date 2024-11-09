@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="action_empexperience_letter_maleqweb" model="ir.actions.report">
+        <field name="name">Experience Letter for Male</field>
+        <field name="model">hr.employee.eos</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_eos.emp_experience_letter_maleqweb</field>
+        <field name="report_file">saudi_hr_eos.emp_experience_letter_maleqweb</field>
+        <field name="print_report_name">'Employee Letter for Male'</field>
+        <field name="binding_model_id" ref="model_hr_employee_eos"/>
+    </record>
+
+    <record id="action_empexperience_letter_femaleqweb" model="ir.actions.report">
+        <field name="name">Experience Letter for Female</field>
+        <field name="model">hr.employee.eos</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_eos.emp_experience_letter_femaleqweb</field>
+        <field name="report_file">saudi_hr_eos.emp_experience_letter_femaleqweb</field>
+        <field name="print_report_name">'Employee Letter for Female'</field>
+        <field name="binding_model_id" ref="model_hr_employee_eos"/>
+    </record>
+</odoo>
