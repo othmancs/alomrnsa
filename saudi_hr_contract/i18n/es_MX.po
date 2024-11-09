@@ -1,0 +1,323 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* saudi_hr_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-06 08:27+0000\n"
+"PO-Revision-Date: 2023-02-06 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: saudi_hr_contract
+#: model:mail.template,subject:saudi_hr_contract.email_template_hr_contract_notify
+msgid " {{object.name}} "
+msgstr ""
+
+#. module: saudi_hr_contract
+#: model:mail.template,body_html:saudi_hr_contract.email_template_hr_contract_notify
+msgid ""
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"                <p>Hello,</p>\n"
+"\n"
+"                <p>This is to inform you that our employee <strong><t t-out=\"object.employee_id.name\"/>s </strong> fixed employment per our contract will expire at the close of business hours on <strong><t t-out=\"object.date_end\"/></strong> by operation of law. You shall be notified in writing within the date or after this date should there be new manpower requirements in the event that we will need your services. </p>\n"
+"                <p>For more information see below details,</p>\n"
+"                <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"                     <strong>REFERENCES</strong><br/>\n"
+"                        Subject: <strong><t t-out=\"object.name\"/></strong><br/>\n"
+"                        Employee: <t t-out=\"object.employee_id.name\"/><br/>\n"
+"                        Duration: <strong> <t t-out=\"object.date_start\"/> - <t t-out=\"object.date_end\"/> </strong><br/>\n"
+"                </p>\n"
+"                <p> This Contract will be expired on <strong> <t t-out=\"object.date_end\"/> </strong>.</p>\n"
+"                <br/><br/>\n"
+"                Thanks,<br/>\n"
+"                Administrator.\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); \">\n"
+"                <p>Hola,</p>\n"
+"\n"
+"                <p>Le informamos que el empleo fijo de nuestro empleado <strong><t t-out=\"object.employee_id.name\"/>s </strong> según nuestro contrato vencerá al cierre del horario laboral el <strong><t t-out=\"object.date_end\"/></strong> por ministerio de la ley. Se le notificará por escrito dentro de la fecha o después de esta fecha en caso de que haya nuevos requisitos de mano de obra en el caso que necesitaremos sus servicios. </p>\n"
+"                <p>FPara obtener más información, consulte los detalles a continuación,</p>\n"
+"                <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"                     <strong>REFERENCIAS</strong><br/>\n"
+"                        Asunto: <strong><t t-out=\"object.name\"/></strong><br/>\n"
+"                        Empleado: <t t-out=\"object.employee_id.name\"/><br/>\n"
+"                        Duración: <strong> <t t-out=\"object.date_start\"/> - <t t-out=\"object.date_end\"/> </strong><br/>\n"
+"                </p>\n"
+"                <p> Este Contrato vencerá el <strong> <t t-out=\"object.date_end\"/> </strong>.</p>\n"
+"                <br/><br/>\n"
+"                Gracias,<br/>\n"
+"                Administrador.\n"
+"            </div>\n"
+"        "
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_needaction
+msgid "Action Needed"
+msgstr "Acción requerida"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_attachment_count
+msgid "Attachment Count"
+msgstr "Número de archivos adjuntos"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__basic
+msgid "Basic"
+msgstr "Básico"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__basic
+msgid "Basic Salary of Employee(value after gross/1.35)"
+msgstr "Sueldo Básico del Empleado (valor después de bruto/1.35)"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__before_notification_day
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract.hr_contract_view_inherit_form2
+msgid "Before Notification Days (End Date)"
+msgstr "Antes de los Días de Notificación (Fecha de Finalización)"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__signon_bonus_amount
+msgid "Bonus Amount"
+msgstr "Importe de la Bonificación"
+
+#. module: saudi_hr_contract
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract.hr_form_view_inherited
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: saudi_hr_contract
+#: model:mail.template,name:saudi_hr_contract.email_template_hr_contract_notify
+msgid "Contract Expiration Notification - Send by Email"
+msgstr "Notificación de Vencimiento del contrato - Enviar por Correo Electrónico"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__early_notification_day
+msgid "Early Notification Days (End Date)"
+msgstr "Días de Notificación Anticipada (Fecha de Finalización)"
+
+#. module: saudi_hr_contract
+#: model:ir.model,name:saudi_hr_contract.model_hr_contract
+msgid "Employee Contract"
+msgstr "Contrato de Empleado"
+
+#. module: saudi_hr_contract
+#: model:hr.salary.rule,name:saudi_hr_contract.hr_salary_rule_employee_signon_bonus
+msgid "Employee Signon Bonus"
+msgstr "Bono de Inicio de Sesión del Empleado"
+
+#. module: saudi_hr_contract
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract.hr_contract_view_inherit_form2
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (partners)"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__HRA
+msgid "HRA of employee (25% of basic)"
+msgstr "HRA del empleado (25% del básico)"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__has_message
+msgid "Has Message"
+msgstr "Tiene un Mensaje"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__HRA
+msgid "House Rent Allowance"
+msgstr "Subsidio de Alquiler de Casa"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__message_needaction
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si se encuentra seleccionado, hay nuevos mensajes que requieren su atención."
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__message_has_error
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra seleccionado, algunos mensajes tienen error de envío."
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_is_follower
+msgid "Is Follower"
+msgstr "Es un Seguidor"
+
+#. module: saudi_hr_contract
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract.hr_contract_view_inherit_form2
+msgid "Is Leaving"
+msgstr "Se Va"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__is_leaving
+msgid "Leaving Notice"
+msgstr "Aviso de Salida"
+
+#. module: saudi_hr_contract
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract.hr_contract_view_inherit_form2
+msgid "Leaving Notice Period"
+msgstr "Período de Aviso de Salida"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Archivo Adjunto Principal"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__signon_bonus_amount
+msgid "Mention the Sign on Bonus amount."
+msgstr "Mencione el Monto de la Bonificación de Inicio de Sesión."
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__period_ids
+msgid "Month(s)"
+msgstr "Mes(es)"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__notice_end_date
+msgid "Notice End Date"
+msgstr "Aviso de Fecha Final"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__notice_start_date
+msgid "Notice Start Date"
+msgstr "Aviso Fecha de Inicio"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes sin leer"
+
+#. module: saudi_hr_contract
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract.hr_contract_view_inherit_form2
+msgid "Other Allowances"
+msgstr "Otras Prestaciones"
+
+#. module: saudi_hr_contract
+#: model:ir.model,name:saudi_hr_contract.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Recibo de Pago"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega del SMS"
+
+#. module: saudi_hr_contract
+#: model:ir.actions.server,name:saudi_hr_contract.ir_cron_contract_scheduler_action_ir_actions_server
+#: model:ir.cron,cron_name:saudi_hr_contract.ir_cron_contract_scheduler_action
+#: model:ir.cron,name:saudi_hr_contract.ir_cron_contract_scheduler_action
+msgid "Scheduled Contract Expiration"
+msgstr "Vencimiento Programado del Contrato"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__signon_bonus
+msgid "Sign on Bonus"
+msgstr "Bono de Inicio de Sesión"
+
+#. module: saudi_hr_contract
+#: model:hr.salary.rule,name:saudi_hr_contract.hr_salary_rule_signon_deduction
+msgid "SignOn Deduction"
+msgstr "Deducción de Inicio de Sesión"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__period_ids
+msgid ""
+"Specify month(s) in which the sign on bonus will be distributed. Bonus will "
+"be distributed in Bonus Amount/Number of Month(s)."
+msgstr ""
+"Especifique los meses en los que se distribuirá la bonificación de inicio de "
+"sesión. La bonificación se distribuirá en Cantidad de bonificación/Número "
+"de mes(es)."
+
+#. module: saudi_hr_contract
+#: model_terms:ir.ui.view,arch_db:saudi_hr_contract.hr_contract_view_search
+msgid "To be Renew"
+msgstr "Para Ser Renovado"
+
+#. module: saudi_hr_contract
+#: code:addons/hrms/saudi_hr_contract/models/hr.py:0
+#: code:addons/odoo-modules/hrms/saudi_hr_contract/models/hr.py:0
+#: code:addons/saudi_hr_contract/models/hr.py:0
+#, python-format
+msgid "Too many active contracts for employee %s"
+msgstr "Demasiados contratos activos para los empleados %s"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__TA
+msgid "Transport Allowance"
+msgstr "Permiso de Transporte"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__TA
+msgid "Transport Allowance of employee (10% of Basic)"
+msgstr "Asignación de Transporte del empleado (10% de básico)"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes sin Leer"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Número de Mensajes sin Leer"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,field_description:saudi_hr_contract.field_hr_contract__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: saudi_hr_contract
+#: model:ir.model.fields,help:saudi_hr_contract.field_hr_contract__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"

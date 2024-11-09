@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="action_empcontract_report_qweb" model="ir.actions.report">
+        <field name="name">Employee Contract Report</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_contract.empcontract_report_qweb</field>
+        <field name="report_file">saudi_hr_contract.empcontract_report_qweb</field>
+        <field name="print_report_name">'Employee Contract Report'</field>
+        <field name="binding_model_id" ref="model_hr_contract"/>
+        <field name="binding_type">report</field>
+        <!-- <field name="attachment">('object.employee_id.name' + '.pdf')</field>
+        <field name="attachment_use">True</field> -->
+    </record>
+
+    <record id="action_newjoin_empcontract_reportqweb" model="ir.actions.report">
+        <field name="name">Newjoiner Employee Contract Report</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">saudi_hr_contract.newjoin_empcontract_reportqweb</field>
+        <field name="report_file">saudi_hr_contract.newjoin_empcontract_reportqweb</field>
+        <field name="print_report_name">'Newjoiner Employee Contract Report'</field>
+        <field name="binding_model_id" ref="model_hr_contract"/>
+        <field name="binding_type">report</field>
+        <!-- <field name="attachment">"(object.employee_id.name + '.pdf')"</field>
+        <field name="attachment_use">False</field> -->
+    </record>
+</odoo>

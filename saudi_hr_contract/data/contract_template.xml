@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <!-- Schedule Contract Notification template -->
+    <record id="email_template_hr_contract_notify" model="mail.template">
+        <field name="name">Contract Expiration Notification - Send by Email</field>
+        <field name="email_from">{{object.create_uid.email or ''}}</field>
+        <field name="subject"> {{object.name}} </field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="auto_delete" eval="False"/>
+        <field name="body_html" type="html">
+            <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+                <p>Hello,</p>
+
+                <p>This is to inform you that our employee <strong><t t-out="object.employee_id.name"/>s </strong> fixed employment per our contract will expire at the close of business hours on <strong><t t-out="object.date_end"/></strong> by operation of law. You shall be notified in writing within the date or after this date should there be new manpower requirements in the event that we will need your services. </p>
+                <p>For more information see below details,</p>
+                <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
+                   &#160;&#160;<strong>REFERENCES</strong><br />
+                   &#160;&#160;&#160;&#160;&#160;Subject: <strong><t t-out="object.name"/></strong><br />
+                   &#160;&#160;&#160;&#160;&#160;Employee: <t t-out="object.employee_id.name"/><br />
+                   &#160;&#160;&#160;&#160;&#160;Duration: <strong> <t t-out="object.date_start"/> - <t t-out="object.date_end"/> </strong><br />
+                </p>
+                <p> This Contract will be expired on <strong> <t t-out="object.date_end"/> </strong>.</p>
+                <br/><br/>
+                Thanks,<br/>
+                Administrator.
+            </div>
+        </field>
+    </record>
+
+</odoo>

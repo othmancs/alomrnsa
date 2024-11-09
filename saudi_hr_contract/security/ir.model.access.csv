@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hr_contract_hr_employee,hr_contract_hr_employee,hr_contract.model_hr_contract,base.group_user,1,0,0,0
+hr_contract_hr_hof,hr_contract_hr_hof,hr_contract.model_hr_contract,saudi_hr.group_hof,1,1,1,0
