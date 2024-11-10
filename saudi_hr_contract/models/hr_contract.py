@@ -25,11 +25,11 @@ class HRContract(models.Model):
     early_notification_day = fields.Integer(string='Early Notification Days (End Date)', default=15)
     
     # Adding the schedule_pay field
-    schedule_pay = fields.Selection([
-        ('monthly', 'Monthly'),
-        ('biweekly', 'Biweekly'),
-        ('weekly', 'Weekly'),
-    ], string='Payment Schedule', help='Select the payment schedule for the contract.')
+    # schedule_pay = fields.Selection([
+    #     ('monthly', 'Monthly'),
+    #     ('biweekly', 'Biweekly'),
+    #     ('weekly', 'Weekly'),
+    # ], string='Payment Schedule', help='Select the payment schedule for the contract.')
 
     @api.constrains('wage')
     def check_wage(self):
