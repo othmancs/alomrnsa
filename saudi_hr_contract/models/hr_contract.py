@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
 from odoo import models, fields, api, _
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError
@@ -23,13 +20,18 @@ class HRContract(models.Model):
     TA = fields.Float(string='Transport Allowance', tracking=True, help="Transport Allowance of employee (10% of Basic)")
     before_notification_day = fields.Integer('Before Notification Days (End Date)', default=60)
     early_notification_day = fields.Integer(string='Early Notification Days (End Date)', default=15)
-    
-    # Adding the schedule_pay field
-    # schedule_pay = fields.Selection([
-    #     ('monthly', 'Monthly'),
-    #     ('biweekly', 'Biweekly'),
-    #     ('weekly', 'Weekly'),
-    # ], string='Payment Schedule', help='Select the payment schedule for the contract.')
+
+    # Adding new fields
+    struct_id = fields.Many2one('hr.payroll.structure', string='Salary Structure')
+    schedule_pay = fields.Selection([
+        ('monthly', 'Monthly'),
+        ('quarterly', 'Quarterly'),
+        ('semi-annually', 'Semi-annually'),
+        ('annually', 'Annually'),
+        ('weekly', 'Weekly'),
+        ('bi-weekly', 'Bi-weekly'),
+        ('bi-monthly', 'Bi-monthly'),
+    ], string='Scheduled Pay', default='monthly', help='Select the payment schedule for the contract.')
 
     @api.constrains('wage')
     def check_wage(self):
