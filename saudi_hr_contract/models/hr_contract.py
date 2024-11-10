@@ -19,11 +19,17 @@ class HRContract(models.Model):
     notice_end_date = fields.Date('Notice End Date', readonly=True)
     is_leaving = fields.Boolean('Leaving Notice')
     basic = fields.Float('Basic', tracking=True, help='Basic Salary of Employee(value after gross/1.35)')
-    HRA = fields.Float(string='House Rent Allowance', tracking=True, help="HRA of employee (25% of basic)") # , compute='_get_amount'
-    TA = fields.Float(string='Transport Allowance', tracking=True,
-                      help="Transport Allowance of employee (10% of Basic)")
+    HRA = fields.Float(string='House Rent Allowance', tracking=True, help="HRA of employee (25% of basic)")
+    TA = fields.Float(string='Transport Allowance', tracking=True, help="Transport Allowance of employee (10% of Basic)")
     before_notification_day = fields.Integer('Before Notification Days (End Date)', default=60)
     early_notification_day = fields.Integer(string='Early Notification Days (End Date)', default=15)
+    
+    # Adding the schedule_pay field
+    schedule_pay = fields.Selection([
+        ('monthly', 'Monthly'),
+        ('biweekly', 'Biweekly'),
+        ('weekly', 'Weekly'),
+    ], string='Payment Schedule', help='Select the payment schedule for the contract.')
 
     @api.constrains('wage')
     def check_wage(self):
@@ -40,9 +46,6 @@ class HRContract(models.Model):
 
     @api.model
     def run_scheduler(self):
-        """
-            sent an email with notification of contract state, automatically sent an email to the client.
-        """
         contract_ids = self.search([('state', 'in', ['draft', 'open'])])
         try:
             template_id = self.env.ref('saudi_hr_contract.email_template_hr_contract_notify')
