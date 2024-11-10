@@ -21,8 +21,7 @@ class HRContract(models.Model):
     before_notification_day = fields.Integer('Before Notification Days (End Date)', default=60)
     early_notification_day = fields.Integer(string='Early Notification Days (End Date)', default=15)
 
-    # Adding new fields
-    struct_id = fields.Many2one('hr.payroll.structure', string='Salary Structure')
+
     schedule_pay = fields.Selection([
         ('monthly', 'Monthly'),
         ('quarterly', 'Quarterly'),
