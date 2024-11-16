@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_end_of_service_form" model="ir.ui.view">
+        <field name="name">end.of.service.form</field>
+        <field name="model">end.of.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="contract_id"/>
+                        <field name="reason_id"/>
+                        <field name="service_years"/>
+                        <field name="basic_salary"/>
+                        <field name="total_benefits"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
