@@ -83,3 +83,16 @@ class EndOfService(models.Model):
                     record.total_benefits = base_amount
             else:
                 record.total_benefits = base_amount
+
+    def action_open_exit_wizard(self):
+        """This method will open the employee exit wizard."""
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Employee Exit Wizard',
+            'res_model': 'emp.exit.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_employee_id': self.employee_id.id,
+            }
+        }
