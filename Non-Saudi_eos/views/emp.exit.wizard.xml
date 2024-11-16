@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_emp_exit_wizard_form" model="ir.ui.view">
+        <field name="name">emp.exit.wizard.form</field>
+        <field name="model">emp.exit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Employee Exit Wizard">
+                <group>
+                    <field name="employee_id"/>
+                    <field name="exit_date"/>
+                    <field name="notes"/>
+                </group>
+                <footer>
+                    <button string="Confirm Exit" type="object" name="confirm_exit" class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_emp_exit_wizard" model="ir.actions.act_window">
+        <field name="name">Employee Exit Wizard</field>
+        <field name="res_model">emp.exit.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
