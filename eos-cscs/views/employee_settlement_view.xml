@@ -1,0 +1,39 @@
+<odoo>
+    <record id="view_employee_settlement_form" model="ir.ui.view">
+        <field name="name">employee.settlement.form</field>
+        <field name="model">employee.settlement</field>
+        <field name="arch" type="xml">
+            <form string="Employee Settlement">
+                <group>
+                    <field name="name"/>
+                    <field name="request_date"/>
+                    <field name="residency_id"/>
+                    <field name="nationality"/>
+                    <field name="employer"/>
+                    <field name="settlement_type"/>
+                    <field name="settlement_number"/>
+                    <field name="total_amount"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_employee_settlement_tree" model="ir.ui.view">
+        <field name="name">employee.settlement.tree</field>
+        <field name="model">employee.settlement</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Settlements">
+                <field name="name"/>
+                <field name="request_date"/>
+                <field name="employer"/>
+                <field name="settlement_type"/>
+                <field name="total_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_employee_settlement_root" name="Employee Settlements" parent="hr.menu_hr_root" sequence="10"/>
+    <menuitem id="menu_employee_settlement" name="Settlements" parent="menu_employee_settlement_root" action="action_employee_settlement"/>
+
+    <act_window id="action_employee_settlement" name="Employee Settlements" res_model="employee.settlement" view_mode="tree,form"/>
+</odoo>
