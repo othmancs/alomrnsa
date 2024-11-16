@@ -86,15 +86,7 @@ class EmpPayslipReport(models.TransientModel):
             # fo = io.BytesIO()
             # img.save(fo, format='bmp')
 
-  company = self.env.user.company_id
-    if company.logo:
-        # فك تشفير الشعار وتحويله إلى كائن BytesIO
-        logo_data = base64.b64decode(company.logo)
-        logo_stream = BytesIO(logo_data)
-
-        # إدراج الشعار في الورقة (تحديد الإحداثيات حسب الحاجة)
-        worksheet.insert_image(row, 4, 'company_logo.png', {'image_data': logo_stream})
-
+ 
         
         # Merge Row Columns
             TITLEHEDER = 'تقرير الراتب'
