@@ -8,7 +8,7 @@
     'author': 'Your Company Name',
     'depends': ['hr', 'base'],
     'data': [
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         'views/employee_settlement_view.xml',
         'data/employee_settlement_data.xml',
     ],
