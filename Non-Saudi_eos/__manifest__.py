@@ -12,7 +12,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/end_of_service_view.xml',
-        # 'views/employee_view.xml',
+        'views/emp.exit.wizard.xml',
         # 'views/settings_view.xml',
         # 'reports/end_of_service_report.xml',
     ],
