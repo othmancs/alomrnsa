@@ -1,0 +1,46 @@
+<odoo>
+    <!-- List View for Account Advances -->
+    <record id="view_account_advance_tree" model="ir.ui.view">
+        <field name="name">account.advance.tree</field>
+        <field name="model">account.advance</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Advances">
+                <field name="employee_id"/>
+                <field name="amount"/>
+                <field name="state"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Account Advances -->
+    <record id="view_account_advance_form" model="ir.ui.view">
+        <field name="name">account.advance.form</field>
+        <field name="model">account.advance</field>
+        <field name="arch" type="xml">
+            <form string="Employee Advance">
+                <group>
+                    <field name="employee_id"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                    <field name="date"/>
+                </group>
+                <footer>
+                    <button name="pay_advance" string="Mark as Paid" type="object" class="btn-primary"/>
+                    <button name="set_pending" string="Set as Pending" type="object" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Account Advances -->
+    <record id="action_account_advance" model="ir.actions.act_window">
+        <field name="name">Employee Advances</field>
+        <field name="res_model">account.advance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item for Account Advances -->
+    <menuitem id="menu_account_advance" name="Employee Advances"
+              parent="hr.menu_hr_root" action="action_account_advance"/>
+</odoo>

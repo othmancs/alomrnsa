@@ -1,0 +1,46 @@
+<odoo>
+    <!-- List View for Account Debts -->
+    <record id="view_account_debt_tree" model="ir.ui.view">
+        <field name="name">account.debt.tree</field>
+        <field name="model">account.debt</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Debts">
+                <field name="employee_id"/>
+                <field name="amount"/>
+                <field name="state"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Account Debts -->
+    <record id="view_account_debt_form" model="ir.ui.view">
+        <field name="name">account.debt.form</field>
+        <field name="model">account.debt</field>
+        <field name="arch" type="xml">
+            <form string="Employee Debt">
+                <group>
+                    <field name="employee_id"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                    <field name="date"/>
+                </group>
+                <footer>
+                    <button name="pay_debt" string="Mark as Paid" type="object" class="btn-primary"/>
+                    <button name="set_pending" string="Set as Pending" type="object" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Account Debts -->
+    <record id="action_account_debt" model="ir.actions.act_window">
+        <field name="name">Employee Debts</field>
+        <field name="res_model">account.debt</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item for Account Debts -->
+    <menuitem id="menu_account_debt" name="Employee Debts"
+              parent="hr.menu_hr_root" action="action_account_debt"/>
+</odoo>

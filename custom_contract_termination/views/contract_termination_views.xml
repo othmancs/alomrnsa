@@ -1,0 +1,25 @@
+<odoo>
+    <record id="view_contract_termination_wizard" model="ir.ui.view">
+        <field name="name">contract.termination.wizard.form</field>
+        <field name="model">hr.contract.termination.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Contract Termination">
+                <group>
+                    <field name="employee_id"/>
+                    <field name="termination_date"/>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <button string="Confirm" type="object" name="confirm_termination" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_contract_termination"
+                name="Contract Termination"
+                res_model="hr.contract.termination.wizard"
+                view_mode="form"
+                target="new"/>
+</odoo>
