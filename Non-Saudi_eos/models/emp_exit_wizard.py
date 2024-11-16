@@ -5,7 +5,7 @@ class EmpExitWizard(models.TransientModel):
     _description = 'Employee Exit Wizard'
 
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
-        start_date = fields.Date(string='Start Date')  # تأكد من أن هذا الحقل موجود
+        # start_date = fields.Date(string='Start Date')  # تأكد من أن هذا الحقل موجود
 
     exit_date = fields.Date(string='Exit Date', required=True, default=fields.Date.today)
     notes = fields.Text(string='Notes')
