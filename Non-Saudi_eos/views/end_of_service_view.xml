@@ -3,7 +3,10 @@
         <field name="name">end.of.service.form</field>
         <field name="model">end.of.service</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="End of Service">
+                <header>
+                    <button name="action_open_exit_wizard" string="Employee Exit Wizard" type="object" class="oe_highlight"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>
