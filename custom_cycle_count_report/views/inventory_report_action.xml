@@ -1,9 +1,26 @@
 <odoo>
+    <!-- تعريف التقرير -->
     <record id="action_report_inventory_missing_items" model="ir.actions.report">
         <field name="name">Missing Items Report</field>
         <field name="model">stock.inventory</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">custom_cycle_count_report.report_inventory_missing_items</field>
         <field name="print_report_name">'Missing_Items_' + object.name</field>
+    </record>
+
+    <!-- إضافة زر للطباعة داخل شريط الإجراءات في واجهة الجرد -->
+    <record id="view_inventory_form_inherit" model="ir.ui.view">
+        <field name="name">stock.inventory.form.inherit</field>
+        <field name="model">stock.inventory</field>
+        <field name="inherit_id" ref="stock.view_inventory_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(action_report_inventory_missing_items)d"
+                        string="Print Missing Items Report"
+                        type="action"
+                        class="btn-secondary"
+                        groups="base.group_user"/>
+            </xpath>
+        </field>
     </record>
 </odoo>
