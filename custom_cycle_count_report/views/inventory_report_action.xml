@@ -1,0 +1,9 @@
+<odoo>
+    <record id="action_report_inventory_missing_items" model="ir.actions.report">
+        <field name="name">Missing Items Report</field>
+        <field name="model">stock.inventory</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_cycle_count_report.report_inventory_missing_items</field>
+        <field name="print_report_name">'Missing_Items_' + object.name</field>
+    </record>
+</odoo>
