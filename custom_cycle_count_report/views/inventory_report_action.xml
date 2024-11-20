@@ -5,14 +5,16 @@
         <field name="model">stock.inventory</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">custom_cycle_count_report.report_inventory_missing_items</field>
-        <field name="print_report_name">'Missing_Items_' + object.name</field>
+        <field name="binding_model_id" ref="model_stock_inventory"/> <!-- الربط بالنموذج -->
+        <field name="binding_type">report</field> <!-- تحديد نوع الربط -->
     </record>
 
     <!-- إضافة زر للطباعة داخل شريط الإجراءات -->
     <record id="view_inventory_form_inherit" model="ir.ui.view">
         <field name="name">stock.inventory.form.inherit</field>
         <field name="model">stock.inventory</field>
-        <field name="inherit_id" ref="stock.report_inventory_adjustments_document"/>
+        <!-- استخدام معرف النموذج الصحيح -->
+        <field name="inherit_id" ref="stock.view_inventory_form"/>
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button name="%(action_report_inventory_missing_items)d"
