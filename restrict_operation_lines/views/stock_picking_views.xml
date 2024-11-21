@@ -4,10 +4,10 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <!-- Disable Add Line button if user does not have the group -->
+            <!-- تحديث الشرط باستخدام user_has_groups -->
             <xpath expr="//button[@name='action_confirm']" position="attributes">
                 <attribute name="attrs">{
-                    'invisible': [('group_restrict_add_operation_lines', 'not in', user_groups)]
+                    'invisible': [("user_has_groups('restrict_operation_lines.group_restrict_add_operation_lines')", '=', False)]
                 }</attribute>
             </xpath>
         </field>
