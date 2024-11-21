@@ -9,8 +9,8 @@
     'category': 'Warehouse',
     'depends': ['stock'],
     'data': [
-        'security/restrict_operation_lines_security.xml',
-        'security/ir.model.access.csv',
+        # 'security/restrict_operation_lines_security.xml',
+        # 'security/ir.model.access.csv',
         'views/stock_picking_views.xml',
     ],
     'installable': True,
