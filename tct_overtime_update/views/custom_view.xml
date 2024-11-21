@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_holiday_new_compensatory_fields" model="ir.ui.view">
+        <field name="name">extra.hours.custom</field>
+        <field name="model">hr.overtime</field>
+        <field name="inherit_id" ref="ent_ohrms_overtime.hr_overtime_form_view"/>
+        <field name="arch" type="xml">
+           <field name="type" attrs="{'invisible': [('type', '!=', 'cash')], 'readonly': [('type', '!=', 'cash')]}"/>
+        </field>
+
+    </record>
+</odoo>

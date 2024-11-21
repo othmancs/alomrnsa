@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <record id="hr_payroll_salary_structure_type_data_emp" model="hr.payroll.structure.type">
+            <field name="name">Pay with Overtime</field>
+            <field name="country_id" eval="False" />
+        </record>
+
+        <record id="hr_payroll_salary_structure_overtime_data" model="hr.payroll.structure">
+            <field name="name">Regular Pay with OverTime</field>
+            <field name="country_id" eval="False" />
+            <field name="type_id" ref="hr_payroll_salary_structure_type_data_emp" />
+        </record>
+
+        <record id="hr_salary_rule_overtime" model="hr.salary.rule">
+            <field name="name">Overtime</field>
+            <field name="code">OT100</field>
+            <field name="sequence" eval="100" />
+            <field name="category_id" ref="hr_payroll.ALW" />
+            <field name="struct_id">1</field>
+            <field name="struct_id" ref="hr_payroll_salary_structure_overtime_data" />
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.OT100</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.OT100.amount</field>
+        </record>
+
+        <record id="input_overtime_payroll" model="hr.payslip.input.type">
+            <field name="name">Overtime</field>
+            <field name="code">OT100</field>
+            <field name="country_id" eval="False" />
+        </record>
+
+        <record id="hr_payroll_salary_structure_overtime_data" model="hr.payroll.structure">
+            <field eval="[(4, ref('hr_salary_rule_overtime'))]"
+                   name="rule_ids"/>
+            <field eval="[(4, ref('input_overtime_payroll'))]"
+                   name="input_line_type_ids"/>
+        </record>
+
+    </data>
+</odoo>
