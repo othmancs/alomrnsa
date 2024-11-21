@@ -2,7 +2,7 @@
     'name': 'HR Contract End',
     'version': '1.0',
     'category': 'Human Resources',
-    'depends': ['hr', 'hr_contract', 'hr_loan', 'hr_custody'],
+    'depends': ['hr', 'hr_contract', 'ent_ohrms_loan', 'ent_hr_custody'],
     'data': [
         'views/hr_contract_view.xml',
     ],
