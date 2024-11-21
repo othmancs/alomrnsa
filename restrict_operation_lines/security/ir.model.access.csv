@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_stock_move_line,Access for Stock Move Line,model_stock_move_line,base.group_user,1,1,1,1
+access_stock_picking,Access for Stock Picking,model_stock_picking,base.group_user,1,1,1,1
