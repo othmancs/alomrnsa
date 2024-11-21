@@ -1,0 +1,9 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Group for restricting operation line addition -->
+        <record id="group_restrict_add_operation_lines" model="res.groups">
+            <field name="name">Restrict Add Operation Lines</field>
+            <field name="category_id" ref="base.module_category_inventory"/>
+        </record>
+    </data>
+</odoo>

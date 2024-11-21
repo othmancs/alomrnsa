@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_picking_form_restrict" model="ir.ui.view">
+        <field name="name">stock.picking.form.restrict</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <!-- Disable Add Line button if user does not have the group -->
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute name="attrs">{
+                    'invisible': [('group_restrict_add_operation_lines', 'not in', user_groups)]
+                }</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
