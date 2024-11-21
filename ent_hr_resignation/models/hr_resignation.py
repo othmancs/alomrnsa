@@ -19,6 +19,7 @@
 #    DEALINGS IN THE SOFTWARE.
 #
 ########################################################################################
+
 import datetime
 from datetime import datetime, timedelta
 from odoo import models, fields, api, _
@@ -27,7 +28,6 @@ from odoo.exceptions import ValidationError
 date_format = "%Y-%m-%d"
 RESIGNATION_TYPE = [('resigned', 'Normal Resignation'),
                     ('fired', 'Fired by the company')]
-
 
 class HrResignation(models.Model):
     _name = 'hr.resignation'
@@ -155,43 +155,44 @@ class HrResignation(models.Model):
                         rec.approved_revealing_date = rec.resign_confirm_date + timedelta(days=contracts.notice_days)
                     else:
                         rec.approved_revealing_date = rec.expected_revealing_date
-                # Changing state of the employee if resigning today
-                if rec.expected_revealing_date <= fields.Date.today() and rec.employee_id.active:
+
+                # التحقق من القروض/المعدات قبل الموافقة على الاستقالة
+                loans = self.env['hr.employee.loan'].search([('employee_id', '=', rec.employee_id.id), ('state', '=', 'loaned')])
+                if not loans:
+                    # إذا لم يكن هناك قروض أو معدات نشطة، نقوم بإنهاء عقد الموظف
                     rec.employee_id.active = False
-                    # Changing fields in the employee table with respect to resignation
                     rec.employee_id.resign_date = rec.expected_revealing_date
                     if rec.resignation_type == 'resigned':
                         rec.employee_id.resigned = True
                     else:
                         rec.employee_id.fired = True
-                    # Removing and deactivating user
+                    
+                    # تعطيل حساب الموظف إذا كان موجودًا
                     if rec.employee_id.user_id:
                         rec.employee_id.user_id.active = False
                         rec.employee_id.user_id = None
+                else:
+                    raise ValidationError(_('لا يمكن للموظف الاستقالة لأنه لا يزال لديه قروض أو معدات نشطة.'))
             else:
-                raise ValidationError(_('Please enter valid dates.'))
+                raise ValidationError(_('يرجى إدخال تواريخ صحيحة.'))
 
     def update_employee_status(self):
         resignation = self.env['hr.resignation'].search([('state', '=', 'approved')])
         for rec in resignation:
             if rec.expected_revealing_date <= fields.Date.today() and rec.employee_id.active:
-                rec.employee_id.active = False
-                # Changing fields in the employee table with respect to resignation
-                rec.employee_id.resign_date = rec.expected_revealing_date
-                if rec.resignation_type == 'resigned':
-                    rec.employee_id.resigned = True
+                # التحقق من القروض/المعدات قبل إنهاء العقد
+                loans = self.env['hr.employee.loan'].search([('employee_id', '=', rec.employee_id.id), ('state', '=', 'loaned')])
+                if not loans:
+                    rec.employee_id.active = False
+                    rec.employee_id.resign_date = rec.expected_revealing_date
+                    if rec.resignation_type == 'resigned':
+                        rec.employee_id.resigned = True
+                    else:
+                        rec.employee_id.fired = True
+                    
+                    # تعطيل حساب الموظف إذا كان موجودًا
+                    if rec.employee_id.user_id:
+                        rec.employee_id.user_id.active = False
+                        rec.employee_id.user_id = None
                 else:
-                    rec.employee_id.fired = True
-                # Removing and deactivating user
-                if rec.employee_id.user_id:
-                    rec.employee_id.user_id.active = False
-                    rec.employee_id.user_id = None
-
-
-class HrEmployee(models.Model):
-    _inherit = 'hr.employee'
-
-    resign_date = fields.Date('Resign Date', readonly=True, help="Date of the resignation")
-    resigned = fields.Boolean(string="Resigned", default=False, store=True,
-                              help="If checked then employee has resigned")
-    fired = fields.Boolean(string="Fired", default=False, store=True, help="If checked then employee has fired")
+                    raise ValidationError(_('لا يمكن للموظف أن يتم تصنيفه كمستقيل لأنه لا يزال لديه قروض أو معدات نشطة.'))
