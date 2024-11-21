@@ -1,13 +1,18 @@
-from odoo import models, api, exceptions, _
+from odoo import models, fields, api
 
-class StockMoveLine(models.Model):
-    _inherit = 'stock.move.line'
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
 
-    @api.model
-    def create(self, vals):
-        # Check if the user is in the group
-        if not self.env.user.has_group('restrict_operation_lines.group_restrict_add_operation_lines'):
-            raise exceptions.AccessError(
-                _("You do not have the necessary rights to add operation lines.")
+    can_add_operation_lines = fields.Boolean(
+        compute='_compute_can_add_operation_lines',
+        string="Can Add Operation Lines",
+        help="Indicates whether the user has permission to add operation lines."
+    )
+
+    @api.depends('id')
+    def _compute_can_add_operation_lines(self):
+        for record in self:
+            # Check if the user has the required group
+            record.can_add_operation_lines = self.env.user.has_group(
+                'restrict_operation_lines.group_restrict_add_operation_lines'
             )
-        return super(StockMoveLine, self).create(vals)
