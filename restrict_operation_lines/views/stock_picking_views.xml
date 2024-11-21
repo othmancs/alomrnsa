@@ -4,10 +4,10 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <!-- تحديث الشرط باستخدام user_has_groups -->
+            <!-- تحديث attrs ليستخدم الحقل المحسوب -->
             <xpath expr="//button[@name='action_confirm']" position="attributes">
                 <attribute name="attrs">{
-                    'invisible': [("user_has_groups('restrict_operation_lines.group_restrict_add_operation_lines')", '=', False)]
+                    'invisible': [('can_add_operation_lines', '=', False)]
                 }</attribute>
             </xpath>
         </field>
