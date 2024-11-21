@@ -13,8 +13,8 @@
                         <field name="state"/>
                         <field name="date_start"/>
                         <field name="date_end"/>
-                        <field name="salary"/>
-                    </group>
+<!--                         <field name="salary"/>
+                    </group> -->
                 </sheet>
             </form>
         </field>
