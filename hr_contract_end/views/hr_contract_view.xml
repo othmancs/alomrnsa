@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_contract_form" model="ir.ui.view">
+        <field name="name">hr.contract.form.view</field>
+        <field name="model">hr.contract</field>
+        <field name="arch" type="xml">
+            <form string="Employee Contract">
+                <header>
+                    <button name="action_end_contract" type="object" string="End Contract" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="state"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="salary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
