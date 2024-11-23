@@ -10,11 +10,6 @@
                 <field name="type_id"/>
             </xpath>
         </field>
-         <field name="arch" type="xml">
-            <xpath expr="//group[@name='contract_details']" position="inside">
-                <field name="schedule_pay"/>
-            </xpath>
-        </field>
     </record>
 
 <!--    CONTRACT TYPE     -->
