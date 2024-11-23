@@ -15,9 +15,9 @@ class HrContract(models.Model):
 schedule_pay = fields.Selection(
         related='contract_id.schedule_pay',  # المسار هنا يجب أن يكون دقيقًا
         string="Schedule Pay",
-        store=True,
-    )
-    resource_calendar_id = fields.Many2one(required=True, help="Employee's working schedule.")
+        store=True,)
+    # resource_calendar_id = fields.Many2one(required=True, help="Employee's working schedule.")
+    resource_calendar_id = fields.Many2one('resource.calendar',required=True,help="Employee's working schedule.")
     hra = fields.Monetary(string='HRA', tracking=True, help="House rent allowance.")
     travel_allowance = fields.Monetary(string="Travel Allowance", help="Travel allowance")
     da = fields.Monetary(string="DA", help="Dearness allowance")
