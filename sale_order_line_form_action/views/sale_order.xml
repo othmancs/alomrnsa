@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale_order_line_form_action.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree//field[@name='price_subtotal']"
+                position="after"
+            >
+                <button
+                    name="action_show_details"
+                    title="Show Details"
+                    type="object"
+                    icon="fa-list"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
