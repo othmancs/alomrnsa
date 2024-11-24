@@ -41,7 +41,10 @@ class ResPartnerExt(models.Model):
     def clear_duplicates(self):
         duplicate_contacts = []
         user_obj = self.env['res.users']
-        cale_obj = self.env['calendar.contacts']
+cale_obj = self.env.get('calendar.contacts')
+if not cale_obj:
+    # النموذج غير موجود، قم بمعالجة الحالة هنا أو تسجيل رسالة خطأ
+    return
         for partner in self:
             if partner.email and partner.id not in duplicate_contacts:
                 duplicates = self.search([('id', '!=', partner.id), ('email', '=', partner.email)])
