@@ -11,9 +11,10 @@ class HrContract(models.Model):
     _description = 'Employee Contract'
 
     struct_id = fields.Many2one(
-        'hr.payroll.structure', 
+        'hr.payroll.schedule', 
         string='Salary Structure'
     )
+# schedule_pay = fields.Many2one('hr.payroll.schedule', string="Payment Schedule")
 
     # تأكد من أن التباعد هنا صحيح
     schedule_pay = fields.Selection(
