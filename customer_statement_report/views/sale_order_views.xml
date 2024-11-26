@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.report</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- إضافة زر لطباعة التقرير -->
+            <xpath expr="//header" position="inside">
+                <button name="%(customer_statement_report.action_report_customer_statement)d"
+                        string="طباعة كشف حساب"
+                        type="action"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

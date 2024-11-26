@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- تعريف التقرير -->
+    <report
+        id="action_report_customer_statement"
+        model="sale.order"
+        string="كشف حساب العميل"
+        report_type="qweb-pdf"
+        name="customer_statement_report.report_customer_statement"
+        file="customer_statement_report.report_customer_statement"
+        print_report_name="'كشف حساب - %s' % (object.partner_id.name)"
+    />
+
+    <!-- قالب التقرير -->
+    <template id="report_customer_statement">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2 style="text-align: center;">كشف حساب عميل</h2>
+
+                <!-- معلومات العميل -->
+                <div>
+                    <p><strong>اسم العميل:</strong> <t t-esc="doc.partner_id.name"/></p>
+                    <p><strong>رقم العميل:</strong> <t t-esc="doc.partner_id.ref or ''"/></p>
+                    <p><strong>تاريخ الطلب:</strong> <t t-esc="doc.date_order"/></p>
+                </div>
+
+                <!-- الجدول -->
+                <table class="table table-bordered" style="width: 100%; margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>الوصف</th>
+                            <th>المرجع</th>
+                            <th>الرصيد</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.get_statement_data()" t-as="line">
+                            <tr>
+                                <td><t t-esc="line['date']"/></td>
+                                <td><t t-esc="line['description']"/></td>
+                                <td><t t-esc="line['reference']"/></td>
+                                <td><t t-esc="line['balance']"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <!-- الملاحظات -->
+                <p style="margin-top: 20px; text-align: left;">
+                    <strong>ملاحظات:</strong>
+                    إذا لم يتم الاعتراض خلال 15 يومًا، يعتبر الرصيد صحيحًا.
+                </p>
+            </div>
+        </t>
+    </template>
+</odoo>
