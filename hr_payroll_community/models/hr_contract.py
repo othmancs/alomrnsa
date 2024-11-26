@@ -14,23 +14,19 @@ class HrContract(models.Model):
         'hr.payroll.structure', 
         string='Salary Structure'
     )
-schedule_pay = fields.Selection(
-    related='struct_id.schedule_pay',  # المسار الصحيح إلى جدول الدفع
-    string="Schedule Pay",
-    store=True,
-)
 
+    # تأكد من أن التباعد هنا صحيح
+    schedule_pay = fields.Selection(
+        related='struct_id.schedule_pay',  # المسار الصحيح إلى جدول الدفع
+        string="Schedule Pay",
+        store=True,
+    )
 
-
+    # التأكد من التنسيق هنا أيضًا
     def get_all_structures(self):
-        """
-        @return: the structures linked to the given contracts, ordered by hierarchy (parent=False first,
-                 then first level children and so on) and without duplicata
-        """
         structures = self.mapped('struct_id')
         if not structures:
             return []
-        # YTI TODO return browse records
         return list(set(structures._get_parent_structure().ids))
 
     def get_attribute(self, code, attribute):
