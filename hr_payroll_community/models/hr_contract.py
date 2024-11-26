@@ -16,12 +16,12 @@ class HrContract(models.Model):
     )
 # schedule_pay = fields.Many2one('hr.payroll.schedule', string="Payment Schedule")
 
-    # تأكد من أن التباعد هنا صحيح
-    schedule_pay = fields.Selection(
-        related='struct_id.schedule_pay',  # المسار الصحيح إلى جدول الدفع
-        string="Schedule Pay",
-        store=True,
-    )
+    # # تأكد من أن التباعد هنا صحيح
+    # schedule_pay = fields.Selection(
+    #     related='struct_id.schedule_pay',  # المسار الصحيح إلى جدول الدفع
+    #     string="Schedule Pay",
+    #     store=True,
+    # )
 
     # التأكد من التنسيق هنا أيضًا
     def get_all_structures(self):
