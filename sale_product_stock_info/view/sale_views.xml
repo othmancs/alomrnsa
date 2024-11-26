@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="spsi_ext_order_form_view" model="ir.ui.view">
+        <field name="name">spsi.ext.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']" position="after">
+                <button name="action_show_line_product_stock" type="object" icon="fa-bars"
+                        groups="sale_product_stock_info.group_enable_stock_into_orderline"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

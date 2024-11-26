@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sale Order Line Stock Information Setting -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale.product.stock.info</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='stock_packaging']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="sale_product_stock_info">
+                    <div class="o_setting_left_pane">
+                        <field name="group_enable_stock_into_orderline"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="group_enable_stock_into_orderline"/>
+                        <div class="text-muted"/>
+                        <div class="content-group" attrs="{
+                            'invisible': [('group_enable_stock_into_orderline','=',False)]}">
+                            <div class="mt8">
+                                <field name="order_line_stock_type"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+            
