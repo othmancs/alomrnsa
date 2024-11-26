@@ -23,34 +23,21 @@ class Probation(models.Model):
 
     @api.onchange('trial_date_end')
     def state_probation(self):
-        """
-        Change state to 'probation' when 'trial_date_end' is set.
-        """
         if self.trial_date_end:
             self.state = 'probation'
 
     @api.onchange('employee_id')
     def change_employee_id(self):
-        """
-        Update the employee_id in the related 'hr.training' record
-        when employee_id changes in the contract.
-        """
         if self.probation_id and self.employee_id:
             self.probation_id.employee_id = self.employee_id.id
 
     def action_approve(self):
-        """
-        Approve the contract and change the state from 'probation' to 'open'.
-        """
         self.write({'is_approve': True})
         if self.state == 'probation':
             self.write({'state': 'open', 'is_approve': False})
 
     @api.model
     def create(self, vals_list):
-        """
-        Create a new probation record in 'hr.training' if the state is 'probation'.
-        """
         if vals_list.get('trial_date_end') and vals_list.get('state') == 'probation':
             dtl = self.env['hr.training'].create({
                 'employee_id': vals_list['employee_id'],
@@ -62,9 +49,6 @@ class Probation(models.Model):
         return res
 
     def write(self, vals):
-        """
-        Handle state transitions and ensure proper validations for 'probation' contracts.
-        """
         if self.state == 'probation':
             if vals.get('state') == 'open' and not self.is_approve:
                 raise UserError(_("You cannot change the status of non-approved Contracts."))
