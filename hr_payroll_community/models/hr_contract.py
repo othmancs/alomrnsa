@@ -14,11 +14,13 @@ class HrContract(models.Model):
         'hr.payroll.structure', 
         string='Salary Structure'
     )
-    schedule_pay = fields.Selection(
-        related='contract_id.schedule_pay',  # تأكد أن المسار صحيح
-        string="Schedule Pay",
-        store=True,
-    )
+schedule_pay = fields.Selection(
+    related='struct_id.schedule_pay',  # المسار الصحيح إلى جدول الدفع
+    string="Schedule Pay",
+    store=True,
+)
+
+
 
     def get_all_structures(self):
         """
