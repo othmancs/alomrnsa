@@ -16,12 +16,16 @@ class HrContract(models.Model):
     )
 # schedule_pay = fields.Many2one('hr.payroll.schedule', string="Payment Schedule")
 
-    # تأكد من أن التباعد هنا صحيح
-    schedule_pay = fields.Selection(
-        related='hr.contract.schedule_pay',  # المسار الصحيح إلى جدول الدفع
-        string="Schedule Pay",
-        store=True,
-    )
+    schedule_pay = fields.Selection([
+        ('monthly', 'Monthly'),
+        ('quarterly', 'Quarterly'),
+        ('semi-annually', 'Semi-annually'),
+        ('annually', 'Annually'),
+        ('weekly', 'Weekly'),
+        ('bi-weekly', 'Bi-weekly'),
+        ('bi-monthly', 'Bi-monthly'),
+    ], string='Scheduled Pay', default='monthly', help='Select the payment schedule for the contract.')
+
 
     # التأكد من التنسيق هنا أيضًا
     def get_all_structures(self):
