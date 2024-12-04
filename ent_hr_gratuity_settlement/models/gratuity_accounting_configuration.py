@@ -42,13 +42,13 @@ class GratuityAccountingConfiguration(models.Model):
     gratuity_configuration_table = fields.One2many('gratuity.configuration',
                                                    'gratuity_accounting_configuration_id')
 
-    @api.onchange('gratuity_start_date', 'gratuity_end_date')
-    def onchange_date(self):
-        """ Function to check date """
-        if self.gratuity_start_date and self.gratuity_end_date:
-            if not self.gratuity_start_date < self.gratuity_end_date:
-                raise UserError(_("Invalid date configuration!"))
+    # @api.onchange('gratuity_start_date', 'gratuity_end_date')
+    # def onchange_date(self):
+    #     """ Function to check date """
+    #     if self.gratuity_start_date and self.gratuity_end_date:
+    #         if not self.gratuity_start_date < self.gratuity_end_date:
+    #             raise UserError(_("Invalid date configuration!"))
 
-    _sql_constraints = [('name_uniq', 'unique(name)',
-                         'Gratuity configuration name should be unique!')]
+    # _sql_constraints = [('name_uniq', 'unique(name)',
+    #                      'Gratuity configuration name should be unique!')]
 
