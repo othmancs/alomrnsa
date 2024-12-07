@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- HR Employee EOS related subtypes for messaging / Chatter -->
+    <!--HR Employee EOS related subtypes for messaging / Chatter -->
     <record id="mt_employee_eos_new" model="mail.message.subtype">
         <field name="name">EOS Created</field>
         <field name="res_model">hr.employee.eos</field>
@@ -34,12 +34,6 @@
         <field name="res_model">hr.employee.eos</field>
         <field name="default" eval="False"/>
         <field name="description">EOS Validated</field>
-    </record>
-
-    <!-- Modified record to avoid duplication -->
-    <record id="decimal_payroll" model="decimal.precision" forcecreate="False">
-        <field name="name">Payroll</field>
-        <field name="digits">2</field>
     </record>
 
     <record id="email_template_for_it_equipment" model="mail.template">
