@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="view_employee_payroll_form" model="ir.ui.view">
+        <field name="name">employee.payroll.form</field>
+        <field name="model">employee.payroll</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="em_title">
+                        <h1>
+                            <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="name">name</field>
+                        <field name="gender">gender</field>
+                        <field name="manager_id">manager_id</field>
+                        <field name="identification_id">identification_id</field>
+                        <field name="department_id">depertment_id</field>
+                        <field name="salary">salary</field>
+                        <field name="bank_account">bank_account</field><field name="capitalized_name">Capitalized name</field>
+                    </group>
+                </sheet>
+                 <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_employee_payroll_tree" model="ir.ui.view">
+        <field name="name">employee.payroll.tree</field>
+        <field name="model">employee.payroll</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="manager_id"/>
+                <field name="identification_id"/>
+                <field name="department_id"/>
+                <field name="salary"/>
+                <field name="bank_account"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_employee_payroll_search" model="ir.ui.view">
+    <field name="name">employee.payroll.search</field>
+    <field name="model">employee.payroll</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="name" filter_domain="['|', '|', '|', '|', '|',('gender', 'ilike', self), ('ref', '=', self), ('identification_id', 'ilike', self), ('department_id', 'ilike', self), ('salary', 'ilike', self), ('bank_account', 'ilike', self)]"/>
+            <field name="gender"/>
+            <field name="identification_id"/>
+            <field name="department_id"/>
+            <field name="salary"/>
+            <field name="bank_account"/>
+            <filter name="filter_male" string="Male" domain="[('gender', '=', 'Male')]"/>
+            <filter name="filter_female" string="Female" domain="[('gender', '=', 'Female')]"/>
+            <group expand="0" string="Group By">
+                <filter name="group_by_gender" string="Gender" context="{'group_by':'gender'}"/>
+            </group>
+        </search>
+
+        </field>
+    </record>
+
+
+<record id="action_employee_payroll" model="ir.actions.act_window">
+    <field name="name">Payroll</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">employee.payroll</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+ </data>
+</odoo>
+

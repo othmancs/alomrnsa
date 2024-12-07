@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+
+        <!-- View for Employee Manager Form -->
+        <record id="view_employee_manager_form" model="ir.ui.view">
+            <field name="name">employee.manager.form</field>
+            <field name="model">employee.manager</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="gender"/>
+                            <field name="department_id"/>
+                            <field name="email">odoobot@example.com</field>
+                            <field name="phone"/>
+                            <field name="address"/>
+                            <field name="birthdate"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- View for Employee Manager Tree -->
+        <record id="view_employee_manager_tree" model="ir.ui.view">
+            <field name="name">employee.manager.tree</field>
+            <field name="model">employee.manager</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <field name="department_id"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="address"/>
+                    <field name="birthdate"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- View for Employee Manager Search -->
+        <record id="view_employee_manager_search" model="ir.ui.view">
+            <field name="name">employee.manager.search</field>
+            <field name="model">employee.manager</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" filter_domain="['|', '|', '|', '|', '|',('gender', 'ilike', self), ('ref', '=', self), ('email', 'ilike', self), ('department_id', 'ilike', self), ('phone', 'ilike', self), ('address', 'ilike', self), ('birthdate', 'ilike', self)]"/>
+                    <field name="gender" string="Gender"/>
+                    <field name="department_id"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="address"/>
+                    <field name="birthdate"/>
+                    <filter name="archives" string="Archived" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action for Employee Manager -->
+        <record id="action_employee_manager" model="ir.actions.act_window">
+            <field name="name">Employee Manager</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.manager</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu item for Employee Manager -->
+        <menuitem id="menu_employee_manager" name="Employee Managers" parent="menu_employee" sequence="10"/>
+        <menuitem id="menu_employee_manager_action" name="Employee Managers" parent="menu_employee_manager" action="action_employee_manager" sequence="10"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu items for Employee, Department, and Payroll -->
+    <menuitem id="menu_employee"
+              name="Employees"
+              sequence="10" />
+
+    <menuitem id="menu_department"
+              name="Departments"
+              parent="menu_employee"
+              sequence="10"/>
+
+
+    <menuitem id="menu_payroll"
+              name="Payroll"
+              parent="menu_department"
+              sequence="20"
+              action="action_employee_payroll"/>
+
+    <!-- Action for Employee Payroll -->
+    <record id="action_employee_payroll" model="ir.actions.act_window">
+        <field name="name">Employee Payroll</field>
+        <field name="res_model">employee.payroll</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--         &lt;!&ndash; Menu items for Employee, Department, and Payroll &ndash;&gt;-->
+<!--        <menuitem id="menu_employee"-->
+<!--                  name="Employees"-->
+<!--                  sequence="10" />-->
+
+<!--        <menuitem id="menu_department"-->
+<!--                  name="Departments"-->
+<!--                  parent="menu_employee"-->
+<!--                  sequence="10"/>-->
+
+<!--        <menuitem id="menu_payroll"-->
+<!--          name="Payroll"-->
+<!--          parent="menu_department"-->
+<!--          sequence="20"-->
+<!--          action="action_employee_payroll"/>-->
+
+
+<!--</odoo>-->
