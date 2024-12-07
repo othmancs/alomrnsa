@@ -1,30 +1,8 @@
-# -*- coding: utf-8 -*-
-######################################################################################
-#
-#    A part of Open HRMS Project <https://www.openhrms.com>
-#
-#    Copyright (C) 2022-TODAY Cybrosys Technologies(<https://www.cybrosys.com>).
-#    Author: Cybrosys Techno Solutions (odoo@cybrosys.com)
-#
-#    This program is under the terms of the Odoo Proprietary License v1.0 (OPL-1)
-#    It is forbidden to publish, distribute, sublicense, or sell copies of the Software
-#    or modified copies of the Software.
-#
-#    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-#    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-#    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-#    DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-#    ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-#    DEALINGS IN THE SOFTWARE.
-#
-########################################################################################
 import datetime
 from odoo import fields, models, api, exceptions, _
 from odoo.exceptions import ValidationError, UserError
 
 date_format = "%Y-%m-%d"
-
 
 class EmployeeGratuity(models.Model):
     _name = 'hr.gratuity'
@@ -50,13 +28,12 @@ class EmployeeGratuity(models.Model):
     allowance = fields.Char(string="Dearness Allowance", default=0)
     gratuity_amount = fields.Integer(string="Gratuity Payable", required=True,
                                      default=0,
-                                     readony=True, help=(
+                                     readonly=True, help=(
             "Gratuity is calculated based on the "
-            "equation Last salary * Number of years of service * 15 / 26 "))
+            "equation Last salary * Number of years of service * 15 / 26"))
     currency_id = fields.Many2one('res.currency', string='Currency',
                                   required=True,
-                                  default=lambda
-                                      self: self.env.user.company_id.currency_id)
+                                  default=lambda self: self.env.user.company_id.currency_id)
     company_id = fields.Many2one('res.company', 'Company',
                                  default=lambda self: self.env.user.company_id)
 
@@ -72,7 +49,6 @@ class EmployeeGratuity(models.Model):
     def check_request_existence(self):
         for rec in self:
             if rec.employee_id:
-
                 gratuity_request = self.env['hr.gratuity'].search(
                     [('employee_id', '=', rec.employee_id.id),
                      ('state', 'in',
@@ -87,30 +63,20 @@ class EmployeeGratuity(models.Model):
         worked_years = int(datetime.datetime.now().year) - int(
             str(self.joined_date).split('-')[0])
 
-        if worked_years < 5:
-
-            self.write({
-                'state': 'draft'})
-
-            worked_years = int(datetime.datetime.now().year) - int(
-                str(self.joined_date).split('-')[0])
+        if worked_years < 1:
+            self.write({'state': 'draft'})
             self.worked_years = worked_years
-
             raise exceptions.except_orm(
-                _('Employee Working Period is less than 5 Year'),
-                _('Only an Employee with minimum 5 years of working, will get the Gratuity'))
+                _('Employee Working Period is less than 1 Year'),
+                _('The employee is not eligible for gratuity with less than 1 year of service.'))
+
         else:
-
-            worked_years = int(datetime.datetime.now().year) - int(
-                str(self.joined_date).split('-')[0])
             self.worked_years = worked_years
-
-            cr = self._cr  # find out the correct  date of last salary of  employee
+            cr = self._cr
 
             query = """select amount from hr_payslip_line psl 
                        inner join hr_payslip ps on ps.id=psl.slip_id
-                       where ps.employee_id=""" + str(
-                self.employee_id.employee_id.id) + \
+                       where ps.employee_id=""" + str(self.employee_id.employee_id.id) + \
                     """and ps.state='done' and psl.code='NET'
                     order by ps.date_from desc limit 1"""
 
@@ -122,42 +88,38 @@ class EmployeeGratuity(models.Model):
                 last_salary = 0
             self.last_month_salary = last_salary
 
-            amount = ((self.last_month_salary + int(self.allowance)) * int(
-                worked_years) * 15) / 26
-            self.gratuity_amount = round(
-                amount) if self.state == 'approve' else 0
+            if worked_years < 5:
+                # No gratuity for less than 5 years
+                self.gratuity_amount = 0
+            elif 5 <= worked_years < 10:
+                # Half a month salary for each year between 5 and 10 years
+                self.gratuity_amount = (self.last_month_salary + int(self.allowance)) * worked_years * 0.5
+            else:
+                # One month salary for each year above 10 years
+                self.gratuity_amount = (self.last_month_salary + int(self.allowance)) * worked_years
 
-            self.write({
-                'state': 'validate'})
+            self.gratuity_amount = round(self.gratuity_amount) if self.state == 'approve' else 0
+            self.write({'state': 'validate'})
 
     def approve_function(self):
-
         if not self.allowance.isdigit():
             raise ValidationError(_('Allowance value should be numeric !!'))
 
-        self.write({
-            'state': 'approve'
-        })
+        self.write({'state': 'approve'})
 
-        amount = ((self.last_month_salary + int(self.allowance)) * int(
-            self.worked_years) * 15) / 26
+        amount = (self.last_month_salary + int(self.allowance)) * self.worked_years
         self.gratuity_amount = round(amount) if self.state == 'approve' else 0
 
     def cancel_function(self):
-        self.write({
-            'state': 'cancel'
-        })
+        self.write({'state': 'cancel'})
 
     def draft_function(self):
-        self.write({
-            'state': 'draft'
-        })
+        self.write({'state': 'draft'})
 
     # assigning the join date of the selected employee
     @api.onchange('employee_id')
     def _on_change_employee_id(self):
-        rec = self.env['hr.resignation'].search(
-            [['id', '=', self.employee_id.id]])
+        rec = self.env['hr.resignation'].search([['id', '=', self.employee_id.id]])
         if rec:
             self.joined_date = rec.joined_date
         else:
