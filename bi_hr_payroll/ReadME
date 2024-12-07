@@ -1,0 +1,5 @@
+
+08-12-2021 : 15.0.0.1 : Improve Payslip smart Button View.
+
+date: 07/03/2024 | version: 16.0.0.2
+Fixed: Fixed warning The method '_company_default_get' on res.company is deprecated and shouldn't be used anymore

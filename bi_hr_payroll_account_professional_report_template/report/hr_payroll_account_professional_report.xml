@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="bi_hr_payroll.action_report_payslip" model="ir.actions.report">
+        <field name="name">Payslip</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bi_hr_payroll_account_professional_report_template.report_payslip_lang</field>
+        <field name="report_file">bi_hr_payroll_account_professional_report_template.report_payslip_lang</field>
+        <field name="binding_model_id" ref="bi_hr_payroll.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Payslip - %s' % (object.employee_id.name)</field>
+    </record>
+
+    <template id="report_payslip_lang">
+        <t t-foreach="docs" t-as="o">
+            <t t-if="o.company_id.payslip_template == 'fency'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslip_lang_professional_fency"/>
+            </t>
+            <t t-elif="o.company_id.payslip_template == 'classic'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslip_lang_professional_classic"/>
+            </t>
+            <t t-elif="o.company_id.payslip_template == 'modern'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslip_lang_professional_modern"/>
+            </t>
+            <t t-elif="o.company_id.payslip_template == 'odoo_standard'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslip_lang_professional_odoo_standard"/>
+            </t>
+            <t t-else="">
+                <t t-call="bi_hr_payroll.report_payslip"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="bi_hr_payroll.payslip_details_report" model="ir.actions.report">
+        <field name="name">PaySlip Details</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bi_hr_payroll_account_professional_report_template.report_payslipdetails_lang</field>
+        <field name="report_file">bi_hr_payroll_account_professional_report_template.report_payslipdetails_lang</field>
+        <field name="binding_model_id" ref="bi_hr_payroll.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Payslip Details - %s' % (object.employee_id.name)</field>
+    </record>
+
+    <template id="report_payslipdetails_lang">
+        <t t-foreach="docs" t-as="o">
+            <t t-if="o.company_id.payslip_template == 'fency'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslipdetails_professional_fency"/>
+            </t>
+            <t t-elif="o.company_id.payslip_template == 'classic'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslipdetails_professional_classic"/>
+            </t>
+            <t t-elif="o.company_id.payslip_template == 'modern'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslipdetails_professional_modern"/>
+            </t>
+            <t t-elif="o.company_id.payslip_template == 'odoo_standard'">
+                <t t-call="bi_hr_payroll_account_professional_report_template.report_payslipdetails_professional_odoo_standard"/>
+            </t>
+            <t t-else="">
+                <t t-call="bi_hr_payroll.report_payslipdetails"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>
