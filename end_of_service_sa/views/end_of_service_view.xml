@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_end_of_service_form" model="ir.ui.view">
+        <field name="name">end.of.service.form</field>
+        <field name="model">end.of.service</field>
+        <field name="arch" type="xml">
+            <form string="End of Service">
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="termination_reason"/>
+                        <field name="termination_date"/>
+                        <field name="years_of_service"/>
+                        <field name="gratuity_amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="menu_end_of_service" name="End of Service" parent="hr.menu_hr_root"/>
+</odoo>
