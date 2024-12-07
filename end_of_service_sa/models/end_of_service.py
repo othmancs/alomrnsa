@@ -11,11 +11,11 @@ class EndOfService(models.Model):
     years_of_service = fields.Float(string="Years of Service", compute="_compute_years_of_service")
     gratuity_amount = fields.Float(string="Gratuity Amount", compute="_compute_gratuity")
 
-    @api.depends('termination_date', 'employee_id.date_start')
+    @api.depends('termination_date', 'employee_id.contract_id.date_start')
     def _compute_years_of_service(self):
         for record in self:
-            if record.termination_date and record.employee_id.date_start:
-                delta = record.termination_date - record.employee_id.date_start
+            if record.termination_date and record.employee_id.contract_id.date_start:
+                delta = record.termination_date - record.employee_id.contract_id.date_start
                 record.years_of_service = delta.days / 365
 
     @api.depends('years_of_service', 'termination_reason', 'employee_id.contract_id.wage')
