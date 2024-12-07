@@ -68,32 +68,32 @@ class Probation(models.Model):
         res = super(Probation, self).create(vals_list)
         return res
 
-    def write(self, vals):
-        """
-        function for checking stage changing and creating probation
-        record based on contract stage
-        """
-        # self.ensure_one()  # تأكد من أنه يوجد سجل واحد فقط
+    # def write(self, vals):
+    #     """
+    #     function for checking stage changing and creating probation
+    #     record based on contract stage
+    #     """
+    #     # self.ensure_one()  # تأكد من أنه يوجد سجل واحد فقط
 
-        # if self.state == 'probation':
-        #     if vals.get('state') == 'open' and not self.is_approve:
-        #         raise UserError(_("You cannot change the status of non-approved Contracts"))
-        #     if vals.get('state') in ['cancel', 'close', 'draft']:
-        #         raise UserError(_("You cannot change the status of non-approved Contracts"))
+    #     # if self.state == 'probation':
+    #     #     if vals.get('state') == 'open' and not self.is_approve:
+    #     #         raise UserError(_("You cannot change the status of non-approved Contracts"))
+    #     #     if vals.get('state') in ['cancel', 'close', 'draft']:
+    #     #         raise UserError(_("You cannot change the status of non-approved Contracts"))
 
-        # البحث عن تدريب الموظف إذا كان موجودًا
-        training_dtl = self.env['hr.training'].search([('employee_id', '=', self.employee_id.id)])
+    #     # البحث عن تدريب الموظف إذا كان موجودًا
+    #     training_dtl = self.env['hr.training'].search([('employee_id', '=', self.employee_id.id)])
 
-        if training_dtl:
-            return super(Probation, self).write(vals)
+    #     if training_dtl:
+    #         return super(Probation, self).write(vals)
 
-        # إذا لم يوجد تدريب، قم بإنشاء سجل تدريب جديد
-        if not training_dtl:
-            if self.trial_date_end and self.state == 'probation':
-                self.env['hr.training'].create({
-                    'employee_id': self.employee_id.id,
-                    'start_date': self.date_start,
-                    'end_date': self.trial_date_end,
-                })
+    #     # إذا لم يوجد تدريب، قم بإنشاء سجل تدريب جديد
+    #     if not training_dtl:
+    #         if self.trial_date_end and self.state == 'probation':
+    #             self.env['hr.training'].create({
+    #                 'employee_id': self.employee_id.id,
+    #                 'start_date': self.date_start,
+    #                 'end_date': self.trial_date_end,
+    #             })
         
-        return super(Probation, self).write(vals)
+    #     return super(Probation, self).write(vals)
