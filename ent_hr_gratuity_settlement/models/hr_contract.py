@@ -73,7 +73,7 @@ class Probation(models.Model):
         function for checking stage changing and creating probation
         record based on contract stage
         """
-        self.ensure_one()  # تأكد من أنه يوجد سجل واحد فقط
+        # self.ensure_one()  # تأكد من أنه يوجد سجل واحد فقط
 
         if self.state == 'probation':
             if vals.get('state') == 'open' and not self.is_approve:
