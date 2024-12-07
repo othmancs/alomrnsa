@@ -75,11 +75,11 @@ class Probation(models.Model):
         """
         # self.ensure_one()  # تأكد من أنه يوجد سجل واحد فقط
 
-        if self.state == 'probation':
-            if vals.get('state') == 'open' and not self.is_approve:
-                raise UserError(_("You cannot change the status of non-approved Contracts"))
-            if vals.get('state') in ['cancel', 'close', 'draft']:
-                raise UserError(_("You cannot change the status of non-approved Contracts"))
+        # if self.state == 'probation':
+        #     if vals.get('state') == 'open' and not self.is_approve:
+        #         raise UserError(_("You cannot change the status of non-approved Contracts"))
+        #     if vals.get('state') in ['cancel', 'close', 'draft']:
+        #         raise UserError(_("You cannot change the status of non-approved Contracts"))
 
         # البحث عن تدريب الموظف إذا كان موجودًا
         training_dtl = self.env['hr.training'].search([('employee_id', '=', self.employee_id.id)])
