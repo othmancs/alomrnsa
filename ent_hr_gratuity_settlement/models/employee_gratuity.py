@@ -1,6 +1,7 @@
 import datetime
 from odoo import fields, models, api, exceptions, _
 from odoo.exceptions import ValidationError, UserError
+from dateutil import relativedelta
 
 date_format = "%Y-%m-%d"
 
@@ -9,33 +10,35 @@ class EmployeeGratuity(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Employee Gratuity"
 
+    # إضافة اختيار لتحديد تاريخ الحساب
+    compute_at_date = fields.Selection([
+        ('current_date', 'Current Date'),
+        ('specific_date', 'At a Specific Date')
+    ], string="Compute Gratuity At", default='current_date', help="Choose whether to compute gratuity for the current date or a specific date.")
+
+    to_date = fields.Date("Gratuity Calculation Date", help="Choose a date to calculate gratuity at", default=fields.Date.today())
+
     state = fields.Selection([
         ('draft', 'Draft'),
         ('validate', 'Validated'),
         ('approve', 'Approved'),
         ('cancel', 'Cancelled')],
         default='draft', tracking='onchange')
+    
     name = fields.Char(string='Reference', required=True, copy=False,
-                       readonly=True,
-                       default=lambda self: _('New'))
+                       readonly=True, default=lambda self: _('New'))
     employee_id = fields.Many2one('hr.resignation', string='Employee',
-                                  required=True,
-                                  domain="[('state', '=', 'approved')]")
+                                  required=True, domain="[('state', '=', 'approved')]")
     joined_date = fields.Date(string="Joined Date", readonly=True)
     worked_years = fields.Integer(string="Total Work Years", readonly=True)
-    last_month_salary = fields.Integer(string="Last Salary", required=True,
-                                       default=0)
+    last_month_salary = fields.Integer(string="Last Salary", required=True, default=0)
     allowance = fields.Char(string="Dearness Allowance", default=0)
     gratuity_amount = fields.Integer(string="Gratuity Payable", required=True,
-                                     default=0,
-                                     readonly=True, help=(
-            "Gratuity is calculated based on the "
-            "equation Last salary * Number of years of service * 15 / 26"))
+                                     default=0, readonly=True, help=(
+            "Gratuity is calculated based on the equation Last salary * Number of years of service * 15 / 26"))
     currency_id = fields.Many2one('res.currency', string='Currency',
-                                  required=True,
-                                  default=lambda self: self.env.user.company_id.currency_id)
-    company_id = fields.Many2one('res.company', 'Company',
-                                 default=lambda self: self.env.user.company_id)
+                                  required=True, default=lambda self: self.env.user.company_id.currency_id)
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.user.company_id)
 
     # assigning the sequence for the record
     @api.model
@@ -43,7 +46,6 @@ class EmployeeGratuity(models.Model):
         vals['name'] = self.env['ir.sequence'].next_by_code('hr.gratuity')
         return super(EmployeeGratuity, self).create(vals)
 
-    # Check whether any Gratuity request already exists
     @api.onchange('employee_id')
     @api.depends('employee_id')
     def check_request_existence(self):
@@ -51,17 +53,24 @@ class EmployeeGratuity(models.Model):
             if rec.employee_id:
                 gratuity_request = self.env['hr.gratuity'].search(
                     [('employee_id', '=', rec.employee_id.id),
-                     ('state', 'in',
-                      ['draft', 'validate', 'approve', 'cancel'])])
+                     ('state', 'in', ['draft', 'validate', 'approve', 'cancel'])])
                 if gratuity_request:
-                    raise ValidationError(
-                        _('A Settlement request is already processed'
-                          ' for this employee'))
+                    raise ValidationError(_('A Settlement request is already processed for this employee'))
+
+    def calculate_worked_years(self, to_date):
+        """ حساب سنوات العمل بناءً على التاريخ المحدد """
+        for rec in self:
+            if rec.employee_id:
+                # حساب الفرق بين تاريخ الانضمام والتاريخ المحدد
+                diff = relativedelta.relativedelta(to_date, rec.joined_date)
+                years = diff.years
+                return years
+        return 0
 
     def validate_function(self):
-        # calculating the years of work by the employee
-        worked_years = int(datetime.datetime.now().year) - int(
-            str(self.joined_date).split('-')[0])
+        # حساب سنوات العمل بناءً على التاريخ المحدد
+        to_date = fields.Date.today() if self.compute_at_date == 'current_date' else self.to_date
+        worked_years = self.calculate_worked_years(to_date)
 
         if worked_years < 1:
             self.write({'state': 'draft'})
@@ -116,7 +125,6 @@ class EmployeeGratuity(models.Model):
     def draft_function(self):
         self.write({'state': 'draft'})
 
-    # assigning the join date of the selected employee
     @api.onchange('employee_id')
     def _on_change_employee_id(self):
         rec = self.env['hr.resignation'].search([['id', '=', self.employee_id.id]])
