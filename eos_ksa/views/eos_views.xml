@@ -1,0 +1,34 @@
+<odoo>
+    <record id="view_eos_form" model="ir.ui.view">
+        <field name="name">eos.form</field>
+        <field name="model">employee.eos</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="total_years" readonly="1"/>
+                        <field name="eos_amount" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_eos_tree" model="ir.ui.view">
+        <field name="name">eos.tree</field>
+        <field name="model">employee.eos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="total_years"/>
+                <field name="eos_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_eos_root" name="End of Service" sequence="1"/>
+    <menuitem id="menu_eos" parent="menu_eos_root" name="Manage EOS" action="action_eos"/>
+</odoo>
