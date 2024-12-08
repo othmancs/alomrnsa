@@ -1,0 +1,29 @@
+<openerp>
+    <data>
+        <record id="hr_contract_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='duration_group']" position="after">
+                   <group name="eos" string="End of service Informations" >
+                    <field name="end_service"/>
+                    <field name="work_years" attrs="{'invisible': ['|',('end_service', '=', False),('date_end', '=', False)],}"/>
+                    <field name="reason_id" attrs="{'invisible': [('end_service', '=', False)],'required': [('end_service', '=', True)]}" />
+                    <field name="eos_structure_id" attrs="{'invisible': [('end_service', '=', False)]}" />
+                </group>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                   <button name="employee_end_service" attrs="{'invisible': ['|',('end_service', '=', False),('eos_payslip_id','!=',False)]}" string="End Service" type="object" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <button attrs="{'invisible':[('eos_payslip_id','=',False)]}" class="oe_stat_button" icon="fa-book" name="eos_payslip_action" string="Payslip" type="object">
+                                <field invisible="1" name="eos_payslip_id"/>
+                            </button>
+                        </xpath>
+
+               
+            </field>
+        </record>
+    </data>
+</openerp>

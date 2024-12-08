@@ -1,0 +1,179 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_end_of_services
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20190725\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-08 05:48+0000\n"
+"PO-Revision-Date: 2021-04-08 05:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_end_of_services
+#: model:ir.actions.act_window,help:hr_end_of_services.action_end_service_reason_form
+msgid "Click to add a new EOS Reason."
+msgstr ".اضغط لانشاء سبب نهاية خدمة"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_contract_deduction_perc
+msgid "Decution Percentage"
+msgstr "نسبة الخصم من الراتب"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: hr_end_of_services
+#: model:ir.actions.act_window,name:hr_end_of_services.action_end_service_reason_form
+#: model:ir.ui.menu,name:hr_end_of_services.menu_action_hr_end_service_reason_form
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_end_service_reason_filter
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_end_service_reason_form
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_end_service_reason_tree
+msgid "EOS Reason"
+msgstr "سبب نهاية الخدمة"
+
+#. module: hr_end_of_services
+#: model:ir.model,name:hr_end_of_services.model_hr_contract
+msgid "Employee Contract"
+msgstr "عقود الموظف"
+
+#. module: hr_end_of_services
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_contract_form_inherit
+msgid "End Service"
+msgstr "نهاية الخدمة"
+
+#. module: hr_end_of_services
+#: model:hr.salary.rule,name:hr_end_of_services.hr_payroll_rules_eos_resign_after_10years
+msgid "End of service reward ( resign after 10 years)"
+msgstr "مكافأة نهاية الخدمة (استقالة بعد  اكمال 10 سنوات)"
+
+#. module: hr_end_of_services
+#: model:hr.salary.rule,name:hr_end_of_services.hr_payroll_rules_eos_resign_after_5years
+msgid "End of service reward ( resign after 5 years)"
+msgstr "مكافأة نهاية الخدمة (استقالة بعد  اكمال 5 سنوات)"
+
+#. module: hr_end_of_services
+#: model:hr.salary.rule,name:hr_end_of_services.hr_payroll_rules_eos_resign_before_3years
+msgid "End of service reward ( resign befor 3 years)"
+msgstr "مكافأة نهاية الخدمة (استقالة قبل  اكمال 3 سنوات)"
+
+#. module: hr_end_of_services
+#: model:hr.salary.rule,name:hr_end_of_services.hr_payroll_rules_eos_resign_before_5years
+msgid "End of service reward ( resign befor 5 years)"
+msgstr "مكافأة نهاية الخدمة (استقالة قبل  اكمال 5 سنوات)"
+
+#. module: hr_end_of_services
+#: model:hr.salary.rule,name:hr_end_of_services.hr_payroll_rules_eos_termination_after_5years
+msgid "End of service reward ( terminated after 5 years)"
+msgstr "مكافأة نهاية الخدمة (ايقافه بعد اكمال 5 سنوات)"
+
+#. module: hr_end_of_services
+#: model:hr.salary.rule,name:hr_end_of_services.hr_payroll_rules_eos_termination_before_5years
+msgid "End of service reward ( terminated before 5 years)"
+msgstr "مكافأة نهاية الخدمة (ايقافه قبل اكمال 5 سنوات)"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_contract_end_service
+msgid "End service"
+msgstr "انهاء الخدمة"
+
+#. module: hr_end_of_services
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_end_service_reason_filter
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason___last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_end_of_services
+#: model:ir.model,name:hr_end_of_services.model_hr_payslip
+msgid "Pay Slip"
+msgstr "ظرف المرتب"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_contract_eos_payslip_id
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_contract_form_inherit
+msgid "Payslip"
+msgstr "قسيمة الدفع"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_contract_reason_id
+msgid "Reason"
+msgstr "السبب"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_end_service_reason_reason_type
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_end_service_reason_filter
+msgid "Reason Type"
+msgstr "سبب نهاية الخدمة"
+
+#. module: hr_end_of_services
+#: selection:hr.end.service.reason,reason_type:0
+msgid "Resignation"
+msgstr "استقالة"
+
+#. module: hr_end_of_services
+#: code:addons/hr_end_of_services/models/hr_payslip.py:15
+#, python-format
+msgid "Sorry! deduction amount should not overcome deduction limit calculated depends on deduction percentage set on the contract ."
+msgstr "Sorry! deduction amount should not overcome deduction limit calculated depends on deduction percentage set on the contract ."
+
+#. module: hr_end_of_services
+#: selection:hr.end.service.reason,reason_type:0
+msgid "Termination"
+msgstr "ايقاف"
+
+#. module: hr_end_of_services
+#: model:ir.model.fields,field_description:hr_end_of_services.field_hr_contract_work_years
+msgid "Work Years"
+msgstr "سنوات الخدمة"
+
+#. module: hr_end_of_services
+#: model:ir.model,name:hr_end_of_services.model_hr_end_service_reason
+msgid "hr.end.service.reason"
+msgstr "hr.end.service.reason"
+
+#. module: hr_end_of_services
+#: model:ir.ui.view,arch_db:hr_end_of_services.hr_contract_form_inherit
+msgid "note that 100% mean 1* wage, 40%: 0.4*wage"
+msgstr "note that 100% mean 1* wage, 40%: 0.4*wage"
+

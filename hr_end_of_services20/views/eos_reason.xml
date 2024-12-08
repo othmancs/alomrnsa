@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="hr_end_service_reason_tree" model="ir.ui.view">
+        <field name="name">hr.end.service.reason.tree</field>
+        <field name="model">hr.end.service.reason</field>
+        <field name="arch" type="xml">
+            <tree string="EOS Reason">
+                <field name="name" />
+                <field name="reason_type" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id="hr_end_service_reason_filter" model="ir.ui.view">
+        <field name="name">hr.end.service.reason.search</field>
+        <field name="model">hr.end.service.reason</field>
+        <field name="arch" type="xml">
+            <search string="EOS Reason">
+                <field name="name" string="EOS Reason"/>
+                <group col="8" colspan="4" expand="0" string="Group By">
+                    <filter string="Reason Type" name="type" context="{'group_by':'reason_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="hr_end_service_reason_form" model="ir.ui.view">
+        <field name="name">hr.end.service.reason.form</field>
+        <field name="model">hr.end.service.reason</field>
+        <field name="arch" type="xml">
+            <form string="EOS Reason">
+                <group>
+                    <field name="name"/>
+                    <field name="reason_type"/>
+                </group>
+                
+            </form>
+        </field>
+    </record>
+    <record id="action_end_service_reason_form" model="ir.actions.act_window">
+        <field name="name">EOS Reason</field>
+        <field name="res_model">hr.end.service.reason</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a new EOS Reason.
+          </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_action_hr_end_service_reason_form"
+        action="action_end_service_reason_form"
+        parent="hr.menu_human_resources_configuration"
+        sequence="14"
+    />
+
+
+</odoo>

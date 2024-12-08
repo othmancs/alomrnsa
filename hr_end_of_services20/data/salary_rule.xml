@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0"> 
+    
+        
+ <record id="hr_payroll_rules_eos_resign_before_3years" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign befor 3 years)</field>
+        <field name="code">EOs.Resign.1</field>
+        <field name="amount_select">fix</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &lt;= 3) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = 0</field>
+    </record> 
+    <record id="hr_payroll_rules_eos_resign_before_5years" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign befor 5 years)</field>
+        <field name="code">EOs.Resign.2</field>
+        <field name="amount_select">fix</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 3) and (contract.work_years &lt;= 5) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+month_days=30.0- contract.weekends_per_month
+months = round(15.0 * contract.work_years/month_days,2)
+result = round(months, 2) * wage * 0.5</field>
+    </record> 
+    <record id="hr_payroll_rules_eos_resign_after_5years" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign after 5 years)</field>
+        <field name="code">EOs.Resign.3</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 5) and (contract.work_years &lt;= 10) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+month_days=30.0- contract.weekends_per_month
+first_years_months= round(15 * 5 / month_days,2)
+last_years_months = 30 * (contract.work_years - 5) / 30
+result = round((first_years_months + last_years_months),2) * wage * 2 / 3</field>
+    </record> 
+
+    <record id="hr_payroll_rules_eos_resign_after_10years" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign after 10 years)</field>
+        <field name="code">EOs.Resign.4</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 10) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+month_days=30.0- contract.weekends_per_month
+first_years_months= round(15 * 5 / month_days,2)
+last_years_months = 30 * (contract.work_years - 5) / 30.0
+totals_months = first_years_months + last_years_months
+if totals_months &gt; 18:
+    result = (18) * wage
+else:
+    result = round(totals_months,2) * wage
+</field>
+    </record> 
+
+
+    <record id="hr_payroll_rules_eos_termination_before_5years" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( terminated before 5 years)</field>
+        <field name="code">EOs.Terminate.1</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &lt;= 5) and bool(contract.end_service) and (contract.reason_id.reason_type == 'termination'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+month_days = 30.0- contract.weekends_per_month
+months= round(15 * contract.work_years / month_days,2)
+result = round(months,2) * wage</field>
+    </record> 
+
+    <record id="hr_payroll_rules_eos_termination_after_5years" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( terminated after 5 years)</field>
+        <field name="code">EOs.Terminate.2</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 5) and bool(contract.end_service) and (contract.reason_id.reason_type == 'termination'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+month_days = 30.0- contract.weekends_per_month
+first_years_months= round(15 * 5 / month_days,2)
+last_years_months = 30 * (contract.work_years - 5) / 30.0
+totals_months = first_years_months + last_years_months
+if totals_months &gt; 18:
+    result = (18) * wage
+else:
+    result = round(totals_months,2) * wage
+</field>
+    </record> 
+
+
+        <record id="structure_end_of_service" model="hr.payroll.structure">
+            <field name="code">EOS</field>
+            <field name="parent_id" eval="False" />
+            <field name="name">End for Service structure (Kwait)</field>
+            <field eval="[(6, 0, [
+                ref('hr_payroll_rules_eos_resign_before_5years'),
+                ref('hr_payroll_rules_eos_resign_before_3years'),
+                ref('hr_payroll_rules_eos_resign_after_5years'),
+                ref('hr_payroll_rules_eos_resign_after_10years'),
+                ref('hr_payroll_rules_eos_termination_before_5years'),
+                ref('hr_payroll_rules_eos_termination_after_5years'),
+                ])]" name="rule_ids"/>
+        </record>
+
+
+       
+ <record id="hr_payroll_rules_eos_resign_before_2years_ksa" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign befor 2 years)</field>
+        <field name="code">EOs.Resign.ksa.1</field>
+        <field name="amount_select">fix</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &lt;= 2) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = 0</field>
+    </record> 
+    <record id="hr_payroll_rules_eos_resign_before_5years_ksa" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign befor 5 years)</field>
+        <field name="code">EOs.Resign.ksa.2</field>
+        <field name="amount_select">fix</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 2) and (contract.work_years &lt;= 5) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+result = round((contract.work_years * wage * 0.5)/3, 2)</field>
+    </record> 
+    <record id="hr_payroll_rules_eos_resign_after_5years_ksa" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign after 5 years)</field>
+        <field name="code">EOs.Resign.ksa.3</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 5) and (contract.work_years &lt;= 10) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+result = round(((contract.work_years-5) * wage + 5 * wage /2 ) * 2 / 3,2)</field>
+    </record> 
+
+    <record id="hr_payroll_rules_eos_resign_after_10years_ksa" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( resign after 10 years)</field>
+        <field name="code">EOs.Resign.ksa.4</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 10) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+totals_months = first_years_months + last_years_months
+result = round(((contract.work_years-5) * wage + 5 * wage /2 ,2)
+</field>
+    </record> 
+
+
+    <!--record id="hr_payroll_rules_eos_termination_before_5years_ksa" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( terminated before 5 years)</field>
+        <field name="code">EOs.Terminate.ksa.1</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &lt;= 5) and bool(contract.end_service) and (contract.reason_id.reason_type == 'termination'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+month_days = 30.0- contract.weekends_per_month
+months= round(15 * contract.work_years / month_days,2)
+result = round(months,2) * wage</field>
+    </record> 
+
+    <record id="hr_payroll_rules_eos_termination_after_5years_ksa" model="hr.salary.rule">
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="name">End of service reward ( terminated after 5 years)</field>
+        <field name="code">EOs.Terminate.ksa.2</field>
+        <field name="sequence">110</field>
+        <field name="condition_select">python</field>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="condition_python">result = ((contract.work_years &gt;= 5) and bool(contract.end_service) and (contract.reason_id.reason_type == 'termination'))</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+wage = contract.wage
+month_days = 30.0- contract.weekends_per_month
+first_years_months= round(15 * 5 / month_days,2)
+last_years_months = 30 * (contract.work_years - 5) / 30.0
+totals_months = first_years_months + last_years_months
+if totals_months &gt; 18:
+    result = (18) * wage
+else:
+    result = round(totals_months,2) * wage
+</field>
+    </record--> 
+
+
+        <record id="structure_end_of_service_ksa" model="hr.payroll.structure">
+            <field name="code">KSA EOS</field>
+            <field name="parent_id" eval="False" />
+            <field name="name">End for Service structure (Kingdom of Saudi Arabia)</field>
+            <field eval="[(6, 0, [
+                ref('hr_payroll_rules_eos_resign_before_2years_ksa'),
+                ref('hr_payroll_rules_eos_resign_before_5years_ksa'),
+                ref('hr_payroll_rules_eos_resign_after_5years_ksa'),
+                ref('hr_payroll_rules_eos_resign_after_10years_ksa')
+                ])]" name="rule_ids"/>
+        </record>
+
+    </data>
+</openerp>
