@@ -3,18 +3,20 @@
     <data noupdate="0"> 
     
         
- <record id="hr_payroll_rules_eos_resign_before_3years" model="hr.salary.rule">
-        <field name="category_id" ref="hr_payroll.ALW"/>
-        <field name="name">End of service reward ( resign befor 3 years)</field>
-        <field name="code">EOs.Resign.1</field>
-        <field name="amount_select">fix</field>
-        <field name="sequence">110</field>
-        <field name="condition_select">python</field>
-        <field name="appears_on_payslip" eval="True"/>
-        <field name="condition_python">result = ((contract.work_years &lt;= 3) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
-        <field name="amount_select">code</field>
-        <field name="amount_python_compute">result = 0</field>
-    </record> 
+<record id="hr_payroll_rules_eos_resign_before_3years" model="hr.salary.rule">
+    <field name="category_id" ref="hr_payroll.ALW"/>
+    <field name="name">End of service reward (resign before 3 years)</field>
+    <field name="code">EOs.Resign.1</field>
+    <field name="amount_select">fix</field>
+    <field name="sequence">110</field>
+    <field name="condition_select">python</field>
+    <field name="appears_on_payslip" eval="True"/>
+    <field name="condition_python">result = ((contract.work_years &lt;= 3) and bool(contract.end_service) and (contract.reason_id.reason_type == 'resign'))</field>
+    <field name="amount_select">code</field>
+    <field name="amount_python_compute">result = 0</field>
+    <field name="struct_id" ref="structure_end_of_service"/>
+</record>
+
     <record id="hr_payroll_rules_eos_resign_before_5years" model="hr.salary.rule">
         <field name="category_id" ref="hr_payroll.ALW"/>
         <field name="name">End of service reward ( resign befor 5 years)</field>
