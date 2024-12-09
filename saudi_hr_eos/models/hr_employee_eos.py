@@ -9,8 +9,8 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
-class HrEmployee(models.Model):
-    _inherit = "hr.employee"
+class HrContract(models.Model):
+    _name = 'hr.contract'
 
     def action_view_eos(self):
         context = dict(self.env.context) or {}
