@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <data noupdate="1">-->
+<!--        <record id="fme_hr_contract" model="hr.contract">-->
+<!--            <field name="name">Jalaal Contract</field>-->
+<!--            <field name="department_id" ref="hr.dep_rd"/>-->
+<!--            <field name="employee_id" ref="hr.employee_fme"/>-->
+<!--            &lt;!&ndash; <field name="type_id" ref="hr_contract.hr_contract_type_emp"/> &ndash;&gt;-->
+<!--            <field name="struct_id" ref="sync_hr_payroll.structure_base"/>-->
+<!--            <field name="wage">15000</field>-->
+<!--            <field name="date_start" eval="DateTime.today()"/>-->
+<!--            <field name="date_end" eval="(DateTime.today() + relativedelta(years=1))"/>-->
+<!--            <field name="signon_bonus">True</field>-->
+<!--            <field name="state">open</field>-->
+<!--            <field name="signon_bonus_amount">15000</field>-->
+<!--            <field name="period_ids" eval="[(6, 0, [ref('hr_fiscal_year.year_period_january')])]"/>-->
+<!--        </record>-->
+
+<!--        <record id="jth_hr_contract" model="hr.contract">-->
+<!--            <field name="name">Zaheena Contract</field>-->
+<!--            <field name="department_id" ref="hr.dep_ps"/>-->
+<!--            <field name="employee_id" ref="hr.employee_jth"/>-->
+<!--            &lt;!&ndash; <field name="type_id" ref="hr_contract.hr_contract_type_wrkr"/> &ndash;&gt;-->
+<!--            <field name="struct_id" ref="sync_hr_payroll.structure_base"/>-->
+<!--            <field name="wage">20000</field>-->
+<!--            <field name="date_start" eval="DateTime.today()"/>-->
+<!--            <field name="date_end" eval="(DateTime.today() + relativedelta(years=1))"/>-->
+<!--            <field name="state">open</field>-->
+<!--            <field name="period_ids" eval="[(6, 0, [ref('hr_fiscal_year.year_period_february')])]"/>-->
+<!--        </record>-->
+
+<!--        <record id="employee_eos_fme" model="hr.employee.eos">-->
+<!--            <field name="employee_id" ref="hr.employee_fme"/>-->
+<!--            <field name="contract_id" ref="fme_hr_contract"/>-->
+<!--            <field name="name">Jalaal EOS</field>-->
+<!--            <field name="year_id" ref="hr_fiscal_year.employee_year"/>-->
+<!--            <field name="eos_date" eval="DateTime.today()"/>-->
+<!--            <field name="type">resignation</field>-->
+<!--            <field name="remaining_leave">4</field>-->
+<!--            <field name="duration_years">5</field>-->
+<!--            <field name="duration_months">2</field>-->
+<!--            <field name="duration_days">3</field>-->
+<!--            <field name="total_eos">4</field>-->
+<!--            <field name="annual_leave_amount">1500</field>-->
+<!--            <field name="current_month_salary">15000</field>-->
+<!--            <field name="others">3000</field>-->
+<!--        </record>-->
+
+<!--        <record id="employee_eos_jth" model="hr.employee.eos">-->
+<!--            <field name="employee_id" ref="hr.employee_jth"/>-->
+<!--            <field name="contract_id" ref="jth_hr_contract"/>-->
+<!--            <field name="name">Zaheena EOS</field>-->
+<!--            <field name="year_id" ref="hr_fiscal_year.employee_year"/>-->
+<!--            <field name="eos_date" eval="DateTime.today()"/>-->
+<!--            <field name="type">resignation</field>-->
+<!--            <field name="remaining_leave">4</field>-->
+<!--            <field name="duration_years">1</field>-->
+<!--            <field name="duration_months">2</field>-->
+<!--            <field name="duration_days">0</field>-->
+<!--            <field name="total_eos">4</field>-->
+<!--            <field name="annual_leave_amount">2000</field>-->
+<!--            <field name="current_month_salary">20000</field>-->
+<!--            <field name="others">3000</field>-->
+<!--        </record>-->
+<!--    </data>-->
+</odoo>

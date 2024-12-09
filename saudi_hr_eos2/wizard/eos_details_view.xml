@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_eos_details_form" model="ir.ui.view">
+        <field name="name">EOS Details</field>
+        <field name="model">eos.details</field>
+        <field name="arch" type="xml">
+            <form string="Choose your Date">
+                <div class="oe_clear">
+                    <div role="alert" class="alert alert-warning">
+                        <span>
+                            Report shows all the employee which has active contract!
+                        </span>
+                    </div>
+                </div>
+                <group>
+                    <group>
+                        <field name="compute_at_date" widget="radio" required="1"/>
+                        <field name="to_date" attrs="{'invisible': [('compute_at_date', '=', 'current_date')], 'required': [('compute_at_date', '=', 'specific_date')]}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="open_eos_details" string="Retrieve the End of Service Indemnity (EOS)" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_eos_details_tree_reporting" model="ir.ui.view">
+        <field name="name">eos.details.tree.reporting</field>
+        <field name="model">eos.details</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <tree string="EOS" multi_edit="1" create="0" edit="0" delete="0">
+                <field name="employee_id" optional="show"/>
+                <field name="date_of_join" optional="show"/>
+                <field name="department_id" optional="show"/>
+                <field name="job_id" optional="show"/>
+                <field name="contract_id" optional="show"/>
+                <field name="duration_days" optional="show"/>
+                <field name="duration_months" optional="show"/>
+                <field name="duration_years" optional="show"/>
+                <field name="total_eos" optional="show" sum="Total Award"/>
+                <field name="to_date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_eos_details_filter" model="ir.ui.view">
+        <field name="name">eos.details.filter</field>
+        <field name="model">eos.details</field>
+        <field name="arch" type="xml">
+            <search string="EOS Details">
+                <field name="employee_id"/>
+                <field name="to_date"/>
+                <field name="contract_id"/>
+                <separator/>
+                <field name="employee_id"/>
+                <field name="department_id" string="Department" context="{'invisible_department': False}"/>
+                <group expand="0" string="Group By...">
+                    <filter name="group_employee" string="Employee" icon="terp-personal" context="{'group_by':'employee_id'}"/>
+                    <filter name="group_department" string="Department" icon="terp-personal+" context="{'group_by':'department_id'}"/>
+                    <filter name="group_job_id" string="Job" icon="terp-personal+" context="{'group_by':'job_id'}"/>
+                    <filter name="group_contract_id" string="Contract" icon="terp-personal+" context="{'group_by':'contract_id'}"/>
+                    <filter name="group_month" string="Month" icon="terp-go-month" context="{'group_by':'to_date'}"/>
+                    <filter name="group_date_of_join" string="Joining Month" icon="terp-go-month" context="{'group_by':'date_of_join'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_eos_details" model="ir.actions.act_window">
+        <field name="name">EOS Report</field>
+        <field name="res_model">eos.details</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_eos_details_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_eos_details" name="EOS Report" parent="saudi_hr_eos.menu_eos_label" sequence="10" action="action_eos_details"/>
+</odoo>
