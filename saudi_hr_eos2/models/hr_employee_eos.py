@@ -7,6 +7,12 @@ from dateutil import relativedelta
 from datetime import date,datetime
 from odoo.exceptions import UserError
 
+class HrPayrollSchedule(models.Model):
+    _name = 'hr.payroll.schedule'
+    _description = 'Payroll Schedule'
+
+    name = fields.Char(string="Schedule Name", required=True)
+    description = fields.Text(string="Description")
 
 class HrEmployeeEos(models.Model):
     _name = 'hr.employee.eos'
