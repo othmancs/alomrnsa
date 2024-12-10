@@ -1,7 +1,8 @@
 from odoo import api, fields, models
 from collections import defaultdict
 from datetime import time, timedelta
-from odoo.addons.resource.models.utils import Intervals
+# from odoo.addons.resource.models.utils import Intervals
+
 import datetime
 
 
