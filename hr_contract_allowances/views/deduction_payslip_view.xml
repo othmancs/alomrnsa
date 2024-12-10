@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo>
+
+	<record id="hr_payroll_view_hr_payslip_form_extend" model="ir.ui.view">
+		<field name="name">hr.payslip.form</field>
+		<field name="model">hr.payslip</field>
+		<field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+		<field name="arch" type="xml">
+			<notebook position="before">
+				<group>
+					<group attrs="{'invisible':[('deduction_line_id','=',False)]}"  string="Deduction Amount">
+						<field name="deduction_line_id" widget="many2many_tags" readonly="1"/>
+						<field name="deduction_amount" readonly="1"/>
+					</group>
+					<group attrs="{'invisible':[('allowance_line_id','=',False)]}"  string="Allowance Amount">
+						<field name="allowance_line_id" widget="many2many_tags" readonly="1"/>
+						<field name="allowance_amount" readonly="1"/>
+					</group>
+				</group>
+			</notebook>
+		</field>
+	</record>
+
+</odoo>

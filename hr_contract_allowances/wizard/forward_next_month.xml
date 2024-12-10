@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+	
+	<record id="deduction_forward_next_month_view" model="ir.ui.view">
+		<field name="name">forward.deduction.next.month.form.view</field>
+		<field name="model">forward.deduction.next.month</field>
+		<field name="arch" type="xml">
+			<form string="Installment Forward Next Month">
+				<group>
+					<group>
+						<field name="no_month" required="1"/>
+					</group>
+				</group>
+				<footer>
+					<button name="action_confirm" type="object" string="Apply" 
+					class="oe_highlight"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_deduction_forward_next_month" model="ir.actions.act_window">
+		<field name="name">Forward TO Next Month Installment</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">forward.deduction.next.month</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="deduction_forward_next_month_view"/>
+		<field name="target">new</field>
+	</record>
+	
+</odoo>

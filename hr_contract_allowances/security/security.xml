@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_payroll_allowances">
+            <field name="name">Payroll Allowances</field>
+            <field name="description">Helps you handle your Payroll Allowances</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="payroll_allowances_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_payroll_allowances"/>
+        </record>
+
+        <record id="payroll_allowances_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_payroll_allowances"/>
+        </record>
+
+        <record model="ir.module.category" id="module_contract_allowances">
+            <field name="name">Contract Allowances</field>
+            <field name="description">Helps you handle your Contract Allowances</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="contract_allowances_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_contract_allowances"/>
+        </record>
+
+        <record id="contract_allowances_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_contract_allowances"/>
+        </record>
+
+        <record model="ir.module.category" id="module_payroll_deduction">
+            <field name="name">Payroll Deduction</field>
+            <field name="description">Helps you handle your Payroll Deduction</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="payroll_deduction_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_payroll_deduction"/>
+        </record>
+
+        <record id="payroll_deduction_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_payroll_deduction"/>
+        </record>
+
+        <record model="ir.module.category" id="module_contract_deduction">
+            <field name="name">Contract Deduction</field>
+            <field name="description">Helps you handle your Contract Deduction</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="contract_deduction_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_contract_deduction"/>
+        </record>
+
+        <record id="contract_deduction_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_contract_deduction"/>
+        </record>
+
+    </data>
+</odoo>

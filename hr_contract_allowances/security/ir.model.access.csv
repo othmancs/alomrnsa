@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_allowance_user,hr.allowance.user,model_hr_allowance,base.group_user,1,1,1,0
+access_hr_deduction_user,hr.deduction.user,model_hr_deduction,base.group_user,1,1,1,0
+access_hr_allowance_officer,hr.allowance.officer,model_hr_allowance,hr.group_hr_user,1,1,1,1
+access_hr_deduction_officer,hr.deduction.officer,model_hr_deduction,hr.group_hr_user,1,1,1,1
+access_hr_contract_allowance_line_user,hr.contract.allowance.line.user,model_hr_contract_allowance_line,base.group_user,1,0,0,0
+access_hr_contract_deduction_line_user,hr.contract.deduction.line.user,model_hr_contract_deduction_line,base.group_user,1,0,0,0
+access_hr_contract_allowance_line_officer,hr.contract.allowance.line.officer,model_hr_contract_allowance_line,hr.group_hr_user,1,1,1,1
+access_hr_contract_deduction_line_officer,hr.contract.deduction.line.officer,model_hr_contract_deduction_line,hr.group_hr_user,1,1,1,1
+access_hr_contract_deduction,contract.deduction,model_contract_deduction,hr.group_hr_user,1,1,1,1
+access_hr_contract_deduction_line,contract.deduction.line,model_contract_deduction_line,hr.group_hr_user,1,1,1,1
+access_hr_contract_allowance,contract.allowance,model_contract_allowance,hr.group_hr_user,1,1,1,1
+access_hr_contract_allowance_line,contract.allowance.line,model_contract_allowance_line,hr.group_hr_user,1,1,1,1
+access_forward_deduction_next_month,access_forward_deduction_next_month,model_forward_deduction_next_month,,1,1,1,0
+access_cash_deduction_register_payment,access_cash_deduction_register_payment,model_cash_deduction_register_payment,,1,1,1,0

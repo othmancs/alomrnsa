@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate='1'>
+		<record id="ir_seq_contract_ded" model="ir.sequence">
+			<field name="name">contract deduction</field>
+			<field name="code">contract.deduction.seq</field>
+			<field name="prefix">CD/%(year)s/</field>
+			<field name="padding">4</field>
+		</record>
+	</data>
+</odoo>

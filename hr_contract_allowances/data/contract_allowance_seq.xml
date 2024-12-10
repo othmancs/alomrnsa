@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate='1'>
+		<record id="ir_seq_contract_alw" model="ir.sequence">
+			<field name="name">contract allowance</field>
+			<field name="code">contract.allowance.seq</field>
+			<field name="prefix">CA/%(year)s/</field>
+			<field name="padding">4</field>
+		</record>
+	</data>
+</odoo>

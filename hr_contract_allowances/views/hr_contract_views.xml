@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="hr_contract_history_view_form_extend" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//group[@name='salary']" position="inside">
+                        <field name="basic_salary" required="1"/>
+                        <field name="net_allowance" readonly="1" invisible="1"/>
+                        <field name="basic_allowance" readonly="1"/>
+                        <field name="extra_allowance" readonly="1" invisible="1"/>
+                        <field name="net_deduction" readonly="1"/>
+                    </xpath>
+                    <xpath expr="//page[@name='information']" position="inside">
+                        <field name="allowances_ids">
+                            <tree editable="bottom" ><!-- delete="0" -->
+                                <field name="index_value" invisible="1" />
+                                <field name="allowance_id" options="{'no_create':True}" required="True"/>
+                                <field name="category" invisible="1"/>
+                                <field name="type" readonly="1" force_save="1" />
+                                <field name="rate" required="True" readonly="0" force_save="1" />
+                                <field name="amount" readonly="1" force_save="1"/>
+                                <field name="contract_id" invisible="1"/>
+
+                            </tree>
+                        </field>
+                        <field name="deduction_ids">
+                            <tree editable="bottom" ><!-- delete="0" -->
+                                <field name="index_value" invisible="1" />
+                                <field name="deduction_id" options="{'no_create':True}" required="True"/>
+                                <field name="type" />
+                                <field name="rate" required="True"/>
+                                <field name="amount" readonly="1"/>
+                                <field name="deduction_contract_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </xpath>
+                    <field name="wage" position="attributes">
+                        <attribute name="readonly">1</attribute>
+                        <attribute name="force_save">1</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>
