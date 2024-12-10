@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-
+        <!-- Search View -->
         <record id="hr_end_service_benefit_search_view" model="ir.ui.view">
             <field name="name">hr.end.service.benefit.search</field>
             <field name="model">hr.end.service.benefit</field>
@@ -9,29 +9,24 @@
                 <search string="ES Analysis">
                     <group>
                         <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
-                        <filter string="Confirm" name="confirm" domain="[('state','=','confirmed')]"/>
+                        <filter string="Confirmed" name="confirm" domain="[('state','=','confirmed')]"/>
+                        <filter string="Validated" name="validated" domain="[('state','=','validated')]"/>
                         <field name="date"/>
-                        <separator orientation="vertical"/>
-                        <field name="name"/>
-                        <field name="amount"/>
                         <field name="employee_id"/>
+                        <separator orientation="vertical"/>
+                        <field name="amount"/>
                     </group>
-                    <newline/>
                     <group expand="1" string="Group By">
                         <filter string="Employee" name="employee" context="{'group_by':'employee_id'}"/>
                         <filter string="Status" name="status" context="{'group_by':'state'}"/>
-                        <separator orientation="vertical"/>
-                        <filter string="Company" name="company" groups="base.group_multi_company"
-                                context="{'group_by':'company_id'}"/>
-                        <separator orientation="vertical"/>
-                        <filter string="Date" name="date" context="{'group_by':'date'}"
-                                help="Date of Request"/>
+                        <filter string="Date" name="date" context="{'group_by':'date'}"/>
+                        <filter string="Company" name="company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
                     </group>
                 </search>
             </field>
         </record>
 
-
+        <!-- Tree View -->
         <record id="hr_end_service_benefit_tree_view" model="ir.ui.view">
             <field name="name">hr.end.service.benefit.tree</field>
             <field name="model">hr.end.service.benefit</field>
@@ -40,204 +35,76 @@
                     <field name="name"/>
                     <field name="employee_id"/>
                     <field name="department_id"/>
-                    <field name="notes"/>
                     <field name="date"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                    <field name="total_deserved_amount"/>
                     <field name="amount"/>
                     <field name="state"/>
                 </tree>
             </field>
         </record>
-        <record id="hr_end_service_benefit_graph_view" model="ir.ui.view">
-            <field name="name">hr.end.service.benefit.graph</field>
-            <field name="model">hr.end.service.benefit</field>
-            <field name="arch" type="xml">
-                <graph string="ES Analysis">
-                    <field name="employee_id"/>
-                    <field name="department_id"/>
-                    <field name="amount" type="measure"/>
-                </graph>
-            </field>
-        </record>
-        <record id="hr_end_service_benefit_pivot_view" model="ir.ui.view">
-            <field name="name">hr.end.service.benefit.pivot</field>
-            <field name="model">hr.end.service.benefit</field>
-            <field name="arch" type="xml">
-                <pivot string="ES Analysis">
-                    <field name="employee_id" type="row"/>
-                    <field name="date" type="col"/>
-                    <field name="amount" type="measure"/>
-                </pivot>
-            </field>
-        </record>
 
+        <!-- Form View -->
         <record id="hr_end_service_benefit_form_view" model="ir.ui.view">
             <field name="name">hr.end.service.benefit.form</field>
             <field name="model">hr.end.service.benefit</field>
             <field name="arch" type="xml">
                 <form string="End Of Service Reward">
                     <header>
-                        <field name="payment_button_invisible" invisible="True"/>
-                        <!--                        <button name="action_submit" string="Confirm" class="oe_highlight" states="draft"-->
-                        <!--                                groups="hr.group_hr_user" type="object"/>   -->
-                        <button name="action_submit" string="Confirm" class="oe_highlight"
-                                groups="hr.group_hr_user" type="object"/>
-                        <!--                        <button name="action_validate"-->
-                        <!--                                string="Approve" class="oe_highlight" states="confirmed"-->
-                        <!--                                groups="hr.group_hr_manager" type="object"/>  -->
-                        <button name="action_validate"
-                                string="Approve" class="oe_highlight"
-                                groups="hr.group_hr_manager" type="object"/>
-                        <!--                        <button name="action_draft" string="Set to Draft" class="oe_highlight"-->
-                        <!--                                states="confirmed" groups="hr.group_hr_user" type="object"/>-->
-                        <button name="action_draft" string="Set to Draft" class="oe_highlight"
-                                groups="hr.group_hr_user" type="object"/>
-                        <button name="action_cancel" string="Cancel" class="oe_highlight"
-                                groups="hr.group_hr_user"
-                                invisible="state == 'cancel'"
-                                type="object"/>
-                        <button name="%(hr_end_service_benefits.action_hr_end_services_benefits_settlement_view)d"
-                                invisible="payment_button_invisible == False"
-                                string="Register Payment" groups="account.group_account_invoice"
-                                class="oe_highlight" type="action"/>
-                        <field name="state" widget="statusbar"
-                               statusbar_visible="draft,validated"/>
+                        <button name="action_submit" string="Confirm" class="oe_highlight" states="draft" groups="hr.group_hr_user" type="object"/>
+                        <button name="action_validate" string="Approve" class="oe_highlight" states="confirmed" groups="hr.group_hr_manager" type="object"/>
+                        <button name="action_draft" string="Set to Draft" class="oe_highlight" states="validated" groups="hr.group_hr_user" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,validated"/>
                     </header>
                     <sheet>
-                        <div class="oe_button_box" name="button_box"/>
-                        <div class="pull-left">
-                            <label for="name" class="oe_edit_only oe_inline"/>
-                            <h1>
-                                <field name="name" readonly="1"/>
-                            </h1>
-                        </div>
                         <group>
                             <group>
-                                <field name="employee_id"
-                                       readonly="state not in ['draft', 'confirm']"
-                                       required="True"
-                                       invisible="state != 'draft'"/>
-                                <field name="currency_id" invisible="True"
-                                       options="{'no_create': True, 'no_open': True}"
-                                       readonly="state != 'draft'"/>
-                                <field name="department_id" readonly="True"/>
-                                <field name="hiring_date" readonly="True"/>
-                                <field name="service_period" readonly="True"/>
-                                <field name="years" readonly="True" invisible="0"/>
-                                <field name="months" readonly="True" invisible="0"/>
-                                <field name="days" readonly="True" invisible="0"/>
-                                <!--                                <field name="company_id" readonly="True" domain="[('is_company','=',True)]"-->
-                                <field name="company_id" readonly="True"
-                                       options="{'no_create': True, 'no_open': True}"
-                                       groups="base.group_multi_company"/>
-                                <separator/>
-                                <field name="notes"
-                                       readonly="state != 'draft'"/>
+                                <field name="employee_id" required="1"/>
+                                <field name="department_id" readonly="1"/>
+                                <field name="date" required="1"/>
+                                <field name="type" required="1"/>
                             </group>
                             <group>
-                                <field name="date" required="True"
-                                       readonly="state != 'draft'"/>
-                                <field name="type" required="True"
-                                       readonly="state != 'draft'"/>
-                                <field name="payment_type" required="True"
-                                       readonly="state != 'draft'"/>
-                                <field name="end_service_benefit_type_id" required="True"
-                                       options="{'no_create': True}"
-                                       readonly="state != 'draft'"/>
-                                <field name="total_holiday_deserved_amount"
-                                       invisible="type != 'ending_service'"
-                                       digits="[16,5]"/>
-                                <field name="total_payslip_deserved_amount"
-                                       invisible="type != 'ending_service'"
-                                       digits="[16,5]"/>
-                                <separator/>
-                                <field name="total_deserved_amount" digits="[16,5]"/>
-                                <field name="total_reward"
-                                       invisible="type != 'ending_service'"
-                                       digits="[16,5]"/>
-                                <field name="total_taken_amount" digits="[16,5]"/>
-                                <field name="other_amount"
-                                       invisible="type != 'ending_service'"
-                                       digits="[16,5]"/>
-                                <field name="available_amount" digits="[16,5]"/>
-                                <field name="amount"
-                                       readonly="state not in ['draft','confirmed']"
-                                       digits="[16,5]"/>
-                                <field name="payment_id"
-                                       invisible="payment_id == False"
-                                       readonly="True"/>
-                                <field name="payslip_payment_id"
-                                       invisible="payment_id == False"
-                                       readonly="True"/>
-                                <field name="account_move_id"
-                                       invisible="account_move_id == False"
-                                       readonly="True"/>
+                                <field name="amount" digits="[16,5]" readonly="state not in ['draft','confirmed']"/>
+                                <field name="notes"/>
                             </group>
                         </group>
-                        <notebook
-                                invisible="type != 'ending_service'">
-                            <page string="Holidays">
+                        <notebook>
+                            <page string="Details">
                                 <field name="holiday_line_ids">
                                     <tree editable="bottom">
                                         <field name="holiday_id"/>
                                         <field name="remaining_leaves"/>
                                         <field name="pay"/>
                                     </tree>
-                                    <form>
-                                        <group>
-                                            <field name="holiday_id"/>
-                                            <field name="remaining_leaves"/>
-                                            <field name="pay"/>
-                                        </group>
-                                    </form>
                                 </field>
-                            </page>
-                            <page string="Payroll">
-                                <group>
-                                    <group>
-                                        <field name="payslip_id"
-                                               options="{'no_create': True}"
-                                               domain="[('state','=','done'),('employee_id','=',employee_id)]"
-                                               readonly="state != 'draft'"/>
-                                        <field name="days_number"
-                                               readonly="state != 'draft'"
-                                               required="payslip_id != False"/>
-                                    </group>
-                                    <group></group>
-                                </group>
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter" groups="hr.group_hr_user">
-                        <field name="message_follower_ids" widget="mail_followers"/>
+                    <div class="oe_chatter">
                         <field name="message_ids" widget="mail_thread"/>
                     </div>
                 </form>
             </field>
         </record>
 
+        <!-- Action -->
         <record id="view_hr_end_service_benefit_action" model="ir.actions.act_window">
             <field name="name">End Of Service Reward</field>
             <field name="res_model">hr.end.service.benefit</field>
-            <!--<field name="view_type">form</field>-->
-            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="hr_end_service_benefit_search_view"/>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Click to add new employee end service benefits.
+                    Click to create a new End Of Service Reward.
                 </p>
             </field>
         </record>
 
+        <!-- Menu -->
         <menuitem id="hr_end_service_benefit_category_menu_item" name="End Of Service Rewards"
                   parent="hr.menu_hr_root"
-                  sequence="99" groups="hr.group_hr_user,account.group_account_invoice"/>
+                  sequence="99" groups="hr.group_hr_user"/>
         <menuitem id="hr_end_service_benefit_action_menu_item" name="End Of Service Reward Requests"
                   parent="hr_end_service_benefit_category_menu_item"
                   action="view_hr_end_service_benefit_action" sequence="1"/>
     </data>
 </odoo>
-
-
-
