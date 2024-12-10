@@ -13,8 +13,10 @@
                                 <field name="request_id" readonly="1"/>
                                 <field name="employee_id" readonly="1"/>
                                 <field name="amount" readonly="1"/>
-                                <field name="total_payslip_deserved_amount" readonly="1"
-                                       invisible="total_payslip_deserved_amount == False"/>
+<!--                                 <field name="total_payslip_deserved_amount" readonly="1"
+                                       invisible="total_payslip_deserved_amount == False"/> -->
+<field name="total_payslip_deserved_amount" readonly="1" attrs="{'invisible': [('total_payslip_deserved_amount', '=', False)]}"/>
+
                             </group>
                             <group>
                                 <field name="settlement_journal_id" required="1"
