@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_company_config_form" model="ir.ui.view">
+            <field name="name">res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Ending Service Settlement Config" invisible="1">
+                        <group>
+                            <field name="settlement_journal_id" options="{'no_create': True}"/>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="res_config_end_service_benefits_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.hr.end_service_benefits</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="71"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <div class="app_settings_block" data-string="Ending Service" string="Ending Service"
+                         data-key="hr_end_service_benefits"
+                         groups="hr.group_hr_manager">
+                        <h2>Ending Service Settlements Accounts And Journals</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="expense_account_id"/>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="expense_account_id" required="False"
+                                                   class="o_light_label" options="{'no_create': True}"
+                                                   domain="[('company_id', '=', company_id)]"
+                                                   context="{'default_company_id': company_id}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="expense_journal_id"/>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="expense_journal_id" required="False"
+                                                   class="o_light_label" options="{'no_create': True}"
+                                                   domain="[('company_id', '=', company_id),('type','in',['general'])]"
+                                                   context="{'default_company_id': company_id}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="settlement_journal_id"/>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="settlement_journal_id" required="False"
+                                                   class="o_light_label" options="{'no_create': True}"
+                                                   domain="[('company_id', '=', company_id),('type','in',['cash','bank'])]"
+                                                   context="{'default_company_id': company_id}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="category_id"/>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="category_id" required="False"
+                                                   class="o_light_label" options="{'no_create': True}"
+                                                   context="{'default_company_id': company_id}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="number_of_hours_per_day"/>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <field name="number_of_hours_per_day" required="False"
+                                                   context="{'default_company_id': company_id}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_end_service_benefits_config_settings_action" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'hr_end_service_benefits'}</field>
+        </record>
+
+        <menuitem id="hr_end_service_benefits_menu_settings_configuration"
+                  name="ES Settings"
+                  parent="hr.menu_human_resources_configuration"
+                  sequence="100"
+                  action="hr_end_service_benefits_config_settings_action"
+                  groups="base.group_system"/>
+    </data>
+</odoo>

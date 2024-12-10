@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <report id="action_report_hr_end_service_benefit"
+                string="End of Service Statement"
+                model="hr.end.service.benefit"
+                report_type="qweb-pdf"
+                file="hr_end_service_benefits.ending_service_reward_report"
+                name="hr_end_service_benefits.ending_service_reward_report"
+                print_report_name="'%s' % (object.name)"/>
+
+
+        <template id="ending_service_report_document">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang':user.partner_id.lang})"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="text-center">End of Service Reward Statement</h2>
+                    <div class="row mt32 mb32" id="informations">
+                        <div class="col-12">
+                            <table class="table  table-round-border">
+                                <colgroup>
+                                    <col width='20%'/>
+                                    <col width='30%'/>
+                                    <col width='20%'/>
+                                    <col width='30%'/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>
+                                            <span t-if="doc.employee_id.name" t-field="doc.employee_id.name"/>
+                                        </td>
+                                        <td>Designation</td>
+                                        <td>
+                                            <span t-if="doc.employee_id.job_id"
+                                                  t-field="doc.employee_id.job_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td colspan="3">
+                                            <span t-if="doc.employee_id.work_location_id"
+                                                  t-field="doc.employee_id.work_location_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>
+                                            <span t-if="doc.employee_id.work_email"
+                                                  t-field="doc.employee_id.work_email"/>
+                                        </td>
+                                        <td>Identification No</td>
+                                        <td>
+                                            <span t-if="doc.employee_id.identification_id"
+                                                  t-field="doc.employee_id.identification_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reference</td>
+                                        <td>
+                                            <span t-if="doc.name"
+                                                  t-field="doc.name"/>
+                                        </td>
+                                        <td>Payment Ref</td>
+                                        <td>
+                                            <span t-if="doc.payment_id"
+                                                  t-field="doc.payment_id.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hiring Date</td>
+                                        <td>
+                                            <span t-if="doc.hiring_date"
+                                                  t-field="doc.hiring_date"/>
+                                        </td>
+                                        <td>Date</td>
+                                        <td>
+                                            <span t-if="doc.date"
+                                                  t-field="doc.date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reward Type</td>
+                                        <td colspan="3">
+                                            <span t-if="doc.type"
+                                                  t-field="doc.type"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>ES Reason</td>
+                                        <td colspan="3">
+                                            <span t-if="doc.end_service_benefit_type_id"
+                                                  t-field="doc.end_service_benefit_type_id.name"/>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <br/>
+                            <h2 class="text-center">Duration</h2>
+                            <table class="table  table-round-border">
+                                <thead>
+                                    <th>Years</th>
+                                    <th>Months</th>
+                                    <th>Days</th>
+                                    <th>Service Period</th>
+                                    <th t-if="doc.type=='ending_service'">Last Month Worked Days Number</th>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span t-field="doc.years"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.months"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.days"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.service_period"/>
+                                        </td>
+                                        <td t-if="doc.type=='ending_service'">
+                                            <span t-field="doc.days_number"/>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <h2 class="text-center">Payment</h2>
+                            <table class="table  table-round-border">
+                                <colgroup>
+                                    <col width='50%'/>
+                                    <col width='50%'/>
+                                </colgroup>
+                                <tbody>
+                                    <tr t-if="doc.total_payslip_deserved_amount">
+                                        <td>Total Deserved Payslip Amount</td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f'%(doc.total_payslip_deserved_amount)"
+                                                  t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Deserved Amount</td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f'%(doc.total_deserved_amount)"
+                                                  t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="doc.total_payslip_deserved_amount">
+                                        <td>Total Reward + Payslip</td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f'%(doc.total_reward)"
+                                                  t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Previously Disbursed Amount</td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f'%(doc.total_taken_amount)"
+                                                  t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Available Amount</td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f'%(doc.available_amount)"
+                                                  t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Reward Requested Amount</td>
+                                        <td class="text-right">
+                                            <span t-esc="'%.2f'%(doc.amount)"
+                                                  t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class="col-12" t-if="doc.notes">
+                            <h2>Notes</h2>
+                            <div class="col-1"></div>
+                            <div class="col-11">
+                                <span t-field="doc.notes"/>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <h2>Signature</h2>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+        <template id="ending_service_reward_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="hr_end_service_benefits.ending_service_report_document"
+                       t-lang="user.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

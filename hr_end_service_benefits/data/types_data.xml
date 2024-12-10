@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!--Rule 1-->
+        <record id="rule_1" model="hr.end.service.benefit.type">
+            <field name="name">انتهاء مدة العقد، او باتفاق الطرفين على انهاء العقد</field>
+            <field name="deserved_after">1</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule1_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">5</field>
+            <field name="deserved_months">0.5</field>
+            <field name="type_id" ref="rule_1"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <record id="rule1_line2" model="hr.end.service.benefit.type.line">
+            <field name="sequence">2</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">1</field>
+            <field name="type_id" ref="rule_1"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 2-->
+        <record id="rule_2" model="hr.end.service.benefit.type">
+            <field name="name">استقالة العامل</field>
+            <field name="deserved_after">2</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule2_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">5</field>
+            <field name="deserved_months">0.333333333333334</field>
+            <field name="type_id" ref="rule_2"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule2_line2" model="hr.end.service.benefit.type.line">
+            <field name="sequence">2</field>
+            <field name="deserved_for">10</field>
+            <field name="deserved_months">0.666666666666667</field>
+            <field name="type_id" ref="rule_2"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule2_line3" model="hr.end.service.benefit.type.line">
+            <field name="sequence">3</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">1</field>
+            <field name="type_id" ref="rule_2"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 3-->
+        <record id="rule_3" model="hr.end.service.benefit.type">
+            <field name="name">فسخ العقد من قبل صاحب العمل او ترك العامل العمل لغير الحالات الواردة في المادة 81
+            </field>
+            <field name="deserved_after">0</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule3_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">0</field>
+            <field name="type_id" ref="rule_3"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 4-->
+        <record id="rule_4" model="hr.end.service.benefit.type">
+            <field name="name">فسخ العقد من قبل صاحب العمل</field>
+            <field name="deserved_after">1</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule4_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">5</field>
+            <field name="deserved_months">.5</field>
+            <field name="type_id" ref="rule_4"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule4_line2" model="hr.end.service.benefit.type.line">
+            <field name="sequence">2</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">1</field>
+            <field name="type_id" ref="rule_4"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 5-->
+        <record id="rule_5" model="hr.end.service.benefit.type">
+            <field name="name">فسخ العقد من قبل صاحب العمل لأحد الحالات الواردة في المادة 80</field>
+            <field name="deserved_after">0</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule5_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">0</field>
+            <field name="type_id" ref="rule_5"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 6-->
+        <record id="rule_6" model="hr.end.service.benefit.type">
+            <field name="name">ترك العامل العمل نتيجة لقوة قاهرة</field>
+            <field name="deserved_after">1</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule6_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">5</field>
+            <field name="deserved_months">.5</field>
+            <field name="type_id" ref="rule_6"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule6_line2" model="hr.end.service.benefit.type.line">
+            <field name="sequence">2</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">1</field>
+            <field name="type_id" ref="rule_6"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 7-->
+        <record id="rule_7" model="hr.end.service.benefit.type">
+            <field name="name">انهاء العاملة العمل خلال ستة أشهر من عقد الزواج او خلال ثلاثة أشهر من الوضع</field>
+            <field name="deserved_after">1</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule7_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">5</field>
+            <field name="deserved_months">.5</field>
+            <field name="type_id" ref="rule_7"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule7_line2" model="hr.end.service.benefit.type.line">
+            <field name="sequence">2</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">1</field>
+            <field name="type_id" ref="rule_7"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 8-->
+        <record id="rule_8" model="hr.end.service.benefit.type">
+            <field name="name">ترك العامل العمل لأحد الحالات الواردة في المادة 81</field>
+            <field name="deserved_after">1</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule8_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">5</field>
+            <field name="deserved_months">.5</field>
+            <field name="type_id" ref="rule_8"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule8_line2" model="hr.end.service.benefit.type.line">
+            <field name="sequence">2</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">1</field>
+            <field name="type_id" ref="rule_8"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+        <!--Rule 9-->
+        <record id="rule_9" model="hr.end.service.benefit.type">
+            <field name="name">سحب جزء من المكافأة ومستمر في الخدمة</field>
+            <field name="deserved_after">1</field>
+            <field name="active" eval="True"/>
+            <field name="type">replacement</field>
+            <field name="zero_message">لا يستحق العامل مكافأة نهاية خدمة</field>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule9_line1" model="hr.end.service.benefit.type.line">
+            <field name="sequence">1</field>
+            <field name="deserved_for">5</field>
+            <field name="deserved_months">.5</field>
+            <field name="type_id" ref="rule_9"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+        <record id="rule9_line2" model="hr.end.service.benefit.type.line">
+            <field name="sequence">2</field>
+            <field name="deserved_for">50</field>
+            <field name="deserved_months">1</field>
+            <field name="type_id" ref="rule_9"/>
+            <field name="deletable" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--Sequence-->
+        <record id="seq_hr_end_service_benefit" model="ir.sequence">
+            <field name="name">HR End Of Service Reward</field>
+            <field name="code">hr.end.service.benefit</field>
+            <field name="prefix">ESR/%(range_year)s/</field>
+            <field name="padding">4</field>
+        </record>
+
+        <!--Mail Templates-->
+        <record id="email_es_request_submission" model="mail.template">
+            <field name="name">End Of Service Reward Submission</field>
+            <field name="model_id" ref="model_hr_end_service_benefit"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="subject">End Of Service Reward Request</field>
+            <field name="body_html"><![CDATA[
+            <p>Dear Sir,<br/></p>
+            <p>I hope my Email finds you well.</p>
+            <p>Please note that an end of service request
+            % if object.name:
+            (with reference: <b>${object.name}</b>)
+            % endif
+            waiting your approval.</p>
+            <br/><br/>
+            <p>Thank you,</p>
+            <p style="color:#888888">
+            </p>
+            ]]>
+            </field>
+        </record>
+        <record id="email_es_request_payment_request" model="mail.template">
+            <field name="name">End Of Service Reward Payment Request</field>
+            <field name="model_id" ref="model_hr_end_service_benefit"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">${user.email|safe}</field>
+            <field name="subject">End Of Service Reward Payment Request</field>
+            <field name="body_html"><![CDATA[
+            <p>Dear Sir,<br/></p>
+            <p>I hope my Email finds you well.</p>
+            <p>Please note that an end of service request
+             % if object.name:
+            (with reference: <b>${object.name}</b>)
+            % endif
+            payment waiting your role to process it.</p>
+            <br/><br/>
+            <p>Thank you,</p>
+            <p style="color:#888888">
+            </p>
+            ]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>

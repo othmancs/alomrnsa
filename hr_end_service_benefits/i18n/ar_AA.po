@@ -1,0 +1,948 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_end_service_benefits
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-28 09:23+0000\n"
+"PO-Revision-Date: 2019-03-28 09:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_end_service_benefits
+#: model:mail.template,body_html:hr_end_service_benefits.email_es_request_payment_request
+msgid "\n"
+"            <p>Dear Sir,<br/></p>\n"
+"            <p>I hope my Email finds you well.</p>\n"
+"            <p>Please note that an end of service request payment waiting your role to process it.</p>\n"
+"            <br/><br/>\n"
+"            <center>\n"
+"              <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">View Request</a>\n"
+"            </center>\n"
+"            <p>Thank you,</p>\n"
+"            <p style=\"color:#888888\">\n"
+"            </p>\n"
+"            \n"
+"            "
+msgstr "<p> سيدي العزيز ، <br/> </p>\n"
+"            <p> أمل ان تكون بصحة جيدة اذ يصلك البريد الكتروني الخاص بي. </p>\n"
+"            <p> يرجى ملاحظه وجود طلب صرف لمكافأة نهاية الخدمة بانتظار الموافقة من حضرتك. </p>\n"
+"            <br/> <br/>\n"
+"            <center>\n"
+"              <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">View Request</a>\n"
+"            </center>\n"
+"            <p> شكرا لكم ، </p>\n"
+"            < p نمط = \"اللون: #888888\" > </p>"
+
+#. module: hr_end_service_benefits
+#: model:mail.template,body_html:hr_end_service_benefits.email_es_request_submission
+msgid "\n"
+"            <p>Dear Sir,<br/></p>\n"
+"            <p>I hope my Email finds you well.</p>\n"
+"            <p>Please note that an end of service request waiting your approval.</p>\n"
+"            <br/><br/>\n"
+"            <center>\n"
+"              <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">View Request</a>\n"
+"            </center>\n"
+"            <p>Thank you,</p>\n"
+"            <p style=\"color:#888888\">\n"
+"            </p>\n"
+"            \n"
+"            "
+msgstr "<p> سيدي العزيز ، <br/> </p>\n"
+"            <p> أمل ان تكون بصحة جيدة اذ يصلك البريد الكتروني الخاص بي. </p>\n"
+"            <p> يرجى ملاحظه وجود طلب صرف لمكافأة نهاية الخدمة بانتظار الموافقة من حضرتك. </p>\n"
+"            <br/> <br/>\n"
+"            <center>\n"
+"              <a href=\"${access_url}\" style=\"background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;\" class=\"o_default_snippet_text\">View Request</a>\n"
+"            </center>\n"
+"            <p> شكرا لكم ، </p>\n
+"            <p style=\"color:#888888\">\n"
+"            </p>\n"
+"            \n"
+"            "
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__payment_date
+msgid " Payment Date"
+msgstr "تاريخ الدفعة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__access_warning
+msgid "Access warning"
+msgstr "خطأ بالوصول"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__payment_id
+msgid "Account Payment"
+msgstr "الدفعة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_needaction
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_needaction
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__activity_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__activity_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__activity_state
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__activity_state
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Address"
+msgstr "العنوان"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_form_view
+msgid "Approve"
+msgstr "موافقه"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_attachment_count
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_attachment_count
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__available_amount
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Available Amount"
+msgstr "المبلغ المتاح للصرف من المكافأة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__line_ids
+msgid "Calcualtions"
+msgstr "عملية الحساب"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_form_view
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_hr_end_services_benefits_settlement_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,state:0
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.actions.act_window,help:hr_end_service_benefits.view_hr_end_service_benefit_action
+msgid "Click to add new employee end service benefits."
+msgstr "إضافة طلب صرف مكافأة نهاية خدمة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.actions.act_window,help:hr_end_service_benefits.action_hr_end_service_benefit_type
+msgid "Click to add new end service benefit type"
+msgstr "اضافة سبب لاسباب انتهاء العلاقة العمالية"
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_res_company
+msgid "Companies"
+msgstr "المؤسسات"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__company_id
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Company"
+msgstr "المؤسسة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_res_config_settings
+msgid "Config Settings"
+msgstr "ضبط الإعدادات"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_form_view
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,state:0
+msgid "Confirmed"
+msgstr "مؤكد"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__create_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__create_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__create_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__create_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__create_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__create_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__create_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__create_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__access_url
+msgid "Customer Portal URL"
+msgstr "رابط بوابة العملاء"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__date
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Date of Request"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__days
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Days"
+msgstr "عدد الايام"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_res_company__expense_journal_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_res_config_settings__expense_journal_id
+msgid "Default Expense Journal"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_res_company__settlement_journal_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_res_config_settings__settlement_journal_id
+msgid "Default Payment Journal"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__department_id
+msgid "Department"
+msgstr "القسم"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__deserved_after
+msgid "Deserved After"
+msgstr "يستحقها بعد مدة (سنة)"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__deserved_for
+msgid "Deserved For First(Years)"
+msgstr "مدة منح المكافأة عن فترة الخدمة (سنة)"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__deserved_months
+msgid "Deserved Months For Year"
+msgstr "نسبة الشهر الممنوحة لكل سنة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Designation"
+msgstr "المسمى الوظيفي"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__display_name
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__display_name
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__display_name
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__display_name
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard__display_name
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_report_hr_end_service_benefits_report_hr_es_action__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,state:0
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Duration"
+msgstr "المدة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_graph_view
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_pivot_view
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "ES Analysis"
+msgstr "تحليل نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__end_service_benefit_type_id
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "ES Reason"
+msgstr "أسباب انتهاء العلاقة العمالية"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_employee_end_service_benefits_form
+msgid "ES Rewards"
+msgstr "مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.ui.menu,name:hr_end_service_benefits.hr_end_service_benefits_menu_settings_configuration
+msgid "ES Settings"
+msgstr "اعدادات مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_hr_employee
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__employee_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__employee_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard__employee_id
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_hr_end_service_benefit
+msgid "Employee End Of Service Benefits"
+msgstr "مكافأة نهاية الخدمة للموظف"
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_hr_end_service_benefit_type
+msgid "Employee End Of Service Benefits types"
+msgstr "أنواع مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_hr_end_service_benefit_type_line
+msgid "Employee End Of Service Benefits types Line"
+msgstr "بنود صرف مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/models/hr_end_service_benefit.py:31
+#, python-format
+msgid "Employee has another end service benefit that date"
+msgstr "يوجد للموظف طلب صرف مكافأة نهاية خدمه في نفس اليوم"
+
+#. module: hr_end_service_benefits
+#: model:ir.actions.act_window,name:hr_end_service_benefits.view_hr_end_service_benefit_action
+#: model:ir.actions.act_window,name:hr_end_service_benefits.view_hr_end_service_benefit_employee_action
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_form_view
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_tree_view
+msgid "End Of Service Reward"
+msgstr "مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:mail.template,subject:hr_end_service_benefits.email_es_request_payment_request
+msgid "End Of Service Reward Payment Request"
+msgstr "طلب صرف مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:mail.template,subject:hr_end_service_benefits.email_es_request_submission
+msgid "End Of Service Reward Request"
+msgstr "طلب مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.ui.menu,name:hr_end_service_benefits.hr_end_service_benefit_action_menu_item
+msgid "End Of Service Reward Requests"
+msgstr "طلبات مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.ui.menu,name:hr_end_service_benefits.hr_end_service_benefit_category_menu_item
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_employee_end_service_benefits_form
+msgid "End Of Service Rewards"
+msgstr "مكافآت نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.actions.act_window,name:hr_end_service_benefits.action_hr_end_service_benefit_type
+#: model:ir.ui.menu,name:hr_end_service_benefits.hr_menu_end_service_benefit_type
+msgid "End of Service Reward Reasons"
+msgstr "أسباب انتهاء العلاقة العمالية"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "End of Service Reward Statement"
+msgstr "بيان مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.actions.report,name:hr_end_service_benefits.action_report_hr_end_service_benefit
+msgid "End of Service Statement"
+msgstr "بيان مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,type:0
+#: selection:hr.end.service.benefit.type,type:0
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.res_config_end_service_benefits_settings_view_form
+msgid "Ending Service"
+msgstr "انهاء الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_hr_end_service_benefit_wizard
+msgid "Ending Service Reward Report Wizard"
+msgstr "تقرير مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.actions.act_window,name:hr_end_service_benefits.action_hr_end_services_benefits_settlement_view
+msgid "Ending Service Rewards Settlement"
+msgstr "تسوية مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_company_config_form
+msgid "Ending Service Settlement Config"
+msgstr "اعداد تسوية مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.res_config_end_service_benefits_settings_view_form
+msgid "Ending Service Settlements Accounts And Journals"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/wizards/settlement.py:88
+#, python-format
+msgid "Ending service reward payment of %s"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/wizards/settlement.py:51
+#, python-format
+msgid "Ending service reward settlement of %s"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__expense_account_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_res_company__expense_account_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_res_config_settings__expense_account_id
+msgid "Expense Account"
+msgstr "حساب المصروفات"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__expense_date
+msgid "Expense Date"
+msgstr "تاريخ المصروف"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__expense_journal_id
+msgid "Expense Journal"
+msgstr "يومية المصروف"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__account_move_id
+msgid "Expense entry"
+msgstr "قيد المصروف"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_follower_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_follower_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_channel_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_channel_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_partner_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_partner_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_employee__hiring_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__hiring_date
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Hiring Date"
+msgstr "تاريخ التعين"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard__id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_report_hr_end_service_benefits_report_hr_es_action__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Identification No"
+msgstr "رقم الهوية"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__message_unread
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__message_unread
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_unread
+msgid "If checked new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__message_needaction
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__message_needaction
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حددته، سيتم إخطارك بالرسائل الجديدة."
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__message_has_error
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__message_has_error
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم تحديده ، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_is_follower
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_is_follower
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement____last_update
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit____last_update
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type____last_update
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line____last_update
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard____last_update
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_report_hr_end_service_benefits_report_hr_es_action____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__write_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__write_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__write_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__write_uid
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__write_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__write_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__write_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__write_date
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_wizard__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__zero_message
+msgid "Message"
+msgstr "الرسالة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_has_error
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_has_error
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__months
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Months"
+msgstr "الشهور"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/models/hr_end_service_benefit.py:116
+#, python-format
+msgid "New"
+msgstr "جديد"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__activity_date_deadline
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__activity_date_deadline
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط القادم"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__activity_summary
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__activity_summary
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط القادم"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__activity_type_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__activity_type_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__notes
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_needaction_counter
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_needaction_counter
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_has_error_counter
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_has_error_counter
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد الاخطاء"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__message_needaction_counter
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__message_needaction_counter
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اجراء"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__message_has_error_counter
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__message_has_error_counter
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع خطأ في التسليم"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__message_unread_counter
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__message_unread_counter
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,activity_state:0
+#: selection:hr.end.service.benefit.type,activity_state:0
+#: selection:hr.end.service.benefit.type.line,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,state:0
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Payment"
+msgstr "دفع"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__payment_button_invisible
+msgid "Payment Button Invisible"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Payment Ref"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_account_payment
+msgid "Payments"
+msgstr "المدفوعات"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,activity_state:0
+#: selection:hr.end.service.benefit.type,activity_state:0
+#: selection:hr.end.service.benefit.type.line,activity_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__access_url
+msgid "Portal Access URL"
+msgstr "رابط الوصول لبوابة العملاء"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__total_taken_amount
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Previously Disbursed Amount"
+msgstr "المبلغ المنصرف للعامل/ه سابقا من المكافأة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__name
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_form_view
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_hr_end_services_benefits_settlement_form
+msgid "Register Payment"
+msgstr "تسجيل دفعة"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,type:0
+#: selection:hr.end.service.benefit.type,type:0
+msgid "Replacement"
+msgstr "استبدال"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__request_id
+msgid "Request"
+msgstr "طلب"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__amount
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__amount
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Requested Amount"
+msgstr "المبلغ المطلوب صرفه"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__activity_user_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__activity_user_id
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسئول"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_account_payment__reward_id
+msgid "Reward"
+msgstr "مكافأة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__type
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Reward Type"
+msgstr "نوع المكافأة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_employee__end_service_benefits_count
+msgid "Rewards Count"
+msgstr "عدد طلبات مكافأة نهاية الخدمة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__access_token
+msgid "Security Token"
+msgstr "رمز الحماية"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Service Period"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__service_period
+msgid "Service Period In Years"
+msgstr "مدة الخدمة بالسنوات"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_form_view
+msgid "Set to Draft"
+msgstr "تعيين كمسودة"
+
+#. module: hr_end_service_benefits
+#: model:ir.actions.act_window,name:hr_end_service_benefits.hr_end_service_benefits_config_settings_action
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_benefit_settlement__settlement_journal_id
+msgid "Settlement Journal"
+msgstr "دفتر التسوية"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Signature"
+msgstr "التوقيع"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.hr_end_service_benefit_search_view
+msgid "Status"
+msgstr "الحالة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__activity_state
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__activity_state
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "الحالة على أساس الأنشطة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/reports/ending_service_reports.py:61
+#, python-format
+msgid "There is no employee to show"
+msgstr "لا يوجد موظف يمكن اظهاره"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/wizards/settlement.py:47
+#, python-format
+msgid "This employee has no payable account at private address, please add it at employee private address partner !!"
+msgstr "لا يوجد حساب مدفوعات على العنوان الخاص بالموظف، نرجو اضافته الى الشريك في العنوان الخاص بالموظف على شاشته!!"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/wizards/settlement.py:40
+#, python-format
+msgid "This employee has no private address, please add it at employee profile !!"
+msgstr "لا يوجد للموظف عنوان خاص، نرجو اضافته على شاشته!!"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/wizards/settlement.py:44
+#, python-format
+msgid "This employee private address is not a supplier, please mark it as a supplier!!"
+msgstr "هذا الموظف ليس معرف كمورد، نرجو اضافته على شاشته!!"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,activity_state:0
+#: selection:hr.end.service.benefit.type,activity_state:0
+#: selection:hr.end.service.benefit.type.line,activity_state:0
+msgid "Today"
+msgstr "اليوم"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__total_deserved_amount
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Total Deserved Amount"
+msgstr "اجمالي مبلغ المكافأة المستحق"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__type
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__type_id
+msgid "Type"
+msgstr "النوع"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__name
+msgid "Type Name"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_hr_end_service_benefit_type_form
+msgid "Units"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_unread
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_unread
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__message_unread_counter
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__message_unread_counter
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr_end_service_benefits
+#: selection:hr.end.service.benefit,state:0
+msgid "Validated"
+msgstr "موافق عليه"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__website_message_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type__website_message_ids
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit_type_line__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit__website_message_ids
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type__website_message_ids
+#: model:ir.model.fields,help:hr_end_service_benefits.field_hr_end_service_benefit_type_line__website_message_ids
+msgid "Website communication history"
+msgstr "سجل تواصل الموقع"
+
+#. module: hr_end_service_benefits
+#: model:ir.model.fields,field_description:hr_end_service_benefits.field_hr_end_service_benefit__years
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.ending_service_report_document
+msgid "Years"
+msgstr "اجمالي السنوات"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/models/hr_end_service_benefit.py:183
+#, python-format
+msgid "You can not confirm rewards with amount of zero"
+msgstr "لا يمكن طلب مكافأة مبلغها صفر، نرجو المراجعة!!"
+
+#. module: hr_end_service_benefits
+#: code:addons/hr_end_service_benefits/models/hr_end_service_benefit.py:158
+#, python-format
+msgid "You can only delete draft end service benefits"
+msgstr "يمكنك فقط ان تحذف طلبات صرف المكافأة التي حالتها \"مسودة\"!!"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_hr_end_service_benefit_type_form
+msgid "Zero Message"
+msgstr "تنبيه عدم استحقاق المكافأة"
+
+#. module: hr_end_service_benefits
+#: model_terms:ir.ui.view,arch_db:hr_end_service_benefits.view_hr_end_service_benefit_type_form
+msgid "e.g. Retail"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_hr_benefit_settlement
+msgid "hr.benefit.settlement"
+msgstr ""
+
+#. module: hr_end_service_benefits
+#: model:ir.model,name:hr_end_service_benefits.model_report_hr_end_service_benefits_report_hr_es_action
+msgid "report.hr_end_service_benefits.report_hr_es_action"
+msgstr ""
+

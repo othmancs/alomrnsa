@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="employee_see_his_own_eosb" model="ir.rule">
+            <field name="name">Employees See His Own End Of Service Rewards</field>
+            <field ref="hr_end_service_benefits.model_hr_end_service_benefit" name="model_id"/>
+            <field name="domain_force">[('employee_id.user_id', '=',user.id)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="officer_see_all_own_eosb" model="ir.rule">
+            <field name="name">HR Officer See All End Of Service Rewards</field>
+            <field ref="hr_end_service_benefits.model_hr_end_service_benefit" name="model_id"/>
+            <field name="domain_force">[(1, '=',1)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user')),(4, ref('account.group_account_invoice'))]"/>
+        </record>
+    </data>
+</odoo>
