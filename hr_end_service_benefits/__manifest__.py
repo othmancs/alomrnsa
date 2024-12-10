@@ -12,7 +12,7 @@
     'images': ['static/description/Banner.png'],
     'version': '0.2',
     'depends': ['portal', 'web', 'hr_contract_allowances', 'account', 'account_accountant', 'hr_payroll',
-                'hr_holidays', 'hr', 'base'],
+                'hr_holidays', 'hr', 'base' ,'resource'],
     'category': 'HR',
     'data': [
         'data/data.xml',
