@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="view_hr_deduction_filter" model="ir.ui.view">
+            <field name="name">view.hr.deduction.filter</field>
+            <field name="model">hr.deduction</field>
+            <field name="arch" type="xml">
+                <search string="Search Hr Deduction">
+                    <field name="name" string="Name"/>
+                    <field name="employee_id" string="Employee"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_employee_id" string="Employee"
+                                context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_applied_date" string="Applied Date"
+                                context="{'group_by':'applied_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_hr_deduction_tree" model="ir.ui.view">
+            <field name="name">view.hr.deduction.tree</field>
+            <field name="model">hr.deduction</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'"
+                      string="Hr Deduction Tree">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="applied_date"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_deduction_form" model="ir.ui.view">
+            <field name="name">view.hr.deduction.form</field>
+            <field name="model">hr.deduction</field>
+            <field name="arch" type="xml">
+                <form string="Hr Deduction Form">
+                    <header>
+                        <field name="is_manager" invisible="1"/>
+                        <button name="action_confirm" type="object" string="Confirm" states="draft"
+                                class="oe_highlight"/>
+                        <button name="action_approved" type="object" string="Approved" class="oe_highlight"
+                                attrs="{'invisible': ['|', ('is_manager','=',False),('state', '!=', 'confirm')]}"/>
+                        <button name="action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': ['|', ('is_manager','=',False),('state', '!=', 'confirm')]}"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approved,cancel"/>
+                    </header>
+
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="name" invisible="1"/>
+                                <field name="summary" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="tag_ids" widget="many2many_tags"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+
+                            <group>
+                                <field name="applied_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="declaration_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+
+                        <separator string="Employee Details"/>
+                        <group>
+                            <group>
+                                <field name="employee_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="department_id"/>
+                            </group>
+
+                            <group>
+                                <field name="job_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="deduction_by" groups="base.group_system"/>
+                                <field name="amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="manager_id" options="{'no_create_edit': True, 'no_open': True}"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Deduction details">
+                                <separator string="Deduction Description"/>
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_deduction" model="ir.actions.act_window">
+            <field name="name">Deductions</field>
+            <field name="res_model">hr.deduction</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_hr_deduction_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">click to define new Deduction</p>
+            </field>
+        </record>
+    </data>
+</odoo>

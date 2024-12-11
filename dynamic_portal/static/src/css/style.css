@@ -1,0 +1,11 @@
+html[dir="rtl"] .action-btn {
+    float: left;
+    margin-left: 5px;
+}
+
+.action-btn {
+    float: right;
+    margin-right: 5px;
+}
+
+

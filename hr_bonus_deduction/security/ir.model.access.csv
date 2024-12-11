@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_bonus_manage,hr.bonus.manage,model_hr_bonus,hr_bonus_deduction.group_hr_bonus,1,1,1,1
+access_hr_bonus_tag_manage,hr.bonus.tag.manage,model_hr_bonus_tag,hr_bonus_deduction.group_hr_bonus,1,1,1,1
+access_hr_deduction_manage,hr.deduction.manage,model_hr_deduction,hr_bonus_deduction.group_hr_deduction,1,1,1,1
+access_hr_deduction_tag_manage,hr.deduction.tag.manage,model_hr_deduction_tag,hr_bonus_deduction.group_hr_deduction,1,1,1,1

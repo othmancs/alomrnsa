@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="portal_view_form" model="ir.ui.view">
+            <field name="name">portal_view_form</field>
+            <field name="model">portal.portal</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Name"/>
+                            <h1>
+                                <field name="name" placeholder="View Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="model_id"/>
+                                <field name="model_name" invisible="1"/>
+                                <field name="domain"/>
+                                <!--                                <field name="domain" widget="domain" options="{'model': 'model_name', 'in_dialog': True}"/>-->
+                            </group>
+                            <group>
+                                <field name="sequence" invisible="1"/>
+
+                                <field name="full_url" widget="url"/>
+                                <field name="chatter"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="list_fields" string="List View">
+                                <field name="list_fields" context="{'default_model_id': model_id}">
+                                    <tree editable="bottom">
+                                        <field name="model_id" invisible="1"/>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="field_id"
+                                               options="{'no_create_edit': True,'no_create':True,'no_open':True}"/>
+                                    </tree>
+                                </field>
+                                <group string="List Colors">
+                                    <field nolabel="1" name="list_color_ids">
+                                        <tree editable="bottom">
+                                            <field name="color" />
+                                            <field name="domain"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page name="form_fields" string="Form View">
+                                <field name="form_fields" context="{'default_model_id': model_id}">
+                                    <tree editable="bottom">
+                                        <field name="model_id" invisible="1"/>
+                                        <field name="ttype" invisible="1"/>
+                                        <field name="relation" invisible="1"/>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="field_id"
+                                               options="{'no_create_edit': True,'no_create':True,'no_open':True}"/>
+                                        <field name="required"/>
+                                        <field name="readonly"/>
+                                        <field name="attrs_readonly"/>
+                                        <field name="attrs_invisible"/>
+                                        <field name="domain"
+                                               attrs="{'readonly':[('ttype','not in',('many2one','many2many'))]}"/>
+                                        <button type="object" attrs="{'invisible':[('ttype','!=','one2many')]}"
+                                                icon="fa-list" name="form_view"/>
+                                    </tree>
+                                </field>
+                                <group string="Buttons">
+                                    <field nolabel="1" name="button_ids" context="{'default_model_id': model_id}">
+                                        <tree editable="bottom">
+                                            <field name="model_id" invisible="1"/>
+                                            <field name="sequence" widget="handle"/>
+                                            <field name="name"/>
+                                            <field name="action"/>
+                                            <field name="attrs_invisible"/>
+                                            <field name="type" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                </group>
+
+                            </page>
+                            <page name="list_fields" string="Access Rights">
+                                <field name="access_ids" context="{'default_model_id': model_id}">
+                                    <tree editable="bottom">
+                                        <field name="model_id" invisible="1"/>
+                                        <field name="user_id"/>
+                                        <field name="allow_read"/>
+                                        <field name="allow_write"/>
+                                        <field name="allow_create"/>
+                                        <field name="allow_delete"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="portal_view_tree" model="ir.ui.view">
+            <field name="name">portal_view_tree</field>
+            <field name="model">portal.portal</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="model_id"/>
+                    <field name="full_url"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="portal_action" model="ir.actions.act_window">
+            <field name="name">Portal Views</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">portal.portal</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="portal_line_form" model="ir.ui.view">
+            <field name="name">portal_line_form</field>
+            <field name="model">portal.view</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="field_id" class="oe_edit_only" string="field_id"/>
+                            <h1>
+                                <field name="field_id" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="relation"/>
+                        </group>
+
+                        <notebook>
+                            <page name="list_fields" string="Table">
+                                <field name="table_lines" context="{'default_relation': relation}">
+                                    <tree editable="bottom">
+                                        <field name="relation" invisible="1"/>
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="field_id"
+                                               options="{'no_create_edit': True,'no_create':True,'no_open':True}"/>
+                                        <field name="required"/>
+                                        <field name="readonly"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="portal_line_tree" model="ir.ui.view">
+            <field name="name">portal_line_tree</field>
+            <field name="model">portal.view</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="model_id" invisible="1"/>
+                    <field name="ttype" invisible="1"/>
+                    <field name="relation" invisible="1"/>
+                    <field name="sequence" widget="handle"/>
+                    <field name="field_id"
+                           options="{'no_create_edit': True,'no_create':True,'no_open':True}"/>
+                    <field name="required"/>
+                    <field name="readonly"/>
+                    <field name="domain"
+                           attrs="{'readonly':[('ttype','not in',('many2one','many2many'))]}"/>
+                </tree>
+
+            </field>
+        </record>
+
+
+        <menuitem id="portal_menu" name="Portal Views"
+                  web_icon="dynamic_portal,static/description/icon.png"
+                  action="portal_action" sequence="999"/>
+    </data>
+</odoo>

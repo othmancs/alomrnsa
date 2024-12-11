@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="bonus_deduction_structure_type_employee" model="hr.payroll.structure.type">
+            <field name="name">Bonus/Deduction Employee</field>
+            <field name="country_id" eval="False"/>
+        </record>
+
+        <record id="bonus_deduction_structure" model="hr.payroll.structure">
+            <field name="name">Bonus/Deduction Pay</field>
+            <field name="type_id" ref="hr_bonus_deduction.bonus_deduction_structure_type_employee"/>
+            <field name="country_id" eval="False"/>
+        </record>
+
+        <record id="hr_rule_bonus" model="hr.salary.rule">
+            <field name="name">Bonus</field>
+            <field name="struct_id" ref="hr_bonus_deduction.bonus_deduction_structure"/>
+            <field name="sequence" eval="99"/>
+            <field name="code">BONUS</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = bool(inputs.BONUS)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.BONUS.amount</field>
+        </record>
+
+        <record id="hr_rule_deduction" model="hr.salary.rule">
+            <field name="name">Deduction</field>
+            <field name="struct_id" ref="hr_bonus_deduction.bonus_deduction_structure"/>
+            <field name="sequence" eval="101"/>
+            <field name="code">DEDUCTION</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = bool(inputs.DEDUCTION)</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = inputs.DEDUCTION.amount</field>
+        </record>
+
+        <!-- Salary Other Inputs -->
+        <record id="hr_bonus_other_input" model="hr.payslip.input.type">
+            <field name="name">Bonus</field>
+            <field name="code">BONUS</field>
+        </record>
+
+        <record id="hr_deduction_other_input" model="hr.payslip.input.type">
+            <field name="name">Deduction</field>
+            <field name="code">DEDUCTION</field>
+        </record>
+
+        <!-- HR Bonus -related subtypes for messaging / Chatter -->
+        <record id="mt_hr_bonus_confirm" model="mail.message.subtype">
+            <field name="name">Confirm</field>
+            <field name="res_model">hr.bonus</field>
+            <field name="default" eval="True"/>
+            <field name="description">HR Bonus Confirm</field>
+        </record>
+
+        <record id="mt_hr_bonus_approved" model="mail.message.subtype">
+            <field name="name">Approved</field>
+            <field name="res_model">hr.bonus</field>
+            <field name="default" eval="True"/>
+            <field name="description">HR Bonus Approved</field>
+        </record>
+
+        <record id="mt_hr_bonus_cancel" model="mail.message.subtype">
+            <field name="name">Cancel</field>
+            <field name="res_model">hr.bonus</field>
+            <field name="default" eval="True"/>
+            <field name="description">HR Bonus Cancel</field>
+        </record>
+
+        <!-- HR Deduction -related subtypes for messaging / Chatter -->
+        <record id="mt_hr_deduction_confirm" model="mail.message.subtype">
+            <field name="name">Confirm</field>
+            <field name="res_model">hr.deduction</field>
+            <field name="default" eval="True"/>
+            <field name="description">HR Deduction Confirm</field>
+        </record>
+
+        <record id="mt_hr_deduction_approved" model="mail.message.subtype">
+            <field name="name">Approved</field>
+            <field name="res_model">hr.deduction</field>
+            <field name="default" eval="True"/>
+            <field name="description">HR Deduction Approved</field>
+        </record>
+
+        <record id="mt_hr_deduction_cancel" model="mail.message.subtype">
+            <field name="name">Cancel</field>
+            <field name="res_model">hr.deduction</field>
+            <field name="default" eval="True"/>
+            <field name="description">HR Deduction Cancel</field>
+        </record>
+    </data>
+</odoo>

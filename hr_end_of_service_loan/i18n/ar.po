@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_end_of_service_loan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20210318\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-31 13:44+0000\n"
+"PO-Revision-Date: 2021-08-31 13:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_end_of_service_loan
+#: model:ir.model.fields,field_description:hr_end_of_service_loan.field_hr_end_service__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: hr_end_of_service_loan
+#: model:ir.model,name:hr_end_of_service_loan.model_hr_end_service
+msgid "Hr End Of Service"
+msgstr "نهاية الخدمة"
+
+#. module: hr_end_of_service_loan
+#: model:ir.model.fields,field_description:hr_end_of_service_loan.field_hr_end_service__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: hr_end_of_service_loan
+#: model:ir.model.fields,field_description:hr_end_of_service_loan.field_hr_end_service____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_end_of_service_loan
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service_loan.view_hr_end_service_inherit_lone_form
+msgid "Loan"
+msgstr "قرض"
+
+#. module: hr_end_of_service_loan
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service_loan.view_hr_end_service_inherit_lone_form
+msgid "Unpaid"
+msgstr "غير مدفوع"
+
+#. module: hr_end_of_service_loan
+#: model:ir.model.fields,field_description:hr_end_of_service_loan.field_hr_end_service__unpaid_loan
+msgid "Unpaid Loan"
+msgstr "القروض غير المدفوعة"
