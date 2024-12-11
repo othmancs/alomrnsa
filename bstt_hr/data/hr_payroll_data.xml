@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    <record id="Other" model="hr.salary.rule.category">-->
+<!--        <field name="name">Other</field>-->
+<!--        <field name="code">Other</field>-->
+<!--    </record>-->
+
+    <record id="hr_advanced_structure_type_employee" model="hr.payroll.structure.type">
+        <field name="name">HR Advanced Employee</field>
+        <field name="country_id" eval="False"/>
+    </record>
+
+    <record id="hr_advanced_structure" model="hr.payroll.structure">
+        <field name="name">هيكل الموظف</field>
+        <field name="type_id" ref="bstt_hr.hr_advanced_structure_type_employee"/>
+        <field name="country_id" eval="False"/>
+    </record>
+    <record id="hr_advanced_structure_test" model="hr.payroll.structure">
+        <field name="name">هيكل الموظف test</field>
+        <field name="type_id" ref="bstt_hr.hr_advanced_structure_type_employee"/>
+        <field name="country_id" eval="False"/>
+    </record>
+
+    <record id="hr_rule_overtime_allowance" model="hr.salary.rule">
+        <field name="name">Overtime</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="90"/>
+        <field name="code">Overtime</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.overtime_allowance > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.overtime_allowance</field>
+    </record>
+
+    <record id="hr_rule_food_allowance" model="hr.salary.rule">
+        <field name="name">Food Allowance</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="92"/>
+        <field name="code">Food</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.food_allowance > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.food_allowance</field>
+    </record>
+
+    <record id="hr_rule_housing_allowance" model="hr.salary.rule">
+        <field name="name">Housing Allowance</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="93"/>
+        <field name="code">Housing</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.housing_allowance > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.housing_allowance</field>
+    </record>
+
+    <record id="hr_rule_mobile_allowance" model="hr.salary.rule">
+        <field name="name">Mobile Allowance</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="94"/>
+        <field name="code">Mobile</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.mobile_allowance > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.mobile_allowance</field>
+    </record>
+
+    <record id="hr_rule_fuel_allowance" model="hr.salary.rule">
+        <field name="name">Fuel Allowance</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="95"/>
+        <field name="code">Fuel</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.fuel_allowance > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.fuel_allowance</field>
+    </record>
+
+    <record id="hr_rule_ticket_allowance" model="hr.salary.rule">
+        <field name="name">Ticket Allowance</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="96"/>
+        <field name="code">Ticket</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.ticket_allowance > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.ticket_allowance</field>
+    </record>
+
+    <record id="hr_rule_other_allowance" model="hr.salary.rule">
+        <field name="name">Other</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="97"/>
+        <field name="code">Other</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.other_allowance > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = contract.other_allowance</field>
+    </record>
+
+<!--    <record id="hr_rule_commission_allowance" model="hr.salary.rule">-->
+<!--        <field name="name">Commission</field>-->
+<!--        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>-->
+<!--        <field name="sequence" eval="98"/>-->
+<!--        <field name="code">Commission</field>-->
+<!--        <field name="category_id" ref="hr_payroll.ALW"/>-->
+<!--        <field name="condition_select">python</field>-->
+<!--        <field name="condition_python">result = contract.commission_allowance > 0</field>-->
+<!--        <field name="amount_select">code</field>-->
+<!--        <field name="amount_python_compute">result = contract.commission_allowance</field>-->
+<!--    </record>-->
+
+
+    <record id="hr_rule_input_travel" model="hr.payslip.input.type">
+        <field name="code">Travel</field>
+        <field name="name">Travel</field>
+    </record>
+
+<!--    <record id="hr_rule_travel" model="hr.salary.rule">-->
+<!--        <field name="name">مخصص سفر</field>-->
+<!--        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>-->
+<!--        <field name="sequence" eval="99"/>-->
+<!--        <field name="code">Travel</field>-->
+<!--        <field name="category_id" ref="hr_payroll.ALW"/>-->
+<!--        <field name="condition_select">python</field>-->
+<!--        <field name="condition_python">result = inputs.Travel and inputs.Travel.amount > 0</field>-->
+<!--        <field name="amount_select">code</field>-->
+<!--        <field name="amount_python_compute">result = inputs.Travel and inputs.Travel.amount</field>-->
+<!--    </record>-->
+
+    <!--    hr rule deduction    -->
+<!--    <record id="hr_rule_leave_deduction" model="hr.salary.rule">-->
+<!--        <field name="name">Leave</field>-->
+<!--        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>-->
+<!--        <field name="sequence" eval="101"/>-->
+<!--        <field name="code">Leave</field>-->
+<!--        <field name="category_id" ref="hr_payroll.DED"/>-->
+<!--        <field name="condition_select">python</field>-->
+<!--        <field name="condition_python">result = contract.leave_deduction > 0</field>-->
+<!--        <field name="amount_select">code</field>-->
+<!--        <field name="amount_python_compute">result = - contract.leave_deduction</field>-->
+<!--    </record>-->
+<!--    <record id="hr_rule_esob_deduction" model="hr.salary.rule">-->
+<!--        <field name="name">End Of Service (ESOB)</field>-->
+<!--        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>-->
+<!--        <field name="sequence" eval="102"/>-->
+<!--        <field name="code">ESOB</field>-->
+<!--        <field name="category_id" ref="hr_payroll.DED"/>-->
+<!--        <field name="condition_select">python</field>-->
+<!--        <field name="condition_python">result = contract.esob_deduction > 0</field>-->
+<!--        <field name="amount_select">code</field>-->
+<!--        <field name="amount_python_compute">result = - contract.esob_deduction</field>-->
+<!--    </record>-->
+
+<!--    <record id="hr_rule_work_permit_fees_deduction" model="hr.salary.rule">-->
+<!--        <field name="name">Work Permit Fees</field>-->
+<!--        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>-->
+<!--        <field name="sequence" eval="104"/>-->
+<!--        <field name="code">WorkPermit</field>-->
+<!--        <field name="category_id" ref="hr_payroll.DED"/>-->
+<!--        <field name="condition_select">python</field>-->
+<!--        <field name="condition_python">result = contract.work_permit_fees_deduction > 0</field>-->
+<!--        <field name="amount_select">code</field>-->
+<!--        <field name="amount_python_compute">result = - contract.work_permit_fees_deduction</field>-->
+<!--    </record>-->
+
+    <record id="hr_rule_gosi_deduction" model="hr.salary.rule">
+        <field name="name">GOSI</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+        <field name="sequence" eval="105"/>
+        <field name="code">GOSI</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.gosi_type == 'national'</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = - ((contract.wage + contract.housing_allowance) * 0.0975)</field>
+    </record>
+
+    <record id="hr_rule_iqama_fees_deduction" model="hr.salary.rule">
+        <field name="name">IQAMA Fees</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure_test"/>
+        <field name="sequence" eval="103"/>
+        <field name="code">IQAMA</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.iqama_fees_deduction > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = - contract.iqama_fees_deduction</field>
+    </record>
+    <record id="hr_rule_medical_insurance_deduction" model="hr.salary.rule">
+        <field name="name">Medical Insurance</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure_test"/>
+        <field name="sequence" eval="106"/>
+        <field name="code">Medical Insurance</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.medical_insurance_deduction > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = - contract.medical_insurance_deduction</field>
+    </record>
+    <record id="hr_rule_medical_insurance_family_deduction" model="hr.salary.rule">
+        <field name="name">Medical Insurance Family</field>
+        <field name="struct_id" ref="bstt_hr.hr_advanced_structure_test"/>
+        <field name="sequence" eval="107"/>
+        <field name="code">Medical Insurance Family</field>
+        <field name="category_id" ref="hr_payroll.COMP"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = contract.medical_insurance_family_deduction > 0</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = - contract.medical_insurance_family_deduction</field>
+    </record>
+
+<!--    <record id="hr_rule_tax_deduction_amount" model="hr.salary.rule">-->
+<!--        <field name="name">Taxes</field>-->
+<!--        <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>-->
+<!--        <field name="sequence" eval="107"/>-->
+<!--        <field name="code">Taxes</field>-->
+<!--        <field name="category_id" ref="hr_payroll.DED"/>-->
+<!--        <field name="condition_select">python</field>-->
+<!--        <field name="condition_python">result = contract.tax_deduction_amount > 0</field>-->
+<!--        <field name="amount_select">code</field>-->
+<!--        <field name="amount_python_compute">result = - contract.tax_deduction_amount</field>-->
+<!--    </record>-->
+</odoo>

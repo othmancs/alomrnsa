@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <record id="hr_payslip_portal" model="portal.portal">
+        <field name="name">Payroll</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="domain">[('employee_id.user_id.id','=',uid)]</field>
+    </record>
+
+
+    <record id="hr_payslip_portal_list_line1" model="portal.view">
+        <field name="list_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__employee_id"/>
+    </record>
+
+    <record id="hr_payslip_portal_list_line2" model="portal.view">
+        <field name="list_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__number"/>
+    </record>
+
+    <record id="hr_payslip_portal_list_line3" model="portal.view">
+        <field name="list_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__basic_wage"/>
+    </record>
+
+    <record id="hr_payslip_portal_list_line4" model="portal.view">
+        <field name="list_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__net_wage"/>
+    </record>
+
+    <record id="hr_payslip_portal_list_line5" model="portal.view">
+        <field name="list_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__state"/>
+    </record>
+
+
+    <record id="hr_payslip_portal_from_line1" model="portal.view">
+        <field name="form_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__number"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="hr_payslip_portal_from_line2" model="portal.view">
+        <field name="form_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__employee_id"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="hr_payslip_portal_from_line3" model="portal.view">
+        <field name="form_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__date_from"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="hr_payslip_portal_from_line4" model="portal.view">
+        <field name="form_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__date_to"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="hr_payslip_portal_from_line5" model="portal.view">
+        <field name="form_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__contract_id"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="hr_payslip_portal_from_line6" model="portal.view">
+        <field name="form_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__struct_id"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+<!--    <record id="hr_payslip_portal_from_line7" model="portal.view">-->
+<!--        <field name="form_id" ref="hr_payslip_portal"/>-->
+<!--        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>-->
+<!--        <field name="field_id" ref="hr_payroll.field_hr_payslip__worked_days_line_ids"/>-->
+<!--        <field name="readonly" eval="True"/>-->
+<!--    </record>-->
+
+<!--    <record id="attendance_batch_portal_form_table_line1" model="portal.table.line">-->
+<!--        <field name="view_id" ref="hr_payslip_portal_from_line7"/>-->
+<!--        <field name="field_id" ref="hr_payroll.field_hr_payslip_worked_days__work_entry_type_id"/>-->
+<!--        <field name="readonly" eval="True"/>-->
+<!--    </record>-->
+
+<!--    <record id="attendance_batch_portal_form_table_line2" model="portal.table.line">-->
+<!--        <field name="view_id" ref="hr_payslip_portal_from_line7"/>-->
+<!--        <field name="field_id" ref="hr_payroll.field_hr_payslip_worked_days__name"/>-->
+<!--        <field name="readonly" eval="True"/>-->
+<!--    </record>-->
+
+<!--    <record id="attendance_batch_portal_form_table_line3" model="portal.table.line">-->
+<!--        <field name="view_id" ref="hr_payslip_portal_from_line7"/>-->
+<!--        <field name="field_id" ref="hr_payroll.field_hr_payslip_worked_days__number_of_days"/>-->
+<!--        <field name="readonly" eval="True"/>-->
+<!--    </record>-->
+
+<!--    <record id="attendance_batch_portal_form_table_line4" model="portal.table.line">-->
+<!--        <field name="view_id" ref="hr_payslip_portal_from_line7"/>-->
+<!--        <field name="field_id" ref="hr_payroll.field_hr_payslip_worked_days__number_of_hours"/>-->
+<!--        <field name="readonly" eval="True"/>-->
+<!--    </record>-->
+
+<!--    <record id="attendance_batch_portal_form_table_line5" model="portal.table.line">-->
+<!--        <field name="view_id" ref="hr_payslip_portal_from_line7"/>-->
+<!--        <field name="field_id" ref="hr_payroll.field_hr_payslip_worked_days__amount"/>-->
+<!--        <field name="readonly" eval="True"/>-->
+<!--    </record>-->
+
+    <record id="hr_payslip_portal_from_line8" model="portal.view">
+        <field name="form_id" ref="hr_payslip_portal"/>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip__line_ids"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+
+    <record id="from_line8_table_line1" model="portal.table.line">
+        <field name="view_id" ref="hr_payslip_portal_from_line8"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip_line__name"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+     <record id="from_line8_table_line2" model="portal.table.line">
+        <field name="view_id" ref="hr_payslip_portal_from_line8"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip_line__category_id"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="from_line8_table_line3" model="portal.table.line">
+        <field name="view_id" ref="hr_payslip_portal_from_line8"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip_line__quantity"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="from_line8_table_line4" model="portal.table.line">
+        <field name="view_id" ref="hr_payslip_portal_from_line8"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip_line__rate"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="from_line8_table_line5" model="portal.table.line">
+        <field name="view_id" ref="hr_payslip_portal_from_line8"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip_line__amount"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+     <record id="from_line8_table_line6" model="portal.table.line">
+        <field name="view_id" ref="hr_payslip_portal_from_line8"/>
+        <field name="field_id" ref="hr_payroll.field_hr_payslip_line__total"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+
+</odoo>

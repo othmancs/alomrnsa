@@ -1,0 +1,239 @@
+<odoo>
+    <data>
+        <record id="hr_hr_employee_view_form2" model="ir.ui.view">
+            <field name="name">hr.hr.employee.view.form2</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bank_account_id']" position="replace">
+                    <field name="bank_account_id" invisible="1"/>
+                    <field name="address"/>
+                    <field name="bank_account_no" />
+                    <field name="bank_id" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_create_start_work" string="انشاء طلب المباشرة" type="object"
+                            class="oe_highlight"/>
+                </xpath>
+                <div name="button_box" position="inside">
+                    <button name="open_start_work_requests" type="object" class="oe_stat_button" icon="fa-pencil"
+                            attrs="{'invisible': [('start_work_request_count', '=', 0)]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value">
+                                <field name="start_work_request_count"/>
+                            </span>
+                            <span class="o_stat_text">مباشرة العمل</span>
+                        </div>
+                    </button>
+                </div>
+<!--                <xpath expr="//field[@name='marital']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='birthday']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='country_id']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='gender']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='birthday']" position="after">
+                    <field name="age"/>
+                </xpath>
+                <xpath expr="//field[@name='spouse_complete_name']" position="replace">
+                    <field name="spouse_complete_name" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='spouse_birthdate']" position="replace">
+                    <field name="spouse_birthdate" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='passport_id']" position="replace">
+                    <field name="passport_id"/>
+                    <field name="passport_start_date" groups="hr.group_hr_user"
+                           attrs="{'invisible': [('passport_id', 'in', [None,False])]}"/>
+                    <field name="passport_expiry_date" groups="hr.group_hr_user"
+                           attrs="{'invisible': [('passport_id', 'in', [None,False])]}"/>
+                    <field name="passport_attachment_id" groups="hr.group_hr_user" widget="many2many_binary"
+                           class="oe_inline" attrs="{'invisible': [('passport_id', 'in', [None,False])]}"/>
+
+                </xpath>
+                <xpath expr="//field[@name='identification_id']" position="replace">
+                    <field name="identification_id" string='رقم الهوية/الاقامة' />
+                    <field name="id_start_date" groups="hr.group_hr_user"
+                           attrs="{'invisible': [('identification_id', 'in', [None,False])]}"/>
+                    <field name="id_expiry_date" groups="hr.group_hr_user"
+                           attrs="{'invisible': [('identification_id', 'in', [None,False])]}"/>
+                    <field name="iqama_expiry_date_hijri" groups="hr.group_hr_user"
+                           attrs="{'invisible': [('identification_id', 'in', [None,False])]}"/>
+                    <field name="id_attachment_id" groups="hr.group_hr_user" widget="many2many_binary" class="oe_inline"
+                           attrs="{'invisible': [('identification_id', 'in', [None,False])]}"/>
+                </xpath>
+                <xpath expr="//field[@name='coach_id']" position="after">
+                    <field name="emp_type" />
+                    <field name="iqama_job"
+                           attrs="{'invisible': [('emp_type','not in',['foreign','citizen_wife','citizen_husband'])]}"/>
+                    <field name="manager_phone"
+                           attrs="{'invisible': [('emp_type','not in',['foreign','citizen_wife','citizen_husband'])]}"/>
+                    <field name="sponsor"
+                           attrs="{'invisible': [('emp_type','not in',['foreign','citizen_wife','citizen_husband'])]}"/>
+                </xpath>
+<!--                <xpath expr="//field[@name='mobile_phone']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='category_ids']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='place_of_birth']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='country_of_birth']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='work_location_id']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='resource_calendar_id']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='mobile_phone']" position="before">
+                    <field name="foreign_name" />
+                    <field name="employee_no" />
+                </xpath>
+                <xpath expr="//notebook/page[@name='personal_information']/group/group[1]/div[@class='o_row']"
+                       position="replace">
+                </xpath>
+                <xpath expr="//notebook/page[@name='personal_information']/group/group[1]/label[@for='km_home_work']"
+                       position="replace">
+                </xpath>
+                <xpath expr="//field[@name='address_home_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='private_email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+<!--                <xpath expr="//field[@name='job_id']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='registration_number']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+<!--                <xpath expr="//field[@name='department_id']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='job_title']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='children']" position="attributes">
+                    <attribute name="string">عدد التابعين</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[last()]" position="after">
+                    <page name="insurance" string="إلتزامات">
+                        <group>
+                            <group string="التأمينات">
+                                <field name="iqama"
+                                       attrs="{'invisible': [('emp_type','not in',['foreign','citizen_wife','citizen_husband'])]}"/>
+                                <field name="iqama_duration"
+                                       attrs="{'invisible': [('emp_type','not in',['foreign','citizen_wife','citizen_husband'])]}"/>
+                                <field name="medical_insurance_type_id" />
+                                <field name="medical_insurance_value"/>
+                                <field name="medical_insurance_duration"/>
+                                <field name="medical_insurance_expire_date"/>
+                                <field name="medical_insurance_company"/>
+                            </group>
+                            <group colspan="4">
+                                <field name="ins_fam_ids">
+                                    <tree editable="bottom" create="false" delete="false">
+                                        <field name="member_name" readonly="1"/>
+                                        <field name="relation_id" readeonly="1"/>
+                                        <field name="insurance_amount"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+
+                    </page>
+
+                </xpath>
+                <xpath expr="//notebook/page[@name='personal_information']/group/group[last()]" position="replace">
+                </xpath>
+                <!--                <xpath expr="//notebook/page[@name='personal_information']/group/group[@name='has_work_permit']"-->
+                <!--                       position="replace">-->
+                <!--                    <group string="Work Permit" name="has_work_permit">-->
+                <!--                        <field name="visa_no"/>-->
+                <!--                        <field name="visa_expire"/>-->
+                <!--                        <field name="permit_no" invisible="1"/>-->
+                <!--                        <field name="work_permit_expiration_date" invisible="1"/>-->
+                <!--                        <field name="has_work_permit" invisible="1"/>-->
+                <!--                    </group>-->
+                <!--                </xpath>-->
+                <xpath expr="//page[@name='personal_information']/group" position="after">
+                    <group string="Education">
+                        <!--                        <field name="certificate"/>-->
+                        <field name="certificate_id"/>
+                        <field name="study_field"/>
+                        <field name="study_school" string="الجهة التعليمية"/>
+                    </group>
+                    <group name="fam_ids" colspan="4">
+                        <field name="fam_ids" force_save="1">
+                            <tree editable="bottom">
+                                <field name="member_name" required="1"/>
+                                <field name="relation_id" required="1"/>
+                                <field name="member_contact"/>
+                                <field name="member_identification_id"/>
+                                <field name="birth_date"/>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_employee_no_view_search" model="ir.ui.view">
+            <field name="name">hr.employee.search.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='job_id']" position="after">
+                    <field name="employee_no"/>
+                </xpath>
+                <xpath expr="//filter[@name='message_needaction']" position="before">
+                    <filter string="الرقم الوظيفي" name="employee_no" domain="[('employee_no', 'ilike', self)]"/>
+                    <separator/>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="category_ids" select="multi" icon="fa-tag" enable_counters="1"
+                           groups="hr.group_hr_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="bstt_hr_kanban_view_employees_kanban" model="ir.ui.view">
+            <field name="name">hr.employee.kanban</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+                <xpath expr="//templates" position="before">
+                    <field name="employee_no"/>
+                </xpath>
+                <xpath expr="//li[@id='last_login']" position="inside">
+                    <span style="font-size: 100%%">
+                        <field name="employee_no"/>
+                    </span>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

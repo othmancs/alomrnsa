@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="hr_hr_employee_view_form2" model="ir.ui.view">
+            <field name="name">hr.hr.employee.view.form2</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bank_account_id']" position="replace">
+                    <field name="bank_account_id" context="{'display_partner':True}"/>
+                </xpath>
+            </field>
+        </record>
+<!--FIXME-->
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='permit_no']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+<!--FIXME-->
+        <record id="hr_contract_view_form_1_bstt" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+<!--            <field name="inherit_id" ref="l10n_be_hr_payroll.hr_contract_view_form"/>-->
+            <field name="arch" type="xml">
+<!--                <xpath expr="//div[@class='o_row'][12]" position="replace">/field[@name='km_home_work']-->
+                <xpath expr="//group[@name='transportation']/group[@name='transportation_right']/div[@class='o_row'][1]" position="replace">
+                </xpath>
+            </field>
+        </record>
+<!-- <div class="o_row" groups="hr.group_hr_user"-->
+<!--                             attrs="{'invisible': [('transport_mode_private_car', '=', False)]}">-->
+<!--                            <field name="km_home_work"/>-->
+<!--                            <span>km</span>-->
+<!--                        </div>-->
+
+    </data>
+</odoo>

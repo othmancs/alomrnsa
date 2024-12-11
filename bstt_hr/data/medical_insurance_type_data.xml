@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- default medical insurance_type  -->
+        <record id="hr_medical_insurance_type_vvip" model="hr.medical.insurance.type">
+            <field name="name">VVIP</field>
+            <field name="code">VVIP</field>
+            <field name="amount">417</field>
+        </record>
+
+        <record id="hr_medical_insurance_type_vip" model="hr.medical.insurance.type">
+            <field name="name">VIP</field>
+            <field name="code">VIP</field>
+            <field name="amount">250</field>
+        </record>
+
+        <record id="hr_medical_insurance_type_a" model="hr.medical.insurance.type">
+            <field name="name">A</field>
+            <field name="code">A</field>
+            <field name="amount">125</field>
+        </record>
+
+        <record id="hr_medical_insurance_type_b" model="hr.medical.insurance.type">
+            <field name="name">B</field>
+            <field name="code">B</field>
+            <field name="amount">75</field>
+        </record>
+
+        <record id="hr_medical_insurance_type_c" model="hr.medical.insurance.type">
+            <field name="name">C</field>
+            <field name="code">C</field>
+            <field name="amount">38</field>
+        </record>
+
+
+    </data>
+</odoo>

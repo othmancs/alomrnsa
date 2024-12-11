@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <record id="hr_leave_portal" model="portal.portal">
+        <field name="name">Leaves</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="domain">[('employee_id.user_id.id','=',uid)]</field>
+    </record>
+
+    <record id="hr_leave_portal_list_line1" model="portal.view">
+        <field name="list_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__employee_id"/>
+    </record>
+
+    <record id="hr_leave_portal_list_line2" model="portal.view">
+        <field name="list_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__holiday_status_id"/>
+    </record>
+
+    <record id="hr_leave_portal_list_line3" model="portal.view">
+        <field name="list_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__date_from"/>
+    </record>
+
+    <record id="hr_leave_portal_list_line4" model="portal.view">
+        <field name="list_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__date_to"/>
+    </record>
+
+    <record id="hr_leave_portal_list_line5" model="portal.view">
+        <field name="list_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__duration_display"/>
+    </record>
+
+    <record id="hr_leave_portal_list_line6" model="portal.view">
+        <field name="list_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__state"/>
+    </record>
+
+
+    <record id="hr_leave_portal_from_line1" model="portal.view">
+        <field name="form_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__employee_id"/>
+        <field name="domain">[('user_id.id','=',uid)]</field>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+
+    <record id="hr_leave_portal_form_line2" model="portal.view">
+        <field name="form_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__holiday_status_id"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_leave_portal_form_line3" model="portal.view">
+        <field name="form_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__request_date_from"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_leave_portal_form_line4" model="portal.view">
+        <field name="form_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="bstt_hr_leave_portal.field_hr_leave__remaining_leaves"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="hr_leave_portal_form_line5" model="portal.view">
+        <field name="form_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__request_date_to"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_leave_portal_form_line6" model="portal.view">
+        <field name="form_id" ref="hr_leave_portal"/>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="field_id" ref="hr_holidays.field_hr_leave__duration_display"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+
+    <!--    <record id="hr_leave_portal_form_button1" model="portal.view.button">-->
+    <!--        <field name="portal_id" ref="hr_leave_portal"/>-->
+    <!--        <field name="model_id" ref="hr_holidays.model_hr_leave"/>-->
+    <!--        <field name="action">action_send</field>-->
+    <!--        <field name="name">Confirm</field>-->
+    <!--        <field name="attrs_invisible">[('state','!=','draft')]</field>-->
+    <!--    </record>-->
+
+</odoo>

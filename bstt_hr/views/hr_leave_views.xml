@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+<!--    <record id="hr_holidays_status_inherit_leave_create" model="ir.ui.view">-->
+<!--        <field name="name">hr.holidays.create.leave</field>-->
+<!--        <field name="model">hr.leave</field>-->
+<!--        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='name']" position="after">-->
+<!--               <field name="is_travel_chk"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+</odoo>

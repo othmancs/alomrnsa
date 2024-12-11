@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <record id="hr_loan_portal" model="portal.portal">
+        <field name="name">Loans</field>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="domain">[('employee_id.user_id.id','=',uid)]</field>
+    </record>
+
+    <record id="hr_loan_portal_list_line1" model="portal.view">
+        <field name="list_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__name"/>
+    </record>
+
+    <record id="hr_loan_portal_list_line2" model="portal.view">
+        <field name="list_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__employee_id"/>
+    </record>
+
+    <record id="hr_loan_portal_list_line3" model="portal.view">
+        <field name="list_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__loan_amount"/>
+    </record>
+
+    <record id="hr_loan_portal_list_line4" model="portal.view">
+        <field name="list_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__loan_type_id"/>
+    </record>
+
+    <record id="hr_loan_portal_list_line5" model="portal.view">
+        <field name="list_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__date"/>
+    </record>
+
+    <record id="hr_loan_portal_list_line6" model="portal.view">
+        <field name="list_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__state"/>
+    </record>
+
+
+    <record id="hr_loan_portal_from_line1" model="portal.view">
+        <field name="form_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__employee_id"/>
+        <field name="domain">[('user_id.id','=',uid)]</field>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+
+    <record id="hr_loan_portal_form_line2" model="portal.view">
+        <field name="form_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__loan_type_id"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_loan_portal_form_line3" model="portal.view">
+        <field name="form_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__loan_amount"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_loan_portal_form_line4" model="portal.view">
+        <field name="form_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__installment"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_loan_portal_form_line5" model="portal.view">
+        <field name="form_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__payment_date"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_loan_portal_form_line6" model="portal.view">
+        <field name="form_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__responsible_approve_id"/>
+        <field name="domain">[('groups_id', '=', 98)]</field>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="hr_loan_portal_form_line7" model="portal.view">
+        <field name="form_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="field_id" ref="hr_loan.field_hr_loan__loan_lines"/>
+        <field name="attrs_readonly">[('state','!=','draft')]</field>
+    </record>
+
+    <record id="hr_loan_portal_form_table_line1" model="portal.table.line">
+        <field name="view_id" ref="hr_loan_portal_form_line7"/>
+        <field name="relation">hr_loan</field>
+        <field name="field_id" ref="hr_loan.field_hr_loan_line__date"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <record id="hr_loan_portal_form_table_line2" model="portal.table.line">
+        <field name="view_id" ref="hr_loan_portal_form_line7"/>
+        <field name="relation">hr_loan</field>
+        <field name="field_id" ref="hr_loan.field_hr_loan_line__amount"/>
+        <field name="readonly" eval="True"/>
+    </record>
+
+    <!--    <record id="hr_loan_portal_form_line4" model="portal.view">-->
+    <!--        <field name="form_id" ref="hr_loan_portal"/>-->
+    <!--        <field name="model_id" ref="hr_loan.model_hr_loan"/>-->
+    <!--        <field name="field_id" ref="bstt_hr_loan_portal.field_hr_loan__remaining_leaves"/>-->
+    <!--        <field name="readonly" eval="True"/>-->
+    <!--    </record>-->
+
+    <!--    <record id="hr_loan_portal_form_line5" model="portal.view">-->
+    <!--        <field name="form_id" ref="hr_loan_portal"/>-->
+    <!--        <field name="model_id" ref="hr_loan.model_hr_loan"/>-->
+    <!--        <field name="field_id" ref="hr_loan.field_hr_loan__request_date_to"/>-->
+    <!--        <field name="attrs_readonly">[('state','!=','draft')]</field>-->
+    <!--        <field name="required" eval="True"/>-->
+    <!--    </record>-->
+
+    <!--    <record id="hr_loan_portal_form_line6" model="portal.view">-->
+    <!--        <field name="form_id" ref="hr_loan_portal"/>-->
+    <!--        <field name="model_id" ref="hr_loan.model_hr_loan"/>-->
+    <!--        <field name="field_id" ref="hr_loan.field_hr_loan__duration_display"/>-->
+    <!--        <field name="readonly" eval="True"/>-->
+    <!--    </record>-->
+
+
+    <record id="hr_loan_portal_form_button1" model="portal.view.button">
+        <field name="portal_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="action">compute_installment</field>
+        <field name="name">Compute Installment</field>
+        <field name="attrs_invisible">[('state','!=','draft')]</field>
+    </record>
+
+    <record id="hr_loan_portal_form_button2" model="portal.view.button">
+        <field name="portal_id" ref="hr_loan_portal"/>
+        <field name="model_id" ref="hr_loan.model_hr_loan"/>
+        <field name="action">action_submit</field>
+        <field name="name">Submit</field>
+        <field name="attrs_invisible">[('state','!=','draft')]</field>
+    </record>
+
+
+</odoo>

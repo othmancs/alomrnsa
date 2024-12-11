@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Adding a salary rule for house_allowance-->
+    <data noupdate="1">
+        <record id="hr_rule_input_house_allowance" model="hr.payslip.input.type">
+            <field name="code">HousingAdv</field>
+            <field name="name">Housing</field>
+        </record>
+        
+        <record id="hr_rule_dynamic_housing" model="hr.salary.rule">
+            <field name="name">بدل سكن</field>
+            <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+            <field name="sequence" eval="93"/>
+            <field name="code">HousingAdv</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="amount_select">code</field>
+            <field name="condition_python">result = inputs.HousingAdv and inputs.HousingAdv.amount>0</field>
+            <field name="amount_python_compute">result = inputs.HousingAdv and (inputs.HousingAdv.amount)</field>
+        </record>
+
+    </data>
+</odoo>

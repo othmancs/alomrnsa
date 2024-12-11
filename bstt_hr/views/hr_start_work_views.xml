@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_start_work_tree_view" model="ir.ui.view">
+            <field name="name">hr.employee.start.work.view.tree</field>
+            <field name="model">hr.employee.start.work</field>
+            <field name="arch" type="xml">
+                <tree string="المباشرة">
+                    <field name="employee_id"/>
+                    <field name="start_work_date"/>
+                    <field name="start_work_type"/>
+                    <field name="work_action_type"/>
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_start_work_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.start.work.view.form</field>
+            <field name="model">hr.employee.start.work</field>
+            <field name="arch" type="xml">
+                <form string="المباشرة">
+                    <header>
+                        <field name="is_project_manager" invisible="1"/>
+                        <button name="action_project_manager" type="object" string="ارسال" states="draft" class="oe_highlight"/>
+                        <button name="action_hr_manager" type="object" string="موافقة مدير المشروع"
+                                attrs="{'invisible':['|', ('state','!=', 'project_manager'), ('is_project_manager','!=', True)]}"
+                                class="oe_highlight"/>
+                        <button name="action_executive_manager" type="object" string="موافقة مدير الموارد البشرية"
+                                states="hr_manager" groups="bstt_hr.group_hr_manager_group" class="oe_highlight"/>
+                        <button name="action_approve" type="object" string="موافقة المدير التنفيذي"
+                                states="executive_manager" groups="bstt_hr.group_executive_manager" class="oe_highlight"/>
+                        <button name="action_cancel" type="object" string="Cancel" states="draft"/>
+                        <button name="action_refuse" type="object" string="Refuse" states="draft,waiting_approval_1"
+                                class="oe_highlight" groups="hr.group_hr_manager,hr.group_hr_user"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,project_manager,hr_manager,executive_manager"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="employee_id" />
+                                <field name="employee_no" />
+                                <field name="job_id" />
+                                <field name="department_id" />
+                                <field name="project_id"/>
+
+<!--                                <field name="wage" />-->
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company" />
+                                <field name="start_work_date"/>
+                                <field name="start_work_type"/>
+                                <field name="work_action_type"/>
+                                <field name="guidance"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_start_work_action" model="ir.actions.act_window">
+            <field name="name">المباشرةs</field>
+            <field name="res_model">hr.employee.start.work</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Adding a salary rule for house_allowance-->
+    <data noupdate="1">
+
+        <record id="hr_rule_holiday_allowance_70" model="hr.salary.rule">
+            <field name="name">بدل الاجازة 70%</field>
+            <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+            <field name="sequence" eval="1000"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="code">Holiday70%</field>
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="condition_select">python</field>
+            <field name="amount_select">code</field>
+            <field name="condition_python">result = contract.service_year &lt; 5 and contract.gross_wage</field>
+            <field name="amount_python_compute">result = round((contract.gross_wage/12)*0.70)</field>
+        </record>
+
+        <record id="hr_rule_holiday_allowance_100" model="hr.salary.rule">
+            <field name="name">بدل الاجازة 100%</field>
+            <field name="struct_id" ref="bstt_hr.hr_advanced_structure"/>
+            <field name="sequence" eval="1000"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="code">Holiday100%</field>
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="condition_select">python</field>
+            <field name="amount_select">code</field>
+            <field name="condition_python">result = contract.service_year &gt;= 5 and contract.gross_wage</field>
+            <field name="amount_python_compute">result = round(contract.gross_wage/12)</field>
+        </record>
+
+    </data>
+</odoo>

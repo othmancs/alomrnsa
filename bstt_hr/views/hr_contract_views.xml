@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_contract_inherit_form" model="ir.ui.view">
+            <field name="name">view.hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='contract_duration']" position="attributes">-->
+<!--                    <attribute name="required">1</attribute>-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='contract_type_id']" position="after">
+                    <field name="employee_no"/>
+                </xpath>
+                <xpath expr="//field[@name='contract_type_id']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="ref"/>
+                </xpath>
+                <xpath expr="//field[@name='date_end']" position="after">
+                    <field name="contract_duration"/>
+                </xpath>
+                <xpath expr="//field[@name='date_start']" position="attributes">
+                    <attribute name="string">تاريخ أول مباشرة</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_start']" position="after">
+                    <field name="contract_signature_date"/>
+                    <field name="service_year"/>
+                </xpath>
+                <xpath expr="//group[@name='salary_info']" position="inside">
+                    <group>
+                    <separator name="allowances" string="Housing Allowances"/>
+                        <field name="housing_allowance"/>
+                        <field name="house_allowance_months"/>
+                        <field name="house_allowance_last_date"/>
+
+                    <separator name="allowances" string="Allowances"/>
+                        <field name="car_allowance"/>
+                        <field name="food_allowance"/>
+                        <field name="mobile_allowance"/>
+                        <field name="fuel_allowance"/>
+                        <field name="ticket_allowance"/>
+                        <field name="commission_allowance"/>
+                        <field name="other_allowance"/>
+                        <field name="allowance_total"/>
+                    </group>
+<!--                    <separator name="deductions"   string="Deductions" />-->
+<!--                         -->
+<!--                            <field name="esob_deduction"/>-->
+<!--                            <field name="leave_deduction"/>-->
+<!--                            <field name="iqama_fees_deduction"/>-->
+<!--                            <field name="work_permit_fees_deduction"/>-->
+<!--                            <separator string="Taxes"/>-->
+<!--                            <field name="tax_deduction" widget="percentage"/>-->
+<!--                            <field name="tax_deduction_amount"/>-->
+
+<!--                            <field name="gosi_percent" widget="percentage"/>-->
+<!--                            <field name="gosi_deduction"/>-->
+<!--                            <separator string="Medical Insurance"/>-->
+<!--                            <field name="medical_insurance_type_id" options="{'no_create': True, 'no_open': True}"/>-->
+<!--                            <field name="medical_insurance_deduction"/>-->
+<!--                            <field name="medical_insurance_family_deduction"/>-->
+                    <group>
+                        <separator string="GOSI"/>
+                        <field name="gosi_type"/>
+<!--                        <separator string="مخصص السفر"/>-->
+<!--                        <field name="travel_from_country"/>-->
+<!--                        <field name="travel_to_country"/>-->
+<!--                        <field name="travel_value"/>-->
+                    </group>
+                    <group>
+                        <field name="add_value"/>
+                        <field name="subtract_value"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//group[@name='salary']" position="inside">
+                    <field name="gross_wage" string="Gross Salary"/>
+                    <field name="wage_day" string="Basic Salary (Day)"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

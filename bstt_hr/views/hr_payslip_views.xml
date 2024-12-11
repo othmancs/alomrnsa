@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_glossy_path_hr_payslip_tree_bstt" model="ir.ui.view">
+        <field name="name">view.hr.payslip.tree</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="employee_no"/>
+            </xpath>
+            <xpath expr="//field[@name='net_wage']" position="attributes">
+                    <attribute name="sum">Total Amount</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

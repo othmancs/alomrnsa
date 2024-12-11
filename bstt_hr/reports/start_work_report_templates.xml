@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="paperformat_start_work" model="report.paperformat">
+            <field name="name">Start Work</field>
+            <field name="default" eval="False" />
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">35</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">45</field>
+        </record>
+
+    <record id="start_work_report5" model="ir.actions.report">
+        <field name="name">مباشرة العمل (PDF)</field>
+        <field name="model">hr.employee.start.work</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">bstt_hr.start_work_template</field>
+        <field name="report_file">bstt_hr.start_work_template</field>
+        <field name="print_report_name">'Print Badge - %s' % (object.employee_id.name)</field>
+        <field name="binding_model_id" ref="model_hr_employee_start_work"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="bstt_hr.paperformat_start_work"/>
+    </record>
+
+    <template id="start_work_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="bstt_account_invoice.external_layout_standard">
+                <div class="page" style="direction: rtl;" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <h3 style="text-align: center !important;">
+                        <div class="row text-center"
+                             style="text-align: center !important;border-radius: 8px;background-color: #e7edef;">
+                            <div class="col-2 " style="text-align: right !important;"></div>
+                            <div class="col-4 " style="text-align: right !important;">
+                                <span>
+                                    Duty Commencement
+                                </span>
+                            </div>
+                            <div class="col-4 " style="text-align: left !important;">
+                                <span>
+                                    مباشرة موظـف جديد
+                                </span>
+                            </div>
+                            <div class="col-2 " style="text-align: left !important;"></div>
+                        </div>
+                    </h3>
+                    <div class="row text-center"
+                         style="text-align: center !important;border-radius: 8px;background-color: #e7edef;">
+                        <div class="col-6 " style="text-align: right !important;">
+                            <h4>
+                                Employee’s Info.
+                            </h4>
+                        </div>
+                        <div class="col-6 " style="text-align: left !important;">
+                            <h4>
+                                معلومــــــات الموظـــــــف
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <span>اســـم الموظـــف</span>
+                        </div>
+                        <div class="col-3">
+                            <span>Employee’s Name</span>
+                        </div>
+                        <div class="col-3">
+                            <span>الرقم الوظيفي Job No</span>
+                        </div>
+                        <div class="col-3">
+                            <span>الجنسية Nationality</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <span t-field="o.employee_id.name"/>
+                        </div>
+                        <div class="col-3">
+                            <span t-field="o.employee_no"/>
+                        </div>
+                        <div class="col-3">
+                            <span t-field="o.employee_id.country_id.name"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <span>المسمى الوظيفي</span>
+                        </div>
+                        <div class="col-3">
+                            <span>Job Title</span>
+                        </div>
+                        <div class="col-3">
+                            <span>الشركة / الإدارة</span>
+                        </div>
+                        <div class="col-3">
+                            <span>Company / Dept.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <span t-field="o.job_id.name"/>
+                        </div>
+                        <div class="col-6">
+                            <span t-field="o.department_id.name"/>
+                        </div>
+                    </div>
+
+                    <div class="row text-center"
+                         style="text-align: center !important;border-radius: 8px;background-color: #e7edef;">
+                        <div class="col-6 " style="text-align: right !important;">
+                            <h4>
+                                الراتب والبدلات Allowances - Basic Salar
+                            </h4>
+                        </div>
+                        <div class="col-6 " style="text-align: left !important;">
+                            <h4>التوجيه Guidance</h4>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-6">
+                            <span t-field="o.employee_id.contract_id.wage"/>
+                        </div>
+                        <div class="col-6">
+                            <span t-field="o.guidance"/>
+                        </div>
+                    </div>
+
+                    <div class="row text-center"
+                         style="text-align: center !important;border-radius: 8px;background-color: #e7edef;">
+                        <div class="col-6 " style="text-align: right !important;">
+                            <h4>
+                                نــــوع المباشـــرة
+                            </h4>
+                        </div>
+                        <div class="col-6 " style="text-align: left !important;">
+                            <h4>Duty Commencement Type</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <span t-field="o.start_work_type"/>
+                        </div>
+                        <div class="col-6">
+<!--                            <span t-field="o.start_work_type"/>-->
+                        </div>
+                    </div>
+
+                    <div class="row text-center" style="text-align: center !important;border-radius: 8px;background-color: #e7edef;">
+                        <div class="col-2 " style="text-align: right !important;">
+                            <span>المدير المباشر</span>
+                        </div>
+                        <div class="col-2 " style="text-align: right !important;">
+                            <span>Direct Manager</span>
+                        </div>
+                        <div class="col-2 " style="text-align: right !important;">
+                            <span>الشئون الإدارية</span>
+                        </div>
+                        <div class="col-2 " style="text-align: right !important;">
+                            <span>Administrative Affairs</span>
+                        </div>
+                        <div class="col-2 " style="text-align: right !important;">
+                            <span>المدير التنفيذي</span>
+                        </div>
+                        <div class="col-2 " style="text-align: right !important;">
+                            <span>Executive  Manager</span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><span t-field="o.employee_id.parent_id.name"/></div>
+                        <div class="col-2"><span>الاســم  Name</span></div>
+                        <div class="col-2"><span t-field="o.employee_id.parent_id.name"/></div>
+                        <div class="col-2"><span>الاســم  Name</span></div>
+                        <div class="col-2"><span t-field="o.employee_id.parent_id.name"/></div>
+                        <div class="col-2"><span>الاســم  Name</span></div>
+                    </div>
+                </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+    <!--        <template id="start_work_template_page">-->
+    <!-- <div class="d-flex flex-wrap justify-content-between">-->
+    <!--                    <div class="d-flex flex-wrap pt-3 flex-column align-items-start">-->
+    <!--                        <div class="pr-2 align-top"><strong>Contact: </strong></div>-->
+    <!--&lt;!&ndash;                            <div class="align-top" t-esc="doc.user_id" t-options='{&ndash;&gt;-->
+    <!--&lt;!&ndash;                                "widget": "contact",&ndash;&gt;-->
+    <!--&lt;!&ndash;                                "fields": ["name", "address", "phone", "email"]&ndash;&gt;-->
+    <!--&lt;!&ndash;                                }'/>&ndash;&gt;-->
+    <!--                    </div>-->
+    <!--                    <div class="d-flex flex-wrap p-3 flex-column align-items-start">-->
+    <!--                        <t t-if="doc.partner_id">-->
+    <!--                            <div class="pr-2 align-top"><strong>Customer: </strong></div>-->
+    <!--&lt;!&ndash;                                <div class="align-top"><t t-esc="doc.partner_id" t-options='{&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                            "widget": "contact",&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                            "fields": ["name", "address", "phone", "email"]&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                            }'/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+    <!--                        </t>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+
+
+    <!--                <h1 class="mt-4 mb-4"> Task: <span t-field="doc.name"/></h1>-->
+    <!--                <t t-if="doc.allow_timesheets and doc.timesheet_ids">-->
+    <!--                    <h2>Timesheets</h2>-->
+    <!--                    <div class="table-responsive-sm">-->
+    <!--                    <table class="table table-sm o_main_table">-->
+    <!--                        <thead>-->
+    <!--                            <tr>-->
+    <!--                                <th class="text-left">Date</th>-->
+    <!--                                <th class="text-left">Employee</th>-->
+    <!--                                <th class="text-left">Description</th>-->
+    <!--                                <th class="text-left">Time Spent</th>-->
+    <!--                            </tr>-->
+    <!--                        </thead>-->
+    <!--                        <tbody class="sale_tbody">-->
+    <!--                            <t t-foreach="doc.timesheet_ids" t-as="line">-->
+    <!--                                <tr>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-field="line.date"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td>-->
+    <!--                                        <span t-field="line.employee_id.name"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td class="text-left">-->
+    <!--                                        <span t-field="line.display_name"/>-->
+    <!--                                    </td>-->
+    <!--                                    <td class="text-left">-->
+    <!--                                        <span t-field="line.unit_amount" t-options="{'widget': 'float_time'}"/><span> hour(s)</span>-->
+    <!--                                    </td>-->
+    <!--                                </tr>-->
+    <!--                            </t>-->
+    <!--                        </tbody>-->
+    <!--                    </table>-->
+    <!--                    </div>-->
+    <!--                </t>-->
+
+    <!--                <div name="worksheet_map" t-if="doc.worksheet_template_id.report_view_id and worksheet_map.get(doc.id)" style="page-break-inside: avoid">-->
+    <!--                    <t t-set="worksheet" t-value="worksheet_map.get(doc.id)"/>-->
+    <!--                    <h2>Worksheet</h2>-->
+    <!--                    <t t-call="#{doc.worksheet_template_id.report_view_id.id}"/>-->
+    <!--                    <br/>-->
+    <!--                </div>-->
+    <!--                <div t-if="doc.worksheet_signature">-->
+
+    <!--                    <div t-if="report_type == html" class="ribbon" style="-->
+    <!--                        position: absolute;-->
+    <!--                        right: 0px; top: 0px;-->
+    <!--                        z-index: 1;-->
+    <!--                        overflow: hidden;-->
+    <!--                        width: 75px; height: 75px;-->
+    <!--                        text-align: right;">-->
+    <!--                        <span style="-->
+    <!--                            font-size: 10px;-->
+    <!--                            color: #fff;-->
+    <!--                            text-transform: uppercase;-->
+    <!--                            text-align: center;-->
+    <!--                            font-weight: bold; line-height: 20px;-->
+    <!--                            transform: rotate(45deg);-->
+    <!--                            width: 100px; display: block;-->
+    <!--                            background: green;-->
+    <!--                            position: absolute;-->
+    <!--                            top: 19px; right: -21px;">-->
+    <!--                            Signed-->
+    <!--                        </span>-->
+    <!--                    </div>-->
+
+    <!--                    <div t-attf-class="#{'col-12 col-lg-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ml-auto text-right" style="page-break-inside: avoid">-->
+    <!--                        <h5>Signature</h5>-->
+    <!--                        <img t-att-src="image_data_uri(doc.worksheet_signature)" style="max-height: 6rem; max-width: 100%; color:black;"/><br/>-->
+    <!--                        <span t-field="doc.worksheet_signed_by"/>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--        </template>-->
+
+
+
+</odoo>

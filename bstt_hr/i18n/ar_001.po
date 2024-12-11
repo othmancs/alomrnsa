@@ -1,0 +1,3617 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bstt_hr
+# 	* hr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-10 13:33+0000\n"
+"PO-Revision-Date: 2022-03-10 13:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_company__hr_presence_control_email_amount
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_email_amount
+msgid "# emails to send"
+msgstr "عدد رسائل البريد الإلكتروني لإرسالها"
+
+#. module: hr
+#: code:addons/hr/models/hr_job.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr ""
+
+#. module: bstt_hr
+#: code:addons/bstt_hr/models/hr.py:0
+#, python-format
+msgid "%s is not a valid IBAN."
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_job_view_kanban
+msgid "&amp;nbsp;"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.actions.report,print_report_name:bstt_hr.start_work_report5
+msgid "'Print Badge - %s' % (object.employee_id.name)"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.report,print_report_name:hr.hr_employee_print_badge
+msgid "'Print Badge - %s' % (object.name).replace('/', '')"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid ""
+"<b>Congratulations!</b> May I recommend you to setup an <a "
+"href=\"%s\">onboarding plan?</a>"
+msgstr "<b>تهانينا!</b> هل يمكنني أن أوصيك <a href=\"%s\">بإعداد خطة تأهيل؟</a>"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+msgid "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"Manage\" title=\"Manage\"/>"
+msgstr "<i class=\"fa fa-ellipsis-v\" role=\"img\" aria-label=\"إدارة\" title=\"إدارة\"/>"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle text-success\" role=\"img\" aria-label=\"Present\" title=\"Present\" name=\"presence_present\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle text-warning\" role=\"img\" aria-label=\"To define\" title=\"To define\" name=\"presence_to_define\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle-o text-muted\" role=\"img\" aria-label=\"Absent\" title=\"Absent\" name=\"presence_absent\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+msgid ""
+"<span class=\"fa fa-circle-o text-success\" role=\"img\" aria-label=\"Present but not active\" title=\"Present but not active\" name=\"presence_absent_active\">\n"
+"                                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"القيم المحددة هنا تُحدد حسب "
+"المؤسسة.\" role=\"img\" aria-label=\"القيم المحددة هنا تُحدد حسب المؤسسة.\" "
+"groups=\"base.group_multi_company\"/>"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "<span class=\"ml8 mr-2\">IP Addresses (comma-separated)</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "<span class=\"ml8 mr-2\">Minimum number of emails to sent </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "<span class=\"o_form_label o_hr_form_label\">Close Activities</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "<span class=\"o_form_label o_hr_form_label\">Detailed Reason</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "<span class=\"o_form_label o_hr_form_label\">Personal Info</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Presence Control</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid ""
+"<span class=\"o_stat_text\">\n"
+"                                        Not Connected\n"
+"                                    </span>"
+msgstr "غير متصل"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid ""
+"<span class=\"o_stat_text\">\n"
+"                                    Not Connected\n"
+"                                </span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "<span class=\"o_stat_text\">Connected Since</span>"
+msgstr "<span class=\"o_stat_text\">متصل منذ</span>"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_partner_view_form
+msgid "<span class=\"o_stat_text\">Employee(s)</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "<span class=\"o_stat_text\">Present Since</span>"
+msgstr "<span class=\"o_stat_text\">حاضر منذ</span>"
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+msgid "<span class=\"o_stat_text\">مباشرة العمل</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid ""
+"<span>\n"
+"                                    Duty Commencement\n"
+"                                </span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid ""
+"<span>\n"
+"                                    مباشرة موظـف جديد\n"
+"                                </span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>Administrative Affairs</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>Company / Dept.</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>Direct Manager</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>Employee’s Name</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>Executive  Manager</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>Job Title</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "<span>Km</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>اســـم الموظـــف</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>الاســم  Name</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>الجنسية Nationality</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>الرقم الوظيفي Job No</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>الشئون الإدارية</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>الشركة / الإدارة</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>المدير التنفيذي</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>المدير المباشر</span>"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "<span>المسمى الوظيفي</span>"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+msgid "<strong><span>Reporting</span></strong>"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_employee_user_uniq
+msgid "A user cannot be linked to multiple employees in the same company."
+msgstr "لا يمكن ربط المستخدم بعدة موظفين في نفس الشركة."
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_presence_state__absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_presence_state__absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_absent
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_presence_state__absent
+msgid "Absent"
+msgstr "غائب"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_needaction
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_needaction
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_needaction
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__active
+#: model:ir.model.fields,field_description:hr.field_hr_employee__active
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__active
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__active
+#: model:ir.model.fields,field_description:hr.field_hr_plan__active
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__active
+msgid "Active"
+msgstr "نشط"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_ids
+#: model:ir.model.fields,field_description:hr.field_hr_plan__plan_activity_type_ids
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_activity_type_view_tree
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_activity_type_view_form
+msgid "Activity"
+msgstr "النشاط"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_exception_decoration
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_config_plan
+msgid "Activity Planning"
+msgstr "تخطيط النشاط"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_state
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__activity_type_id
+msgid "Activity Type"
+msgstr "نوع النشاط"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_type_icon
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_tree
+msgid "Activity by"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.act_employee_from_department
+#: model_terms:ir.actions.act_window,help:hr.hr_employee_public_action
+#: model_terms:ir.actions.act_window,help:hr.open_view_employee_list_my
+msgid "Add a new employee"
+msgstr "إضافة موظف جديد"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_plan_action
+msgid "Add a new plan"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_plan_activity_type_action
+msgid "Add a new planning activity"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__departure_description
+#: model:ir.model.fields,field_description:hr.field_hr_employee__departure_description
+msgid "Additional Information"
+msgstr "معلومات إضافية"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__additional_note
+#: model:ir.model.fields,field_description:hr.field_res_users__additional_note
+msgid "Additional Note"
+msgstr "ملاحظات إضافية"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__address_home_id
+#: model:ir.model.fields,field_description:hr.field_res_users__address_home_id
+msgid "Address"
+msgstr "العنوان"
+
+#. module: hr
+#: model:res.groups,name:hr.group_hr_manager
+msgid "Administrator"
+msgstr "مدير"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__module_hr_presence
+msgid "Advanced Presence Control"
+msgstr "التحكم المتقدم في التواجد"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Advanced presence of employees"
+msgstr "حضور متقدم للموظفين"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_mail_alias__alias_contact
+#: model:ir.model.fields,field_description:hr.field_mail_channel__alias_contact
+msgid "Alias Contact Security"
+msgstr "لقب الاتصال الآمن"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__lang
+#: model:ir.model.fields,help:hr.field_res_users__private_lang
+msgid ""
+"All the emails and documents sent to this contact will be translated in this"
+" language."
+msgstr ""
+"سيتم ترجمة كافة رسائل البريد الإلكتروني والمستندات المرسلة لجهة الاتصال "
+"المختارة إلى هذه اللغة."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Allow employees to update their own data"
+msgstr "السماح للموظفين بتحديث بياناتهم الخاصة"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Allow employees to update their own data."
+msgstr "السماح للموظفين بتحديث بياناتهم الخاصة."
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__allowance_total
+msgid "Allowance Total"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_hr_contract_inherit_form
+msgid "Allowances"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__amount
+msgid "Amount"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "Apply"
+msgstr "تطبيق"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Approvers"
+msgstr ""
+
+#. module: hr
+#. openerp-web
+#: code:addons/hr/static/src/js/hr_employee.js:0
+#: code:addons/hr/static/src/js/hr_employee.js:0
+#, python-format
+msgid "Archive"
+msgstr "أرشفة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__archive_private_address
+msgid "Archive Private Address"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_department_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_attachment_count
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_attachment_count
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_attachment_count
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "Attendance"
+msgstr "الحضور"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Attendance/Point of Sale"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__mail_alias__alias_contact__employees
+msgid "Authenticated Employees"
+msgstr "الموظفون المعتمدون"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.mail_channel_view_form_
+msgid "Auto Subscribe Departments"
+msgstr "اشتراك تلقائي للأقسام"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_mail_channel__subscription_department_ids
+msgid "Automatically subscribe members of those departments to the channel."
+msgstr "اشتراك أعضاء هذه الأقسام بالقناة تلقائيًا."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Available"
+msgstr "متوفر"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__avatar_1920
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__avatar_1920
+msgid "Avatar"
+msgstr "الصورة الرمزية"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__avatar_1024
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__avatar_1024
+msgid "Avatar 1024"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__avatar_128
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__avatar_128
+msgid "Avatar 128"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__avatar_256
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__avatar_256
+msgid "Avatar 256"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__avatar_512
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__avatar_512
+msgid "Avatar 512"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Away"
+msgstr "بعيد"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__bachelor
+msgid "Bachelor"
+msgstr "البكالوريوس"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__barcode
+#: model:ir.model.fields,field_description:hr.field_res_users__barcode
+msgid "Badge ID"
+msgstr "رقم الشارة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__bank_account_id
+msgid "Bank Account Number"
+msgstr "رقم الحساب البنكي"
+
+#. module: hr
+#: model:ir.model,name:hr.model_base
+msgid "Base"
+msgstr "أساس"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_ip
+msgid "Based on IP Address"
+msgstr "بناء على عنوان IP"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__module_hr_attendance
+msgid "Based on attendances"
+msgstr "بناء على الحضور"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_email
+msgid "Based on number of emails sent"
+msgstr "بناء على عدد رسائل البريد الإلكتروني المرسلة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_login
+msgid "Based on user status in system"
+msgstr "بناءً على حالة المستخدم في النظام"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_employee_base
+msgid "Basic Employee"
+msgstr "الموظف الأساسي"
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_hr_contract_inherit_form
+msgid "Basic Salary (Day)"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__can_edit
+msgid "Can Edit"
+msgstr "يمكنه تحرير"
+
+#. modules: bstt_hr, hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_form_view
+#: model_terms:ir.ui.view,arch_db:hr.plan_wizard
+msgid "Cancel"
+msgstr "الغاء"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__car_allowance
+msgid "Car Allowance"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__certificate
+#: model:ir.model.fields,field_description:hr.field_res_users__certificate
+msgid "Certificate Level"
+msgstr "مستوى الشهادة"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.res_users_action_my
+msgid "Change my Preferences"
+msgstr "تغيير التفضيلات الخاصة بي"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Chat"
+msgstr "الدردشة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__child_ids
+msgid "Child Departments"
+msgstr "الأقسام الفرعية"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Citizenship"
+msgstr "المواطنة"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "City"
+msgstr "المدينة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__coach_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__coach_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__coach_id
+#: model:ir.model.fields,field_description:hr.field_res_users__coach_id
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__coach
+msgid "Coach"
+msgstr "مدرب"
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "Coach of employee %s is not set."
+msgstr "%sلم يتم تعيين مدرب الموظف."
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__code
+msgid "Code"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__color
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__color
+msgid "Color Index"
+msgstr "معرف اللون"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__commission_allowance
+msgid "Commission"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_company
+#: model_terms:ir.ui.view,arch_db:hr.view_department_tree
+msgid "Companies"
+msgstr "شركات"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__company_id
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__company_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Company"
+msgstr "شركة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__company_country_id
+msgid "Company Country"
+msgstr "بلد الشركة"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
+msgid "Company Logo"
+msgstr "شعار المؤسسة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__resource_calendar_id
+msgid "Company Working Hours"
+msgstr "ساعات العمل بالمؤسسة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_id
+msgid "Company employee"
+msgstr "موظف الشركة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__complete_name
+msgid "Complete Name"
+msgstr "الاسم الكامل"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_config_settings
+msgid "Config Settings"
+msgstr "ضبط الاعدادات"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+msgid "Configuration"
+msgstr "إعدادات التكوين"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "Contact Information"
+msgstr "معلومات التواصل"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__contract_duration
+msgid "Contract Duration"
+msgstr "مدة العقد"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__employee_type__contractor
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__employee_type__contractor
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__employee_type__contractor
+msgid "Contractor"
+msgstr "المتعاقد"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "Country"
+msgstr "الدولة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__company_country_code
+msgid "Country Code"
+msgstr "رمز الدولة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__country_of_birth
+#: model:ir.model.fields,field_description:hr.field_res_users__country_of_birth
+msgid "Country of Birth"
+msgstr "بلد الميلاد"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__create_date
+msgid "Create Date"
+msgstr "تاريخ الإنشاء"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_department_kanban_action
+#: model_terms:ir.actions.act_window,help:hr.hr_department_tree_action
+msgid "Create a new department"
+msgstr "إنشاء قسم جديد"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form
+msgid "Create employee"
+msgstr "إنشاء موظف"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates__create_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__create_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation__create_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__create_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_department__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_job__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__create_uid
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates__create_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__create_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation__create_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__create_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_department__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_job__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__create_date
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__no_of_employee
+msgid "Current Number of Employees"
+msgstr "عدد الموظفين الحالي"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__birthday
+#: model:ir.model.fields,field_description:hr.field_res_users__birthday
+msgid "Date of Birth"
+msgstr "تاريخ الميلاد"
+
+#. module: hr
+#: code:addons/hr/models/hr_departure_reason.py:0
+#, python-format
+msgid "Default departure reasons cannot be deleted."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__resource_calendar_id
+msgid "Define the schedule of resource"
+msgstr "تحديد الجدول الزمني للموارد"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_department
+#: model:ir.model.fields,field_description:hr.field_hr_employee__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__department_id
+#: model:ir.model.fields,field_description:hr.field_res_users__department_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Department"
+msgstr "القسم"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__name
+msgid "Department Name"
+msgstr "اسم القسم"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_department_kanban_action
+#: model:ir.actions.act_window,name:hr.hr_department_tree_action
+#: model:ir.ui.menu,name:hr.menu_hr_department_kanban
+#: model:ir.ui.menu,name:hr.menu_hr_department_tree
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+msgid "Departments"
+msgstr "الأقسام"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Departure"
+msgstr "مغادرة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__departure_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee__departure_date
+msgid "Departure Date"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_departure_reason
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__departure_reason_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__departure_reason_id
+msgid "Departure Reason"
+msgstr "سبب المغادرة"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_departure_reason_action
+#: model:ir.ui.menu,name:hr.menu_hr_departure_reason_tree
+msgid "Departure Reasons"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_departure_wizard
+msgid "Departure Wizard"
+msgstr "معالج المغادرة"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Dependant"
+msgstr "المعالين"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__child_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__child_ids
+msgid "Direct subordinates"
+msgstr "المرؤوسون المباشروة"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_hr_employee
+msgid "Directory"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_departure_wizard_view_form
+msgid "Discard"
+msgstr "تجاهل"
+
+#. module: hr
+#: model:ir.model,name:hr.model_mail_channel
+msgid "Discussion Channel"
+msgstr "قناة المناقشة"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates__display_name
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__display_name
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation__display_name
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__display_name
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_department__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_job__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_plan__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__display_name
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__divorced
+msgid "Divorced"
+msgstr "مطلّق"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__doctor
+msgid "Doctor"
+msgstr "دكتور"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__driving_license
+msgid "Driving License"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "Duty Commencement Type"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Education"
+msgstr "التعليم"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#. module: hr
+#: model:ir.model,name:hr.model_mail_alias
+msgid "Email Aliases"
+msgstr "ألقاب البريد"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Emergency"
+msgstr "حالة طوارئ"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__emergency_contact
+#: model:ir.model.fields,field_description:hr.field_res_users__emergency_contact
+msgid "Emergency Contact"
+msgstr "جهة الاتصال في حالة الطوارئ"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__emergency_phone
+#: model:ir.model.fields,field_description:hr.field_res_users__emergency_phone
+msgid "Emergency Phone"
+msgstr "هاتف الطوارئ"
+
+#. modules: bstt_hr, hr
+#: model:ir.model,name:hr.model_hr_employee
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__employee_id
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__employee_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__employee_id
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__employee_id
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__employee_type__employee
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__employee_type__employee
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__employee_type__employee
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__employee
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration_employee
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_employee_category
+msgid "Employee Category"
+msgstr "فئة الموظف"
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_contract
+msgid "Employee Contract"
+msgstr "عقد الموظف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_count
+msgid "Employee Count"
+msgstr "عدد الموظفين"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_employee_self_edit
+msgid "Employee Editing"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.print_employee_badge
+msgid "Employee Image"
+msgstr "صورة الموظف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__private_lang
+msgid "Employee Lang"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__name
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+msgid "Employee Name"
+msgstr "اسم الموظف"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_view_categ_form
+#: model:ir.model.fields,field_description:hr.field_res_users__category_ids
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_category_form
+msgid "Employee Tags"
+msgstr "وسوم الموظف"
+
+#. module: hr
+#. openerp-web
+#: code:addons/hr/static/src/js/hr_employee.js:0
+#, python-format
+msgid "Employee Termination"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__employee_type
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__employee_type
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__employee_type
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_type
+msgid "Employee Type"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Employee Update Rights"
+msgstr "حقوق تحديث الموظف"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__bank_account_id
+#: model:ir.model.fields,help:hr.field_res_users__employee_bank_account_id
+msgid "Employee bank salary account"
+msgstr "الحساب البنكي لراتب الموظف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_bank_account_id
+msgid "Employee's Bank Account Number"
+msgstr "رقم الحساب المصرفي للموظف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_country_id
+msgid "Employee's Country"
+msgstr "بلد الموظف"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Employee's Name"
+msgstr "اسم الموظف"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form
+msgid "Employee(s)"
+msgstr "الموظف"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.act_employee_from_department
+#: model:ir.actions.act_window,name:hr.hr_employee_action_from_user
+#: model:ir.actions.act_window,name:hr.hr_employee_public_action
+#: model:ir.actions.act_window,name:hr.open_view_employee_list
+#: model:ir.actions.act_window,name:hr.open_view_employee_list_my
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__employee_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__employee_ids
+#: model:ir.model.fields,field_description:hr.field_res_partner__employee_ids
+#: model:ir.ui.menu,name:hr.menu_hr_employee_payroll
+#: model:ir.ui.menu,name:hr.menu_hr_employee_user
+#: model:ir.ui.menu,name:hr.menu_hr_root
+#: model_terms:ir.ui.view,arch_db:hr.hr_department_view_kanban
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_tree
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_view_activity
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:hr.view_department_tree
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_tree
+#: model_terms:ir.ui.view,arch_db:hr.view_partner_tree2
+msgid "Employees"
+msgstr "الموظفون"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_partner__employees_count
+#: model:ir.model.fields,field_description:hr.field_res_users__employees_count
+msgid "Employees Count"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_view_employee_tree
+msgid "Employees Structure"
+msgstr "هيكل الموظفين"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_category_list
+msgid "Employees Tags"
+msgstr "وسوم الموظفين"
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "Employee’s Info."
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__esob_deduction
+msgid "End Of Service (ESOB)"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Enrich employee profiles with skills and resumes"
+msgstr "إثراء ملفات تعريف الموظفين بالمهارات والسيرة الذاتية"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__address_home_id
+#: model:ir.model.fields,help:hr.field_res_users__address_home_id
+msgid ""
+"Enter here the private address of the employee, not the one linked to your "
+"company."
+msgstr "أدخل هنا العنوان الخاص بالموظف، لا العنوان المرتبط بمؤسستك."
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__no_of_recruitment
+msgid "Expected New Employees"
+msgstr "الموظفين الجدد المتوقعين"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__expected_employees
+msgid ""
+"Expected number of employees for this job position after new recruitment."
+msgstr "عدد الموظفين المتوقع أن يشغلوا هذا المنصب بعد التعيينات الجديدة."
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__id_expiry_date
+msgid "Expiry date of Identification ID"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__passport_expiry_date
+msgid "Expiry date of Passport ID"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__fam_ids
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__ins_fam_ids
+msgid "Family Information"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__gender__female
+msgid "Female"
+msgstr "أنثى"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__study_field
+#: model:ir.model.fields,field_description:hr.field_res_users__study_field
+msgid "Field of Study"
+msgstr "مجال الدراسة"
+
+#. module: hr
+#: model:hr.departure.reason,name:hr.departure_fired
+msgid "Fired"
+msgstr "مطرود"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_follower_ids
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_follower_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_follower_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_partner_ids
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_partner_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_partner_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__activity_type_icon
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__food_allowance
+msgid "Food"
+msgstr ""
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_food_allowance
+msgid "Food Allowance"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_contract__gosi_type__foreign
+msgid "Foreign"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__employee_type__freelance
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__employee_type__freelance
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__employee_type__freelance
+msgid "Freelancer"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__fuel_allowance
+msgid "Fuel"
+msgstr ""
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_fuel_allowance
+msgid "Fuel Allowance"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Future Activities"
+msgstr "الأنشطة المستقبلية"
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_gosi_deduction
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__gosi_deduction
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_hr_contract_inherit_form
+msgid "GOSI"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__gosi_type
+msgid "GOSI Type"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__gosi_percent
+msgid "GOSI percent"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__gender
+#: model:ir.model.fields,field_description:hr.field_res_users__gender
+msgid "Gender"
+msgstr "الجنس"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Generate"
+msgstr "إنشاء"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__graduate
+msgid "Graduate"
+msgstr "خريج"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__gross_wage
+msgid "Gross"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_hr_contract_inherit_form
+msgid "Gross Salary"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_mail_channel__subscription_department_ids
+msgid "HR Departments"
+msgstr "أقسام الموارد البشرية"
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_employee_family
+msgid "HR Employee Family"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.server,name:hr.ir_cron_data_check_work_permit_validity_ir_actions_server
+#: model:ir.cron,cron_name:hr.ir_cron_data_check_work_permit_validity
+#: model:ir.cron,name:hr.ir_cron_data_check_work_permit_validity
+msgid "HR Employee: check work permit validity"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_medical_insurance_type
+msgid "HR Medical Insurance Type"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "HR Settings"
+msgstr "إعدادات الموارد البشرية"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__has_message
+#: model:ir.model.fields,field_description:hr.field_hr_department__has_message
+#: model:ir.model.fields,field_description:hr.field_hr_employee__has_message
+#: model:ir.model.fields,field_description:hr.field_hr_job__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__no_of_hired_employee
+msgid "Hired Employees"
+msgstr "الموظفون المعينون"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__km_home_work
+#: model:ir.model.fields,field_description:hr.field_res_users__km_home_work
+msgid "Home-Work Distance"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__housing_allowance
+msgid "Housing"
+msgstr ""
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_housing_allowance
+msgid "Housing Allowance"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__hr_icon_display
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__hr_icon_display
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__hr_icon_display
+msgid "Hr Icon Display"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__hr_presence_state
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__hr_presence_state
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__hr_presence_state
+#: model:ir.model.fields,field_description:hr.field_res_users__hr_presence_state
+msgid "Hr Presence State"
+msgstr ""
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_hr_main
+msgid "Human Resources"
+msgstr "الموارد البشرية"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates__id
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__id
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation__id
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__id
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__id
+#: model:ir.model.fields,field_description:hr.field_hr_department__id
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__id
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__id
+#: model:ir.model.fields,field_description:hr.field_hr_job__id
+#: model:ir.model.fields,field_description:hr.field_hr_plan__id
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__id
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__id
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__id_card
+msgid "ID Card Copy"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__barcode
+#: model:ir.model.fields,help:hr.field_res_users__barcode
+msgid "ID used for employee identification."
+msgstr "بطاقة الهوية المستخدمة للتعرف على الموظف."
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_iqama_fees_deduction
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__iqama_fees_deduction
+msgid "IQAMA Fees"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_exception_icon
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__activity_exception_icon
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "الأيقونة للإشارة إلى استثناء النشاط"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__identification_id
+msgid "Identification No"
+msgstr "الرقم القومي"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__message_needaction
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__message_unread
+#: model:ir.model.fields,help:hr.field_hr_department__message_needaction
+#: model:ir.model.fields,help:hr.field_hr_department__message_unread
+#: model:ir.model.fields,help:hr.field_hr_employee__message_needaction
+#: model:ir.model.fields,help:hr.field_hr_employee__message_unread
+#: model:ir.model.fields,help:hr.field_hr_job__message_needaction
+#: model:ir.model.fields,help:hr.field_hr_job__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تحتاج لرؤيتها."
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__message_has_error
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__message_has_sms_error
+#: model:ir.model.fields,help:hr.field_hr_department__message_has_error
+#: model:ir.model.fields,help:hr.field_hr_department__message_has_sms_error
+#: model:ir.model.fields,help:hr.field_hr_employee__message_has_error
+#: model:ir.model.fields,help:hr.field_hr_employee__message_has_sms_error
+#: model:ir.model.fields,help:hr.field_hr_job__message_has_error
+#: model:ir.model.fields,help:hr.field_hr_job__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فقد حدث خطأ في تسليم بعض الرسائل."
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__active
+msgid ""
+"If the active field is set to False, it will allow you to hide the resource "
+"record without removing it."
+msgstr ""
+"إذا تم تغيير وضع الحقل الفعال إلى خطأ، سيسمح لك بإخفاء سجل المورد دون "
+"إزالته."
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_1920
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_1920
+msgid "Image"
+msgstr "صورة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_1024
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_1024
+msgid "Image 1024"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_128
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_256
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_256
+msgid "Image 256"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__image_512
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__image_512
+msgid "Image 512"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid "Import Template for Employees"
+msgstr "قالب الاستيراد للموظفين"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "In Position"
+msgstr "في المنصب"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "In Recruitment"
+msgstr "في التوظيف"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_is_follower
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_is_follower
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_is_follower
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__is_project_manager
+msgid "Is Project Manager"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__is_system
+msgid "Is System"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_tree
+msgid "Job"
+msgstr "الوظيفة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__description
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Job Description"
+msgstr "الوصف الوظيفي"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_job
+#: model:ir.model.fields,field_description:hr.field_hr_employee__job_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__job_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__job_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__name
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Job Position"
+msgstr "المنصب الوظيفي"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.action_hr_job
+#: model:ir.ui.menu,name:hr.menu_view_hr_job
+msgid "Job Positions"
+msgstr "المناصب الوظيفية"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__job_title
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__job_title
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__job_title
+#: model:ir.model.fields,field_description:hr.field_res_users__job_title
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+msgid "Job Title"
+msgstr "المسمى الوظيفي"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__jobs_ids
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Jobs"
+msgstr "الوظائف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__lang
+msgid "Lang"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Language"
+msgstr "اللغة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__last_activity
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__last_activity
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__last_activity
+#: model:ir.model.fields,field_description:hr.field_res_users__last_activity
+msgid "Last Activity"
+msgstr "النشاط الاخير"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__last_activity_time
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__last_activity_time
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__last_activity_time
+#: model:ir.model.fields,field_description:hr.field_res_users__last_activity_time
+msgid "Last Activity Time"
+msgstr "وقت آخر نشاط"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates____last_update
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family____last_update
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation____last_update
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work____last_update
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_department____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_employee____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_job____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_plan____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard____last_update
+#: model:ir.model.fields,field_description:hr.field_hr_work_location____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates__write_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__write_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation__write_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__write_uid
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_department__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_job__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__write_uid
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates__write_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__write_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation__write_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__write_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_department__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_departure_wizard__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_job__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__write_date
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Late Activities"
+msgstr "الأنشطة المتأخرة"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.plan_wizard_action
+#: model_terms:ir.ui.view,arch_db:hr.plan_wizard
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Launch Plan"
+msgstr "خطة الإطلاق"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__leave_deduction
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_payslip_input__leave_id
+msgid "Leave"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__cohabitant
+msgid "Legal Cohabitant"
+msgstr "معاش قانوني"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.action_hr_job
+msgid "Let's create a job position."
+msgstr "لنقم بإنشاء منصب وظيفي."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Location"
+msgstr "المكان"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__location_number
+msgid "Location Number"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_main_attachment_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__gender__male
+msgid "Male"
+msgstr "ذكر"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__manager_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__parent_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__parent_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__parent_id
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_parent_id
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__manager
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Manager"
+msgstr "المدير"
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "Manager of employee %s is not set."
+msgstr "لم يتم تعيين مدير الموظف.%s"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__marital
+#: model:ir.model.fields,field_description:hr.field_res_users__marital
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Marital Status"
+msgstr "الحالة الاجتماعية"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__married
+msgid "Married"
+msgstr "متزوج"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__master
+msgid "Master"
+msgstr "الرئيسي"
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_medical_insurance_deduction
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__medical_insurance_deduction
+msgid "Medical Insurance"
+msgstr ""
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_medical_insurance_family_deduction
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__medical_insurance_family_deduction
+msgid "Medical Insurance Family"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__medical_insurance_type_id
+msgid "Medical Insurance Type"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__member_ids
+msgid "Members"
+msgstr "الأعضاء"
+
+#. module: hr
+#: model:ir.model,name:hr.model_ir_ui_menu
+msgid "Menu"
+msgstr "القائمة"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_has_error
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_has_error
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_has_error
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسائل"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__mobile_allowance
+msgid "Mobile"
+msgstr ""
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_mobile_allowance
+msgid "Mobile Allowance"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__my_activity_date_deadline
+#: model:ir.model.fields,field_description:hr.field_hr_employee__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: hr
+#. openerp-web
+#: code:addons/hr/static/src/js/user_menu.js:0
+#, python-format
+msgid "My Profile"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_medical_insurance_type__name
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__name
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__name
+#: model:ir.model.fields,field_description:hr.field_hr_plan__name
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__responsible_id
+msgid "Name"
+msgstr "الاسم"
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_contract__gosi_type__national
+msgid "National"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__country_id
+msgid "Nationality (Country)"
+msgstr "الجنسية (البلد)"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_date_deadline
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_summary
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_type_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "No specific user given on activity %s."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_job__state__open
+msgid "Not Recruiting"
+msgstr "لا توظيف"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Not available"
+msgstr "غير متاح"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__note
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__note
+msgid "Note"
+msgstr "الملاحظات"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__notes
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_needaction_counter
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_needaction_counter
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_needaction_counter
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__children
+#: model:ir.model.fields,field_description:hr.field_res_users__children
+msgid "Number of Children"
+msgstr "عدد الأبناء"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__no_of_employee
+msgid "Number of employees currently occupying this job position."
+msgstr "عدد الموظفين شاغلي هذا المنصب حاليًا."
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_has_error_counter
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_has_error_counter
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_has_error_counter
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الاخطاء"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__no_of_hired_employee
+msgid ""
+"Number of hired employees for this job position during recruitment phase."
+msgstr "عدد الموظفين الذين تم تعيينهم بهذا المنصب خلال مرحلة التوظيف."
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__message_needaction_counter
+#: model:ir.model.fields,help:hr.field_hr_department__message_needaction_counter
+#: model:ir.model.fields,help:hr.field_hr_employee__message_needaction_counter
+#: model:ir.model.fields,help:hr.field_hr_job__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__message_has_error_counter
+#: model:ir.model.fields,help:hr.field_hr_department__message_has_error_counter
+#: model:ir.model.fields,help:hr.field_hr_employee__message_has_error_counter
+#: model:ir.model.fields,help:hr.field_hr_job__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل الحادث بها خطأ في التسليم"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__no_of_recruitment
+msgid "Number of new employees you expect to recruit."
+msgstr "عدد الموظفين المتوقع توظيفهم."
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__message_unread_counter
+#: model:ir.model.fields,help:hr.field_hr_department__message_unread_counter
+#: model:ir.model.fields,help:hr.field_hr_employee__message_unread_counter
+#: model:ir.model.fields,help:hr.field_hr_job__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_department_tree_action
+msgid ""
+"Odoo's department structure is used to manage all documents\n"
+"                    related to employees by departments: expenses, timesheets,\n"
+"                    leaves, recruitments, etc."
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.hr_department_kanban_action
+msgid ""
+"Odoo's department structure is used to manage all documents\n"
+"                related to employees by departments: expenses, timesheets,\n"
+"                time off, recruitments, etc."
+msgstr ""
+
+#. module: hr
+#: model:res.groups,name:hr.group_hr_user
+msgid "Officer"
+msgstr "موظف"
+
+#. modules: bstt_hr, hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_other_allowance
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__other_allowance
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__certificate__other
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__gender__other
+#: model:ir.model.fields.selection,name:hr.selection__hr_plan_activity_type__responsible__other
+msgid "Other"
+msgstr "غير ذلك"
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_overtime_allowance
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__overtime_allowance
+msgid "Overtime"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__pin
+#: model:ir.model.fields,field_description:hr.field_res_users__pin
+msgid "PIN"
+msgstr "الرمز السري"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "PIN Code"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__pin
+#: model:ir.model.fields,help:hr.field_res_users__pin
+msgid ""
+"PIN used to Check In/Out in the Kiosk Mode of the Attendance application (if"
+" enabled in Configuration) and to change the cashier in the Point of Sale "
+"application."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__parent_id
+msgid "Parent Department"
+msgstr "قسم رئيسي"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_payslip_line__partner_id
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__user_partner_id
+#: model:ir.model.fields,help:hr.field_hr_employee_public__user_partner_id
+msgid "Partner-related data of the user"
+msgstr "بيانات المستخدم المرتبطة بالشريك"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__passport_id
+#: model:ir.model.fields,field_description:hr.field_res_users__passport_id
+msgid "Passport No"
+msgstr "رقم جواز السفر"
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_payslip
+msgid "Pay Slip"
+msgstr "إيصال المرتب"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Payroll"
+msgstr "الأجور"
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_payslip_input
+msgid "Payslip Input"
+msgstr "مدخلات إيصال المرتب"
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_payslip_line
+msgid "Payslip Line"
+msgstr "بند إيصال المرتب"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Phone"
+msgstr "رقم الهاتف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__place_of_birth
+#: model:ir.model.fields,field_description:hr.field_res_users__place_of_birth
+msgid "Place of Birth"
+msgstr "مكان الميلاد"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_wizard__plan_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_search
+msgid "Plan"
+msgstr "خطة"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+msgid "Plan Name"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_plan_wizard
+msgid "Plan Wizard"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_plan_activity_type
+msgid "Plan activity type"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_plan_action
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_tree
+msgid "Planning"
+msgstr "التخطيط"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_plan_activity_type_action
+#: model:ir.ui.menu,name:hr.menu_config_plan_types
+msgid "Planning Types"
+msgstr "أنواع التخطيط"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_config_plan_plan
+msgid "Plans"
+msgstr "خطط"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_mail_alias__alias_contact
+#: model:ir.model.fields,help:hr.field_mail_channel__alias_contact
+msgid ""
+"Policy to post a message on the document using the mailgateway.\n"
+"- everyone: everyone can post\n"
+"- partners: only authenticated partners\n"
+"- followers: only followers of the related document or members of following channels\n"
+msgstr ""
+"سياسة لنشر رسالة على المستند باستخدام بوابة البريد الإلكتروني.\n"
+"- الجميع: يمكن للجميع النشر\n"
+"- الشركاء: الشركاء المعتمدون فقط\n"
+"- المتابعون: فقط متابعو الوثيقة ذات الصلة أو أعضاء القنوات التالية.\n"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Presence of employees"
+msgstr "حضور الموظفين"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Presence reporting screen, email and IP address control."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_presence_state__present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_presence_state__present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_present
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_presence_state__present
+msgid "Present"
+msgstr "الحالي"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_absent_active
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_absent_active
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_absent_active
+msgid "Present but not active"
+msgstr ""
+
+#. module: hr
+#: model:ir.actions.report,name:hr.hr_employee_print_badge
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Print Badge"
+msgstr "طباعة الشارة"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "Private Address"
+msgstr "العنوان الخاص"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__private_city
+msgid "Private City"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Private Contact"
+msgstr "جهة اتصال خاصة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__private_country_id
+msgid "Private Country"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__private_email
+#: model:ir.model.fields,field_description:hr.field_res_users__private_email
+msgid "Private Email"
+msgstr "بريد الكتروني خاص"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Private Information"
+msgstr "معلومات خاصة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__phone
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_phone
+msgid "Private Phone"
+msgstr "هاتف خاص"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__private_state_id
+msgid "Private State"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__private_street
+msgid "Private Street"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__private_street2
+msgid "Private Street2"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__private_zip
+msgid "Private Zip"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_employee_public
+msgid "Public Employee"
+msgstr "موظف في القطاع العام"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.action_hr_job
+msgid "Ready to recruit more efficiently?"
+msgstr "على استعداد لتوظيف أكثر كفاءة؟"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__name
+msgid "Reason"
+msgstr "السبب"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Recruitment"
+msgstr "التوظيف"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_job__state__recruit
+msgid "Recruitment in Progress"
+msgstr "عملية التوظيف جارية"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__ref
+msgid "Reference"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_form_view
+msgid "Refuse"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#: model:ir.actions.act_window,name:hr.hr_departure_wizard_action
+#, python-format
+msgid "Register Departure"
+msgstr "تسجيل المغادرة"
+
+#. module: hr
+#: code:addons/hr/models/res_partner.py:0
+#, python-format
+msgid "Related Employees"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Related User"
+msgstr "مستخدم مرتبط"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_users__employee_ids
+msgid "Related employee"
+msgstr "الموظف المقترن"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_res_partner__employee_ids
+msgid "Related employees based on their private address"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__user_id
+#: model:ir.model.fields,help:hr.field_resource_resource__user_id
+msgid "Related user name for the resource to manage its access."
+msgstr "اسم المستخدم المرتبط بالمورد لإدارة وصوله."
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_relation__name
+msgid "Relationship"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_family__relation_id
+msgid "Relationship with the employee"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_relation__name
+msgid "Relationship with thw employee"
+msgstr ""
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.hr_menu_hr_reports
+#: model:ir.ui.menu,name:hr.menu_hr_reporting_timesheet
+msgid "Reporting"
+msgstr "التقارير"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__requirements
+msgid "Requirements"
+msgstr "المتطلبات"
+
+#. module: hr
+#: model:hr.departure.reason,name:hr.departure_resigned
+msgid "Resigned"
+msgstr "استقال"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__resource_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__resource_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__resource_id
+msgid "Resource"
+msgstr "المورد"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__resource_calendar_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__resource_calendar_id
+msgid "Resource Calendar"
+msgstr "تقويم المورد"
+
+#. module: hr
+#: model:ir.model,name:hr.model_resource_resource
+msgid "Resources"
+msgstr "الموارد"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__responsible
+msgid "Responsible"
+msgstr "المسئول"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__activity_user_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: hr
+#: model:hr.departure.reason,name:hr.departure_retired
+msgid "Retired"
+msgstr "تقاعد"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__sinid
+msgid "SIN No"
+msgstr "رقم SIN"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_has_sms_error
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_has_sms_error
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_has_sms_error
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__ssnid
+msgid "SSN No"
+msgstr "رقم SSN"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Schedule"
+msgstr "جدولة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__study_school
+#: model:ir.model.fields,field_description:hr.field_res_users__study_school
+msgid "School"
+msgstr "مدرسة"
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_family__employee_id
+msgid "Select corresponding Employee"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__coach_id
+#: model:ir.model.fields,help:hr.field_hr_employee_base__coach_id
+#: model:ir.model.fields,help:hr.field_hr_employee_public__coach_id
+#: model:ir.model.fields,help:hr.field_res_users__coach_id
+msgid ""
+"Select the \"Employee\" who is the coach of this employee.\n"
+"The \"Coach\" has no specific rights or responsibilities by default."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_departure_reason__sequence
+#: model:ir.model.fields,field_description:hr.field_hr_job__sequence
+msgid "Sequence"
+msgstr "المسلسل"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Set default company schedule to manage your employees working time"
+msgstr "قم بتعيين جدول الشركة الافتراضي لإدارة وقت عمل موظفيك"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_job__state
+msgid ""
+"Set whether the recruitment process is open or closed for this job position."
+msgstr "حدد ما إذا كانت عملية التوظيف مفتوحة أو مغلقة لهذا المنصب الوظيفي."
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_config_settings_action
+#: model:ir.ui.menu,name:hr.hr_menu_configuration
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__single
+msgid "Single"
+msgstr "أعزب"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__module_hr_skills
+msgid "Skills Management"
+msgstr "إدارة المهارات"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__sinid
+msgid "Social Insurance Number"
+msgstr "رقم التأمين الاجتماعي"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__ssnid
+msgid "Social Security Number"
+msgstr "رقم الضمان الاجتماعي"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_plan_activity_type__responsible_id
+msgid "Specific responsible of activity if not linked to the employee."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__spouse_birthdate
+#: model:ir.model.fields,field_description:hr.field_res_users__spouse_birthdate
+msgid "Spouse Birthdate"
+msgstr "تاريخ ميلاد الشريك"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__spouse_complete_name
+#: model:ir.model.fields,field_description:hr.field_res_users__spouse_complete_name
+msgid "Spouse Complete Name"
+msgstr "اسم الزوج بالكامل"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Start Recruitment"
+msgstr "ابدأ التوظيف"
+
+#. module: bstt_hr
+#: code:addons/bstt_hr/models/hr.py:0
+#, python-format
+msgid "Start Work"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__start_work_request_count
+msgid "Start Work Request Count"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__id_start_date
+msgid "Start date of Identification ID"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__state
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "State"
+msgstr "المحافظة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__state
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Status"
+msgstr "الحالة"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__activity_state
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة على أساس الأنشطة\n"
+"المتأخرة: تاريخ الاستحقاق مر\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"المخطط: الأنشطة المستقبلية."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "Stop Recruitment"
+msgstr "وقف التوظيف"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "Street 2..."
+msgstr "الشارع 2..."
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "Street..."
+msgstr "الشارع..."
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__employee_type__student
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__employee_type__student
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__employee_type__student
+msgid "Student"
+msgstr "طالب"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_plan_activity_type__summary
+msgid "Summary"
+msgstr "الملخص"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee_category__name
+msgid "Tag Name"
+msgstr "اسم الوسم"
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_employee_category_name_uniq
+msgid "Tag name already exists !"
+msgstr "اسم الوسم موجود بالفعل!"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__category_ids
+#: model:ir.ui.menu,name:hr.menu_view_employee_category_form
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Tags"
+msgstr "الوسوم"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__tax_deduction
+msgid "Taxes"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__tax_deduction_amount
+msgid "Taxes Amount"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_employee_barcode_uniq
+msgid ""
+"The Badge ID must be unique, this one is already assigned to another "
+"employee."
+msgstr "يجب أن يكون رقم الشارة رقمًا فريدًا، هذا الرقم مستخدم لموظف آخر."
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__company_country_code
+msgid ""
+"The ISO country code in two chars. \n"
+"You can use this field for quick search."
+msgstr ""
+"كود الدولة حسب المعيار الدولي أيزو المكون من حرفين.\n"
+"يمكنك استخدام هذا الحقل لإجراء بحث سريع."
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid "The PIN must be a sequence of digits."
+msgstr "يجب أن يكون الرقم السري سلسلة من الأرقام."
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__is_address_home_a_company
+#: model:ir.model.fields,field_description:hr.field_res_users__is_address_home_a_company
+msgid "The employee address has a company linked"
+msgstr "عنوان الموظف لديه شركة مرتبطة"
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__employee_type
+#: model:ir.model.fields,help:hr.field_hr_employee_base__employee_type
+#: model:ir.model.fields,help:hr.field_hr_employee_public__employee_type
+#: model:ir.model.fields,help:hr.field_res_users__employee_type
+msgid ""
+"The employee type. Although the primary purpose may seem to categorize "
+"employees, this field has also an impact in the Contract History. Only "
+"Employee type is supposed to be under contract and will have a Contract "
+"History."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_job_no_of_recruitment_positive
+msgid "The expected number of new employees must be positive."
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid ""
+"The fields \"%s\" you try to read is not available on the public employee "
+"profile."
+msgstr "الحقول %s التي تحاول قراءتها غير متاحة في ملف تعريف الموظف العام."
+
+#. module: hr
+#: model:ir.model.constraint,message:hr.constraint_hr_job_name_company_uniq
+msgid "The name of the job position must be unique per department in company!"
+msgstr "يجب أن يكون المسمى الوظيفي فريدًا لكل قسم في المؤسسة!"
+
+#. module: hr
+#: model:res.groups,comment:hr.group_hr_user
+msgid "The user will be able to approve document created by employees."
+msgstr ""
+"سيتمكن المستخدم من الموافقة على المستند الذي تم إنشاؤه بواسطة الموظفين."
+
+#. module: hr
+#: model:res.groups,comment:hr.group_hr_manager
+msgid ""
+"The user will have access to the human resources configuration as well as "
+"statistic reports."
+msgstr ""
+"سيتمكن المستخدم من الوصول إلى اعدادات الموارد البشرية وكذلك التقارير "
+"الإحصائية."
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid "The work permit of %(employee)s expires at %(date)s."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,help:hr.field_hr_employee__tz
+#: model:ir.model.fields,help:hr.field_hr_employee_base__tz
+#: model:ir.model.fields,help:hr.field_hr_employee_public__tz
+msgid ""
+"This field is used in order to define in which timezone the resources will "
+"work."
+msgstr "يُستخدم هذا الحقل لتحديد المنطقة الزمنية التي ستعمل فيها الموارد."
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__ticket_allowance
+msgid "Ticket"
+msgstr ""
+
+#. module: bstt_hr
+#: model:hr.salary.rule,name:bstt_hr.hr_rule_ticket_allowance
+msgid "Ticket Allowance"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_leave
+msgid "Time Off"
+msgstr "الاجازات"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__tz
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__tz
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__tz
+msgid "Timezone"
+msgstr "المنطقة الزمنية"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_presence_state__to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_presence_state__to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_presence_state__to_define
+msgid "To Define"
+msgstr "للتعريف"
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid ""
+"To avoid multi company issues (loosing the access to your previous "
+"contracts, leaves, ...), you should create another employee in the new "
+"company instead."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_to_define
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_to_define
+msgid "To define"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+msgid "Today Activities"
+msgstr "نشاطات اليوم"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__total_employee
+msgid "Total Employee"
+msgstr "إجمالي الموظف"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_job__expected_employees
+msgid "Total Forecasted Employees"
+msgstr "عدد الموظفين المتوقعين"
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__employee_type__trainee
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__employee_type__trainee
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__employee_type__trainee
+msgid "Trainee"
+msgstr "متدرب"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__activity_exception_decoration
+#: model:ir.model.fields,help:hr.field_hr_employee__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي المسجل."
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__hr_icon_display__presence_undetermined
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_base__hr_icon_display__presence_undetermined
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee_public__hr_icon_display__presence_undetermined
+msgid "Undetermined"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_unread
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_unread
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_unread
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_unread
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Unread Messages"
+msgstr "الرسائل الجديدة"
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__message_unread_counter
+#: model:ir.model.fields,field_description:hr.field_hr_department__message_unread_counter
+#: model:ir.model.fields,field_description:hr.field_hr_employee__message_unread_counter
+#: model:ir.model.fields,field_description:hr.field_hr_job__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عدد الرسائل الجديدة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__user_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__user_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__user_id
+#: model:ir.model.fields,field_description:hr.field_resource_resource__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "User linked to employee %s is required."
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "User of coach of employee %s is not set."
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_plan.py:0
+#, python-format
+msgid "User of manager of employee %s is not set."
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__user_partner_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__user_partner_id
+msgid "User's partner"
+msgstr "شريك المستخدم"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_users
+msgid "Users"
+msgstr "المستخدمون"
+
+#. module: bstt_hr
+#: model:hr.medical.insurance.type,name:bstt_hr.hr_medical_insurance_type_vip
+msgid "VIP"
+msgstr ""
+
+#. module: bstt_hr
+#: model:hr.medical.insurance.type,name:bstt_hr.hr_medical_insurance_type_vvip
+msgid "VVIP"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_job_view_kanban
+msgid "Vacancies :"
+msgstr "الوظائف الشاغرة:"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_res_company__hr_presence_control_ip_list
+#: model:ir.model.fields,field_description:hr.field_res_config_settings__hr_presence_control_ip_list
+msgid "Valid IP addresses"
+msgstr "عناوين IP صالحة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__visa_expire
+#: model:ir.model.fields,field_description:hr.field_res_users__visa_expire
+msgid "Visa Expire Date"
+msgstr "تاريخ انتهاء التأشيرة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__visa_no
+#: model:ir.model.fields,field_description:hr.field_res_users__visa_no
+msgid "Visa No"
+msgstr "رقم التأشيرة"
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__wage_day
+msgid "Wage(Day)"
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_employee.py:0
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__website_message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_department__website_message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_employee__website_message_ids
+#: model:ir.model.fields,field_description:hr.field_hr_job__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee_start_work__website_message_ids
+#: model:ir.model.fields,help:hr.field_hr_department__website_message_ids
+#: model:ir.model.fields,help:hr.field_hr_employee__website_message_ids
+#: model:ir.model.fields,help:hr.field_hr_job__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields.selection,name:hr.selection__hr_employee__marital__widower
+msgid "Widower"
+msgstr "أرمل"
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.act_employee_from_department
+#: model_terms:ir.actions.act_window,help:hr.hr_employee_public_action
+msgid ""
+"With just a quick glance on the Odoo employee screen, you\n"
+"                can easily find all the information you need for each person;\n"
+"                contact data, job position, availability, etc."
+msgstr ""
+"ب نظرة سريعة على صفحة الموظف على أودو، يمكنك\n"
+"                بسهولة العثور على جميع المعلومات التي تحتاجها لكل شخص؛\n"
+"                بيانات الاتصال، والمنصب الوظيفي، والجاهزية، إلخ."
+
+#. module: hr
+#: model_terms:ir.actions.act_window,help:hr.open_view_employee_list_my
+msgid ""
+"With just a quick glance on the Odoo employee screen, you\n"
+"               can easily find all the information you need for each person;\n"
+"               contact data, job position, availability, etc."
+msgstr ""
+"بمجرد إلقاء نظرة سريعة على شاشة موظف Odoo \n"
+"، يمكنك بسهولة العثور على جميع المعلومات التي تحتاجها لكل شخص ؛\n"
+" بيانات الاتصال ، الوظيفة ، التوفر ، إلخ."
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__address_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__address_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__address_id
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__address_id
+#: model:ir.model.fields,field_description:hr.field_res_users__address_id
+msgid "Work Address"
+msgstr "عنوان العمل"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_email
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__work_email
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__work_email
+#: model:ir.model.fields,field_description:hr.field_res_users__work_email
+msgid "Work Email"
+msgstr "البريد الإلكتروني للعمل"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Work Information"
+msgstr "معلومات العمل"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_work_location
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_location_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__work_location_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__work_location_id
+#: model:ir.model.fields,field_description:hr.field_hr_work_location__name
+#: model:ir.model.fields,field_description:hr.field_res_users__work_location_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_work_location_form_view
+#: model_terms:ir.ui.view,arch_db:hr.hr_work_location_tree_view
+msgid "Work Location"
+msgstr "مكان العمل"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.hr_work_location_action
+#: model:ir.ui.menu,name:hr.menu_hr_work_location_tree
+msgid "Work Locations"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__mobile_phone
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__mobile_phone
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__mobile_phone
+#: model:ir.model.fields,field_description:hr.field_res_users__mobile_phone
+msgid "Work Mobile"
+msgstr "الهاتف المحمول للعمل"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_config_settings_view_form
+msgid "Work Organization"
+msgstr "تنظيم العمل"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__has_work_permit
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_form
+msgid "Work Permit"
+msgstr "تصريح عمل"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_permit_expiration_date
+msgid "Work Permit Expiration Date"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__work_permit_fees_deduction
+msgid "Work Permit Fees"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__permit_no
+#: model:ir.model.fields,field_description:hr.field_res_users__permit_no
+msgid "Work Permit No"
+msgstr "رقم تصريح العمل"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_permit_scheduled_activity
+msgid "Work Permit Scheduled Activity"
+msgstr ""
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__work_phone
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__work_phone
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__work_phone
+#: model:ir.model.fields,field_description:hr.field_res_users__work_phone
+msgid "Work Phone"
+msgstr "هاتف العمل"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__resource_calendar_id
+msgid "Working Hours"
+msgstr "ساعات العمل"
+
+#. module: hr
+#: code:addons/hr/models/res_users.py:0
+#, python-format
+msgid ""
+"You are only allowed to update your preferences. Please contact a HR officer"
+" to update other information."
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__passport_attachment_id
+msgid "You can attach the copy of Passport"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__id_attachment_id
+msgid "You can attach the copy of your Id"
+msgstr ""
+
+#. module: hr
+#. openerp-web
+#: code:addons/hr/static/src/models/employee/employee.js:0
+#, python-format
+msgid "You can only chat with employees that have a dedicated user."
+msgstr ""
+
+#. module: hr
+#: code:addons/hr/models/hr_department.py:0
+#, python-format
+msgid "You cannot create recursive departments."
+msgstr "لا يمكنك إنشاء أقسام متكررة."
+
+#. module: hr
+#: code:addons/hr/models/res_config_settings.py:0
+#, python-format
+msgid "You should select at least one Advanced Presence Control option."
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.res_users_view_form_profile
+msgid "ZIP"
+msgstr "الرمز البريدي"
+
+#. module: hr
+#: code:addons/hr/models/mail_alias.py:0
+#, python-format
+msgid "addresses linked to registered employees"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_department_form
+msgid "department"
+msgstr "قسم"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_form
+msgid "e.g. John Doe"
+msgstr "مثل: محمد محمود"
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.hr_plan_view_form
+msgid "e.g. Onboarding"
+msgstr ""
+
+#. module: hr
+#: model_terms:ir.ui.view,arch_db:hr.view_hr_job_form
+msgid "e.g. Sales Manager"
+msgstr "مثلًا: مدير مبيعات"
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_certificates
+msgid "hr.certificates"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_employee_relation
+msgid "hr.employee.relation"
+msgstr ""
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_plan
+msgid "plan"
+msgstr "خطة"
+
+#. module: hr
+#: code:addons/hr/models/models.py:0
+#, python-format
+msgid "restricted to employees"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+msgid "إلتزامات"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__work_action_type
+msgid "اإلجراءات المتخذة في حال التجاوز"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee__emp_type__citizen_son
+msgid "ابن مواطنة"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_form_view
+msgid "ارسال"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__bank_id
+msgid "اسم البنك"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_certificates__name
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__member_name
+msgid "الاسم"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__foreign_name
+msgid "الاسم باللغة الانجليزية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__work_action_type__exemption
+msgid "الاعفاء من أي قرار"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__iqama
+msgid "الاقامة"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+msgid "التأمينات"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__guidance
+msgid "التوجيه"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "التوجيه Guidance"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+msgid "الجهة التعليمية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_work_location__analytic_account_id
+msgid "الحساب التحليلي"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "الراتب والبدلات Allowances - Basic Salar"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__employee_no
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__employee_no
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_employee_no_view_search
+msgid "الرقم الوظيفي"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__company_id
+msgid "الشركة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__age
+msgid "العمر"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__address
+msgid "العنوان"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__department_id
+msgid "القسم"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__insurance_amount
+msgid "القيمة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__sponsor
+msgid "الكفيل"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_form_view
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_tree_view
+msgid "المباشرة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.actions.act_window,name:bstt_hr.hr_start_work_action
+msgid "المباشرةs"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__iqama_duration
+msgid "المدة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__state__executive_manager
+#: model:res.groups,name:bstt_hr.group_executive_manager
+msgid "المدير التنفيذي"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__id_attachment_id
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__passport_attachment_id
+msgid "المرفق"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__job_id
+msgid "المسمى الوظيفي"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__project_id
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_work_location__project_id
+msgid "المشروع"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__iqama_job
+msgid "المهنة بالإقامة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__employee_id
+msgid "الموظف"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__emp_type
+msgid "النوع"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__travel_to_country
+msgid "الي"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+msgid "انشاء طلب المباشرة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__start_work_type__after_exceptional_holiday
+msgid "باشر العمل بعد إجازة اضطرارية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__start_work_type__after_annual_holiday
+msgid "باشر العمل بعد إجازة سنوية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__start_work_type__after_sick_holiday
+msgid "باشر العمل بعد إجازة مرضية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__start_work_type__after_task
+msgid "باشر العمل بعد انهاء مهمة / تكليف"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__start_work_type__after_education
+msgid "باشر العمل بعد دورة تدريبة / دراسية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__start_work_type__first
+msgid "باشر الوظيفة لأول مرة / تعيين او نقل"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__ins_fam_ids
+msgid "بيانات التأمينات  العائلية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__fam_ids
+msgid "بيانات العائلة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__id_start_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__passport_start_date
+msgid "تاريخ الاصدار"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__id_expiry_date
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__passport_expiry_date
+msgid "تاريخ الانتهاء"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__start_work_date
+msgid "تاريخ المباشرة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__birth_date
+msgid "تاريخ الميلاد"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__iqama_expiry_date_hijri
+msgid "تاريخ انتهاء الإقامة بالهجري"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_expire_date
+msgid "تاريخ انتهاء التأمين"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_leave__is_travel_done
+msgid "تم صرف مخصص السفر"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__work_action_type__deduct_from_holiday
+msgid "حسم عدد أيام التجاوز من اإلجازة السنوية القادمة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__work_action_type__deduct_from_salary
+msgid "حسم عدد أيام التجاوز من الراتب"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__member_contact
+msgid "رقم الجوال"
+msgstr ""
+
+#. modules: bstt_hr, hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__member_identification_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee__identification_id
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+msgid "رقم الهوية/الاقامة"
+msgstr ""
+
+#. module: bstt_hr
+#: code:addons/bstt_hr/models/hr.py:0
+#, python-format
+msgid "رقم الهوية/الاقامة يجب ان يكون 10 أرقام"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__bank_account_no
+msgid "رقم حساب البنك"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__manager_phone
+msgid "رقم صاحب العمل"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee__emp_type__citizen_husband
+msgid "زوج مواطنة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee__emp_type__citizen_wife
+msgid "زوجة مواطن"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_company
+msgid "شركة التأمين"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.module.category,name:bstt_hr.hr_employee_start_work
+msgid "صلاحيات مباشرة العمل"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.view_employee_form
+msgid "عدد التابعين"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_type_id
+msgid "فئة التأمين الطبي"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee__emp_type__displaced_tribes
+msgid "قبائل نازحة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_value
+msgid "قيمة التأمين"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_life_partner
+msgid "قيمة التأمين للزوجـ/ـة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son1
+msgid "قيمة التأمين للطفل1"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son10
+msgid "قيمة التأمين للطفل10"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son2
+msgid "قيمة التأمين للطفل2"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son3
+msgid "قيمة التأمين للطفل3"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son4
+msgid "قيمة التأمين للطفل4"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son5
+msgid "قيمة التأمين للطفل5"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son6
+msgid "قيمة التأمين للطفل6"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son7
+msgid "قيمة التأمين للطفل7"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son8
+msgid "قيمة التأمين للطفل8"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_son9
+msgid "قيمة التأمين للطفل9"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__travel_value
+msgid "قيمة مخصص السفر"
+msgstr ""
+
+#. module: bstt_hr
+#: code:addons/bstt_hr/models/hr.py:0
+#: code:addons/bstt_hr/models/hr_start_work.py:0
+#, python-format
+msgid "لايمكن انشاء طلب مباشرة مع وجود طلب مباشرة تحت الاجراء"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__work_action_type__draw_attention
+msgid "لفت نظر للموظف"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model,name:bstt_hr.model_hr_employee_start_work
+msgid "مباشرة العمل"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.actions.report,name:bstt_hr.start_work_report5
+msgid "مباشرة العمل (PDF)"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__medical_insurance_duration
+msgid "مدة التأمين"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__state__project_manager
+msgid "مدير المشروع"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__state__hr_manager
+#: model:res.groups,name:bstt_hr.group_hr_manager_group
+msgid "مدير الموارد البشرية"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__state__refuse
+msgid "مرفوض"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee__certificate_id
+msgid "مستوى الشهادة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__state__draft
+msgid "مسودة"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "معلومــــــات الموظـــــــف"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__state__approve
+msgid "مقبول"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee__emp_type__foreign
+msgid "مقيم"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee_start_work__state__cancel
+msgid "ملغي"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_contract__travel_from_country
+msgid "من"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields.selection,name:bstt_hr.selection__hr_employee__emp_type__national
+msgid "مواطن"
+msgstr ""
+
+#. module: bstt_hr
+#: model:res.groups,name:bstt_hr.group_project_manager_exceptional
+msgid "موافقة استثنائية لمدير المشروع"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_form_view
+msgid "موافقة المدير التنفيذي"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_form_view
+msgid "موافقة مدير المشروع"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.hr_start_work_form_view
+msgid "موافقة مدير الموارد البشرية"
+msgstr ""
+
+#. module: bstt_hr
+#: model_terms:ir.ui.view,arch_db:bstt_hr.start_work_template
+msgid "نــــوع المباشـــرة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_family__relation_id
+msgid "نوع الصلة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__start_work_type
+msgid "نوع المباشرة"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_employee_start_work__name
+msgid "وصف طلب المباشرة"
+msgstr ""
+
+#. module: bstt_hr
+#: code:addons/bstt_hr/models/hr.py:0 code:addons/bstt_hr/models/hr.py:0
+#, python-format
+msgid "يجب ان يكون رقم الحساب البنكي فريد. الرقم الحساب البنكي مسجل باسم %s"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,field_description:bstt_hr.field_hr_leave__is_travel_chk
+msgid "يوجد مخصص سفر"
+msgstr ""
+
+#. module: bstt_hr
+#: model:ir.model.fields,help:bstt_hr.field_hr_employee__passport_start_date
+msgid "ٍStart date of Passport ID"
+msgstr ""
