@@ -3,7 +3,7 @@
 #    A part of Open HRMS Project <https://www.openhrms.com>
 #
 #    Cybrosys Technologies Pvt. Ltd.
-#    Copyright (C) 2022-TODAY Cybrosys Technologies (<https://www.cybrosys.com>)
+#    Copyright (C) 202-TODAY Cybrosys Technologies (<https://www.cybrosys.com>)
 #    Author: Hajaj Roshan (<https://www.cybrosys.com>)
 #
 #    This program is free software: you can modify
@@ -23,9 +23,9 @@
 
 {
     'name': 'Open HRMS Branch Transfer',
-    'version': '16.0.1.0.0',
+    'version': '15.0.1.0.1',
     'summary': 'Employee transfer between branches',
-    'live_test_url': 'https://youtu.be/Qva8kW6xn4c',
+    'live_test_url': 'https://www.youtube.com/watch?v=gwZ0JpGn-Lw&feature=youtu.be',
     'category': 'Generic Modules/Human Resources',
     'author': 'Cybrosys Techno solutions,Open HRMS',
     'maintainer': 'Cybrosys Techno Solutions',
@@ -34,7 +34,7 @@
     'depends': ['base',
                 'hr',
                 'hr_contract',
-                'hr_employee_updation',
+                'hr_employee_updation'
                 ],
     'data': [
         'views/employee_transfer.xml',

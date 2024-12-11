@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="view_bonus_deduction_settings_form" model="ir.ui.view">
+            <field name="name">view.bonus.deduction.settings.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="hr.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='presence_reporting_setting']" position="after">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="debit_account_id"/>
+                            <div class="text-muted">
+                                Set default debit loan account
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="debit_account_id" class="o_light_label"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="credit_account_id"/>
+                            <div class="text-muted">
+                                Set default credit loan account
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="credit_account_id" class="o_light_label"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="journal_id"/>
+                            <div class="text-muted">
+                                Set default journal loan
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="journal_id" class="o_light_label"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="side_notes_type_1" model="hr.side.notes.type">
+            <field name="name">Notes</field>
+        </record>
+
+        <record id="side_notes_type_2" model="hr.side.notes.type">
+            <field name="name">Inquiry</field>
+        </record>
+
+        <record id="side_notes_type_3" model="hr.side.notes.type">
+            <field name="name">complaint</field>
+        </record>
+
+          <record id="side_notes_type_4" model="hr.side.notes.type">
+            <field name="name">Request</field>
+        </record>
+
+    </data>
+</odoo>

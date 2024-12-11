@@ -1,0 +1,15 @@
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_hr_end_service_time_off_form" model="ir.ui.view">
+        <field name="name">view.hr.end.service.time.off.form</field>
+        <field name="model">hr.end.service</field>
+        <field name="inherit_id" ref="hr_end_of_service.view_hr_end_service_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='other_info']" position="inside">
+                <separator string="Time Off"/>
+                <field name="remaining_balance_time_off"/>
+                <field name="remaining_balance_time_off_amount"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
