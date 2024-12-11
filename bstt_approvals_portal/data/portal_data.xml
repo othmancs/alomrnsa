@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <record id="approval_portal" model="portal.portal">
+        <field name="name">Approval Request</field>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="domain">[('request_owner_id.id','=',uid)]</field>
+    </record>
+
+    <record id="approval_portal_list_line1" model="portal.view">
+        <field name="list_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__name"/>
+    </record>
+
+    <record id="approval_portal_list_line2" model="portal.view">
+        <field name="list_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__request_owner_id"/>
+    </record>
+
+    <record id="approval_portal_list_line3" model="portal.view">
+        <field name="list_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__category_id"/>
+    </record>
+
+    <record id="approval_portal_list_line4" model="portal.view">
+        <field name="list_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__request_status"/>
+    </record>
+
+    <record id="approval_portal_form_line1" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__name"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line2" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__request_owner_id"/>
+        <field name="domain">[('id','=',uid)]</field>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line3" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__category_id"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line4" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__reason"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+    <record id="approval_portal_form_line1" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__name"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line2" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__request_owner_id"/>
+        <field name="domain">[('id','=',uid)]</field>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line3" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__category_id"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line5" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__date_start"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line6" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__date_end"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="approval_portal_form_line7" model="portal.view">
+        <field name="form_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="field_id" ref="approvals.field_approval_request__approver_ids"/>
+        <field name="attrs_readonly">[('request_status','!=','new')]</field>
+        <field name="required" eval="True"/>
+    </record>
+
+    <record id="form_line7_table_line1" model="portal.table.line">
+        <field name="view_id" ref="approval_portal_form_line7"/>
+        <field name="field_id" ref="approvals.field_approval_approver__user_id"/>
+        <field name="required" eval="True"/>
+    </record>
+
+     <record id="form_line7_table_line2" model="portal.table.line">
+        <field name="view_id" ref="approval_portal_form_line7"/>
+        <field name="field_id" ref="approvals.field_approval_approver__required"/>
+    </record>
+
+    <record id="form_line7_table_line3" model="portal.table.line">
+        <field name="view_id" ref="approval_portal_form_line7"/>
+        <field name="field_id" ref="approvals.field_approval_approver__status"/>
+    </record>
+
+    <record id="approval_portal_form_button1" model="portal.view.button">
+        <field name="portal_id" ref="approval_portal"/>
+        <field name="model_id" ref="approvals.model_approval_request"/>
+        <field name="action">action_confirm</field>
+        <field name="name">Submit</field>
+        <field name="attrs_invisible">[('request_status','!=','new')]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="group_show_product_code" model="res.groups">
+            <field name="name">Show product code in invoice</field>
+            <field name="comment">Show product code in invoice</field>
+        </record>
+
+    </data>
+</odoo>

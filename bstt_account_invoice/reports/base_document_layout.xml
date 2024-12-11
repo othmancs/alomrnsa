@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_layout_standard" inherit_id="web.external_layout_standard">
+            <xpath expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']"
+                   position="replace">
+                <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+                    <div class="text-center"
+                         style="font-size: small;border-top: 1px solid black;font-family: 'Dubai-Medium', cursive;">
+                        <ul class="list-inline mb4">
+
+                            <li t-if="company.phone" class="list-inline-item d-inline">
+                                <span class="o_force_ltr" t-field="company.phone"/>
+                            </li>
+                            <li t-if="company.email" class="list-inline-item d-inline">
+                                <span t-field="company.email"/>
+                            </li>
+                            <li t-if="company.website" class="list-inline-item d-inline">
+                                <span t-field="company.website"/>
+                            </li>
+                            <!--                    <li t-if="company.vat" class="list-inline-item d-inline"><t-->
+                            <!--                            t-esc="company.country_id.vat_label or 'Tax ID'"/>:-->
+                            <!--                        <span t-field="company.vat"/>-->
+                            <!--                    </li>-->
+                        </ul>
+                        <div class="row">
+                            <div class="col-12" name="company_address">
+                                <div t-field="company.partner_id"
+                                     t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'
+                                />
+                            </div>
+                        </div>
+
+                        <div t-if="report_type == 'pdf'" class="text-muted">
+                            <div class="row">
+                                <div class="col-6 text-right">
+                                    Page/صفحة:
+                                </div>
+                                <div class="col-6 text-left pl-0">
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[@t-attf-class='header o_company_#{company.id}_layout']" position="replace">
+                <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                    <div class="row"
+                         style="font-weight: bold;font-size: small;border-bottom: 1px solid black;direction: rtl;">
+                        <div class="col-5 text-center" style="text-align:left;">
+                            <h4 class="mt0" t-field="company.report_header" style="text-align:right;"/>
+                            <div class="float-center mb4" style="text-align:right;">
+                                <ul class="list-inline">
+                                    <li class="ml-4 float-center mb4" style="font-size: large;white-space: nowrap">
+                                        <span t-field="company.name"/>
+                                    </li>
+                                    <li class="ml-4 float-center">
+                                        <span>المملكة العربية السعودية</span>
+                                    </li>
+                                    <li class="ml-4 float-center">الرقم الضريبي
+                                        <span t-field="company.vat"></span>
+                                    </li>
+                                    <li class="ml-4 float-center">رقم سجل الشركة
+                                        <span t-field="company.company_registry"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-2 ">
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                                 style="height: 130px;width: 200px;display: block;margin-left: -50px;"
+                                 alt="Logo"/>
+                        </div>
+                        <div class="col-5  text-center" style="text-align:right;">
+                            <h4 class="mt0" t-field="company.report_header" style="text-align:left;"/>
+                            <div class="float-center mb4" style="text-align:left;">
+                                <!--                               class="list-group list-group-flush flex-wrap flex-row flex-lg-column"   >-->
+                                <ul class="list-inline" style="text-align:left;">
+                                    <li class="float-center mb4" style="font-size: large;white-space: nowrap;">
+                                        <span t-field="company.foreign_name"/>
+                                    </li>
+                                    <li class="float-center mb4">
+                                        <span>Kingdom of Saudi Arabia</span>
+                                    </li>
+                                    <li class="float-center mb4">
+                                        <span t-if="company.partner_id.vat">
+                                            <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:
+                                            <span t-field="company.partner_id.vat"/>
+                                        </span>
+                                    </li>
+                                    <li class="float-center mb4">
+                                        <span>CR No</span>
+                                        <span t-field="company.company_registry"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--                        <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>-->
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

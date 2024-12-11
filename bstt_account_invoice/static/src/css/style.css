@@ -1,0 +1,10 @@
+/* english font */
+
+.page{
+  /*  margin-top:-50px !important; */
+font-family: 'Times New Roman' !important;
+font-size: 11px !important;
+}
+body .header .footer {
+font-family: 'Times New Roman Bold' !important;
+}

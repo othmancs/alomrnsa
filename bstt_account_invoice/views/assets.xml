@@ -1,0 +1,7 @@
+<odoo>
+    <template id="report_assets_common_custom_fonts" name="qweb_fonts less backend assets" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+          <link href="/bstt_account_invoice/static/src/css/style.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+  </template>
+</odoo>
