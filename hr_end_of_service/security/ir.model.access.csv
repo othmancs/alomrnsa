@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_end_service_user,hr.end.service,model_hr_end_service,,1,1,1,1
+access_reject_end_service_wizard_user,reject.end_service.wizard,model_reject_end_service_wizard,,1,1,1,1
+access_hr_end_service_setting_user,hr.end.service.setting,model_hr_end_service_setting,hr.group_hr_user,1,0,0,0
+access_hr_end_service_setting_manager,hr.end.service.setting.manager,model_hr_end_service_setting,hr.group_hr_manager,1,1,1,1
+

@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="view_reject_reason_wizard_form" model="ir.ui.view">
+            <field name="name">view.reject.wizard.form</field>
+            <field name="model">reject.end_service.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="reject_reason"/>
+                    </group>
+
+                    <footer>
+                        <button name="action_reject_reason" string="Save" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_reject_reason_wizard" model="ir.actions.act_window">
+            <field name="name">Reject Reason</field>
+            <field name="res_model">reject.end_service.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hr_end_of_service.view_reject_reason_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
+

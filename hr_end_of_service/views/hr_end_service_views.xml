@@ -1,0 +1,212 @@
+<odoo>
+    <record id="view_hr_end_service_filter" model="ir.ui.view">
+        <field name="name">view.hr.bonus.filter</field>
+        <field name="model">hr.end.service</field>
+        <field name="arch" type="xml">
+            <search string="End Of Service">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="join_date"/>
+                <field name="date"/>
+                <field name="reason"/>
+                <field name="department_id"/>
+                <field name="manager_id"/>
+                <field name="job_id"/>
+                <filter name="date" string="Date" date="date"/>
+                <filter name="join_date" string="Join Date" date="join_date"/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="in_progress" string="Manager Approval" domain="[('state', '=', 'in_progress')]"/>
+                <filter name="approved" string="Approved" domain="[('state', '=', 'approved')]"/>
+                <filter name="rejected" string="Rejected" domain="[('state', '=', 'rejected')]"/>
+                <filter name="reason" string="Resignation" domain="[('reason', '=', 'resignation')]"/>
+                <filter name="reason" string="Termination" domain="[('reason', '=', 'termination')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Employee" name="employee_id" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Reason" name="reason" domain="[]" context="{'group_by':'reason'}"/>
+                    <filter string="State" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Department" name="department_id" domain="[]"
+                            context="{'group_by':'department_id'}"/>
+                    <filter string="Manager" name="manager_id" domain="[]" context="{'group_by':'manager_id'}"/>
+                    <filter string="Job" name="job_id" domain="[]" context="{'group_by':'job_id'}"/>
+
+                    <filter string="Join Date" name="join_date" domain="[]" context="{'group_by':'join_date'}"/>
+                    <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hr_end_service_tree" model="ir.ui.view">
+        <field name="name">view.hr.end.service.tree</field>
+        <field name="model">hr.end.service</field>
+        <field name="arch" type="xml">
+            <tree string="End Of Service">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="join_date" optional="show"/>
+                <field name="date" optional="show"/>
+                <field name="reason" optional="show"/>
+                <field name="department_id" optional="hide"/>
+                <field name="manager_id" optional="hide"/>
+                <field name="job_id" optional="hide"/>
+                <field name="total_service" optional="hide"/>
+                <field name="total_service_year" optional="show"/>
+                <field name="state" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_end_service_form" model="ir.ui.view">
+        <field name="name">view.hr.end.service.form</field>
+        <field name="model">hr.end.service</field>
+        <field name="arch" type="xml">
+            <form string="Hr End Of Service">
+                <header>
+                    <button name="action_reject_reason" type="object" string="Reject" class="oe_highlight"
+                            states="in_progress"/>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" states="draft"/>
+                    <button name="action_approve" type="object" string="Approve" class="oe_highlight"
+                            states="in_progress"/>
+                    <button name="action_reset_to_draft" type="object" confirm="Reset to draft ?"
+                            string="Reset to draft"
+                            states="rejected"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,approved"/>
+                </header>
+                <sheet>
+                    <field name="eos_setting_type" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_open_payslip" class="oe_stat_button" icon="fa-money"
+                                attrs="{'invisible':['|', ('state','!=','approved'), ('eos_setting_type', '=', 'journal')]}"
+                                string="Payslip"/>
+
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" options="{'no_create': True, 'no_open': True}"
+                                   attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                            <field name="contract_id" invisible="1"/>
+                            <field name="join_date"/>
+                            <field name="date" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                            <field name="reason" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                            <field name="eos_setting_id" required="1"
+                                   attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="company_id" options="{'no_create': True, 'no_open': True}"
+                                   groups="base.group_multi_company" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                            <field name="department_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="manager_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="job_id" options="{'no_create': True, 'no_open': True}"/>
+
+                        </group>
+                    </group>
+                    <group>
+                        <group name="service_period" string="Service Period">
+                            <field name="total_service"/>
+                            <field name="service_day"/>
+                            <field name="total_service_year"/>
+                        </group>
+                        <group name="total" string="Total ">
+                            <field name="eos_total"/>
+                        </group>
+                        <group name="other_info">
+                            <field name="move_id" options="{'no_create': True}"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <field name="note" attrs="{'readonly' : [('state', '=', 'draft')]}"/>
+                    </group>
+                    <group>
+                        <field name="reject_reason"
+                               attrs="{'invisible' : [('reject_reason','=', False)], 'readonly' : [('state', '!=', 'draft')]}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_end_service" model="ir.actions.act_window">
+        <field name="name">End Of Service</field>
+        <field name="res_model">hr.end.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Click to define new End of service</p>
+        </field>
+    </record>
+
+    <menuitem name="End Of Service"
+              action="hr_end_of_service.action_hr_end_service"
+              id="menu_hr_end_of_service"
+              parent="hr.menu_hr_root"
+              sequence="30"/>
+
+    <!--     Hr End Of Service Setting -->
+    <!--Hr End Of Service Setting Form view-->
+    <record id="hr_end_service_setting_form_view" model="ir.ui.view">
+        <field name="name">hr.end.service.setting.form</field>
+        <field name="model">hr.end.service.setting</field>
+        <field name="arch" type="xml">
+            <form string="Hr End Of Service Setting">
+                <sheet>
+                    <group col="4">
+                        <field name="name" required="1"/>
+                        <field name="type"/>
+                        <field name="credit_account_id" attrs="{'required' : [('type', '=', 'journal')]}"/>
+                        <field name="debit_account_id"  attrs="{'required' : [('type', '=', 'journal')]}"/>
+                        <field name="journal_id"  attrs="{'required' : [('type', '=', 'journal')]}"/>
+                        <field name="rule_code"  attrs="{'required' : [('type', '=', 'salary_structure')]}"/>
+                        <field name="rule_structure_id"  attrs="{'required' : [('type', '=', 'salary_structure')]}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="act_hr_employee_end_service_setting" model="ir.actions.act_window">
+        <field name="name">Hr End Of Service Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.end.service.setting</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--Hr End Of Service Setting Tree view-->
+    <record id="hr_end_service_setting_tree_view" model="ir.ui.view">
+        <field name="name">hr.end.service.setting.tree</field>
+        <field name="model">hr.end.service.setting</field>
+        <field name="arch" type="xml">
+            <tree string="Hr End Of Service Setting">
+                <field name="name" required="1"/>
+                <field name="credit_account_id" required="1"/>
+                <field name="debit_account_id" required="1"/>
+                <field name="journal_id" required="1"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <menuitem name="Hr End Of Service Setting"
+              id="menu_hr_end_service_setting"
+              parent="hr.menu_human_resources_configuration"
+              sequence="10"
+              action="act_hr_employee_end_service_setting"
+    />
+
+</odoo>

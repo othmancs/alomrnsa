@@ -1,0 +1,541 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_end_of_service
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-18 14:22+0000\n"
+"PO-Revision-Date: 2022-04-18 14:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_needaction
+msgid "Action Needed"
+msgstr "الإجراءات اللازمة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_ids
+msgid "Activities"
+msgstr "أنشطة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "رمز نوع النشاط"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Approve"
+msgstr "موافقة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields.selection,name:hr_end_of_service.selection__hr_end_service__state__approved
+#: model:mail.message.subtype,name:hr_end_of_service.mt_end_of_service_approved
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Approved"
+msgstr "تمت الموافقة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_reject_reason_wizard_form
+msgid "Cancel"
+msgstr "الغاء"
+
+#. module: hr_end_of_service
+#: model_terms:ir.actions.act_window,help:hr_end_of_service.action_hr_end_service
+msgid "Click to define new End of service"
+msgstr "انقر لتحديد نهاية الخدمة الجديدة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__contract_id
+msgid "Contract"
+msgstr "العقد"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__create_uid
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__create_date
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__date
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: hr_end_of_service
+#: code:addons/hr_end_of_service/models/hr_end_service.py:0
+#, python-format
+msgid "Date must be greater than or equal to join date"
+msgstr "يجب أن يكون التاريخ أكبر من أو يساوي تاريخ الانضمام"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__department_id
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Department"
+msgstr "القسم"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__display_name
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields.selection,name:hr_end_of_service.selection__hr_end_service__state__draft
+#: model:mail.message.subtype,name:hr_end_of_service.mt_end_of_service_draft
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__eos_total
+msgid "EOS Total"
+msgstr ""
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__employee_id
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_end_of_service
+#: model:ir.actions.act_window,name:hr_end_of_service.action_hr_end_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_payslip__end_service_id
+#: model:ir.ui.menu,name:hr_end_of_service.menu_hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_tree
+msgid "End Of Service"
+msgstr "نهاية الخدمة"
+
+#. module: hr_end_of_service
+#: model:mail.message.subtype,description:hr_end_of_service.mt_end_of_service_approved
+#: model:mail.message.subtype,description:hr_end_of_service.mt_end_of_service_rejected
+msgid "End Of Service has been rejected"
+msgstr "تم رفض نهاية الخدمة"
+
+#. module: hr_end_of_service
+#: model:mail.message.subtype,description:hr_end_of_service.mt_end_of_service_in_progress
+msgid "End Of Service in progress"
+msgstr "نهاية الخدمة قيد التقدم"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields.selection,name:hr_end_of_service.selection__hr_end_service__reason__contract_end
+msgid "End of Contract"
+msgstr "نهاية العقد"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_follower_ids
+msgid "Followers"
+msgstr "متابعون"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "رمز الخط الرائع ، على سبيل المثال  المهام"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: hr_end_of_service
+#: model:ir.model,name:hr_end_of_service.model_hr_end_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Hr End Of Service"
+msgstr "نهاية الخدمة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__id
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields.selection,name:hr_end_of_service.selection__hr_end_service__state__in_progress
+msgid "IN Progress"
+msgstr "في تقدم"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_exception_icon
+msgid "Icon"
+msgstr "الأيقونة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "الأيقونة للإشارة إلى استثناء النشاط"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__message_needaction
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "إذا كان محددًا، فهناك رسائل جديدة تحتاج لرؤيتها."
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__message_has_error
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا كان محددًا، فقد حدث خطأ في تسليم بعض الرسائل."
+
+#. module: hr_end_of_service
+#: model:mail.message.subtype,name:hr_end_of_service.mt_end_of_service_in_progress
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Job"
+msgstr "الوظيفة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__job_id
+msgid "Job Position"
+msgstr "المنصب الوظيفي"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__join_date
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Join Date"
+msgstr "تاريخ الانضمام"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service____last_update
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__write_uid
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__write_date
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "المرفق الرئيسي"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__manager_id
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Manager"
+msgstr "المدير"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Manager Approval"
+msgstr "موافقة مدير"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_ids
+msgid "Messages"
+msgstr "رسائل"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: hr_end_of_service
+#: code:addons/hr_end_of_service/models/hr_end_service.py:0
+#, python-format
+msgid "New"
+msgstr "جديد"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__note
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__name
+msgid "Number"
+msgstr "الإسم"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب اتخاذ إجراء"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل غير المقروءة"
+
+#. module: hr_end_of_service
+#: code:addons/hr_end_of_service/models/hr_end_service.py:0
+#, python-format
+msgid "Only draft end of service can be delete"
+msgstr "يمكن حذف مسودة نهاية الخدمة فقط"
+
+#. module: hr_end_of_service
+#: model:ir.model,name:hr_end_of_service.model_hr_payslip
+msgid "Pay Slip"
+msgstr "إيصال المرتب"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Payslip"
+msgstr "إيصال المرتب"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__reason
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Reason"
+msgstr "السبب"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: hr_end_of_service
+#: model:ir.model,name:hr_end_of_service.model_reject_end_service_wizard
+msgid "Reject End Service Wizard"
+msgstr " معالج إنهاء الخدمة"
+
+#. module: hr_end_of_service
+#: model:ir.actions.act_window,name:hr_end_of_service.action_reject_reason_wizard
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__reject_reason
+#: model:ir.model.fields,field_description:hr_end_of_service.field_reject_end_service_wizard__reject_reason
+msgid "Reject Reason"
+msgstr "رفض السبب"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields.selection,name:hr_end_of_service.selection__hr_end_service__state__rejected
+#: model:mail.message.subtype,name:hr_end_of_service.mt_end_of_service_rejected
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: hr_end_of_service
+#: model:mail.message.subtype,description:hr_end_of_service.mt_end_of_service_draft
+msgid "Reset End Of Service to draft"
+msgstr "إعادة تعيين نهاية الخدمة للصياغة"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Reset to draft"
+msgstr "إعادة التعيين إلى المسودة"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Reset to draft ?"
+msgstr "هل تريد إعادة التعيين إلى المسودة؟"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields.selection,name:hr_end_of_service.selection__hr_end_service__reason__resignation
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Resignation"
+msgstr "استقالة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__activity_user_id
+msgid "Responsible User"
+msgstr "مستخدم مسؤول"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_reject_reason_wizard_form
+msgid "Save"
+msgstr "حفظ"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Service Period"
+msgstr ""
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__join_date
+msgid "Start date of the contract."
+msgstr "تاريخ بدء العقد"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__state
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "State"
+msgstr "الحالة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الوضع على أساس الأنشطة\n"
+"متأخر: تاريخ الاستحقاق فات بالفعل\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط له: الأنشطة المستقبلية."
+
+#. module: hr_end_of_service
+#: model:ir.model.fields.selection,name:hr_end_of_service.selection__hr_end_service__reason__termination
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_filter
+msgid "Termination"
+msgstr "فصل"
+
+#. module: hr_end_of_service
+#: code:addons/hr_end_of_service/models/hr_end_service.py:0
+#, python-format
+msgid "This employee already have end of service"
+msgstr "هذا الموظف لديه بالفعل نهاية الخدمة"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_hr_end_service_form
+msgid "Total"
+msgstr ""
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__total_service
+msgid "Total Service"
+msgstr "إجمالي الخدمة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__service_day
+msgid "Total Service Days"
+msgstr "إجمالي أيام الخدمة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__service_month
+msgid "Total Service Months"
+msgstr "إجمالي شهور الخدمة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__service_year
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__total_service_year
+msgid "Total Service Years"
+msgstr "إجمالي سنوات الخدمة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع نشاط الاستثناء المسجل"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_unread
+msgid "Unread Messages"
+msgstr "رسائل غير مقروءة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عداد الرسائل غير المقروءة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,field_description:hr_end_of_service.field_hr_end_service__website_message_ids
+msgid "Website Messages"
+msgstr "عداد الرسائل غير المقروءة"
+
+#. module: hr_end_of_service
+#: model:ir.model.fields,help:hr_end_of_service.field_hr_end_service__website_message_ids
+msgid "Website communication history"
+msgstr "سجل اتصال الموقع"
+
+#. module: hr_end_of_service
+#: model_terms:ir.ui.view,arch_db:hr_end_of_service.view_reject_reason_wizard_form
+msgid "or"
+msgstr "أو"

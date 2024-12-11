@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_hr_end_service" model="ir.sequence">
+            <field name="name">Hr End Of Service</field>
+            <field name="code">hr.end.service</field>
+            <field name="prefix">EOS/</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>
