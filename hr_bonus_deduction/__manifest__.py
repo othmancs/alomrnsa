@@ -9,6 +9,7 @@
         Add a bonus and deduction to employees in the payslip
     """,
 
+    
     'author': "Crevisoft Corporate",
     'website': "https://www.crevisoft.com",
 
