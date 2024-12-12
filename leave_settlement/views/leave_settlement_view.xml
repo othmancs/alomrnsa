@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_leave_settlement_form" model="ir.ui.view">
+        <field name="name">leave.settlement.form</field>
+        <field name="model">leave.settlement</field>
+        <field name="arch" type="xml">
+            <form string="Leave Settlement">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="iqama_number"/>
+                        <field name="nationality"/>
+                        <field name="joining_date"/>
+                        <field name="basic_salary"/>
+                        <field name="other_allowance"/>
+                        <field name="last_settlement_date"/>
+                        <field name="total_service_years" readonly="1"/>
+                        <field name="leave_settlement_amount" readonly="1"/>
+                        <field name="state" readonly="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_submit" type="object" string="Submit" class="btn-primary"/>
+                    <button name="action_approve" type="object" string="Approve" class="btn-success"/>
+                    <button name="action_reject" type="object" string="Reject" class="btn-danger"/>
+                    <button name="action_reset_draft" type="object" string="Reset to Draft"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_leave_settlement_tree" model="ir.ui.view">
+        <field name="name">leave.settlement.tree</field>
+        <field name="model">leave.settlement</field>
+        <field name="arch" type="xml">
+            <tree string="Leave Settlement">
+                <field name="name"/>
+                <field name="total_service_years"/>
+                <field name="leave_settlement_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_leave_settlement" name="Leave Settlement" parent="hr.menu_hr_root" sequence="10"/>
+</odoo>
