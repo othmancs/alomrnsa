@@ -4,6 +4,7 @@ from datetime import date
 class LeaveSettlement(models.Model):
     _name = 'leave.settlement'
     _description = 'Leave Settlement'
+    _inherit = 'hr.employee'
 
     name = fields.Many2one('hr.employee', string='Employee', required=True)
     iqama_number = fields.Char(string='Iqama Number', related='name.iqama_number', readonly=True)
