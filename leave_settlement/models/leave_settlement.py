@@ -16,7 +16,7 @@ class LeaveSettlement(models.Model):
         domain="[('employee_id', '=', employee_id)]",
         required=True
     )
-    contract_id = fields.Many2one('hr.contract', string="Contract", required=True)
+    # contract_id = fields.Many2one('hr.contract', string="Contract", required=True)
     basic_salary = fields.Monetary(
         string="Basic Salary",
         related="contract_id.wage",
@@ -29,8 +29,6 @@ class LeaveSettlement(models.Model):
         related="contract_id.currency_id",
         readonly=True
     )
-
-    contract_id = fields.Many2one('hr.contract', string="Contract", required=True)
     l10n_sa_other_allowances = fields.Float(
         string="Other Allowances (KSA)",
         related="contract_id.l10n_sa_other_allowances",
