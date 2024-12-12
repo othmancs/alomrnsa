@@ -30,8 +30,12 @@ class LeaveSettlement(models.Model):
         readonly=True
     )
 
-    l10n_sa_other_allowances = fields.Float(string='Other Allowance', related='name.contract_id.l10n_sa_other_allowances', readonly=True)
-    last_settlement_date = fields.Date(string='Last Settlement Date')
+    contract_id = fields.Many2one('hr.contract', string="Contract", required=True)
+    l10n_sa_other_allowances = fields.Float(
+        string="Other Allowances (KSA)",
+        related="contract_id.l10n_sa_other_allowances",
+        readonly=True
+    )    last_settlement_date = fields.Date(string='Last Settlement Date')
     total_service_years = fields.Char(string='Total Service (Years & Days)', compute='_compute_service_years', store=True)
     leave_settlement_amount = fields.Float(string='Leave Settlement Amount', compute='_compute_leave_settlement', store=True)
     state = fields.Selection([
