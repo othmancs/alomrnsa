@@ -10,6 +10,12 @@ class LeaveSettlement(models.Model):
     nationality = fields.Char(string='Nationality', related='name.country_id.name', readonly=True)
     joining_date = fields.Date(string='Joining Date', related='name.joining_date', readonly=True)
     # basic_salary = fields.Float(string='Basic Salary', related='name.contract_id.wage', readonly=True)
+    contract_id = fields.Many2one(
+        'hr.contract',
+        string="Contract",
+        domain="[('employee_id', '=', employee_id)]",
+        required=True
+    )
     basic_salary = fields.Float(string="Basic Salary",related="contract_id.wage",readonly=True,)
     other_allowance = fields.Float(string='Other Allowance', related='name.contract_id.other_allowance', readonly=True)
     last_settlement_date = fields.Date(string='Last Settlement Date')
