@@ -11,7 +11,7 @@
                         <field name="nationality"/>
                         <field name="joining_date"/>
                         <field name="basic_salary"/>
-                        <field name="other_allowance"/>
+                        <field name="l10n_sa_other_allowances"/>
                         <field name="last_settlement_date"/>
                         <field name="total_service_years" readonly="1"/>
                         <field name="leave_settlement_amount" readonly="1"/>
