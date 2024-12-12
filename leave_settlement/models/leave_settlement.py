@@ -27,11 +27,19 @@ class LeaveSettlement(models.Model):
         related="contract_id.currency_id",
         readonly=True
     )
-    l10n_sa_other_allowances = fields.Float(
+    # l10n_sa_other_allowances = fields.Float(
+    #     string="Other Allowances (KSA)",
+    #     related="contract_id.l10n_sa_other_allowances",
+    #     readonly=True
+    # )
+
+    l10n_sa_other_allowances = fields.Monetary(
         string="Other Allowances (KSA)",
         related="contract_id.l10n_sa_other_allowances",
-        readonly=True
+        readonly=True,
+        currency_field="currency_id"
     )
+
     last_settlement_date = fields.Date(string='Last Settlement Date')
     total_service_years = fields.Char(string='Total Service (Years & Days)', compute='_compute_service_years', store=True)
     leave_settlement_amount = fields.Float(string='Leave Settlement Amount', compute='_compute_leave_settlement', store=True)
