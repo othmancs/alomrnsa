@@ -9,14 +9,12 @@ class LeaveSettlement(models.Model):
     iqama_number = fields.Char(string='Iqama Number', related='name.iqama_number', readonly=True)
     nationality = fields.Char(string='Nationality', related='name.country_id.name', readonly=True)
     joining_date = fields.Date(string='Joining Date', related='name.joining_date', readonly=True)
-    # basic_salary = fields.Float(string='Basic Salary', related='name.contract_id.wage', readonly=True)
     contract_id = fields.Many2one(
         'hr.contract',
         string="Contract",
         domain="[('employee_id', '=', employee_id)]",
         required=True
     )
-    # contract_id = fields.Many2one('hr.contract', string="Contract", required=True)
     basic_salary = fields.Monetary(
         string="Basic Salary",
         related="contract_id.wage",
@@ -33,7 +31,8 @@ class LeaveSettlement(models.Model):
         string="Other Allowances (KSA)",
         related="contract_id.l10n_sa_other_allowances",
         readonly=True
-    )    last_settlement_date = fields.Date(string='Last Settlement Date')
+    )
+    last_settlement_date = fields.Date(string='Last Settlement Date')
     total_service_years = fields.Char(string='Total Service (Years & Days)', compute='_compute_service_years', store=True)
     leave_settlement_amount = fields.Float(string='Leave Settlement Amount', compute='_compute_leave_settlement', store=True)
     state = fields.Selection([
