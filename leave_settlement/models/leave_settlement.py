@@ -5,6 +5,8 @@ class LeaveSettlement(models.Model):
     _name = 'leave.settlement'
     _description = 'Leave Settlement'
     _inherit = 'hr.employee'
+    employee_id = fields.Many2one('hr.employee', string="Employee")
+    category_ids = fields.Many2many('hr.employee.category', related='employee_id.category_ids', string="Categories")
 
     name = fields.Many2one('hr.employee', string='Employee', required=True)
     iqama_number = fields.Char(string='Iqama Number', related='name.iqama_number', readonly=True)
