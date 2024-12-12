@@ -5,13 +5,16 @@ class LeaveSettlement(models.Model):
     _name = 'leave.settlement'
     _description = 'Leave Settlement'
     _inherit = 'hr.employee'
-    employee_id = fields.Many2one('hr.employee', string="Employee")
+
+    # حقل الموظف يمكن أن يتم ربطه مباشرة بما أنك قد ورثت 'hr.employee'
+    employee_id = fields.Many2one('hr.employee', string="Employee", required=True)
+
+    # حقل الفئات يمكن ربطه باستخدام 'related' من خلال العلاقة مع employee_id
     category_ids = fields.Many2many('hr.employee.category', related='employee_id.category_ids', string="Categories")
 
-    name = fields.Many2one('hr.employee', string='Employee', required=True)
-    iqama_number = fields.Char(string='Iqama Number', related='name.iqama_number', readonly=True)
-    nationality = fields.Char(string='Nationality', related='name.country_id.name', readonly=True)
-    joining_date = fields.Date(string='Joining Date', related='name.joining_date', readonly=True)
+    iqama_number = fields.Char(string='Iqama Number', related='employee_id.iqama_number', readonly=True)
+    nationality = fields.Char(string='Nationality', related='employee_id.country_id.name', readonly=True)
+    joining_date = fields.Date(string='Joining Date', related='employee_id.joining_date', readonly=True)
     contract_id = fields.Many2one(
         'hr.contract',
         string="Contract",
@@ -30,11 +33,6 @@ class LeaveSettlement(models.Model):
         related="contract_id.currency_id",
         readonly=True
     )
-    # l10n_sa_other_allowances = fields.Float(
-    #     string="Other Allowances (KSA)",
-    #     related="contract_id.l10n_sa_other_allowances",
-    #     readonly=True
-    # )
 
     l10n_sa_other_allowances = fields.Monetary(
         string="Other Allowances (KSA)",
