@@ -40,7 +40,10 @@ class LeaveSettlement(models.Model):
         readonly=True,
         currency_field="currency_id"
     )
-
+    attachment_ids = fields.Many2many(
+        'ir.attachment', 'leave_settlement_attachment_rel', 'leave_settlement_id', 'attachment_id',
+        string="Attachments"
+    )
     last_settlement_date = fields.Date(string='Last Settlement Date')
     total_service_years = fields.Char(string='Total Service (Years & Days)', compute='_compute_service_years', store=True)
     leave_settlement_amount = fields.Float(string='Leave Settlement Amount', compute='_compute_leave_settlement', store=True)
