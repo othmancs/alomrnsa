@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <record id="hs_shifts_list_view" model="ir.ui.view">
+            <field name="name">hs.shifts.view.tree</field>
+            <field name="model">hs.shifts</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="shift_in" widget="float_time"/>
+                    <field name="shift_out" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hs_shifts_form_view" model="ir.ui.view">
+            <field name="name">hs.shifts.view.form</field>
+            <field name="model">hs.shifts</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <label for="name" string="Shift Name"/>
+                                <div>
+                                    <h2>
+                                        <field name="name"/>
+                                    </h2>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="shift_in" widget="float_time"/>
+                                <field name="shift_out" widget="float_time"/>
+                                <field name="active" string="Active"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_open_shifts" model="ir.actions.act_window">
+            <field name="name">Timing Shifts</field>
+            <field name="res_model">hs.shifts</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_hs_shift"
+                  name="Time Shifts"
+                  parent="hr.menu_hr_employee_payroll"
+                  action="action_open_shifts"/>
+    </data>
+</odoo>

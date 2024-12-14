@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Daily attendance tree view-->
+    <record id="daily_attendance_view_tree" model="ir.ui.view">
+        <field name="name">daily.attendance.view.tree</field>
+        <field name="model">daily.attendance</field>
+        <field name="arch" type="xml">
+            <tree string="Attendance" create="false" delete="false" decoration-danger="not is_danger">
+                <field name="device_id_num"/>
+                <field name="employee_id"/>
+                <field name="i_check"  string="Type"/>
+                <field name="check_in"/>
+                <field name="o_check" string="Type"/>
+                <field name="check_out"/>
+
+                <field name="is_danger" invisible="1" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    <record id="daily_attendance_search_view" model="ir.ui.view">
+        <field name="name">daily.attendance.search.view</field>
+        <field name="model">daily.attendance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="device_id_num"/>
+                <field name="employee_id"/>
+                <field name="check_in"/>
+                <field name="i_check"/>
+                <field name="check_out"/>
+                <field name="o_check"/>
+            </search>
+        </field>
+    </record>
+
+    <!--    Attendance analysis action-->
+    <record id="daily_attendance_action" model="ir.actions.act_window">
+        <field name="name">Attendance Analysis</field>
+        <field name="res_model">daily.attendance</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>
