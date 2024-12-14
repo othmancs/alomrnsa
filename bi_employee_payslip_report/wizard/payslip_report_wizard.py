@@ -191,7 +191,7 @@ class EmpPayslipReport(models.TransientModel):
                             worksheet.write(4, col, i ,sub_cell_wrap_format_bold)
                             col+=1
                     else:
-                        worksheet.write(row,start_col,'تأمينات',cell_wrap_format_bold)
+                        worksheet.write(row,start_col,'اجمالي',cell_wrap_format_bold)
                         start_col = start_col + 1
                         worksheet.write(4, col, values[0] ,sub_cell_wrap_format_bold)
                         col+=1
