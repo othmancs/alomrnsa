@@ -89,7 +89,7 @@ class EmpPayslipReport(models.TransientModel):
  
         
         # Merge Row Columns
-            TITLEHEDER = 'تقرير الراتب'
+            TITLEHEDER = '2تقرير الراتب'
 
             worksheet.set_column(0, 0, 3)
             worksheet.set_column(1, 1, 15)
