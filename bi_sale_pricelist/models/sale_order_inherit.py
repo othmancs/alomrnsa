@@ -27,7 +27,11 @@ class SaleOrderLine(models.Model):
     def _check_pricelist(self):
         for line in self:
             if line.order_id.pricelist_id:
-                product_price = line.order_id.pricelist_id.get_product_price(line.product_id, line.product_uom_qty, line.order_id.partner_id)
+                product_price = line.order_id.pricelist_id._compute_price(
+                    line.product_id.id, 
+                    line.product_uom_qty, 
+                    line.order_id.partner_id
+                )
                 if line.price_unit < product_price:
                     raise ValidationError(_(
                         "The price for the product '%s' cannot be lower than the pricelist price (%.2f)." % (
