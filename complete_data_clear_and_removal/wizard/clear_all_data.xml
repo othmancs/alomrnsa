@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_clear_data_wizard_form" model="ir.ui.view">
+        <field name="name">clear.data.wizard.form</field>
+        <field name="model">clear.data.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Clear Data Wizard">
+                <sheet>
+                    <group>
+                        <field name="sale_install" invisible="1"/>
+                        <field name="sale_and_transfer_install" invisible="1"/>
+                        <field name="purchase_install" invisible="1"/>
+                        <field name="purchase_and_transfer_install" invisible="1"/>
+                        <field name="inventory_only_transfer_install" invisible="1"/>
+                        <field name="project_tasks_timesheets_install" invisible="1"/>
+                        <field name="bom_manufacturing_orders_install" invisible="1"/>
+                        <field name="invoicing_cust_and_vend_install" invisible="1"/>
+
+                    </group>
+                    <group string="All Data">
+                        <field name="all_data_clear"/>
+                    </group>
+                    <group>
+                        <group string="Sales" attrs="{'invisible': [('sale_install', '=', False)]}">
+                            <field name="sale" attrs="{'invisible': [('sale_and_transfer_install', '=', True)]}"/>
+                            <field name="sale_and_transfer" attrs="{'invisible': [('sale_and_transfer_install', '=', False)]}"/>
+                        </group>
+                        <group string="Purchases" attrs="{'invisible': [('purchase_install', '=', False)]}">
+                            <field name="purchase" attrs="{'invisible': [('purchase_and_transfer_install', '=', True)]}"/>
+                            <field name="purchase_and_transfer" attrs="{'invisible': [('purchase_and_transfer_install', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Inventory" attrs="{'invisible': [('inventory_only_transfer_install', '=', False)]}">
+                            <field name="inventory_only_transfer"/>
+                        </group>
+                        <group string="Projects" attrs="{'invisible': [('project_tasks_timesheets_install', '=', False)]}">
+                            <field name="project_tasks_timesheets"/>
+                            <field name="only_task_timesheets"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Contacts" attrs="{'invisible': [('invoicing_cust_and_vend_install', '=', False)]}">
+                            <field name="customers_vendors"/>
+                        </group>
+                        <group string="Manufacturing" attrs="{'invisible': [('bom_manufacturing_orders_install', '=', False)]}">
+                            <field name="bom_manufacturing_orders"/>
+                            <field name="only_manufacturing_orders"/>
+                        </group>
+                    </group>
+                    <!-- <group>
+                        <group string="Accounting" attrs="{'invisible': [('invoicing_payments_journalentries_install', '=', False)]}">
+                            <field name="invoicing_payments_journalentries"/>
+                            <field name="only_journal_entries"/>
+                        </group>
+                    </group> -->
+                    <footer>
+                        <button string="Clear Data" type="object" name="clear_data" class="btn-primary"/>
+                        <button string="Cancel" type="object" name="cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_server_clear_data" model="ir.actions.server">
+        <field name="name">Clear Data</field>
+        <field name="model_id" ref="model_clear_data_wizard"/>
+        <field name="state">code</field>
+        <field name="code">action = model.open_wizard_action()</field>
+    </record>
+
+    <menuitem
+        id="clear_all_data_submenu"
+        name="Clear Data"
+        parent="clear_all_data"
+        action="action_server_clear_data"
+        sequence="1"
+    />
+</odoo>

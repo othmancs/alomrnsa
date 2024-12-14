@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="clear_all_data"
+        name="Clear Data"
+        parent="base.menu_administration"
+        sequence="5"
+        groups="base.group_no_one"/>
+</odoo>
+
+
