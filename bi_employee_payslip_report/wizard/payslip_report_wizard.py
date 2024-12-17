@@ -88,28 +88,28 @@ class EmpPayslipReport(models.TransientModel):
 
  
         
-       # تحديد العنوان الرئيسي للتقرير
-TITLEHEDER = 'تقرير الراتب'
-
-# إعداد أعمدة التقرير
-worksheet.set_column(0, 0, 3)
-worksheet.set_column(1, 1, 15)
-worksheet.set_column(2, 3, 25)
-worksheet.set_column(4, 4, 25)
-worksheet.set_column(5, 15, 20)
-
-# دمج الخلايا لعنوان التقرير
-worksheet.merge_range(1, 1, 1, 7, TITLEHEDER, header_format)
-
-# إضافة شعار الشركة
-# تحديد موقع الشعار والمسار الخاص به
-logo_path = 'https://alomransa.odoo.com/web/image?model=res.company&id=1&field=logo&unique=1734418110000'  # قم بتحديث هذا المسار بموقع الشعار
-worksheet.insert_image(0, 0, logo_path, {'x_scale': 0.5, 'y_scale': 0.5})  # الحجم اختياري
-
-# تحديد الصفوف والأعمدة لبيانات التقرير
-rowscol = 1
-active_ids = self.env.context.get('active_ids', [])
-payslip_ids = self.env['hr.payslip'].browse(active_ids)
+                   # تحديد العنوان الرئيسي للتقرير
+            TITLEHEDER = 'تقرير الراتب'
+            
+            # إعداد أعمدة التقرير
+            worksheet.set_column(0, 0, 3)
+            worksheet.set_column(1, 1, 15)
+            worksheet.set_column(2, 3, 25)
+            worksheet.set_column(4, 4, 25)
+            worksheet.set_column(5, 15, 20)
+            
+            # دمج الخلايا لعنوان التقرير
+            worksheet.merge_range(1, 1, 1, 7, TITLEHEDER, header_format)
+            
+            # إضافة شعار الشركة
+            # تحديد موقع الشعار والمسار الخاص به
+            logo_path = 'https://alomransa.odoo.com/web/image?model=res.company&id=1&field=logo&unique=1734418110000'  # قم بتحديث هذا المسار بموقع الشعار
+            worksheet.insert_image(0, 0, logo_path, {'x_scale': 0.5, 'y_scale': 0.5})  # الحجم اختياري
+            
+            # تحديد الصفوف والأعمدة لبيانات التقرير
+            rowscol = 1
+            active_ids = self.env.context.get('active_ids', [])
+            payslip_ids = self.env['hr.payslip'].browse(active_ids)
             
             worksheet.merge_range(3, 0, 4, 0, '#', cell_wrap_format_bold)
             worksheet.merge_range(3, 1, 4, 1, 'رقم سلب الراتب', cell_wrap_format_bold)
