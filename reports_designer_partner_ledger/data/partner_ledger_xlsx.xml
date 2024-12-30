@@ -1,0 +1,1107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<odoo>
+  <!--    <data noupdate="0"></data> -->
+  <!-- ====== Odoo V.16 ====== -->
+  <!--Module Dependencies: [False, 'account', 'reports_designer', 'reports_designer_partner_ledger']-->
+  <data noupdate="1">
+    <record id="reports_designer_14" model="reports.designer">
+      <field name="out_file_name">'Partner_Ledger_%d-%m-%Y'</field>
+      <field name="name">Partner Ledger (XLSX)</field>
+      <field name="sheet_reference">Sheet1</field>
+      <field name="description">Partner Ledger (XLSX)</field>
+      <field name="description_report">دفتر حسابات الشريك (XLSX)
+معلمات التقرير: تاريخ البدء، تاريخ الانتهاء، الشركاء
+حقول الرأس: الشركة، تاريخ البدء، تاريخ الانتهاء، تاريخ الطباعة، المستخدم الذي قام بطباعة التقرير.
+نص المستند:
+الحقول: الشريك، التاريخ، اليومية، المرجع، التسمية، تاريخ الاستحقاق، رقم المطابقة، المدين، الدائن، الرصيد
+التجميع حسب: الشريك
+التجميع: مجموع المدين، مجموع الدائن، مجموع الرصيد
+الفرز: الشريك تصاعديًا، التاريخ تصاعديًا
+حقول تذييل التقرير: المدين، الدائن، الرصيد
+المسار الكامل للقائمة: دفتر حسابات الفوترة/التقارير/الشريك (XLSX)</field>
+      <field name="root_model_id" model="reports.designer" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+    </record>
+    <record id="reports_designer_template_attachment_504" model="ir.attachment">
+      <field name="name">partner-ledger-template.xlsx</field>
+      <field name="type">binary</field>
+      <field name="datas" type="base64" file="reports_designer_partner_ledger/static/template/partner-ledger-template.xlsx"/>
+      <field name="res_id" ref="reports_designer_14"/>
+      <field name="res_model">reports.designer</field>
+    </record>
+    <record id="reports_designer_template_attachment_503" model="ir.attachment">
+      <field name="name">partner-ledger-template_example.xlsx</field>
+      <field name="type">binary</field>
+      <field name="datas" type="base64" file="reports_designer_partner_ledger/static/template/partner-ledger-template_example.xlsx"/>
+      <field name="res_id" ref="reports_designer_14"/>
+      <field name="res_model">reports.designer</field>
+    </record>
+    <record id="reports_designer_param_15" model="reports.designer.param">
+      <field name="sequence" eval="0"/>
+      <field name="reports_designer_id" ref="reports_designer_14"/>
+      <field name="name">START DATE</field>
+      <field name="code">P1_start_date</field>
+      <field name="type_param">date</field>
+      <field name="param_ir_model_id" eval="[]"/>
+      <field name="param_required" eval="False"/>
+    </record>
+    <record id="reports_designer_param_16" model="reports.designer.param">
+      <field name="sequence">1</field>
+      <field name="reports_designer_id" ref="reports_designer_14"/>
+      <field name="name">END DATE</field>
+      <field name="code">P2_end_date</field>
+      <field name="type_param">date</field>
+      <field name="param_ir_model_id" eval="[]"/>
+      <field name="param_required" eval="False"/>
+    </record>
+    <record id="reports_designer_param_17" model="reports.designer.param">
+      <field name="sequence">2</field>
+      <field name="reports_designer_id" ref="reports_designer_14"/>
+      <field name="name">PARTNERS</field>
+      <field name="code">P3_partners_m2m</field>
+      <field name="type_param">many2many</field>
+      <field name="param_ir_model_id" ref="account.model_res_partner"/>
+      <field name="param_required" eval="False"/>
+    </record>
+    <record id="reports_designer_section_18" model="reports.designer.section">
+      <field name="reports_designer_id" ref="reports_designer_14"/>
+      <field name="root_model_id" model="reports.designer.section" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="sequence">10</field>
+      <field name="name">SECTION 0- Header</field>
+      <field name="parent_id" eval="[]"/>
+      <field name="type_data">data_line</field>
+      <field name="level" eval="0"/>
+      <field name="root_model_related_field_id" eval="[]"/>
+      <field name="root_model_name">account.move</field>
+      <field name="check_root_model">True</field>
+      <field name="section" eval="False"/>
+      <field name="section_level">1</field>
+      <field name="section_start">L1</field>
+      <field name="section_end">M6</field>
+      <field name="domain">[]</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_180" model="reports.designer.fields">
+      <field name="sequence">100</field>
+      <field name="cell">M1</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_18"/>
+      <field name="group_by">True</field>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">result = user.company_id.name if user.company_id.name else ''</field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="root_model_name">account.move</field>
+      <field name="model_field_selector">id</field>
+      <field name="field_type">integer</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_181" model="reports.designer.fields">
+      <field name="sequence">101</field>
+      <field name="cell">M3</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_18"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">max</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_max"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">result = param(P1_start_date) </field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="root_model_name">account.move</field>
+      <field name="model_field_selector">id</field>
+      <field name="field_type">integer</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_182" model="reports.designer.fields">
+      <field name="sequence">102</field>
+      <field name="cell">M4</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_18"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">max</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_max"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">result = param(P2_end_date)</field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="root_model_name">account.move</field>
+      <field name="model_field_selector">id</field>
+      <field name="field_type">integer</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_183" model="reports.designer.fields">
+      <field name="sequence">103</field>
+      <field name="cell">M5</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_18"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">max</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_max"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">result = datetime.now()</field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="root_model_name">account.move</field>
+      <field name="model_field_selector">id</field>
+      <field name="field_type">integer</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_184" model="reports.designer.fields">
+      <field name="sequence">104</field>
+      <field name="cell">M6</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_18"/>
+      <field name="group_by">True</field>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">result = user.name</field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="root_model_name">account.move</field>
+      <field name="model_field_selector">id</field>
+      <field name="field_type">integer</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_section_19" model="reports.designer.section">
+      <field name="reports_designer_id" ref="reports_designer_14"/>
+      <field name="root_model_id" model="reports.designer.section" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="sequence">11</field>
+      <field name="name">SECTION 1- Journal Entries</field>
+      <field name="parent_id" eval="[]"/>
+      <field name="type_data">data_line</field>
+      <field name="level" eval="0"/>
+      <field name="root_model_related_field_id" eval="[]"/>
+      <field name="root_model_name">account.move</field>
+      <field name="check_root_model">True</field>
+      <field name="section" eval="False"/>
+      <field name="section_level">1</field>
+      <field name="section_start">A10</field>
+      <field name="section_end">P13</field>
+      <field name="domain">["&amp;","&amp;","&amp;","&amp;",["partner_id","=","param(P3_partners_m2m)"],["state","=","posted"],["journal_id.type","!=","general"],["line_ids.date","&lt;=","param(P2_end_date)"],"|",["line_ids.account_id.account_type", "=", "asset_receivable"],["line_ids.account_id.account_type", "=", "liability_payable"]]</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_185" model="reports.designer.fields">
+      <field name="sequence">100</field>
+      <field name="cell">B10</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_19"/>
+      <field name="group_by">True</field>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by">asc</field>
+      <field name="formula" eval="False"/>
+      <field name="formulas"># Help with Python expressions 
+# The following variables can be used:
+#  - uid: is the current user’s database id
+#  - user: is the current user’s record
+#  - date, datetime, dateutil: useful Python libraries 
+#  - param(parameter_code): Report Parameter, for example  param(Parameter1_start_date)
+#  - cell(CELL_COORDINATE): Excel Cell of the current Section,  for example  cell(A7) 
+# Note: returned value have to be set in the variable 'result' 
+# Example of Python code:
+# if (cell(A7) == "out_invoice"):
+#   result = cell(H7) * -1
+# else:
+#   result = cell(H7) </field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="root_model_name">account.move</field>
+      <field name="model_field_selector">partner_id</field>
+      <field name="field_type">many2one</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_section_20" model="reports.designer.section">
+      <field name="root_model_id" model="reports.designer.section" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="sequence">10</field>
+      <field name="name">SECTION 1-3 - Journal Items Initial Balance</field>
+      <field name="parent_id" ref="reports_designer_section_19"/>
+      <field name="type_data">data_line</field>
+      <field name="level" eval="0"/>
+      <field name="root_model_related_field_id" ref="account.field_account_move__line_ids"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="check_root_model">True</field>
+      <field name="section">True</field>
+      <field name="section_level">1</field>
+      <field name="section_start">J10</field>
+      <field name="section_end">P10</field>
+      <field name="domain">["&amp;",["date","&lt;","param(P1_start_date)"],"|",["account_id.account_type", "=", "asset_receivable"],["account_id.account_type", "=", "liability_payable"]]</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_186" model="reports.designer.fields">
+      <field name="sequence">100</field>
+      <field name="cell">K10</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_20"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">if param(P1_start_date) and cell(P10) &lt; param(P1_start_date):
+  result = cell(K10)
+else:
+  result = 0.0</field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">debit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_187" model="reports.designer.fields">
+      <field name="sequence">101</field>
+      <field name="cell">L10</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_20"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">if param(P1_start_date) and cell(P10) &lt; param(P1_start_date):
+  result = cell(L10)
+else:
+  result = 0.0</field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">credit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_188" model="reports.designer.fields">
+      <field name="sequence">102</field>
+      <field name="cell">M10</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_20"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula">True</field>
+      <field name="formulas">if param(P1_start_date) and cell(P10) &lt; param(P1_start_date):
+  result = cell(M10)
+else:
+  result = 0.0</field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">balance</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_189" model="reports.designer.fields">
+      <field name="sequence">103</field>
+      <field name="cell">O10</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_20"/>
+      <field name="group_by">True</field>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">partner_id</field>
+      <field name="field_type">many2one</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_190" model="reports.designer.fields">
+      <field name="sequence">104</field>
+      <field name="cell">P10</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_20"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">count</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_count"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"># Help with Python expressions 
+# The following variables can be used:
+#  - uid: is the current user’s database id
+#  - user: is the current user’s record
+#  - date, datetime, dateutil: useful Python libraries 
+#  - param(parameter_code): Report Parameter, for example  param(Parameter1_start_date)
+#  - cell(CELL_COORDINATE): Excel Cell of the current Section,  for example  cell(A7) 
+# Note: returned value have to be set in the variable 'result' 
+# Example of Python code:
+# if (cell(A7) == "out_invoice"):
+#   result = cell(H7) * -1
+# else:
+#   result = cell(H7) </field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">date</field>
+      <field name="field_type">date</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_section_21" model="reports.designer.section">
+      <field name="root_model_id" model="reports.designer.section" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="sequence">11</field>
+      <field name="name">SECTION 1-1 - Journal Items</field>
+      <field name="parent_id" ref="reports_designer_section_19"/>
+      <field name="type_data">data_line</field>
+      <field name="level" eval="0"/>
+      <field name="root_model_related_field_id" ref="account.field_account_move__line_ids"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="check_root_model">True</field>
+      <field name="section">True</field>
+      <field name="section_level">1</field>
+      <field name="section_start">A11</field>
+      <field name="section_end">P11</field>
+      <field name="domain">["&amp;","&amp;",["date","&gt;=","param(P1_start_date)"],["date","&lt;=","param(P2_end_date)"],"|",["account_id.account_type", "=", "asset_receivable"],["account_id.account_type", "=", "liability_payable"]]</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_191" model="reports.designer.fields">
+      <field name="sequence">100</field>
+      <field name="cell">C11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">date</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by">asc</field>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">date</field>
+      <field name="field_type">date</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_192" model="reports.designer.fields">
+      <field name="sequence">101</field>
+      <field name="cell">D11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">journal_id</field>
+      <field name="field_type">many2one</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_193" model="reports.designer.fields">
+      <field name="sequence">102</field>
+      <field name="cell">E11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">account_id.code</field>
+      <field name="field_type">char</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_194" model="reports.designer.fields">
+      <field name="sequence">103</field>
+      <field name="cell">F11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">move_id</field>
+      <field name="field_type">many2one</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_195" model="reports.designer.fields">
+      <field name="sequence">104</field>
+      <field name="cell">G11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">ref</field>
+      <field name="field_type">char</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_196" model="reports.designer.fields">
+      <field name="sequence">105</field>
+      <field name="cell">H11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">name</field>
+      <field name="field_type">char</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_197" model="reports.designer.fields">
+      <field name="sequence">106</field>
+      <field name="cell">I11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">date</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">date_maturity</field>
+      <field name="field_type">date</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_198" model="reports.designer.fields">
+      <field name="sequence">107</field>
+      <field name="cell">J11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">full_reconcile_id.display_name</field>
+      <field name="field_type">char</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_199" model="reports.designer.fields">
+      <field name="sequence">108</field>
+      <field name="cell">K11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">debit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_200" model="reports.designer.fields">
+      <field name="sequence">109</field>
+      <field name="cell">L11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">credit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_201" model="reports.designer.fields">
+      <field name="sequence">110</field>
+      <field name="cell">M11</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_21"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">balance</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_section_22" model="reports.designer.section">
+      <field name="root_model_id" model="reports.designer.section" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="sequence">12</field>
+      <field name="name">SECTION 1-2 - Journal Items Total</field>
+      <field name="parent_id" ref="reports_designer_section_19"/>
+      <field name="type_data">data_line</field>
+      <field name="level" eval="0"/>
+      <field name="root_model_related_field_id" ref="account.field_account_move__line_ids"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="check_root_model">True</field>
+      <field name="section">True</field>
+      <field name="section_level">1</field>
+      <field name="section_start">J12</field>
+      <field name="section_end">P12</field>
+      <field name="domain">["&amp;",["date","&lt;=","param(P2_end_date)"],"|",["account_id.account_type", "=", "asset_receivable"],["account_id.account_type", "=", "liability_payable"]]</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_202" model="reports.designer.fields">
+      <field name="sequence">100</field>
+      <field name="cell">K12</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_22"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">debit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_203" model="reports.designer.fields">
+      <field name="sequence">101</field>
+      <field name="cell">L12</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_22"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">credit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_204" model="reports.designer.fields">
+      <field name="sequence">102</field>
+      <field name="cell">M12</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_22"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">balance</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_205" model="reports.designer.fields">
+      <field name="sequence">103</field>
+      <field name="cell">O12</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_22"/>
+      <field name="group_by">True</field>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">partner_id</field>
+      <field name="field_type">many2one</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_section_23" model="reports.designer.section">
+      <field name="reports_designer_id" ref="reports_designer_14"/>
+      <field name="root_model_id" model="reports.designer.section" eval="obj().env['ir.model'].search([('model', '=', 'account.move')], limit=1).id"/>
+      <field name="sequence">12</field>
+      <field name="name">SECTION 2- Journal Entries Total</field>
+      <field name="parent_id" eval="[]"/>
+      <field name="type_data">data_line</field>
+      <field name="level" eval="0"/>
+      <field name="root_model_related_field_id" eval="[]"/>
+      <field name="root_model_name">account.move</field>
+      <field name="check_root_model">True</field>
+      <field name="section" eval="False"/>
+      <field name="section_level">1</field>
+      <field name="section_start">A15</field>
+      <field name="section_end">O15</field>
+      <field name="domain">[]</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_section_24" model="reports.designer.section">
+      <field name="root_model_id" model="reports.designer.section" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="sequence">10</field>
+      <field name="name">SECTION 2-2 - Journal Items Total</field>
+      <field name="parent_id" ref="reports_designer_section_23"/>
+      <field name="type_data">data_line</field>
+      <field name="level" eval="0"/>
+      <field name="root_model_related_field_id" ref="account.field_account_move__line_ids"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="check_root_model">True</field>
+      <field name="section">True</field>
+      <field name="section_level">1</field>
+      <field name="section_start">K15</field>
+      <field name="section_end">O15</field>
+      <field name="domain">["&amp;","&amp;","&amp;","&amp;",["partner_id","=","param(P3_partners_m2m)"],["move_id.state","=","posted"],["journal_id.type","!=","general"],["date","&lt;=","param(P2_end_date)"],"|",["account_id.account_type", "=", "asset_receivable"],["account_id.account_type", "=", "liability_payable"]]</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_206" model="reports.designer.fields">
+      <field name="sequence">100</field>
+      <field name="cell">K15</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_24"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">debit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_207" model="reports.designer.fields">
+      <field name="sequence">101</field>
+      <field name="cell">L15</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_24"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection" eval="False"/>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">credit</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_208" model="reports.designer.fields">
+      <field name="sequence">102</field>
+      <field name="cell">M15</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_24"/>
+      <field name="group_by" eval="False"/>
+      <field name="aggregate">sum</field>
+      <field name="aggregate_id" ref="reports_designer.aggregate_sum"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">balance</field>
+      <field name="field_type">monetary</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_fields_209" model="reports.designer.fields">
+      <field name="sequence">103</field>
+      <field name="cell">O15</field>
+      <field name="reports_designer_section_id" ref="reports_designer_section_24"/>
+      <field name="group_by">True</field>
+      <field name="aggregate" eval="False"/>
+      <field name="aggregate_id" eval="[]"/>
+      <field name="having_operator" eval="False"/>
+      <field name="having_selection">value</field>
+      <field name="having_param_id" eval="[]"/>
+      <field name="having_value_type">float</field>
+      <field name="having_value_float" eval="0.0"/>
+      <field name="having_value_date" eval="False"/>
+      <field name="having_value_datetime" eval="False"/>
+      <field name="sort_by" eval="False"/>
+      <field name="formula" eval="False"/>
+      <field name="formulas"></field>
+      <field name="check_root_model">True</field>
+      <field name="root_model_id" model="reports.designer.fields" eval="obj().env['ir.model'].search([('model', '=', 'account.move.line')], limit=1).id"/>
+      <field name="root_model_name">account.move.line</field>
+      <field name="model_field_selector">company_id</field>
+      <field name="field_type">many2one</field>
+      <field name="image_bool" eval="False"/>
+      <field name="colOff" eval="0"/>
+      <field name="rowOff" eval="0"/>
+      <field name="cx">1500000</field>
+      <field name="cy">1500000</field>
+      <field name="description" eval="False"/>
+    </record>
+    <record id="reports_designer_14_action1" model="ir.actions.act_window">
+      <field name="name">Partner Ledger (XLSX)</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">reports_designer_wizard</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" model="reports.designer" eval="obj().env['ir.ui.view'].search([('model', '=', 'reports_designer_wizard')]).id"/>
+      <field name="target">new</field>
+      <field name="context" eval="{'model': 'reports.designer', 'id': ref('reports_designer_14')}"/>
+    </record>
+    <menuitem id="menu_reports_designer_14_action1" name="Partner Ledger (XLSX)" parent="account.menu_finance_reports" sequence="100" action="reports_designer_14_action1"/>
+    <record id="reports_designer_14" model="reports.designer">
+      <field name="reports_designer_param_ids" eval="[[4, ref('reports_designer_param_15'), False],[4, ref('reports_designer_param_16'), False],[4, ref('reports_designer_param_17'), False],]"/>
+    </record>
+    <record id="reports_designer_14" model="reports.designer">
+      <field name="template_name_id" ref="reports_designer_template_attachment_504"/>
+    </record>
+  </data>
+</odoo>
