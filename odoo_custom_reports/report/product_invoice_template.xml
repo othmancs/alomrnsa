@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="product_invoice">
+    <t t-call="web.html_container">
+    <t t-call="web.external_layout">
+        <t t-set="docs" t-value="docs.with_context()"/>
+        <div class="page">
+            <div class="oe_structure"/>
+            <div align="center"> 
+                <br/>                  
+                <h2> Products Invoice Report</h2> 
+            </div>
+            <br/>
+            <table border="1" class="table table-condensed" style="border-style:solid">
+                <tr style="height:30%">
+                    <td style="border: 1px solid black" align="center">From Date</td>
+                    <td style="border: 1px solid black" align="center"><span t-field="docs.start_date"/></td>
+                    <td style="border: 1px solid black" align="center">To Date</td>
+                    <td style="border: 1px solid black" align="center"> <span t-field="docs.end_date"/></td>                  
+                </tr>
+            </table>
+            <br/>
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Invoice Number</th>
+                        <th>Invoice Date</th>
+                        <th>Customer</th>
+                        <th>Product Description</th>
+                        <th>Quantity</th>
+                        <th>Unit Of Measure</th>
+                        <th>Unit Price</th>
+                    </tr>
+                </thead>
+                <tbody class="sale_tbody">
+                    <t t-foreach="products" t-as="product">
+                        <tr>
+                            <td><span t-field="product.product_id"/></td>
+                            <td><span t-field="product.date"/></td>
+                            <td><span t-field="product.partner_id"/></td>
+                            <td><span t-field="product.product_id"/></td>
+                            <td><span t-field="product.quantity"/></td>
+                            <td><span t-field="product.product_uom_id"/></td>
+                            <td><span t-field="product.price_unit"/></td>
+                        </tr>                                
+		            </t>
+                </tbody>
+            </table>
+            <br/>
+            <br/>                  
+            <div>
+                <strong>Total Outstanding Amount:
+                    <span t-field="docs.total_amount_due"/>
+                </strong>
+            </div>
+        </div>
+    </t>
+    </t>
+</template>
+</odoo>

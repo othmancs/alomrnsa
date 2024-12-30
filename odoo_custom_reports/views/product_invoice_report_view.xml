@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Create menu to open wizard for report-->
+    <menuitem
+        id="menu_odoo_custom_reports"
+        name="Products Invoice Report"
+        parent="account.menu_finance_reports"
+        sequence="6"
+        action="odoo_custom_reports.open_product_invoice_action"
+    />
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_product_invoice" model="ir.actions.report">
+            <field name="name">Print Products Invoice</field>
+            <field name="model">report.odoo_custom_reports.product_invoice</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">odoo_custom_reports.product_invoice</field>
+            <field name="report_file">odoo_custom_reports.product_invoice</field>
+        </record>
+
+        <record id="action_product_invoice_xlsx" model="ir.actions.report">
+            <field name="name">Print Products Excel Invoice</field>
+            <field name="model">report.odoo_custom_reports.product_invoice_xlsx</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">odoo_custom_reports.product_invoice_xlsx</field>
+            <field name="report_file">odoo_custom_reports.product_invoice_xlsx</field>
+        </record>
+    </data>
+</odoo>
