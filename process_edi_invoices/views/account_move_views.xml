@@ -5,7 +5,7 @@
         <field name="binding_model_id" ref="account.model_account_move"/>
         <field name="state">code</field>
         <field name="code">
-            action = env['account.move'].browse(record_ids).process_selected_invoices()
+            action = env['account.move'].browse(env.context.get('active_ids')).process_selected_invoices()
         </field>
     </record>
 
