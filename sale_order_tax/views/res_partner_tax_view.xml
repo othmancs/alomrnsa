@@ -5,7 +5,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='sales_purchases']" position="inside">
+            <xpath expr="//sheet" position="inside">
                 <group string="Tax Settings">
                     <field name="property_account_position_id" options="{'no_create': True}"/>
                 </group>
