@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report id="financial_report_action" model="financial.report.wizard"
+            string="Financial Report"
+            report_type="qweb-pdf"
+            name="financial_report_module.financial_report_template"
+            file="financial_report_module.financial_report_template"/>
+</odoo>

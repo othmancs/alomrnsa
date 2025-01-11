@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_financial_report_wizard" model="ir.ui.view">
+        <field name="name">financial.report.wizard.form</field>
+        <field name="model">financial.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Financial Report">
+                <group>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="branch_id"/>
+                    <field name="payment_type"/>
+                </group>
+                <footer>
+                    <button string="Generate Report" type="object" name="generate_report" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <menuitem id="menu_financial_report" name="Financial Report" parent="account.menu_finance" action="action_financial_report_wizard"/>
+</odoo>
