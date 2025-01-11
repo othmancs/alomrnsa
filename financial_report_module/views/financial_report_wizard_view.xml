@@ -18,5 +18,7 @@
             </form>
         </field>
     </record>
-    <menuitem id="menu_financial_report" name="Financial Report" parent="account.menu_finance" action="action_financial_report_wizard"/>
+<!--     <menuitem id="menu_financial_report" name="Financial Report" parent="account.menu_finance" action="action_financial_report_wizard"/> -->
+    <menuitem id="menu_financial_report" name="Financial Report" parent="account.menu_finance" action="financial_report_module.action_financial_report_wizard"/>
+
 </odoo>
