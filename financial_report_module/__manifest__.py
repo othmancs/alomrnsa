@@ -9,9 +9,10 @@
     'depends': ['account', 'base'],
     'data': [
         'security/ir.model.access.csv',
-        'views/financial_report_wizard_view.xml',
         'report/financial_report_template.xml',
         'report/financial_report_action.xml',
+        'views/financial_report_wizard_view.xml',
+
     ],
     'installable': True,
     'application': False,
