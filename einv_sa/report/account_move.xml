@@ -39,15 +39,20 @@
                         <div class="col-4 text-right"><Strong>تاريخ التوريد</Strong></div>
                     </div>
                 </div>
-                <div class="col-3" >
+<!--                 <div class="col-3" >
 <!--                    <span t-esc="doc.einv_sa_qr_code_str"></span>-->
-                    <img t-if="doc.einv_sa_qr_code_str"
-                         style="display:block;"
-                         t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.einv_sa_qr_code_str, 130, 130)"/>
+<!--                     <img t-if="doc.einv_sa_qr_code_str" -->
+<!--                          style="display:block;" -->
+<!--                          t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.einv_sa_qr_code_str, 130, 130)"/> -->
 <!--                      <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', doc.einv_sa_qr_code_str, 130, 130)"   class="float-right my-1"/>-->
 
 
-                </div>
+                </div> -->
+            <div class="col-3">
+    <img t-if="doc.einv_sa_qr_code_str"
+         style="display:block; width:130px; height:130px;"
+         t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=130&amp;height=130' % doc.einv_sa_qr_code_str"/>
+</div>
             </div>
             <div class="oe_structure"/>
         </template>
