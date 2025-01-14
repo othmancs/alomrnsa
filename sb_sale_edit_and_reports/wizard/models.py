@@ -32,9 +32,9 @@ class SalesReportWizard(models.TransientModel):
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
         
-        # تصفية طريقة الدفع باستخدام payment_method_id
+        # تصفية طريقة الدفع باستخدام sale_id المرتبط بـ account.move
         if self.payment_method:
-            domain.append(('payment_method_id', '=', self.payment_method.id))
+            domain.append(('sale_id.payment_method', '=', self.payment_method.id))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
@@ -60,11 +60,43 @@ class SalesReportWizard(models.TransientModel):
                 invoice_date = account.invoice_date
                 state = account.payment_state
                 cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
-                payment_method = account.payment_method_id.name if account.payment_method_id else '-'
+                payment_method = account.sale_id.payment_method.name if account.sale_id.payment_method else '-'
                 price = sum(account.mapped('amount_untaxed'))
                 total_discount = sum(account.line_ids.mapped('discount'))
                 net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
 
                 out_refund = self.env['account.move'].search([
                     ('move_type', '=', 'out_refund'),
-                    ('branch_id', '=', br
+                    ('branch_id', '=', branch.id),
+                    ('reversed_entry_id', '=', account.id),
+                    ('state', '=', 'posted')
+                ])
+                out_refund_purchase_price = 0.0
+                out_refund_price = 0.0
+                for ac in out_refund:
+                    out_refund_purchase_price += sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                    out_refund_price += sum(ac.mapped('amount_untaxed'))
+
+                report_data_item = {
+                    'branch_name': branch.name,
+                    'invoice_number': invoice_number,
+                    'seller_name': seller_name,
+                    'customer_name': customer_name,
+                    'payment_method': payment_method,
+                    'invoice_date': invoice_date,
+                    'total_price': price,
+                    'total_discount': total_discount,
+                    'net_cost': net_cost,
+                    'cost': cost,
+                    'total_credit_note': out_refund_price,
+                    't': out_refund_purchase_price,
+                    'state': state,
+                }
+
+                report_data.append(report_data_item)
+        data = {
+            'form': self.read()[0],
+            'data': report_data,
+            'branches': branches,
+        }
+        return self.env.ref("sb_sale_edit_and_reports.sales_report").report_action(self, data=data)
