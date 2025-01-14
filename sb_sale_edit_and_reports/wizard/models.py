@@ -33,9 +33,11 @@ class SalesReportWizard(models.TransientModel):
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
         
-        # تصفية طريقة الدفع باستخدام sale_id المرتبط بـ account.move
-        if self.payment_method:
-            domain.append(('sale_id.payment_method', '=', self.payment_method.id))
+        # # تصفية طريقة الدفع باستخدام sale_id المرتبط بـ account.move
+        # if self.payment_method:
+        #     domain.append(('sale_id.payment_method', '=', self.payment_method.id))
+        if obj.payment_method_line_id:
+            domain.append(('payment_method_line_id', '=', obj.payment_method_line_id.id))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
