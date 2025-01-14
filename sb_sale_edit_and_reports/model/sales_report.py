@@ -1,8 +1,3 @@
-from odoo import models
-from datetime import date
-from odoo.tools import format_date
-
-
 class SalesReportReport(models.AbstractModel):
     _name = 'report.sb_sale_edit_and_reports.report_sales_report'
     _inherit = 'report.report_xlsx.abstract'
@@ -14,36 +9,31 @@ class SalesReportReport(models.AbstractModel):
             row = 0
             col = 0
             worksheet.set_column(0, 10, 30)
-            format1 = workbook.add_format(
-                {'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': True,
-                 'border': 1, 'bg_color': '#CCC7BF'})
-            format2 = workbook.add_format(
-                {'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': False,
-                 'border': 1})
-            format3 = workbook.add_format(
-                {'text_wrap': True, 'font_size': 10,
-                 'border': 1, 'bold': False, 'align': 'center'})
-            format4 = workbook.add_format(
-                {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True})
-            format5 = workbook.add_format(
-                {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': '#caf0f8'})
-            format6 = workbook.add_format(
-                {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True ,'bg_color': 'red','color':'white'})
-            format7 = workbook.add_format(
-                {'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'green', 'color':'white'})
+            format1 = workbook.add_format({'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': True, 'border': 1, 'bg_color': '#CCC7BF'})
+            format2 = workbook.add_format({'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': False, 'border': 1})
+            format3 = workbook.add_format({'text_wrap': True, 'font_size': 10, 'border': 1, 'bold': False, 'align': 'center'})
+            format4 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True})
+            format5 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': '#caf0f8'})
+            format6 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'red', 'color': 'white'})
+            format7 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'green', 'color': 'white'})
+
             domain = [('invoice_date', '>=', obj.date_start),
                       ('invoice_date', '<=', obj.date_end),
-                      ('move_type','=','out_invoice'),
-                      ('state','=','posted')
+                      ('move_type', '=', 'out_invoice'),
+                      ('state', '=', 'posted')]
 
-                      ]
+            # تصفية طريقة الدفع
+            if obj.payment_method:
+                domain.append(('payment_method', '=', obj.payment_method.id))
+
             if obj.branch_ids:
                 domain.append(('branch_id', 'in', obj.branch_ids.ids))
+
             lines_data = self.env['account.move'].search(domain)
             existing_branches = lines_data.mapped('branch_id')
             worksheet.merge_range(row, col + 3, row, col + 4, lines_data.company_id.name, format4)
             worksheet.merge_range(row + 1, col + 3, row + 1, col + 4, 'تقرير المبيعات', format4)
-            worksheet.write(row + 3, col+5, ' :من ', format1)
+            worksheet.write(row + 3, col + 5, ' :من ', format1)
             worksheet.write(row + 3, col + 7, '  :الى ', format1)
             worksheet.write(row + 3, col + 6, obj.date_start.strftime('%d/%m/%Y'), format3)
             worksheet.write(row + 3, col + 8,  obj.date_end.strftime('%d/%m/%Y'), format3)
@@ -57,12 +47,12 @@ class SalesReportReport(models.AbstractModel):
             for branch in existing_branches:
                 current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
                 unit_price_branch = sum([sum(move.mapped('amount_untaxed')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-                total_discount_branch = sum([sum(move.line_ids.mapped('discount')) for move in
-                                             current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-                branch_amount_untaxed=sum([sum(move.line_ids.mapped(lambda line: (line.price_unit*line.quantity) - line.discount)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-                total_cost_branch =  sum([sum(move.line_ids.mapped(lambda line: line.purchase_price * line.quantity)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-                total_out_refund_purchase_price=0.0
-                total_out_refund_price=0.0
+                total_discount_branch = sum([sum(move.line_ids.mapped('discount')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+                branch_amount_untaxed = sum([sum(move.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+                total_cost_branch = sum([sum(move.line_ids.mapped(lambda line: line.purchase_price * line.quantity)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+
+                total_out_refund_purchase_price = 0.0
+                total_out_refund_price = 0.0
                 for line in current_branch_lines:
                     out_refund_price = self.env['account.move'].search([
                         ('move_type', '=', 'out_refund'),
@@ -100,39 +90,41 @@ class SalesReportReport(models.AbstractModel):
                     seller_name = account.created_by_id.name
                     customer_name = account.partner_id.name
                     invoice_date = account.invoice_date
-                    state=account.payment_state
+                    state = account.payment_state
                     if state == 'paid':
-                        worksheet.write(row, col + 11,'مدفوع' , format7)
+                        worksheet.write(row, col + 11, 'مدفوع', format7)
                     elif state == 'not_paid':
                         worksheet.write(row, col + 11, 'غير مدفوع', format6)
 
-
-                    cost = cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
+                    cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
                     payment_method = account.payment_method
                     price = sum(account.mapped('amount_untaxed'))
                     total_discount = sum(account.line_ids.mapped('discount'))
-                    net_cost =sum(account.line_ids.mapped(lambda line: (line.price_unit*line.quantity) - line.discount))
+                    net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
                     worksheet.write(row, col, invoice_number, format2)
-                    worksheet.write(row, col+1, seller_name, format2)
-                    worksheet.write(row, col+2, customer_name, format2)
+                    worksheet.write(row, col + 1, seller_name, format2)
+                    worksheet.write(row, col + 2, customer_name, format2)
+
+                    # تحديد طريقة الدفع
                     if payment_method == 'option1':
-                        worksheet.write(row, col+3, 'نقدى', format2)
+                        worksheet.write(row, col + 3, 'نقدى', format2)
                     elif payment_method == 'option2':
                         worksheet.write(row, col + 3, 'اجل', format2)
                     else:
                         worksheet.write(row, col + 3, '-', format2)
-                    worksheet.write(row, col+4, format_date(self.env, invoice_date), format2)
-                    worksheet.write(row, col+5, price, format2)
-                    worksheet.write(row, col+6, total_discount, format2)
-                    worksheet.write(row, col+7, net_cost, format2)
+
+                    worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
+                    worksheet.write(row, col + 5, price, format2)
+                    worksheet.write(row, col + 6, total_discount, format2)
+                    worksheet.write(row, col + 7, net_cost, format2)
                     worksheet.write(row, col + 8, cost, format2)
-                    out_refund=self.env['account.move'].search([
-                        ('move_type','=','out_refund'),
-                        ('branch_id','=',branch.id),
-                        ('reversed_entry_id','=',account.id),
+
+                    out_refund = self.env['account.move'].search([
+                        ('move_type', '=', 'out_refund'),
+                        ('branch_id', '=', branch.id),
+                        ('reversed_entry_id', '=', account.id),
                         ('state', '=', 'posted')
                     ])
-                    print('hhhhhhhhhhhhhhh',out_refund)
                     for ac in out_refund:
                         out_refund_purchase_price = sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                         out_refund_price = sum(ac.mapped('amount_untaxed'))
