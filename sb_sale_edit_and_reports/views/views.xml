@@ -23,7 +23,7 @@
                                 <field name="date_start"/>
                                 <field name="branch_ids" widget="many2many_tags"/>
 <!--                                 <field name="payment_method_line_id" widget="many2many_tags"/> -->
-<field name="sale_payment_method" widget="many2one"/>
+<field name="payment_method" widget="many2one"/>
 
                             </group>
                             <group>
