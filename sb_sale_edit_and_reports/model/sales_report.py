@@ -1,3 +1,10 @@
+
+from odoo import models
+from datetime import date
+from odoo.tools import format_date
+
+
+
 class SalesReportReport(models.AbstractModel):
     _name = 'report.sb_sale_edit_and_reports.report_sales_report'
     _inherit = 'report.report_xlsx.abstract'
@@ -22,9 +29,9 @@ class SalesReportReport(models.AbstractModel):
                       ('move_type', '=', 'out_invoice'),
                       ('state', '=', 'posted')]
 
-            # # تصفية طريقة الدفع
-            # if obj.payment_method:
-            #     domain.append(('payment_method', '=', obj.payment_method.id))
+            # تصفية طريقة الدفع
+            if obj.payment_method:
+                domain.append(('payment_method', '=', obj.payment_method.id))
 
             if obj.branch_ids:
                 domain.append(('branch_id', 'in', obj.branch_ids.ids))
