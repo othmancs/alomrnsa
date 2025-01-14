@@ -22,9 +22,9 @@ class SalesReportReport(models.AbstractModel):
                       ('move_type', '=', 'out_invoice'),
                       ('state', '=', 'posted')]
 
-            # تصفية طريقة الدفع
-            if obj.payment_method:
-                domain.append(('payment_method', '=', obj.payment_method.id))
+            # # تصفية طريقة الدفع
+            # if obj.payment_method:
+            #     domain.append(('payment_method', '=', obj.payment_method.id))
 
             if obj.branch_ids:
                 domain.append(('branch_id', 'in', obj.branch_ids.ids))
