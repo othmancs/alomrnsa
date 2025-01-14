@@ -32,9 +32,9 @@ class SalesReportWizard(models.TransientModel):
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
         
-        # تصفية طريقة الدفع باستخدام sale_id المرتبط بـ account.move
+        # تصفية طريقة الدفع باستخدام invoice_origin بدلاً من sale_id
         if self.payment_method:
-            domain.append(('sale_id.payment_method', '=', self.payment_method.id))
+            domain.append(('invoice_origin.payment_method', '=', self.payment_method.id))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
@@ -60,7 +60,7 @@ class SalesReportWizard(models.TransientModel):
                 invoice_date = account.invoice_date
                 state = account.payment_state
                 cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
-                payment_method = account.sale_id.payment_method.name if account.sale_id.payment_method else '-'
+                payment_method = account.invoice_origin.payment_method.name if account.invoice_origin.payment_method else '-'
                 price = sum(account.mapped('amount_untaxed'))
                 total_discount = sum(account.line_ids.mapped('discount'))
                 net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
