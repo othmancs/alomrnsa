@@ -10,12 +10,12 @@ class SalesReportWizard(models.TransientModel):
     company_id = fields.Many2one('res.company', required=True, readonly=True, default=lambda self: self.env.company.id)
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
-payment_method_line_id = fields.Many2one(
-    'account.payment.method.line',
-    string="طريقة الدفع",
-    default=lambda self: self.env['account.payment.method.line'].search([], limit=1),
-    domain="[('company_id', '=', company_id)]"
-)
+# payment_method_line_id = fields.Many2one(
+#     'account.payment.method.line',
+#     string="طريقة الدفع",
+#     default=lambda self: self.env['account.payment.method.line'].search([], limit=1),
+#     domain="[('company_id', '=', company_id)]"
+# )
 
     def _compute_printed_by(self):
         for record in self:
