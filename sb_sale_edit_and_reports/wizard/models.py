@@ -11,6 +11,7 @@ class SalesReportWizard(models.TransientModel):
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
     payment_method = fields.Many2one('account.payment.method', string="طريقة الدفع")
+    payment_method_line_id = fields.Many2one('account.payment.method', string='Payment Method')
 
     def _compute_printed_by(self):
         for record in self:
