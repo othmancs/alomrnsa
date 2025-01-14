@@ -2,20 +2,15 @@ from odoo import models, fields, api
 
 class SalesReportWizard(models.TransientModel):
     _name = 'sales.report.wizard'
-    _description = 'Sales Report Wizard'
+    _description = 'sales report wizard'
 
     date_start = fields.Date(string="تاريخ البداية", required=True)
     date_end = fields.Date(string="تاريخ النهاية", required=True)
-    branch_ids = fields.Many2many('res.branch', string="الفرع")
+    branch_ids = fields.Many2many('res.branch', string="الفروع")
     company_id = fields.Many2one('res.company', required=True, readonly=True, default=lambda self: self.env.company.id)
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
-# payment_method_line_id = fields.Many2one(
-#     'account.payment.method.line',
-#     string="طريقة الدفع",
-#     default=lambda self: self.env['account.payment.method.line'].search([], limit=1),
-#     domain="[('company_id', '=', company_id)]"
-# )
+    sale_payment_method = fields.Many2one('account.payment.method', string="طريقة الدفع")
 
     def _compute_printed_by(self):
         for record in self:
@@ -25,33 +20,30 @@ class SalesReportWizard(models.TransientModel):
         return self.env.ref("sb_sale_edit_and_reports.report_sales_report").report_action(self)
 
     def generate_pdf_report(self):
-        # نطاق البحث الأساسي
+        # تعريف شرط التصفية الأساسي
         domain = [
             ('invoice_date', '>=', self.date_start),
             ('invoice_date', '<=', self.date_end),
             ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted')
+            ('state', '=', 'posted'),
         ]
-
-        # إضافة فلتر الفروع إذا كان محددًا
+        
+        # تصفية الفروع
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
+        
+        # تصفية طريقة الدفع (payment_method من sale.order)
+        if self.sale_payment_method:
+            domain.append(('sale_id.payment_method', '=', self.sale_payment_method.id))
 
-        # إضافة فلتر طريقة الدفع إذا كان محددًا
-        if self.payment_method_line_id:
-            domain.append(('payment_method_line_id', '=', self.payment_method_line_id.id))
-
-        # جلب بيانات الفواتير
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
         report_data = []
         branches = [{'branch_id': branch.id, 'branch_name': branch.name} for branch in existing_branches]
-
         for branch in existing_branches:
             current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
             total_out_refund_purchase_price = 0.0
             total_out_refund_price = 0.0
-
             for line in current_branch_lines:
                 out_refund_price = self.env['account.move'].search([
                     ('move_type', '=', 'out_refund'),
@@ -60,10 +52,7 @@ class SalesReportWizard(models.TransientModel):
                     ('state', '=', 'posted')
                 ])
                 total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
-                total_out_refund_purchase_price += sum(
-                    out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity)
-                )
-
+                total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
             for account in current_branch_lines:
                 invoice_number = account.name
                 seller_name = account.created_by_id.name
@@ -71,7 +60,7 @@ class SalesReportWizard(models.TransientModel):
                 invoice_date = account.invoice_date
                 state = account.payment_state
                 cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
-                payment_method = account.payment_method_line_id.name if account.payment_method_line_id else '-'
+                payment_method = account.sale_id.payment_method.name if account.sale_id.payment_method else '-'
                 price = sum(account.mapped('amount_untaxed'))
                 total_discount = sum(account.line_ids.mapped('discount'))
                 net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
@@ -84,7 +73,6 @@ class SalesReportWizard(models.TransientModel):
                 ])
                 out_refund_purchase_price = 0.0
                 out_refund_price = 0.0
-
                 for ac in out_refund:
                     out_refund_purchase_price += sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                     out_refund_price += sum(ac.mapped('amount_untaxed'))
@@ -102,10 +90,10 @@ class SalesReportWizard(models.TransientModel):
                     'cost': cost,
                     'total_credit_note': out_refund_price,
                     't': out_refund_purchase_price,
-                    'state': state
+                    'state': state,
                 }
-                report_data.append(report_data_item)
 
+                report_data.append(report_data_item)
         data = {
             'form': self.read()[0],
             'data': report_data,
