@@ -122,11 +122,22 @@ class SalesReportReport(models.AbstractModel):
             row += 2
             worksheet.write(row, col, 'إجماليات حسب طريقة الدفع', format5)
             row += 1
-
             for payment_method, total in totals_by_payment_method.items():
-                worksheet.write(row, col, payment_method or 'غير محدد', format2)
+                # تحديد القيمة بناءً على payment_method
+                if payment_method == 'option1':
+                    payment_method_label = 'نقدى'
+                elif payment_method == 'option2':
+                    payment_method_label = 'اجل'
+                else:
+                    payment_method_label = 'غير محدد'
+                
+                worksheet.write(row, col, payment_method_label, format2)
                 worksheet.write(row, col + 1, total, format2)
                 row += 1
+            # for payment_method, total in totals_by_payment_method.items():
+            #     worksheet.write(row, col, payment_method or 'غير محدد', format2)
+            #     worksheet.write(row, col + 1, total, format2)
+            #     row += 1
 
 # from odoo import models
 # from datetime import date
