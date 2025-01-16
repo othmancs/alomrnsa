@@ -11,7 +11,7 @@ class SalesReportWizard(models.TransientModel):
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
     payment_method = fields.Many2one('account.payment.method', string="طريقة الدفع")
-    payment_method_line_id = fields.Many2one('account.payment.method.line', string="'طريقة الدفع")
+    payment_method_line_id = fields.Many2one('account.payment.method.line', string="طريقة الدفع")
 
     def _compute_printed_by(self):
         for record in self:
@@ -36,8 +36,8 @@ class SalesReportWizard(models.TransientModel):
         # # تصفية طريقة الدفع باستخدام sale_id المرتبط بـ account.move
         # if self.payment_method:
         #     domain.append(('sale_id.payment_method', '=', self.payment_method.id))
-        if obj.payment_method_line_id:
-            domain.append(('payment_method_line_id', '=', obj.payment_method_line_id.id))
+        if self.payment_method_line_id:
+            domain.append(('payment_method_line_id', '=', self.payment_method_line_id.id))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
