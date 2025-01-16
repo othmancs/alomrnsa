@@ -123,7 +123,12 @@ class SalesReportReport(models.AbstractModel):
                         worksheet.write(row, col + 3, '-', format2)
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, net_cost, format2)  # تم حذف العمود "إجمالي البيع"
-                    worksheet.write(row, col + 6, total_out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
+                    # worksheet.write(row, col + 6, total_out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
+                    for ac in out_refund:
+                        out_refund_purchase_price = sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                        out_refund_price = sum(ac.mapped('amount_untaxed'))
+                        # worksheet.write(row, col + 6, out_refund_price, format2)
+                        worksheet.write(row, col + 6, out_refund_purchase_price, format2)
                     row += 1
 
             # إضافة الإجماليات لكل طريقة دفع
