@@ -83,8 +83,8 @@ class SalesReportReport(models.AbstractModel):
                     total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
                     total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                     
-                worksheet.write(row, col + 6, total_out_refund_price, format5)
-                worksheet.write(row, col + 7, total_out_refund_purchase_price, format5)
+                # worksheet.write(row, col + 6, total_out_refund_price, format5)
+                worksheet.write(row, col + 6, total_out_refund_purchase_price, format5)
 
                 row += 1
 
