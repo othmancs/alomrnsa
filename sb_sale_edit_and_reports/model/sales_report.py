@@ -12,7 +12,7 @@ class SalesReportReport(models.AbstractModel):
             worksheet.right_to_left()
             row = 0
             col = 0
-            worksheet.set_column(0, 13, 30)
+            worksheet.set_column(0, 12, 13)  # تغيير حجم الأعمدة إلى 13
             format1 = workbook.add_format({'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': True, 'border': 1, 'bg_color': '#CCC7BF'})
             format2 = workbook.add_format({'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': False, 'border': 1})
             format3 = workbook.add_format({'text_wrap': True, 'font_size': 10, 'border': 1, 'bold': False, 'align': 'center'})
@@ -82,12 +82,12 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col + 2, 'اسم العميل ', format1)
                 worksheet.write(row, col + 3, 'طريقة الدفع  ', format1)
                 worksheet.write(row, col + 4, 'التاريخ  ', format1)
-                worksheet.write(row, col + 5, 'اجمالي البيع    ', format1)
-                worksheet.write(row, col + 6, 'صافى البيع  ', format1)
-                worksheet.write(row, col + 7, 'اجمالي تكلفه البيع  ', format1)
-                worksheet.write(row, col + 8, 'اجمالي الارجاعات  ', format1)
-                worksheet.write(row, col + 9, 'اجمالي تكلفة الارجاعات  ', format1)
-                worksheet.write(row, col + 10, 'حالة الدفع', format1)
+                worksheet.write(row, col + 5, 'اجمالي البيع ق   ', format1)
+                # worksheet.write(row, col + 6, 'صافى البيع  ', format1)
+                # worksheet.write(row, col + 7, 'اجمالي تكلفه البيع  ', format1)
+                worksheet.write(row, col + 6, 'اجمالي الارجاعات ق ', format1)
+                # worksheet.write(row, col + 9, 'اجمالي تكلفة الارجاعات  ', format1)
+                worksheet.write(row, col + 7, 'حالة الدفع', format1)
                 row += 1
 
                 for account in current_branch_lines:
@@ -97,9 +97,9 @@ class SalesReportReport(models.AbstractModel):
                     invoice_date = account.invoice_date
                     state = account.payment_state
                     if state == 'paid':
-                        worksheet.write(row, col + 10, 'مدفوع', format7)  # أخضر
+                        worksheet.write(row, col + 7, 'مدفوع', format7)  # أخضر
                     elif state == 'not_paid':
-                        worksheet.write(row, col + 10, 'غير مدفوع', format6)  # أحمر
+                        worksheet.write(row, col + 7, 'غير مدفوع', format6)  # أحمر
 
                     cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
                     payment_method = account.payment_method
@@ -120,9 +120,9 @@ class SalesReportReport(models.AbstractModel):
 
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, price, format2)
-                    worksheet.write(row, col + 6, total_discount, format2)
-                    worksheet.write(row, col + 7, net_cost, format2)
-                    worksheet.write(row, col + 8, cost, format2)
+                    # worksheet.write(row, col + 6, total_discount, format2)
+                    # worksheet.write(row, col + 7, net_cost, format2)
+                    worksheet.write(row, col + 6, cost, format2)
 
                     out_refund = self.env['account.move'].search([
                         ('move_type', '=', 'out_refund'),
@@ -137,10 +137,11 @@ class SalesReportReport(models.AbstractModel):
                         out_refund_purchase_price = sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                         total_out_refund_price += out_refund_price
                         total_out_refund_purchase_price += out_refund_purchase_price
-                    worksheet.write(row, col + 8, total_out_refund_price, format2)
-                    worksheet.write(row, col + 9, total_out_refund_purchase_price, format2)
+                    worksheet.write(row, col + 7, total_out_refund_price, format2)
+                    # worksheet.write(row, col + 9, total_out_refund_purchase_price, format2)
 
                     row += 1
+
 
 
 # from odoo import models
