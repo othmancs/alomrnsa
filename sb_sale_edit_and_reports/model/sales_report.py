@@ -69,11 +69,9 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col + 2, 'اسم العميل ', format1)
                 worksheet.write(row, col + 3, 'طريقة الدفع  ', format1)
                 worksheet.write(row, col + 4, 'التاريخ  ', format1)
-                worksheet.write(row, col + 5, 'اجمالى البيع    ', format1)
-                worksheet.write(row, col + 6, 'خصم بيع   ', format1)
-                worksheet.write(row, col + 7, 'صافى البيع  ', format1)
-                worksheet.write(row, col + 8, 'تكلفة الارجاعات  ', format1)  # العمود الجديد
-                worksheet.write(row, col + 9, ' حاله الدفع ', format1)  # قبل حالة الدفع
+                worksheet.write(row, col + 5, 'صافى البيع  ', format1)
+                worksheet.write(row, col + 6, 'تكلفة الارجاعات  ', format1)  # العمود الجديد
+                worksheet.write(row, col + 7, ' حاله الدفع ', format1)  # تعديل العمود لحالة الدفع
                 row += 1
 
                 for account in current_branch_lines:
@@ -103,12 +101,10 @@ class SalesReportReport(models.AbstractModel):
                         out_refund_price += sum(ac.mapped('amount_untaxed'))
 
                     if state == 'paid':
-                        worksheet.write(row, col + 9, 'مدفوع', format7)
+                        worksheet.write(row, col + 7, 'مدفوع', format7)  # تعديل العمود لحالة الدفع
                     elif state == 'not_paid':
-                        worksheet.write(row, col + 9, 'غير مدفوع', format6)
+                        worksheet.write(row, col + 7, 'غير مدفوع', format6)  # تعديل العمود لحالة الدفع
 
-                    price = sum(account.mapped('amount_untaxed'))
-                    total_discount = sum(account.line_ids.mapped('discount'))
                     net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
 
                     worksheet.write(row, col, invoice_number, format2)
@@ -121,11 +117,9 @@ class SalesReportReport(models.AbstractModel):
                     else:
                         worksheet.write(row, col + 3, '-', format2)
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
-                    worksheet.write(row, col + 5, price, format2)
-                    worksheet.write(row, col + 6, total_discount, format2)
-                    worksheet.write(row, col + 7, net_cost, format2)
-                    worksheet.write(row, col + 8, out_refund_price, format2)  # إضافة تكلفة الارجاع
-                    worksheet.write(row, col + 9, out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
+                    worksheet.write(row, col + 5, net_cost, format2)  # تم حذف العمود "إجمالي البيع"
+                    worksheet.write(row, col + 6, out_refund_price, format2)  # إضافة تكلفة الارجاع
+                    worksheet.write(row, col + 7, out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
 
                     row += 1
 
@@ -144,6 +138,7 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col, payment_method_label, format2)
                 worksheet.write(row, col + 1, total, format2)
                 row += 1
+
 
             # for payment_method, total in totals_by_payment_method.items():
             #     worksheet.write(row, col, payment_method or 'غير محدد', format2)
