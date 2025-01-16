@@ -56,7 +56,7 @@ class SalesReportReport(models.AbstractModel):
                 unit_price_branch = sum([sum(move.mapped('amount_untaxed')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
                 total_discount_branch = sum([sum(move.line_ids.mapped('discount')) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
                 branch_amount_untaxed = sum([sum(move.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
-                total_cost_branch = sum([sum(move.line_ids.mapped(lambda line: line.purchase_price * line.quantity)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
+                # total_cost_branch = sum([sum(move.line_ids.mapped(lambda line: line.purchase_price * line.quantity)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
 
                 total_out_refund_purchase_price = 0.0
                 total_out_refund_price = 0.0
@@ -77,7 +77,7 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col + 5, unit_price_branch, format5)
                 worksheet.write(row, col + 6, total_discount_branch, format5)
                 worksheet.write(row, col + 7, branch_amount_untaxed, format5)
-                worksheet.write(row, col + 8, total_cost_branch, format5)
+                # worksheet.write(row, col + 8, total_cost_branch, format5)
                 row += 1
                 worksheet.write(row, col, 'رقم الفاتورة ', format1)
                 worksheet.write(row, col + 1, 'اسم البائع ', format1)
@@ -87,9 +87,9 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col + 5, 'اجمالى البيع    ', format1)
                 worksheet.write(row, col + 6, 'خصم بيع   ', format1)
                 worksheet.write(row, col + 7, 'صافى البيع  ', format1)
-                worksheet.write(row, col + 8, 'اجمالى تكلفه البيع  ', format1)
+                # worksheet.write(row, col + 8, 'اجمالى تكلفه البيع  ', format1)
                 worksheet.write(row, col + 9, 'اجمالى الارجعات  ', format1)
-                worksheet.write(row, col + 10, 'تكلفة الارجعات  ', format1)
+                # worksheet.write(row, col + 10, 'تكلفة الارجعات  ', format1)
                 worksheet.write(row, col + 11, ' حاله الدفع ', format1)
                 row += 1
                 for account in current_branch_lines:
@@ -103,11 +103,11 @@ class SalesReportReport(models.AbstractModel):
                     elif state == 'not_paid':
                         worksheet.write(row, col + 11, 'غير مدفوع', format6)
 
-                    cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
+                    # cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
                     payment_method = account.payment_method
                     price = sum(account.mapped('amount_untaxed'))
                     total_discount = sum(account.line_ids.mapped('discount'))
-                    net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
+                    # net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
                     worksheet.write(row, col, invoice_number, format2)
                     worksheet.write(row, col + 1, seller_name, format2)
                     worksheet.write(row, col + 2, customer_name, format2)
@@ -123,8 +123,8 @@ class SalesReportReport(models.AbstractModel):
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, price, format2)
                     worksheet.write(row, col + 6, total_discount, format2)
-                    worksheet.write(row, col + 7, net_cost, format2)
-                    worksheet.write(row, col + 8, cost, format2)
+                    # worksheet.write(row, col + 7, net_cost, format2)
+                    # worksheet.write(row, col + 8, cost, format2)
 
                     out_refund = self.env['account.move'].search([
                         ('move_type', '=', 'out_refund'),
