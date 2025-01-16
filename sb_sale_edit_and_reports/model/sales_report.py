@@ -81,12 +81,12 @@ class SalesReportReport(models.AbstractModel):
                     seller_name = account.created_by_id.name
                     customer_name = account.partner_id.name
                     invoice_date = account.invoice_date
-                    # 
-                     state = account.payment_state
-                                         if state == 'paid':
-                                          worksheet.write(row, col + 11, 'مدفوع', format7)
-                                       elif state == 'not_paid':
-                                           worksheet.write(row, col + 11, 'غير مدفوع', format6)
+                     
+                    state = account.payment_state
+                                    if state == 'paid':
+                                        worksheet.write(row, col + 11, 'مدفوع', format7)
+                                    elif state == 'not_paid':
+                                        worksheet.write(row, col + 11, 'غير مدفوع', format6)
                                         payment_method = account.payment_method
 
                     if payment_method not in totals_by_payment_method:
