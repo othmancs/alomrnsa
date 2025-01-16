@@ -61,9 +61,10 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col, branch.name, format5)
                 worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
                 worksheet.write(row, col + 5, unit_price_branch, format5)
-                # worksheet.write(row, col + 6, total_discount_branch, format5)
                 worksheet.write(row, col + 6, branch_amount_untaxed, format5)
                 row += 1
+
+                # كتابة العناوين
                 worksheet.write(row, col, 'رقم الفاتورة ', format1)
                 worksheet.write(row, col + 1, 'اسم البائع ', format1)
                 worksheet.write(row, col + 2, 'اسم العميل ', format1)
@@ -118,14 +119,8 @@ class SalesReportReport(models.AbstractModel):
                         worksheet.write(row, col + 3, '-', format2)
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, net_cost, format2)  # تم حذف العمود "إجمالي البيع"
-                    # worksheet.write(row, col + 6, out_refund_price, format2)  # إضافة تكلفة الارجاع
                     worksheet.write(row, col + 6, out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
-                    out_refund = self.env['account.move'].search([
-                                        ('move_type', '=', 'out_refund'),
-                                        ('branch_id', '=', branch.id),
-                                        ('reversed_entry_id', '=', account.id),
-                                        ('state', '=', 'posted')
-                                    ])                    row += 1
+                    row += 1
 
             # إضافة الإجماليات لكل طريقة دفع
             row += 2
