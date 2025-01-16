@@ -83,11 +83,11 @@ class SalesReportReport(models.AbstractModel):
                     invoice_date = account.invoice_date
                      
                     state = account.payment_state
-                                    if state == 'paid':
-                                        worksheet.write(row, col + 11, 'مدفوع', format7)
-                                    elif state == 'not_paid':
-                                        worksheet.write(row, col + 11, 'غير مدفوع', format6)
-                                        payment_method = account.payment_method
+                    if state == 'paid':
+                        worksheet.write(row, col + 9, 'مدفوع', format7)
+                    elif state == 'not_paid':
+                        worksheet.write(row, col + 9, 'غير مدفوع', format6)
+
 
                     if payment_method not in totals_by_payment_method:
                         totals_by_payment_method[payment_method] = 0
@@ -107,11 +107,7 @@ class SalesReportReport(models.AbstractModel):
                         out_refund_purchase_price += sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                         out_refund_price += sum(ac.mapped('amount_untaxed'))
 
-                    if state == 'paid':
-                        worksheet.write(row, col + 9, 'مدفوع', format7)
-                    elif state == 'not_paid':
-                        worksheet.write(row, col + 9, 'غير مدفوع', format6)
-
+                   
                     price = sum(account.mapped('amount_untaxed'))
                     total_discount = sum(account.line_ids.mapped('discount'))
                     net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
