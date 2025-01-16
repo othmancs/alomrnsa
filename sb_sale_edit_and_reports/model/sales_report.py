@@ -61,18 +61,23 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col, branch.name, format5)
                 worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
                 worksheet.write(row, col + 5, unit_price_branch, format5)
-                # worksheet.write(row, col + 6, branch_amount_untaxed, format5)
+
+                # تعريف total_out_refund_price بشكل صحيح
                 total_out_refund_price = 0.0
-                                for line in current_branch_lines:
-                                    out_refund_price = self.env['account.move'].search([
-                                        ('move_type', '=', 'out_refund'),
-                                        ('branch_id', '=', branch.id),
-                                        ('reversed_entry_id', '=', line.id),
-                                        ('state', '=', 'posted')
-                                    ])
-                                    total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
-                                    total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
-                                    worksheet.write(row, col + 6, total_out_refund_price, format5)
+                total_out_refund_purchase_price = 0.0
+                
+                for line in current_branch_lines:
+                    out_refund_price = self.env['account.move'].search([
+                        ('move_type', '=', 'out_refund'),
+                        ('branch_id', '=', branch.id),
+                        ('reversed_entry_id', '=', line.id),
+                        ('state', '=', 'posted')
+                    ])
+                    total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
+                    total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                    
+                worksheet.write(row, col + 6, total_out_refund_price, format5)
+                worksheet.write(row, col + 7, total_out_refund_purchase_price, format5)
 
                 row += 1
 
@@ -100,25 +105,12 @@ class SalesReportReport(models.AbstractModel):
 
                     totals_by_payment_method[payment_method] += sum(account.mapped('amount_untaxed'))
 
-                    # استرجاع الفواتير المردودة وتكلفتها
-                    out_refund = self.env['account.move'].search([
-                        ('move_type', '=', 'out_refund'),
-                        ('branch_id', '=', branch.id),
-                        ('reversed_entry_id', '=', account.id),
-                        ('state', '=', 'posted')
-                    ])
-                    out_refund_purchase_price = 0
-                    out_refund_price = 0
-                    for ac in out_refund:
-                        out_refund_purchase_price += sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
-                        out_refund_price += sum(ac.mapped('amount_untaxed'))
+                    net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
 
                     if state == 'paid':
                         worksheet.write(row, col + 7, 'مدفوع', format7)  # تعديل العمود لحالة الدفع
                     elif state == 'not_paid':
                         worksheet.write(row, col + 7, 'غير مدفوع', format6)  # تعديل العمود لحالة الدفع
-
-                    net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
 
                     worksheet.write(row, col, invoice_number, format2)
                     worksheet.write(row, col + 1, seller_name, format2)
@@ -131,7 +123,7 @@ class SalesReportReport(models.AbstractModel):
                         worksheet.write(row, col + 3, '-', format2)
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, net_cost, format2)  # تم حذف العمود "إجمالي البيع"
-                    worksheet.write(row, col + 6, out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
+                    worksheet.write(row, col + 6, total_out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
                     row += 1
 
             # إضافة الإجماليات لكل طريقة دفع
