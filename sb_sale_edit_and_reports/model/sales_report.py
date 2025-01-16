@@ -2,7 +2,6 @@ from odoo import models
 from datetime import date
 from odoo.tools import format_date
 
-
 class SalesReportReport(models.AbstractModel):
     _name = 'report.sb_sale_edit_and_reports.report_sales_report'
     _inherit = 'report.report_xlsx.abstract'
@@ -13,14 +12,17 @@ class SalesReportReport(models.AbstractModel):
             worksheet.right_to_left()
             row = 0
             col = 0
-            worksheet.set_column(0, 10, 30)
-            format1 = workbook.add_format({'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': True, 'border': 1, 'bg_color': '#CCC7BF'})
-            format2 = workbook.add_format({'text_wrap': True, 'font_size': 11, 'align': 'center', 'bold': False, 'border': 1})
-            format3 = workbook.add_format({'text_wrap': True, 'font_size': 10, 'border': 1, 'bold': False, 'align': 'center'})
-            format4 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True})
-            format5 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': '#caf0f8'})
-            format6 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'red', 'color': 'white'})
-            format7 = workbook.add_format({'text_wrap': True, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'green', 'color': 'white'})
+            # تعديل حجم الأعمدة إلى 13
+            worksheet.set_column(0, 10, 13)
+            
+            # إنشاء التنسيقات مع تعطيل التفاف النص
+            format1 = workbook.add_format({'text_wrap': False, 'font_size': 11, 'align': 'center', 'bold': True, 'border': 1, 'bg_color': '#CCC7BF'})
+            format2 = workbook.add_format({'text_wrap': False, 'font_size': 11, 'align': 'center', 'bold': False, 'border': 1})
+            format3 = workbook.add_format({'text_wrap': False, 'font_size': 10, 'border': 1, 'bold': False, 'align': 'center'})
+            format4 = workbook.add_format({'text_wrap': False, 'font_size': 12, 'align': 'center', 'bold': True})
+            format5 = workbook.add_format({'text_wrap': False, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': '#caf0f8'})
+            format6 = workbook.add_format({'text_wrap': False, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'red', 'color': 'white'})
+            format7 = workbook.add_format({'text_wrap': False, 'font_size': 12, 'align': 'center', 'bold': True, 'bg_color': 'green', 'color': 'white'})
 
             domain = [('invoice_date', '>=', obj.date_start),
                       ('invoice_date', '<=', obj.date_end),
@@ -98,13 +100,6 @@ class SalesReportReport(models.AbstractModel):
                     worksheet.write(row, col, invoice_number, format2)
                     worksheet.write(row, col + 1, seller_name, format2)
                     worksheet.write(row, col + 2, customer_name, format2)
-                    # worksheet.write(row, col + 3, payment_method or '-', format2)
-                    #  # if payment_method == 'option1':
-                    #  #        worksheet.write(row, col + 3, 'نقدى', format2)
-                    #  #    elif payment_method == 'option2':
-                    #  #        worksheet.write(row, col + 3, 'اجل', format2)
-                    #  #    else:
-                    #  #        worksheet.write(row, col + 3, '-', format2)
                     if payment_method == 'option1':
                         worksheet.write(row, col + 3, 'نقدى', format2)
                     elif payment_method == 'option2':
@@ -123,7 +118,6 @@ class SalesReportReport(models.AbstractModel):
             worksheet.write(row, col, 'إجماليات حسب طريقة الدفع', format5)
             row += 1
             for payment_method, total in totals_by_payment_method.items():
-                # تحديد القيمة بناءً على payment_method
                 if payment_method == 'option1':
                     payment_method_label = 'نقدى'
                 elif payment_method == 'option2':
@@ -134,6 +128,7 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col, payment_method_label, format2)
                 worksheet.write(row, col + 1, total, format2)
                 row += 1
+
             # for payment_method, total in totals_by_payment_method.items():
             #     worksheet.write(row, col, payment_method or 'غير محدد', format2)
             #     worksheet.write(row, col + 1, total, format2)
