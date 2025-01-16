@@ -22,12 +22,9 @@
                             <group>
                                 <field name="date_start"/>
                                 <field name="branch_ids" widget="many2many_tags"/>
-<!--                                 <field name="payment_method_line_id" widget="many2many_tags"/> -->
-<!-- <field name="payment_method" widget="many2one"/>
- -->
-                    <field name="payment_method_line_id" string="طريقة الدفع" 
-                           options="{'no_create': True}" 
-                           placeholder="اختر طريقة الدفع"/>
+                                <field name="payment_method" position="after">
+                                            <field name="payment_method_line_id"/>
+                                        </field>
 
                             </group>
                             <group>
