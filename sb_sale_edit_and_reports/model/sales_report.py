@@ -61,7 +61,19 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col, branch.name, format5)
                 worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
                 worksheet.write(row, col + 5, unit_price_branch, format5)
-                worksheet.write(row, col + 6, branch_amount_untaxed, format5)
+                # worksheet.write(row, col + 6, branch_amount_untaxed, format5)
+                total_out_refund_price = 0.0
+                                for line in current_branch_lines:
+                                    out_refund_price = self.env['account.move'].search([
+                                        ('move_type', '=', 'out_refund'),
+                                        ('branch_id', '=', branch.id),
+                                        ('reversed_entry_id', '=', line.id),
+                                        ('state', '=', 'posted')
+                                    ])
+                                    total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
+                                    total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                                    worksheet.write(row, col + 6, total_out_refund_price, format5)
+
                 row += 1
 
                 # كتابة العناوين
@@ -204,17 +216,17 @@ class SalesReportReport(models.AbstractModel):
 #                 total_cost_branch = sum([sum(move.line_ids.mapped(lambda line: line.purchase_price * line.quantity)) for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')])
 
 #                 total_out_refund_purchase_price = 0.0
-#                 total_out_refund_price = 0.0
-#                 for line in current_branch_lines:
-#                     out_refund_price = self.env['account.move'].search([
-#                         ('move_type', '=', 'out_refund'),
-#                         ('branch_id', '=', branch.id),
-#                         ('reversed_entry_id', '=', line.id),
-#                         ('state', '=', 'posted')
-#                     ])
-#                     total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
-#                     total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
-#                     worksheet.write(row, col + 9, total_out_refund_price, format5)
+                total_out_refund_price = 0.0
+                for line in current_branch_lines:
+                    out_refund_price = self.env['account.move'].search([
+                        ('move_type', '=', 'out_refund'),
+                        ('branch_id', '=', branch.id),
+                        ('reversed_entry_id', '=', line.id),
+                        ('state', '=', 'posted')
+                    ])
+                    total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
+                    total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                    worksheet.write(row, col + 9, total_out_refund_price, format5)
 #                     worksheet.write(row, col + 10, total_out_refund_purchase_price, format5)
 
 #                 worksheet.write(row, col, branch.name, format5)
