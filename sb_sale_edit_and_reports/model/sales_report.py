@@ -12,9 +12,16 @@ class SalesReportReport(models.AbstractModel):
             worksheet.right_to_left()
             row = 0
             col = 0
-            # تعديل حجم الأعمدة إلى 13
-            worksheet.set_column(0, 10, 13)
-            
+            # تعديل حجم الأعمدة
+            worksheet.set_column(0, 0, 20)  # للعمود الأول
+            worksheet.set_column(1, 1, 30)  # للعمود الثاني
+            worksheet.set_column(2, 2, 20)  # للعمود الثالث
+            worksheet.set_column(3, 3, 15)  # للعمود الرابع
+            worksheet.set_column(4, 4, 12)  # للعمود الخامس
+            worksheet.set_column(5, 5, 12)  # للعمود السادس
+            worksheet.set_column(6, 6, 12)  # للعمود السابع
+            worksheet.set_column(7, 7, 12)  # للعمود الثامن
+
             # إنشاء التنسيقات مع تعطيل التفاف النص
             format1 = workbook.add_format({'text_wrap': False, 'font_size': 11, 'align': 'center', 'bold': True, 'border': 1, 'bg_color': '#CCC7BF'})
             format2 = workbook.add_format({'text_wrap': False, 'font_size': 11, 'align': 'center', 'bold': False, 'border': 1})
@@ -41,8 +48,8 @@ class SalesReportReport(models.AbstractModel):
             worksheet.merge_range(row + 1, col + 3, row + 1, col + 4, 'تقرير المبيعات', format4)
             worksheet.write(row + 3, col + 5, ' :من ', format1)
             worksheet.write(row + 3, col + 7, '  :الى ', format1)
-            worksheet.write(row + 3, col + 6, obj.date_start.strftime('%d/%m/%Y'), format3)
-            worksheet.write(row + 3, col + 8,  obj.date_end.strftime('%d/%m/%Y'), format3)
+            worksheet.write(row + 3, col + 6, format_date(self.env, obj.date_start), format3)
+            worksheet.write(row + 3, col + 8, format_date(self.env, obj.date_end), format3)
             worksheet.write(row + 3, col, ' :تاريخ طباعه ', format1)
             worksheet.write(row + 3, col + 1, date.today().strftime('%d/%m/%Y'), format3)
             worksheet.write(row + 4, col, ' :طبع من مستخدم  ', format1)
@@ -123,8 +130,8 @@ class SalesReportReport(models.AbstractModel):
                         worksheet.write(row, col + 3, '-', format2)
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, net_cost, format2)  # تم حذف العمود "إجمالي البيع"
-                    # worksheet.write(row, col + 6, total_out_refund_purchase_price, format2)  # إضافة تكلفة الارجاع من الشراء
-                   out_refund = self.env['account.move'].search([
+                   
+                    out_refund = self.env['account.move'].search([
                             ('move_type', '=', 'out_refund'),
                             ('branch_id', '=', branch.id),
                             ('reversed_entry_id', '=', account.id),
@@ -134,7 +141,6 @@ class SalesReportReport(models.AbstractModel):
                     for ac in out_refund:
                         out_refund_purchase_price = sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
                         out_refund_price = sum(ac.mapped('amount_untaxed'))
-                        # worksheet.write(row, col + 6, out_refund_price, format2)
                         worksheet.write(row, col + 6, out_refund_purchase_price, format2)
                     row += 1
 
@@ -153,7 +159,6 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col, payment_method_label, format2)
                 worksheet.write(row, col + 1, total, format2)
                 row += 1
-
 
             # for payment_method, total in totals_by_payment_method.items():
             #     worksheet.write(row, col, payment_method or 'غير محدد', format2)
