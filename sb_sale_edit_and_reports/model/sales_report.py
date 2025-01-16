@@ -98,13 +98,19 @@ class SalesReportReport(models.AbstractModel):
                     worksheet.write(row, col, invoice_number, format2)
                     worksheet.write(row, col + 1, seller_name, format2)
                     worksheet.write(row, col + 2, customer_name, format2)
-                    worksheet.write(row, col + 3, payment_method or '-', format2)
-                     # if payment_method == 'option1':
-                     #        worksheet.write(row, col + 3, 'نقدى', format2)
-                     #    elif payment_method == 'option2':
-                     #        worksheet.write(row, col + 3, 'اجل', format2)
-                     #    else:
-                     #        worksheet.write(row, col + 3, '-', format2)
+                    # worksheet.write(row, col + 3, payment_method or '-', format2)
+                    #  # if payment_method == 'option1':
+                    #  #        worksheet.write(row, col + 3, 'نقدى', format2)
+                    #  #    elif payment_method == 'option2':
+                    #  #        worksheet.write(row, col + 3, 'اجل', format2)
+                    #  #    else:
+                    #  #        worksheet.write(row, col + 3, '-', format2)
+                    if payment_method == 'option1':
+                        worksheet.write(row, col + 3, 'نقدى', format2)
+                    elif payment_method == 'option2':
+                        worksheet.write(row, col + 3, 'اجل', format2)
+                    else:
+                        worksheet.write(row, col + 3, '-', format2)
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, price, format2)
                     worksheet.write(row, col + 6, total_discount, format2)
