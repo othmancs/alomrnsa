@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="action_customer_template" model="ir.actions.report">
+            <field name="name">Customer Vendor Report</field>
+            <field name="model">customer.vendor.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">customer_payment_statement.vendor_statement_report</field>
+            <field name="report_file">customer_payment_statement.vendor_statement_report</field>
+        </record>
+
+        <record id="action_customer_vendor_xlsx" model="ir.actions.report">
+            <field name="name">Customer Vendor XLSX</field>
+            <field name="model">customer.vendor.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">customer_payment_statement.report_account_xlsx</field>
+            <field name="report_file">customer_payment_statement.report_account_xlsx</field>
+        </record>
+
+
+
+
+</odoo>

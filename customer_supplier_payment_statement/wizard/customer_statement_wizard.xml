@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="customer_statement_wizard_view_form" model="ir.ui.view">
+        <field name="name">customer.statement.wizard.form</field>
+        <field name="model">customer.vendor.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Customer Statement Reports">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                    </group>
+                    <group>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="company_id" invisible="1"/>
+                    </group>
+
+                    <group>
+                        <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"
+                               placeholder="Name, TIN, Email, or Reference"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_pdf" type="object" string="PDF" class="oe_highlight"/>
+                    <button name="print_xlsx" type="object" string="XLSX" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="customer_report_action" model="ir.actions.act_window">
+        <field name="name">Customer Statement Reports</field>
+        <field name="res_model">customer.vendor.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="customer_statement_wizard_view_form"/>
+    </record>
+
+<!--    <menuitem id="menu_account_account_report"-->
+<!--              name="Vendor Statement Report"-->
+<!--              sequence="100"-->
+<!--              action="customer_report_action"-->
+<!--              parent="account.menu_finance_reports"/>-->
+
+</odoo>

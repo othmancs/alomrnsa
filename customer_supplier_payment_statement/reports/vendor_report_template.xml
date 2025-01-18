@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <template id="vendor_statement_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <link href="https://fonts.googleapis.com/css2?family=Almarai" rel="stylesheet" />
+                    <div class="page" style="font-family: 'Almarai', sans-serif;">
+                        <br />
+                        <br />
+                        <style>
+                            #table_css {
+                            border: 1px solid black border-collapse: collapse;
+                            border-spacing: 0px;
+                            border-top-spacing: 0px;
+                            margin-top:10px;
+                            }
+
+                            #table_css td,
+                            #table_css th {
+                            border: 1px solid black;
+                            text-align:center;
+                            }
+
+                            #table_css tr: {
+                            border: 1px solid black
+                            }
+
+                            #table_css th {
+                            style="border: 1px solid black"
+                            }
+                            #table_name {
+                            text-align:left;
+                            }
+                        </style>
+                        <div class="table_name">
+                            <table>
+                                <td>
+                                    <tr>
+                                        <span t-field="partner_id.name"/><br/>
+                                    </tr>
+                                </td>
+                                <td>
+                                    <tr>
+                                        <span t-field="partner_id.street" />
+                                    </tr>
+                                </td>
+                                <br/>
+                                <td>
+                                    <tr>
+                                        <span t-field="partner_id.street2" />
+                                    </tr>
+                                </td>
+                                <br/>
+                                <td>
+                                    <tr>
+                                        <span t-field="partner_id.zip" />
+                                    </tr>
+                                </td>
+                                <br/>
+                                <td>
+                                    <tr>
+                                        <span t-field="partner_id.city" />
+                                    </tr>
+                                </td>
+                                <br/>
+                                <td>
+                                    <tr>
+                                        <span t-field="partner_id.state_id.name" />
+                                    </tr>
+                                </td>
+                                <br/>
+                                <td>
+                                    <tr>
+                                        <span t-field="partner_id.country_id.name" />
+                                    </tr>
+                                </td>
+
+                            </table>
+
+                        </div>
+
+                        <table class="table table-sm o_main_table" id="table_css">
+                            <thead>
+                                <tr>
+                                    <th style="background-color: lightgrey;">Date From</th>
+                                    <th style="background-color: lightgrey;">Date To</th>
+                                    <th style="background-color: lightgrey;">Vendor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-esc="start_date" t-options="{'widget': 'date'}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="end_date" t-options="{'widget': 'date'}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="partner_id.name" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+
+
+                        <table class="table table-sm o_main_table" id="table_css">
+                            <thead>
+                                <tr>
+                                    <th style="background-color: lightgrey;">Date</th>
+                                    <th style="background-color: lightgrey;">Invoice Number</th>
+                                    <th style="background-color: lightgrey;">Reference</th>
+                                    <th style="background-color: lightgrey;">Invoice/Debit</th>
+                                    <th style="background-color: lightgrey;">Payment/Credit</th>
+                                    <th style="background-color: lightgrey;">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <t t-set="balance" t-value="0" />
+                                <t t-foreach="move_details" t-as="move_detail">
+                                    <tr>
+                                        <td>
+                                            <span t-field="move_detail.date" />
+                                        </td>
+                                        <td>
+                                            <span t-field="move_detail.name" />
+                                        </td>
+                                        <td>
+                                            <span t-field="move_detail.ref" />
+                                        </td>
+
+                                        <td>
+                                            <span t-field="move_detail.amount_total" />
+                                        </td>
+                                        <td >
+                                            <span t-field="move_detail.amount_paid" />
+                                        </td>
+                                        <td >
+                                            <t t-set="balance" t-value="move_detail.amount_total - move_detail.amount_paid" />
+                                            <span t-esc="balance"
+                                                  t-options="{'widget': 'monetary', 'display_currency': move_detail.currency_id}" />
+                                        </td>
+                                    </tr>
+                                </t>
+
+                            </tbody>
+                        </table>
+                        <table style="border:none; width:100%; background-color:white;">
+                            <tr style="border:none;">
+                                <td colspan="6" style="text-align:center; background-color:white;">
+
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
