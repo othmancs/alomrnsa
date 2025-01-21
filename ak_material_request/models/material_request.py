@@ -68,12 +68,19 @@ class MaterialRequest(models.Model):
     # #     domain=[],
     # #     default=lambda self: self.env.user.branch_id.id,
     # # )
-     branch_from_id = fields.Many2one(
+    #  branch_from_id = fields.Many2one(
+    #     'res.branch',
+    #     string='من فرع',
+    #     domain=[],  # السماح لجميع الفروع دون قيود
+    #     default=lambda self: self.env.user.branch_id.id,  # الفرع الافتراضي هو فرع المستخدم الحالي
+    # )
+    branch_from_id = fields.Many2one(
         'res.branch',
         string='من فرع',
-        domain=[],  # السماح لجميع الفروع دون قيود
-        default=lambda self: self.env.user.branch_id.id,  # الفرع الافتراضي هو فرع المستخدم الحالي
+        domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
+        default=lambda self: self.env.user.branch_id.id,
     )
+
     branch_to_id = fields.Many2one(
         'res.branch',
         string='الى فرع',
