@@ -39,24 +39,41 @@ class MaterialRequest(models.Model):
     user_id = fields.Many2one(
         "res.users",
         string="طلب من قبل",
-        default=lambda self: self.env.user and self.env.user.id or False,
+        default=lambda self: self.env.user.id if self.env.user else False,
         required=True,
-        domain=lambda self: [
-            ("groups_id", "in", [self.env.ref("stock.group_stock_user").id])
-        ],
+        domain=lambda self: [("groups_id", "in", self.env.ref("stock.group_stock_user").ids)]
+        if self.env.ref("stock.group_stock_user", raise_if_not_found=False)
+        else [],
     )
-    #   branch_from_id = fields.Many2one(
-    #     'res.branch',
-    #     string='من فرع',
-    #     domain=[],
-    #     default=lambda self: self.env.user.branch_id.id,
-    # )
-     branch_from_id = fields.Many2one(
+    branch_from_id = fields.Many2one(
         'res.branch',
         string='من فرع',
-        domain=[],  # السماح لجميع الفروع دون قيود
-        default=lambda self: self.env.user.branch_id.id,  # الفرع الافتراضي هو فرع المستخدم الحالي
+        domain=[],  # السماح لجميع الفروع
+        default=lambda self: self.env.user.branch_id.id if self.env.user.branch_id else False,
     )
+
+
+    # user_id = fields.Many2one(
+    #     "res.users",
+    #     string="طلب من قبل",
+    #     default=lambda self: self.env.user and self.env.user.id or False,
+    #     required=True,
+    #     domain=lambda self: [
+    #         ("groups_id", "in", [self.env.ref("stock.group_stock_user").id])
+    #     ],
+    # )
+    # #   branch_from_id = fields.Many2one(
+    # #     'res.branch',
+    # #     string='من فرع',
+    # #     domain=[],
+    # #     default=lambda self: self.env.user.branch_id.id,
+    # # )
+    #  branch_from_id = fields.Many2one(
+    #     'res.branch',
+    #     string='من فرع',
+    #     domain=[],  # السماح لجميع الفروع دون قيود
+    #     default=lambda self: self.env.user.branch_id.id,  # الفرع الافتراضي هو فرع المستخدم الحالي
+    # )
     branch_to_id = fields.Many2one(
         'res.branch',
         string='الى فرع',
