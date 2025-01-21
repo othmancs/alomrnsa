@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+    <data noupdate="1">
         <record id="material_request_form_view_inherit" model="ir.ui.view">
             <field name="name">material.request.form.view.inherit</field>
             <field name="model">material.request</field>
