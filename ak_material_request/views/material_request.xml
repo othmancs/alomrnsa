@@ -8,7 +8,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='request_date']" position="after">
-                    <field name="branch_from_id"/>
+                    <field name="branch_from_id" domain="[('active', '=', True)]" options="{'no_create': True}"/>
                     <field name="branch_to_id"/>
                 </xpath>
                 <xpath expr="//field[@name='request_line_ids']/tree/field[@name='qty']" position="after">
