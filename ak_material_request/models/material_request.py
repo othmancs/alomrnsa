@@ -12,6 +12,7 @@ class MaterialRequest(models.Model):
     _description = "Material Request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "id desc"
+    active = fields.Boolean(default=True)
 
     def compute_delivery_state(self):
         for material_request in self:
