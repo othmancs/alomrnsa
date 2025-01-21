@@ -8,7 +8,7 @@
                 <t t-set="data_report_header_spacing" t-value="9"/>
                 <t t-set="data_report_dpi" t-value="110"/>
                 <div class="page">
-                    <h2>Partner Ledger</h2>
+                    <h2>كشف حساب</h2>
                     <div class="row">
                         <div class="col-3">
                             <strong>Company:</strong>
@@ -36,12 +36,12 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>JRNL</th>
+                                <th>الحركة</th>
                                 <th>Account</th>
                                 <th>Ref</th>
                                 <th>Debit</th>
                                 <th>الدائن</th>
-                                <th>Balance</th>
+                                <th>الرصيد</th>
                                 <th t-if="data['form']['amount_currency']">Currency</th>
                             </tr>
                         </thead>
