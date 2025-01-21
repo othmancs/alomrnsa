@@ -45,11 +45,11 @@ class MaterialRequest(models.Model):
         if self.env.ref("stock.group_stock_user", raise_if_not_found=False)
         else [],
     )
-    branch_from_id = fields.Many2one(
+      branch_from_id = fields.Many2one(
         'res.branch',
         string='من فرع',
-        domain=[],  # السماح لجميع الفروع
-        default=lambda self: self.env.user.branch_id.id if self.env.user.branch_id else False,
+        domain=lambda self: [('id', 'in', self.env['res.branch'].search([]).ids)],
+        default=lambda self: self.env.user.branch_id.id,
     )
 
 
