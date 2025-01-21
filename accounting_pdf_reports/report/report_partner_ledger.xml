@@ -40,7 +40,7 @@
                                 <th>Account</th>
                                 <th>Ref</th>
                                 <th>Debit</th>
-                                <th>Credit</th>
+                                <th>الدائن</th>
                                 <th>Balance</th>
                                 <th t-if="data['form']['amount_currency']">Currency</th>
                             </tr>
