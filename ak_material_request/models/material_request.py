@@ -12,7 +12,6 @@ class MaterialRequest(models.Model):
     _description = "Material Request"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "id desc"
-    active = fields.Boolean(default=True)
 
     def compute_delivery_state(self):
         for material_request in self:
@@ -47,11 +46,12 @@ class MaterialRequest(models.Model):
         ],
     )
     branch_from_id = fields.Many2one(
-        'res.branch',
-        string='من فرع',
-        domain=lambda self: [],
-        default=lambda self: self.env.user.branch_id.id,
+    'res.branch',
+    string='من فرع',
+    domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
+    default=lambda self: self.env.user.branch_id.id,
     )
+
     branch_to_id = fields.Many2one(
         'res.branch',
         string='الى فرع',
