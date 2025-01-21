@@ -45,12 +45,12 @@ class MaterialRequest(models.Model):
         if self.env.ref("stock.group_stock_user", raise_if_not_found=False)
         else [],
     )
-      branch_from_id = fields.Many2one(
-        'res.branch',
-        string='من فرع',
-        domain=lambda self: [('id', 'in', self.env['res.branch'].search([]).ids)],
-        default=lambda self: self.env.user.branch_id.id,
-    )
+    #   branch_from_id = fields.Many2one(
+    #     'res.branch',
+    #     string='من فرع',
+    #     domain=lambda self: [('id', 'in', self.env['res.branch'].search([]).ids)],
+    #     default=lambda self: self.env.user.branch_id.id,
+    # )
 
 
     # user_id = fields.Many2one(
@@ -68,12 +68,12 @@ class MaterialRequest(models.Model):
     # #     domain=[],
     # #     default=lambda self: self.env.user.branch_id.id,
     # # )
-    #  branch_from_id = fields.Many2one(
-    #     'res.branch',
-    #     string='من فرع',
-    #     domain=[],  # السماح لجميع الفروع دون قيود
-    #     default=lambda self: self.env.user.branch_id.id,  # الفرع الافتراضي هو فرع المستخدم الحالي
-    # )
+     branch_from_id = fields.Many2one(
+        'res.branch',
+        string='من فرع',
+        domain=[],  # السماح لجميع الفروع دون قيود
+        default=lambda self: self.env.user.branch_id.id,  # الفرع الافتراضي هو فرع المستخدم الحالي
+    )
     branch_to_id = fields.Many2one(
         'res.branch',
         string='الى فرع',
