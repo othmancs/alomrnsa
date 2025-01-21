@@ -45,12 +45,12 @@ class MaterialRequest(models.Model):
             ("groups_id", "in", [self.env.ref("stock.group_stock_user").id])
         ],
     )
-    branch_from_id = fields.Many2one(
-        'res.branch',
-        string='من فرع',
-        domain=lambda self: [('id', 'in', self.env.user.branch_ids.ids)],
-        default=lambda self: self.env.user.branch_id.id,
-    )
+branch_from_id = fields.Many2one(
+    'res.branch',
+    string='من فرع',
+    domain=[],  # إزالة القيد للسماح برؤية جميع الفروع
+    default=lambda self: self.env.user.branch_id.id,  # يمكن الاحتفاظ بالفرع الافتراضي للمستخدم
+)
     branch_to_id = fields.Many2one(
         'res.branch',
         string='الى فرع',
