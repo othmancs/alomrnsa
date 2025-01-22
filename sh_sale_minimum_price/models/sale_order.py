@@ -4,6 +4,43 @@
 from odoo import models, fields, api, _
 from odoo.tools.misc import get_lang
 from odoo.exceptions import UserError
+from odoo import Command
+
+
+class ProductPricelistItem(models.Model):
+    _inherit = 'product.pricelist.item'
+
+    bi_unit_price = fields.Float("BI Unit Price")
+
+    @api.model
+    def create(self, vals):
+        """ عند إنشاء سجل جديد في product.pricelist.item """
+        record = super(ProductPricelistItem, self).create(vals)
+        # تحديث خطوط المبيعات عند إضافة bi_unit_price
+        if 'bi_unit_price' in vals:
+            record._update_sale_order_lines()
+        return record
+
+    def write(self, vals):
+        """ عند تعديل سجل في product.pricelist.item """
+        res = super(ProductPricelistItem, self).write(vals)
+        # تحديث خطوط المبيعات عند تعديل bi_unit_price
+        if 'bi_unit_price' in vals:
+            self._update_sale_order_lines()
+        return res
+
+    def _update_sale_order_lines(self):
+        """ تحديث الحد الأدنى للسعر في خطوط المبيعات المرتبطة """
+        sale_order_line_obj = self.env['sale.order.line']
+        for item in self:
+            # البحث عن خطوط المبيعات التي تستخدم المنتج وقائمة الأسعار
+            sale_lines = sale_order_line_obj.search([
+                ('product_id', '=', item.product_id.id),
+                ('order_id.pricelist_id', '=', item.pricelist_id.id),
+            ])
+            for line in sale_lines:
+                # تحديث الحقل sh_sale_minimum_price
+                line.sh_sale_minimum_price = item.bi_unit_price
 
 
 class SaleOrder(models.Model):
@@ -50,14 +87,14 @@ class SaleOrderLine(models.Model):
 
         self._compute_tax_id()
 
+        # تحديث الحد الأدنى للسعر بناءً على bi_unit_price
         if self.order_id.pricelist_id and self.order_id.partner_id:
-            # تحديث الحد الأدنى للسعر بناءً على bi_unit_price
             pricelist_item = self.env['product.pricelist.item'].search([
                 ('pricelist_id', '=', self.order_id.pricelist_id.id),
                 ('product_id', '=', self.product_id.id)
             ], limit=1)
-            if pricelist_item and hasattr(pricelist_item, 'bi_unit_price'):
-                vals['sh_sale_minimum_price'] = pricelist_item.bi_unit_price
+            if pricelist_item:
+                self.sh_sale_minimum_price = pricelist_item.bi_unit_price
 
         self.update(vals)
 
