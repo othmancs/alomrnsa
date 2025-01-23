@@ -77,22 +77,24 @@ class SaleOrderPricelistWizardLine(models.Model):
             minimum_price = self.calculate_minimum_price()
             self.line_id.write({'sh_sale_minimum_price': minimum_price})
 
-    def calculate_minimum_price(self):
-        """
-        حساب الحد الأدنى للسعر بناءً على المنتج، قائمة الأسعار، ووحدة القياس
-        """
-        product = self.line_id.product_id
-        pricelist = self.bi_pricelist_id
-        uom = self.bi_unit_measure
-        partner = self.line_id.order_id.partner_id
+def calculate_minimum_price(self):
+    """
+    حساب الحد الأدنى للسعر بناءً على المنتج، قائمة الأسعار، ووحدة القياس
+    """
+    product = self.line_id.product_id
+    pricelist = self.bi_pricelist_id
+    uom = self.bi_unit_measure
+    partner = self.line_id.order_id.partner_id
 
-        # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
-        minimum_price = pricelist.with_context(
-            uom=uom.id,
-            partner=partner.id,
-        ).get_product_price(product, 1, partner)
+    # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
+    price_rule = pricelist._compute_price_rule(
+        product_id=product,
+        quantity=1,
+        partner=partner,
+        uom_id=uom.id
+    )
+    minimum_price = price_rule.get(product.id, [0])[0]  # الحصول على السعر الأول من النتيجة
 
-        return minimum_price
 
 
 # # -*- coding: utf-8 -*-
