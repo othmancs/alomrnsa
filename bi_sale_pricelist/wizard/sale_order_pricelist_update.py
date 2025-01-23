@@ -66,36 +66,29 @@ class SaleOrderPricelistWizardLine(models.Model):
     line_id = fields.Many2one('sale.order.line')
 
     def update_sale_line_unit_price(self):
-        """
-        تحديث السعر وحقل الحد الأدنى للسعر للسطر المرتبط
-        """
         if self.line_id:
-            # تحديث السعر
-            self.line_id.write({'price_unit': self.bi_unit_price})
-
-            # حساب الحد الأدنى للسعر
+            # استدعاء حساب الحد الأدنى للسعر وتحديث الحقل
             minimum_price = self.calculate_minimum_price()
-            self.line_id.write({'sh_sale_minimum_price': minimum_price})
-
-def calculate_minimum_price(self):
-    """
-    حساب الحد الأدنى للسعر بناءً على المنتج، قائمة الأسعار، ووحدة القياس
-    """
-    product = self.line_id.product_id
-    pricelist = self.bi_pricelist_id
-    uom = self.bi_unit_measure
-    partner = self.line_id.order_id.partner_id
-
-    # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
-    price_rule = pricelist._compute_price_rule(
-        product_id=product,
-        quantity=1,
-        partner=partner,
-        uom_id=uom.id
-    )
-    minimum_price = price_rule.get(product.id, [0])[0]  # الحصول على السعر الأول من النتيجة
-
-
+            self.line_id.write({
+                'price_unit': self.bi_unit_price,
+                'sh_sale_minimum_price': minimum_price,
+            })
+    def calculate_minimum_price(self):
+           
+                product = self.line_id.product_id
+                pricelist = self.bi_pricelist_id
+                uom = self.bi_unit_measure
+                partner = self.line_id.order_id.partner_id
+        
+                # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
+                price_rule = pricelist._compute_price_rule(
+                    product_id=product,
+                    quantity=1,
+                    partner=partner,
+                    uom_id=uom.id
+                )
+                minimum_price = price_rule.get(product.id, [0])[0]  # الحصول على السعر الأول من النتيجة
+                return minimum_price
 
 # # -*- coding: utf-8 -*-
 # # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
