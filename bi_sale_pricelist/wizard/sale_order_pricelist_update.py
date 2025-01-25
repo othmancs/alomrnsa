@@ -22,10 +22,12 @@ class SaleOrderPricelistWizard(models.Model):
             pricelist_list = []
             pricelists = self.env['product.pricelist'].sudo().search([])
             pricelist_item_id = fields.Many2one(
-                    related='line_id.pricelist_item_id',
-                    string="Pricelist Item",
-                    store=True
-                )
+                'product.pricelist.item',
+                string="Pricelist Item",
+                store=True,  # تمكين التخزين
+                compute='_compute_pricelist_item',  # إذا كان الحقل محسوبًا
+                readonly=False  # اختياري، حسب الحاجة
+            )
             if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
