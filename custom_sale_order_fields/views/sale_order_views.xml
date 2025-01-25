@@ -1,0 +1,16 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- تعديل العرض الخاص بـ sale.order.line لإظهار الحقل -->
+    <record id="view_order_line_form" model="ir.ui.view">
+        <field name="name">sale.order.line.form</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="pricelist_item_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>
