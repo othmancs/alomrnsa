@@ -73,32 +73,33 @@ class SaleOrderPricelistWizardLine(models.Model):
                 'price_unit': self.bi_unit_price,
                 'sh_sale_minimum_price': minimum_price,
             })
-            
-   def calculate_minimum_price(self):
-    """
-    حساب الحد الأدنى للسعر بناءً على المنتج، قائمة الأسعار، ووحدة القياس.
-    """
-    product = self.line_id.product_id
-    pricelist = self.bi_pricelist_id
-    uom = self.bi_unit_measure
-    partner = self.line_id.order_id.partner_id
 
-    # التحقق من وجود المنتج وقائمة الأسعار
-    if not product or not pricelist:
-        return 0.0
+    def calculate_minimum_price(self):
+        """
+        حساب الحد الأدنى للسعر بناءً على المنتج، قائمة الأسعار، ووحدة القياس.
+        """
+        product = self.line_id.product_id
+        pricelist = self.bi_pricelist_id
+        uom = self.bi_unit_measure
+        partner = self.line_id.order_id.partner_id
 
-    # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
-    price_rule = pricelist._compute_price_rule(
-        products=product,
-        qty=1,  # يمكن تغييرها للكمية المطلوبة
-        partner=partner,
-        date=False,  # يمكن تحديد تاريخ معين
-        uom_id=uom.id if uom else product.uom_id.id
-    )
-    
-    # الحصول على السعر الأول من النتيجة
-    minimum_price = price_rule.get(product.id, [0])[0]  # تأكد من أن المفتاح موجود
-    return minimum_price
+        # التحقق من وجود المنتج وقائمة الأسعار
+        if not product or not pricelist:
+            return 0.0
+
+        # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
+        price_rule = pricelist._compute_price_rule(
+            products=product,
+            qty=1,  # يمكن تغييرها للكمية المطلوبة
+            partner=partner,
+            date=False,  # يمكن تحديد تاريخ معين
+            uom_id=uom.id if uom else product.uom_id.id
+        )
+
+        # الحصول على السعر الأول من النتيجة
+        minimum_price = price_rule.get(product.id, [0])[0]  # تأكد من أن المفتاح موجود
+        return minimum_price
+
 
 
 # # -*- coding: utf-8 -*-
