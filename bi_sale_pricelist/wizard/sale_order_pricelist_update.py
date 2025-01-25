@@ -20,18 +20,17 @@ class SaleOrderPricelistWizard(models.Model):
             so_line = res_ids[0]
             so_line_obj = self.env['sale.order.line'].browse(so_line)
             pricelist_list = []
-            # pricelists = self.env['product.pricelist'].sudo().search([])
-            pricelists = self.env['product.pricelist'].sudo().search([
-                ('applied_on', '=', 'product'),
-                ('product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id)
-            ])
-            pricelist_item_id = fields.Many2one(
-                'product.pricelist.item',
-                string="Pricelist Item",
-                store=True,  # تمكين التخزين
-                compute='_compute_pricelist_item',  # إذا كان الحقل محسوبًا
-                readonly=False  # اختياري، حسب الحاجة
-            )
+            pricelists = self.env['product.pricelist'].sudo().search([])
+         #   so_lines = self.env['sale.order.line'].browse(res_ids)
+         # filtered_lines = so_lines.filtered(lambda line: line.pricelist_item_id.id == specific_value)
+
+            # pricelist_item_id = fields.Many2one(
+            #     'product.pricelist.item',
+            #     string="Pricelist Item",
+            #     store=True,  # تمكين التخزين
+            #     compute='_compute_pricelist_item',  # إذا كان الحقل محسوبًا
+            #     readonly=False  # اختياري، حسب الحاجة
+            # )
             if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
