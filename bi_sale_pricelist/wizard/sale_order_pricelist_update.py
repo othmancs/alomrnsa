@@ -99,14 +99,14 @@ class SaleOrderPricelistWizardLine(models.Model):
         minimum_price = price_rule.get(product.id, [0])[0]  # تأكد من أن المفتاح موجود
         return minimum_price
 
-    @api.model
-    def filter_lines_by_pricelist_item(self, some_value):
-        """
-        فلترة الخطوط بناءً على قيمة `pricelist_item_id`.
-        """
-        lines = self.env['sale.order.line'].search([])
-        filtered_lines = lines.filtered(lambda line: line.pricelist_item_id == some_value)
-        return filtered_lines
+    # @api.model
+    # def filter_lines_by_pricelist_item(self, some_value):
+    #     """
+    #     فلترة الخطوط بناءً على قيمة `pricelist_item_id`.
+    #     """
+    #     lines = self.env['sale.order.line'].search([])
+    #     filtered_lines = lines.filtered(lambda line: line.pricelist_item_id == some_value)
+    #     return filtered_lines
 
 # class SaleOrderLine(models.Model):
 #     _inherit = 'sale.order.line'
