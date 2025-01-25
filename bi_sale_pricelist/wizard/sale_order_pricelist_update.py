@@ -10,8 +10,8 @@ class SaleOrderPricelistWizard(models.Model):
     _description = 'Pricelist Wizard'
     
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
-    pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='PricelistLine Id')
-    
+    pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
+
     @api.model
     def default_get(self, fields):
         res = super(SaleOrderPricelistWizard, self).default_get(fields)
@@ -23,16 +23,16 @@ class SaleOrderPricelistWizard(models.Model):
             pricelists = self.env['product.pricelist'].sudo().search([])
             if pricelists:
                 for pricelist in pricelists:
-                    price_unit = pricelist._compute_price_rule(
+                    price_rule = pricelist._compute_price_rule(
                         so_line_obj.product_id,
                         so_line_obj.product_uom_qty,
                         date=date.today(),
                         uom_id=so_line_obj.product_uom.id
-                    )[so_line_obj.product_id.id][0]
-
+                    )
+                    price_unit = price_rule.get(so_line_obj.product_id.id, [0])[0]
                     margin = price_unit - so_line_obj.product_id.standard_price
                     if price_unit != 0.0:
-                        margin_per = (100 * (price_unit - so_line_obj.product_id.standard_price)) / price_unit
+                        margin_per = (100 * margin) / price_unit
 
                         wz_line_id = self.env['sale.order.pricelist.wizard.line'].create({
                             'bi_pricelist_id': pricelist.id,
@@ -43,7 +43,6 @@ class SaleOrderPricelistWizard(models.Model):
                             'bi_margin_per': margin_per,
                             'line_id': so_line,
                         })
-
                         pricelist_list.append(wz_line_id.id)
 
             res.update({
@@ -54,7 +53,7 @@ class SaleOrderPricelistWizard(models.Model):
 
 class SaleOrderPricelistWizardLine(models.Model):
     _name = 'sale.order.pricelist.wizard.line'
-    _description = 'Pricelist Wizard'
+    _description = 'Pricelist Wizard Line'
 
     pricelist_id = fields.Many2one('sale.order.pricelist.wizard', "Pricelist Id")
     bi_pricelist_id = fields.Many2one('product.pricelist', "Pricelist", required=True)
