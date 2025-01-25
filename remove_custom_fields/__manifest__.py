@@ -11,7 +11,7 @@
     'website': 'https://yourwebsite.com',
     'depends': ['base'],
     'data': [],
-    'post_init_hook': 'remove_custom_fields',
+    # 'post_init_hook': 'remove_custom_fields',
     'installable': True,
     'application': False,
     'auto_install': False,
