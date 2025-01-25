@@ -12,12 +12,14 @@ class SaleOrderLine(models.Model):
 
     # إزالة الحقل غير المخزن وإنشاء حقل جديد مخزن
     # pricelist_item_id = fields.Many2one('product.pricelist.item', store=True)  # جعل الحقل مخزنًا
-    pricelist_item_id = fields.Many2one(
-        'product.pricelist.item',
-        string="Pricelist Item",
-        required=True,  # الحقل مطلوب
-        ondelete='restrict'  # يمكن استخدام "restrict" أو "cascade"
-    )
+    # pricelist_item_id = fields.Many2one(
+    #     'product.pricelist.item',
+    #     string="Pricelist Item",
+    #     required=True,  # الحقل مطلوب
+    #     ondelete='restrict'  # يمكن استخدام "restrict" أو "cascade"
+    # )
+   pricelist_item_id = fields.Many2one('product.pricelist.item', string="Pricelist Item", store=True)
+
     @api.model
     def _remove_old_field(self):
         # تنفيذ أوامر لإزالة الحقول القديمة من النموذج إذا لزم الأمر
