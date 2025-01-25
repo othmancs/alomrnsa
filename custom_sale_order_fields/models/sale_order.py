@@ -7,6 +7,7 @@ class SaleOrderLine(models.Model):
         'product.pricelist.item',
         string='Pricelist Item',
         compute='_compute_pricelist_item_id',
+        ondelete='set null',
         store=True  # تخزين الحقل في قاعدة البيانات
     )
 
