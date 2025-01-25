@@ -79,6 +79,17 @@ class SaleOrderPricelistWizardLine(models.Model):
                 'price_unit': self.bi_unit_price,
                 'sh_sale_minimum_price': minimum_price if minimum_price else 0.0,
             })
+    pricelist_item_stored = fields.Many2one(
+        'product.pricelist.item',
+        string="Stored Pricelist Item",
+        compute='_compute_pricelist_item',
+        store=True,
+    )
+    
+    @api.depends('pricelist_item_id')
+    def _compute_pricelist_item(self):
+        for record in self:
+            record.pricelist_item_stored = record.pricelist_item_id
 
     # def calculate_minimum_price(self):
     #     """
