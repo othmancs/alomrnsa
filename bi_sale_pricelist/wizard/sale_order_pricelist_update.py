@@ -108,7 +108,10 @@ class SaleOrderPricelistWizardLine(models.Model):
         filtered_lines = lines.filtered(lambda line: line.pricelist_item_id == some_value)
         return filtered_lines
 
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
+    pricelist_item_id = fields.Many2one('product.pricelist.item', store=True)
 
 # # -*- coding: utf-8 -*-
 # # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
