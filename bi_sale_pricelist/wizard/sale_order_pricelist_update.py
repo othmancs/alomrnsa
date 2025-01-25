@@ -64,40 +64,65 @@ class SaleOrderPricelistWizardLine(models.Model):
     bi_margin_per = fields.Float('Margin %')
     line_id = fields.Many2one('sale.order.line')
 
+    # def update_sale_line_unit_price(self):
+    #     if self.line_id:
+    #         # استدعاء حساب الحد الأدنى للسعر وتحديث الحقل
+    #         minimum_price = self.calculate_minimum_price()
+    #         self.line_id.write({
+    #             'price_unit': self.bi_unit_price,
+    #             'sh_sale_minimum_price': minimum_price,
+    #         })
     def update_sale_line_unit_price(self):
         if self.line_id:
-            # استدعاء حساب الحد الأدنى للسعر وتحديث الحقل
             minimum_price = self.calculate_minimum_price()
             self.line_id.write({
                 'price_unit': self.bi_unit_price,
-                'sh_sale_minimum_price': minimum_price,
+                'sh_sale_minimum_price': minimum_price if minimum_price else 0.0,
             })
 
+    # def calculate_minimum_price(self):
+    #     """
+    #     حساب الحد الأدنى للسعر بناءً على المنتج، قائمة الأسعار، ووحدة القياس.
+    #     """
+    #     product = self.line_id.product_id
+    #     pricelist = self.bi_pricelist_id
+    #     uom = self.bi_unit_measure
+    #     partner = self.line_id.order_id.partner_id
+
+    #     # التحقق من وجود المنتج وقائمة الأسعار
+    #     if not product or not pricelist:
+    #         return 0.0
+
+    #     # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
+    #     price_rule = pricelist._compute_price_rule(
+    #         products=product,
+    #         qty=1,  # يمكن تغييرها للكمية المطلوبة
+    #         partner=partner,
+    #         date=False,  # يمكن تحديد تاريخ معين
+    #         uom_id=uom.id if uom else product.uom_id.id
+    #     )
+
+    #     # الحصول على السعر الأول من النتيجة
+    #     minimum_price = price_rule.get(product.id, [0])[0]  # تأكد من أن المفتاح موجود
+    #     return minimum_price
     def calculate_minimum_price(self):
-        """
-        حساب الحد الأدنى للسعر بناءً على المنتج، قائمة الأسعار، ووحدة القياس.
-        """
         product = self.line_id.product_id
         pricelist = self.bi_pricelist_id
         uom = self.bi_unit_measure
         partner = self.line_id.order_id.partner_id
-
-        # التحقق من وجود المنتج وقائمة الأسعار
+    
         if not product or not pricelist:
             return 0.0
-
-        # حساب الحد الأدنى للسعر باستخدام قائمة الأسعار
+    
         price_rule = pricelist._compute_price_rule(
             products=product,
-            qty=1,  # يمكن تغييرها للكمية المطلوبة
+            qty=1,
             partner=partner,
-            date=False,  # يمكن تحديد تاريخ معين
-            uom_id=uom.id if uom else product.uom_id.id
+            date=False,
+            uom_id=uom.id if uom else product.uom_id.id,
         )
-
-        # الحصول على السعر الأول من النتيجة
-        minimum_price = price_rule.get(product.id, [0])[0]  # تأكد من أن المفتاح موجود
-        return minimum_price
+    
+        return price_rule.get(product.id, [0])[0] if product.id in price_rule else 0.0
 
     # @api.model
     # def filter_lines_by_pricelist_item(self, some_value):
