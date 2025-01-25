@@ -21,6 +21,11 @@ class SaleOrderPricelistWizard(models.Model):
             so_line_obj = self.env['sale.order.line'].browse(so_line)
             pricelist_list = []
             pricelists = self.env['product.pricelist'].sudo().search([])
+            pricelist_item_id = fields.Many2one(
+                    related='line_id.pricelist_item_id',
+                    string="Pricelist Item",
+                    store=True
+                )
             if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
@@ -79,17 +84,10 @@ class SaleOrderPricelistWizardLine(models.Model):
                 'price_unit': self.bi_unit_price,
                 'sh_sale_minimum_price': minimum_price if minimum_price else 0.0,
             })
-    pricelist_item_stored = fields.Many2one(
-        'product.pricelist.item',
-        string="Stored Pricelist Item",
-        compute='_compute_pricelist_item',
-        store=True,
-    )
-    
-    @api.depends('pricelist_item_id')
+    @api.depends('line_id')
     def _compute_pricelist_item(self):
         for record in self:
-            record.pricelist_item_stored = record.pricelist_item_id
+            record.pricelist_item_stored = record.line_id.pricelist_item_id
 
     # def calculate_minimum_price(self):
     #     """
