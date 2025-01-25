@@ -7,9 +7,7 @@
         <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
             <form>
-                <group>
                     <field name="pricelist_item_id"/>
-                </group>
             </form>
         </field>
     </record>
