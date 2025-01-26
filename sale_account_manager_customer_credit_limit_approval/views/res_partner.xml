@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">view.res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group>
+                <group>
+                    <field name="credit"/>
+                </group>
+                <group>
+                    <field name="debit"/>
+                </group>
+            </group>
+            <xpath expr="//group[@name='container_row_2']" position="inside">
+                <group name="container_row_credit">
+                    <group string="Credit Limit" colspan="2">
+                        <field name="credit_check"/>
+                        <field name="credit_warning" attrs="{'invisible': [('credit_check', '=', False)]}"/>
+                        <field name="credit_blocking" attrs="{'invisible': [('credit_check', '=', False)]}"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="res_company_inherit_form" model="ir.ui.view">
+        <field name="name">res.company.inherit.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <field name="vat" position="after">
+                <field name="accountant_email"/>
+            </field>
+        </field>
+    </record>
+</odoo>
