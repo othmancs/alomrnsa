@@ -18,7 +18,7 @@
 #                     message=""
 #                     for line in down_price_lines:
 #                         message+="Unit price less than minimum price of " + str(line.product_template_id.name_get()[0][1]) + '\n'
-#                     if message != "":
+#                     if message!="":
 #                         raise UserError(message)
 #         return super(SaleOrder, self).action_confirm()
 
@@ -26,7 +26,7 @@
 # class SaleOrderLine(models.Model):
 #     _inherit = "sale.order.line"
 
-#     sh_sale_minimum_price = fields.Float("Minimum Price", readonly=True)
+#     sh_sale_minimum_price = fields.Float("Minimum Price",readonly=True)
 
 #     @api.onchange('product_id')
 #     def _onchange_product_id_warning(self):
@@ -52,25 +52,24 @@
 #         self._compute_tax_id()
 
 #         if self.order_id.pricelist_id and self.order_id.partner_id:
-#             vals['sh_sale_minimum_price'] = self.env['account.tax']._fix_tax_included_price_company(
-#                 self._get_display_price(), product.taxes_id, self.tax_id, self.company_id)
+#             vals['sh_sale_minimum_price'] = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(), product.taxes_id, self.tax_id, self.company_id)
 #         self.update(vals)
+
 
 #     @api.onchange('price_unit')
 #     def price_unit_check(self):
 #         if self.price_unit < self.sh_sale_minimum_price:
 #             warning_mess = {
 #                 'title': _('Message'),
-#                 'message': _("Unit Price is less than Minimum Price."),
+#                 'message' : _("Unit Price is less than Minimum Price."),
 #             }
 #             return {'warning': warning_mess}
-
 # -*- coding: utf-8 -*-
 # Part of Softhealer Technologies.
 
 from odoo import models, fields, api, _
 from odoo.tools.misc import get_lang
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, AccessError
 from odoo import Command
 
 
@@ -80,20 +79,23 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         if self:
             if self.order_line:
+                # فحص الخطوط التي تحتوي على سعر أقل من الحد الأدنى
                 down_price_lines = self.order_line.filtered(lambda x: x.price_unit < x.sh_sale_minimum_price).sorted('price_unit')
                 if down_price_lines:
-                    message=""
-                    for line in down_price_lines:
-                        message+="Unit price less than minimum price of " + str(line.product_template_id.name_get()[0][1]) + '\n'
-                    if message!="":
-                        raise UserError(message)
+                    # إذا كان المستخدم لا يملك صلاحية السماح بالبيع بأقل من الحد الأدنى
+                    if not self.env.user.has_group('your_module_name.group_allow_below_min_price'):
+                        message = ""
+                        for line in down_price_lines:
+                            message += "Unit price less than minimum price of " + str(line.product_template_id.name_get()[0][1]) + '\n'
+                        if message:
+                            raise AccessError(message)
         return super(SaleOrder, self).action_confirm()
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    sh_sale_minimum_price = fields.Float("Minimum Price",readonly=True)
+    sh_sale_minimum_price = fields.Float("Minimum Price", readonly=True)
 
     @api.onchange('product_id')
     def _onchange_product_id_warning(self):
@@ -115,25 +117,21 @@ class SaleOrderLine(models.Model):
         )
 
         vals.update(name=self._get_sale_order_line_multiline_description_sale())
-
         self._compute_tax_id()
 
         if self.order_id.pricelist_id and self.order_id.partner_id:
-            vals['sh_sale_minimum_price'] = self.env['account.tax']._fix_tax_included_price_company(self._get_display_price(), product.taxes_id, self.tax_id, self.company_id)
+            vals['sh_sale_minimum_price'] = self.env['account.tax']._fix_tax_included_price_company(
+                self._get_display_price(), product.taxes_id, self.tax_id, self.company_id)
         self.update(vals)
-
-    # @api.depends('product_id', 'product_uom','product_uom_qty')
-    # def _compute_price_unit(self):
-    #     res = super(SaleOrderLine, self)._compute_price_unit()
-    #     if self.order_id.pricelist_id and self.order_id.partner_id:
-    #         self.sh_sale_minimum_price = self.price_unit
-    #     return res
 
     @api.onchange('price_unit')
     def price_unit_check(self):
         if self.price_unit < self.sh_sale_minimum_price:
+            # تحقق إذا كان المستخدم يملك صلاحية التحذير فقط
+            if not self.env.user.has_group('your_module_name.group_warn_below_min_price'):
+                return
             warning_mess = {
                 'title': _('Message'),
-                'message' : _("Unit Price is less than Minimum Price."),
+                'message': _("Unit Price is less than Minimum Price."),
             }
             return {'warning': warning_mess}
