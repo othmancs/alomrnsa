@@ -1,17 +1,3 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <record id="sale_minimum_price_sale_order_view" model="ir.ui.view">
-        <field name="name">sale.minimum.price.sale.order.view</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']//tree/field[@name='price_unit']" position="after">
-                <field name="sh_sale_minimum_price" groups="sh_sale_minimum_price.sh_group_sale_minimum_price" force_save="1" />
-            </xpath>
-        </field>
-    </record>
-</odoo>
- -->
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="sale_minimum_price_sale_order_view" model="ir.ui.view">
@@ -28,3 +14,17 @@
         </field>
     </record>
 </odoo>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_minimum_price_sale_order_view" model="ir.ui.view">
+        <field name="name">sale.minimum.price.sale.order.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree/field[@name='price_unit']" position="after">
+                <field name="sh_sale_minimum_price" groups="sh_sale_minimum_price.sh_group_sale_minimum_price" force_save="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
+ -->
