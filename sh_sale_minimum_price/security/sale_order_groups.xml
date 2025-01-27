@@ -1,11 +1,3 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <record id="sh_group_sale_minimum_price" model="res.groups">
-        <field name="name">Sale Minimum Price</field>
-        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
-    </record>
-</odoo>
- -->
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <!-- مجموعة السماح بالبيع بأقل من الحد الأدنى -->
@@ -26,3 +18,12 @@
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
     </record>
 </odoo>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_group_sale_minimum_price" model="res.groups">
+        <field name="name">Sale Minimum Price</field>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+    </record>
+</odoo>
+ -->
+
