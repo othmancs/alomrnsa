@@ -83,7 +83,7 @@ class SaleOrder(models.Model):
                 down_price_lines = self.order_line.filtered(lambda x: x.price_unit < x.sh_sale_minimum_price).sorted('price_unit')
                 if down_price_lines:
                     # إذا كان المستخدم لا يملك صلاحية السماح بالبيع بأقل من الحد الأدنى
-                    if not self.env.user.has_group('your_module_name.group_allow_below_min_price'):
+                    if not self.env.user.has_group('sh_sale_minimum_price.group_allow_below_min_price'):
                         message = ""
                         for line in down_price_lines:
                             message += "Unit price less than minimum price of " + str(line.product_template_id.name_get()[0][1]) + '\n'
@@ -128,7 +128,7 @@ class SaleOrderLine(models.Model):
     def price_unit_check(self):
         if self.price_unit < self.sh_sale_minimum_price:
             # تحقق إذا كان المستخدم يملك صلاحية التحذير فقط
-            if not self.env.user.has_group('your_module_name.group_warn_below_min_price'):
+            if not self.env.user.has_group('sh_sale_minimum_price.group_warn_below_min_price'):
                 return
             warning_mess = {
                 'title': _('Message'),
