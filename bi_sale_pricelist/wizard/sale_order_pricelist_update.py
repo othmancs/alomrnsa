@@ -84,7 +84,7 @@ class SaleOrderPricelistWizardLine(models.Model):
     def _compute_pricelist_item(self):
         for record in self:
             record.pricelist_item_stored = record.line_id and record.line_id.pricelist_item_id or False
-
+ 
   
     def calculate_minimum_price(self):
         product = self.line_id.product_id
