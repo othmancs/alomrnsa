@@ -76,10 +76,14 @@ class SaleOrderPricelistWizardLine(models.Model):
                 'price_unit': self.bi_unit_price,
                 'sh_sale_minimum_price': minimum_price if minimum_price else 0.0,
             })
+    # @api.depends('line_id')
+    # def _compute_pricelist_item(self):
+    #     for record in self:
+    #         record.pricelist_item_stored = record.line_id.pricelist_item_id
     @api.depends('line_id')
     def _compute_pricelist_item(self):
         for record in self:
-            record.pricelist_item_stored = record.line_id.pricelist_item_id
+            record.pricelist_item_stored = record.line_id and record.line_id.pricelist_item_id or False
 
   
     def calculate_minimum_price(self):
