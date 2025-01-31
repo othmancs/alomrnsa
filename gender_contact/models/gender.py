@@ -30,6 +30,6 @@ class ResPartner(models.Model):
                                ('other', 'Others')], string='Gender',
                               help="Select gender for contact.")
     customer_type2 = fields.Selection([
-        ('cash', 'كاش'),
-        ('credit', 'آجل')
-    ], string='نوع العميل', default='cash', tracking=True, required=True)
+        ('كاش', 'cash'),
+        ('آجل', 'credit')
+    ], string='نوع العميل', default='كاش', tracking=True, required=True)
