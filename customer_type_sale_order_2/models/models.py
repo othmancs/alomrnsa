@@ -16,12 +16,25 @@ class SaleOrder(models.Model):
             ('credit', 'آجل')
         ], string='Payment Type', related='partner_id.payment_type', store=True)
 
-    def _create_delivery_order(self):
+    # def _create_delivery_order(self):
+    #     for order in self:
+    #         if order.partner_id.payment_type == 'cash' and not order.invoice_ids.filtered(lambda inv: inv.state == 'paid'):
+    #             raise ValidationError("Payment must be registered before creating the delivery order for cash customers.")
+    #         return super(SaleOrder, order)._create_delivery_order()
+     def _create_delivery_order(self):
         for order in self:
+            # إذا كان العميل دفع نقدًا ولم يتم دفع الفاتورة بعد
             if order.partner_id.payment_type == 'cash' and not order.invoice_ids.filtered(lambda inv: inv.state == 'paid'):
                 raise ValidationError("Payment must be registered before creating the delivery order for cash customers.")
+            
+            # التحقق من وجود أوامر التسليم المرتبطة بالطلب
+            if order.picking_ids:
+                # يمكن إضافة منطق إضافي هنا إذا كنت بحاجة للتأكد من حالة المخزون أو أي أمر آخر
+                pass
+
+            # استدعاء super لإنشاء أمر التسليم (stock.picking)
             return super(SaleOrder, order)._create_delivery_order()
- 
+
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
