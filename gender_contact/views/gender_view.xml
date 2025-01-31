@@ -56,6 +56,15 @@
     <field name="domain_force">[('user_id.groups_id', 'in', [ref('group_credit_access')])]</field>
     <field name="groups" eval="[(4, ref('group_credit_access'))]"/>
 </record> -->
-
+    <record id="view_order_form_inherit_customer_type2" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.customer_type2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="customer_type2" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
     </data>
 </odoo>
