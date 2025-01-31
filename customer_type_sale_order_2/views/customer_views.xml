@@ -1,12 +1,11 @@
 <odoo>
-    <!-- تعديل عرض الشريك وإضافة الحقل Payment Type داخل صفحة sales_purchases -->
     <record id="view_partner_form_inherit_payment_type" model="ir.ui.view">
         <field name="name">res.partner.form.inherit.payment.type</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <!-- إضافة الحقل payment_type بعد حقل category_id -->
-            <xpath expr="//field[@name='user_group_ids']" position="before">            
+            <xpath expr="//field[@name='category_id']" position="before">            
                 <field name="payment_type" widget="selection"/>
             </xpath>
         </field>
