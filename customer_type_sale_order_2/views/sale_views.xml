@@ -5,8 +5,8 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <!-- تعديل لـ xpath لاختيار مكان صحيح لإضافة الحقل -->
-<!--             <xpath expr="//sheet//div" position="inside">
-             <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/field[@name='branch_id']" position="after"> -->
+<!--             <xpath expr="//sheet//div" position="inside"> -->
+             <xpath expr="//form[1]/sheet[1]/group[@name='sale_header']/group[@name='order_details']/field[@name='branch_id']" position="after">
 
                 <field name="payment_type" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
             </xpath>
