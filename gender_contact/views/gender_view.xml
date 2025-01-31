@@ -6,43 +6,11 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-<!--                 <xpath expr="//field[@name='vat']" position="after">
-                    <field name="gender"
-                           widget="radio"
-                           string="Gender"
-                           attrs="{'invisible':  [('company_type', '=', 'company')]}"/>
-                </xpath> -->
                 <xpath expr="//field[@name='category_id']" position="after">
-                    <field name="customer_type2"/>
+                    <field name="customer_type2" />
                 </xpath>
-            </field>
-        </record>
-
-        <!-- إضافة "نوع العميل" إلى البحث -->
-<!--         <record id="filter_partner_simple_form_gender" model="ir.ui.view">
-            <field name="name">gender_contact_filter</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_res_partner_filter"/>
-            <field name="arch" type="xml">
-                <xpath expr="//search" position="inside">
-                     <filter string="Male" name="gender" domain="[('gender', '=', 'male')]"/>
-                     <filter string="Female" name="gender" domain="[('gender', '=', 'female')]"/>
-                     <filter string="Others" name="gender" domain="[('gender', '=', 'other')]"/>
-                </xpath>
-                <xpath expr="//group" position="inside">
-                    <filter string="Gender" name="gender" context="{'group_by': 'gender'}"/>
-                </xpath>
-            </field>
-        </record>
- -->
-        <!-- إضافة "نوع العميل" إلى شاشة أمر البيع -->
-        <record id="view_order_form_inherit_customer_type2" model="ir.ui.view">
-            <field name="name">sale.order.form.inherit.customer_type2</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="customer_type2" readonly="1"/>
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="gender" widget="radio" string="Gender"/>
                 </xpath>
             </field>
         </record>
