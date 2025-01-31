@@ -21,7 +21,7 @@ class SaleOrder(models.Model):
     #         if order.partner_id.payment_type == 'cash' and not order.invoice_ids.filtered(lambda inv: inv.state == 'paid'):
     #             raise ValidationError("Payment must be registered before creating the delivery order for cash customers.")
     #         return super(SaleOrder, order)._create_delivery_order()
-     def _create_delivery_order(self):
+    def _create_delivery_order(self):
         for order in self:
             # إذا كان العميل دفع نقدًا ولم يتم دفع الفاتورة بعد
             if order.partner_id.payment_type == 'cash' and not order.invoice_ids.filtered(lambda inv: inv.state == 'paid'):
@@ -34,7 +34,6 @@ class SaleOrder(models.Model):
 
             # استدعاء super لإنشاء أمر التسليم (stock.picking)
             return super(SaleOrder, order)._create_delivery_order()
-
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
