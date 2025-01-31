@@ -32,4 +32,4 @@ class ResPartner(models.Model):
     customer_type2 = fields.Selection([
         ('cash', 'كاش'),
         ('credit', 'آجل')
-    ], string='نوع العميل', default='cash')
+    ], string='نوع العميل', default='cash', translate=True)
