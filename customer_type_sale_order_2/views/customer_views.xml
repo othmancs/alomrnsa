@@ -5,8 +5,8 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <!-- إضافة الحقل payment_type بعد حقل category_id -->
-            <xpath expr="//field[@name='category_id']" position="before">            
-                <field name="payment_type" widget="selection"/>
+                <xpath expr="//field[@name='name']" position="before">
+                <field name="payment_type"/>
             </xpath>
         </field>
     </record>
