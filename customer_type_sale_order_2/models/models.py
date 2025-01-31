@@ -5,15 +5,15 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     payment_type = fields.Selection([
-        ('cash', 'Cash'),
-        ('credit', 'Credit')
+        ('cash', 'كاش'),
+        ('credit', 'آجل')
     ], string='Payment Type', default='cash')
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
     payment_type = fields.Selection([
-            ('cash', 'Cash'),
-            ('credit', 'Credit')
+            ('cash', 'كاش'),
+            ('credit', 'آجل')
         ], string='Payment Type', related='partner_id.payment_type', store=True)
 
     def _create_delivery_order(self):
