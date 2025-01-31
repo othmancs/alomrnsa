@@ -4,9 +4,10 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <!-- إضافة الحقل payment_type بعد حقل category_id -->
-                <xpath expr="//field[@name='name']" position="before">
-                <field name="payment_type"/>
+                  <xpath expr="//page[@name='sales_purchases']" position="inside">
+                <group string="Payment Information">
+                    <field name="payment_type"/>
+                </group>
             </xpath>
         </field>
     </record>
