@@ -4,8 +4,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='sale_payment']" position="inside">
-                <field name="partner_id" readonly="1"/>
+            <!-- تعديل لـ xpath لاختيار مكان صحيح لإضافة الحقل -->
+            <xpath expr="//group[@name='payment_group']" position="inside">
                 <field name="payment_type" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
             </xpath>
         </field>
