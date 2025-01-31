@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <!-- تعديل لـ xpath لاختيار مكان صحيح لإضافة الحقل -->
-            <xpath expr="//group[@name='payment_group']" position="inside">
+            <xpath expr="//sheet//div" position="inside">
                 <field name="payment_type" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
             </xpath>
         </field>
