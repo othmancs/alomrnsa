@@ -11,13 +11,17 @@ class ResPartner(models.Model):
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+    payment_type = fields.Selection([
+            ('cash', 'Cash'),
+            ('credit', 'Credit')
+        ], string='Payment Type', related='partner_id.payment_type', store=True)
 
     def _create_delivery_order(self):
         for order in self:
             if order.partner_id.payment_type == 'cash' and not order.invoice_ids.filtered(lambda inv: inv.state == 'paid'):
                 raise ValidationError("Payment must be registered before creating the delivery order for cash customers.")
             return super(SaleOrder, order)._create_delivery_order()
-
+ 
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
