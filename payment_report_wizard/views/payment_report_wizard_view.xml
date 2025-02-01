@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_payment_report_wizard" model="ir.ui.view">
+        <field name="name">payment.report.wizard.form</field>
+        <field name="model">payment.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Payment Report">
+                <group>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="journal_id"/>
+                    <field name="branch_id"/>
+                </group>
+                <footer>
+                    <button string="Print Report" type="object" name="action_print_report" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
