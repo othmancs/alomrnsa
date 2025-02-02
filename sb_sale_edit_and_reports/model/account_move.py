@@ -12,7 +12,7 @@ class AccountMove(models.Model):
         ('cash', 'Cash'),
         ('credit', 'Credit')
     ], string='Payment Type')
-    created_by_id = fields.Many2one('res.partner', string='انشأ من قبل', domain="[('branch_id', '=', branch_id)]",readonly=True)
+    # created_by_id = fields.Many2one('res.partner', string='انشأ من قبل', domain="[('branch_id', '=', branch_id)]",readonly=True)
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.move.line'
