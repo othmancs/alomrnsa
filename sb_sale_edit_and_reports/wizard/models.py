@@ -33,7 +33,7 @@ class SalesReportWizard(models.TransientModel):
             domain.append(('branch_id', 'in', self.branch_ids.ids))
         
         if self.payment_type:
-            domain.append(('partner_id.payment_type', '=', self.payment_type))
+            domain.append(('partner_id.payment_type', '=', self.payment_type.id))  # تأكد من استخدام .id هنا
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
