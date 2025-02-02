@@ -48,7 +48,7 @@ class SalesReportWizard(models.TransientModel):
             total_out_refund_purchase_price = 0.0
             total_out_refund_price = 0.0
             for line in current_branch_lines:
-                out_refund_price = self.env['account.move'].search([
+                out_refund_price = self.env['account.move'].search([ 
                     ('move_type', '=', 'out_refund'),
                     ('branch_id', '=', branch.id),
                     ('reversed_entry_id', '=', line.id),
@@ -68,7 +68,7 @@ class SalesReportWizard(models.TransientModel):
                 total_discount = sum(account.line_ids.mapped('discount'))
                 net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
 
-                out_refund = self.env['account.move'].search([
+                out_refund = self.env['account.move'].search([ 
                     ('move_type', '=', 'out_refund'),
                     ('branch_id', '=', branch.id),
                     ('reversed_entry_id', '=', account.id),
@@ -103,3 +103,4 @@ class SalesReportWizard(models.TransientModel):
             'branches': branches,
         }
         return self.env.ref("sb_sale_edit_and_reports.sales_report").report_action(self, data=data)
+
