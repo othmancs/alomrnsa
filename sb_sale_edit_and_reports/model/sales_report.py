@@ -36,8 +36,12 @@ class SalesReportReport(models.AbstractModel):
                       ('move_type', '=', 'out_invoice'),
                       ('state', '=', 'posted')]
 
-            if hasattr(obj, 'payment_type') and obj.payment_type:
+            if isinstance(obj.payment_type, models.BaseModel):
                 domain.append(('payment_type', '=', obj.payment_type.id))
+            else:
+                # إذا كانت payment_type نصًا أو فارغة، يمكنك إيقاف إضافة الفلتر
+                if obj.payment_type:
+                    domain.append(('payment_type', '=', obj.payment_type))
 
             if obj.branch_ids:
                 domain.append(('branch_id', 'in', obj.branch_ids.ids))
