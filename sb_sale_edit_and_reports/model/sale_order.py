@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
     #     ('cash', 'Cash'),
     #     ('credit', 'Credit')
     # ], string='Payment Type')
-
+ 
 
     def _prepare_invoice(self):
         invoice_vals = super(SaleOrder, self)._prepare_invoice()
