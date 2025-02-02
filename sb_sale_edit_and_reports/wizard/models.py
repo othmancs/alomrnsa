@@ -33,7 +33,7 @@ class SalesReportWizard(models.TransientModel):
             domain.append(('branch_id', 'in', self.branch_ids.ids))
         
         if self.payment_type:
-            domain.append(('partner_id.payment_type', '=', self.payment_type.id))
+            domain.append(('partner_id.payment_type', '=', self.payment_type))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
@@ -59,7 +59,7 @@ class SalesReportWizard(models.TransientModel):
                 invoice_date = account.invoice_date
                 state = account.payment_state
                 cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
-                payment_method = account.partner_id.payment_type.name if account.partner_id.payment_type else '-'
+                payment_method = dict(self.env['res.partner'].fields_get(allfields=['payment_type'])['payment_type']['selection']).get(account.partner_id.payment_type, '-')
                 price = sum(account.mapped('amount_untaxed'))
                 total_discount = sum(account.line_ids.mapped('discount'))
                 net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
