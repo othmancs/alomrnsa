@@ -8,10 +8,10 @@ class AccountMove(models.Model):
     #     ('option1', 'نقدى'),
     #     ('option2', 'اجل'),
     # ], string='طريقه الدفع' ,readonly=True)
-      payment_type = fields.Selection([  # تم تغيير الحقل إلى Selection
-            ('cash', 'كاش'),
-            ('credit', 'آجل')
-        ], string="نوع الدفع",readonly=True)
+    payment_type = fields.Selection([  # تم تغيير الحقل إلى Selection
+        ('cash', 'نقدى'),
+        ('credit', 'اجل'),
+    ], string='Payment Type', required=True)
     created_by_id = fields.Many2one('res.partner', string='انشأ من قبل', domain="[('branch_id', '=', branch_id)]",readonly=True)
 
 class AccountInvoiceLine(models.Model):
