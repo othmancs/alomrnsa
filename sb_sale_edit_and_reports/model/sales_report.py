@@ -36,7 +36,10 @@ class SalesReportReport(models.AbstractModel):
                       ('move_type', '=', 'out_invoice'),
                       ('state', '=', 'posted')]
 
-            if obj.payment_method:
+            # if obj.payment_method:
+            #     domain.append(('payment_method', '=', obj.payment_method.id))
+            # تحقق من نوع الكائن وتأكد من وجود الحقل
+            if hasattr(obj, 'payment_method') and obj.payment_method:
                 domain.append(('payment_method', '=', obj.payment_method.id))
 
             if obj.branch_ids:
