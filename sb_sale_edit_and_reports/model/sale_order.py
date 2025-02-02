@@ -7,10 +7,10 @@ class SaleOrder(models.Model):
         ('option1', 'نقدى'),
         ('option2', 'اجل'),
     ], string='طريقه الدفع', required=False)
-    payment_type = fields.Selection([
-        ('cash', 'Cash'),
-        ('credit', 'Credit')
-    ], string='Payment Type')
+    # payment_type = fields.Selection([
+    #     ('cash', 'Cash'),
+    #     ('credit', 'Credit')
+    # ], string='Payment Type')
 
 
     def _prepare_invoice(self):
