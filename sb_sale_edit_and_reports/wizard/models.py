@@ -10,8 +10,7 @@ class SalesReportWizard(models.TransientModel):
     company_id = fields.Many2one('res.company', required=True, readonly=True, default=lambda self: self.env.company.id)
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
-    payment_method = fields.Many2one('account.payment.method', string="طريقة الدفع")
-    payment_method_line_id = fields.Many2one('account.payment.method.line', string="طريقة الدفع")
+    payment_type = fields.Many2one('account.payment.type', string="نوع الدفع")
 
     def _compute_printed_by(self):
         for record in self:
@@ -33,11 +32,8 @@ class SalesReportWizard(models.TransientModel):
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
         
-        # # تصفية طريقة الدفع باستخدام sale_id المرتبط بـ account.move
-        # if self.payment_method:
-        #     domain.append(('sale_id.payment_method', '=', self.payment_method.id))
-        if self.payment_method_line_id:
-            domain.append(('payment_method_line_id', '=', self.payment_method_line_id.id))
+        if self.payment_type:
+            domain.append(('partner_id.payment_type', '=', self.payment_type.id))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
@@ -63,7 +59,7 @@ class SalesReportWizard(models.TransientModel):
                 invoice_date = account.invoice_date
                 state = account.payment_state
                 cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
-                payment_method = account.sale_id.payment_method.name if account.sale_id.payment_method else '-'
+                payment_method = account.partner_id.payment_type.name if account.partner_id.payment_type else '-'
                 price = sum(account.mapped('amount_untaxed'))
                 total_discount = sum(account.line_ids.mapped('discount'))
                 net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
