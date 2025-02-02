@@ -10,7 +10,10 @@ class SalesReportWizard(models.TransientModel):
     company_id = fields.Many2one('res.company', required=True, readonly=True, default=lambda self: self.env.company.id)
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
-    payment_type = fields.Many2one('account.payment.type', string="نوع الدفع")
+    payment_type = fields.Selection([  # تم تغيير الحقل إلى Selection
+        ('cash', 'كاش'),
+        ('credit', 'آجل')
+    ], string="نوع الدفع")
 
     def _compute_printed_by(self):
         for record in self:
@@ -33,8 +36,8 @@ class SalesReportWizard(models.TransientModel):
             domain.append(('branch_id', 'in', self.branch_ids.ids))
         
         # تصفية نوع الدفع (مع فحص إضافي)
-        if self.payment_type and hasattr(self.payment_type, 'id'):
-            domain.append(('partner_id.payment_type', '=', self.payment_type.id))
+        if self.payment_type:  # تم تعديل الشرط لاستخدام القيمة المباشرة
+            domain.append(('partner_id.payment_type', '=', self.payment_type))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
