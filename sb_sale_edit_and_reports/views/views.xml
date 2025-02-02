@@ -22,7 +22,7 @@
                             <group>
                                 <field name="date_start"/>
                                 <field name="branch_ids" widget="many2many_tags"/>
-                                <field name="payment_type"/>
+                                <field name="payment_type" widget="selection"/>
 
                             </group>
                             <group>
