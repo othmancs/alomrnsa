@@ -17,10 +17,29 @@ class ResPartner(models.Model):
         for key, duplicates in grouped_partners.items():
             if len(duplicates) > 1:
                 main_partner = duplicates[0]
-                for duplicate in duplicates[1:]:
-                    main_partner |= duplicate
-                main_partner._merge_data(duplicates[1:])
+                duplicates.pop(0)  # إزالة السجل الأساسي من القائمة
+                main_partner._merge_data(duplicates)
 
     def _merge_data(self, duplicate_partners):
         for duplicate in duplicate_partners:
+            # نقل البيانات المرتبطة (مثال: الفواتير، المبيعات، الاتصالات)
+            self._transfer_related_data(duplicate)
             duplicate.unlink()
+
+    def _transfer_related_data(self, duplicate):
+        """نقل جميع البيانات المرتبطة إلى السجل الأساسي قبل الحذف"""
+        related_models = [
+            ('sale.order', 'partner_id'),
+            ('account.move', 'partner_id'),
+            ('res.users', 'partner_id'),
+        ]
+
+        for model, field in related_models:
+            records = self.env[model].search([(field, '=', duplicate.id)])
+            records.write({field: self.id})
+
+        # تحديث الحقول الفارغة فقط (مثل الهاتف، البريد الإلكتروني)
+        if not self.phone and duplicate.phone:
+            self.phone = duplicate.phone
+        if not self.email and duplicate.email:
+            self.email = duplicate.email
