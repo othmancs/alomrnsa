@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    ref = fields.Char(string='Reference', index=True, readonly=True, import="True")
+    ref = fields.Char(string='Reference', index=True, readonly=True)
 
     # @api.constrains('vat')
     # def _check_unique_vat(self):
