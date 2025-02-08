@@ -13,7 +13,8 @@
                         <div class="col-3">
 <!--                             <strong>Company:</strong>
                             <p t-esc="res_company.name"/> -->
-                          <strong t-esc="o.ref"/>
+                                           <t t-foreach="docs" t-as="o">
+ <strong t-esc="o.ref"/>
                                         -
                                         <strong t-esc="o.name"/>
                         </div>
