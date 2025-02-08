@@ -13,10 +13,7 @@
                         <div class="col-3">
 <!--                             <strong>Company:</strong>
                             <p t-esc="res_company.name"/> -->
-                                           <t t-foreach="docs" t-as="o">
- <strong t-esc="o.ref"/>
-                                        -
-                                        <strong t-esc="o.name"/>
+
                         </div>
                         <div class="col-3">
                             <t t-if="data['form']['date_from']">
