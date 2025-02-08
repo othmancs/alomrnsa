@@ -30,10 +30,10 @@ class AccountingCommonPartnerReport(models.TransientModel):
 
     # إضافة خيارات المدين والدائن معاً
     result_selection = fields.Selection([
-        ('customer', 'Receivable Accounts'),
-        ('supplier', 'Payable Accounts'),
+        ('customer', 'حسابات العملاء'),
+        ('supplier', 'حسابات الموردين'),
         ('customer_supplier', 'كل الحسابات')
-    ], string="Partner's", required=True, default='customer')
+    ], string="نوع الحساب", required=True, default='customer')
     
     partner_ids = fields.Many2many('res.partner', string='Partners')
 
