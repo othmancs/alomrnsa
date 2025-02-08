@@ -11,8 +11,11 @@
                     <h2>كشف حساب</h2>
                     <div class="row">
                         <div class="col-3">
-                            <strong>Company:</strong>
-                            <p t-esc="res_company.name"/>
+<!--                             <strong>Company:</strong>
+                            <p t-esc="res_company.name"/> -->
+                          <strong t-esc="o.ref"/>
+                                        -
+                                        <strong t-esc="o.name"/>
                         </div>
                         <div class="col-3">
                             <t t-if="data['form']['date_from']">
