@@ -32,7 +32,7 @@ class AccountingCommonPartnerReport(models.TransientModel):
     result_selection = fields.Selection([
         ('customer', 'Receivable Accounts'),
         ('supplier', 'Payable Accounts'),
-        ('customer_supplier', 'Receivable and Payable Accounts')
+        ('customer_supplier', 'كل الحسابات')
     ], string="Partner's", required=True, default='customer')
     
     partner_ids = fields.Many2many('res.partner', string='Partners')
