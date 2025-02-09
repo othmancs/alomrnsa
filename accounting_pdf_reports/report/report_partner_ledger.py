@@ -79,8 +79,8 @@ def _lines(self, data, partner):
         WHERE "account_move_line".partner_id = %s
             AND "account_move_line".account_id IN %s
             AND "account_move_line".date >= %s
-            AND m.state IN %s """ + reconcile_clause + " ORDER BY "account_move_line".date"
-    
+            AND m.state IN %s """ + reconcile_clause + """ ORDER BY "account_move_line".date"""
+
     self.env.cr.execute(query, tuple(params))
     res = self.env.cr.dictfetchall()
     
