@@ -5,12 +5,12 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-           <xpath expr="//form/sheet" position="inside">
-            <button name="delete_with_related_moves"
-                    string="حذف مع الحركات المرتبطة"
-                    type="object"
-                    class="btn btn-danger"/>
-        </xpath>
+            <xpath expr="//form/sheet" position="inside">
+                <button name="delete_with_related_moves"
+                        string="حذف مع الحركات المرتبطة"
+                        type="object"
+                        class="btn btn-danger"/>
+            </xpath>
         </field>
     </record>
 </odoo>
