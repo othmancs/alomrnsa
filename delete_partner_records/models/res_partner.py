@@ -3,7 +3,7 @@ from odoo import models, api
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
+    @api.model
     def delete_with_related_moves(self):
         for partner in self:  # سيتم التعامل مع السجلات التي تم تحديدها
             # البحث عن الحركات المرتبطة بالشريك
