@@ -3,13 +3,12 @@ from odoo import models, api
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.model
+    @api.multi
     def delete_with_related_moves(self):
-        for partner in self:  # نتعامل مع مجموعة السجلات المرسلة
+        for partner in self:  # سيتم التعامل مع السجلات التي تم تحديدها
             # البحث عن الحركات المرتبطة بالشريك
             moves = self.env['account.move'].search([('partner_id', '=', partner.id)])
             if moves:
-                # حذف الحركات المرتبطة
                 moves.unlink()
 
             # حذف الأوامر المرتبطة
@@ -31,7 +30,7 @@ class ResPartner(models.Model):
             if stock_pickings:
                 stock_pickings.unlink()
 
-            # الآن حذف الشريك نفسه
+            # حذف الشريك نفسه
             partner.unlink()
 
         return True
