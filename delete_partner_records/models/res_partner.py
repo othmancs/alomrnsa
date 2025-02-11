@@ -2,10 +2,10 @@ from odoo import models, api
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
-    
+
     @api.model
     def delete_with_related_moves(self):
-        for partner in self:
+        for partner in self:  # نتعامل مع مجموعة السجلات المرسلة
             # البحث عن الحركات المرتبطة بالشريك
             moves = self.env['account.move'].search([('partner_id', '=', partner.id)])
             if moves:
