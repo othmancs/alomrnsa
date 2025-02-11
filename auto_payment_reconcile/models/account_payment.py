@@ -18,7 +18,7 @@ class AccountPayment(models.Model):
                 if remaining_amount <= 0:
                     break
                 to_reconcile = min(invoice.amount_residual, remaining_amount)
-                move_line = payment.move_id.line_ids.filtered(lambda l: l.account_internal_type == 'receivable')
-                invoice_line = invoice.line_ids.filtered(lambda l: l.account_internal_type == 'receivable')
+                move_line = payment.move_id.line_ids.filtered(lambda l: l.account_id.internal_type == 'receivable')
+                invoice_line = invoice.line_ids.filtered(lambda l: l.account_id.internal_type == 'receivable')
                 (move_line + invoice_line).reconcile()
                 remaining_amount -= to_reconcile
