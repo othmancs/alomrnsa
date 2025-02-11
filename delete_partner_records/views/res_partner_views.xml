@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_partner_form_delete_button" model="ir.ui.view">
+        <field name="name">res.partner.form.delete.with.moves</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/footer" position="inside">
+                <button name="delete_with_related_moves"
+                        string="حذف مع الحركات المرتبطة"
+                        type="object"
+                        class="btn btn-danger"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

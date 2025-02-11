@@ -6,7 +6,7 @@
     'author': 'Your Name',
     'license': 'LGPL-3',
     'depends': ['base', 'sale', 'purchase', 'account', 'stock'],
-    'data': [],
+    'data': ['views/res_partner_views.xml'],
     'installable': True,
     'application': False,
 }
