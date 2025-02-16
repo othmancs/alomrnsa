@@ -1,0 +1,10 @@
+<odoo>
+    <record id="delete_customer_action" model="ir.actions.act_window">
+        <field name="name">Delete Customer Records</field>
+        <field name="res_model">delete.customer.records</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="delete_customer_menu" name="Delete Customers" parent="account.menu_finance" action="delete_customer_action"/>
+</odoo>

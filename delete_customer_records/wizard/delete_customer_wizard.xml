@@ -1,0 +1,14 @@
+<odoo>
+    <record id="delete_customer_wizard_form" model="ir.ui.view">
+        <field name="name">delete.customer.wizard.form</field>
+        <field name="model">delete.customer.records</field>
+        <field name="arch" type="xml">
+            <form string="Delete Customer Records">
+                <footer>
+                    <button name="action_delete_customer_data" type="object" string="Confirm" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
