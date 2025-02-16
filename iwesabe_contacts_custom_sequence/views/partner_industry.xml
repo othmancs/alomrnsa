@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_partner_industry_tree_inherit" model="ir.ui.view" >
+        <field name="name">Partner Industry Tree View Inherit</field>
+        <field name="model">res.partner.industry</field>
+        <field name="inherit_id" ref="base.res_partner_industry_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='full_name']" position="after">
+                    <field name="is_customer"/>
+                    <field name="is_vendor"/>
+                    <field name="prefix_code"/>
+                    <field name="padding"/>
+                    <field name="next_number" invisible="1"/>
+
+            </xpath>
+        </field>
+    </record>
+
+
+
+<!--    <record id="view_partner_industry_form" model="ir.ui.view" >-->
+<!--        <field name="name">Partner Industry Form View</field>-->
+<!--        <field name="model">partner.industry</field>-->
+<!--        <field name="type">form</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--              <sheet>-->
+<!--                <group>-->
+<!--                  <group>-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="is_customer"/>-->
+<!--                    <field name="is_vendor"/>-->
+<!--                  </group>-->
+<!--                  <group>-->
+<!--                    <field name="prefix_code"/>-->
+<!--                    <field name="padding"/>-->
+<!--                    <field name="next_number" invisible="1"/>-->
+<!--                  </group>-->
+<!--                </group>-->
+<!--              </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="action_partner_industry_for_customers" model="ir.actions.act_window">
+      <field name="name">Customer Industry</field>
+      <field name="res_model">res.partner.industry</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'default_is_customer': True}</field>
+      <field name="domain">[('is_customer', '!=', False)]</field>
+    </record>
+
+    <record id="action_partner_industry_for_vendors" model="ir.actions.act_window">
+      <field name="name">Customer Industry</field>
+      <field name="res_model">res.partner.industry</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'default_is_vendor': True}</field>
+      <field name="domain">[('is_vendor', '!=', False)]</field>
+    </record>
+
+</odoo>
