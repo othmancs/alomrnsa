@@ -23,7 +23,7 @@
                                 <field name="date_start"/>
                                 <field name="branch_ids" widget="many2many_tags"/>
 <!--                                 <field name="payment_type" widget="selection"/> -->
-                                <field name="payment_type" string="نوع الدفع" widget="radio" options="{'horizontal': true}"/>
+<!--                                 <field name="payment_type" string="نوع الدفع" widget="radio" options="{'horizontal': true}"/> -->
 
                             </group>
                             <group>
