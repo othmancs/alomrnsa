@@ -21,6 +21,29 @@
     </record>
 </odoo>
 
+<!-- <odoo>
+    <record id="action_process_selected_invoices" model="ir.actions.server">
+        <field name="name">Process Selected EDI</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = env['account.move'].browse(env.context.get('active_ids')).process_selected_invoices()
+        </field>
+    </record>
+
+    <record id="account_move_tree_view" model="ir.ui.view">
+        <field name="name">account.move.tree.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <button name="%(action_process_selected_invoices)d" type="action" string="Process EDI" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo> -->
+
 
 <!-- <odoo>
     <record id="action_process_selected_invoices" model="ir.actions.server">
