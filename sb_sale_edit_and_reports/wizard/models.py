@@ -34,8 +34,9 @@ class SalesReportWizard(models.TransientModel):
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
 
-        if self.payment_type:  # ✅ تم إصلاح الشرط وإضافة تصفية لنوع الدفع
-            domain.append(('partner_id.payment_type', '=', self.payment_type))
+        # تعديل شرط الدفع: استخدام payment_state في account.move بدل partner_id.payment_type
+        if self.payment_type:
+            domain.append(('payment_state', '=', self.payment_type))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
@@ -83,7 +84,8 @@ class SalesReportWizard(models.TransientModel):
                     'invoice_number': invoice_number,
                     'seller_name': seller_name,
                     'customer_name': customer_name,
-                    'payment_method': self.payment_type,  # ✅ إصلاح استخدام نوع الدفع
+                    # يمكن تعديل استخدام نوع الدفع حسب الحاجة؛ هنا نعرض القيمة المُختارة في الـ wizard
+                    'payment_method': self.payment_type,
                     'invoice_date': invoice_date,
                     'total_price': price,
                     'total_discount': total_discount,
