@@ -10,11 +10,10 @@ class SalesReportWizard(models.TransientModel):
     company_id = fields.Many2one('res.company', required=True, readonly=True, default=lambda self: self.env.company.id)
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
-
     payment_type = fields.Selection([
         ('cash', 'كاش'),
         ('credit', 'آجل')
-    ], string="نوع الدفع")  # ✅ تمت إعادة تفعيل الحقل
+    ], string="نوع الدفع")  # تأكد من ترقية الوحدة لإنشاء عمود هذا الحقل في قاعدة البيانات
 
     def _compute_printed_by(self):
         for record in self:
@@ -24,17 +23,16 @@ class SalesReportWizard(models.TransientModel):
         return self.env.ref("sb_sale_edit_and_reports.report_sales_report").report_action(self)
 
     def generate_pdf_report(self):
+        # بناء نطاق البحث باستخدام القيم الموجودة في الـ wizard
         domain = [
             ('invoice_date', '>=', self.date_start),
             ('invoice_date', '<=', self.date_end),
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
         ]
-
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
-
-        # تعديل شرط الدفع: استخدام payment_state في account.move بدل partner_id.payment_type
+        # إذا كان لديك حقل الدفع على الفاتورة (مثلاً payment_state) فاستخدمه في التصفية
         if self.payment_type:
             domain.append(('payment_state', '=', self.payment_type))
 
@@ -84,7 +82,7 @@ class SalesReportWizard(models.TransientModel):
                     'invoice_number': invoice_number,
                     'seller_name': seller_name,
                     'customer_name': customer_name,
-                    # يمكن تعديل استخدام نوع الدفع حسب الحاجة؛ هنا نعرض القيمة المُختارة في الـ wizard
+                    # هنا يتم عرض طريقة الدفع المختارة في الـ wizard
                     'payment_method': self.payment_type,
                     'invoice_date': invoice_date,
                     'total_price': price,
@@ -96,8 +94,18 @@ class SalesReportWizard(models.TransientModel):
                     'state': state,
                 })
 
+        # بدلاً من self.read()[0] نقوم بتجميع بيانات النموذج يدويًا لتجنب محاولة قراءة عمود غير موجود
+        form_data = {
+            'date_start': self.date_start,
+            'date_end': self.date_end,
+            'branch_ids': self.branch_ids.ids,
+            'company_id': self.company_id.id,
+            'printed_by': self.printed_by,
+            'print_date': self.print_date,
+            'payment_type': self.payment_type,
+        }
         data = {
-            'form': self.read()[0],
+            'form': form_data,
             'data': report_data,
             'branches': branches,
         }
