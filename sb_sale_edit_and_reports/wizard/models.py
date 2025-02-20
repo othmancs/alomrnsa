@@ -7,14 +7,13 @@ class SalesReportWizard(models.TransientModel):
     date_start = fields.Date(string="تاريخ البداية", required=True)
     date_end = fields.Date(string="تاريخ النهاية", required=True)
     branch_ids = fields.Many2many('res.branch', string="الفروع")
-    company_id = fields.Many2one('res.company', required=True, readonly=True, default=lambda self: self.env.company.id)
+    company_id = fields.Many2one(
+        'res.company', required=True, readonly=True,
+        default=lambda self: self.env.company.id
+    )
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
-    payment_type = fields.Selection([
-        ('cash', 'كاش'),
-        ('credit', 'آجل')
-    ], string="نوع الدفع")  # تأكد من ترقية الوحدة لإنشاء عمود هذا الحقل في قاعدة البيانات
-
+    
     def _compute_printed_by(self):
         for record in self:
             record.printed_by = self.env.user.name
@@ -32,9 +31,6 @@ class SalesReportWizard(models.TransientModel):
         ]
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
-        # إذا كان لديك حقل الدفع على الفاتورة (مثلاً payment_state) فاستخدمه في التصفية
-        if self.payment_type:
-            domain.append(('payment_state', '=', self.payment_type))
 
         lines_data = self.env['account.move'].search(domain)
         existing_branches = lines_data.mapped('branch_id')
@@ -54,8 +50,12 @@ class SalesReportWizard(models.TransientModel):
                     ('reversed_entry_id', '=', line.id),
                     ('state', '=', 'posted')
                 ])
-                total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
-                total_out_refund_purchase_price += sum(out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                total_out_refund_price += sum(
+                    out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity)
+                )
+                total_out_refund_purchase_price += sum(
+                    out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity)
+                )
 
             for account in current_branch_lines:
                 invoice_number = account.name
@@ -66,7 +66,9 @@ class SalesReportWizard(models.TransientModel):
                 cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
                 price = sum(account.mapped('amount_untaxed'))
                 total_discount = sum(account.line_ids.mapped('discount'))
-                net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
+                net_cost = sum(
+                    account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)
+                )
 
                 out_refund = self.env['account.move'].search([
                     ('move_type', '=', 'out_refund'),
@@ -74,7 +76,9 @@ class SalesReportWizard(models.TransientModel):
                     ('reversed_entry_id', '=', account.id),
                     ('state', '=', 'posted')
                 ])
-                out_refund_purchase_price = sum(out_refund.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                out_refund_purchase_price = sum(
+                    out_refund.line_ids.mapped(lambda x: x.purchase_price * x.quantity)
+                )
                 out_refund_price = sum(out_refund.mapped('amount_untaxed'))
 
                 report_data.append({
@@ -82,8 +86,6 @@ class SalesReportWizard(models.TransientModel):
                     'invoice_number': invoice_number,
                     'seller_name': seller_name,
                     'customer_name': customer_name,
-                    # هنا يتم عرض طريقة الدفع المختارة في الـ wizard
-                    'payment_method': self.payment_type,
                     'invoice_date': invoice_date,
                     'total_price': price,
                     'total_discount': total_discount,
@@ -94,7 +96,7 @@ class SalesReportWizard(models.TransientModel):
                     'state': state,
                 })
 
-        # بدلاً من self.read()[0] نقوم بتجميع بيانات النموذج يدويًا لتجنب محاولة قراءة عمود غير موجود
+        # تجميع بيانات النموذج بدون حقل payment_type
         form_data = {
             'date_start': self.date_start,
             'date_end': self.date_end,
@@ -102,7 +104,6 @@ class SalesReportWizard(models.TransientModel):
             'company_id': self.company_id.id,
             'printed_by': self.printed_by,
             'print_date': self.print_date,
-            'payment_type': self.payment_type,
         }
         data = {
             'form': form_data,
