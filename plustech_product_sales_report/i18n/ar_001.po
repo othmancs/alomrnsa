@@ -1,0 +1,285 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* plustech_product_sales_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e-20240101\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-02 10:43+0000\n"
+"PO-Revision-Date: 2024-04-02 13:48+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "All Categories"
+msgstr "جميع الفئات"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "All Dates"
+msgstr "جميع التواريخ"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "All Products"
+msgstr "جميع المنتجات"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__create_uid
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__create_date
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__date_from
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__date_to
+msgid "Date"
+msgstr "تاريخ"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "Dates"
+msgstr "تواريخ"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__total_discount_amount
+msgid "Discount Amount"
+msgstr "مبلغ الخصم"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__display_name
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__id
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__include_pos
+msgid "Include Point Of Sale ?"
+msgstr "تضمين نقاط البيع؟"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report____last_update
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__write_uid
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__write_date
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__list_price
+msgid "List Price"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "Logo"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "Print Excel"
+msgstr "طباعة اكسل"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "Print PDF"
+msgstr "طباعة PDF"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__product_id
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__product_ids
+msgid "Product"
+msgstr "المنتج"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_wizard__product_category_ids
+msgid "Product Category"
+msgstr "فئة المنتج"
+
+#. module: plustech_product_sales_report
+#: model:ir.ui.menu,name:plustech_product_sales_report.sale_sales_wizard_report_menu
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_products_report_tree
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.view_sale_products_report_graph
+msgid "Product Sales"
+msgstr "مبيعات المنتجات"
+
+#. module: plustech_product_sales_report
+#. odoo-python
+#: code:addons/plustech_product_sales_report/wizards/sale_products_wizard.py:0
+#, python-format
+msgid "Product Sales & Refunds"
+msgstr "مبيعات و رجعيات المنتجات"
+
+#. module: plustech_product_sales_report
+#: model:ir.model,name:plustech_product_sales_report.model_sale_products_report
+msgid "Product Sales Report"
+msgstr "تقرير مبيعات المنتجات"
+
+#. module: plustech_product_sales_report
+#: model:ir.actions.act_window,name:plustech_product_sales_report.product_sales_wizard_report_action
+msgid "Product Sales Wizard"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__refund_quantity
+msgid "Refund Quantity"
+msgstr "الكمية المستردة"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__refund_total_price_total
+msgid "Refund Total"
+msgstr "إجمالي المبلغ المسترد"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "Report Options"
+msgstr "خيارات التقرير"
+
+#. module: plustech_product_sales_report
+#: model:ir.actions.report,name:plustech_product_sales_report.report_product_sales_pdf
+msgid "Sale Products PDF"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model,name:plustech_product_sales_report.model_report_plustech_product_sales_report_sale_product_report
+#: model:ir.model,name:plustech_product_sales_report.model_sale_products_wizard
+msgid "Sale Products Report"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.actions.report,name:plustech_product_sales_report.report_product_sales_xlsx
+msgid "Sale Products XLSX"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__total_price_subtotal
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__total_tax_amount
+msgid "Tax Amount"
+msgstr "قيمة الضريبة"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__total_price_total
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: plustech_product_sales_report
+#: model:ir.model.fields,field_description:plustech_product_sales_report.field_sale_products_report__total_quantity
+msgid "Total Quantity"
+msgstr "إجمالي الكمية"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_view
+msgid "Tree View"
+msgstr "عرض Tree"
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "الإجمالي"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "الإجمالي قبل الخصم"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "الصافى بعد الخصم"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "الكمية المفوترة"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "المنتج"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "الى :"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "تقرير المبيعات"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "سعر البيع"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "قيمة الضريبة"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "كمية المرتجع"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "مبلغ الخصم"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "مبلغ المرتجع"
+msgstr ""
+
+#. module: plustech_product_sales_report
+#: model_terms:ir.ui.view,arch_db:plustech_product_sales_report.sale_product_report_pdf
+msgid "من :"
+msgstr ""

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_product_report_view" model="ir.ui.view">
+            <field name="name">Sale Products Report</field>
+            <field name="model">sale.products.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Report Options">
+                    <group>
+                        <group>
+                            <field name="product_category_ids" widget="many2many_tags"
+                                   placeholder="All Categories"/>
+                        </group>
+                        <group>
+                            <field name="product_ids" widget="many2many_tags"
+                                   placeholder="All Products"/>
+                        </group>
+                        <group>
+                            <field name="include_pos" widget="boolean_toggle"
+                            />
+                        </group>
+                    </group>
+                    <group>
+                        <label for="date_from" string="Dates"/>
+                        <div class="o_row">
+                            <field name="date_from" widget="daterange" nolabel="1" class="oe_inline"
+                                   options="{'related_end_date': 'date_to'}" placeholder="All Dates"/>
+                            <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                            <field name="date_to" widget="daterange" nolabel="1" class="oe_inline"
+                                   options="{'related_start_date': 'date_from'}" placeholder="All Dates"/>
+                        </div>
+                    </group>
+
+
+                    <footer>
+                        <button name="open_view" string="Tree View" type="object" default_focus="1"
+                                class="oe_highlight" data-hotkey="q"/>
+                        <button name="print_pdf" string="Print PDF" type="object" default_focus="1"
+                                class="oe_highlight" data-hotkey="q"/>
+                        <button name="print_xlsx" string="Print Excel" type="object" default_focus="1"
+                                class="oe_highlight" data-hotkey="q"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="report_product_sales_xlsx" model="ir.actions.report">
+            <field name="name">Sale Products XLSX</field>
+            <field name="model">sale.products.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">plustech_product_sales_report.sale_product_report</field>
+            <field name="report_file">plustech_product_sales_report.sale_product_report</field>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_sale_products_wizard"/>
+
+        </record>
+
+        <record id="product_sales_wizard_report_action" model="ir.actions.act_window">
+            <field name="name">Product Sales Wizard</field>
+            <field name="res_model">sale.products.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem
+                id="sale_sales_wizard_report_menu"
+                action="product_sales_wizard_report_action"
+                name="Product Sales"
+                sequence="3"
+                web_icon="plustech_product_sales_report,static/description/odoo_icon.png"
+        />
+
+    </data>
+</odoo>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_product_sales_pdf" model="ir.actions.report">
+            <field name="name">Sale Products PDF</field>
+            <field name="model">sale.products.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">plustech_product_sales_report.sale_product_report_pdf</field>
+            <field name="report_file">plustech_product_sales_report.sale_product_report_pdf</field>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_sale_products_wizard"/>
+        </record>
+
+        <template id="sale_product_report_pdf">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="18"/>
+                <t t-set="data_report_header_spacing" t-value="16"/>
+                <t t-call="web.basic_layout">
+                    <div class="page" dir="rtl" style="font-family: MonixBold;">
+                        <t t-if="not o" t-set="o" t-value="doc"/>
+                        <t t-if="not company">
+                            <!-- Multicompany -->
+                            <t t-if="company_id">
+                                <t t-set="company" t-value="company_id"/>
+                            </t>
+                            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                                <t t-set="company" t-value="o.company_id.sudo()"/>
+                            </t>
+                            <t t-else="else">
+                                <t t-set="company" t-value="res_company"/>
+                            </t>
+                        </t>
+                        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                            <div class="row mb-2 mt-2">
+                                <div class="col-3 mb4">
+                                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                                         style="max-height: 45px;" alt="Logo"/>
+                                </div>
+                                <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header"
+                                     name="moto"/>
+                            </div>
+                            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                                <div class="col-12">
+                                    <div style="border-bottom: 1px solid black;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <h2>
+                            <center>تقرير المبيعات</center>
+                        </h2>
+                        <br/>
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                من :
+                                <span t-esc="date_from"/>
+                            </div>
+                            <div class="col-6 text-right">
+                                الى :
+                                <span t-esc="date_to"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <table class="table table-bordered" style="width: 100%;padding-top: 5px;">
+                            <colgroup>
+                                <col width='30%'/>
+                                <col width='10%'/>
+                                <col width='10%'/>
+                                <col width='10%'/>
+                                <col width='10%'/>
+                                <col width='5%'/>
+                                <col width='10%'/>
+                                <col width='10%'/>
+                                <col width='5%'/>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">
+                                        المنتج
+                                    </th>
+                                    <th style="text-align: center;">
+                                        الإجمالي قبل الخصم
+                                    </th>
+
+                                    <th style="text-align: center;">
+                                        مبلغ الخصم
+                                    </th>
+                                    <th style="text-align: center;">
+                                        الصافى بعد الخصم
+                                    </th>
+                                    <th style="text-align: center;">
+                                        قيمة الضريبة
+                                    </th>
+                                    <th style="text-align: center;">
+                                        الكمية المفوترة
+                                    </th>
+                                    <th style="text-align: center;">
+                                        سعر البيع
+                                    </th>
+                                    <th style="text-align: center;">
+                                        مبلغ المرتجع
+                                    </th>
+                                    <th style="text-align: center;">
+                                        كمية المرتجع
+                                    </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-set="subtotal_sum" t-value="0"/>
+                                <t t-set="discount_sum" t-value="0"/>
+                                <t t-set="after_sum" t-value="0"/>
+                                <t t-set="tax_sum" t-value="0"/>
+                                <t t-set="qty_sum" t-value="0"/>
+                                <t t-set="refund_sum" t-value="0"/>
+                                <t t-set="refund_qty_sum" t-value="0"/>
+                                <t t-foreach="data" t-as="product">
+                                    <tr style="text-align: center;">
+                                        <td>
+                                            <t t-set="display_name"
+                                               t-value="product.get('name', {}).get('ar_001') if product.get('name', {}).get('ar_001') else product.get('name', {}).get('en_US') if product.get('name', {}).get('en_US') else product.get('name')"/>
+                                            <t t-esc="display_name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'{:,.2f}'.format(product['total_price_subtotal'])"/>
+                                            <t t-set="subtotal_sum"
+                                               t-value="subtotal_sum + product['total_price_subtotal']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'{:,.2f}'.format(product['total_discount_amount'])"/>
+                                            <t t-set="discount_sum"
+                                               t-value="discount_sum + product['total_discount_amount']"/>
+
+                                        </td>
+
+                                        <td>
+                                            <t t-esc="'{:,.2f}'.format(product['total_price_total'])"/>
+                                            <t t-set="after_sum" t-value="after_sum + product['total_price_total']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'{:,.2f}'.format(product['total_tax_amount'])"/>
+                                            <t t-set="tax_sum" t-value="tax_sum + product['total_tax_amount']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="product['total_quantity']"/>
+                                            <t t-set="qty_sum" t-value="qty_sum + product['total_quantity']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'{:,.2f}'.format(product['list_price'])"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="'{:,.2f}'.format(product['refund_total_price_total'])"/>
+                                            <t t-set="refund_sum"
+                                               t-value="refund_sum + product['refund_total_price_total']"/>
+
+                                        </td>
+                                        <td>
+                                            <t t-esc="product['refund_quantity']"/>
+                                            <t t-set="refund_qty_sum"
+                                               t-value="refund_qty_sum + product['refund_quantity']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr style="text-align: center;">
+                                    <td>الإجمالي</td>
+                                    <td>
+                                        <t t-esc="'{:,.2f}'.format(subtotal_sum)"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'{:,.2f}'.format(discount_sum)"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'{:,.2f}'.format(after_sum)"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'{:,.2f}'.format(tax_sum)"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="qty_sum"/>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <t t-esc="'{:,.2f}'.format(refund_sum)"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'{:,.2f}'.format(refund_qty_sum)"/>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <p style="page-break-after: always;"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
