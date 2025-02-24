@@ -12,8 +12,8 @@ class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
 
-  @api.model
-  def default_get(self, fields):
+    @api.model
+    def default_get(self, fields):
         res = super(SaleOrderPricelistWizard, self).default_get(fields)
         res_ids = self._context.get('active_ids')
     
@@ -53,6 +53,7 @@ class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً
                 'pricelist_line': pricelist_data,
             })
         return res
+
 
 
 class SaleOrderPricelistWizardLine(models.Model):  # استخدام Model بدلاً من TransientModel
