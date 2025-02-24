@@ -3,12 +3,11 @@
 
 from odoo import fields, models, api
 from datetime import date
-from odoo.exceptions import UserError
 
-class SaleOrderPricelistWizard(models.TransientModel):  # استخدام TransientModel بدلاً من Model
+
+class SaleOrderPricelistWizard(models.Model):
     _name = 'sale.order.pricelist.wizard'
     _description = 'Pricelist Wizard'
-    _rec_name = 'bi_wizard_pricelist_id'
 
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
@@ -17,47 +16,47 @@ class SaleOrderPricelistWizard(models.TransientModel):  # استخدام Transie
     def default_get(self, fields):
         res = super(SaleOrderPricelistWizard, self).default_get(fields)
         res_ids = self._context.get('active_ids')
-    
-        if res_ids:
-            sale_order = self.env['sale.order'].browse(res_ids[0])  # البحث عن الطلب
-            so_lines = sale_order.order_line  # جلب جميع خطوط الطلب
-    
-            pricelist_data = []
-    
-            for so_line in so_lines:
-                pricelists = self.env['product.pricelist'].sudo().search([
-                    ('item_ids.product_tmpl_id', '=', so_line.product_id.product_tmpl_id.id)
-                ])
-    
+        if res_ids and res_ids[0]:
+            so_line = res_ids[0]
+            so_line_obj = self.env['sale.order.line'].browse(so_line)
+            pricelist_list = []
+            pricelists = self.env['product.pricelist'].sudo().search([])
+       
+
+            if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
-                        so_line.product_id,
-                        so_line.product_uom_qty,
+                        so_line_obj.product_id,
+                        so_line_obj.product_uom_qty,
                         date=date.today(),
-                        uom_id=so_line.product_uom.id,
-                        partner=sale_order.partner_id  # تحديد العميل لجلب السعر الصحيح
+                        uom_id=so_line_obj.product_uom.id
                     )
-                    price_unit = price_rule.get(so_line.product_id.id, (0,))[0]
-    
+                    price_unit = price_rule.get(so_line_obj.product_id.id, [0])[0]
+                    margin = price_unit - so_line_obj.product_id.standard_price
+                    # if price_unit != 0.0:
+                    #     margin_per = (100 * margin) / price_unit
                     if price_unit != 0.0:
-                        margin = price_unit - so_line.product_id.standard_price
+                        margin = price_unit - so_line_obj.product_id.standard_price
                         margin_per = (100 * margin) / price_unit if price_unit else 0.0
-    
-                        pricelist_data.append((0, 0, {
+
+                        wz_line_id = self.env['sale.order.pricelist.wizard.line'].create({
                             'bi_pricelist_id': pricelist.id,
                             'bi_unit_price': price_unit,
-                            'bi_unit_measure': so_line.product_uom.id,
-                            'bi_unit_cost': so_line.product_id.standard_price,
+                            'bi_unit_measure': so_line_obj.product_uom.id,
+                            'bi_unit_cost': so_line_obj.product_id.standard_price,
                             'bi_margin': margin,
                             'bi_margin_per': margin_per,
-                            'line_id': so_line.id,  # ربط السطر بالمبيعات
-                        }))
-    
-            res.update({'pricelist_line': pricelist_data})
+                            'line_id': so_line,
+                        })
+                        pricelist_list.append(wz_line_id.id)
+
+            res.update({
+                'pricelist_line': [(6, 0, pricelist_list)],
+            })
         return res
 
 
-class SaleOrderPricelistWizardLine(models.TransientModel):  # استخدام TransientModel بدلاً من Model
+class SaleOrderPricelistWizardLine(models.Model):
     _name = 'sale.order.pricelist.wizard.line'
     _description = 'Pricelist Wizard Line'
 
@@ -68,4 +67,41 @@ class SaleOrderPricelistWizardLine(models.TransientModel):  # استخدام Tra
     bi_unit_cost = fields.Float('Unit Cost')
     bi_margin = fields.Float('Margin')
     bi_margin_per = fields.Float('Margin %')
-    line_id = fields.Many2one('sale.order.line', string="Sale Order Line")  # ربط سطر المبيعات
+    line_id = fields.Many2one('sale.order.line')
+
+
+    def update_sale_line_unit_price(self):
+        if self.line_id:
+            minimum_price = self.calculate_minimum_price()
+            self.line_id.write({
+                'price_unit': self.bi_unit_price,
+                'sh_sale_minimum_price': minimum_price if minimum_price else 0.0,
+            })
+    # @api.depends('line_id')
+    # def _compute_pricelist_item(self):
+    #     for record in self:
+    #         record.pricelist_item_stored = record.line_id.pricelist_item_id
+    @api.depends('line_id')
+    def _compute_pricelist_item(self):
+        for record in self:
+            record.pricelist_item_stored = record.line_id and record.line_id.pricelist_item_id or False
+
+
+    def calculate_minimum_price(self):
+        product = self.line_id.product_id
+        pricelist = self.bi_pricelist_id
+        uom = self.bi_unit_measure
+        partner = self.line_id.order_id.partner_id
+
+        if not product or not pricelist:
+            return 0.0
+
+        price_rule = pricelist._compute_price_rule(
+            products=product,
+            qty=1,
+            partner=partner,
+            date=False,
+            uom_id=uom.id if uom else product.uom_id.id,
+        )
+
+        return price_rule.get(product.id, [0])[0] if product.id in price_rule else 0.0
