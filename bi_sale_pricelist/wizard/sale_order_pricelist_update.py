@@ -11,7 +11,6 @@ class SaleOrderPricelistWizard(models.Model):
     
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
-
     @api.model
     def default_get(self, fields):
         res = super(SaleOrderPricelistWizard, self).default_get(fields)
@@ -19,10 +18,13 @@ class SaleOrderPricelistWizard(models.Model):
         if res_ids and res_ids[0]:
             so_line = res_ids[0]
             so_line_obj = self.env['sale.order.line'].browse(so_line)
-            pricelist_list = []
-            # pricelists = self.env['product.pricelist'].sudo().search([])
-            pricelists = self.env['product.pricelist'].sudo().search([('item_ids.product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id) ])
-
+            pricelist_data = []
+    
+            # البحث فقط عن قوائم الأسعار التي تحتوي على المنتج الحالي
+            pricelists = self.env['product.pricelist'].sudo().search([
+                ('item_ids.product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id)
+            ])
+    
             if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
@@ -32,28 +34,67 @@ class SaleOrderPricelistWizard(models.Model):
                         uom_id=so_line_obj.product_uom.id
                     )
                     price_unit = price_rule.get(so_line_obj.product_id.id, [0])[0]
-                    margin = price_unit - so_line_obj.product_id.standard_price
-                    # if price_unit != 0.0:
-                    #     margin_per = (100 * margin) / price_unit
+    
                     if price_unit != 0.0:
                         margin = price_unit - so_line_obj.product_id.standard_price
                         margin_per = (100 * margin) / price_unit if price_unit else 0.0
-
-                        wz_line_id = self.env['sale.order.pricelist.wizard.line'].create({
+    
+                        pricelist_data.append((0, 0, {
                             'bi_pricelist_id': pricelist.id,
                             'bi_unit_price': price_unit,
                             'bi_unit_measure': so_line_obj.product_uom.id,
                             'bi_unit_cost': so_line_obj.product_id.standard_price,
                             'bi_margin': margin,
                             'bi_margin_per': margin_per,
-                            'line_id': so_line,
-                        })
-                        pricelist_list.append(wz_line_id.id)
-
+                        }))
+    
             res.update({
-                'pricelist_line': [(6, 0, pricelist_list)],
+                'pricelist_line': pricelist_data,
             })
         return res
+
+    # @api.model
+    # def default_get(self, fields):
+    #     res = super(SaleOrderPricelistWizard, self).default_get(fields)
+    #     res_ids = self._context.get('active_ids')
+    #     if res_ids and res_ids[0]:
+    #         so_line = res_ids[0]
+    #         so_line_obj = self.env['sale.order.line'].browse(so_line)
+    #         pricelist_list = []
+    #         # pricelists = self.env['product.pricelist'].sudo().search([])
+    #         pricelists = self.env['product.pricelist'].sudo().search([('item_ids.product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id) ])
+
+    #         if pricelists:
+    #             for pricelist in pricelists:
+    #                 price_rule = pricelist._compute_price_rule(
+    #                     so_line_obj.product_id,
+    #                     so_line_obj.product_uom_qty,
+    #                     date=date.today(),
+    #                     uom_id=so_line_obj.product_uom.id
+    #                 )
+    #                 price_unit = price_rule.get(so_line_obj.product_id.id, [0])[0]
+    #                 margin = price_unit - so_line_obj.product_id.standard_price
+    #                 # if price_unit != 0.0:
+    #                 #     margin_per = (100 * margin) / price_unit
+    #                 if price_unit != 0.0:
+    #                     margin = price_unit - so_line_obj.product_id.standard_price
+    #                     margin_per = (100 * margin) / price_unit if price_unit else 0.0
+
+    #                     wz_line_id = self.env['sale.order.pricelist.wizard.line'].create({
+    #                         'bi_pricelist_id': pricelist.id,
+    #                         'bi_unit_price': price_unit,
+    #                         'bi_unit_measure': so_line_obj.product_uom.id,
+    #                         'bi_unit_cost': so_line_obj.product_id.standard_price,
+    #                         'bi_margin': margin,
+    #                         'bi_margin_per': margin_per,
+    #                         'line_id': so_line,
+    #                     })
+    #                     pricelist_list.append(wz_line_id.id)
+
+    #         res.update({
+    #             'pricelist_line': [(6, 0, pricelist_list)],
+    #         })
+    #     return res
 
 
 class SaleOrderPricelistWizardLine(models.Model):
