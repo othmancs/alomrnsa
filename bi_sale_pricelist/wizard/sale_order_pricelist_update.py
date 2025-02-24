@@ -8,7 +8,8 @@ from odoo.exceptions import UserError
 class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً من TransientModel
     _name = 'sale.order.pricelist.wizard'
     _description = 'Pricelist Wizard'
-    
+    _rec_name = 'bi_wizard_pricelist_id'  # تحديد الحقل المستخدم عند البحث
+
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
 
