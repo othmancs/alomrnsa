@@ -12,21 +12,16 @@ class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
 
-    @api.model
-    def default_get(self, fields):
+  @api.model
+  def default_get(self, fields):
         res = super(SaleOrderPricelistWizard, self).default_get(fields)
         res_ids = self._context.get('active_ids')
     
         if res_ids:
-            so_line = self.env['sale.order.line'].browse(res_ids[0]).sudo()  # تجاوز قيود الحفظ
-    
-            # التأكد من أن السطر موجود
-            if not so_line.exists():
-                raise UserError("لا يمكن العثور على سطر أمر البيع.")
+            so_line = self.env['sale.order.line'].browse(res_ids[0])
     
             pricelist_data = []
     
-            # البحث عن قوائم الأسعار التي تحتوي على المنتج الحالي
             pricelists = self.env['product.pricelist'].sudo().search([
                 ('item_ids.product_tmpl_id', '=', so_line.product_id.product_tmpl_id.id)
             ])
@@ -58,7 +53,6 @@ class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً
                 'pricelist_line': pricelist_data,
             })
         return res
-
 
 
 class SaleOrderPricelistWizardLine(models.Model):  # استخدام Model بدلاً من TransientModel
