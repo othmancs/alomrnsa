@@ -10,10 +10,8 @@ class SaleOrderLine(models.Model):
         string="عنصر قائمة الأسعار",
         store=True  # إضافة هذا لجعل الحقل مخزن
     )
-     def pricelist_apply(self):
-        wizard = self.env['sale.order.pricelist.wizard'].create({
-            'bi_wizard_pricelist_id': self.pricelist_id.id  # ربط المعالج بسجل معين
-        })
+    def pricelist_apply(self):
+        wizard = self.env['sale.order.pricelist.wizard'].create({})
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'sale.order.pricelist.wizard',
@@ -21,4 +19,3 @@ class SaleOrderLine(models.Model):
             'res_id': wizard.id,
             'target': 'new',
         }
-
