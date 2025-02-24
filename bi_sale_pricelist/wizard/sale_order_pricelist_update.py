@@ -20,8 +20,9 @@ class SaleOrderPricelistWizard(models.Model):
             so_line = res_ids[0]
             so_line_obj = self.env['sale.order.line'].browse(so_line)
             pricelist_list = []
-            pricelists = self.env['product.pricelist'].sudo().search([])
-       
+            # pricelists = self.env['product.pricelist'].sudo().search([])
+            pricelists = self.env['product.pricelist'].sudo().search([('item_ids.product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id) ])
+
             if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
