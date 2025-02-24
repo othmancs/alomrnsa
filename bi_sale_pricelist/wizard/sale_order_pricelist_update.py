@@ -66,4 +66,4 @@ class SaleOrderPricelistWizardLine(models.TransientModel):  # استخدام Tra
     bi_unit_cost = fields.Float('Unit Cost')
     bi_margin = fields.Float('Margin')
     bi_margin_per = fields.Float('Margin %')
-
+    line_id = fields.Many2one('sale.order.line', string="Sale Order Line")
