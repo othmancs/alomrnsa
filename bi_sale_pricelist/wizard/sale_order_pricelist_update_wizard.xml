@@ -13,11 +13,11 @@
 							<field name="pricelist_line" readonly="1">
 								<tree editable="bottom" create="0" edit="0" delete="0">
 									<field name="bi_pricelist_id"/>			
-									<field name="bi_unit_measure"/>
+									<field name="bi_unit_measure" invisible="1"/>
 									<field name="bi_unit_price"/>
-									<field name="bi_unit_cost"/>
-									<field name="bi_margin"/>
-									<field name="bi_margin_per"/>
+									<field name="bi_unit_cost" invisible="1"/>
+									<field name="bi_margin" invisible="1"/>
+									<field name="bi_margin_per" invisible="1"/>
 									<field name="line_id" invisible="1"/>
 									<button name="update_sale_line_unit_price" string="Apply" type="object"/>
 								</tree>	
