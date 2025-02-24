@@ -5,12 +5,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-<!--             <xpath expr="//field[@name='order_line']//tree" position="inside">
+            <xpath expr="//field[@name='order_line']//tree" position="inside">
                 <button name="pricelist_apply" type="object" string="مشاهدة" class="oe_highlight"/>
-            </xpath> -->
-<!--         <xpath expr="//form//sheet//group//field[@name='order_line']" position="inside">
+            </xpath>
+        <xpath expr="//form//sheet//group//field[@name='order_line']" position="inside">
             <button name="pricelist_apply" type="object" string="مشاهدة" class="oe_highlight"/>
-        </xpath> -->
+        </xpath>
 
         </field>
     </record>
