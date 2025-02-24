@@ -5,10 +5,10 @@ from odoo import fields, models, api
 from datetime import date
 from odoo.exceptions import UserError
 
-class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً من TransientModel
+class SaleOrderPricelistWizard(models.TransientModel):  # استخدام TransientModel بدلاً من Model
     _name = 'sale.order.pricelist.wizard'
     _description = 'Pricelist Wizard'
-    _rec_name = 'bi_wizard_pricelist_id'  # تحديد الحقل المستخدم عند البحث
+    _rec_name = 'bi_wizard_pricelist_id'
 
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
@@ -19,23 +19,25 @@ class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً
         res_ids = self._context.get('active_ids')
     
         if res_ids:
-            so_line = self.env['sale.order.line'].browse(res_ids[0])
+            sale_order = self.env['sale.order'].browse(res_ids[0])  # البحث عن الطلب
+            so_lines = sale_order.order_line  # جلب جميع خطوط الطلب
     
             pricelist_data = []
     
-            pricelists = self.env['product.pricelist'].sudo().search([
-                ('item_ids.product_tmpl_id', '=', so_line.product_id.product_tmpl_id.id)
-            ])
+            for so_line in so_lines:
+                pricelists = self.env['product.pricelist'].sudo().search([
+                    ('item_ids.product_tmpl_id', '=', so_line.product_id.product_tmpl_id.id)
+                ])
     
-            if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
                         so_line.product_id,
                         so_line.product_uom_qty,
                         date=date.today(),
-                        uom_id=so_line.product_uom.id
+                        uom_id=so_line.product_uom.id,
+                        partner=sale_order.partner_id  # تحديد العميل لجلب السعر الصحيح
                     )
-                    price_unit = price_rule.get(so_line.product_id.id, [0])[0]
+                    price_unit = price_rule.get(so_line.product_id.id, (0,))[0]
     
                     if price_unit != 0.0:
                         margin = price_unit - so_line.product_id.standard_price
@@ -48,16 +50,14 @@ class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً
                             'bi_unit_cost': so_line.product_id.standard_price,
                             'bi_margin': margin,
                             'bi_margin_per': margin_per,
+                            'line_id': so_line.id,  # ربط السطر بالمبيعات
                         }))
     
-            res.update({
-                'pricelist_line': pricelist_data,
-            })
+            res.update({'pricelist_line': pricelist_data})
         return res
 
 
-
-class SaleOrderPricelistWizardLine(models.Model):  # استخدام Model بدلاً من TransientModel
+class SaleOrderPricelistWizardLine(models.TransientModel):  # استخدام TransientModel بدلاً من Model
     _name = 'sale.order.pricelist.wizard.line'
     _description = 'Pricelist Wizard Line'
 
@@ -68,4 +68,4 @@ class SaleOrderPricelistWizardLine(models.Model):  # استخدام Model بدل
     bi_unit_cost = fields.Float('Unit Cost')
     bi_margin = fields.Float('Margin')
     bi_margin_per = fields.Float('Margin %')
-    line_id = fields.Many2one('sale.order.line', string="Sale Order Line")
+    line_id = fields.Many2one('sale.order.line', string="Sale Order Line")  # ربط سطر المبيعات
