@@ -20,8 +20,11 @@ class SaleOrderPricelistWizard(models.Model):
             so_line = res_ids[0]
             so_line_obj = self.env['sale.order.line'].browse(so_line)
             pricelist_list = []
-            pricelists = self.env['product.pricelist'].sudo().search([])
-       
+            
+            # البحث فقط عن قوائم الأسعار التي تحتوي على المنتج المحدد
+            pricelists = self.env['product.pricelist'].sudo().search([
+                ('item_ids.product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id)
+            ])
 
             if pricelists:
                 for pricelist in pricelists:
@@ -32,9 +35,6 @@ class SaleOrderPricelistWizard(models.Model):
                         uom_id=so_line_obj.product_uom.id
                     )
                     price_unit = price_rule.get(so_line_obj.product_id.id, [0])[0]
-                    margin = price_unit - so_line_obj.product_id.standard_price
-                    # if price_unit != 0.0:
-                    #     margin_per = (100 * margin) / price_unit
                     if price_unit != 0.0:
                         margin = price_unit - so_line_obj.product_id.standard_price
                         margin_per = (100 * margin) / price_unit if price_unit else 0.0
@@ -69,7 +69,6 @@ class SaleOrderPricelistWizardLine(models.Model):
     bi_margin_per = fields.Float('Margin %')
     line_id = fields.Many2one('sale.order.line')
 
-
     def update_sale_line_unit_price(self):
         if self.line_id:
             minimum_price = self.calculate_minimum_price()
@@ -77,15 +76,11 @@ class SaleOrderPricelistWizardLine(models.Model):
                 'price_unit': self.bi_unit_price,
                 'sh_sale_minimum_price': minimum_price if minimum_price else 0.0,
             })
-    # @api.depends('line_id')
-    # def _compute_pricelist_item(self):
-    #     for record in self:
-    #         record.pricelist_item_stored = record.line_id.pricelist_item_id
+
     @api.depends('line_id')
     def _compute_pricelist_item(self):
         for record in self:
             record.pricelist_item_stored = record.line_id and record.line_id.pricelist_item_id or False
-
 
     def calculate_minimum_price(self):
         product = self.line_id.product_id
