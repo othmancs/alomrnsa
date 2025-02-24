@@ -13,51 +13,51 @@ class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
 
     @api.model
-def default_get(self, fields):
-    res = super(SaleOrderPricelistWizard, self).default_get(fields)
-    res_ids = self._context.get('active_ids')
-
-    if res_ids:
-        so_line = self.env['sale.order.line'].browse(res_ids[0]).sudo()  # تجاوز قيود الحفظ
-
-        # التأكد من أن السطر موجود
-        if not so_line.exists():
-            raise UserError("لا يمكن العثور على سطر أمر البيع.")
-
-        pricelist_data = []
-
-        # البحث عن قوائم الأسعار التي تحتوي على المنتج الحالي
-        pricelists = self.env['product.pricelist'].sudo().search([
-            ('item_ids.product_tmpl_id', '=', so_line.product_id.product_tmpl_id.id)
-        ])
-
-        if pricelists:
-            for pricelist in pricelists:
-                price_rule = pricelist._compute_price_rule(
-                    so_line.product_id,
-                    so_line.product_uom_qty,
-                    date=date.today(),
-                    uom_id=so_line.product_uom.id
-                )
-                price_unit = price_rule.get(so_line.product_id.id, [0])[0]
-
-                if price_unit != 0.0:
-                    margin = price_unit - so_line.product_id.standard_price
-                    margin_per = (100 * margin) / price_unit if price_unit else 0.0
-
-                    pricelist_data.append((0, 0, {
-                        'bi_pricelist_id': pricelist.id,
-                        'bi_unit_price': price_unit,
-                        'bi_unit_measure': so_line.product_uom.id,
-                        'bi_unit_cost': so_line.product_id.standard_price,
-                        'bi_margin': margin,
-                        'bi_margin_per': margin_per,
-                    }))
-
-        res.update({
-            'pricelist_line': pricelist_data,
-        })
-    return res
+    def default_get(self, fields):
+        res = super(SaleOrderPricelistWizard, self).default_get(fields)
+        res_ids = self._context.get('active_ids')
+    
+        if res_ids:
+            so_line = self.env['sale.order.line'].browse(res_ids[0]).sudo()  # تجاوز قيود الحفظ
+    
+            # التأكد من أن السطر موجود
+            if not so_line.exists():
+                raise UserError("لا يمكن العثور على سطر أمر البيع.")
+    
+            pricelist_data = []
+    
+            # البحث عن قوائم الأسعار التي تحتوي على المنتج الحالي
+            pricelists = self.env['product.pricelist'].sudo().search([
+                ('item_ids.product_tmpl_id', '=', so_line.product_id.product_tmpl_id.id)
+            ])
+    
+            if pricelists:
+                for pricelist in pricelists:
+                    price_rule = pricelist._compute_price_rule(
+                        so_line.product_id,
+                        so_line.product_uom_qty,
+                        date=date.today(),
+                        uom_id=so_line.product_uom.id
+                    )
+                    price_unit = price_rule.get(so_line.product_id.id, [0])[0]
+    
+                    if price_unit != 0.0:
+                        margin = price_unit - so_line.product_id.standard_price
+                        margin_per = (100 * margin) / price_unit if price_unit else 0.0
+    
+                        pricelist_data.append((0, 0, {
+                            'bi_pricelist_id': pricelist.id,
+                            'bi_unit_price': price_unit,
+                            'bi_unit_measure': so_line.product_uom.id,
+                            'bi_unit_cost': so_line.product_id.standard_price,
+                            'bi_margin': margin,
+                            'bi_margin_per': margin_per,
+                        }))
+    
+            res.update({
+                'pricelist_line': pricelist_data,
+            })
+        return res
 
 
 
