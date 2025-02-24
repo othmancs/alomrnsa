@@ -3,6 +3,7 @@
 
 from odoo import fields, models, api
 from datetime import date
+from odoo.exceptions import UserError
 
 class SaleOrderPricelistWizard(models.TransientModel):  # استخدام TransientModel بدلاً من Model
     _name = 'sale.order.pricelist.wizard'
@@ -15,36 +16,40 @@ class SaleOrderPricelistWizard(models.TransientModel):  # استخدام Transie
     def default_get(self, fields):
         res = super(SaleOrderPricelistWizard, self).default_get(fields)
         res_ids = self._context.get('active_ids')
-        
-        if res_ids and res_ids[0]:
-            so_line = res_ids[0]
-            so_line_obj = self.env['sale.order.line'].browse(so_line)
+
+        if res_ids:
+            so_line = self.env['sale.order.line'].browse(res_ids[0])
+
+            # التحقق مما إذا كان سطر أمر البيع موجودًا لتجنب الأخطاء
+            if not so_line.exists():
+                raise UserError("لا يمكن العثور على سطر أمر البيع.")
+
             pricelist_data = []
 
-            # البحث فقط عن قوائم الأسعار التي تحتوي على المنتج الحالي
+            # البحث عن قوائم الأسعار التي تحتوي على المنتج الحالي
             pricelists = self.env['product.pricelist'].sudo().search([
-                ('item_ids.product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id)
+                ('item_ids.product_tmpl_id', '=', so_line.product_id.product_tmpl_id.id)
             ])
 
             if pricelists:
                 for pricelist in pricelists:
                     price_rule = pricelist._compute_price_rule(
-                        so_line_obj.product_id,
-                        so_line_obj.product_uom_qty,
+                        so_line.product_id,
+                        so_line.product_uom_qty,
                         date=date.today(),
-                        uom_id=so_line_obj.product_uom.id
+                        uom_id=so_line.product_uom.id
                     )
-                    price_unit = price_rule.get(so_line_obj.product_id.id, [0])[0]
+                    price_unit = price_rule.get(so_line.product_id.id, [0])[0]
 
                     if price_unit != 0.0:
-                        margin = price_unit - so_line_obj.product_id.standard_price
+                        margin = price_unit - so_line.product_id.standard_price
                         margin_per = (100 * margin) / price_unit if price_unit else 0.0
 
                         pricelist_data.append((0, 0, {
                             'bi_pricelist_id': pricelist.id,
                             'bi_unit_price': price_unit,
-                            'bi_unit_measure': so_line_obj.product_uom.id,
-                            'bi_unit_cost': so_line_obj.product_id.standard_price,
+                            'bi_unit_measure': so_line.product_uom.id,
+                            'bi_unit_cost': so_line.product_id.standard_price,
                             'bi_margin': margin,
                             'bi_margin_per': margin_per,
                         }))
