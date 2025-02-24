@@ -5,7 +5,7 @@ from odoo import fields, models, api
 from datetime import date
 from odoo.exceptions import UserError
 
-class SaleOrderPricelistWizard(models.TransientModel):  # استخدام TransientModel بدلاً من Model
+class SaleOrderPricelistWizard(models.Model):  # استخدام Model بدلاً من TransientModel
     _name = 'sale.order.pricelist.wizard'
     _description = 'Pricelist Wizard'
     
@@ -60,7 +60,7 @@ class SaleOrderPricelistWizard(models.TransientModel):  # استخدام Transie
         return res
 
 
-class SaleOrderPricelistWizardLine(models.TransientModel):  # استخدام TransientModel هنا أيضًا
+class SaleOrderPricelistWizardLine(models.Model):  # استخدام Model بدلاً من TransientModel
     _name = 'sale.order.pricelist.wizard.line'
     _description = 'Pricelist Wizard Line'
 
