@@ -11,11 +11,10 @@ class SaleOrderLine(models.Model):
         store=True  # إضافة هذا لجعل الحقل مخزن
     )
     def pricelist_apply(self):
-        wizard = self.env['sale.order.pricelist.wizard'].create({})
         return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'sale.order.pricelist.wizard',
-            'view_mode': 'form',
-            'res_id': wizard.id,
-            'target': 'new',
-        }
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'sale.order.pricelist.wizard',
+                'type': 'ir.actions.act_window',
+                'target': 'new',
+            }
