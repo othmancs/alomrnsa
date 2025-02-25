@@ -12,16 +12,16 @@ class HrContract(models.Model):
     _description = 'Employee Contract'
 
     struct_id = fields.Many2one('hr.payroll.structure', string='Salary Structure')
-    schedule_pay = fields.Selection([
-        ('monthly', 'Monthly'),
-        ('quarterly', 'Quarterly'),
-        ('semi-annually', 'Semi-annually'),
-        ('annually', 'Annually'),
-        ('weekly', 'Weekly'),
-        ('bi-weekly', 'Bi-weekly'),
-        ('bi-monthly', 'Bi-monthly'),
-    ], string='Scheduled Pay', index=True, default='monthly',
-        help="Defines the frequency of the wage payment.", store=True)
+    # schedule_pay = fields.Selection([
+    #     ('monthly', 'Monthly'),
+    #     ('quarterly', 'Quarterly'),
+    #     ('semi-annually', 'Semi-annually'),
+    #     ('annually', 'Annually'),
+    #     ('weekly', 'Weekly'),
+    #     ('bi-weekly', 'Bi-weekly'),
+    #     ('bi-monthly', 'Bi-monthly'),
+    # ], string='Scheduled Pay', index=True, default='monthly',
+    #     help="Defines the frequency of the wage payment.", store=True)
     
 
     resource_calendar_id = fields.Many2one(required=True, help="Employee's working schedule.")
