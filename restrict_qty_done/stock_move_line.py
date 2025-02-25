@@ -18,5 +18,5 @@ class StockMove(models.Model):
     def _check_quantity_done(self):
         for record in self:
             if record.picking_id.picking_type_id.code == "outgoing":  # تحقق من كود العملية
-                if record.quantity_done >= record.product_uom_qty:
+                if record.quantity_done > record.product_uom_qty:
                     raise ValidationError("الكمية المنفذة لا يمكن أن تكون أكبر من الكمية المحجوزة.")
