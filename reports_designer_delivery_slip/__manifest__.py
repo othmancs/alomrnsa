@@ -22,7 +22,7 @@ Report for Report Designer (XLSX, XLSM).
     """,
     'author': 'GTECH',
     'support': 'vk.3141592653@gmail.com',
-    'depends': ['delivery', 'stock', 'report_xlsx'],
+    'depends': ['delivery', 'stock', 'reports_designer'],
     'images': ['static/description/banner_rep.png'],
     'data': [
         'data/delivery_slip_xlsx.xml',
