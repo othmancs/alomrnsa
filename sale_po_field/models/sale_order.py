@@ -5,7 +5,7 @@ class SaleOrder(models.Model):
 
     purchase_order_number = fields.Char(string='رقم أمر الشراء', copy=True)
 
-    @api.onchange('state')
-    def _onchange_state(self):
-        if self.state != 'draft':
-            self.purchase_order_number = self.purchase_order_number  # تثبيت القيمة عند التغيير
+    def _prepare_invoice(self):
+        invoice_vals = super()._prepare_invoice()
+        invoice_vals['purchase_order_number'] = self.purchase_order_number
+        return invoice_vals
