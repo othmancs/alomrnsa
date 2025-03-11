@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Tajawal-Regular';
+    src: url('../fonts/Tajawal-Regular.eot');
+    src: url('../fonts/Tajawal-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Tajawal-Regular.woff2') format('woff2'),
+         url('../fonts/Tajawal-Regular.woff') format('woff'),
+         url('../fonts/Tajawal-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'sar-symbol';
+    src:  url('../fonts/sar-symbol.eot?ebwrxj');
+    src:  url('../fonts/sar-symbol.eot?ebwrxj#iefix') format('embedded-opentype'),
+        url('../fonts/sar-symbol.ttf?ebwrxj') format('truetype'),
+        url('../fonts/sar-symbol.woff?ebwrxj') format('woff'),
+        url('../fonts/sar-symbol.svg?ebwrxj#sar-symbol') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'sar-symbol' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sar:before {
+    content: "\e900";
+}
+
+*:not(.fa):not(.oi) {
+    font-family: 'sar-symbol', 'Tajawal-Regular', sans-serif !important;
+}
+.page {
+    font-family: 'sar-symbol', 'Tajawal-Regular', sans-serif !important;
+}
+.header {
+    font-family: 'sar-symbol', 'Tajawal-Regular', sans-serif !important;
+} 
+.footer {
+    font-family: 'sar-symbol', 'Tajawal-Regular', sans-serif !important;
+}
