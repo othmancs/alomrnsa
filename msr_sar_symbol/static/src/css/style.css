@@ -1,0 +1,121 @@
+/* Variables */
+:root {
+    --primary-color: #2f704a;
+    --riyals-color: #2f704a;
+    --font-size-base: 16px;
+    --line-height-base: 1.5;
+    --spacing-unit: 8px;
+    --container-padding: calc(var(--spacing-unit) * 2);
+}
+/* Font Faces */
+@font-face {
+    font-family: 'saudi_riyal';
+    src: url('../fonts/saudi_riyal.eot?bdfc4l');
+    src: url('../fonts/saudi_riyal.eot?bdfc4l#iefix') format('embedded-opentype'),
+         url('../fonts/saudi_riyal.ttf?bdfc4l') format('truetype'),
+         url('../fonts/saudi_riyal.woff?bdfc4l') format('woff'),
+         url('../fonts/saudi_riyal.svg?bdfc4l#saudi_riyal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: 'JannaLTRegular';
+    src: url('../fonts/ArbFONTS-ArbFONTS-Janna-LT-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'JannaLTBold';
+    src: url('../fonts/ArbFONTS-ArbFONTS-Janna-LT-Bold.ttf') format('truetype');
+}
+
+/* Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Gradient background for the body */
+body {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+/* Icon styling */
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'saudi_riyal' !important;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+.icon-saudi_riyal:before {
+    content: "\e900";
+    color: var(--riyals-color);
+}
+
+/* Typography Classes */
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-bold {
+    font-family: 'JannaLTBold', 'saudi_riyal', sans-serif !important;
+}
+
+/* Layout Components */
+.page, .header, .footer {
+    font-family: 'JannaLTRegular', 'saudi_riyal', sans-serif !important;
+    padding: var(--container-padding);
+}
+
+/* Global Font Exception */
+*:not(.fa):not(.oi) {
+    font-family: 'JannaLTRegular', 'saudi_riyal', sans-serif !important;
+}
+
+/* Responsive Typography */
+@media screen and (max-width: 768px) {
+    :root {
+        --font-size-base: 14px;
+        --container-padding: var(--spacing-unit);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .page {
+        margin: 0;
+        padding: 0;
+    }
+
+    .header, .footer {
+        position: fixed;
+        width: 100%;
+    }
+
+    .header {
+        top: 0;
+    }
+
+    .footer {
+        bottom: 0;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}

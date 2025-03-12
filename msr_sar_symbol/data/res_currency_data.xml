@@ -1,0 +1,21 @@
+<odoo>
+
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value
+                eval="[('module', '=', 'base'), ('name', '=', 'SAR')]" />
+        </function>
+        <value eval="{'noupdate': False}" />
+    </function>
+    <record id="base.SAR" model="res.currency">
+        <field name="symbol"></field>
+        <field name="position">before</field>
+    </record>
+    <function name="write" model="ir.model.data">
+        <function name="search" model="ir.model.data">
+            <value
+                eval="[('module', '=', 'base'), ('name', '=', 'SAR')]" />
+        </function>
+        <value eval="{'noupdate': True}" />
+    </function>
+</odoo>
