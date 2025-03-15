@@ -51,7 +51,7 @@
                                 <td>
                                     <span t-esc="i['code']"/>
                                 </td>
-                                <td>
+<!--                                 <td> -->
 
 <!-- <td>
     <t t-if="user.lang == 'ar_SY'">
