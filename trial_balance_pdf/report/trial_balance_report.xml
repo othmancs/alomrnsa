@@ -52,8 +52,17 @@
                                     <span t-esc="i['code']"/>
                                 </td>
                                 <td>
+    <t t-if="user.lang == 'ar_001'">
+        <span t-esc="i.get('ac_name_ar', i['ac_name'])"/>
+    </t>
+    <t t-else="">
+        <span t-esc="i['ac_name']"/>
+    </t>
+</td>
+<!-- 
+                                <td>
                                     <span t-esc="i['ac_name']"/>
-                                </td>
+                                </td> -->
                                 <td>
                                     <span t-esc="currency"/>
                                     <span t-esc="i['debit']"/>
