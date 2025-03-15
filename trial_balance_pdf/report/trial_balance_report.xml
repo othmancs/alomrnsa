@@ -68,10 +68,10 @@
 
                                 <td>
     <t t-if="user.lang == 'ar_SY' or user.lang == 'ar'">
-        <span t-esc="i.get('001_ar', i.get('US_en', 'N/A'))"/>
+        <span t-esc="i.get('ar_001', i.get('US_en', 'N/A'))"/>
     </t>
     <t t-else="">
-        <span t-esc="i.get('US_en', i.get('001_ar', 'N/A'))"/>
+        <span t-esc="i.get('US_en', i.get('ar_001', 'N/A'))"/>
     </t>
 </td>
 
