@@ -63,7 +63,7 @@
 </td> -->
 
                                 <td>
-                                    <span t-esc="i['ac_name_ar']"/>
+                                    <span t-esc="i.get('ac_name_ar', i['ac_name'])"/>
                                 </td>
                                 <td>
                                     <span t-esc="currency"/>
