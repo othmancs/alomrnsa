@@ -67,7 +67,7 @@
                                 </td> -->
 
                                 <td>
-    <t t-if="user.lang == 'ar_SY' or user.lang == 'ar'">
+    <t t-if="user.lang == 'ar_001' or user.lang == 'ar_001'">
         <span t-esc="i.get('ar_001', i.get('US_en', 'N/A'))"/>
     </t>
     <t t-else="">
