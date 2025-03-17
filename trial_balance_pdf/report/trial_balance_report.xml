@@ -47,7 +47,7 @@
                                 <th>الرصيد</th>
                             </tr>
                         </thead>
-                        <tbody>
+                       <tbody>
                             <tr t-foreach="query" t-as="i">
                                 <td>
                                     <span t-esc="i['code']"/>
@@ -55,21 +55,21 @@
                                 <td>
                                     <span t-esc="i['ac_name'].get('ar_001', i['ac_name'].get('en_US', 'اسم غير متوفر'))"/>
                                 </td>
-                                 <td>
+                                <td>
                                     <span t-esc="currency"/>
-                                    <span t-esc="i.get('opening_balance', i['debit'] - i['credit'])"/>
+                                    <span t-esc="('%.2f' % i.get('opening_balance', i['debit'] - i['credit']))"/>
                                 </td>
                                 <td>
                                     <span t-esc="currency"/>
-                                    <span t-esc="i['debit']"/>
+                                    <span t-esc="('%.2f' % i['debit'])"/>
                                 </td>
                                 <td>
                                     <span t-esc="currency"/>
-                                    <span t-esc="i['credit']"/>
+                                    <span t-esc="('%.2f' % i['credit'])"/>
                                 </td>
                                 <td>
                                     <span t-esc="currency"/>
-                                    <span t-esc="i['balance']"/>
+                                    <span t-esc="('%.2f' % i['balance'])"/>
                                 </td>
                             </tr>
                             <tr>
@@ -79,25 +79,25 @@
                                 <td>
                                     <b>
                                         <span t-esc="currency"/>
-                                        <span t-esc="total_opening_balance"/>
+                                        <span t-esc="('%.2f' % total_opening_balance)"/>
                                     </b>
                                 </td>
                                 <td>
                                     <b>
                                         <span t-esc="currency"/>
-                                        <span t-esc="total_debit"/>
+                                        <span t-esc="('%.2f' % total_debit)"/>
                                     </b>
                                 </td>
                                 <td>
                                     <b>
                                         <span t-esc="currency"/>
-                                        <span t-esc="total_credit"/>
+                                        <span t-esc="('%.2f' % total_credit)"/>
                                     </b>
                                 </td>
                                 <td>
                                     <b>
                                         <span t-esc="currency"/>
-                                        <span t-esc="balance"/>
+                                        <span t-esc="('%.2f' % balance)"/>
                                     </b>
                                 </td>
                             </tr>
