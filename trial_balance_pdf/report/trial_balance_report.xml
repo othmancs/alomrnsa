@@ -57,7 +57,9 @@
                                 </td>
                                 <td>
                                     <span t-esc="currency"/>
-                                    <span t-esc="i['opening_balance']"/>
+                                    <span t-esc="i.get('opening_balance', 0)"/>
+
+<!--                                     <span t-esc="i['opening_balance']"/> -->
                                 </td>
                                 <td>
                                     <span t-esc="currency"/>
