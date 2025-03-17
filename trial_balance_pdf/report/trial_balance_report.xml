@@ -51,29 +51,18 @@
                                 <td>
                                     <span t-esc="i['code']"/>
                                 </td>
-<!--                                 <td> -->
+<td>
+    <span t-esc="i['ac_name'].get('001_ar', i['ac_name'].get('US_en', 'اسم غير متوفر'))"/>
+</td>
 
-<!-- <td>
-    <t t-if="user.lang == 'ar_SY'">
-        <span t-esc="i.get('ac_name_ar', i['ac_name'])"/>
-    </t>
-    <t t-else="">
-        <span t-esc="i['ac_name']"/>
-    </t>
-</td> -->
 
+
+<!-- 
                                 <td>
                                     <span t-esc="i.get('ar_001', i['ac_name'])"/>
                                 </td> 
+ -->
 
-<!--                                 <td>
-    <t t-if="user.lang == 'ar_001' or user.lang == 'ar_001'">
-        <span t-esc="i.get('ar_001', i.get('US_en', 'N/A'))"/>
-    </t>
-    <t t-else="">
-        <span t-esc="i.get('US_en', i.get('ar_001', 'N/A'))"/>
-    </t>
-</td> -->
 
                                 <td>
                                     <span t-esc="currency"/>
