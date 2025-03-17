@@ -55,11 +55,9 @@
                                 <td>
                                     <span t-esc="i['ac_name'].get('ar_001', i['ac_name'].get('en_US', 'اسم غير متوفر'))"/>
                                 </td>
-                                <td>
+                                 <td>
                                     <span t-esc="currency"/>
-                                    <span t-esc="i.get('opening_balance', 0)"/>
-
-<!--                                     <span t-esc="i['opening_balance']"/> -->
+                                    <span t-esc="i.get('opening_balance', i['debit'] - i['credit'])"/>
                                 </td>
                                 <td>
                                     <span t-esc="currency"/>
