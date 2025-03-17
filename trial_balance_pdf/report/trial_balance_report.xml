@@ -52,7 +52,7 @@
                                     <span t-esc="i['code']"/>
                                 </td>
 <td>
-    <span t-esc="i['ac_name'].get('001_ar', i['ac_name'].get('US_en', 'اسم غير متوفر'))"/>
+    <span t-esc="i['ac_name'].get('ar_001', i['ac_name'].get('en_US', 'اسم غير متوفر'))"/>
 </td>
 
 
