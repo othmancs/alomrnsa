@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!--    Report Template-->
+    <!--    قالب التقرير -->
     <template id="report_trial_balance">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <t t-if="start_date or end_date or journals_name or state">
                     <div style="padding:10px;">
                     <t t-if="start_date">
-                        Start Date :
+                        تاريخ البداية:
                         <t t-esc="start_date"/><br/><br/>
                     </t>
                     <t t-if="end_date">
-                        End Date :
+                        تاريخ النهاية:
                         <t t-esc="end_date"/><br/><br/>
                     </t>
                     <t t-if="journals_name">
-                        Journals:
+                        الدفاتر:
                         <t t-esc="journals_name"/><br/><br/>
                     </t>
                     <t t-if="state">
-                        State:
+                        الحالة:
                         <t t-esc="state"/><br/><br/>
                     </t>
                     </div>
@@ -27,10 +27,10 @@
                 <div class="page">
                     <center>
                         <t t-if="query">
-                        <h2>Trial Balance</h2>
+                        <h2>ميزان المراجعة</h2>
                         </t>
                         <t t-else="">
-                            <h3>There is no data</h3>
+                            <h3>لا توجد بيانات</h3>
                         </t>
                     </center>
                 </div>
@@ -39,11 +39,11 @@
                     <table class="table table-sm">
                         <thead>
                             <tr>
-                                <th>Code</th>
-                                <th>Account</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                                <th>Balance</th>
+                                <th>الرمز</th>
+                                <th>الحساب</th>
+                                <th>مدين</th>
+                                <th>دائن</th>
+                                <th>الرصيد</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,19 +51,9 @@
                                 <td>
                                     <span t-esc="i['code']"/>
                                 </td>
-<td>
-    <span t-esc="i['ac_name'].get('ar_001', i['ac_name'].get('en_US', 'اسم غير متوفر'))"/>
-</td>
-
-
-
-<!-- 
                                 <td>
-                                    <span t-esc="i.get('ar_001', i['ac_name'])"/>
-                                </td> 
- -->
-
-
+                                    <span t-esc="i['ac_name'].get('ar_001', i['ac_name'].get('en_US', 'اسم غير متوفر'))"/>
+                                </td>
                                 <td>
                                     <span t-esc="currency"/>
                                     <span t-esc="i['debit']"/>
@@ -79,7 +69,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" style="text-align:center;">
-                                    <b>Total</b>
+                                    <b>الإجمالي</b>
                                 </td>
                                 <td>
                                     <b>
@@ -106,9 +96,9 @@
             </t>
         </t>
     </template>
-    <!--Report Action-->
+    <!--إجراء التقرير-->
     <record id="action_report_trial_balance" model="ir.actions.report">
-        <field name="name">Trial Balance</field>
+        <field name="name">ميزان المراجعة</field>
         <field name="model">trial.balance.report</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">trial_balance_pdf.report_trial_balance</field>
@@ -117,5 +107,3 @@
         <field name="binding_type">report</field>
     </record>
 </odoo>
-
-
