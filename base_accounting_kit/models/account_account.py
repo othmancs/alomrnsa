@@ -62,10 +62,12 @@ class AccountCommonReport(models.Model):
     #     default=lambda self: self.env['account.journal'].search([('company_id', '=', self.company_id.id)]),
     #     domain="[('company_id', '=', company_id)]",
     # )
-    journal_ids = fields.Many2many(comodel_name='account.journal',relation='account_common_journal_report_rel',  # اسم مختصر
-        column1='report_id',column2='journal_id',string='Journals',required=True,default=lambda self: self.env['account.journal'].search([('company_id', '=', self.company_id.id)]),
-        domain="[('company_id', '=', company_id)]",)
+    journal_ids = fields.Many2many(comodel_name='account.journal', relation='acc_journal_report_rel', 
+        column1='report_id', column2='journal_id', string='Journals', required=True, 
+        default=lambda self: self.env['account.journal'].search([('company_id', '=', self.company_id.id)]),
+        domain="[('company_id', '=', company_id)]")
     
+        
     date_from = fields.Date(string='Start Date')
     date_to = fields.Date(string='End Date')
     target_move = fields.Selection([('posted', 'All Posted Entries'),
