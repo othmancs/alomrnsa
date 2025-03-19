@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_account_report_template" model="ir.actions.report">
+            <field name="name">Account Report</field>
+            <field name="model">account.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">kb_account_reports.account_report</field>
+            <field name="report_file">kb_account_reports.account_report</field>
+        </record>
+
+        <record id="action_account_report_xlsx" model="ir.actions.report">
+            <field name="name">Account Report XLSX</field>
+            <field name="model">account.report.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">kb_account_reports.report_account_xlsx</field>
+            <field name="report_file">kb_account_reports.report_account_xlsx</field>
+        </record>
+
+
+
+    </data>
+</odoo>

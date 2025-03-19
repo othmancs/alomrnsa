@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_report_wizard_view_form" model="ir.ui.view">
+        <field name="name">account.report.wizard.form</field>
+        <field name="model">account.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Account Reports">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                    </group>
+                    <group>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="state" widget="radio"/>
+                    <field name="account_id"/>
+                </group>
+                <footer>
+                    <button name="print_pdf" type="object" string="PDF" class="oe_highlight"/>
+                    <button name="print_xlsx" type="object" string="XLSX" class="oe_highlight"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="account_report_action" model="ir.actions.act_window">
+        <field name="name">Account Reports</field>
+        <field name="res_model">account.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="account_report_wizard_view_form"/>
+    </record>
+
+    <menuitem id="menu_account_account_report"
+              name="Account Report"
+              sequence="100"
+              action="account_report_action"
+              parent="account.menu_finance_reports"
+              groups="account.group_account_manager,account.group_account_user"/>
+
+</odoo>

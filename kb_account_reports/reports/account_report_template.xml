@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <template id="account_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <link href="https://fonts.googleapis.com/css2?family=Almarai" rel="stylesheet" />
+                    <div class="page" style="font-family: 'Almarai', sans-serif;">
+                        <br />
+                        <br />
+                        <style>
+                            #table_css {
+                                border: 1px solid black border-collapse: collapse;
+                                border-spacing: 0px;
+                                border-top-spacing: 0px;
+                            }
+
+                            #table_css td,
+                            #table_css th {
+                                border: 1px solid black
+                            }
+
+                            #table_css tr: {
+                                border: 1px solid black
+                            }
+
+                            #table_css th {
+                                style="border: 1px solid black"
+                            }
+                        </style>
+                        <table class="table table-sm o_main_table" id="table_css">
+                            <thead>
+                                <tr>
+                                    <th style="background-color: lightgrey;">Date From</th>
+                                    <th style="background-color: lightgrey;">Date To</th>
+                                    <th style="background-color: lightgrey;">Status</th>
+                                    <th style="background-color: lightgrey;">Account</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-esc="start_date" t-options="{'widget': 'date'}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="end_date" t-options="{'widget': 'date'}" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="state" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="account_name" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <t t-set="balance" t-value="0" />
+                        <t t-foreach="move_balance" t-as="move_balances">
+                            <t t-set="balance" t-value="move_balances.debit - move_balances.credit + balance" />
+                            <!-- Balance: <span t-esc="balance"/> -->
+                        </t>
+
+                        <table class="table table-sm o_main_table" id="table_css">
+                            <thead>
+                                <tr>
+                                    <th style="background-color: lightgrey;">Date</th>
+                                    <th style="background-color: lightgrey;">Reference</th>
+                                    <th style="background-color: lightgrey;">Partner</th>
+                                    <th style="background-color: lightgrey;">Debit</th>
+                                    <th style="background-color: lightgrey;">Credit</th>
+                                    <th style="background-color: lightgrey;">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="background-color: grey;">
+
+                                    </td>
+                                    <td style="background-color: grey;">
+
+                                    </td>
+                                    <td>
+                                        Balance
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <t t-if="balance > 0.0">
+                                            <span t-esc="balance"
+                                                t-options="{'widget': 'monetary', 'display_currency': lines.currency_id}" />
+                                        </t>
+                                        <t t-else="">
+                                            <span t-esc="balance * 0"
+                                                t-options="{'widget': 'monetary', 'display_currency': lines.currency_id}" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <t t-if="balance &lt; 0.0">
+                                            <span t-esc="balance * -1"
+                                                t-options="{'widget': 'monetary', 'display_currency': lines.currency_id}" />
+                                        </t>
+                                        <t t-else="">
+                                            <span t-esc="balance * 0"
+                                                t-options="{'widget': 'monetary', 'display_currency': lines.currency_id}" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align:right; background-color: grey;">
+                                        <!-- The formala -->
+                                    </td>
+                                </tr>
+                                <t t-foreach="lines" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.date" />
+                                        </td>
+                                        <td>
+                                            <span t-field="line.move_id.name" />
+                                        </td>
+                                        <td>
+                                            <span t-field="line.partner_id.name" />
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-field="line.debit" />
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-field="line.credit" />
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <!-- The formala -->
+                                            <t t-set="balance" t-value="line.debit - line.credit + balance" />
+                                            <span t-esc="balance"
+                                                t-options="{'widget': 'monetary', 'display_currency': line.currency_id}" />
+                                        </td>
+                                    </tr>
+                                </t>
+
+                            </tbody>
+                        </table>
+                        <table style="border:none; width:100%; background-color:white;">
+                            <tr style="border:none;">
+                                <td colspan="6" style="border:none; text-align:center; background-color:white;">
+                                    <h4>End of document</h4>
+                                    <b style="text-align:center; border:none;">Powerd by knowledge bonds</b>
+                                    <br />
+                                    <span style="text-align:center; border:none;">www.rawabt.sa</span>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
