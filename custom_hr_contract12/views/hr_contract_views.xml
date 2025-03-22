@@ -6,9 +6,10 @@
             <form string="Contract">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="employee_id"/>
-                        <field name="schedule_pay" />
+                        <!-- Add the company_id field here -->
+                        <field name="company_id"/>
+                        
+                        <field name="employee_id" domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
                     </group>
                 </sheet>
             </form>
