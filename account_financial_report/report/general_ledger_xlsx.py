@@ -58,34 +58,34 @@ class GeneralLedgerXslx(models.AbstractModel):
                 "type": "amount",
                 "width": 14,
             },
-            # {
-            #     "header": _("Cumul. Bal."),
-            #     "field": "balance",
-            #     "field_initial_balance": "initial_balance",
-            #     "field_final_balance": "final_balance",
-            #     "type": "amount",
-            #     "width": 14,
-            # },
+            {
+                "header": _("Cumul. Bal."),
+                "field": "balance",
+                "field_initial_balance": "initial_balance",
+                "field_final_balance": "final_balance",
+                "type": "amount",
+                "width": 14,
+            },
         ]
-        # if report.foreign_currency:
-        #     res += [
-        #         {
-        #             "header": _("Amount cur."),
-        #             "field": "bal_curr",
-        #             "field_initial_balance": "initial_bal_curr",
-        #             "field_final_balance": "final_bal_curr",
-        #             "type": "amount_currency",
-        #             "width": 10,
-        #         },
-        #         {
-        #             "header": _("Cumul cur."),
-        #             "field": "total_bal_curr",
-        #             "field_initial_balance": "initial_bal_curr",
-        #             "field_final_balance": "final_bal_curr",
-        #             "type": "amount_currency",
-        #             "width": 10,
-        #         },
-        #     ]
+        if report.foreign_currency:
+            res += [
+                {
+                    "header": _("Amount cur."),
+                    "field": "bal_curr",
+                    "field_initial_balance": "initial_bal_curr",
+                    "field_final_balance": "final_bal_curr",
+                    "type": "amount_currency",
+                    "width": 10,
+                },
+                {
+                    "header": _("Cumul cur."),
+                    "field": "total_bal_curr",
+                    "field_initial_balance": "initial_bal_curr",
+                    "field_final_balance": "final_bal_curr",
+                    "type": "amount_currency",
+                    "width": 10,
+                },
+            ]
         res_as_dict = {}
         for i, column in enumerate(res):
             res_as_dict[i] = column
