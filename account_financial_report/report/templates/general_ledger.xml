@@ -143,12 +143,12 @@
                     <div class="act_as_cell" style="width: 16.9%;">
                         مرجع
                     </div>
-                    <t t-if="show_cost_center">
+<!--                     <t t-if="show_cost_center">
                         <!--## cost_center-->
                         <div class="act_as_cell" style="width: 8.03%;">
                             Analytic Distribution
                         </div>
-                    </t>
+                    </t> -->
                     <t t-if="show_analytic_tags">
                         <!--## analytic tags-->
                         <div class="act_as_cell" style="width: 4.75%;">Tags</div>
@@ -161,17 +161,17 @@
                     <div class="act_as_cell amount" style="width: 8.02%;">
                         الرصيد
                     </div>
-                    <t t-if="foreign_currency">
+<!--                     <t t-if="foreign_currency"> -->
                         <!--## amount_currency-->
-                        <div
+<!--                         <div
                             class="act_as_cell amount"
                             style="width: 3.63%;"
                         >Amount cur.
-                        </div>
+                        </div> -->
                         <!--## amount_currency cumulated-->
-                        <div class="act_as_cell amount" style="width: 3.63%;">Cumul cur.
+<!--                         <div class="act_as_cell amount" style="width: 3.63%;">Cumul cur.
                         </div>
-                    </t>
+                    </t> -->
                 </div>
             </div>
             <!-- Display first line with initial balance -->
@@ -525,7 +525,7 @@
                     </div>
                 </t>
                 <t t-if='type == "grouped_type"'>
-                    <div class="act_as_cell first_column" style="width: 41.32%;" />
+<!--                     <div class="act_as_cell first_column" style="width: 41.32%;" /> -->
                     <div class="act_as_cell right" style="width: 16.9%;">
                         <t t-if="'partners' in account">الرصيد النهائي</t>
                         <t t-if="'taxes' in account">Tax ending balance</t>
