@@ -33,13 +33,13 @@ class GeneralLedgerXslx(models.AbstractModel):
             # {"header": _("Ref - Label"), "field": "ref_label", "width": 40},
         ]
         if report.show_cost_center:
-            # res += [
-            #     {
-            #         "header": _("Analytic Distribution"),
-            #         "field": "analytic_distribution",
-            #         "width": 20,
-            #     },
-            # ]
+            res += [
+                {
+                    "header": _("Analytic Distribution"),
+                    "field": "analytic_distribution",
+                    "width": 20,
+                },
+            ]
         res += [
             # {"header": _("Rec."), "field": "rec_name", "width": 15},
             {
