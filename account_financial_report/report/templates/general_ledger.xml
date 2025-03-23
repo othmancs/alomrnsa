@@ -141,8 +141,7 @@
                     <div class="act_as_cell" style="width: 8.03%">Entry</div>
                     <!--## ref - label-->
                     <div class="act_as_cell" style="width: 16.9%;">
-                        Ref -
-                        Label
+                        مرجع
                     </div>
                     <t t-if="show_cost_center">
                         <!--## cost_center-->
