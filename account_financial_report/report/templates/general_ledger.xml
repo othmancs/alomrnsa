@@ -143,12 +143,12 @@
                     <div class="act_as_cell" style="width: 16.9%;">
                         مرجع
                     </div>
-<!--                     <t t-if="show_cost_center">
+<!--                     <t t-if="show_cost_center"> -->
                         <!--## cost_center-->
-                        <div class="act_as_cell" style="width: 8.03%;">
+<!--                         <div class="act_as_cell" style="width: 8.03%;">
                             Analytic Distribution
                         </div>
-                    </t> -->
+                    </t>  -->
                     <t t-if="show_analytic_tags">
                         <!--## analytic tags-->
                         <div class="act_as_cell" style="width: 4.75%;">Tags</div>
