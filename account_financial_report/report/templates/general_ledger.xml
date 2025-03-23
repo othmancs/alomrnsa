@@ -149,10 +149,10 @@
                             Analytic Distribution
                         </div>
                     </t>  -->
-                    <t t-if="show_analytic_tags">
+<!--                     <t t-if="show_analytic_tags"> -->
                         <!--## analytic tags-->
-                        <div class="act_as_cell" style="width: 4.75%;">Tags</div>
-                    </t>
+<!--                         <div class="act_as_cell" style="width: 4.75%;">Tags</div>
+                    </t> -->
                     <!--## debit-->
                     <div class="act_as_cell amount" style="width: 8.02%;">Debit</div>
                     <!--## credit-->
