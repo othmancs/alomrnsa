@@ -273,7 +273,8 @@ class GeneralLedgerXslx(models.AbstractModel):
                                 "initial_bal_curr": group_item["init_bal"]["bal_curr"],
                             }
                         )
-                    self.write_initial_balance_from_dict(group_item, report_data)
+                    # self.write_initial_balance_from_dict(group_item, report_data)
+                    self.write_initial_balance_from_dict(group_item, report_data=report_data)
 
                     # Display account move lines
                     for line in group_item["move_lines"]:
