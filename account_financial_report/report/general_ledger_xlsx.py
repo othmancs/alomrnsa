@@ -29,7 +29,7 @@ class GeneralLedgerXslx(models.AbstractModel):
             # {"header": _("Journal"), "field": "journal", "width": 8},
             # {"header": _("Account"), "field": "account", "width": 9},
             # {"header": _("Taxes"), "field": "taxes_description", "width": 15},
-            {"header": _("Partner"), "field": "partner_name", "width": 25},
+            # {"header": _("Partner"), "field": "partner_name", "width": 25},
             # {"header": _("Ref - Label"), "field": "ref_label", "width": 40},
         ]
         if report.show_cost_center:
