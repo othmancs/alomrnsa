@@ -398,7 +398,7 @@
                 <t t-if='type == "partner_type"'>
                     <div class="act_as_cell first_column" style="width: 36.34%;" />
                     <div class="act_as_cell right" style="width: 28.66%;">
-                        Partner ending balance
+                        الرصيد النهائي
                     </div>
                 </t>
                 <t t-if='type == "partner_subtotal_type"'>
