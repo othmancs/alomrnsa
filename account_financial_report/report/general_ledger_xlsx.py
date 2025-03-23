@@ -274,7 +274,9 @@ class GeneralLedgerXslx(models.AbstractModel):
                             }
                         )
                     # self.write_initial_balance_from_dict(group_item, report_data)
+                    label = _("Initial Balance")  # تحديد النص المناسب
                     self.write_initial_balance_from_dict(group_item, report_data=report_data, label=label)
+
 
 
                     # Display account move lines
