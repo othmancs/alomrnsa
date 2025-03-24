@@ -340,7 +340,7 @@
                         </t>
                     </div>
                     <!--## ref - label-->
-                    <div class="act_as_cell left">
+<!--                     <div class="act_as_cell left">
                         <t t-if="line['id']">
                             <span
                                 t-att-res-id="line['id']"
@@ -355,14 +355,14 @@
                                 <t t-out="line['ref_label']" />
                             </span>
                         </t>
-                    </div>
+                    </div> -->
                     <!--## cost_center-->
-                    <t t-if="show_cost_center">
+<!--                     <t t-if="show_cost_center">
                         <div class="act_as_cell left">
                             <t
                                 t-foreach="line['analytic_distribution']"
                                 t-as="analytic_id"
-                            >
+                            > -->
 <!--                                 <div>
                                     <span
                                         t-att-res-id="analytic_id"
@@ -381,9 +381,9 @@
                                         </t>
                                     </span>
                                 </div> -->
-                            </t>
+<!--                             </t>
                         </div>
-                    </t>
+                    </t> -->
 <!--                     <t t-if="show_analytic_tags"> -->
                         <!--## analytic tags-->
 <!--                         <div class="act_as_cell left">
