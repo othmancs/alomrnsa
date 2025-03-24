@@ -571,7 +571,7 @@
                     t-if="'partners' in account"
                 />
                 <t t-set="misc_grouped_domain" t-value="[]" t-else="" />
-                <t t-if="foreign_currency">
+<!--                 <t t-if="foreign_currency">
                     <t t-if="account['fin_bal_currency_id']">
                         <t
                             t-set="account_currency"
@@ -641,7 +641,7 @@
                                 </span>
                             </t>
                         </div>
-                    </t>
+                    </t> -->
 <!--                     <t t-if="not account['currency_id']">
                         <div class="act_as_cell amount" style="width: 3.63%;" />
                         <div class="act_as_cell amount" style="width: 3.63%;" />
