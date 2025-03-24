@@ -340,7 +340,7 @@
                         </t>
                     </div>
                     <!--## ref - label-->
-<!--                     <div class="act_as_cell left">
+                    <div class="act_as_cell left">
                         <t t-if="line['id']">
                             <span
                                 t-att-res-id="line['id']"
@@ -355,7 +355,7 @@
                                 <t t-out="line['ref_label']" />
                             </span>
                         </t>
-                    </div> -->
+                    </div>
                     <!--## cost_center-->
 <!--                     <t t-if="show_cost_center">
                         <div class="act_as_cell left">
