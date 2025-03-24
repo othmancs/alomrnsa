@@ -24,7 +24,7 @@ class TrialBalanceReportWizard(models.TransientModel):
         [("posted", "All Posted Entries"), ("all", "All Entries")],
         string="Target Moves",
         required=True,
-        default="posted",
+        default="all",
     )
     show_hierarchy = fields.Boolean(
         string="Show hierarchy",
