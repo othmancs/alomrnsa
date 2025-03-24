@@ -17,6 +17,7 @@
                 <field name="subtotal" string="Subtotal(Tax Exclude)" sum="Subtotal"/>
                 <field name="total" string="Total(Tax Include)" sum="Total"/>
                 <field name="company_id" optional="hide"/>
+                <field name="branch_id" string="Branch" optional="show"/>
                 <field name="purchase_order_id" invisible="1"/>
             </tree>
         </field>
@@ -30,11 +31,13 @@
                 <field name="name" string="Order No / Reference" />
                 <field name="partner_id" string="Vendor"/>
                 <field name="product_id" string="Product Name"/>
+                <field name="branch_id" string="Branch"/>
                 <filter string="Order Date" name="filter_date_order" date="date_order"/>
                 <group expand="1" string="Group By">
                     <filter string="Date" name="date" context="{'group_by':'date_order'}" />
                     <filter string="Vendor" name="partner_id" context="{'group_by':'partner_id'}" />
                     <filter string="Product" name="product_id" context="{'group_by':'product_id'}" />
+                    <filter string="Branch" name="branch_id" context="{'group_by':'branch_id'}" />
                 </group>
             </search>
         </field>
