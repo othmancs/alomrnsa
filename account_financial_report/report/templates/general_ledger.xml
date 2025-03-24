@@ -363,7 +363,7 @@
                                 t-foreach="line['analytic_distribution']"
                                 t-as="analytic_id"
                             >
-                                <div>
+<!--                                 <div>
                                     <span
                                         t-att-res-id="analytic_id"
                                         res-model="account.analytic.account"
@@ -380,7 +380,7 @@
                                             />%
                                         </t>
                                     </span>
-                                </div>
+                                </div> -->
                             </t>
                         </div>
                     </t>
@@ -528,17 +528,17 @@
 <!--                     <div class="act_as_cell first_column" style="width: 41.32%;" /> -->
                     <div class="act_as_cell right" style="width: 16.9%;">
                         <t t-if="'partners' in account">الرصيد النهائي</t>
-                        <t t-if="'taxes' in account">Tax ending balance</t>
+<!--                         <t t-if="'taxes' in account">Tax ending balance</t> -->
                     </div>
                 </t>
-                <t t-if="show_cost_center">
+<!--                 <t t-if="show_cost_center"> -->
                     <!--## cost_center-->
-                    <div class="act_as_cell" style="width: 8.03%" />
-                </t>
-                <t t-if="show_analytic_tags">
+<!--                     <div class="act_as_cell" style="width: 8.03%" />
+                </t> -->
+<!--                 <t t-if="show_analytic_tags"> -->
                     <!--## analytic tags-->
-                    <div class="act_as_cell" style="width: 4.75%;" />
-                </t>
+<!--                     <div class="act_as_cell" style="width: 4.75%;" />
+                </t> -->
                 <!--## debit-->
                 <div class="act_as_cell amount" style="width: 8.02%;">
                     <span
@@ -642,10 +642,10 @@
                             </t>
                         </div>
                     </t>
-                    <t t-if="not account['currency_id']">
+<!--                     <t t-if="not account['currency_id']">
                         <div class="act_as_cell amount" style="width: 3.63%;" />
                         <div class="act_as_cell amount" style="width: 3.63%;" />
-                    </t>
+                    </t> -->
                 </t>
             </div>
         </div>
