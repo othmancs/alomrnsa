@@ -186,14 +186,14 @@
                         <t t-if="'taxes' in account">Tax initial balance</t>
                     </t>
                 </div>
-                <t t-if="show_cost_center">
+<!--                 <t t-if="show_cost_center"> -->
                     <!--## cost_center-->
-                    <div class="act_as_cell" />
+<!--                     <div class="act_as_cell" />
                 </t>
-                <t t-if="show_analytic_tags">
+                <t t-if="show_analytic_tags"> -->
                     <!--## analytic tags-->
-                    <div class="act_as_cell" />
-                </t>
+<!--                     <div class="act_as_cell" />
+                </t> -->
                 <!--## debit-->
                 <div class="act_as_cell amount">
                     <t t-set="misc_domain" t-value="[('account_id', '=', account['id']),('date', '&lt;', date_from)]" />
@@ -384,9 +384,9 @@
                             </t>
                         </div>
                     </t>
-                    <t t-if="show_analytic_tags">
+<!--                     <t t-if="show_analytic_tags"> -->
                         <!--## analytic tags-->
-                        <div class="act_as_cell left">
+<!--                         <div class="act_as_cell left">
                             <t t-if="line['tag_ids']">
                                 <t t-foreach="line['tag_ids']" t-as="tag_id">
                                     <span
@@ -395,7 +395,7 @@
                                 </t>
                             </t>
                         </div>
-                    </t>
+                    </t> -->
                     <!--## debit-->
                     <div class="act_as_cell amount">
                         <t t-if="line['id']">
