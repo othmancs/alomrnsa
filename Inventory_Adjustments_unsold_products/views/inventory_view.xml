@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_inventory_form_inherit" model="ir.ui.view">
+        <field name="name">stock.inventory.form.inherit.non.counted.products</field>
+        <field name="model">stock.inventory</field>
+        <field name="inherit_id" ref="stock.view_inventory_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_show_non_counted_products"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-list">
+                        <div class="o_form_label">Non Counted Products</div>
+                        <field name="non_counted_count" widget="statinfo" class="oe_inline"/>
+                    </button>
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']" position="after">
+                <field name="non_counted_products" widget="many2many_tags" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
