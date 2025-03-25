@@ -13,6 +13,13 @@ class SalesReportWizard(models.TransientModel):
     )
     printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
     print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
+    payment_type = fields.Selection(
+        [('all', 'الكل'),
+         ('cash', 'نقدي'),
+         ('credit', 'آجل')],
+        string="نوع الدفع",
+        default='all'
+    )
     
     def _compute_printed_by(self):
         for record in self:
@@ -29,6 +36,13 @@ class SalesReportWizard(models.TransientModel):
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
         ]
+        
+        # إضافة فلتر نوع الدفع إذا تم تحديده
+        if self.payment_type == 'cash':
+            domain.append(('invoice_payment_term_id', '=', False))  # فواتير بدون شرط دفع (نقدي)
+        elif self.payment_type == 'credit':
+            domain.append(('invoice_payment_term_id', '!=', False))  # فواتير بشرط دفع (آجل)
+            
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
 
@@ -81,12 +95,16 @@ class SalesReportWizard(models.TransientModel):
                 )
                 out_refund_price = sum(out_refund.mapped('amount_untaxed'))
 
+                # تحديد نوع الدفع للعرض في التقرير
+                payment_type = 'نقدي' if not account.invoice_payment_term_id else 'آجل'
+
                 report_data.append({
                     'branch_name': branch.name,
                     'invoice_number': invoice_number,
                     'seller_name': seller_name,
                     'customer_name': customer_name,
                     'invoice_date': invoice_date,
+                    'payment_type': payment_type,  # إضافة نوع الدفع
                     'total_price': price,
                     'total_discount': total_discount,
                     'net_cost': net_cost,
@@ -96,7 +114,7 @@ class SalesReportWizard(models.TransientModel):
                     'state': state,
                 })
 
-        # تجميع بيانات النموذج بدون حقل payment_type
+        # تجميع بيانات النموذج مع حقل payment_type الجديد
         form_data = {
             'date_start': self.date_start,
             'date_end': self.date_end,
@@ -104,6 +122,7 @@ class SalesReportWizard(models.TransientModel):
             'company_id': self.company_id.id,
             'printed_by': self.printed_by,
             'print_date': self.print_date,
+            'payment_type': self.payment_type,  # إضافة نوع الدفع المحدد
         }
         data = {
             'form': form_data,
