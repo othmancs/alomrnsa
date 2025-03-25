@@ -186,9 +186,9 @@ class SalesReportReport(models.AbstractModel):
             worksheet.write(row, col, 'إجماليات حسب طريقة الدفع', format5)
             row += 1
             for payment_method, total in totals_by_payment_type.items():
-                if payment_method == 'option1':
+                if state == 'paid':
                     payment_label = 'نقدى'
-                elif payment_method == 'option2':
+                elif state == 'not_paid':
                     payment_label = 'اجل'
                 else:
                     payment_label = 'غير محدد'
