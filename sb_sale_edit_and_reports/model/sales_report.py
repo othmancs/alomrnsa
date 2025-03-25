@@ -66,10 +66,7 @@ class SalesReportReport(models.AbstractModel):
             
             # فلترة حسب نوع الدفع إذا لم يكن "الكل"
             if obj.payment_type and obj.payment_type != 'all':
-                if obj.payment_type == 'cash':
-                    domain.append(('payment_method', '=', 'option1'))
-                elif obj.payment_type == 'credit':
-                    domain.append(('payment_method', '=', 'option2'))
+                domain.append(('payment_type', '=', obj.payment_type))
 
             lines_data = self.env['account.move'].search(domain)
             existing_branches = lines_data.mapped('branch_id')
@@ -139,11 +136,11 @@ class SalesReportReport(models.AbstractModel):
                     customer_name = account.partner_id.name
                     invoice_date = account.invoice_date
                     state = account.payment_state
-                    payment_method = account.payment_method
+                    payment_type = account.payment_type
 
-                    if payment_method not in totals_by_payment_type:
-                        totals_by_payment_type[payment_method] = 0
-                    totals_by_payment_type[payment_method] += sum(account.mapped('amount_untaxed'))
+                    if payment_type not in totals_by_payment_type:
+                        totals_by_payment_type[payment_type] = 0
+                    totals_by_payment_type[payment_type] += sum(account.mapped('amount_untaxed'))
                     net_cost = sum(
                         account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)
                     )
@@ -158,9 +155,9 @@ class SalesReportReport(models.AbstractModel):
                     worksheet.write(row, col + 2, customer_name, format2)
                     
                     # عرض طريقة الدفع
-                    if payment_method == 'option1':
+                    if payment_type == 'cash':
                         payment_display = 'نقدى'
-                    elif payment_method == 'option2':
+                    elif payment_type == 'credit':
                         payment_display = 'اجل'
                     else:
                         payment_display = '-'
@@ -185,10 +182,10 @@ class SalesReportReport(models.AbstractModel):
             row += 2
             worksheet.write(row, col, 'إجماليات حسب طريقة الدفع', format5)
             row += 1
-            for payment_method, total in totals_by_payment_type.items():
-                if state == 'paid':
+            for payment_type, total in totals_by_payment_type.items():
+                if payment_type == 'cash':
                     payment_label = 'نقدى'
-                elif state == 'not_paid':
+                elif payment_type == 'credit':
                     payment_label = 'اجل'
                 else:
                     payment_label = 'غير محدد'
