@@ -9,7 +9,7 @@
     'author': 'OthmanCs',
     'website': 'https://www.yourwebsite.com',
     'category': 'Inventory/Inventory',
-    'depends': ['stock'],
+    'depends': ['stock', 'sync_inventory_adjustment'],
     'data': [
         'views/inventory_view.xml',
     ],
