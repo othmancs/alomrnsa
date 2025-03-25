@@ -1,6 +1,5 @@
 from odoo import models, fields, api
 
-
 class StockQuant(models.Model):
     _inherit = 'stock.quant'
 
@@ -14,20 +13,20 @@ class StockQuant(models.Model):
         inventory = self.env['stock.inventory'].browse(inventory_id)
         if not inventory.exists():
             return self.env['product.product']
-
+            
         # Get all products in the inventory locations
         domain = [
-            ('location_id', 'child_of', inventory.location_ids.ids),
+            ('location_id', 'child_of', inventory.location_id.ids),
             ('product_id.type', '=', 'product'),
         ]
         if inventory.product_ids:
             domain.append(('product_id', 'in', inventory.product_ids.ids))
-
+            
         all_products = self.search(domain).mapped('product_id')
-
+        
         # Get counted products
         counted_products = inventory.line_ids.mapped('product_id')
-
+        
         # Non-counted products are those in all_products but not in counted_products
         return all_products - counted_products
 
@@ -49,7 +48,7 @@ class StockInventory(models.Model):
         store=False
     )
 
-    @api.depends('state', 'line_ids', 'location_ids', 'product_ids')
+    @api.depends('state', 'line_ids', 'location_id', 'product_ids')
     def _compute_non_counted_products(self):
         for inventory in self:
             if inventory.state == 'done':
