@@ -70,3 +70,10 @@ class StockInventory(models.Model):
             'context': dict(self.env.context, create=False),
             'target': 'current',
         }
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    equipment_company_id = fields.Many2one(
+        'res.company', 
+        string='Equipment Company'
+    )
