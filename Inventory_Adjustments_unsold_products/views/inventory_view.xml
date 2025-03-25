@@ -3,10 +3,10 @@
         <record id="view_inventory_form_inherit" model="ir.ui.view">
             <field name="name">stock.inventory.form.inherit.non.counted.products</field>
             <field name="model">stock.inventory</field>
-            <field name="inherit_id" ref="stock_inventory.view_inventory_form"/>
+            <field name="inherit_id" ref="stock.stock_inventory_view_form"/>
             <field name="arch" type="xml">
-                <!-- وضع زر الأصناف غير المجرودة في شريط الأزرار -->
-                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <!-- زر الأصناف غير المجرودة -->
+                <xpath expr="//div[hasclass('o_button_box')]" position="inside">
                     <button name="action_show_non_counted_products"
                             type="object"
                             class="oe_stat_button"
@@ -16,11 +16,11 @@
                     </button>
                 </xpath>
 
-                <!-- وضع حقل الأصناف غير المجرودة بعد قائمة الأصناف -->
+                <!-- حقل الأصناف غير المجرودة -->
                 <xpath expr="//field[@name='line_ids']" position="after">
                     <field name="non_counted_products" 
                            widget="many2many_tags" 
-                           attrs="{'invisible': [('state', '!=', 'done')]}"
+                           attrs="{'invisible': [('state', '!=', 'done')}"
                            options="{'no_create': True}"/>
                 </xpath>
             </field>
