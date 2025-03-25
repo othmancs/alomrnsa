@@ -22,23 +22,20 @@
                             <group>
                                 <field name="date_start"/>
                                 <field name="branch_ids" widget="many2many_tags"/>
-<!--                                 <field name="payment_type" widget="selection"/> -->
-<!--                                 <field name="payment_type" string="نوع الدفع" widget="radio" options="{'horizontal': true}"/> -->
-
+                                <field name="payment_type" string="نوع الدفع" widget="radio" options="{'horizontal': true}"/>
                             </group>
                             <group>
                                 <field name="date_end"/>
-<!--                                 <field name="payment_method_line_id" options="{'no_create': True}" domain="[('company_id', '=', company_id)]"/>
-                                <field name="company_id" invisible="1"/> -->
                                 <field name="print_date" invisible="1"/>
                                 <field name="printed_by" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
                             </group>
                         </group>
                     </sheet>
                     <footer>
-                        <button name="get_sales_export_xlsx" type="object" string="Xlsx" class="btn-primary"/>
-                        <button name="generate_pdf_report" type="object" string="PDF" class="btn-primary"/>
-                        <button special="cancel" class="btn-secondary" string="Cancel"/>
+                        <button name="get_sales_export_xlsx" type="object" string="تصدير إكسل" class="btn-primary"/>
+                        <button name="generate_pdf_report" type="object" string="تصدير PDF" class="btn-primary"/>
+                        <button special="cancel" class="btn-secondary" string="إلغاء"/>
                     </footer>
                 </form>
             </field>
