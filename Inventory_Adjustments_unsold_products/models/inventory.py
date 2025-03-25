@@ -77,3 +77,7 @@ class ProductProduct(models.Model):
         'res.company', 
         string='Equipment Company'
     )
+    qr_code = fields.Char(
+        string='QR Code',
+        help="Product QR Code"
+    )
