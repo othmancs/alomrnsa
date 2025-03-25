@@ -16,11 +16,11 @@ class StockQuant(models.Model):
             
         # Get all products in the inventory locations
         domain = [
-            ('location_id', 'child_of', inventory.location_id.ids),
+            ('location_id', 'child_of', inventory.location_id.id),
             ('product_id.type', '=', 'product'),
         ]
-        if inventory.product_ids:
-            domain.append(('product_id', 'in', inventory.product_ids.ids))
+        if inventory.product_id:
+            domain.append(('product_id', 'in', inventory.product_id.ids))
             
         all_products = self.search(domain).mapped('product_id')
         
@@ -48,7 +48,7 @@ class StockInventory(models.Model):
         store=False
     )
 
-    @api.depends('state', 'line_ids', 'location_id', 'product_ids')
+    @api.depends('state', 'line_ids', 'location_id', 'product_id')
     def _compute_non_counted_products(self):
         for inventory in self:
             if inventory.state == 'done':
