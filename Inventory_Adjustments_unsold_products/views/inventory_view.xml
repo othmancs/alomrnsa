@@ -1,25 +1,13 @@
 <odoo>
     <data>
-        <!-- حل مشكلة equipment_company_id -->
-        <record id="view_product_template_form_hide_equipment" model="ir.ui.view">
-            <field name="name">product.template.form.hide.equipment</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_only_form_view"/>
-            <field name="arch" type="xml">
-                <field name="equipment_company_id" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-            </field>
-        </record>
-
-        <!-- العرض الأصلي المعدل -->
+        <!-- تعديل واجهة جرد المخزون لإضافة حقل المنتجات غير المعدودة -->
         <record id="view_inventory_form_inherit" model="ir.ui.view">
             <field name="name">stock.inventory.form.inherit.non.counted.products</field>
             <field name="model">stock.inventory</field>
-            <field name="inherit_id" ref="sync_inventory_adjustment.view_inventory_form"/>
+            <field name="inherit_id" ref="stock.view_inventory_form"/>
             <field name="priority">16</field>
             <field name="arch" type="xml">
-                <!-- التعديل الأول: زر الأصناف غير المجرودة -->
+                <!-- زر الأصناف غير المجرودة -->
                 <xpath expr="//sheet" position="inside">
                     <div class="oe_button_box" name="button_box">
                         <button name="action_show_non_counted_products"
@@ -32,7 +20,7 @@
                     </div>
                 </xpath>
 
-                <!-- التعديل الثاني: حقل الأصناف غير المجرودة -->
+                <!-- حقل الأصناف غير المجرودة -->
                 <xpath expr="//field[@name='line_ids']" position="after">
                     <field name="non_counted_products" 
                            widget="many2many_tags"
