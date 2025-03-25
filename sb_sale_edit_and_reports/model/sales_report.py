@@ -95,7 +95,7 @@ class SalesReportReport(models.AbstractModel):
             worksheet.write(row + 4, col + 1, self.env.user.name, format3)
 
             row += 8
-            totals_by_payment_type = {}
+            totals_by_payment_state = {'paid': 0, 'not_paid': 0}  # تغيير هنا لتجميع حسب حالة الدفع
 
             for branch in existing_branches:
                 current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
@@ -141,9 +141,9 @@ class SalesReportReport(models.AbstractModel):
                     state = account.payment_state
                     payment_method = account.payment_method
 
-                    if payment_method not in totals_by_payment_type:
-                        totals_by_payment_type[payment_method] = 0
-                    totals_by_payment_type[payment_method] += sum(account.mapped('amount_untaxed'))
+                    # تجميع المبالغ حسب حالة الدفع
+                    totals_by_payment_state[state] += sum(account.mapped('amount_untaxed'))
+                    
                     net_cost = sum(
                         account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)
                     )
@@ -181,17 +181,22 @@ class SalesReportReport(models.AbstractModel):
                     worksheet.write(row, col + 6, out_refund_purchase_price, format2)
                     row += 1
 
-            # إضافة الإجماليات لكل طريقة دفع
+            # إضافة الإجماليات لكل حالة دفع (paid = نقدي، not_paid = أجل)
             row += 2
-            worksheet.write(row, col, 'إجماليات حسب طريقة الدفع', format5)
+            worksheet.write(row, col, 'إجماليات حسب حالة الدفع', format5)
             row += 1
-            for payment_method, total in totals_by_payment_type.items():
-                if state == 'paid':
-                    payment_label = 'نقدى'
-                elif state == 'not_paid':
-                    payment_label = 'اجل'
-                else:
-                    payment_label = 'غير محدد'
-                worksheet.write(row, col, payment_label, format2)
-                worksheet.write(row, col + 1, total, format2)
-                row += 1
+            
+            # إجمالي المدفوعات (paid) تعتبر نقدي
+            worksheet.write(row, col, 'نقدي (مدفوع)', format2)
+            worksheet.write(row, col + 1, totals_by_payment_state.get('paid', 0), format2)
+            row += 1
+            
+            # إجمالي غير المدفوعات (not_paid) تعتبر أجل
+            worksheet.write(row, col, 'آجل (غير مدفوع)', format2)
+            worksheet.write(row, col + 1, totals_by_payment_state.get('not_paid', 0), format2)
+            row += 1
+            
+            # الإجمالي الكلي
+            total_all = sum(totals_by_payment_state.values())
+            worksheet.write(row, col, 'الإجمالي الكلي', format5)
+            worksheet.write(row, col + 1, total_all, format5)
