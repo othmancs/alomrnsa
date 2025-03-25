@@ -1,5 +1,18 @@
 <odoo>
     <data>
+        <!-- حل مشكلة equipment_company_id -->
+        <record id="view_product_template_form_hide_equipment" model="ir.ui.view">
+            <field name="name">product.template.form.hide.equipment</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="equipment_company_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- العرض الأصلي المعدل -->
         <record id="view_inventory_form_inherit" model="ir.ui.view">
             <field name="name">stock.inventory.form.inherit.non.counted.products</field>
             <field name="model">stock.inventory</field>
