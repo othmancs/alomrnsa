@@ -52,22 +52,39 @@ class SalesReportReport(models.AbstractModel):
                 'bold': True, 'bg_color': 'green', 'color': 'white'
             })
 
-            # تحديد الشروط باستخدام التواريخ وطريقة الدفع والفروع
+            # تحديد شروط البحث مع إضافة فلترة نوع الدفع
             domain = [
                 ('invoice_date', '>=', obj.date_start),
                 ('invoice_date', '<=', obj.date_end),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted')
             ]
-            if obj.payment_type:
-                domain.append(('payment_state', '=', obj.payment_type))
+            
+            # فلترة حسب الفروع إذا تم تحديدها
             if obj.branch_ids:
                 domain.append(('branch_id', 'in', obj.branch_ids.ids))
+            
+            # فلترة حسب نوع الدفع إذا لم يكن "الكل"
+            if obj.payment_type and obj.payment_type != 'all':
+                if obj.payment_type == 'cash':
+                    domain.append(('payment_method', '=', 'option1'))
+                elif obj.payment_type == 'credit':
+                    domain.append(('payment_method', '=', 'option2'))
 
             lines_data = self.env['account.move'].search(domain)
             existing_branches = lines_data.mapped('branch_id')
+            
+            # إضافة عنوان يوضح نوع الدفع المحدد
+            payment_type_title = {
+                'all': 'الكل',
+                'cash': 'نقدي',
+                'credit': 'آجل'
+            }.get(obj.payment_type, 'الكل')
+            
             worksheet.merge_range(row, col + 3, row, col + 4, lines_data.company_id.name, format4)
             worksheet.merge_range(row + 1, col + 3, row + 1, col + 4, 'تقرير المبيعات', format4)
+            worksheet.write(row + 2, col + 3, f'نوع الدفع: {payment_type_title}', format4)
+            
             worksheet.write(row + 3, col + 5, ' :من ', format1)
             worksheet.write(row + 3, col + 7, '  :الى ', format1)
             worksheet.write(row + 3, col + 6, format_date(self.env, obj.date_start), format3)
@@ -86,7 +103,7 @@ class SalesReportReport(models.AbstractModel):
                     sum(move.mapped('amount_untaxed'))
                     for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')
                 ])
-                # يمكن إضافة المزيد من الحسابات حسب الحاجة
+                
                 worksheet.write(row, col, branch.name, format5)
                 worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
                 worksheet.write(row, col + 5, unit_price_branch, format5)
@@ -122,11 +139,11 @@ class SalesReportReport(models.AbstractModel):
                     customer_name = account.partner_id.name
                     invoice_date = account.invoice_date
                     state = account.payment_state
-                    payment_type = account.payment_type
+                    payment_method = account.payment_method
 
-                    if payment_type not in totals_by_payment_type:
-                        totals_by_payment_type[payment_type] = 0
-                    totals_by_payment_type[payment_type] += sum(account.mapped('amount_untaxed'))
+                    if payment_method not in totals_by_payment_type:
+                        totals_by_payment_type[payment_method] = 0
+                    totals_by_payment_type[payment_method] += sum(account.mapped('amount_untaxed'))
                     net_cost = sum(
                         account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)
                     )
@@ -139,12 +156,16 @@ class SalesReportReport(models.AbstractModel):
                     worksheet.write(row, col, invoice_number, format2)
                     worksheet.write(row, col + 1, seller_name, format2)
                     worksheet.write(row, col + 2, customer_name, format2)
-                    if payment_type == 'option1':
-                        worksheet.write(row, col + 3, 'نقدى', format2)
-                    elif payment_type == 'option2':
-                        worksheet.write(row, col + 3, 'اجل', format2)
+                    
+                    # عرض طريقة الدفع
+                    if payment_method == 'option1':
+                        payment_display = 'نقدى'
+                    elif payment_method == 'option2':
+                        payment_display = 'اجل'
                     else:
-                        worksheet.write(row, col + 3, '-', format2)
+                        payment_display = '-'
+                    worksheet.write(row, col + 3, payment_display, format2)
+                    
                     worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
                     worksheet.write(row, col + 5, net_cost, format2)
 
@@ -154,24 +175,23 @@ class SalesReportReport(models.AbstractModel):
                         ('reversed_entry_id', '=', account.id),
                         ('state', '=', 'posted')
                     ])
-                    for ac in out_refund:
-                        out_refund_purchase_price = sum(
-                            ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity)
-                        )
-                        worksheet.write(row, col + 6, out_refund_purchase_price, format2)
+                    out_refund_purchase_price = sum(
+                        out_refund.line_ids.mapped(lambda x: x.purchase_price * x.quantity)
+                    )
+                    worksheet.write(row, col + 6, out_refund_purchase_price, format2)
                     row += 1
 
             # إضافة الإجماليات لكل طريقة دفع
             row += 2
             worksheet.write(row, col, 'إجماليات حسب طريقة الدفع', format5)
             row += 1
-            for payment_type, total in totals_by_payment_type.items():
-                if payment_type == 'option1':
-                    payment_type_label = 'نقدى'
-                elif payment_type == 'option2':
-                    payment_type_label = 'اجل'
+            for payment_method, total in totals_by_payment_type.items():
+                if payment_method == 'option1':
+                    payment_label = 'نقدى'
+                elif payment_method == 'option2':
+                    payment_label = 'اجل'
                 else:
-                    payment_type_label = 'غير محدد'
-                worksheet.write(row, col, payment_type_label, format2)
+                    payment_label = 'غير محدد'
+                worksheet.write(row, col, payment_label, format2)
                 worksheet.write(row, col + 1, total, format2)
                 row += 1
