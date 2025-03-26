@@ -1,8 +1,6 @@
 from odoo import models
 from datetime import date
 from odoo.tools import format_date
-import base64
-import io
 
 class SalesReportReport(models.AbstractModel):
     _name = 'report.sb_sale_edit_and_reports.report_sales_report'
@@ -15,6 +13,16 @@ class SalesReportReport(models.AbstractModel):
             row = 0
             col = 0
             
+            # تعديل حجم الأعمدة
+            worksheet.set_column(0, 0, 20)
+            worksheet.set_column(1, 1, 30)
+            worksheet.set_column(2, 2, 20)
+            worksheet.set_column(3, 3, 15)
+            worksheet.set_column(4, 4, 12)
+            worksheet.set_column(5, 5, 12)
+            worksheet.set_column(6, 6, 12)
+            worksheet.set_column(7, 7, 12)
+
             # إنشاء التنسيقات
             format1 = workbook.add_format({
                 'text_wrap': False, 'font_size': 11, 'align': 'center',
@@ -45,53 +53,48 @@ class SalesReportReport(models.AbstractModel):
                 'bold': True, 'bg_color': 'green', 'color': 'white'
             })
 
-            # إضافة شعار الشركة في المنتصف
-            company = self.env.company
-            if company.logo:
-                try:
-                    image_data = base64.b64decode(company.logo)
-                    image_file = io.BytesIO(image_data)
-                    
-                    # تحديد العمود الأوسط (تقريباً العمود 3 من أصل 8 أعمدة)
-                    middle_col = 3  
-                    
-                    worksheet.insert_image(row, middle_col, 'company_logo.png', {
-                        'image_data': image_file,
-                        'x_scale': 0.3,  # حجم أصغر
-                        'y_scale': 0.3,
-                        'x_offset': 10,
-                        'y_offset': 10,
-                        'positioning': 1
-                    })
-                    row += 1  # سطر واحد بعد الشعار
-                except Exception as e:
-                    worksheet.write(row, 3, "شعار الشركة", format4)
-                    row += 1
-
-            # اسم الشركة تحت الشعار مباشرة
-            worksheet.merge_range(row, 3, row, 4, company.name, format4)
-            row += 1
+            # تحديد شروط البحث
+            domain = [
+                ('invoice_date', '>=', obj.date_start),
+                ('invoice_date', '<=', obj.date_end),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted')
+            ]
             
-            # عنوان التقرير
+            # فلترة حسب الفروع إذا تم تحديدها
+            if obj.branch_ids:
+                domain.append(('branch_id', 'in', obj.branch_ids.ids))
+            
+            # فلترة حسب نوع الدفع إذا لم يكن "الكل"
+            if obj.payment_type and obj.payment_type != 'all':
+                if obj.payment_type == 'cash':
+                    domain.append(('payment_method', '=', 'option1'))
+                elif obj.payment_type == 'credit':
+                    domain.append(('payment_method', '=', 'option2'))
+
+            lines_data = self.env['account.move'].search(domain)
+            existing_branches = lines_data.mapped('branch_id')
+            
+            # إضافة عنوان التقرير
             payment_type_title = {
                 'all': 'الكل',
                 'cash': 'نقدي',
                 'credit': 'آجل'
             }.get(obj.payment_type, 'الكل')
             
-            worksheet.merge_range(row, 3, row, 4, 'تقرير المبيعات', format4)
-            worksheet.write(row + 1, 3, f'نوع الدفع: {payment_type_title}', format4)
-            row += 2
-
+            worksheet.merge_range(row, col + 3, row, col + 4, lines_data.company_id.name, format4)
+            worksheet.merge_range(row + 1, col + 3, row + 1, col + 4, 'تقرير المبيعات', format4)
+            worksheet.write(row + 2, col + 3, f'نوع الدفع: {payment_type_title}', format4)
+            
             # معلومات التاريخ والمستخدم
-            worksheet.write(row + 3, 5, ' :من ', format1)
-            worksheet.write(row + 3, 7, '  :الى ', format1)
-            worksheet.write(row + 3, 6, format_date(self.env, obj.date_start), format3)
-            worksheet.write(row + 3, 8, format_date(self.env, obj.date_end), format3)
-            worksheet.write(row + 3, 0, ' :تاريخ طباعه ', format1)
-            worksheet.write(row + 3, 1, date.today().strftime('%d/%m/%Y'), format3)
-            worksheet.write(row + 4, 0, ' :طبع من مستخدم  ', format1)
-            worksheet.write(row + 4, 1, self.env.user.name, format3)
+            worksheet.write(row + 3, col + 5, ' :من ', format1)
+            worksheet.write(row + 3, col + 7, '  :الى ', format1)
+            worksheet.write(row + 3, col + 6, format_date(self.env, obj.date_start), format3)
+            worksheet.write(row + 3, col + 8, format_date(self.env, obj.date_end), format3)
+            worksheet.write(row + 3, col, ' :تاريخ طباعه ', format1)
+            worksheet.write(row + 3, col + 1, date.today().strftime('%d/%m/%Y'), format3)
+            worksheet.write(row + 4, col, ' :طبع من مستخدم  ', format1)
+            worksheet.write(row + 4, col + 1, self.env.user.name, format3)
 
             row += 8
             totals_by_payment_state = {'paid': 0, 'not_paid': 0}
@@ -144,7 +147,7 @@ class SalesReportReport(models.AbstractModel):
                         account.name,
                         account.created_by_id.name,
                         account.partner_id.name,
-                        'نقدى' if account.payment_state == 'paid' else 'اجل',
+                        'نقدى' if account.payment_method == 'option1' else 'اجل' if account.payment_method == 'option2' else '-',
                         format_date(self.env, account.invoice_date),
                         sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)),
                         sum(self.env['account.move'].search([
@@ -193,3 +196,4 @@ class SalesReportReport(models.AbstractModel):
             total_all = sum(totals_by_payment_state.values())
             worksheet.write(row, col, 'الإجمالي الكلي', format5)
             worksheet.write(row, col + 1, total_all, format5)
+
