@@ -97,7 +97,7 @@ class SalesReportReport(models.AbstractModel):
             worksheet.write(row + 4, col + 1, self.env.user.name, format3)
 
             row += 8
-            totals_by_payment_state = {'paid': 0, 'not_paid': 0}
+            totals_by_payment_state = {'paid': 0, 'not_paid': 0, 'reversed': 0}
 
             for branch in existing_branches:
                 current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
@@ -106,12 +106,10 @@ class SalesReportReport(models.AbstractModel):
                     for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')
                 ])
                 
-                # عنوان الفرع
                 worksheet.write(row, col, branch.name, format5)
                 worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
                 worksheet.write(row, col + 5, unit_price_branch, format5)
 
-                # حساب المرتجعات
                 total_out_refund_purchase_price = 0.0
                 for line in current_branch_lines:
                     out_refund_price = self.env['account.move'].search([
@@ -126,74 +124,88 @@ class SalesReportReport(models.AbstractModel):
                 worksheet.write(row, col + 6, total_out_refund_purchase_price, format5)
                 row += 1
 
-                # عناوين الأعمدة
-                headers = [
-                    'رقم الفاتورة', 'اسم البائع', 'اسم العميل', 
-                    'طريقة الدفع', 'التاريخ', 'صافى البيع ق', 
-                    'صافي الارجاعات ق', 'حاله الدفع'
-                ]
-                for i, header in enumerate(headers):
-                    worksheet.write(row, col + i, header + ' ', format1)
+                # كتابة العناوين
+                worksheet.write(row, col, 'رقم الفاتورة ', format1)
+                worksheet.write(row, col + 1, 'اسم البائع ', format1)
+                worksheet.write(row, col + 2, 'اسم العميل ', format1)
+                worksheet.write(row, col + 3, 'طريقة الدفع  ', format1)
+                worksheet.write(row, col + 4, 'التاريخ  ', format1)
+                worksheet.write(row, col + 5, 'صافى البيع ق ', format1)
+                worksheet.write(row, col + 6, 'صافي الارجاعات ق ', format1)
+                worksheet.write(row, col + 7, ' حاله الدفع ', format1)
                 row += 1
 
-                # بيانات الفواتير
                 for account in current_branch_lines:
-                    # تجميع المبالغ حسب حالة الدفع
+                    invoice_number = account.name
+                    seller_name = account.created_by_id.name
+                    customer_name = account.partner_id.name
+                    invoice_date = account.invoice_date
                     state = account.payment_state
+                    payment_method = account.payment_method
+
+                    # معالجة حالة 'reversed' وإضافتها للإجماليات
+                    if state not in totals_by_payment_state:
+                        state = 'reversed'
                     totals_by_payment_state[state] += sum(account.mapped('amount_untaxed'))
                     
-                    # عرض بيانات الفاتورة
-                    data_row = [
-                        account.name,
-                        account.created_by_id.name,
-                        account.partner_id.name,
-                        'نقدى' if account.payment_method == 'option1' else 'اجل' if account.payment_method == 'option2' else '-',
-                        format_date(self.env, account.invoice_date),
-                        sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)),
-                        sum(self.env['account.move'].search([
-                            ('move_type', '=', 'out_refund'),
-                            ('branch_id', '=', branch.id),
-                            ('reversed_entry_id', '=', account.id),
-                            ('state', '=', 'posted')
-                        ]).line_ids.mapped(lambda x: x.purchase_price * x.quantity)),
-                        'مدفوع' if state == 'paid' else 'غير مدفوع'
-                    ]
+                    net_cost = sum(
+                        account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)
+                    )
+
+                    # تحديد تنسيق حالة الدفع
+                    payment_status = {
+                        'paid': ('مدفوع', format7),
+                        'not_paid': ('غير مدفوع', format6),
+                        'reversed': ('معكوس', format6)
+                    }.get(state, ('غير محدد', format2))
                     
-                    for i, value in enumerate(data_row):
-                        cell_format = format7 if state == 'paid' and i == len(data_row)-1 else format6 if state == 'not_paid' and i == len(data_row)-1 else format2
-                        worksheet.write(row, col + i, value, cell_format)
+                    worksheet.write(row, col + 7, payment_status[0], payment_status[1])
+
+                    worksheet.write(row, col, invoice_number, format2)
+                    worksheet.write(row, col + 1, seller_name, format2)
+                    worksheet.write(row, col + 2, customer_name, format2)
                     
+                    # عرض طريقة الدفع
+                    payment_display = {
+                        'option1': 'نقدى',
+                        'option2': 'اجل'
+                    }.get(payment_method, '-')
+                    worksheet.write(row, col + 3, payment_display, format2)
+                    
+                    worksheet.write(row, col + 4, format_date(self.env, invoice_date), format2)
+                    worksheet.write(row, col + 5, net_cost, format2)
+
+                    out_refund = self.env['account.move'].search([
+                        ('move_type', '=', 'out_refund'),
+                        ('branch_id', '=', branch.id),
+                        ('reversed_entry_id', '=', account.id),
+                        ('state', '=', 'posted')
+                    ])
+                    out_refund_purchase_price = sum(
+                        out_refund.line_ids.mapped(lambda x: x.purchase_price * x.quantity)
+                    )
+                    worksheet.write(row, col + 6, out_refund_purchase_price, format2)
                     row += 1
 
-            # إضافة الإجماليات حسب حالة الدفع ونوع الدفع
+            # إضافة الإجماليات لكل طريقة دفع
             row += 2
-            worksheet.write(row, col, 'إجماليات حسب حالة الدفع ونوع الدفع', format5)
+            worksheet.write(row, col, 'إجماليات حسب حالة الدفع', format5)
             row += 1
             
-            if obj.payment_type == 'all':
-                # عرض كل من المدفوعات وغير المدفوعات
-                worksheet.write(row, col, 'نقدي (مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('paid', 0), format2)
-                row += 1
-                
-                worksheet.write(row, col, 'آجل (غير مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('not_paid', 0), format2)
-                row += 1
+            # عرض الإجماليات لكل الحالات الممكنة
+            payment_statuses = [
+                ('paid', 'نقدي (مدفوع)'),
+                ('not_paid', 'آجل (غير مدفوع)'),
+                ('reversed', 'معكوس')
+            ]
             
-            elif obj.payment_type == 'cash':
-                # عرض المدفوعات فقط (نقدي)
-                worksheet.write(row, col, 'نقدي (مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('paid', 0), format2)
-                row += 1
-            
-            elif obj.payment_type == 'credit':
-                # عرض غير المدفوعات فقط (آجل)
-                worksheet.write(row, col, 'آجل (غير مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('not_paid', 0), format2)
-                row += 1
+            for status, label in payment_statuses:
+                if totals_by_payment_state.get(status, 0) != 0:
+                    worksheet.write(row, col, label, format2)
+                    worksheet.write(row, col + 1, totals_by_payment_state.get(status, 0), format2)
+                    row += 1
             
             # الإجمالي الكلي
             total_all = sum(totals_by_payment_state.values())
             worksheet.write(row, col, 'الإجمالي الكلي', format5)
             worksheet.write(row, col + 1, total_all, format5)
-
