@@ -1,6 +1,8 @@
 from odoo import models
 from datetime import date
 from odoo.tools import format_date
+import base64
+import io
 
 class SalesReportReport(models.AbstractModel):
     _name = 'report.sb_sale_edit_and_reports.report_sales_report'
@@ -12,6 +14,29 @@ class SalesReportReport(models.AbstractModel):
             worksheet.right_to_left()
             row = 0
             col = 0
+            
+            # إضافة شعار الشركة
+            company = self.env.company
+            if company.logo:
+                try:
+                    # تحويل الشعار من base64 إلى صورة
+                    image_data = base64.b64decode(company.logo)
+                    image_file = io.BytesIO(image_data)
+                    
+                    # إدراج الصورة في التقرير
+                    worksheet.insert_image(row, col, 'company_logo.png', {
+                        'image_data': image_file,
+                        'x_scale': 0.5,
+                        'y_scale': 0.5,
+                        'x_offset': 10,
+                        'y_offset': 10,
+                        'positioning': 1
+                    })
+                    row += 3  # زيادة الصفوف بعد الصورة
+                except Exception as e:
+                    # في حالة حدوث خطأ في تحميل الصورة
+                    worksheet.write(row, col, "شعار الشركة", format4)
+                    row += 1
             
             # تعديل حجم الأعمدة
             worksheet.set_column(0, 0, 20)
@@ -68,9 +93,9 @@ class SalesReportReport(models.AbstractModel):
             # فلترة حسب نوع الدفع إذا لم يكن "الكل"
             if obj.payment_type and obj.payment_type != 'all':
                 if obj.payment_type == 'cash':
-                    domain.append(('payment_method', '=', 'option1'))
+                    domain.append(('payment_state', '=', 'paid'))
                 elif obj.payment_type == 'credit':
-                    domain.append(('payment_method', '=', 'option2'))
+                    domain.append(('payment_state', '=', 'not_paid'))
 
             lines_data = self.env['account.move'].search(domain)
             existing_branches = lines_data.mapped('branch_id')
@@ -82,7 +107,7 @@ class SalesReportReport(models.AbstractModel):
                 'credit': 'آجل'
             }.get(obj.payment_type, 'الكل')
             
-            worksheet.merge_range(row, col + 3, row, col + 4, lines_data.company_id.name, format4)
+            worksheet.merge_range(row, col + 3, row, col + 4, company.name, format4)
             worksheet.merge_range(row + 1, col + 3, row + 1, col + 4, 'تقرير المبيعات', format4)
             worksheet.write(row + 2, col + 3, f'نوع الدفع: {payment_type_title}', format4)
             
@@ -147,7 +172,7 @@ class SalesReportReport(models.AbstractModel):
                         account.name,
                         account.created_by_id.name,
                         account.partner_id.name,
-                        'نقدى' if account.payment_method == 'option1' else 'اجل' if account.payment_method == 'option2' else '-',
+                        'نقدى' if account.payment_state == 'paid' else 'اجل',
                         format_date(self.env, account.invoice_date),
                         sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)),
                         sum(self.env['account.move'].search([
