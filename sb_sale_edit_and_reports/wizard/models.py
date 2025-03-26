@@ -1,198 +1,121 @@
-from odoo import models
-from datetime import date
-from odoo.tools import format_date
+from odoo import models, fields, api
 
-class SalesReportReport(models.AbstractModel):
-    _name = 'report.sb_sale_edit_and_reports.report_sales_report'
-    _inherit = 'report.report_xlsx.abstract'
 
-    def generate_xlsx_report(self, workbook, data, partners):
-        for obj in partners:
-            worksheet = workbook.add_worksheet('Sales Report')
-            worksheet.right_to_left()
-            row = 0
-            col = 0
-            
-            # تعديل حجم الأعمدة
-            worksheet.set_column(0, 0, 20)
-            worksheet.set_column(1, 1, 30)
-            worksheet.set_column(2, 2, 20)
-            worksheet.set_column(3, 3, 15)
-            worksheet.set_column(4, 4, 12)
-            worksheet.set_column(5, 5, 12)
-            worksheet.set_column(6, 6, 12)
-            worksheet.set_column(7, 7, 12)
+class SalesReportWizard(models.TransientModel):
+    _name = 'sales.report.wizard'
+    _description = 'sales report wizard'
 
-            # إنشاء التنسيقات
-            format1 = workbook.add_format({
-                'text_wrap': False, 'font_size': 11, 'align': 'center',
-                'bold': True, 'border': 1, 'bg_color': '#CCC7BF'
-            })
-            format2 = workbook.add_format({
-                'text_wrap': False, 'font_size': 11, 'align': 'center',
-                'border': 1
-            })
-            format3 = workbook.add_format({
-                'text_wrap': False, 'font_size': 10, 'border': 1,
-                'align': 'center'
-            })
-            format4 = workbook.add_format({
-                'text_wrap': False, 'font_size': 12, 'align': 'center',
-                'bold': True
-            })
-            format5 = workbook.add_format({
-                'text_wrap': False, 'font_size': 12, 'align': 'center',
-                'bold': True, 'bg_color': '#caf0f8'
-            })
-            format6 = workbook.add_format({
-                'text_wrap': False, 'font_size': 12, 'align': 'center',
-                'bold': True, 'bg_color': 'red', 'color': 'white'
-            })
-            format7 = workbook.add_format({
-                'text_wrap': False, 'font_size': 12, 'align': 'center',
-                'bold': True, 'bg_color': 'green', 'color': 'white'
-            })
+    date_start = fields.Date(string="تاريخ البدايه", required=True)
+    date_end = fields.Date(string="تاريخ النهايه", required=True)
+    branch_ids = fields.Many2many('res.branch', string="الفرع")
+    payment_type = fields.Selection([
+        ('all', 'الكل'),
+        ('cash', 'نقدي'),
+        ('credit', 'آجل')
+    ], string="نوع الدفع", default='all')
+    company_id = fields.Many2one('res.company', required=True, readonly=True, default=lambda self: self.env.company.id)
+    printed_by = fields.Char(string="طبع بواسطة", compute="_compute_printed_by")
+    print_date = fields.Date(string="تاريخ الطباعة", default=fields.Date.context_today)
 
-            # تحديد شروط البحث
-            domain = [
-                ('invoice_date', '>=', obj.date_start),
-                ('invoice_date', '<=', obj.date_end),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'posted')
-            ]
-            
-            # فلترة حسب الفروع إذا تم تحديدها
-            if obj.branch_ids:
-                domain.append(('branch_id', 'in', obj.branch_ids.ids))
-            
-            # فلترة حسب نوع الدفع إذا لم يكن "الكل"
-            if obj.payment_type and obj.payment_type != 'all':
-                if obj.payment_type == 'cash':
-                    domain.append(('payment_method', '=', 'option1'))
-                elif obj.payment_type == 'credit':
-                    domain.append(('payment_method', '=', 'option2'))
+    def _compute_printed_by(self):
+        for record in self:
+            record.printed_by = self.env.user.name
 
-            lines_data = self.env['account.move'].search(domain)
-            existing_branches = lines_data.mapped('branch_id')
-            
-            # إضافة عنوان التقرير
-            payment_type_title = {
-                'all': 'الكل',
-                'cash': 'نقدي',
-                'credit': 'آجل'
-            }.get(obj.payment_type, 'الكل')
-            
-            worksheet.merge_range(row, col + 3, row, col + 4, lines_data.company_id.name, format4)
-            worksheet.merge_range(row + 1, col + 3, row + 1, col + 4, 'تقرير المبيعات', format4)
-            worksheet.write(row + 2, col + 3, f'نوع الدفع: {payment_type_title}', format4)
-            
-            # معلومات التاريخ والمستخدم
-            worksheet.write(row + 3, col + 5, ' :من ', format1)
-            worksheet.write(row + 3, col + 7, '  :الى ', format1)
-            worksheet.write(row + 3, col + 6, format_date(self.env, obj.date_start), format3)
-            worksheet.write(row + 3, col + 8, format_date(self.env, obj.date_end), format3)
-            worksheet.write(row + 3, col, ' :تاريخ طباعه ', format1)
-            worksheet.write(row + 3, col + 1, date.today().strftime('%d/%m/%Y'), format3)
-            worksheet.write(row + 4, col, ' :طبع من مستخدم  ', format1)
-            worksheet.write(row + 4, col + 1, self.env.user.name, format3)
+    def get_sales_export_xlsx(self):
+        return self.env.ref("sb_sale_edit_and_reports.report_sales_report").report_action(self)
 
-            row += 8
-            totals_by_payment_state = {'paid': 0, 'not_paid': 0}
+    def generate_pdf_report(self):
+        domain = [('invoice_date', '>=', self.date_start),
+                  ('invoice_date', '<=', self.date_end),
+                  ('move_type', '=', 'out_invoice'),
+                  ('state', '=', 'posted')
+                  ]
 
-            for branch in existing_branches:
-                current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
-                unit_price_branch = sum([
-                    sum(move.mapped('amount_untaxed'))
-                    for move in current_branch_lines.filtered(lambda x: x.move_type != 'out_refund')
+        # Filter by branch if selected
+        if self.branch_ids:
+            domain.append(('branch_id', 'in', self.branch_ids.ids))
+
+        # Filter by payment type if not 'all'
+        if self.payment_type != 'all':
+            if self.payment_type == 'cash':
+                domain.append(('payment_method', '=', 'option1'))
+            elif self.payment_type == 'credit':
+                domain.append(('payment_method', '=', 'option2'))
+
+        lines_data = self.env['account.move'].search(domain)
+        existing_branches = lines_data.mapped('branch_id')
+        report_data = []
+        branches = [{'branch_id': branch.id, 'branch_name': branch.name} for branch in existing_branches]
+
+        for branch in existing_branches:
+            current_branch_lines = lines_data.filtered(lambda x: x.branch_id == branch)
+            total_out_refund_purchase_price = 0.0
+            total_out_refund_price = 0.0
+
+            for line in current_branch_lines:
+                out_refund_price = self.env['account.move'].search([
+                    ('move_type', '=', 'out_refund'),
+                    ('branch_id', '=', branch.id),
+                    ('reversed_entry_id', '=', line.id),
+                    ('state', '=', 'posted')
                 ])
-                
-                # عنوان الفرع
-                worksheet.write(row, col, branch.name, format5)
-                worksheet.merge_range(row, col + 1, row, col + 4, '', format5)
-                worksheet.write(row, col + 5, unit_price_branch, format5)
+                total_out_refund_price += sum(out_refund_price.line_ids.mapped(lambda x: x.price_unit * x.quantity))
+                total_out_refund_purchase_price += sum(
+                    out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
 
-                # حساب المرتجعات
-                total_out_refund_purchase_price = 0.0
-                for line in current_branch_lines:
-                    out_refund_price = self.env['account.move'].search([
-                        ('move_type', '=', 'out_refund'),
-                        ('branch_id', '=', branch.id),
-                        ('reversed_entry_id', '=', line.id),
-                        ('state', '=', 'posted')
-                    ])
-                    total_out_refund_purchase_price += sum(
-                        out_refund_price.line_ids.mapped(lambda x: x.purchase_price * x.quantity)
-                    )
-                worksheet.write(row, col + 6, total_out_refund_purchase_price, format5)
-                row += 1
+            for account in current_branch_lines:
+                invoice_number = account.name
+                seller_name = account.created_by_id.name
+                customer_name = account.partner_id.name
+                invoice_date = account.invoice_date
+                state = account.payment_state
+                cost = sum(account.line_ids.mapped(lambda line: line.purchase_price * line.quantity))
+                payment_method = account.payment_method
+                price = sum(account.mapped('amount_untaxed'))
+                total_discount = sum(account.line_ids.mapped('discount'))
+                net_cost = sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount))
 
-                # عناوين الأعمدة
-                headers = [
-                    'رقم الفاتورة', 'اسم البائع', 'اسم العميل', 
-                    'طريقة الدفع', 'التاريخ', 'صافى البيع ق', 
-                    'صافي الارجاعات ق', 'حاله الدفع'
-                ]
-                for i, header in enumerate(headers):
-                    worksheet.write(row, col + i, header + ' ', format1)
-                row += 1
+                if payment_method == 'option1':
+                    payment_method = 'نقدى'
+                elif payment_method == 'option2':
+                    payment_method = 'اجل'
+                else:
+                    payment_method = '-'
 
-                # بيانات الفواتير
-                for account in current_branch_lines:
-                    # تجميع المبالغ حسب حالة الدفع
-                    state = account.payment_state
-                    totals_by_payment_state[state] += sum(account.mapped('amount_untaxed'))
-                    
-                    # عرض بيانات الفاتورة
-                    data_row = [
-                        account.name,
-                        account.created_by_id.name,
-                        account.partner_id.name,
-                        'نقدى' if account.payment_method == 'option1' else 'اجل' if account.payment_method == 'option2' else '-',
-                        format_date(self.env, account.invoice_date),
-                        sum(account.line_ids.mapped(lambda line: (line.price_unit * line.quantity) - line.discount)),
-                        sum(self.env['account.move'].search([
-                            ('move_type', '=', 'out_refund'),
-                            ('branch_id', '=', branch.id),
-                            ('reversed_entry_id', '=', account.id),
-                            ('state', '=', 'posted')
-                        ]).line_ids.mapped(lambda x: x.purchase_price * x.quantity)),
-                        'مدفوع' if state == 'paid' else 'غير مدفوع'
-                    ]
-                    
-                    for i, value in enumerate(data_row):
-                        cell_format = format7 if state == 'paid' and i == len(data_row)-1 else format6 if state == 'not_paid' and i == len(data_row)-1 else format2
-                        worksheet.write(row, col + i, value, cell_format)
-                    
-                    row += 1
+                out_refund = self.env['account.move'].search([
+                    ('move_type', '=', 'out_refund'),
+                    ('branch_id', '=', branch.id),
+                    ('reversed_entry_id', '=', account.id),
+                    ('state', '=', 'posted')
+                ])
 
-            # إضافة الإجماليات حسب حالة الدفع ونوع الدفع
-            row += 2
-            worksheet.write(row, col, 'إجماليات حسب حالة الدفع ونوع الدفع', format5)
-            row += 1
-            
-            if obj.payment_type == 'all':
-                # عرض كل من المدفوعات وغير المدفوعات
-                worksheet.write(row, col, 'نقدي (مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('paid', 0), format2)
-                row += 1
-                
-                worksheet.write(row, col, 'آجل (غير مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('not_paid', 0), format2)
-                row += 1
-            
-            elif obj.payment_type == 'cash':
-                # عرض المدفوعات فقط (نقدي)
-                worksheet.write(row, col, 'نقدي (مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('paid', 0), format2)
-                row += 1
-            
-            elif obj.payment_type == 'credit':
-                # عرض غير المدفوعات فقط (آجل)
-                worksheet.write(row, col, 'آجل (غير مدفوع)', format2)
-                worksheet.write(row, col + 1, totals_by_payment_state.get('not_paid', 0), format2)
-                row += 1
-            
-            # الإجمالي الكلي
-            total_all = sum(totals_by_payment_state.values())
-            worksheet.write(row, col, 'الإجمالي الكلي', format5)
-            worksheet.write(row, col + 1, total_all, format5)
+                out_refund_purchase_price = 0.0
+                out_refund_price = 0.0
+                for ac in out_refund:
+                    out_refund_purchase_price += sum(ac.line_ids.mapped(lambda x: x.purchase_price * x.quantity))
+                    out_refund_price += sum(ac.mapped('amount_untaxed'))
+
+                report_data_item = {
+                    'branch_name': branch.name,
+                    'invoice_number': invoice_number,
+                    'seller_name': seller_name,
+                    'customer_name': customer_name,
+                    'payment_method': payment_method,
+                    'invoice_date': invoice_date,
+                    'total_price': price,
+                    'total_discount': total_discount,
+                    'net_cost': net_cost,
+                    'cost': cost,
+                    'total_credit_note': out_refund_price,
+                    't': out_refund_purchase_price,
+                    'state': state
+                }
+
+                report_data.append(report_data_item)
+
+        data = {
+            'form': self.read()[0],
+            'data': report_data,
+            'branches': branches,
+        }
+        return self.env.ref("sb_sale_edit_and_reports.sales_report").report_action(self, data=data)
