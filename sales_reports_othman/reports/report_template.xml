@@ -4,7 +4,29 @@
         <field name="model">daily.sales.report.wizard</field>
         <field name="priority">16</field>
         <field name="arch" type="xml">
-            <!-- Template content here -->
+            <t t-name="sales_reports.daily_sales_report_template">
+                <div class="page">
+                    <h2>تقرير المبيعات اليومية</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>التاريخ</th>
+                                <th>الفرع</th>
+                                <th>العدد</th>
+                                <th>الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.sales_data" t-as="line">
+                                <td><span t-field="line.date"/></td>
+                                <td><span t-field="line.branch_name"/></td>
+                                <td><span t-field="line.total_sales_count"/></td>
+                                <td><span t-field="line.total_sales_amount"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
         </field>
     </record>
 </odoo>
