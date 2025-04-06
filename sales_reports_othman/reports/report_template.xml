@@ -1,33 +1,27 @@
 <odoo>
-    <record id="view_daily_sales_report_template" model="ir.ui.view">
-        <field name="name">daily.sales.report.template</field>
-        <field name="model">daily.sales.report.wizard</field>
-        <field name="priority">16</field>
-        <field name="type">qweb</field> <!-- إضافة النوع qweb -->
-        <field name="arch" type="xml">
-            <t t-name="sales_reports.daily_sales_report_template">
-                <div class="page">
-                    <h2>تقرير المبيعات اليومية</h2>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>التاريخ</th>
-                                <th>الفرع</th>
-                                <th>العدد</th>
-                                <th>الإجمالي</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr t-foreach="doc.sales_data" t-as="line">
-                                <td><span t-field="line.date"/></td>
-                                <td><span t-field="line.branch_name"/></td>
-                                <td><span t-field="line.total_sales_count"/></td>
-                                <td><span t-field="line.total_sales_amount"/></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </t>
-        </field>
-    </record>
+    <template id="daily_sales_report_template">
+        <t t-name="sales_reports_othman.daily_sales_report_template">
+            <div class="page">
+                <h2>تقرير المبيعات اليومية</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>الفرع</th>
+                            <th>العدد</th>
+                            <th>الإجمالي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="doc.sales_data" t-as="line">
+                            <td><span t-esc="line.date"/></td>
+                            <td><span t-esc="line.branch_name"/></td>
+                            <td><span t-esc="line.total_sales_count"/></td>
+                            <td><span t-esc="line.total_sales_amount"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
 </odoo>
