@@ -3,6 +3,7 @@
         <field name="name">daily.sales.report.template</field>
         <field name="model">daily.sales.report.wizard</field>
         <field name="priority">16</field>
+        <field name="type">qweb</field> <!-- إضافة النوع qweb -->
         <field name="arch" type="xml">
             <t t-name="sales_reports.daily_sales_report_template">
                 <div class="page">
