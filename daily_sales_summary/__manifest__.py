@@ -12,7 +12,7 @@
     'author': 'Othmancs',
     'website': 'https://www.yourwebsite.com',
     'category': 'Sales/Sales',
-    'depends': ['account', 'sale'],
+    'depends': ['account', 'sale', 'multi_branch_base'],  # أضف أي وحدة فروع تستخدمها
     'data': [
         'views/daily_sales_summary_views.xml',
     ],
