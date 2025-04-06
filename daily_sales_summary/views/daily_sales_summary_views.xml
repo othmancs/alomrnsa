@@ -7,13 +7,17 @@
         <field name="arch" type="xml">
             <search>
                 <field name="branch_id"/>
-                <field name="date" filter="=" string="التاريخ"/>
+                <field name="date_from" string="من تاريخ"/>
+                <field name="date_to" string="إلى تاريخ"/>
                 <filter string="هذا الشهر" name="current_month" 
-                        domain="[('date', '>=', (context_today() - datetime.timedelta(days=30)).strftime('%%Y-%%m-%%d'))]"/>
+                        domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
                 <group expand="0" string="تصفية حسب">
-                    <filter string="اليوم" name="today" domain="[('date','=',context_today())]"/>
+                    <filter string="اليوم" name="today" 
+                            domain="[('date_from','=',context_today()),('date_to','=',context_today())]"/>
                     <filter string="الأسبوع الحالي" name="this_week" 
-                            domain="[('date','>=',(context_today() - datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]"/>
+                            domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
+                    <filter string="الشهر الحالي" name="this_month"
+                            domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
                 </group>
             </search>
         </field>
@@ -25,7 +29,8 @@
         <field name="model">daily.sales.summary</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="date"/>
+                <field name="date_from" string="من تاريخ"/>
+                <field name="date_to" string="إلى تاريخ"/>
                 <field name="branch_id"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
@@ -54,7 +59,8 @@
                 </header>
                 <sheet>
                     <group>
-                        <field name="date"/>
+                        <field name="date_from" string="من تاريخ"/>
+                        <field name="date_to" string="إلى تاريخ"/>
                         <field name="branch_id"/>
                         <field name="company_id" groups="base.group_multi_company"/>
                     </group>
