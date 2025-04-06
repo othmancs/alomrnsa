@@ -6,7 +6,7 @@
     'author': 'Othmancs',
     'website': 'http://www.yourcompany.com',
     'category': 'Sales',
-    'depends': ['sale', 'account', 'branch'],
+    'depends': ['sale', 'account', 'multi_branch_base'],
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
