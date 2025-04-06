@@ -1,0 +1,10 @@
+<odoo>
+    <record id="view_daily_sales_report_template" model="ir.ui.view">
+        <field name="name">daily.sales.report.template</field>
+        <field name="model">daily.sales.report.wizard</field>
+        <field name="priority">16</field>
+        <field name="arch" type="xml">
+            <!-- Template content here -->
+        </field>
+    </record>
+</odoo>

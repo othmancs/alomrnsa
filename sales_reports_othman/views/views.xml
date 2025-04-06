@@ -1,0 +1,21 @@
+<odoo>
+    <record id="daily_sales_report_wizard_view" model="ir.ui.view">
+        <field name="name">daily.sales.report.wizard.view</field>
+        <field name="model">daily.sales.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="تقرير المبيعات اليومية">
+                <sheet>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="branch_id"/>
+                    </group>
+                    <footer>
+                        <button name="generate_report" string="إنشاء التقرير" type="object" class="btn-primary"/>
+                        <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
