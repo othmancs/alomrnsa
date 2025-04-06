@@ -27,7 +27,7 @@
 
     <menuitem id="menu_partner_tax_merge" 
               name="دمج حسب الرقم الضريبي" 
-              parent="base.menu_contacts" 
+              parent="contacts.menu_contacts"
               action="action_partner_tax_merge" 
               sequence="20"/>
 </odoo>
