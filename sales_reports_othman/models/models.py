@@ -15,11 +15,12 @@ class DailySalesReportWizard(models.TransientModel):
             'branch_id': self.branch_id.id,
             'branch_name': self.branch_id.name or 'الكل'
         }
-        return self.env.ref('sales_reports.daily_sales_report_action').report_action(self, data=data)
+        # ✅ تم تعديل الـ xml_id ليطابق اسم الموديول الصحيح
+        return self.env.ref('sales_reports_othman.daily_sales_report_action').report_action(self, data=data)
 
 
 class DailySalesReport(models.AbstractModel):
-    _name = 'report.sales_reports.daily_sales_report_template'
+    _name = 'report.sales_reports_othman.daily_sales_report_template'
     _description = 'تقرير المبيعات اليومية'
 
     @api.model
@@ -39,16 +40,19 @@ class DailySalesReport(models.AbstractModel):
 
         orders = self.env['sale.order'].search(domain)
         
+        # حساب المبيعات النقدية
         cash_sales = sum(orders.filtered(
             lambda o: o.payment_term_id.is_cash and o.invoice_status == 'invoiced' and 
             all(inv.payment_state == 'paid' for inv in o.invoice_ids)
         ).mapped('amount_total')) or 0.0
 
+        # حساب المبيعات الآجلة
         credit_sales = sum(orders.filtered(
             lambda o: not o.payment_term_id.is_cash and o.invoice_status == 'invoiced' and 
             any(inv.payment_state != 'paid' for inv in o.invoice_ids)
         ).mapped('amount_total')) or 0.0
 
+        # المرتجعات النقدية
         cash_returns = sum(self.env['account.move'].search([
             ('move_type', '=', 'out_refund'),
             ('invoice_date', '>=', date_from),
@@ -57,6 +61,7 @@ class DailySalesReport(models.AbstractModel):
             ('branch_id', '=', branch_id) if branch_id else (1, '=', 1)
         ]).mapped('amount_total_signed')) or 0.0
 
+        # المرتجعات الآجلة
         credit_returns = sum(self.env['account.move'].search([
             ('move_type', '=', 'out_refund'),
             ('invoice_date', '>=', date_from),
@@ -65,6 +70,7 @@ class DailySalesReport(models.AbstractModel):
             ('branch_id', '=', branch_id) if branch_id else (1, '=', 1)
         ]).mapped('amount_total_signed')) or 0.0
 
+        # المدفوعات النقدية
         cash_payments = sum(self.env['account.payment'].search([
             ('payment_type', '=', 'inbound'),
             ('date', '>=', date_from),
@@ -72,6 +78,7 @@ class DailySalesReport(models.AbstractModel):
             ('branch_id', '=', branch_id) if branch_id else (1, '=', 1)
         ]).mapped('amount')) or 0.0
 
+        # الفواتير الآجلة
         credit_invoices = sum(self.env['account.move'].search([
             ('move_type', '=', 'out_invoice'),
             ('invoice_date', '>=', date_from),
