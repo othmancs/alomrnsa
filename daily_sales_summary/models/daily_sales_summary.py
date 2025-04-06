@@ -1,6 +1,5 @@
 from odoo import models, fields, api
 
-
 class DailySalesSummary(models.Model):
     _name = 'daily.sales.summary'
     _description = 'ملخص حركة المبيعات اليومية'
@@ -11,6 +10,11 @@ class DailySalesSummary(models.Model):
     company_id = fields.Many2one(
         'res.company', string='الشركة',
         default=lambda self: self.env.company, required=True
+    )
+    branch_id = fields.Many2one(
+        'res.branch',  # تأكد من أن هذا النموذج موجود في نظامك
+        string='الفرع',
+        help='تصفية النتائج حسب الفرع المحدد'
     )
     company_currency_id = fields.Many2one(
         'res.currency', string='العملة',
@@ -64,7 +68,7 @@ class DailySalesSummary(models.Model):
         compute='_compute_totals', store=True
     )
 
-    @api.depends('date', 'company_id')
+    @api.depends('date', 'company_id', 'branch_id')
     def _compute_sales_totals(self):
         for record in self:
             # حساب المبيعات النقدية (مدفوع)
@@ -75,6 +79,8 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'paid'),
                 ('company_id', '=', record.company_id.id)
             ]
+            if record.branch_id:
+                cash_domain.append(('branch_id', '=', record.branch_id.id))
             cash_invoices = self.env['account.move'].search(cash_domain)
             record.cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
 
@@ -86,10 +92,12 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'not_paid'),
                 ('company_id', '=', record.company_id.id)
             ]
+            if record.branch_id:
+                credit_domain.append(('branch_id', '=', record.branch_id.id))
             credit_invoices = self.env['account.move'].search(credit_domain)
             record.credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
 
-    @api.depends('date', 'company_id')
+    @api.depends('date', 'company_id', 'branch_id')
     def _compute_refund_totals(self):
         for record in self:
             # حساب المرتجعات النقدية (مدفوع)
@@ -100,6 +108,8 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'paid'),
                 ('company_id', '=', record.company_id.id)
             ]
+            if record.branch_id:
+                cash_refund_domain.append(('branch_id', '=', record.branch_id.id))
             cash_refunds = self.env['account.move'].search(cash_refund_domain)
             record.cash_refunds = sum(refund.amount_untaxed for refund in cash_refunds)
 
@@ -111,10 +121,12 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'not_paid'),
                 ('company_id', '=', record.company_id.id)
             ]
+            if record.branch_id:
+                credit_refund_domain.append(('branch_id', '=', record.branch_id.id))
             credit_refunds = self.env['account.move'].search(credit_refund_domain)
             record.credit_refunds = sum(refund.amount_untaxed for refund in credit_refunds)
 
-    @api.depends('date', 'company_id')
+    @api.depends('date', 'company_id', 'branch_id')
     def _compute_cash_box(self):
         for record in self:
             # حساب صندوق المبيعات النقدية (الدفعات)
@@ -125,10 +137,12 @@ class DailySalesSummary(models.Model):
                 ('is_internal_transfer', '=', False),
                 ('company_id', '=', record.company_id.id)
             ]
+            if record.branch_id:
+                payment_domain.append(('branch_id', '=', record.branch_id.id))
             payments = self.env['account.payment'].search(payment_domain)
             record.cash_box = sum(payment.amount for payment in payments)
 
-    @api.depends('date', 'company_id')
+    @api.depends('date', 'company_id', 'branch_id')
     def _compute_credit_box(self):
         for record in self:
             # حساب صندوق المبيعات الآجلة (الفواتير المؤكدة وغير المدفوعة)
@@ -139,6 +153,8 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'not_paid'),
                 ('company_id', '=', record.company_id.id)
             ]
+            if record.branch_id:
+                credit_domain.append(('branch_id', '=', record.branch_id.id))
             credit_invoices = self.env['account.move'].search(credit_domain)
             record.credit_box = sum(invoice.amount_untaxed for invoice in credit_invoices)
 
@@ -147,23 +163,26 @@ class DailySalesSummary(models.Model):
         for record in self:
             # حساب إجمالي المبيعات
             record.total_sales = record.cash_sales + record.credit_sales
-
+            
             # حساب إجمالي المرتجعات
             record.total_refunds = record.cash_refunds + record.credit_refunds
-
+            
             # حساب صافي المبيعات
             record.net_sales = record.total_sales - record.total_refunds
 
     def action_view_cash_sales(self):
         self.ensure_one()
         action = self.env.ref('account.action_move_out_invoice_type').read()[0]
-        action['domain'] = [
+        domain = [
             ('invoice_date', '=', self.date),
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
             ('payment_state', '=', 'paid'),
             ('company_id', '=', self.company_id.id)
         ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
         action['context'] = {
             'search_default_invoice': 1,
             'create': False
@@ -173,13 +192,16 @@ class DailySalesSummary(models.Model):
     def action_view_credit_sales(self):
         self.ensure_one()
         action = self.env.ref('account.action_move_out_invoice_type').read()[0]
-        action['domain'] = [
+        domain = [
             ('invoice_date', '=', self.date),
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
             ('payment_state', '=', 'not_paid'),
             ('company_id', '=', self.company_id.id)
         ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
         action['context'] = {
             'search_default_invoice': 1,
             'create': False
@@ -189,13 +211,16 @@ class DailySalesSummary(models.Model):
     def action_view_cash_refunds(self):
         self.ensure_one()
         action = self.env.ref('account.action_move_out_refund_type').read()[0]
-        action['domain'] = [
+        domain = [
             ('invoice_date', '=', self.date),
             ('move_type', '=', 'out_refund'),
             ('state', '=', 'posted'),
             ('payment_state', '=', 'paid'),
             ('company_id', '=', self.company_id.id)
         ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
         action['context'] = {
             'search_default_refund': 1,
             'create': False
@@ -205,13 +230,16 @@ class DailySalesSummary(models.Model):
     def action_view_credit_refunds(self):
         self.ensure_one()
         action = self.env.ref('account.action_move_out_refund_type').read()[0]
-        action['domain'] = [
+        domain = [
             ('invoice_date', '=', self.date),
             ('move_type', '=', 'out_refund'),
             ('state', '=', 'posted'),
             ('payment_state', '=', 'not_paid'),
             ('company_id', '=', self.company_id.id)
         ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
         action['context'] = {
             'search_default_refund': 1,
             'create': False
@@ -221,13 +249,16 @@ class DailySalesSummary(models.Model):
     def action_view_cash_box(self):
         self.ensure_one()
         action = self.env.ref('account.action_account_payments').read()[0]
-        action['domain'] = [
+        domain = [
             ('date', '=', self.date),
             ('payment_type', '=', 'inbound'),
             ('state', '=', 'posted'),
             ('is_internal_transfer', '=', False),
             ('company_id', '=', self.company_id.id)
         ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
         action['context'] = {
             'default_payment_type': 'inbound',
             'create': False
