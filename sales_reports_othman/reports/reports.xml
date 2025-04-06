@@ -1,20 +1,25 @@
 <odoo>
-    <record id="action_daily_sales_report_wizard" model="ir.actions.act_window">
-        <field name="name">تقرير المبيعات اليومية</field>
-        <field name="res_model">daily.sales.report.wizard</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-        <field name="binding_model_id" ref="sale.model_sale_order"/>
-    </record>
+    <data>
+        <!-- تعريف الإجراء (Action) لفتح الويزرد -->
+        <record id="action_daily_sales_report_wizard" model="ir.actions.act_window">
+            <field name="name">تقرير المبيعات اليومية</field>
+            <field name="res_model">daily.sales.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+        </record>
 
-    <record id="daily_sales_report_action" model="ir.actions.report">
-        <field name="name">تقرير المبيعات اليومية</field>
-        <field name="model">daily.sales.report.wizard</field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">sales_reports.daily_sales_report_template</field>
-        <field name="report_file">sales_reports.daily_sales_report_template</field>
-        <field name="print_report_name">'تقرير المبيعات اليومية - %s' % (object.date_from)</field>
-        <field name="binding_model_id" ref="sale.model_sale_order"/>
-        <field name="binding_type">report</field>
-    </record>
+        <!-- تعريف التقرير (Report) -->
+        <record id="daily_sales_report_action" model="ir.actions.report">
+            <field name="name">تقرير المبيعات اليومية</field>
+            <field name="model">daily.sales.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sales_reports.daily_sales_report_template</field>
+            <field name="report_file">sales_reports.daily_sales_report_template</field>
+            <!-- تعديل هذا السطر ليكون متوافقًا مع Odoo -->
+            <field name="print_report_name">"تقرير المبيعات اليومية - %(object.date_from)s"</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
 </odoo>
