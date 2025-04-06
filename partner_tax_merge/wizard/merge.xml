@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_tax_merge_form" model="ir.ui.view">
+        <field name="name">partner.tax.merge.form</field>
+        <field name="model">partner.tax.merge</field>
+        <field name="arch" type="xml">
+            <form string="دمج جهات الاتصال حسب الرقم الضريبي">
+                <group>
+                    <field name="partner_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    <field name="target_partner_id" required="1"/>
+                </group>
+                <footer>
+                    <button name="action_merge" string="دمج" type="object" class="btn-primary"/>
+                    <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_partner_tax_merge" model="ir.actions.act_window">
+        <field name="name">دمج جهات الاتصال حسب الرقم الضريبي</field>
+        <field name="res_model">partner.tax.merge</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_partner_ids': active_ids}</field>
+    </record>
+
+    <menuitem id="menu_partner_tax_merge" 
+              name="دمج حسب الرقم الضريبي" 
+              parent="base.menu_contacts" 
+              action="action_partner_tax_merge" 
+              sequence="20"/>
+</odoo>
