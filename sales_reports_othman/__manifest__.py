@@ -8,7 +8,7 @@
     'category': 'Sales',
     'depends': ['sale', 'account', 'multi_branch_base'],
     'data': [
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         'views/views.xml',
         'reports/report_template.xml',
         'reports/reports.xml',
