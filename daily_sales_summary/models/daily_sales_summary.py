@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 from odoo import models, fields, api
 from datetime import timedelta
+from collections import defaultdict
 
 class DailySalesSummary(models.Model):
     _name = 'daily.sales.summary'
@@ -64,6 +67,76 @@ class DailySalesSummary(models.Model):
         currency_field='company_currency_id',
         compute='_compute_total_cash', store=True
     )
+    payment_method_totals = fields.Text(
+        string='المجاميع حسب طريقة الدفع',
+        compute='_compute_payment_method_totals'
+    )
+
+    @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
+    def _compute_payment_method_totals(self):
+        for record in self:
+            payment_method_data = defaultdict(float)
+            
+            # حساب المبيعات النقدية حسب طريقة الدفع
+            cash_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                cash_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            cash_invoices = self.env['account.move'].search(cash_domain)
+            for invoice in cash_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    for line in payment.payment_method_line_id:
+                        payment_method_data[line.name] += payment.amount
+            
+            # حساب المبيعات المدفوعة جزئياً حسب طريقة الدفع
+            partial_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'partial'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                partial_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            partial_invoices = self.env['account.move'].search(partial_domain)
+            for invoice in partial_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    for line in payment.payment_method_line_id:
+                        payment_method_data[line.name] += payment.amount
+            
+            # حساب المقبوضات حسب طريقة الدفع
+            payment_domain = [
+                ('date', '>=', record.date_from),
+                ('date', '<=', record.date_to),
+                ('payment_type', '=', 'inbound'),
+                ('state', '=', 'posted'),
+                ('is_internal_transfer', '=', False),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                payment_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            payments = self.env['account.payment'].search(payment_domain)
+            for payment in payments:
+                for line in payment.payment_method_line_id:
+                    payment_method_data[line.name] += payment.amount
+            
+            # تحويل البيانات إلى نص لعرضها
+            result = []
+            for method, amount in sorted(payment_method_data.items()):
+                if amount:
+                    result.append(f"{method}: {amount:,.2f} {record.company_currency_id.symbol}")
+            
+            record.payment_method_totals = "\n".join(result) if result else "لا توجد مدفوعات"
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_sales_totals(self):
@@ -95,7 +168,6 @@ class DailySalesSummary(models.Model):
             if record.branch_id:
                 partial_domain.append(('branch_id', '=', record.branch_id.id))
             partial_invoices = self.env['account.move'].search(partial_domain)
-            # حساب المبلغ المدفوع فعليًا بدلاً من المبلغ الإجمالي
             record.partial_sales = sum(invoice.amount_total - invoice.amount_residual for invoice in partial_invoices)
 
             # حساب المبيعات الآجلة (غير مدفوع)
@@ -163,9 +235,7 @@ class DailySalesSummary(models.Model):
     @api.depends('cash_sales', 'partial_sales', 'cash_refunds', 'cash_box')
     def _compute_total_cash(self):
         for record in self:
-            # حساب إجمالي الصندوق (يشمل المبيعات النقدية + المدفوعة جزئياً - المرتجعات النقدية + المقبوضات)
-            # record.total_cash = record.cash_sales + record.partial_sales - record.cash_refunds + record.cash_box
-            record.total_cash = record.cash_box - record.cash_refunds 
+            record.total_cash = record.cash_box - record.cash_refunds
 
     @api.onchange('date_from')
     def _onchange_date_from(self):
