@@ -34,7 +34,7 @@
                 <field name="branch_id"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="partial_payments" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="credit_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="cash_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="credit_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
@@ -52,7 +52,7 @@
             <form>
                 <header>
                     <button name="action_view_cash_sales" string="عرض الفواتير النقدية" type="object" class="oe_highlight"/>
-                    <button name="action_view_partial_sales" string="عرض الفواتير المدفوعة جزئياً" type="object"/>
+                    <button name="action_view_partial_payments" string="عرض المدفوعات الجزئية" type="object"/>
                     <button name="action_view_credit_sales" string="عرض الفواتير الآجلة" type="object"/>
                     <button name="action_view_cash_refunds" string="عرض الإرجاعات المستردة" type="object"/>
                     <button name="action_view_credit_refunds" string="عرض الإرجاعات غير المستردة" type="object"/>
@@ -73,7 +73,7 @@
                                     <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                                 <group string="المبيعات المدفوعة جزئياً">
-                                    <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                    <field name="partial_payments" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                                 <group string="المبيعات الآجلة">
                                     <field name="credit_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
@@ -101,6 +101,16 @@
                                     <field name="total_cash" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                             </group>
+                        </page>
+                        
+                        <page string="حركات السداد">
+                            <field name="payment_method_lines" widget="tree">
+                                <tree editable="bottom">
+                                    <field name="payment_method_line_id" string="طريقة السداد"/>
+                                    <field name="journal_id" string="دفتر اليومية"/>
+                                    <field name="amount" string="المبلغ" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
