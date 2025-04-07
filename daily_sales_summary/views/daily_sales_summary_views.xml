@@ -107,7 +107,9 @@
                         
                         <page string="طرق الدفع">
                             <group>
-                                <field name="payment_method_totals" widget="text" nolabel="1" class="oe_read_only"/>
+
+
+<field name="payment_method_totals" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                             </group>
                         </page>
                     </notebook>
