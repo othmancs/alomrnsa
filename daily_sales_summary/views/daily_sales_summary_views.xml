@@ -104,6 +104,12 @@
                                 </group>
                             </group>
                         </page>
+                        
+                        <page string="طرق الدفع">
+                            <group>
+                                <field name="payment_method_totals" widget="text" nolabel="1" class="oe_read_only"/>
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
