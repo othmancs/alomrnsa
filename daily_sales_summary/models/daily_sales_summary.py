@@ -349,12 +349,13 @@ class DailySalesPaymentMethod(models.Model):
     _name = 'daily.sales.payment.method'
     _description = 'حركات السداد حسب طريقة الدفع'
     
-    summary_id = fields.Many2one(
-        'daily.sales.summary',
-        string='ملخص المبيعات',
-        required=True,
-        ondelete='cascade'
-    )
+summary_id = fields.Many2one(
+    'daily.sales.summary',
+    string='ملخص المبيعات',
+    required=True,
+    ondelete='set null'  # أو 'restrict' حسب المطلوب
+)
+
     payment_method_line_id = fields.Many2one(
         'account.payment.method.line',
         string='طريقة السداد',
