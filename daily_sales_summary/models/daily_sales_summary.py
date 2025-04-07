@@ -158,7 +158,8 @@ class DailySalesSummary(models.Model):
     def _compute_total_cash(self):
         for record in self:
             # حساب إجمالي الصندوق (يشمل المبيعات النقدية + المدفوعة جزئياً - المرتجعات النقدية + المقبوضات)
-            record.total_cash = record.cash_sales + record.partial_sales - record.cash_refunds + record.cash_box
+            # record.total_cash = record.cash_sales + record.partial_sales - record.cash_refunds + record.cash_box
+            record.total_cash =record.cash_box - record.cash_refunds 
 
     @api.onchange('date_from')
     def _onchange_date_from(self):
