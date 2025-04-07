@@ -61,9 +61,10 @@ class DailySalesSummary(models.Model):
     )
     payment_method_lines = fields.One2many(
         'daily.sales.payment.method',
-        'summary_id',  # تم تصحيح هذا الجزء
+        'summary_id',
         string='حركات السداد حسب طريقة الدفع',
-        compute='_compute_payment_method_lines'
+        compute='_compute_payment_method_lines',
+        store=True
     )
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
@@ -173,9 +174,12 @@ class DailySalesSummary(models.Model):
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_payment_method_lines(self):
         for record in self:
+            # حذف السجلات القديمة المرتبطة بهذا الملخص
+            record.payment_method_lines.unlink()
+            
             payment_method_lines = self.env['daily.sales.payment.method']
             
-            # Get all payments in the date range
+            # الحصول على جميع الدفعات في النطاق الزمني
             payment_domain = [
                 ('date', '>=', record.date_from),
                 ('date', '<=', record.date_to),
@@ -189,28 +193,29 @@ class DailySalesSummary(models.Model):
             
             payments = self.env['account.payment'].search(payment_domain)
             
-            # Group by payment method and journal
+            # التجميع حسب طريقة الدفع ودفتر اليومية
             payment_groups = {}
             for payment in payments:
-                key = (payment.payment_method_line_id.id, payment.journal_id.id)
-                if key not in payment_groups:
-                    payment_groups[key] = {
-                        'payment_method_line_id': payment.payment_method_line_id.id,
-                        'journal_id': payment.journal_id.id,
-                        'amount': 0.0
-                    }
-                payment_groups[key]['amount'] += payment.amount
+                if payment.payment_method_line_id and payment.journal_id:
+                    key = (payment.payment_method_line_id.id, payment.journal_id.id)
+                    if key not in payment_groups:
+                        payment_groups[key] = {
+                            'payment_method_line_id': payment.payment_method_line_id.id,
+                            'journal_id': payment.journal_id.id,
+                            'amount': 0.0
+                        }
+                    payment_groups[key]['amount'] += payment.amount
             
-            # Create payment method lines
+            # إنشاء سجلات حركات السداد
             for key, vals in payment_groups.items():
-                payment_method_lines |= payment_method_lines.create({
-                    'summary_id': record.id,  # تم تصحيح هذا الجزء
+                payment_method_lines.create({
+                    'summary_id': record.id,
                     'payment_method_line_id': vals['payment_method_line_id'],
                     'journal_id': vals['journal_id'],
                     'amount': vals['amount']
                 })
             
-            record.payment_method_lines = payment_method_lines
+            # لا حاجة لإعادة تعيين record.payment_method_lines لأنه One2many محسوب
 
     @api.onchange('date_from')
     def _onchange_date_from(self):
@@ -353,25 +358,29 @@ class DailySalesPaymentMethod(models.Model):
         'daily.sales.summary',
         string='ملخص المبيعات',
         required=True,
-        ondelete='cascade'
+        ondelete='cascade',
+        index=True
     )
-
     payment_method_line_id = fields.Many2one(
         'account.payment.method.line',
         string='طريقة السداد',
-        required=True
+        required=True,
+        ondelete='restrict'
     )
     journal_id = fields.Many2one(
         'account.journal',
         string='دفتر اليومية',
-        required=True
+        required=True,
+        ondelete='restrict'
     )
     amount = fields.Monetary(
         string='المبلغ',
-        currency_field='company_currency_id'
+        currency_field='company_currency_id',
+        required=True
     )
     company_currency_id = fields.Many2one(
         'res.currency',
         string='العملة',
-        related='summary_id.company_currency_id'
+        related='summary_id.company_currency_id',
+        store=True
     )
