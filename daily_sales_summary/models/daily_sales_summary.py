@@ -61,7 +61,7 @@ class DailySalesSummary(models.Model):
     )
     payment_method_lines = fields.One2many(
         'daily.sales.payment.method',
-        'summary_id',
+        'sales_summary_id',  # تغيير من summary_id إلى sales_summary_id
         string='حركات السداد حسب طريقة الدفع',
         compute='_compute_payment_method_lines',
         store=True
@@ -209,13 +209,11 @@ class DailySalesSummary(models.Model):
             # إنشاء سجلات حركات السداد
             for key, vals in payment_groups.items():
                 payment_method_lines.create({
-                    'summary_id': record.id,
+                    'sales_summary_id': record.id,  # تغيير من summary_id إلى sales_summary_id
                     'payment_method_line_id': vals['payment_method_line_id'],
                     'journal_id': vals['journal_id'],
                     'amount': vals['amount']
                 })
-            
-            # لا حاجة لإعادة تعيين record.payment_method_lines لأنه One2many محسوب
 
     @api.onchange('date_from')
     def _onchange_date_from(self):
@@ -354,7 +352,7 @@ class DailySalesPaymentMethod(models.Model):
     _name = 'daily.sales.payment.method'
     _description = 'حركات السداد حسب طريقة الدفع'
     
-    summary_id = fields.Many2one(
+    sales_summary_id = fields.Many2one(
         'daily.sales.summary',
         string='ملخص المبيعات',
         required=True,
@@ -381,6 +379,6 @@ class DailySalesPaymentMethod(models.Model):
     company_currency_id = fields.Many2one(
         'res.currency',
         string='العملة',
-        related='summary_id.company_currency_id',
+        related='sales_summary_id.company_currency_id',
         store=True
     )
