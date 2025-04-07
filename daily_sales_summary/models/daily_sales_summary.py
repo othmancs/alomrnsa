@@ -69,8 +69,7 @@ class DailySalesSummary(models.Model):
     )
      payment_method_totals = fields.Text(
         string='المجاميع حسب طريقة الدفع',
-        compute='_compute_payment_method_totals',
-        store=True  # جرب إضافة هذا إذا كان الحقل لا يظهر
+        compute='_compute_payment_method_totals'
     )
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
