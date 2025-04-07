@@ -67,7 +67,7 @@ class DailySalesSummary(models.Model):
         currency_field='company_currency_id',
         compute='_compute_total_cash', store=True
     )
-     payment_method_totals = fields.Text(
+    payment_method_totals = fields.Text(
         string='المجاميع حسب طريقة الدفع',
         compute='_compute_payment_method_totals'
     )
