@@ -25,55 +25,45 @@ class DailySalesSummary(models.Model):
 
     # الحقول المحسوبة
     cash_sales = fields.Monetary(
-        string='المبيعات النقدية (مدفوع)',
+        string='مبيعات نقدية مدفوعة بتاريخه',
+        currency_field='company_currency_id',
+        compute='_compute_sales_totals', store=True
+    )
+    partial_sales = fields.Monetary(
+        string='مبيعات مدفوع جزئي',
         currency_field='company_currency_id',
         compute='_compute_sales_totals', store=True
     )
     credit_sales = fields.Monetary(
-        string='المبيعات الآجلة (غير مدفوع)',
+        string='مبيعات آجلة غير مدفوعة',
         currency_field='company_currency_id',
         compute='_compute_sales_totals', store=True
     )
     cash_refunds = fields.Monetary(
-        string='المرتجعات النقدية',
+        string='إرجاعات مسترد المبلغ',
         currency_field='company_currency_id',
         compute='_compute_refund_totals', store=True
     )
     credit_refunds = fields.Monetary(
-        string='مرتجعات الآجل',
+        string='إرجاعات غير مسترد المبلغ',
         currency_field='company_currency_id',
         compute='_compute_refund_totals', store=True
     )
     cash_box = fields.Monetary(
-        string='صندوق المبيعات النقدية',
+        string='المقبوضات',
         currency_field='company_currency_id',
         compute='_compute_cash_box', store=True
     )
-    credit_box = fields.Monetary(
-        string='صندوق المبيعات الآجلة',
+    total_cash = fields.Monetary(
+        string='إجمالي الصندوق',
         currency_field='company_currency_id',
-        compute='_compute_credit_box', store=True
-    )
-    total_sales = fields.Monetary(
-        string='إجمالي المبيعات',
-        currency_field='company_currency_id',
-        compute='_compute_totals', store=True
-    )
-    total_refunds = fields.Monetary(
-        string='إجمالي المرتجعات',
-        currency_field='company_currency_id',
-        compute='_compute_totals', store=True
-    )
-    net_sales = fields.Monetary(
-        string='صافي المبيعات',
-        currency_field='company_currency_id',
-        compute='_compute_totals', store=True
+        compute='_compute_total_cash', store=True
     )
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_sales_totals(self):
         for record in self:
-            # حساب المبيعات النقدية (مدفوع)
+            # حساب المبيعات النقدية (مدفوع بالكامل في نفس التاريخ)
             cash_domain = [
                 ('invoice_date', '>=', record.date_from),
                 ('invoice_date', '<=', record.date_to),
@@ -86,6 +76,20 @@ class DailySalesSummary(models.Model):
                 cash_domain.append(('branch_id', '=', record.branch_id.id))
             cash_invoices = self.env['account.move'].search(cash_domain)
             record.cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+
+            # حساب المبيعات المدفوعة جزئياً
+            partial_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'partial'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                partial_domain.append(('branch_id', '=', record.branch_id.id))
+            partial_invoices = self.env['account.move'].search(partial_domain)
+            record.partial_sales = sum(invoice.amount_untaxed for invoice in partial_invoices)
 
             # حساب المبيعات الآجلة (غير مدفوع)
             credit_domain = [
@@ -135,7 +139,7 @@ class DailySalesSummary(models.Model):
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_cash_box(self):
         for record in self:
-            # حساب صندوق المبيعات النقدية (الدفعات)
+            # حساب المقبوضات (الدفعات)
             payment_domain = [
                 ('date', '>=', record.date_from),
                 ('date', '<=', record.date_to),
@@ -149,34 +153,11 @@ class DailySalesSummary(models.Model):
             payments = self.env['account.payment'].search(payment_domain)
             record.cash_box = sum(payment.amount for payment in payments)
 
-    @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
-    def _compute_credit_box(self):
+    @api.depends('cash_sales', 'cash_refunds', 'cash_box')
+    def _compute_total_cash(self):
         for record in self:
-            # حساب صندوق المبيعات الآجلة (الفواتير المؤكدة وغير المدفوعة)
-            credit_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'not_paid'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_id:
-                credit_domain.append(('branch_id', '=', record.branch_id.id))
-            credit_invoices = self.env['account.move'].search(credit_domain)
-            record.credit_box = sum(invoice.amount_untaxed for invoice in credit_invoices)
-
-    @api.depends('cash_sales', 'credit_sales', 'cash_refunds', 'credit_refunds')
-    def _compute_totals(self):
-        for record in self:
-            # حساب إجمالي المبيعات
-            record.total_sales = record.cash_sales + record.credit_sales
-            
-            # حساب إجمالي المرتجعات
-            record.total_refunds = record.cash_refunds + record.credit_refunds
-            
-            # حساب صافي المبيعات
-            record.net_sales = record.total_sales - record.total_refunds
+            # حساب إجمالي الصندوق
+            record.total_cash = record.cash_sales - record.cash_refunds + record.cash_box
 
     @api.onchange('date_from')
     def _onchange_date_from(self):
@@ -198,6 +179,26 @@ class DailySalesSummary(models.Model):
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
             ('payment_state', '=', 'paid'),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
+        action['context'] = {
+            'search_default_invoice': 1,
+            'create': False
+        }
+        return action
+
+    def action_view_partial_sales(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('move_type', '=', 'out_invoice'),
+            ('state', '=', 'posted'),
+            ('payment_state', '=', 'partial'),
             ('company_id', '=', self.company_id.id)
         ]
         if self.branch_id:
