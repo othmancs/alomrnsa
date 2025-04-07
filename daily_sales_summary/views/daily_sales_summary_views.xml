@@ -34,12 +34,12 @@
                 <field name="branch_id"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="credit_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="cash_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="credit_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                <field name="total_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                <field name="total_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                <field name="net_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="cash_box" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="total_cash" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
             </tree>
         </field>
     </record>
@@ -52,10 +52,11 @@
             <form>
                 <header>
                     <button name="action_view_cash_sales" string="عرض الفواتير النقدية" type="object" class="oe_highlight"/>
+                    <button name="action_view_partial_sales" string="عرض الفواتير المدفوعة جزئياً" type="object"/>
                     <button name="action_view_credit_sales" string="عرض الفواتير الآجلة" type="object"/>
-                    <button name="action_view_cash_refunds" string="عرض المرتجعات النقدية" type="object"/>
-                    <button name="action_view_credit_refunds" string="عرض مرتجعات الآجل" type="object"/>
-                    <button name="action_view_cash_box" string="عرض حركة الصندوق" type="object"/>
+                    <button name="action_view_cash_refunds" string="عرض الإرجاعات المستردة" type="object"/>
+                    <button name="action_view_credit_refunds" string="عرض الإرجاعات غير المستردة" type="object"/>
+                    <button name="action_view_cash_box" string="عرض المقبوضات" type="object"/>
                 </header>
                 <sheet>
                     <group>
@@ -70,36 +71,34 @@
                             <group>
                                 <group string="المبيعات النقدية">
                                     <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                                    <field name="cash_box" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="المبيعات المدفوعة جزئياً">
+                                    <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                                 <group string="المبيعات الآجلة">
                                     <field name="credit_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                                    <field name="credit_box" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                             </group>
                         </page>
                         
                         <page string="المرتجعات">
                             <group>
-                                <group string="المرتجعات النقدية">
+                                <group string="إرجاعات مسترد المبلغ">
                                     <field name="cash_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
-                                <group string="مرتجعات الآجل">
+                                <group string="إرجاعات غير مسترد المبلغ">
                                     <field name="credit_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                             </group>
                         </page>
                         
-                        <page string="الإجماليات">
+                        <page string="الصندوق">
                             <group>
-                                <group string="إجمالي المبيعات">
-                                    <field name="total_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                <group string="المقبوضات">
+                                    <field name="cash_box" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
-                                <group string="إجمالي المرتجعات">
-                                    <field name="total_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
-                                </group>
-                                <group string="صافي المبيعات">
-                                    <field name="net_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                <group string="إجمالي الصندوق">
+                                    <field name="total_cash" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                             </group>
                         </page>
