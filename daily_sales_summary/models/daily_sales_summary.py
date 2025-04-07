@@ -25,7 +25,12 @@ class DailySalesSummary(models.Model):
 
     # الحقول المحسوبة
     cash_sales = fields.Monetary(
-        string='مبيعات نقدية مدفوعة بتاريخه',
+        string='مبيعات نقدية مدفوعة بتاريخه قبل الضريبة',
+        currency_field='company_currency_id',
+        compute='_compute_sales_totals', store=True
+    )
+    total_tax = fields.Monetary(
+        string='مجموع الضريبة فقط',
         currency_field='company_currency_id',
         compute='_compute_sales_totals', store=True
     )
@@ -76,6 +81,7 @@ class DailySalesSummary(models.Model):
                 cash_domain.append(('branch_id', '=', record.branch_id.id))
             cash_invoices = self.env['account.move'].search(cash_domain)
             record.cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+            record.total_tax = sum(invoice.amount_tax for invoice in cash_invoices)
 
             # حساب المبيعات المدفوعة جزئياً (نعرض المبلغ المدفوع فقط)
             partial_domain = [
@@ -159,7 +165,7 @@ class DailySalesSummary(models.Model):
         for record in self:
             # حساب إجمالي الصندوق (يشمل المبيعات النقدية + المدفوعة جزئياً - المرتجعات النقدية + المقبوضات)
             # record.total_cash = record.cash_sales + record.partial_sales - record.cash_refunds + record.cash_box
-            record.total_cash =record.cash_box - record.cash_refunds 
+            record.total_cash = record.cash_box - record.cash_refunds 
 
     @api.onchange('date_from')
     def _onchange_date_from(self):
