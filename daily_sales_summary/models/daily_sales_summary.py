@@ -73,12 +73,12 @@ class DailySalesSummary(models.Model):
         sanitize=False
     )
 
+
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_payment_method_totals(self):
         for record in self:
             payment_method_data = defaultdict(float)
         
-            # حساب المبيعات النقدية حسب طريقة الدفع
             cash_domain = [
                 ('invoice_date', '>=', record.date_from),
                 ('invoice_date', '<=', record.date_to),
@@ -134,53 +134,14 @@ class DailySalesSummary(models.Model):
                     method_name = payment.payment_method_line_id.name or 'غير محدد'
                     payment_method_data[method_name] += payment.amount
             
-            # إنشاء جدول HTML منظم
-            if payment_method_data:
-                html_table = """
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover" style="width:100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background-color: #f5f5f5;">
-                                    <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">طريقة الدفع</th>
-                                    <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">المبلغ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                """
-                
-                for method, amount in sorted(payment_method_data.items()):
-                    if amount:
-                        formatted_amount = format(amount, '.2f')
-                        html_table += f"""
-                            <tr>
-                                <td style="padding: 8px; text-align: right; border: 1px solid #ddd;">{method}</td>
-                                <td style="padding: 8px; text-align: left; border: 1px solid #ddd;">{formatted_amount} {record.company_currency_id.symbol}</td>
-                            </tr>
-                        """
-                
-                html_table += """
-                            </tbody>
-                        </table>
-                    </div>
-                """
-                
-                # إضافة المجموع الكلي
-                total_amount = sum(payment_method_data.values())
-                if total_amount > 0:
-                    formatted_total = format(total_amount, '.2f')
-                    html_table += f"""
-                        <div style="margin-top: 10px; font-weight: bold; text-align: left;">
-                            الإجمالي: {formatted_total} {record.company_currency_id.symbol}
-                        </div>
-                    """
-                
-                record.payment_method_totals = html_table
-            else:
-                record.payment_method_totals = """
-                    <div style="text-align: center; color: #999; padding: 10px;">
-                        لا توجد مدفوعات في الفترة المحددة
-                    </div>
-                """
+            # تحويل البيانات إلى نص لعرضها
+            result = []
+            for method, amount in sorted(payment_method_data.items()):
+                if amount:
+                    formatted_amount = format(amount, '.2f')
+                    result.append(f"{method}: {formatted_amount} {record.company_currency_id.symbol}")
+            
+            record.payment_method_totals = "\n".join(result) if result else "لا توجد مدفوعات"
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_sales_totals(self):
