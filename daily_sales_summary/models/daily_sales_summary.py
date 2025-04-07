@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from datetime import timedelta
 from collections import defaultdict
-import logging
-
-_logger = logging.getLogger(__name__)
 
 class DailySalesSummary(models.Model):
     _name = 'daily.sales.summary'
@@ -72,73 +70,79 @@ class DailySalesSummary(models.Model):
     payment_method_totals = fields.Html(
         string='المجاميع حسب طريقة الدفع',
         compute='_compute_payment_method_totals',
-        sanitize=False,
-        store=False
+        sanitize=False
     )
+
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_payment_method_totals(self):
         for record in self:
-            try:
-                payment_method_data = defaultdict(float)
-                currency = record.company_currency_id
+            payment_method_data = defaultdict(float)
+        
+            cash_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                cash_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            cash_invoices = self.env['account.move'].search(cash_domain)
+            for invoice in cash_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name or 'غير محدد'
+                        payment_method_data[method_name] += payment.amount
+            
+            # حساب المبيعات المدفوعة جزئياً حسب طريقة الدفع
+            partial_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'partial'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                partial_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            partial_invoices = self.env['account.move'].search(partial_domain)
+            for invoice in partial_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name or 'غير محدد'
+                        payment_method_data[method_name] += payment.amount
+            
+            # حساب المقبوضات حسب طريقة الدفع
+            payment_domain = [
+                ('date', '>=', record.date_from),
+                ('date', '<=', record.date_to),
+                ('payment_type', '=', 'inbound'),
+                ('state', '=', 'posted'),
+                ('is_internal_transfer', '=', False),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                payment_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            payments = self.env['account.payment'].search(payment_domain)
+            for payment in payments:
+                if payment.payment_method_line_id:
+                    method_name = payment.payment_method_line_id.name or 'غير محدد'
+                    payment_method_data[method_name] += payment.amount
+            
+            # تحويل البيانات إلى نص لعرضها
+            result = []
+            for method, amount in sorted(payment_method_data.items()):
+                if amount:
+                    formatted_amount = format(amount, '.2f')
+                    result.append(f"{method}: {formatted_amount} {record.company_currency_id.symbol}")
+            
+            record.payment_method_totals = "\n".join(result) if result else "لا توجد مدفوعات"
 
-                # 1. جمع مدفوعات الفواتير المدفوعة بالكامل
-                cash_invoices = self.env['account.move'].search([
-                    ('invoice_date', '>=', record.date_from),
-                    ('invoice_date', '<=', record.date_to),
-                    ('move_type', '=', 'out_invoice'),
-                    ('state', '=', 'posted'),
-                    ('payment_state', 'in', ['paid', 'partial']),
-                    ('company_id', '=', record.company_id.id),
-                    *[('branch_id', '=', record.branch_id.id)] if record.branch_id else []
-                ])
-                
-                for invoice in cash_invoices:
-                    for payment in invoice._get_reconciled_payments():
-                        if payment.payment_method_id:
-                            method = payment.payment_method_id.name or 'غير محدد'
-                            payment_method_data[method] += payment.amount
-
-                # 2. جمع المدفوعات المباشرة
-                payments = self.env['account.payment'].search([
-                    ('date', '>=', record.date_from),
-                    ('date', '<=', record.date_to),
-                    ('payment_type', '=', 'inbound'),
-                    ('state', '=', 'posted'),
-                    ('is_internal_transfer', '=', False),
-                    ('company_id', '=', record.company_id.id),
-                    *[('branch_id', '=', record.branch_id.id)] if record.branch_id else []
-                ])
-                
-                for payment in payments:
-                    if payment.payment_method_id:
-                        method = payment.payment_method_id.name or 'غير محدد'
-                        payment_method_data[method] += payment.amount
-
-                # توليد النتيجة
-                if payment_method_data:
-                    result = ["<table class='table table-bordered' style='width:100%;'>"]
-                    result.append("<thead><tr><th>طريقة الدفع</th><th style='text-align:left;'>المبلغ</th></tr></thead><tbody>")
-                    
-                    for method, amount in sorted(payment_method_data.items()):
-                        result.append(
-                            f"<tr><td>{method}</td>"
-                            f"<td style='text-align:left;'>{format(amount, ',.2f')} {currency.symbol}</td></tr>"
-                        )
-                    
-                    result.append("</tbody></table>")
-                    record.payment_method_totals = "".join(result)
-                else:
-                    record.payment_method_totals = "<div style='color:#999;padding:10px;'>لا توجد مدفوعات في الفترة المحددة</div>"
-                
-                _logger.info("تم حساب طرق الدفع بنجاح لملخص المبيعات %s", record.id)
-                
-            except Exception as e:
-                record.payment_method_totals = f"<div style='color:red;padding:10px;'>خطأ في حساب البيانات: {str(e)}</div>"
-                _logger.error("خطأ في حساب طرق الدفع: %s", str(e), exc_info=True)
-
-    # ... (بقية الدوال تبقى كما هي بدون تغيير)
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_sales_totals(self):
         for record in self:
