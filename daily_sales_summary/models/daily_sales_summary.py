@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 from datetime import timedelta
 from collections import defaultdict
-import logging
-
-_logger = logging.getLogger(__name__)
 
 class DailySalesSummary(models.Model):
     _name = 'daily.sales.summary'
@@ -13,161 +10,133 @@ class DailySalesSummary(models.Model):
     _rec_name = 'date_from'
     _order = 'date_from desc'
 
-    date_from = fields.Date(string='من تاريخ', default=fields.Date.today, required=True)
-    date_to = fields.Date(string='إلى تاريخ', default=fields.Date.today, required=True)
+    date_from = fields.Date(string='من تاريخ', default=fields.Date.today(), required=True)
+    date_to = fields.Date(string='إلى تاريخ', default=fields.Date.today(), required=True)
     company_id = fields.Many2one(
-        'res.company', 
-        string='الشركة',
-        default=lambda self: self.env.company,
-        required=True
+        'res.company', string='الشركة',
+        default=lambda self: self.env.company, required=True
     )
     branch_id = fields.Many2one(
         'res.branch',
-        string='الفرع'
+        string='الفرع',
+        help='تصفية النتائج حسب الفرع المحدد'
     )
     company_currency_id = fields.Many2one(
-        'res.currency',
-        string='العملة',
-        related='company_id.currency_id',
-        store=True
+        'res.currency', string='العملة',
+        related='company_id.currency_id', store=True
     )
 
     # الحقول المحسوبة
     cash_sales = fields.Monetary(
         string='مبيعات نقدية مدفوعة بتاريخه قبل الضريبة',
         currency_field='company_currency_id',
-        compute='_compute_sales_totals'
+        compute='_compute_sales_totals', store=True
     )
     total_tax = fields.Monetary(
         string='مجموع الضريبة فقط',
         currency_field='company_currency_id',
-        compute='_compute_sales_totals'
+        compute='_compute_sales_totals', store=True
     )
     partial_sales = fields.Monetary(
         string='مبيعات مدفوع جزئي',
-        currency_field='company_currency_id,
-        compute='_compute_sales_totals'
+        currency_field='company_currency_id',
+        compute='_compute_sales_totals', store=True
     )
     credit_sales = fields.Monetary(
         string='مبيعات آجلة غير مدفوعة',
         currency_field='company_currency_id',
-        compute='_compute_sales_totals'
+        compute='_compute_sales_totals', store=True
     )
     cash_refunds = fields.Monetary(
         string='إرجاعات مسترد المبلغ',
         currency_field='company_currency_id',
-        compute='_compute_refund_totals'
+        compute='_compute_refund_totals', store=True
     )
     credit_refunds = fields.Monetary(
         string='إرجاعات غير مسترد المبلغ',
         currency_field='company_currency_id',
-        compute='_compute_refund_totals'
+        compute='_compute_refund_totals', store=True
     )
     cash_box = fields.Monetary(
         string='المقبوضات',
         currency_field='company_currency_id',
-        compute='_compute_cash_box'
+        compute='_compute_cash_box', store=True
     )
     total_cash = fields.Monetary(
         string='إجمالي الصندوق',
         currency_field='company_currency_id',
-        compute='_compute_total_cash'
+        compute='_compute_total_cash', store=True
     )
-    payment_method_totals = fields.Html(
+    payment_method_totals = fields.Text(
         string='المجاميع حسب طريقة الدفع',
-        compute='_compute_payment_method_totals',
-        sanitize=False
+        compute='_compute_payment_method_totals'
     )
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_payment_method_totals(self):
         for record in self:
-            try:
-                payment_data = self._get_payment_method_data(record)
-                record.payment_method_totals = self._generate_payment_html(payment_data, record)
-            except Exception as e:
-                _logger.error("Error in payment_method_totals: %s", str(e))
-                record.payment_method_totals = f"""
-                <div class="alert alert-danger">
-                    خطأ في حساب طرق الدفع: {str(e)}
-                </div>
-                """
-
-    def _get_payment_method_data(self, record):
-        payment_method_data = defaultdict(float)
-        
-        # الفواتير المدفوعة بالكامل
-        cash_invoices = self.env['account.move'].search([
-            ('invoice_date', '>=', record.date_from),
-            ('invoice_date', '<=', record.date_to),
-            ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'paid'),
-            ('company_id', '=', record.company_id.id),
-        ])
-        
-        # الفواتير المدفوعة جزئياً
-        partial_invoices = self.env['account.move'].search([
-            ('invoice_date', '>=', record.date_from),
-            ('invoice_date', '<=', record.date_to),
-            ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'partial'),
-            ('company_id', '=', record.company_id.id),
-        ])
-        
-        # المدفوعات المباشرة
-        payments = self.env['account.payment'].search([
-            ('date', '>=', record.date_from),
-            ('date', '<=', record.date_to),
-            ('payment_type', '=', 'inbound'),
-            ('state', '=', 'posted'),
-            ('is_internal_transfer', '=', False),
-            ('company_id', '=', record.company_id.id),
-        ])
-
-        # تجميع البيانات
-        for invoice in cash_invoices + partial_invoices:
-            for payment in invoice._get_reconciled_payments():
-                if payment.payment_method_line_id:
-                    method = payment.payment_method_line_id
-                    payment_method_data[method] += payment.amount
-
-        for payment in payments:
-            if payment.payment_method_line_id:
-                method = payment.payment_method_line_id
-                payment_method_data[method] += payment.amount
-
-        return payment_method_data
-
-    def _generate_payment_html(self, payment_data, record):
-        if not payment_data:
-            return "<div class='alert alert-info'>لا توجد مدفوعات في الفترة المحددة</div>"
-        
-        rows = []
-        for method, amount in sorted(payment_data.items(), key=lambda x: x[1], reverse=True):
-            rows.append(f"""
-            <tr>
-                <td>{method.name}</td>
-                <td class='text-right'>{amount:,.2f} {record.company_currency_id.symbol}</td>
-            </tr>
-            """)
-        
-        return f"""
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover">
-                <thead class="thead-light">
-                    <tr>
-                        <th>طريقة الدفع</th>
-                        <th class='text-right'>المبلغ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {''.join(rows)}
-                </tbody>
-            </table>
-        </div>
-        """
+            payment_method_data = defaultdict(float)
+            
+            # حساب المبيعات النقدية حسب طريقة الدفع
+            cash_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                cash_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            cash_invoices = self.env['account.move'].search(cash_domain)
+            for invoice in cash_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    for line in payment.payment_method_line_id:
+                        payment_method_data[line.name] += payment.amount
+            
+            # حساب المبيعات المدفوعة جزئياً حسب طريقة الدفع
+            partial_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'partial'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                partial_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            partial_invoices = self.env['account.move'].search(partial_domain)
+            for invoice in partial_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    for line in payment.payment_method_line_id:
+                        payment_method_data[line.name] += payment.amount
+            
+            # حساب المقبوضات حسب طريقة الدفع
+            payment_domain = [
+                ('date', '>=', record.date_from),
+                ('date', '<=', record.date_to),
+                ('payment_type', '=', 'inbound'),
+                ('state', '=', 'posted'),
+                ('is_internal_transfer', '=', False),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                payment_domain.append(('branch_id', '=', record.branch_id.id))
+            
+            payments = self.env['account.payment'].search(payment_domain)
+            for payment in payments:
+                for line in payment.payment_method_line_id:
+                    payment_method_data[line.name] += payment.amount
+            
+            # تحويل البيانات إلى نص لعرضها
+            result = []
+            for method, amount in sorted(payment_method_data.items()):
+                if amount:
+                    result.append(f"{method}: {amount:,.2f} {record.company_currency_id.symbol}")
+            
+            record.payment_method_totals = "\n".join(result) if result else "لا توجد مدفوعات"
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_sales_totals(self):
@@ -263,7 +232,7 @@ class DailySalesSummary(models.Model):
             payments = self.env['account.payment'].search(payment_domain)
             record.cash_box = sum(payment.amount for payment in payments)
 
-    @api.depends('cash_box', 'cash_refunds')
+    @api.depends('cash_sales', 'partial_sales', 'cash_refunds', 'cash_box')
     def _compute_total_cash(self):
         for record in self:
             record.total_cash = record.cash_box - record.cash_refunds
