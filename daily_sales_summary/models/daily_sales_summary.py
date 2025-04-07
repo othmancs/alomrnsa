@@ -69,7 +69,7 @@ class DailySalesSummary(models.Model):
     )
     payment_method_totals = fields.Monetary(
         string='المجاميع حسب طريقة الدفع',
-        compute='_compute_payment_method_totals', store=True
+        compute='_compute_payment_method_totals'
     )
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
