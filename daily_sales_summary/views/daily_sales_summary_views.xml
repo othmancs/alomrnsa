@@ -34,6 +34,7 @@
                 <field name="branch_id"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="total_tax" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="credit_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="cash_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
@@ -71,6 +72,7 @@
                             <group>
                                 <group string="المبيعات النقدية">
                                     <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                    <field name="total_tax" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </group>
                                 <group string="المبيعات المدفوعة جزئياً">
                                     <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
