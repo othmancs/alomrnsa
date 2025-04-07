@@ -92,8 +92,9 @@ class DailySalesSummary(models.Model):
             cash_invoices = self.env['account.move'].search(cash_domain)
             for invoice in cash_invoices:
                 for payment in invoice._get_reconciled_payments():
-                    for line in payment.payment_method_line_id:
-                        payment_method_data[line.name] += payment.amount
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name or 'غير محدد'
+                        payment_method_data[method_name] += payment.amount
             
             # حساب المبيعات المدفوعة جزئياً حسب طريقة الدفع
             partial_domain = [
@@ -110,8 +111,9 @@ class DailySalesSummary(models.Model):
             partial_invoices = self.env['account.move'].search(partial_domain)
             for invoice in partial_invoices:
                 for payment in invoice._get_reconciled_payments():
-                    for line in payment.payment_method_line_id:
-                        payment_method_data[line.name] += payment.amount
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name or 'غير محدد'
+                        payment_method_data[method_name] += payment.amount
             
             # حساب المقبوضات حسب طريقة الدفع
             payment_domain = [
@@ -127,14 +129,16 @@ class DailySalesSummary(models.Model):
             
             payments = self.env['account.payment'].search(payment_domain)
             for payment in payments:
-                for line in payment.payment_method_line_id:
-                    payment_method_data[line.name] += payment.amount
+                if payment.payment_method_line_id:
+                    method_name = payment.payment_method_line_id.name or 'غير محدد'
+                    payment_method_data[method_name] += payment.amount
             
             # تحويل البيانات إلى نص لعرضها
             result = []
             for method, amount in sorted(payment_method_data.items()):
                 if amount:
-                    result.append(f"{method}: {amount:,.2f} {record.company_currency_id.symbol}")
+                    formatted_amount = format(amount, '.2f')
+                    result.append(f"{method}: {formatted_amount} {record.company_currency_id.symbol}")
             
             record.payment_method_totals = "\n".join(result) if result else "لا توجد مدفوعات"
 
