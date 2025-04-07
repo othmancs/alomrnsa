@@ -103,7 +103,7 @@
                             </group>
                         </page>
                         
-                        <page string="حركات السداد">
+<!--                         <page string="حركات السداد">
                             <field name="payment_method_lines" widget="tree">
                                 <tree editable="bottom">
                                     <field name="payment_method_line_id" string="طريقة السداد"/>
@@ -111,7 +111,7 @@
                                     <field name="amount" string="المبلغ" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                                 </tree>
                             </field>
-                        </page>
+                        </page> -->
                     </notebook>
                 </sheet>
             </form>
