@@ -204,7 +204,7 @@ class DailySalesSummary(models.Model):
             # Create payment method lines
             for key, vals in payment_groups.items():
                 payment_method_lines |= payment_method_lines.create({
-                    'summary_id': record.id,
+                    '': record.id,
                     'payment_method_line_id': vals['payment_method_line_id'],
                     'journal_id': vals['journal_id'],
                     'amount': vals['amount']
@@ -349,12 +349,13 @@ class DailySalesPaymentMethod(models.Model):
     _name = 'daily.sales.payment.method'
     _description = 'حركات السداد حسب طريقة الدفع'
     
-# summary_id = fields.Many2one(
-#     'daily.sales.summary',
-#     string='ملخص المبيعات',
-#     required=True,
-#     ondelete='set null'  # أو 'restrict' حسب المطلوب
-# )
+    
+    summary_id = fields.Many2one(
+        'daily.sales.summary',
+        string='ملخص المبيعات',
+        required=True,
+        ondelete='cascade'
+    )
 
     payment_method_line_id = fields.Many2one(
         'account.payment.method.line',
