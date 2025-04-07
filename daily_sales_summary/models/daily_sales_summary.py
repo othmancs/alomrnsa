@@ -61,7 +61,7 @@ class DailySalesSummary(models.Model):
     )
     payment_method_lines = fields.One2many(
         'daily.sales.payment.method',
-        '',
+        'summary_id',  # تم تصحيح هذا الجزء
         string='حركات السداد حسب طريقة الدفع',
         compute='_compute_payment_method_lines'
     )
@@ -204,7 +204,7 @@ class DailySalesSummary(models.Model):
             # Create payment method lines
             for key, vals in payment_groups.items():
                 payment_method_lines |= payment_method_lines.create({
-                    '': record.id,
+                    'summary_id': record.id,  # تم تصحيح هذا الجزء
                     'payment_method_line_id': vals['payment_method_line_id'],
                     'journal_id': vals['journal_id'],
                     'amount': vals['amount']
@@ -348,7 +348,6 @@ class DailySalesSummary(models.Model):
 class DailySalesPaymentMethod(models.Model):
     _name = 'daily.sales.payment.method'
     _description = 'حركات السداد حسب طريقة الدفع'
-    
     
     summary_id = fields.Many2one(
         'daily.sales.summary',
