@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 from datetime import timedelta
 
 class DailySalesSummary(models.Model):
@@ -61,7 +62,7 @@ class DailySalesSummary(models.Model):
     )
     payment_method_lines = fields.One2many(
         'daily.sales.payment.method',
-        'sales_summary_id',  # تغيير من summary_id إلى sales_summary_id
+        'sales_summary_id',
         string='حركات السداد حسب طريقة الدفع',
         compute='_compute_payment_method_lines',
         store=True
@@ -209,7 +210,7 @@ class DailySalesSummary(models.Model):
             # إنشاء سجلات حركات السداد
             for key, vals in payment_groups.items():
                 payment_method_lines.create({
-                    'sales_summary_id': record.id,  # تغيير من summary_id إلى sales_summary_id
+                    'sales_summary_id': record.id,
                     'payment_method_line_id': vals['payment_method_line_id'],
                     'journal_id': vals['journal_id'],
                     'amount': vals['amount']
@@ -351,6 +352,7 @@ class DailySalesSummary(models.Model):
 class DailySalesPaymentMethod(models.Model):
     _name = 'daily.sales.payment.method'
     _description = 'حركات السداد حسب طريقة الدفع'
+    _rec_name = 'payment_method_line_id'
     
     sales_summary_id = fields.Many2one(
         'daily.sales.summary',
@@ -382,3 +384,9 @@ class DailySalesPaymentMethod(models.Model):
         related='sales_summary_id.company_currency_id',
         store=True
     )
+
+    def unlink(self):
+        try:
+            return super(DailySalesPaymentMethod, self).unlink()
+        except:
+            raise UserError(_("لا يمكن حذف هذا السجل لأنه مرتبط بسجلات أخرى. يمكنك أرشفته بدلاً من الحذف."))
