@@ -77,8 +77,9 @@ class DailySalesSummary(models.Model):
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_payment_method_totals(self):
         for record in self:
-            payment_method_data = defaultdict(float)
-            
+            # payment_method_data = defaultdict(float)
+            record.payment_method_totals = "\n".join(
+            f"{k}: {v}" for k, v in payment_method_data.items()) or "لا توجد بيانات"
             # حساب المبيعات النقدية حسب طريقة الدفع
             cash_domain = [
                 ('invoice_date', '>=', record.date_from),
