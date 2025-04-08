@@ -19,7 +19,7 @@ class DailySalesSummary(models.Model):
     branch_id = fields.Many2one(
         'res.branch',
         string='الفرع',
-        help='تصفية النتائج حسب الفرع المحدد'
+        help='إذا لم يتم تحديد فرع، سيتم عرض جميع الفروع'
     )
     company_currency_id = fields.Many2one(
         'res.currency', string='العملة',
