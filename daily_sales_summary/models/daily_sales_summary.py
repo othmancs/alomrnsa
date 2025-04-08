@@ -72,7 +72,145 @@ class DailySalesSummary(models.Model):
         compute='_compute_payment_method_totals',
         sanitize=False
     )
+    branch_totals = fields.Html(
+        string='المجاميع حسب الفرع',
+        compute='_compute_branch_totals',
+        sanitize=False
+    )
 
+    @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
+    def _compute_branch_totals(self):
+        for record in self:
+            if record.branch_id:
+                record.branch_totals = False
+                return
+            
+            branches = self.env['res.branch'].search([('company_id', '=', record.company_id.id)])
+            result = []
+            
+            for branch in branches:
+                # حساب المبيعات النقدية
+                cash_domain = [
+                    ('invoice_date', '>=', record.date_from),
+                    ('invoice_date', '<=', record.date_to),
+                    ('move_type', '=', 'out_invoice'),
+                    ('state', '=', 'posted'),
+                    ('payment_state', '=', 'paid'),
+                    ('company_id', '=', record.company_id.id),
+                    ('branch_id', '=', branch.id)
+                ]
+                cash_invoices = self.env['account.move'].search(cash_domain)
+                cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+                total_tax = sum(invoice.amount_tax for invoice in cash_invoices)
+                
+                # حساب المبيعات المدفوعة جزئياً
+                partial_domain = [
+                    ('invoice_date', '>=', record.date_from),
+                    ('invoice_date', '<=', record.date_to),
+                    ('move_type', '=', 'out_invoice'),
+                    ('state', '=', 'posted'),
+                    ('payment_state', '=', 'partial'),
+                    ('company_id', '=', record.company_id.id),
+                    ('branch_id', '=', branch.id)
+                ]
+                partial_invoices = self.env['account.move'].search(partial_domain)
+                partial_sales = sum(invoice.amount_total - invoice.amount_residual for invoice in partial_invoices)
+                
+                # حساب المبيعات الآجلة
+                credit_domain = [
+                    ('invoice_date', '>=', record.date_from),
+                    ('invoice_date', '<=', record.date_to),
+                    ('move_type', '=', 'out_invoice'),
+                    ('state', '=', 'posted'),
+                    ('payment_state', '=', 'not_paid'),
+                    ('company_id', '=', record.company_id.id),
+                    ('branch_id', '=', branch.id)
+                ]
+                credit_invoices = self.env['account.move'].search(credit_domain)
+                credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+                
+                # حساب المرتجعات النقدية
+                cash_refund_domain = [
+                    ('invoice_date', '>=', record.date_from),
+                    ('invoice_date', '<=', record.date_to),
+                    ('move_type', '=', 'out_refund'),
+                    ('state', '=', 'posted'),
+                    ('payment_state', '=', 'paid'),
+                    ('company_id', '=', record.company_id.id),
+                    ('branch_id', '=', branch.id)
+                ]
+                cash_refunds = self.env['account.move'].search(cash_refund_domain)
+                cash_refund = sum(refund.amount_untaxed for refund in cash_refunds)
+                
+                # حساب مرتجعات الآجل
+                credit_refund_domain = [
+                    ('invoice_date', '>=', record.date_from),
+                    ('invoice_date', '<=', record.date_to),
+                    ('move_type', '=', 'out_refund'),
+                    ('state', '=', 'posted'),
+                    ('payment_state', '=', 'not_paid'),
+                    ('company_id', '=', record.company_id.id),
+                    ('branch_id', '=', branch.id)
+                ]
+                credit_refunds = self.env['account.move'].search(credit_refund_domain)
+                credit_refund = sum(refund.amount_untaxed for refund in credit_refunds)
+                
+                # حساب المقبوضات
+                payment_domain = [
+                    ('date', '>=', record.date_from),
+                    ('date', '<=', record.date_to),
+                    ('payment_type', '=', 'inbound'),
+                    ('state', '=', 'posted'),
+                    ('is_internal_transfer', '=', False),
+                    ('company_id', '=', record.company_id.id),
+                    ('branch_id', '=', branch.id)
+                ]
+                payments = self.env['account.payment'].search(payment_domain)
+                cash_box = sum(payment.amount for payment in payments)
+                total_cash = cash_box - cash_refund
+                
+                # إضافة النتائج للفرع الحالي
+                if any([cash_sales, partial_sales, credit_sales, cash_refund, credit_refund, cash_box]):
+                    branch_result = f"""
+                    <tr>
+                        <td><b>{branch.name}</b></td>
+                        <td>{cash_sales:.2f}</td>
+                        <td>{total_tax:.2f}</td>
+                        <td>{partial_sales:.2f}</td>
+                        <td>{credit_sales:.2f}</td>
+                        <td>{cash_refund:.2f}</td>
+                        <td>{credit_refund:.2f}</td>
+                        <td>{cash_box:.2f}</td>
+                        <td>{total_cash:.2f}</td>
+                    </tr>
+                    """
+                    result.append(branch_result)
+            
+            if result:
+                header = """
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>الفرع</th>
+                            <th>مبيعات نقدية</th>
+                            <th>الضريبة</th>
+                            <th>مبيعات جزئية</th>
+                            <th>مبيعات آجلة</th>
+                            <th>مرتجعات نقدية</th>
+                            <th>مرتجعات آجلة</th>
+                            <th>المقبوضات</th>
+                            <th>إجمالي الصندوق</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                """
+                footer = """
+                    </tbody>
+                </table>
+                """
+                record.branch_totals = header + "".join(result) + footer
+            else:
+                record.branch_totals = "لا توجد بيانات للعرض"
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
     def _compute_payment_method_totals(self):
