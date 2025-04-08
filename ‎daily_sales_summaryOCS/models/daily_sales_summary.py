@@ -22,10 +22,10 @@ class DailySalesSummary(models.Model):
         'res.company', string='الشركة',
         default=lambda self: self.env.company, required=True
     )
-    branch_id = fields.Many2one(
+    branch_ids = fields.Many2many(
         'res.branch',
-        string='الفرع',
-        help='تصفية النتائج حسب الفرع المحدد'
+        string='الفروع',
+        help='تصفية النتائج حسب الفروع المحددة'
     )
     company_currency_id = fields.Many2one(
         'res.currency', string='العملة',
