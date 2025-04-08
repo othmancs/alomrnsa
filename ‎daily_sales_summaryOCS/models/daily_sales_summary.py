@@ -5,6 +5,7 @@ from datetime import timedelta
 from collections import defaultdict
 import io
 import xlsxwriter
+import base64
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -512,7 +513,25 @@ class DailySalesSummary(models.Model):
                         except ValueError:
                             continue
         return total
-
+    def action_generate_excel_report(self):
+        """إجراء لإنشاء وتنزيل التقرير"""
+        report_data = self.generate_sales_collection_report()
+        
+        # إنشاء مرفق (attachment) للتقرير
+        attachment = self.env['ir.attachment'].create({
+            'name': report_data['file_name'],
+            'datas': base64.b64encode(report_data['file_content']),
+            'res_model': 'daily.sales.summary',
+            'res_id': self.id,
+            'type': 'binary'
+        })
+        
+        # إرجاع إجراء لتنزيل المرفق
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/web/content/%s?download=true' % attachment.id,
+            'target': 'self',
+        }
     # def action_generate_excel_report(self):
     #     """إجراء لإنشاء وتنزيل التقرير"""
     #     report_data = self.generate_sales_collection_report()
@@ -522,22 +541,4 @@ class DailySalesSummary(models.Model):
     #             self.id, report_data['file_name']),
     #         'target': 'self',
     #     }
-def action_generate_excel_report(self):
-    """إجراء لإنشاء وتنزيل التقرير"""
-    report_data = self.generate_sales_collection_report()
-    
-    # إنشاء مرفق (attachment) للتقرير
-    attachment = self.env['ir.attachment'].create({
-        'name': report_data['file_name'],
-        'datas': base64.b64encode(report_data['file_content']),
-        'res_model': 'daily.sales.summary',
-        'res_id': self.id,
-        'type': 'binary'
-    })
-    
-    # إرجاع إجراء لتنزيل المرفق
-    return {
-        'type': 'ir.actions.act_url',
-        'url': '/web/content/%s?download=true' % attachment.id,
-        'target': 'self',
-    }
+
