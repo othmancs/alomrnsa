@@ -1,0 +1,524 @@
+# -*- coding: utf-8 -*-
+
+from odoo import models, fields, api
+from datetime import timedelta
+from collections import defaultdict
+import io
+import xlsxwriter
+from bs4 import BeautifulSoup
+from datetime import datetime
+
+
+class DailySalesSummary(models.Model):
+    _name = 'daily.sales.summary'
+    _description = 'ملخص حركة المبيعات اليومية'
+    _rec_name = 'date_from'
+    _order = 'date_from desc'
+
+    date_from = fields.Date(string='من تاريخ', default=fields.Date.today(), required=True)
+    date_to = fields.Date(string='إلى تاريخ', default=fields.Date.today(), required=True)
+    company_id = fields.Many2one(
+        'res.company', string='الشركة',
+        default=lambda self: self.env.company, required=True
+    )
+    branch_id = fields.Many2one(
+        'res.branch',
+        string='الفرع',
+        help='تصفية النتائج حسب الفرع المحدد'
+    )
+    company_currency_id = fields.Many2one(
+        'res.currency', string='العملة',
+        related='company_id.currency_id', store=True
+    )
+
+    # الحقول المحسوبة
+    cash_sales = fields.Monetary(
+        string='مبيعات نقدية مدفوعة بتاريخه قبل الضريبة',
+        currency_field='company_currency_id',
+        compute='_compute_sales_totals', store=True
+    )
+    total_tax = fields.Monetary(
+        string='مجموع الضريبة فقط',
+        currency_field='company_currency_id',
+        compute='_compute_sales_totals', store=True
+    )
+    partial_sales = fields.Monetary(
+        string='مبيعات مدفوع جزئي',
+        currency_field='company_currency_id',
+        compute='_compute_sales_totals', store=True
+    )
+    credit_sales = fields.Monetary(
+        string='مبيعات آجلة غير مدفوعة',
+        currency_field='company_currency_id',
+        compute='_compute_sales_totals', store=True
+    )
+    cash_refunds = fields.Monetary(
+        string='إرجاعات مسترد المبلغ',
+        currency_field='company_currency_id',
+        compute='_compute_refund_totals', store=True
+    )
+    credit_refunds = fields.Monetary(
+        string='إرجاعات غير مسترد المبلغ',
+        currency_field='company_currency_id',
+        compute='_compute_refund_totals', store=True
+    )
+    cash_box = fields.Monetary(
+        string='المقبوضات',
+        currency_field='company_currency_id',
+        compute='_compute_cash_box', store=True
+    )
+    total_cash = fields.Monetary(
+        string='إجمالي الصندوق',
+        currency_field='company_currency_id',
+        compute='_compute_total_cash', store=True
+    )
+    payment_method_totals = fields.Html(
+        string='المجاميع حسب طريقة الدفع',
+        compute='_compute_payment_method_totals',
+        sanitize=False
+    )
+
+    @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
+    def _compute_payment_method_totals(self):
+        for record in self:
+            payment_method_data = defaultdict(float)
+
+            cash_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                cash_domain.append(('branch_id', '=', record.branch_id.id))
+
+            cash_invoices = self.env['account.move'].search(cash_domain)
+            for invoice in cash_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name or 'غير محدد'
+                        payment_method_data[method_name] += payment.amount
+
+            # حساب المبيعات المدفوعة جزئياً حسب طريقة الدفع
+            partial_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'partial'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                partial_domain.append(('branch_id', '=', record.branch_id.id))
+
+            partial_invoices = self.env['account.move'].search(partial_domain)
+            for invoice in partial_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name or 'غير محدد'
+                        payment_method_data[method_name] += payment.amount
+
+            # حساب المقبوضات حسب طريقة الدفع
+            payment_domain = [
+                ('date', '>=', record.date_from),
+                ('date', '<=', record.date_to),
+                ('payment_type', '=', 'inbound'),
+                ('state', '=', 'posted'),
+                ('is_internal_transfer', '=', False),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                payment_domain.append(('branch_id', '=', record.branch_id.id))
+
+            payments = self.env['account.payment'].search(payment_domain)
+            for payment in payments:
+                if payment.payment_method_line_id:
+                    method_name = payment.payment_method_line_id.name or 'غير محدد'
+                    payment_method_data[method_name] += payment.amount
+
+            # تحويل البيانات إلى نص لعرضها
+            result = []
+            for method, amount in sorted(payment_method_data.items()):
+                if amount:
+                    formatted_amount = format(amount, '.2f')
+                    result.append(f"{method}: {formatted_amount} {record.company_currency_id.symbol}")
+
+            record.payment_method_totals = "\n".join(result) if result else "لا توجد مدفوعات"
+
+    @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
+    def _compute_sales_totals(self):
+        for record in self:
+            # حساب المبيعات النقدية (مدفوع بالكامل في نفس التاريخ)
+            cash_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                cash_domain.append(('branch_id', '=', record.branch_id.id))
+            cash_invoices = self.env['account.move'].search(cash_domain)
+            record.cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+            record.total_tax = sum(invoice.amount_tax for invoice in cash_invoices)
+
+            # حساب المبيعات المدفوعة جزئياً (نعرض المبلغ المدفوع فقط)
+            partial_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'partial'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                partial_domain.append(('branch_id', '=', record.branch_id.id))
+            partial_invoices = self.env['account.move'].search(partial_domain)
+            record.partial_sales = sum(invoice.amount_total - invoice.amount_residual for invoice in partial_invoices)
+
+            # حساب المبيعات الآجلة (غير مدفوع)
+            credit_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'not_paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                credit_domain.append(('branch_id', '=', record.branch_id.id))
+            credit_invoices = self.env['account.move'].search(credit_domain)
+            record.credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+
+    @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
+    def _compute_refund_totals(self):
+        for record in self:
+            # حساب المرتجعات النقدية (مدفوع)
+            cash_refund_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_refund'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                cash_refund_domain.append(('branch_id', '=', record.branch_id.id))
+            cash_refunds = self.env['account.move'].search(cash_refund_domain)
+            record.cash_refunds = sum(refund.amount_untaxed for refund in cash_refunds)
+
+            # حساب مرتجعات الآجل (غير مدفوع)
+            credit_refund_domain = [
+                ('invoice_date', '>=', record.date_from),
+                ('invoice_date', '<=', record.date_to),
+                ('move_type', '=', 'out_refund'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'not_paid'),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                credit_refund_domain.append(('branch_id', '=', record.branch_id.id))
+            credit_refunds = self.env['account.move'].search(credit_refund_domain)
+            record.credit_refunds = sum(refund.amount_untaxed for refund in credit_refunds)
+
+    @api.depends('date_from', 'date_to', 'company_id', 'branch_id')
+    def _compute_cash_box(self):
+        for record in self:
+            # حساب المقبوضات (الدفعات)
+            payment_domain = [
+                ('date', '>=', record.date_from),
+                ('date', '<=', record.date_to),
+                ('payment_type', '=', 'inbound'),
+                ('state', '=', 'posted'),
+                ('is_internal_transfer', '=', False),
+                ('company_id', '=', record.company_id.id)
+            ]
+            if record.branch_id:
+                payment_domain.append(('branch_id', '=', record.branch_id.id))
+            payments = self.env['account.payment'].search(payment_domain)
+            record.cash_box = sum(payment.amount for payment in payments)
+
+    @api.depends('cash_sales', 'partial_sales', 'cash_refunds', 'cash_box')
+    def _compute_total_cash(self):
+        for record in self:
+            record.total_cash = record.cash_box - record.cash_refunds
+
+    @api.onchange('date_from')
+    def _onchange_date_from(self):
+        if self.date_from and not self.date_to:
+            self.date_to = self.date_from
+
+    @api.constrains('date_from', 'date_to')
+    def _check_dates(self):
+        for record in self:
+            if record.date_from and record.date_to and record.date_from > record.date_to:
+                raise models.ValidationError("تاريخ البداية يجب أن يكون قبل تاريخ النهاية")
+
+    def action_view_cash_sales(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('move_type', '=', 'out_invoice'),
+            ('state', '=', 'posted'),
+            ('payment_state', '=', 'paid'),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
+        action['context'] = {
+            'search_default_invoice': 1,
+            'create': False
+        }
+        return action
+
+    def action_view_partial_sales(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('move_type', '=', 'out_invoice'),
+            ('state', '=', 'posted'),
+            ('payment_state', '=', 'partial'),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
+        action['context'] = {
+            'search_default_invoice': 1,
+            'create': False
+        }
+        return action
+
+    def action_view_credit_sales(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('move_type', '=', 'out_invoice'),
+            ('state', '=', 'posted'),
+            ('payment_state', '=', 'not_paid'),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
+        action['context'] = {
+            'search_default_invoice': 1,
+            'create': False
+        }
+        return action
+
+    def action_view_cash_refunds(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_out_refund_type').read()[0]
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('move_type', '=', 'out_refund'),
+            ('state', '=', 'posted'),
+            ('payment_state', '=', 'paid'),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
+        action['context'] = {
+            'search_default_refund': 1,
+            'create': False
+        }
+        return action
+
+    def action_view_credit_refunds(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_out_refund_type').read()[0]
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('move_type', '=', 'out_refund'),
+            ('state', '=', 'posted'),
+            ('payment_state', '=', 'not_paid'),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
+        action['context'] = {
+            'search_default_refund': 1,
+            'create': False
+        }
+        return action
+
+    def action_view_cash_box(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_account_payments').read()[0]
+        domain = [
+            ('date', '>=', self.date_from),
+            ('date', '<=', self.date_to),
+            ('payment_type', '=', 'inbound'),
+            ('state', '=', 'posted'),
+            ('is_internal_transfer', '=', False),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_id:
+            domain.append(('branch_id', '=', self.branch_id.id))
+        action['domain'] = domain
+        action['context'] = {
+            'default_payment_type': 'inbound',
+            'create': False
+        }
+        return action
+
+    def generate_sales_collection_report(self):
+        """إنشاء تقرير Excel للمبيعات والتحصيل"""
+        # إنشاء كتاب Excel
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+        worksheet = workbook.add_worksheet('المبيعات والتحصيل')
+
+        # تنسيقات الخلايا
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'bg_color': '#4472C4',
+            'font_color': 'white',
+            'border': 1,
+            'font_size': 12
+        })
+
+        currency_format = workbook.add_format({
+            'num_format': '#,##0.00',
+            'border': 1,
+            'align': 'right'
+        })
+
+        text_format = workbook.add_format({
+            'border': 1,
+            'align': 'right'
+        })
+
+        # عناوين الأعمدة
+        headers = [
+            'الفرع',
+            'المبيعات النقدية (قبل الضريبة + الضريبة)',
+            'التحصيل من العملاء',
+            'إجمالي الكاش الوارد',
+            'صافي المبيعات الآجلة',
+            'إجمالي المبيعات'
+        ]
+
+        # تحديد عرض الأعمدة
+        worksheet.set_column(0, 0, 30)  # عمود الفرع
+        worksheet.set_column(1, 5, 25)  # الأعمدة الرقمية
+
+        # كتابة العناوين
+        for col, header in enumerate(headers):
+            worksheet.write(0, col, header, header_format)
+
+        # جمع البيانات
+        branch_ids = self.branch_id and [self.branch_id.id] or self.env['res.branch'].search([]).ids
+
+        row = 1
+        for branch in self.env['res.branch'].browse(branch_ids):
+            # البحث عن سجلات الملخص للفرع الحالي
+            domain = [
+                ('date_from', '>=', self.date_from),
+                ('date_to', '<=', self.date_to),
+                ('branch_id', '=', branch.id),
+                ('company_id', '=', self.company_id.id)
+            ]
+
+            summaries = self.search(domain)
+
+            if not summaries:
+                continue
+
+            # حساب المجاميع
+            cash_sales = sum(summaries.mapped('cash_sales'))
+            total_tax = sum(summaries.mapped('total_tax'))
+            cash_box = sum(summaries.mapped('cash_box'))
+            credit_sales = sum(summaries.mapped('credit_sales'))
+
+            # حساب الأعمدة المطلوبة
+            col1 = branch.name
+            col2 = cash_sales + total_tax
+            col3 = col2 - cash_box
+            col4 = self._compute_total_cash_methods(summaries)
+            col5 = credit_sales
+            col6 = col2 + col5
+
+            # كتابة البيانات
+            worksheet.write(row, 0, col1, text_format)
+            worksheet.write(row, 1, col2, currency_format)
+            worksheet.write(row, 2, col3, currency_format)
+            worksheet.write(row, 3, col4, currency_format)
+            worksheet.write(row, 4, col5, currency_format)
+            worksheet.write(row, 5, col6, currency_format)
+
+            row += 1
+
+        # إضافة المجموع الكلي
+        if row > 1:
+            worksheet.write(row, 0, 'الإجمالي', header_format)
+            for col in range(1, 6):
+                worksheet.write_formula(row, col,
+                                        f'=SUM({xlsxwriter.utility.xl_col_to_name(col)}2:{xlsxwriter.utility.xl_col_to_name(col)}{row})',
+                                        currency_format)
+
+        # إغلاق الكتاب وحفظه
+        workbook.close()
+        output.seek(0)
+
+        # إرجاع الملف
+        return {
+            'file_name': f"تقرير_المبيعات_والتحصيل_{datetime.now().strftime('%Y-%m-%d')}.xlsx",
+            'file_content': output.read(),
+            'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        }
+
+    def _compute_total_cash_methods(self, summaries):
+        """حساب إجمالي الكاش الوارد باستثناء طرق السداد المحددة"""
+        total = 0.0
+        excluded_methods = ['شبكة', 'حوالة']  # طرق السداد المستثناة
+
+        for summary in summaries:
+            # تحليل محتوى payment_method_totals
+            if not summary.payment_method_totals:
+                continue
+
+            # تحليل HTML للحصول على طرق الدفع والمبالغ
+            soup = BeautifulSoup(summary.payment_method_totals, 'html.parser')
+            lines = soup.get_text().split('\n')
+
+            for line in lines:
+                if ':' in line:
+                    method, amount = line.split(':', 1)
+                    method = method.strip()
+                    amount = amount.strip().split()[0]
+
+                    # استبعاد طرق السداد المحددة
+                    if not any(excluded in method for excluded in excluded_methods):
+                        try:
+                            total += float(amount.replace(',', ''))
+                        except ValueError:
+                            continue
+        return total
+
+    def action_generate_excel_report(self):
+        """إجراء لإنشاء وتنزيل التقرير"""
+        report_data = self.generate_sales_collection_report()
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/web/content/?model=daily.sales.summary&id=%s&filename_field=file_name&field=file_content&download=true&filename=%s' % (
+                self.id, report_data['file_name']),
+            'target': 'self',
+        }
