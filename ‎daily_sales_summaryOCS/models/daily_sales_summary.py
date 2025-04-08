@@ -378,13 +378,120 @@ class DailySalesSummary(models.Model):
         }
         return action
 
+    # def generate_sales_collection_report(self):
+    #     """إنشاء تقرير Excel للمبيعات والتحصيل"""
+    #     # إنشاء كتاب Excel
+    #     output = io.BytesIO()
+    #     workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+    #     worksheet = workbook.add_worksheet('المبيعات والتحصيل')
+
+    #     # تنسيقات الخلايا
+    #     header_format = workbook.add_format({
+    #         'bold': True,
+    #         'align': 'center',
+    #         'valign': 'vcenter',
+    #         'bg_color': '#4472C4',
+    #         'font_color': 'white',
+    #         'border': 1,
+    #         'font_size': 12
+    #     })
+
+    #     currency_format = workbook.add_format({
+    #         'num_format': '#,##0.00',
+    #         'border': 1,
+    #         'align': 'right'
+    #     })
+
+    #     text_format = workbook.add_format({
+    #         'border': 1,
+    #         'align': 'right'
+    #     })
+
+    #     # عناوين الأعمدة
+    #     headers = [
+    #         'الفرع',
+    #         'المبيعات النقدية (قبل الضريبة + الضريبة)',
+    #         'التحصيل من العملاء',
+    #         'إجمالي الكاش الوارد',
+    #         'صافي المبيعات الآجلة',
+    #         'إجمالي المبيعات'
+    #     ]
+
+    #     # تحديد عرض الأعمدة
+    #     worksheet.set_column(0, 0, 30)  # عمود الفرع
+    #     worksheet.set_column(1, 5, 25)  # الأعمدة الرقمية
+
+    #     # كتابة العناوين
+    #     for col, header in enumerate(headers):
+    #         worksheet.write(0, col, header, header_format)
+
+    #     # جمع البيانات
+    #     branch_ids = self.branch_id and [self.branch_id.id] or self.env['res.branch'].search([]).ids
+
+    #     row = 1
+    #     for branch in self.env['res.branch'].browse(branch_ids):
+    #         # البحث عن سجلات الملخص للفرع الحالي
+    #         domain = [
+    #             ('date_from', '>=', self.date_from),
+    #             ('date_to', '<=', self.date_to),
+    #             ('branch_id', '=', branch.id),
+    #             ('company_id', '=', self.company_id.id)
+    #         ]
+
+    #         summaries = self.search(domain)
+
+    #         if not summaries:
+    #             continue
+
+    #         # حساب المجاميع
+    #         cash_sales = sum(summaries.mapped('cash_sales'))
+    #         total_tax = sum(summaries.mapped('total_tax'))
+    #         cash_box = sum(summaries.mapped('cash_box'))
+    #         credit_sales = sum(summaries.mapped('credit_sales'))
+
+    #         # حساب الأعمدة المطلوبة
+    #         col1 = branch.name
+    #         col2 = cash_sales + total_tax
+    #         col3 = col2 - cash_box
+    #         col4 = self._compute_total_cash_methods(summaries)
+    #         col5 = credit_sales
+    #         col6 = col2 + col5
+
+    #         # كتابة البيانات
+    #         worksheet.write(row, 0, col1, text_format)
+    #         worksheet.write(row, 1, col2, currency_format)
+    #         worksheet.write(row, 2, col3, currency_format)
+    #         worksheet.write(row, 3, col4, currency_format)
+    #         worksheet.write(row, 4, col5, currency_format)
+    #         worksheet.write(row, 5, col6, currency_format)
+
+    #         row += 1
+
+    #     # إضافة المجموع الكلي
+    #     if row > 1:
+    #         worksheet.write(row, 0, 'الإجمالي', header_format)
+    #         for col in range(1, 6):
+    #             worksheet.write_formula(row, col,
+    #                                     f'=SUM({xlsxwriter.utility.xl_col_to_name(col)}2:{xlsxwriter.utility.xl_col_to_name(col)}{row})',
+    #                                     currency_format)
+
+    #     # إغلاق الكتاب وحفظه
+    #     workbook.close()
+    #     output.seek(0)
+
+    #     # إرجاع الملف
+    #     return {
+    #         'file_name': f"تقرير_المبيعات_والتحصيل_{datetime.now().strftime('%Y-%m-%d')}.xlsx",
+    #         'file_content': output.read(),
+    #         'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    #     }
     def generate_sales_collection_report(self):
         """إنشاء تقرير Excel للمبيعات والتحصيل"""
         # إنشاء كتاب Excel
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         worksheet = workbook.add_worksheet('المبيعات والتحصيل')
-
+    
         # تنسيقات الخلايا
         header_format = workbook.add_format({
             'bold': True,
@@ -395,41 +502,61 @@ class DailySalesSummary(models.Model):
             'border': 1,
             'font_size': 12
         })
-
+    
         currency_format = workbook.add_format({
             'num_format': '#,##0.00',
             'border': 1,
             'align': 'right'
         })
-
+    
         text_format = workbook.add_format({
             'border': 1,
             'align': 'right'
         })
-
+    
+        total_format = workbook.add_format({
+            'bold': True,
+            'num_format': '#,##0.00',
+            'border': 1,
+            'align': 'right',
+            'bg_color': '#D9E1F2'
+        })
+    
         # عناوين الأعمدة
         headers = [
             'الفرع',
-            'المبيعات النقدية (قبل الضريبة + الضريبة)',
+            'المبيعات النقدية (قبل الضريبة)',
+            'الضريبة',
+            'إجمالي المبيعات النقدية',
             'التحصيل من العملاء',
             'إجمالي الكاش الوارد',
             'صافي المبيعات الآجلة',
             'إجمالي المبيعات'
         ]
-
+    
         # تحديد عرض الأعمدة
         worksheet.set_column(0, 0, 30)  # عمود الفرع
-        worksheet.set_column(1, 5, 25)  # الأعمدة الرقمية
-
+        worksheet.set_column(1, 7, 20)  # الأعمدة الرقمية
+    
         # كتابة العناوين
         for col, header in enumerate(headers):
             worksheet.write(0, col, header, header_format)
-
+    
         # جمع البيانات
         branch_ids = self.branch_id and [self.branch_id.id] or self.env['res.branch'].search([]).ids
-
+        branches = self.env['res.branch'].browse(branch_ids)
+    
+        # متغيرات لتخزين الإجماليات
+        total_cash_sales = 0
+        total_tax = 0
+        total_cash_with_tax = 0
+        total_collection = 0
+        total_cash_in = 0
+        total_credit = 0
+        total_sales = 0
+    
         row = 1
-        for branch in self.env['res.branch'].browse(branch_ids):
+        for branch in branches:
             # البحث عن سجلات الملخص للفرع الحالي
             domain = [
                 ('date_from', '>=', self.date_from),
@@ -437,55 +564,64 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id),
                 ('company_id', '=', self.company_id.id)
             ]
-
+    
             summaries = self.search(domain)
-
+    
             if not summaries:
                 continue
-
-            # حساب المجاميع
-            cash_sales = sum(summaries.mapped('cash_sales'))
-            total_tax = sum(summaries.mapped('total_tax'))
-            cash_box = sum(summaries.mapped('cash_box'))
-            credit_sales = sum(summaries.mapped('credit_sales'))
-
-            # حساب الأعمدة المطلوبة
-            col1 = branch.name
-            col2 = cash_sales + total_tax
-            col3 = col2 - cash_box
-            col4 = self._compute_total_cash_methods(summaries)
-            col5 = credit_sales
-            col6 = col2 + col5
-
-            # كتابة البيانات
-            worksheet.write(row, 0, col1, text_format)
-            worksheet.write(row, 1, col2, currency_format)
-            worksheet.write(row, 2, col3, currency_format)
-            worksheet.write(row, 3, col4, currency_format)
-            worksheet.write(row, 4, col5, currency_format)
-            worksheet.write(row, 5, col6, currency_format)
-
+    
+            # حساب المجاميع للفرع الحالي
+            branch_cash_sales = sum(summaries.mapped('cash_sales'))
+            branch_tax = sum(summaries.mapped('total_tax'))
+            branch_cash_with_tax = branch_cash_sales + branch_tax
+            branch_cash_box = sum(summaries.mapped('cash_box'))
+            branch_collection = branch_cash_with_tax - branch_cash_box
+            branch_cash_in = self._compute_total_cash_methods(summaries)
+            branch_credit = sum(summaries.mapped('credit_sales'))
+            branch_total = branch_cash_with_tax + branch_credit
+    
+            # تحديث الإجماليات
+            total_cash_sales += branch_cash_sales
+            total_tax += branch_tax
+            total_cash_with_tax += branch_cash_with_tax
+            total_collection += branch_collection
+            total_cash_in += branch_cash_in
+            total_credit += branch_credit
+            total_sales += branch_total
+    
+            # كتابة بيانات الفرع
+            worksheet.write(row, 0, branch.name, text_format)
+            worksheet.write(row, 1, branch_cash_sales, currency_format)
+            worksheet.write(row, 2, branch_tax, currency_format)
+            worksheet.write(row, 3, branch_cash_with_tax, currency_format)
+            worksheet.write(row, 4, branch_collection, currency_format)
+            worksheet.write(row, 5, branch_cash_in, currency_format)
+            worksheet.write(row, 6, branch_credit, currency_format)
+            worksheet.write(row, 7, branch_total, currency_format)
+    
             row += 1
-
-        # إضافة المجموع الكلي
+    
+        # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
         if row > 1:
             worksheet.write(row, 0, 'الإجمالي', header_format)
-            for col in range(1, 6):
-                worksheet.write_formula(row, col,
-                                        f'=SUM({xlsxwriter.utility.xl_col_to_name(col)}2:{xlsxwriter.utility.xl_col_to_name(col)}{row})',
-                                        currency_format)
-
+            worksheet.write(row, 1, total_cash_sales, total_format)
+            worksheet.write(row, 2, total_tax, total_format)
+            worksheet.write(row, 3, total_cash_with_tax, total_format)
+            worksheet.write(row, 4, total_collection, total_format)
+            worksheet.write(row, 5, total_cash_in, total_format)
+            worksheet.write(row, 6, total_credit, total_format)
+            worksheet.write(row, 7, total_sales, total_format)
+    
         # إغلاق الكتاب وحفظه
         workbook.close()
         output.seek(0)
-
+    
         # إرجاع الملف
         return {
             'file_name': f"تقرير_المبيعات_والتحصيل_{datetime.now().strftime('%Y-%m-%d')}.xlsx",
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
-
     def _compute_total_cash_methods(self, summaries):
         """حساب إجمالي الكاش الوارد باستثناء طرق السداد المحددة"""
         total = 0.0
