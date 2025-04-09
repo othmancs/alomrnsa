@@ -2,12 +2,13 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+_logger = logging.getLogger(__name__)
 import io
 import xlsxwriter
 import base64
 from datetime import datetime
 import logging
-_logger = logging.getLogger(__name__)
+
 
 class CustomerStatementReport(models.Model):
     _name = 'customer.statement.report'
@@ -48,28 +49,16 @@ class CustomerStatementReport(models.Model):
             account_move_line = self.env['account.move.line']
             Account = self.env['account.account']
             
-            # البحث عن حسابات المدينين والدائنين
+            # الطريقة الآمنة للبحث عن الحسابات
             recv_accounts = Account.search([
-                ('internal_type', '=', 'receivable'),
+                ('user_type_id.type', '=', 'receivable'),
                 ('company_id', '=', self.env.company.id)
             ])
             
             pay_accounts = Account.search([
-                ('internal_type', '=', 'payable'),
+                ('user_type_id.type', '=', 'payable'),
                 ('company_id', '=', self.env.company.id)
             ])
-            
-            if not recv_accounts and not pay_accounts:
-                # إذا لم توجد حسابات بالطريقة القديمة، نستخدم الطريقة البديلة
-                recv_accounts = Account.search([
-                    ('user_type_id.type', '=', 'receivable'),
-                    ('company_id', '=', self.env.company.id)
-                ])
-                
-                pay_accounts = Account.search([
-                    ('user_type_id.type', '=', 'payable'),
-                    ('company_id', '=', self.env.company.id)
-                ])
     
             domain = [
                 ('partner_id', '=', self.customer_id.id),
@@ -85,66 +74,85 @@ class CustomerStatementReport(models.Model):
             return sum(lines.mapped('balance'))
             
         except Exception as e:
-            _logger.error("خطأ في حساب الرصيد الافتتاحي: %s", str(e))
+            _logger.error("Error computing opening balance: %s", str(e))
             return 0.0
+
+    
         
     def _get_transactions(self):
         """ جلب جميع الحركات في الفترة المحددة """
-        account_move_line = self.env['account.move.line']
-        domain = [
-            ('partner_id', '=', self.customer_id.id),
-            ('date', '>=', self.date_from),
-            ('date', '<=', self.date_to),
-            ('account_id.internal_type', 'in', ['receivable', 'payable']),
-            ('parent_state', '=', 'posted')
-        ]
+        try:
+            account_move_line = self.env['account.move.line']
+            Account = self.env['account.account']
+            
+            # البحث عن حسابات المدينين والدائنين - الطريقة المتوافقة مع جميع الإصدارات
+            recv_accounts = Account.search([
+                ('user_type_id.type', '=', 'receivable'),
+                ('company_id', '=', self.env.company.id)
+            ])
+            
+            pay_accounts = Account.search([
+                ('user_type_id.type', '=', 'payable'),
+                ('company_id', '=', self.env.company.id)
+            ])
+    
+            domain = [
+                ('partner_id', '=', self.customer_id.id),
+                ('date', '>=', self.date_from),
+                ('date', '<=', self.date_to),
+                ('account_id', 'in', (recv_accounts + pay_accounts).ids),
+                ('parent_state', '=', 'posted')
+            ]
+            
+            if self.branch_id:
+                domain.append(('branch_id', '=', self.branch_id.id))
+                
+            if self.payment_status == 'paid':
+                domain.append(('full_reconcile_id', '!=', False))
+            elif self.payment_status == 'not_paid':
+                domain.append(('full_reconcile_id', '=', False))
+                
+            lines = account_move_line.search(domain, order='date, id asc')
+            
+            transactions = []
+            opening_balance = self._compute_opening_balance()
+            balance = opening_balance
+            
+            for line in lines:
+                balance += line.debit - line.credit
+                transactions.append({
+                    'date': line.date,
+                    'move_date': line.move_id.date,
+                    'name': line.name or line.move_id.name,
+                    'move_type': self._get_move_type(line),
+                    'reference': line.move_id.name,
+                    'debit': line.debit,
+                    'credit': line.credit,
+                    'balance': balance,
+                    'move_id': line.move_id.id,
+                    'payment_status': 'مسددة' if line.full_reconcile_id else 'غير مسددة',
+                    'journal': line.journal_id.name,
+                    'currency': line.currency_id.name or line.company_id.currency_id.name,
+                    'amount_currency': line.amount_currency if line.currency_id else line.balance
+                })
+                
+            return transactions
+            
+        except Exception as e:
+            _logger.error("Error getting transactions: %s", str(e))
+            raise UserError(_("حدث خطأ في جلب الحركات المالية. يرجى التحقق من السجلات."))
 
-        if self.branch_id:
-            domain.append(('branch_id', '=', self.branch_id.id))
-
-        if self.payment_status == 'paid':
-            domain.append(('full_reconcile_id', '!=', False))
-        elif self.payment_status == 'not_paid':
-            domain.append(('full_reconcile_id', '=', False))
-
-        lines = account_move_line.search(domain, order='date, id asc')
-
-        transactions = []
-        opening_balance = self._compute_opening_balance()
-        balance = opening_balance
-
-        for line in lines:
-            # حساب الرصيد الجديد
-            balance += line.debit - line.credit
-
-            # تحديد نوع الحركة
-            move_type = ''
-            if line.move_id.move_type in ('out_invoice', 'out_refund', 'out_receipt'):
-                move_type = 'فاتورة بيع' if line.move_id.move_type == 'out_invoice' else 'إشعار دائن'
-            elif line.move_id.move_type in ('in_invoice', 'in_refund', 'in_receipt'):
-                move_type = 'فاتورة شراء' if line.move_id.move_type == 'in_invoice' else 'إشعار مدين'
-            elif line.payment_id:
-                move_type = 'دفعة'
-            else:
-                move_type = 'قيد محاسبي'
-
-            transactions.append({
-                'date': line.date,
-                'move_date': line.move_id.date,
-                'name': line.name or line.move_id.name,
-                'move_type': move_type,
-                'reference': line.move_id.name,
-                'debit': line.debit,
-                'credit': line.credit,
-                'balance': balance,
-                'move_id': line.move_id.id,
-                'payment_status': 'مسددة' if line.full_reconcile_id else 'غير مسددة',
-                'journal': line.journal_id.name,
-                'currency': line.currency_id.name or line.company_id.currency_id.name,
-                'amount_currency': line.amount_currency if line.currency_id else line.balance
-            })
-
-        return transactions
+    def _get_move_type(self, line):
+        """ تحديد نوع الحركة """
+        move_type_map = {
+            'out_invoice': 'فاتورة بيع',
+            'out_refund': 'إشعار دائن',
+            'out_receipt': 'إيصال بيع',
+            'in_invoice': 'فاتورة شراء',
+            'in_refund': 'إشعار مدين',
+            'in_receipt': 'إيصال شراء'
+        }
+        return move_type_map.get(line.move_id.move_type, 'قيد محاسبي')
 
     def _compute_closing_balance(self, opening_balance, transactions):
         """ حساب الرصيد الختامي """
