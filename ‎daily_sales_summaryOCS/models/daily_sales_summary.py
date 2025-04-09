@@ -379,7 +379,7 @@ class DailySalesSummary(models.Model):
         return action
 
 
-     def generate_sales_collection_report(self):
+    def generate_sales_collection_report(self):
         """إنشاء تقرير Excel للمبيعات والتحصيل مع تفصيل طرق الدفع"""
         # إنشاء كتاب Excel
         output = io.BytesIO()
