@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_customer_statement_report,customer.statement.report,model_customer_statement_report,account.group_account_user,1,1,1,1
