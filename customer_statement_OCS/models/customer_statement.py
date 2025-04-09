@@ -47,59 +47,76 @@ class CustomerStatementReport(models.Model):
     def _compute_opening_balance(self):
         """ حساب الرصيد الافتتاحي قبل تاريخ البداية """
         try:
-            account_move_line = self.env['account.move.line']
-            Account = self.env['account.account']
+            # الحصول على الحسابات الافتراضية للشركة
+            company = self.env.company
+            receivable_account = company.account_default_recv_account_id
+            payable_account = company.account_default_pay_account_id
             
-            # الطريقة الأكثر توافقاً للبحث عن الحسابات
-            recv_accounts = Account.search([
-                ('user_type_id.type', '=', 'receivable'),
-                ('company_id', '=', self.env.company.id)
-            ])
+            # إذا لم تكن الحسابات معينة، نبحث عنها
+            if not receivable_account:
+                receivable_account = self.env['account.account'].search([
+                    ('internal_type', '=', 'receivable'),
+                    ('company_id', '=', company.id)
+                ], limit=1)
+                
+            if not payable_account:
+                payable_account = self.env['account.account'].search([
+                    ('internal_type', '=', 'payable'),
+                    ('company_id', '=', company.id)
+                ], limit=1)
             
-            pay_accounts = Account.search([
-                ('user_type_id.type', '=', 'payable'),
-                ('company_id', '=', self.env.company.id)
-            ])
-    
+            # التحقق من وجود الحسابات
+            if not receivable_account or not payable_account:
+                raise UserError(_("لم يتم العثور على الحسابات الأساسية (مدينين/دائنين)"))
+            
             domain = [
                 ('partner_id', '=', self.customer_id.id),
                 ('date', '<', self.date_from),
-                ('account_id', 'in', (recv_accounts + pay_accounts).ids),
+                ('account_id', 'in', [receivable_account.id, payable_account.id]),
                 ('parent_state', '=', 'posted')
             ]
             
             if self.branch_id:
                 domain.append(('branch_id', '=', self.branch_id.id))
                 
-            lines = account_move_line.search(domain)
+            lines = self.env['account.move.line'].search(domain)
             return sum(lines.mapped('balance'))
             
+        except UserError:
+            raise
         except Exception as e:
             _logger.error("Error computing opening balance: %s", str(e))
-            return 0.0    
+            return 0.0
             
+
     def _get_transactions(self):
         """ جلب جميع الحركات المالية بشكل آمن """
         try:
-            AccountMoveLine = self.env['account.move.line']
-            Account = self.env['account.account']
+            company = self.env.company
+            receivable_account = company.account_default_recv_account_id
+            payable_account = company.account_default_pay_account_id
             
-            # البحث عن حسابات المدينين والدائنين
-            recv_accounts = Account.search([
-                ('user_type_id.type', '=', 'receivable'),
-                ('company_id', '=', self.env.company.id)
-            ])
+            # البحث اليدوي إذا لم تكن الحسابات معينة
+            if not receivable_account:
+                receivable_account = self.env['account.account'].search([
+                    ('internal_type', '=', 'receivable'),
+                    ('company_id', '=', company.id)
+                ], limit=1)
+                
+            if not payable_account:
+                payable_account = self.env['account.account'].search([
+                    ('internal_type', '=', 'payable'),
+                    ('company_id', '=', company.id)
+                ], limit=1)
             
-            pay_accounts = Account.search([
-                ('user_type_id.type', '=', 'payable'),
-                ('company_id', '=', self.env.company.id)
-            ])
-    
+            if not receivable_account or not payable_account:
+                raise UserError(_("الحسابات الأساسية غير معينة (مدينين/دائنين)"))
+            
             domain = [
                 ('partner_id', '=', self.customer_id.id),
                 ('date', '>=', self.date_from),
                 ('date', '<=', self.date_to),
-                ('account_id', 'in', (recv_accounts + pay_accounts).ids),
+                ('account_id', 'in', [receivable_account.id, payable_account.id]),
                 ('parent_state', '=', 'posted')
             ]
             
@@ -111,7 +128,7 @@ class CustomerStatementReport(models.Model):
             elif self.payment_status == 'not_paid':
                 domain.append(('full_reconcile_id', '=', False))
             
-            lines = AccountMoveLine.search(domain, order='date, id asc')
+            lines = self.env['account.move.line'].search(domain, order='date, id asc')
             
             transactions = []
             opening_balance = self._compute_opening_balance()
@@ -123,11 +140,15 @@ class CustomerStatementReport(models.Model):
                     transactions.append({
                         'date': line.date,
                         'move_type': self._get_move_type(line),
+                        'name': line.name or line.move_id.name,
                         'reference': line.move_id.name,
                         'debit': line.debit,
                         'credit': line.credit,
                         'balance': balance,
-                        'payment_status': 'مسددة' if line.full_reconcile_id else 'غير مسددة'
+                        'payment_status': 'مسددة' if line.full_reconcile_id else 'غير مسددة',
+                        'journal': line.journal_id.name,
+                        'currency': line.currency_id.name or line.company_id.currency_id.name,
+                        'amount_currency': line.amount_currency if line.currency_id else line.balance
                     })
                 except Exception as e:
                     _logger.warning("خطأ في معالجة بند القيد %s: %s", line.id, str(e))
@@ -135,21 +156,28 @@ class CustomerStatementReport(models.Model):
                     
             return transactions
             
+        except UserError:
+            raise
         except Exception as e:
             _logger.exception("فشل غير متوقع في جلب الحركات")
-            raise UserError("حدث خطأ في جلب البيانات. يرجى التحقق من السجلات.")    
+            raise UserError(_("حدث خطأ في جلب البيانات. يرجى مراجعة سجلات النظام."))
+        
+        
+            
     def _get_move_type(self, line):
-        """ تحديد نوع الحركة """
+        """ تحديد نوع الحركة مع التعامل مع كافة الأنواع """
         move_type_map = {
             'out_invoice': 'فاتورة بيع',
             'out_refund': 'إشعار دائن',
             'out_receipt': 'إيصال بيع',
             'in_invoice': 'فاتورة شراء',
             'in_refund': 'إشعار مدين',
-            'in_receipt': 'إيصال شراء'
+            'in_receipt': 'إيصال شراء',
+            'entry': 'قيد محاسبي',
+            'out_debit': 'مدين صادر',
+            'in_debit': 'مدين وارد'
         }
-        return move_type_map.get(line.move_id.move_type, 'قيد محاسبي')
-
+        return move_type_map.get(line.move_id.move_type, 'حركة غير معروفة')
     def _compute_closing_balance(self, opening_balance, transactions):
         """ حساب الرصيد الختامي """
         if transactions:
