@@ -48,16 +48,16 @@ class CustomerStatementReport(models.Model):
         """ حساب الرصيد الافتتاحي قبل تاريخ البداية """
         try:
             account_move_line = self.env['account.move.line']
-            
-            # الطريقة المحدثة للبحث عن الحسابات
             Account = self.env['account.account']
+            
+            # الطريقة الأكثر توافقاً للبحث عن الحسابات
             recv_accounts = Account.search([
-                ('internal_type', '=', 'receivable'),
+                ('user_type_id.type', '=', 'receivable'),
                 ('company_id', '=', self.env.company.id)
             ])
             
             pay_accounts = Account.search([
-                ('internal_type', '=', 'payable'),
+                ('user_type_id.type', '=', 'payable'),
                 ('company_id', '=', self.env.company.id)
             ])
     
@@ -76,9 +76,8 @@ class CustomerStatementReport(models.Model):
             
         except Exception as e:
             _logger.error("Error computing opening balance: %s", str(e))
-            return 0.0
-    
-        
+            return 0.0    
+            
     def _get_transactions(self):
         """ جلب جميع الحركات المالية بشكل آمن """
         try:
@@ -87,12 +86,12 @@ class CustomerStatementReport(models.Model):
             
             # البحث عن حسابات المدينين والدائنين
             recv_accounts = Account.search([
-                ('internal_type', '=', 'receivable'),
+                ('user_type_id.type', '=', 'receivable'),
                 ('company_id', '=', self.env.company.id)
             ])
             
             pay_accounts = Account.search([
-                ('internal_type', '=', 'payable'),
+                ('user_type_id.type', '=', 'payable'),
                 ('company_id', '=', self.env.company.id)
             ])
     
@@ -138,9 +137,7 @@ class CustomerStatementReport(models.Model):
             
         except Exception as e:
             _logger.exception("فشل غير متوقع في جلب الحركات")
-            raise UserError("حدث خطأ في جلب البيانات. يرجى التحقق من السجلات.")
-
-    
+            raise UserError("حدث خطأ في جلب البيانات. يرجى التحقق من السجلات.")    
     def _get_move_type(self, line):
         """ تحديد نوع الحركة """
         move_type_map = {
