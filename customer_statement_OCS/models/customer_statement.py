@@ -81,67 +81,70 @@ class CustomerStatementReport(models.Model):
     
         
     def _get_transactions(self):
-        """ جلب جميع الحركات في الفترة المحددة """
+            """ جلب جميع الحركات المالية بشكل آمن """
         try:
-            account_move_line = self.env['account.move.line']
-            Account = self.env['account.account']
+            # 1. الحصول على نموذج بنود القيود
+            AccountMoveLine = self.env['account.move.line']
             
-            # البحث عن حسابات المدينين والدائنين - الطريقة المتوافقة مع جميع الإصدارات
-            recv_accounts = Account.search([
-                ('user_type_id.type', '=', 'receivable'),
-                ('company_id', '=', self.env.company.id)
-            ])
+            # 2. البحث عن حسابات المدينين والدائنين (طريقة متوافقة مع جميع الإصدارات)
+            account_types = self.env['account.account.type']
+            receivable_type = account_types.search([('type', '=', 'receivable')], limit=1)
+            payable_type = account_types.search([('type', '=', 'payable')], limit=1)
             
-            pay_accounts = Account.search([
-                ('user_type_id.type', '=', 'payable'),
-                ('company_id', '=', self.env.company.id)
-            ])
-    
+            # 3. بناء الاستعلام
             domain = [
                 ('partner_id', '=', self.customer_id.id),
                 ('date', '>=', self.date_from),
                 ('date', '<=', self.date_to),
-                ('account_id', 'in', (recv_accounts + pay_accounts).ids),
-                ('parent_state', '=', 'posted')
+                ('parent_state', '=', 'posted'),
+                ('account_id.user_type_id', 'in', [receivable_type.id, payable_type.id])
             ]
             
+            # 4. إضافة فلتر الفرع إذا كان محدداً
             if self.branch_id:
                 domain.append(('branch_id', '=', self.branch_id.id))
                 
+            # 5. تطبيق فلتر حالة السداد
             if self.payment_status == 'paid':
                 domain.append(('full_reconcile_id', '!=', False))
             elif self.payment_status == 'not_paid':
                 domain.append(('full_reconcile_id', '=', False))
-                
-            lines = account_move_line.search(domain, order='date, id asc')
             
+            # 6. جلب البيانات مع معالجة الأخطاء
+            try:
+                lines = AccountMoveLine.search(domain, order='date, id asc')
+            except Exception as search_error:
+                _logger.error("فشل في البحث عن بنود القيود: %s", str(search_error))
+                raise UserError("فشل في جلب البيانات من قاعدة البيانات")
+            
+            # 7. معالجة النتائج
             transactions = []
             opening_balance = self._compute_opening_balance()
             balance = opening_balance
             
             for line in lines:
-                balance += line.debit - line.credit
-                transactions.append({
-                    'date': line.date,
-                    'move_date': line.move_id.date,
-                    'name': line.name or line.move_id.name,
-                    'move_type': self._get_move_type(line),
-                    'reference': line.move_id.name,
-                    'debit': line.debit,
-                    'credit': line.credit,
-                    'balance': balance,
-                    'move_id': line.move_id.id,
-                    'payment_status': 'مسددة' if line.full_reconcile_id else 'غير مسددة',
-                    'journal': line.journal_id.name,
-                    'currency': line.currency_id.name or line.company_id.currency_id.name,
-                    'amount_currency': line.amount_currency if line.currency_id else line.balance
-                })
-                
+                try:
+                    balance += line.debit - line.credit
+                    transactions.append({
+                        'date': line.date,
+                        'move_type': self._get_move_type(line.move_id),
+                        'reference': line.move_id.name,
+                        'debit': line.debit,
+                        'credit': line.credit,
+                        'balance': balance,
+                        'payment_status': 'مسددة' if line.full_reconcile_id else 'غير مسددة'
+                    })
+                except Exception as line_error:
+                    _logger.warning("خطأ في معالجة بند القيد %s: %s", line.id, str(line_error))
+                    continue
+                    
             return transactions
             
+        except UserError:
+            raise  # نعيد أخطاء UserError كما هي
         except Exception as e:
-            _logger.error("Error getting transactions: %s", str(e))
-            raise UserError(_("حدث خطأ في جلب الحركات المالية. يرجى التحقق من السجلات."))
+            _logger.exception("فشل غير متوقع في جلب الحركات")
+            raise UserError("حدث خطأ غير متوقع. يرجى مراجعة سجلات النظام.")
 
     def _get_move_type(self, line):
         """ تحديد نوع الحركة """
