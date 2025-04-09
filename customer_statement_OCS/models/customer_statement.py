@@ -6,7 +6,8 @@ import io
 import xlsxwriter
 import base64
 from datetime import datetime
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class CustomerStatementReport(models.Model):
     _name = 'customer.statement.report'
@@ -40,39 +41,40 @@ class CustomerStatementReport(models.Model):
     excel_file = fields.Binary('ملف Excel')
     file_name = fields.Char('اسم الملف')
 
-    # def _compute_opening_balance(self):
-    #     """ حساب الرصيد الافتتاحي قبل تاريخ البداية """
-    #     account_move_line = self.env['account.move.line']
-    #     domain = [
-    #         ('partner_id', '=', self.customer_id.id),
-    #         ('date', '<', self.date_from),
-    #         ('account_id.internal_type', 'in', ['receivable', 'payable']),
-    #         ('parent_state', '=', 'posted')
-    #     ]
 
-    #     if self.branch_id:
-    #         domain.append(('branch_id', '=', self.branch_id.id))
-
-    #     lines = account_move_line.search(domain)
-    #     return sum(lines.mapped('balance'))
     def _compute_opening_balance(self):
         """ حساب الرصيد الافتتاحي قبل تاريخ البداية """
         try:
-            # المحاولة مع إعدادات الشركة الجديدة
-            company = self.env.company
-            recv_account = company.property_account_receivable_id
-            pay_account = company.property_account_payable_id
+            account_move_line = self.env['account.move.line']
+            Account = self.env['account.account']
             
-            if not recv_account or not pay_account:
-                # إذا لم توجد إعدادات، البحث عن الحسابات حسب النوع
-                Account = self.env['account.account']
-                recv_account = Account.search([('user_type_id.type', '=', 'receivable')], limit=1)
-                pay_account = Account.search([('user_type_id.type', '=', 'payable')], limit=1)
+            # البحث عن حسابات المدينين والدائنين
+            recv_accounts = Account.search([
+                ('internal_type', '=', 'receivable'),
+                ('company_id', '=', self.env.company.id)
+            ])
+            
+            pay_accounts = Account.search([
+                ('internal_type', '=', 'payable'),
+                ('company_id', '=', self.env.company.id)
+            ])
+            
+            if not recv_accounts and not pay_accounts:
+                # إذا لم توجد حسابات بالطريقة القديمة، نستخدم الطريقة البديلة
+                recv_accounts = Account.search([
+                    ('user_type_id.type', '=', 'receivable'),
+                    ('company_id', '=', self.env.company.id)
+                ])
                 
+                pay_accounts = Account.search([
+                    ('user_type_id.type', '=', 'payable'),
+                    ('company_id', '=', self.env.company.id)
+                ])
+    
             domain = [
                 ('partner_id', '=', self.customer_id.id),
                 ('date', '<', self.date_from),
-                ('account_id', 'in', (recv_account + pay_account).ids),
+                ('account_id', 'in', (recv_accounts + pay_accounts).ids),
                 ('parent_state', '=', 'posted')
             ]
             
@@ -83,9 +85,9 @@ class CustomerStatementReport(models.Model):
             return sum(lines.mapped('balance'))
             
         except Exception as e:
-            # تسجيل الخطأ في سجلات النظام
-            _logger.error("Error computing opening balance: %s", str(e))
+            _logger.error("خطأ في حساب الرصيد الافتتاحي: %s", str(e))
             return 0.0
+        
     def _get_transactions(self):
         """ جلب جميع الحركات في الفترة المحددة """
         account_move_line = self.env['account.move.line']
