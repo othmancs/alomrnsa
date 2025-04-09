@@ -82,7 +82,7 @@ class CustomerStatementReport(models.Model):
         
     def _get_transactions(self):
             """ جلب جميع الحركات المالية بشكل آمن """
-        try:
+            try:
             # 1. الحصول على نموذج بنود القيود
             AccountMoveLine = self.env['account.move.line']
             
