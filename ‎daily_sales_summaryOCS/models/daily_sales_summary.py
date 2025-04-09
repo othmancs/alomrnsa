@@ -450,7 +450,7 @@ class DailySalesSummary(models.Model):
         # إضافة الأعمدة المعدلة
         base_headers.extend([
             'إجمالي المقبوضات',
-            'إجمالي المبيعات إلى مقبوضات الفرع',
+            'مقبوضات',
             'صافي المبيعات الآجلة',
             'إجمالي المبيعات'
         ])
@@ -541,7 +541,7 @@ class DailySalesSummary(models.Model):
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
             ])
-            branch_total_receipts = sum(payment.amount for payment in payments) - branch_cash_refunds + branch_partial_sales
+            branch_total_receipts = sum(payment.amount for payment in payments) - branch_cash_refunds 
     
             # حساب إجمالي المبيعات إلى مقبوضات الفرع (المعادلة الجديدة)
             branch_sales_to_receipts = branch_total_receipts - branch_cash_with_tax
