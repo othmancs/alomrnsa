@@ -454,7 +454,7 @@ class DailySalesSummary(models.Model):
             domain = [
                 ('date_from', '>=', self.date_from),
                 ('date_to', '<=', self.date_to),
-                ('branch_id', '=', branch.id),
+                ('branch_ids', 'in', [branch.id]),  # التعديل هنا: استخدام branch_ids بدلاً من branch_id
                 ('company_id', '=', self.company_id.id)
             ]
     
