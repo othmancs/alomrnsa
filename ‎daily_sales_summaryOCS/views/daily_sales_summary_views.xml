@@ -6,7 +6,7 @@
         <field name="model">daily.sales.summary</field>
         <field name="arch" type="xml">
             <search>
-                <field name="branch_id"/>
+                    <field name="branch_ids" widget="many2many_tags" options="{'no_create': True}"/>
                 <field name="date_from" string="من تاريخ"/>
                 <field name="date_to" string="إلى تاريخ"/>
                 <filter string="هذا الشهر" name="current_month"
@@ -31,7 +31,7 @@
             <tree>
                 <field name="date_from" string="من تاريخ"/>
                 <field name="date_to" string="إلى تاريخ"/>
-                <field name="branch_id"/>
+                <field name="branch_ids"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                 <field name="total_tax" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
@@ -67,7 +67,7 @@
                     <group>
                         <field name="date_from" string="من تاريخ"/>
                         <field name="date_to" string="إلى تاريخ"/>
-                        <field name="branch_id"/>
+                        <field name="branch_ids"/>
                         <field name="company_id" groups="base.group_multi_company"/>
                     </group>
 
