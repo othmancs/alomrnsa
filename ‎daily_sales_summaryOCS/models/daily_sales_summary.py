@@ -386,69 +386,55 @@ class DailySalesSummary(models.Model):
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         worksheet = workbook.add_worksheet('المبيعات والتحصيل')
     
-        # تنسيقات الخلايا
+        # تنسيقات الخلايا (نفس التنسيقات السابقة)
         title_format = workbook.add_format({
-            'bold': True,
-            'align': 'center',
-            'valign': 'vcenter',
-            'font_size': 16,
-            'font_color': '#4472C4'
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'font_size': 16, 'font_color': '#4472C4'
         })
-        
         subtitle_format = workbook.add_format({
-            'bold': True,
-            'align': 'center',
-            'valign': 'vcenter',
-            'font_size': 14
+            'bold': True, 'align': 'center', 'valign': 'vcenter', 'font_size': 14
         })
-        
         date_format = workbook.add_format({
-            'align': 'center',
-            'valign': 'vcenter',
-            'font_size': 12
+            'align': 'center', 'valign': 'vcenter', 'font_size': 12
         })
-        
         header_format = workbook.add_format({
-            'bold': True,
-            'align': 'center',
-            'valign': 'vcenter',
-            'bg_color': '#4472C4',
-            'font_color': 'white',
-            'border': 1,
-            'font_size': 12
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1, 'font_size': 12
         })
-    
         currency_format = workbook.add_format({
-            'num_format': '#,##0.00',
-            'border': 1,
-            'align': 'right'
+            'num_format': '#,##0.00', 'border': 1, 'align': 'right'
         })
-    
-        text_format = workbook.add_format({
-            'border': 1,
-            'align': 'right'
-        })
-    
+        text_format = workbook.add_format({'border': 1, 'align': 'right'})
         total_format = workbook.add_format({
-            'bold': True,
-            'num_format': '#,##0.00',
-            'border': 1,
-            'align': 'right',
-            'bg_color': '#D9E1F2'
+            'bold': True, 'num_format': '#,##0.00', 'border': 1,
+            'align': 'right', 'bg_color': '#D9E1F2'
         })
     
         # كتابة عنوان التقرير
         worksheet.merge_range('A1:H1', self.company_id.name, title_format)
         worksheet.merge_range('A2:H2', 'تقرير حركة المبيعات اليومية', subtitle_format)
         worksheet.merge_range('A3:H3', f'من {self.date_from} إلى {self.date_to}', date_format)
-        
-        # إضافة سطر فارغ بعد العنوان
         worksheet.write(3, 0, '', workbook.add_format())
     
-        # الحصول على جميع طرق الدفع المستخدمة في الفترة
-        payment_methods = self.env['account.payment.method.line'].search([])
-        payment_method_names = [method.name for method in payment_methods]
+        # الحصول على جميع طرق الدفع الفريدة المستخدمة في الفترة
+        payment_methods = set()
+        domain = [
+            ('invoice_date', '>=', self.date_from),
+            ('invoice_date', '<=', self.date_to),
+            ('move_type', '=', 'out_invoice'),
+            ('state', '=', 'posted'),
+            ('payment_state', '=', 'paid'),
+            ('company_id', '=', self.company_id.id)
+        ]
+        if self.branch_ids:
+            domain.append(('branch_id', 'in', self.branch_ids.ids))
         
+        invoices = self.env['account.move'].search(domain)
+        for invoice in invoices:
+            for payment in invoice._get_reconciled_payments():
+                if payment.payment_method_line_id:
+                    payment_methods.add(payment.payment_method_line_id.name or 'غير محدد')
+    
         # عناوين الأعمدة الأساسية
         base_headers = [
             'الفرع',
@@ -457,8 +443,9 @@ class DailySalesSummary(models.Model):
             'إجمالي المبيعات النقدية'
         ]
         
-        # إضافة أعمدة لطرق الدفع
-        for method in payment_method_names:
+        # إضافة أعمدة لطرق الدفع الفريدة
+        payment_methods = sorted(payment_methods)
+        for method in payment_methods:
             base_headers.append(f'المبيعات ب{method}')
         
         # إضافة الأعمدة الأخرى
@@ -473,7 +460,7 @@ class DailySalesSummary(models.Model):
         worksheet.set_column(0, 0, 30)  # عمود الفرع
         worksheet.set_column(1, len(base_headers)-1, 20)  # الأعمدة الرقمية
     
-        # كتابة العناوين (في الصف 4 بعد العناوين)
+        # كتابة العناوين
         for col, header in enumerate(base_headers):
             worksheet.write(4, col, header, header_format)
     
@@ -491,9 +478,7 @@ class DailySalesSummary(models.Model):
             'credit': 0,
             'total_sales': 0
         }
-        
-        # إضافة إجماليات لطرق الدفع
-        for method in payment_method_names:
+        for method in payment_methods:
             totals[f'method_{method}'] = 0
     
         row = 5  # بدء البيانات من الصف 5 بعد العناوين
@@ -509,8 +494,8 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ])
             
-            # حساب المبيعات حسب طريقة الدفع
-            method_totals = {method: 0.0 for method in payment_method_names}
+            # حساب المبيعات حسب طريقة الدفع (مجمعة حسب الاسم)
+            method_totals = {method: 0.0 for method in payment_methods}
             
             for invoice in cash_invoices:
                 for payment in invoice._get_reconciled_payments():
@@ -569,7 +554,6 @@ class DailySalesSummary(models.Model):
             totals['credit'] += branch_credit
             totals['total_sales'] += branch_total
             
-            # تحديث إجماليات طرق الدفع
             for method, amount in method_totals.items():
                 totals[f'method_{method}'] += amount
     
@@ -581,7 +565,7 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, branch_cash_with_tax, currency_format); col += 1
             
             # كتابة مبيعات كل طريقة دفع
-            for method in payment_method_names:
+            for method in payment_methods:
                 worksheet.write(row, col, method_totals.get(method, 0.0), currency_format)
                 col += 1
             
@@ -600,8 +584,7 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, totals['tax'], total_format); col += 1
             worksheet.write(row, col, totals['cash_with_tax'], total_format); col += 1
             
-            # كتابة إجماليات طرق الدفع
-            for method in payment_method_names:
+            for method in payment_methods:
                 worksheet.write(row, col, totals.get(f'method_{method}', 0.0), total_format)
                 col += 1
             
@@ -614,7 +597,6 @@ class DailySalesSummary(models.Model):
         workbook.close()
         output.seek(0)
     
-        # إرجاع الملف
         return {
             'file_name': f"تقرير_المبيعات_اليومية_{self.date_from}_إلى_{self.date_to}.xlsx",
             'file_content': output.read(),
