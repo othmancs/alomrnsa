@@ -379,221 +379,233 @@ class DailySalesSummary(models.Model):
         return action
 
 
-def generate_sales_collection_report(self):
-    """إنشاء تقرير Excel للمبيعات والتحصيل مع تفصيل طرق الدفع"""
-    # إنشاء كتاب Excel
-    output = io.BytesIO()
-    workbook = xlsxwriter.Workbook(output, {'in_memory': True})
-    worksheet = workbook.add_worksheet('المبيعات والتحصيل')
+    def generate_sales_collection_report(self):
+        """إنشاء تقرير Excel للمبيعات والتحصيل مع تفصيل طرق الدفع"""
+        # إنشاء كتاب Excel
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+        worksheet = workbook.add_worksheet('المبيعات والتحصيل')
 
-    # تنسيقات الخلايا
-    header_format = workbook.add_format({
-        'bold': True,
-        'align': 'center',
-        'valign': 'vcenter',
-        'bg_color': '#4472C4',
-        'font_color': 'white',
-        'border': 1,
-        'font_size': 12
-    })
+        # تنسيقات الخلايا
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'bg_color': '#4472C4',
+            'font_color': 'white',
+            'border': 1,
+            'font_size': 12
+        })
 
-    currency_format = workbook.add_format({
-        'num_format': '#,##0.00',
-        'border': 1,
-        'align': 'right'
-    })
+        currency_format = workbook.add_format({
+            'num_format': '#,##0.00',
+            'border': 1,
+            'align': 'right'
+        })
 
-    text_format = workbook.add_format({
-        'border': 1,
-        'align': 'right'
-    })
+        text_format = workbook.add_format({
+            'border': 1,
+            'align': 'right'
+        })
 
-    total_format = workbook.add_format({
-        'bold': True,
-        'num_format': '#,##0.00',
-        'border': 1,
-        'align': 'right',
-        'bg_color': '#D9E1F2'
-    })
+        total_format = workbook.add_format({
+            'bold': True,
+            'num_format': '#,##0.00',
+            'border': 1,
+            'align': 'right',
+            'bg_color': '#D9E1F2'
+        })
 
-    # الحصول على جميع طرق الدفع الممكنة من الفواتير المدفوعة
-    payment_methods = self.env['account.payment.method.line'].search([])
-    payment_method_names = [method.name for method in payment_methods]
+        # الحصول على جميع طرق الدفع الممكنة من الفواتير المدفوعة
+        payment_methods = self.env['account.payment.method.line'].search([])
+        payment_method_names = [method.name for method in payment_methods]
 
-    # عناوين الأعمدة
-    headers = [
-        'الفرع',
-        'المبيعات النقدية (قبل الضريبة)',
-        'الضريبة',
-        'إجمالي المبيعات النقدية',
-    ]
-    
-    # إضافة أعمدة طرق الدفع بعد عمود إجمالي المبيعات النقدية
-    headers.extend(payment_method_names)
-    
-    # إضافة الأعمدة الأخرى بعد أعمدة طرق الدفع
-    headers.extend([
-        'التحصيل من العملاء',
-        'إجمالي الكاش الوارد',
-        'صافي المبيعات الآجلة',
-        'إجمالي المبيعات'
-    ])
-
-    # تحديد عرض الأعمدة
-    worksheet.set_column(0, 0, 30)  # عمود الفرع
-    worksheet.set_column(1, len(headers)-1, 20)  # الأعمدة الرقمية
-
-    # كتابة العناوين
-    for col, header in enumerate(headers):
-        worksheet.write(0, col, header, header_format)
-
-    # جمع البيانات لكل فرع على حدة
-    branch_ids = self.branch_ids.ids if self.branch_ids else self.env['res.branch'].search([]).ids
-    branches = self.env['res.branch'].browse(branch_ids)
-
-    # متغيرات لتخزين الإجماليات
-    totals = {
-        'cash_sales': 0,
-        'tax': 0,
-        'cash_with_tax': 0,
-    }
-    
-    # إضافة إجماليات لكل طريقة دفع
-    for method in payment_method_names:
-        totals[method] = 0
+        # عناوين الأعمدة
+        headers = [
+            'الفرع',
+            'المبيعات النقدية (قبل الضريبة)',
+            'الضريبة',
+            'إجمالي المبيعات النقدية',
+        ]
         
-    totals.update({
-        'collection': 0,
-        'cash_in': 0,
-        'credit': 0,
-        'total_sales': 0
-    })
-
-    row = 1
-    for branch in branches:
-        # حساب المبيعات النقدية للفرع
-        cash_invoices = self.env['account.move'].search([
-            ('invoice_date', '>=', self.date_from),
-            ('invoice_date', '<=', self.date_to),
-            ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'paid'),
-            ('company_id', '=', self.company_id.id),
-            ('branch_id', '=', branch.id)
+        # إضافة أعمدة طرق الدفع
+        headers.extend(payment_method_names)
+        
+        # إضافة الأعمدة الأخرى
+        headers.extend([
+            'التحصيل من العملاء',
+            'إجمالي الكاش الوارد',
+            'صافي المبيعات الآجلة',
+            'إجمالي المبيعات'
         ])
-        
-        branch_cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
-        branch_tax = sum(invoice.amount_tax for invoice in cash_invoices)
-        branch_cash_with_tax = branch_cash_sales + branch_tax
 
-        # حساب المبيعات حسب طريقة الدفع
-        payment_method_totals = {method: 0.0 for method in payment_method_names}
+        # تحديد عرض الأعمدة
+        worksheet.set_column(0, 0, 30)  # عمود الفرع
+        worksheet.set_column(1, len(headers)-1, 20)  # الأعمدة الرقمية
+
+        # كتابة العناوين
+        for col, header in enumerate(headers):
+            worksheet.write(0, col, header, header_format)
+
+        # جمع البيانات لكل فرع
+        branch_ids = self.branch_ids.ids if self.branch_ids else self.env['res.branch'].search([]).ids
+        branches = self.env['res.branch'].browse(branch_ids)
+
+        # متغيرات لتخزين الإجماليات
+        totals = {
+            'cash_sales': 0,
+            'tax': 0,
+            'cash_with_tax': 0,
+        }
         
-        for invoice in cash_invoices:
-            payments = invoice._get_reconciled_payments()
+        # إضافة إجماليات لكل طريقة دفع
+        for method in payment_method_names:
+            totals[method] = 0
+            
+        totals.update({
+            'collection': 0,
+            'cash_in': 0,
+            'credit': 0,
+            'total_sales': 0
+        })
+
+        row = 1
+        for branch in branches:
+            # حساب المبيعات النقدية للفرع
+            cash_invoices = self.env['account.move'].search([
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ])
+            
+            branch_cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+            branch_tax = sum(invoice.amount_tax for invoice in cash_invoices)
+            branch_cash_with_tax = branch_cash_sales + branch_tax
+
+            # حساب المبيعات حسب طريقة الدفع
+            payment_method_totals = {method: 0.0 for method in payment_method_names}
+            
+            for invoice in cash_invoices:
+                payments = invoice._get_reconciled_payments()
+                for payment in payments:
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name
+                        if method_name in payment_method_totals:
+                            payment_method_totals[method_name] += payment.amount
+
+            # حساب التحصيل من العملاء للفرع
+            payments = self.env['account.payment'].search([
+                ('date', '>=', self.date_from),
+                ('date', '<=', self.date_to),
+                ('payment_type', '=', 'inbound'),
+                ('state', '=', 'posted'),
+                ('is_internal_transfer', '=', False),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ])
+            
+            # حساب إجمالي الكاش الوارد
+            branch_cash_in = 0.0
+            excluded_methods = ['شبكة', 'حوالة']
             for payment in payments:
                 if payment.payment_method_line_id:
-                    method_name = payment.payment_method_line_id.name
-                    if method_name in payment_method_totals:
-                        payment_method_totals[method_name] += payment.amount
-
-        # حساب التحصيل من العملاء للفرع
-        payments = self.env['account.payment'].search([
-            ('date', '>=', self.date_from),
-            ('date', '<=', self.date_to),
-            ('payment_type', '=', 'inbound'),
-            ('state', '=', 'posted'),
-            ('is_internal_transfer', '=', False),
-            ('company_id', '=', self.company_id.id),
-            ('branch_id', '=', branch.id)
-        ])
-        
-        # حساب إجمالي الكاش الوارد مع استثناء طرق السداد غير المرغوبة
-        branch_cash_in = 0.0
-        excluded_methods = ['شبكة', 'حوالة']
-        for payment in payments:
-            if payment.payment_method_line_id:
-                method_name = payment.payment_method_line_id.name or 'غير محدد'
-                if not any(excluded in method_name for excluded in excluded_methods):
-                    branch_cash_in += payment.amount
-        
-        branch_collection = branch_cash_with_tax - branch_cash_in
-
-        # حساب المبيعات الآجلة للفرع
-        credit_invoices = self.env['account.move'].search([
-            ('invoice_date', '>=', self.date_from),
-            ('invoice_date', '<=', self.date_to),
-            ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'not_paid'),
-            ('company_id', '=', self.company_id.id),
-            ('branch_id', '=', branch.id)
-        ])
-        branch_credit = sum(invoice.amount_untaxed for invoice in credit_invoices)
-
-        # إجمالي المبيعات للفرع
-        branch_total = branch_cash_with_tax + branch_credit
-
-        # تحديث الإجماليات
-        totals['cash_sales'] += branch_cash_sales
-        totals['tax'] += branch_tax
-        totals['cash_with_tax'] += branch_cash_with_tax
-        
-        for method in payment_method_names:
-            totals[method] += payment_method_totals.get(method, 0)
+                    method_name = payment.payment_method_line_id.name or 'غير محدد'
+                    if not any(excluded in method_name for excluded in excluded_methods):
+                        branch_cash_in += payment.amount
             
-        totals['collection'] += branch_collection
-        totals['cash_in'] += branch_cash_in
-        totals['credit'] += branch_credit
-        totals['total_sales'] += branch_total
+            branch_collection = branch_cash_with_tax - branch_cash_in
 
-        # كتابة بيانات الفرع
-        worksheet.write(row, 0, branch.name, text_format)
-        worksheet.write(row, 1, branch_cash_sales, currency_format)
-        worksheet.write(row, 2, branch_tax, currency_format)
-        worksheet.write(row, 3, branch_cash_with_tax, currency_format)
-        
-        # كتابة بيانات طرق الدفع
-        for col, method in enumerate(payment_method_names, start=4):
-            worksheet.write(row, col, payment_method_totals.get(method, 0), currency_format)
-        
-        # كتابة الأعمدة الأخرى
-        other_cols_start = 4 + len(payment_method_names)
-        worksheet.write(row, other_cols_start, branch_collection, currency_format)
-        worksheet.write(row, other_cols_start + 1, branch_cash_in, currency_format)
-        worksheet.write(row, other_cols_start + 2, branch_credit, currency_format)
-        worksheet.write(row, other_cols_start + 3, branch_total, currency_format)
+            # حساب المبيعات الآجلة للفرع
+            credit_invoices = self.env['account.move'].search([
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'not_paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ])
+            branch_credit = sum(invoice.amount_untaxed for invoice in credit_invoices)
 
-        row += 1
+            # إجمالي المبيعات للفرع
+            branch_total = branch_cash_with_tax + branch_credit
 
-    # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
-    if row > 1:
-        worksheet.write(row, 0, 'الإجمالي', header_format)
-        worksheet.write(row, 1, totals['cash_sales'], total_format)
-        worksheet.write(row, 2, totals['tax'], total_format)
-        worksheet.write(row, 3, totals['cash_with_tax'], total_format)
-        
-        # كتابة إجماليات طرق الدفع
-        for col, method in enumerate(payment_method_names, start=4):
-            worksheet.write(row, col, totals.get(method, 0), total_format)
-        
-        # كتابة إجماليات الأعمدة الأخرى
-        other_cols_start = 4 + len(payment_method_names)
-        worksheet.write(row, other_cols_start, totals['collection'], total_format)
-        worksheet.write(row, other_cols_start + 1, totals['cash_in'], total_format)
-        worksheet.write(row, other_cols_start + 2, totals['credit'], total_format)
-        worksheet.write(row, other_cols_start + 3, totals['total_sales'], total_format)
+            # تحديث الإجماليات
+            totals['cash_sales'] += branch_cash_sales
+            totals['tax'] += branch_tax
+            totals['cash_with_tax'] += branch_cash_with_tax
+            
+            for method in payment_method_names:
+                totals[method] += payment_method_totals.get(method, 0)
+                
+            totals['collection'] += branch_collection
+            totals['cash_in'] += branch_cash_in
+            totals['credit'] += branch_credit
+            totals['total_sales'] += branch_total
 
-    # إغلاق الكتاب وحفظه
-    workbook.close()
-    output.seek(0)
+            # كتابة بيانات الفرع
+            worksheet.write(row, 0, branch.name, text_format)
+            worksheet.write(row, 1, branch_cash_sales, currency_format)
+            worksheet.write(row, 2, branch_tax, currency_format)
+            worksheet.write(row, 3, branch_cash_with_tax, currency_format)
+            
+            # كتابة بيانات طرق الدفع
+            for col, method in enumerate(payment_method_names, start=4):
+                worksheet.write(row, col, payment_method_totals.get(method, 0), currency_format)
+            
+            # كتابة الأعمدة الأخرى
+            other_cols_start = 4 + len(payment_method_names)
+            worksheet.write(row, other_cols_start, branch_collection, currency_format)
+            worksheet.write(row, other_cols_start + 1, branch_cash_in, currency_format)
+            worksheet.write(row, other_cols_start + 2, branch_credit, currency_format)
+            worksheet.write(row, other_cols_start + 3, branch_total, currency_format)
 
-    # إرجاع الملف
-    return {
-        'file_name': f"تقرير_المبيعات_والتحصيل_{datetime.now().strftime('%Y-%m-%d')}.xlsx",
-        'file_content': output.read(),
-        'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    }
+            row += 1
+
+        # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
+        if row > 1:
+            worksheet.write(row, 0, 'الإجمالي', header_format)
+            worksheet.write(row, 1, totals['cash_sales'], total_format)
+            worksheet.write(row, 2, totals['tax'], total_format)
+            worksheet.write(row, 3, totals['cash_with_tax'], total_format)
+            
+            # كتابة إجماليات طرق الدفع
+            for col, method in enumerate(payment_method_names, start=4):
+                worksheet.write(row, col, totals.get(method, 0), total_format)
+            
+            # كتابة إجماليات الأعمدة الأخرى
+            other_cols_start = 4 + len(payment_method_names)
+            worksheet.write(row, other_cols_start, totals['collection'], total_format)
+            worksheet.write(row, other_cols_start + 1, totals['cash_in'], total_format)
+            worksheet.write(row, other_cols_start + 2, totals['credit'], total_format)
+            worksheet.write(row, other_cols_start + 3, totals['total_sales'], total_format)
+
+        # إغلاق الكتاب وحفظه
+        workbook.close()
+        output.seek(0)
+
+        # إنشاء سجل مرفق للتقرير
+        report_name = f"تقرير_المبيعات_والتحصيل_{datetime.now().strftime('%Y-%m-%d')}.xlsx"
+        attachment = self.env['ir.attachment'].create({
+            'name': report_name,
+            'type': 'binary',
+            'datas': base64.b64encode(output.read()),
+            'res_model': self._name,
+            'res_id': self.id,
+            'mimetype': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        })
+
+        # إرجاع إجراء لتنزيل الملف
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content/{attachment.id}?download=true',
+            'target': 'self',
+        }
+
     # def generate_sales_collection_report(self):
     #     """إنشاء تقرير Excel للمبيعات والتحصيل"""
     #     # إنشاء كتاب Excel
