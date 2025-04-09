@@ -673,7 +673,7 @@ class DailySalesSummary(models.Model):
         })
         header_format = workbook.add_format({
             'bold': True, 'align': 'center', 'valign': 'vcenter',
-            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1, 'font_size': 12,'rotation': 90
+            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1, 'font_size': 12, 'text_wrap': True
         })
         currency_format = workbook.add_format({
             'num_format': '#,##0.00', 'border': 1, 'align': 'right'
