@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- تقرير كشف حساب العميل PDF -->
+    <template id="report_customer_statement">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <!-- رأس التقرير -->
+                    <div class="header text-center">
+                        <div style="margin-bottom: 20px;">
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 80px;"/>
+                        </div>
+                        <h2 style="margin-top: 10px;">كشف حساب العميل</h2>
+                        <h3 style="color: #666;"><span t-esc="data['customer']['name']"/></h3>
+                        <div style="border-bottom: 1px solid #eee; margin: 10px 0;"></div>
+                    </div>
+
+                    <!-- معلومات العميل والفترة -->
+                    <div class="row" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div style="width: 48%;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 40%; font-weight: bold;">الرقم المرجعي:</td>
+                                    <td style="width: 60%;"><span t-esc="data['customer']['ref']"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">الرقم الضريبي:</td>
+                                    <td><span t-esc="data['customer']['vat']"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">الهاتف:</td>
+                                    <td><span t-esc="data['customer']['phone']"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">البريد الإلكتروني:</td>
+                                    <td><span t-esc="data['customer']['email']"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="width: 48%;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 40%; font-weight: bold;">الفرع:</td>
+                                    <td style="width: 60%;"><span t-esc="data['customer']['branch']"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">من تاريخ:</td>
+                                    <td><span t-esc="format_date(data['date_from'])"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">إلى تاريخ:</td>
+                                    <td><span t-esc="format_date(data['date_to'])"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">تاريخ الطباعة:</td>
+                                    <td><span t-esc="format_date(data['current_date'])"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- الرصيد الافتتاحي -->
+                    <div style="background-color: #f8f9fa; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+                        <h4 style="margin: 0; color: #333;">
+                            الرصيد الافتتاحي:
+                            <span t-esc="format_amount(data['opening_balance'], data['company']['currency_id'])"/>
+                        </h4>
+                    </div>
+
+                    <!-- جدول الحركات المالية -->
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                        <thead>
+                            <tr style="background-color: #4472C4; color: white;">
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">التاريخ</th>
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">نوع الحركة</th>
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">الوصف</th>
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">المرجع</th>
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">مدين</th>
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">دائن</th>
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">الرصيد</th>
+                                <th style="padding: 8px; border: 1px solid #ddd; text-align: center;">الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="data['transactions']" t-as="t">
+                                <tr style="border-bottom: 1px solid #ddd;">
+                                    <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">
+                                        <span t-esc="format_date(t['date'])"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">
+                                        <span t-esc="t['move_type']"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd;">
+                                        <span t-esc="t['name']"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">
+                                        <a t-attf-href="#"
+                                           t-att-data-move-id="t['move_id']"
+                                           class="o_report_move_link"
+                                           style="color: #4472C4; text-decoration: underline;"
+                                           t-esc="t['reference']"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">
+                                        <span t-esc="format_amount(t['debit'], data['company']['currency_id'])"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">
+                                        <span t-esc="format_amount(t['credit'], data['company']['currency_id'])"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">
+                                        <span t-esc="format_amount(t['balance'], data['company']['currency_id'])"/>
+                                    </td>
+                                    <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">
+                                        <span t-esc="t['payment_status']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <!-- الرصيد الختامي -->
+                    <div style="background-color: #f8f9fa; padding: 10px; margin-top: 15px; border-radius: 4px;">
+                        <h4 style="margin: 0; color: #333;">
+                            الرصيد الختامي:
+                            <span t-esc="format_amount(data['closing_balance'], data['company']['currency_id'])"/>
+                        </h4>
+                    </div>
+
+                    <!-- تذييل التقرير -->
+                    <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 10px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div style="width: 48%;">
+                                <p style="margin: 5px 0;"><strong>اسم الشركة:</strong> <span t-esc="company.name"/></p>
+                                <p style="margin: 5px 0;"><strong>الرقم الضريبي:</strong> <span t-esc="company.vat or '-'"/></p>
+                            </div>
+                            <div style="width: 48%; text-align: right;">
+                                <p style="margin: 5px 0;"><strong>المستخدم:</strong> <span t-esc="data['user']['name']"/></p>
+                                <p style="margin: 5px 0;"><strong>وقت الطباعة:</strong> <span t-esc="format_datetime(data['current_date'])"/></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- تعريف التقرير في النظام -->
+    <report
+        id="action_report_customer_statement"
+        name="customer_statement.report_customer_statement"
+        model="customer.statement.report"
+        report_type="qweb-pdf"
+        string="كشف حساب العميل"
+        paperformat="custom.paperformat_a4_vertical"
+        attachment_use="False"
+    />
+
+    <!-- تنسيق الورق -->
+    <record id="custom_paperformat_a4_vertical" model="report.paperformat">
+        <field name="name">A4 عمودي</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+</odoo>
