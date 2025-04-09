@@ -150,7 +150,6 @@
         model="customer.statement.report"
         report_type="qweb-pdf"
         string="كشف حساب العميل"
-        paperformat="custom.paperformat_a4_vertical"
         attachment_use="False"
     />
 
