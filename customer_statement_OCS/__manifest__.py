@@ -25,7 +25,7 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'customer_statement/static/src/js/customer_statement.js',
+            'customer_statement_OCS/static/src/js/customer_statement.js',
         ],
     },
     'license': 'LGPL-3',
