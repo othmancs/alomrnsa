@@ -40,22 +40,41 @@ class CustomerStatementReport(models.Model):
     excel_file = fields.Binary('ملف Excel')
     file_name = fields.Char('اسم الملف')
 
+    # def _compute_opening_balance(self):
+    #     """ حساب الرصيد الافتتاحي قبل تاريخ البداية """
+    #     account_move_line = self.env['account.move.line']
+    #     domain = [
+    #         ('partner_id', '=', self.customer_id.id),
+    #         ('date', '<', self.date_from),
+    #         ('account_id.internal_type', 'in', ['receivable', 'payable']),
+    #         ('parent_state', '=', 'posted')
+    #     ]
+
+    #     if self.branch_id:
+    #         domain.append(('branch_id', '=', self.branch_id.id))
+
+    #     lines = account_move_line.search(domain)
+    #     return sum(lines.mapped('balance'))
     def _compute_opening_balance(self):
         """ حساب الرصيد الافتتاحي قبل تاريخ البداية """
         account_move_line = self.env['account.move.line']
+        
+        # الحصول على حسابات المدينين والدائنين من الشركة
+        recv_account = self.env.company.account_default_recv_account_id
+        pay_account = self.env.company.account_default_pay_account_id
+        
         domain = [
             ('partner_id', '=', self.customer_id.id),
             ('date', '<', self.date_from),
-            ('account_id.internal_type', 'in', ['receivable', 'payable']),
+            ('account_id', 'in', (recv_account + pay_account).ids),
             ('parent_state', '=', 'posted')
         ]
-
+        
         if self.branch_id:
             domain.append(('branch_id', '=', self.branch_id.id))
-
+            
         lines = account_move_line.search(domain)
         return sum(lines.mapped('balance'))
-
     def _get_transactions(self):
         """ جلب جميع الحركات في الفترة المحددة """
         account_move_line = self.env['account.move.line']
