@@ -1,130 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-    <template id="purchase_order_custom_report">
-        <t t-call="web.html_container">
-            <t t-call="web.external_layout">
-                <div class="header" style="border-bottom: 1px solid black; padding-bottom: 10px;">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>
-                            <h1 t-field="company.name"/>
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <p style="margin-top: 15px;">
-                                <span t-field="company.street"/> <br/>
-                                <span t-field="company.city"/> <br/>
-                                <span t-field="company.phone"/> <br/>
-                                <span t-field="company.email"/>
-                            </p>
+        <template id="custom_purchase_report_template" name="Custom Purchase Report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="header" style="border-bottom: 1px solid black; padding-bottom: 10px;">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>
+                                <h1 t-field="company.name"/>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <p style="margin-top: 15px;">
+                                    <span t-field="company.street"/> <br/>
+                                    <span t-field="company.city"/> <br/>
+                                    <span t-field="company.phone"/> <br/>
+                                    <span t-field="company.email"/>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="mt-4" dir="rtl">
-                    <br/>
-                    <h2 t-if="o.state in ['draft', 'sent', 'to approve']" style="font-size:25px;">طلب عرض أسعار#
-                        <span t-field="o.name"/>
-                    </h2>
-                    <h2 t-if="o.state in ['purchase', 'done']" style="font-size:25px;">امر الشراء #
-                        <span t-field="o.name"/>
-                    </h2>
-                    <h2 t-if="o.state == 'cancel'" style="font-size:25px;">طلب الغاء امر الشراء #
-                        <span t-field="o.name"/>
-                    </h2>
-                </div>
+                    <div class="mt-4" dir="rtl">
+                        <br/>
+                        <h2 t-if="o.state in ['draft', 'sent', 'to approve']" style="font-size:25px;">طلب عرض أسعار#
+                            <span t-field="o.name"/>
+                        </h2>
+                        <h2 t-if="o.state in ['purchase', 'done']" style="font-size:25px;">امر الشراء #
+                            <span t-field="o.name"/>
+                        </h2>
+                        <h2 t-if="o.state == 'cancel'" style="font-size:25px;">طلب الغاء امر الشراء #
+                            <span t-field="o.name"/>
+                        </h2>
+                    </div>
 
-                <!-- جدول معلومات أمر الشراء -->
-                <table class="table table-bordered mt-4" style="width: 100%; border-collapse: collapse;">
-                    <tr>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2; width: 15%;">رقم أمر الشراء</th>
-                        <td style="border: 1px solid black; padding: 8px; width: 35%;"><span t-field="o.name"/></td>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2; width: 15%;">مندوب الشراء</th>
-                        <td style="border: 1px solid black; padding: 8px; width: 35%;"><span t-field="o.create_uid.name"/></td>
-                    </tr>
-                    <tr>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">الفرع</th>
-                        <td style="border: 1px solid black; padding: 8px;"><span t-field="o.picking_type_id.warehouse_id.name"/></td>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">التوصيل إلى</th>
-                        <td style="border: 1px solid black; padding: 8px;"><span t-field="o.picking_type_id.name"/></td>
-                    </tr>
-                    <tr>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">المورد</th>
-                        <td style="border: 1px solid black; padding: 8px;"><span t-field="o.partner_id.name"/></td>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">تاريخ أمر الشراء</th>
-                        <td style="border: 1px solid black; padding: 8px;"><span t-field="o.date_order"/></td>
-                    </tr>
-                    <tr>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">العملة</th>
-                        <td style="border: 1px solid black; padding: 8px;"><span t-field="o.currency_id.name"/></td>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">الحالة</th>
-                        <td style="border: 1px solid black; padding: 8px;">
-                            <span t-field="o.state" t-options='{"widget": "badge"}'/>
-                        </td>
-                    </tr>
-                </table>
-
-                <!-- جدول تفاصيل الأصناف -->
-                <h3 style="margin-top: 20px;">تفاصيل الأصناف</h3>
-                <table class="table table-bordered mt-2" style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background-color: #f2f2f2;">
-                            <th style="border: 1px solid black; padding: 8px; width: 5%;">مسلسل</th>
-                            <th style="border: 1px solid black; padding: 8px; width: 10%;">رقم الصنف</th>
-                            <th style="border: 1px solid black; padding: 8px; width: 30%;">الوصف</th>
-                            <th style="border: 1px solid black; padding: 8px; width: 10%;">الوحدة</th>
-                            <th style="border: 1px solid black; padding: 8px; width: 10%;">الكمية</th>
-                            <th style="border: 1px solid black; padding: 8px; width: 15%;">سعر التكلفة</th>
-                            <th style="border: 1px solid black; padding: 8px; width: 20%;">الإجمالي</th>
+                    <!-- Purchase Order Information Table -->
+                    <table class="table table-bordered mt-4" style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2; width: 15%;">رقم أمر الشراء</th>
+                            <td style="border: 1px solid black; padding: 8px; width: 35%;"><span t-field="o.name"/></td>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2; width: 15%;">مندوب الشراء</th>
+                            <td style="border: 1px solid black; padding: 8px; width: 35%;"><span t-field="o.create_uid.name"/></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="o.order_line" t-as="line">
-                            <tr>
-                                <td style="border: 1px solid black; padding: 8px; text-align: center;"><span t-esc="line_index + 1"/></td>
-                                <td style="border: 1px solid black; padding: 8px;"><span t-field="line.product_id.default_code"/></td>
-                                <td style="border: 1px solid black; padding: 8px;"><span t-field="line.name"/></td>
-                                <td style="border: 1px solid black; padding: 8px;"><span t-field="line.product_uom.name"/></td>
-                                <td style="border: 1px solid black; padding: 8px; text-align: center;"><span t-field="line.product_qty"/></td>
-                                <td style="border: 1px solid black; padding: 8px; text-align: right;"><span t-field="line.price_unit"/></td>
-                                <td style="border: 1px solid black; padding: 8px; text-align: right;"><span t-field="line.price_subtotal"/></td>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">الفرع</th>
+                            <td style="border: 1px solid black; padding: 8px;"><span t-field="o.picking_type_id.warehouse_id.name"/></td>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">التوصيل إلى</th>
+                            <td style="border: 1px solid black; padding: 8px;"><span t-field="o.picking_type_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">المورد</th>
+                            <td style="border: 1px solid black; padding: 8px;"><span t-field="o.partner_id.name"/></td>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">تاريخ أمر الشراء</th>
+                            <td style="border: 1px solid black; padding: 8px;"><span t-field="o.date_order"/></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">العملة</th>
+                            <td style="border: 1px solid black; padding: 8px;"><span t-field="o.currency_id.name"/></td>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">الحالة</th>
+                            <td style="border: 1px solid black; padding: 8px;">
+                                <span t-field="o.state" t-options='{"widget": "badge"}'/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Items Details Table -->
+                    <h3 style="margin-top: 20px;">تفاصيل الأصناف</h3>
+                    <table class="table table-bordered mt-2" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="border: 1px solid black; padding: 8px; width: 5%;">مسلسل</th>
+                                <th style="border: 1px solid black; padding: 8px; width: 10%;">رقم الصنف</th>
+                                <th style="border: 1px solid black; padding: 8px; width: 30%;">الوصف</th>
+                                <th style="border: 1px solid black; padding: 8px; width: 10%;">الوحدة</th>
+                                <th style="border: 1px solid black; padding: 8px; width: 10%;">الكمية</th>
+                                <th style="border: 1px solid black; padding: 8px; width: 15%;">سعر التكلفة</th>
+                                <th style="border: 1px solid black; padding: 8px; width: 20%;">الإجمالي</th>
                             </tr>
-                        </t>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.order_line" t-as="line">
+                                <tr>
+                                    <td style="border: 1px solid black; padding: 8px; text-align: center;"><span t-esc="line_index + 1"/></td>
+                                    <td style="border: 1px solid black; padding: 8px;"><span t-field="line.product_id.default_code"/></td>
+                                    <td style="border: 1px solid black; padding: 8px;"><span t-field="line.name"/></td>
+                                    <td style="border: 1px solid black; padding: 8px;"><span t-field="line.product_uom.name"/></td>
+                                    <td style="border: 1px solid black; padding: 8px; text-align: center;"><span t-field="line.product_qty"/></td>
+                                    <td style="border: 1px solid black; padding: 8px; text-align: right;"><span t-field="line.price_unit"/></td>
+                                    <td style="border: 1px solid black; padding: 8px; text-align: right;"><span t-field="line.price_subtotal"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
 
-                <!-- جدول الإجماليات -->
-                <table class="table table-bordered mt-4" style="width: 50%; margin-left: auto; border-collapse: collapse;">
-                    <tr>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">إجمالي الكمية</th>
-                        <td style="border: 1px solid black; padding: 8px; text-align: right;">
-                            <span t-esc="sum(line.product_qty for line in o.order_line)"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">تكلفة الشراء</th>
-                        <td style="border: 1px solid black; padding: 8px; text-align: right;">
-                            <span t-field="o.amount_total"/>
-                        </td>
-                    </tr>
-                </table>
+                    <!-- Totals Table -->
+                    <table class="table table-bordered mt-4" style="width: 50%; margin-left: auto; border-collapse: collapse;">
+                        <tr>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">إجمالي الكمية</th>
+                            <td style="border: 1px solid black; padding: 8px; text-align: right;">
+                                <span t-esc="sum(line.product_qty for line in o.order_line)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid black; padding: 8px; background-color: #f2f2f2;">تكلفة الشراء</th>
+                            <td style="border: 1px solid black; padding: 8px; text-align: right;">
+                                <span t-field="o.amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
 
-                <!-- تذييل الصفحة -->
-                <div style="margin-top: 50px;">
-                    <div style="width: 30%; float: right; text-align: center;">
-                        <p>توقيع المورد</p>
-                        <p>.................................</p>
+                    <!-- Footer -->
+                    <div style="margin-top: 50px;">
+                        <div style="width: 30%; float: right; text-align: center;">
+                            <p>توقيع المورد</p>
+                            <p>.................................</p>
+                        </div>
+                        <div style="width: 30%; float: left; text-align: center;">
+                            <p>توقيع المسؤول</p>
+                            <p>.................................</p>
+                        </div>
                     </div>
-                    <div style="width: 30%; float: left; text-align: center;">
-                        <p>توقيع المسؤول</p>
-                        <p>.................................</p>
-                    </div>
-                </div>
+                </t>
             </t>
-        </t>
-    </template>
-
-
+        </template>
 
         <report
             id="action_custom_purchase_report"
@@ -135,6 +133,5 @@
             template="purchase_order_report.custom_purchase_report_template"
             attachment_use="False"
         />
-
     </data>
 </odoo>
