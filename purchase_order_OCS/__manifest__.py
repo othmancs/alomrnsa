@@ -18,6 +18,7 @@
     'depends': ['purchase', 'account'],
     'data': [
         'reports/purchase_order_report.xml',
+        'reports/purchase_order_template.xml',
     ],
     'assets': {
         'web.report_assets_common': [
