@@ -7,24 +7,24 @@
         <field name="binding_model_id" ref="model_hr_contract"/>
         <field name="binding_type">report</field>
     </record>
+
     <template id="employee_contract_report">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
+                <t t-set="doc" t-value="docs"/>
                 <div class="page" style="font-family: 'Traditional Arabic'; direction: rtl; text-align: right;">
+
                     <div class="text-center" style="margin-bottom: 20px;">
                         <h2 style="font-size: 24px;">عقد عمل إلكتروني</h2>
-                        <p>رقم العقد: 
-                            <span t-esc="object.name or 'غير محدد'"/>
-                        </p>      
+                        <p>رقم العقد: <span t-esc="doc.name or 'غير محدد'"/></p>      
                         <p>بُرِم هذا العقد إلكترونيًا تحت إشراف وزارة الموارد البشرية والتنمية الاجتماعية، المملكة العربية السعودية</p>
-                        <p>تاريخ <span t-esc="object.get_arabic_date(object.date_start) or 'غير محدد'"/> م بين كل من:</p>
+                        <p>تاريخ <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/> م بين كل من:</p>
                     </div>
 
-                    <!-- الطرف الأول -->
                     <div style="margin-bottom: 30px; border: 1px solid #ddd; padding: 15px; border-radius: 5px;">
                         <h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">الطرف الأول:</h3>
                         <p>شركة/مؤسسة: 
-                            <span t-esc="(object.department_id and object.department_id.company_id and object.department_id.company_id.name) or 'غير محدد'"/>
+                            <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/>
                         </p>
                         <p>الرقم الوطني الموحد: 7001385363</p>
                         <p>رقم المنشأة: 1-52378</p>
@@ -36,61 +36,58 @@
                         <p>ويشار إليه فيما بعد بـ (الطرف الأول)</p>
                     </div>
 
-                    <!-- الطرف الثاني -->
                     <div style="margin-bottom: 30px; border: 1px solid #ddd; padding: 15px; border-radius: 5px;">
                         <h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">الطرف الثاني:</h3>
-                        <p>الاسم: <span t-esc="object.employee_id and object.employee_id.name or 'غير محدد'"/></p>
-                        <p>المهنة: <span t-esc="object.job_id and object.job_id.name or 'غير محدد'"/></p>
-                        <p>الرقم الوظيفي: <span t-esc="object.employee_id and object.employee_id.employee_no or 'غير محدد'"/></p>
-                        <p>الجنسية: <span t-esc="object.employee_id and object.employee_id.country_id and object.employee_id.country_id.name or 'غير محدد'"/></p>
-                        <p>تاريخ الميلاد: <span t-esc="object.employee_id and object.get_arabic_date(object.employee_id.birthday) or 'غير محدد'"/></p>
-                        <p>رقم الهوية: <span t-esc="object.employee_id and object.employee_id.identification_id or 'غير محدد'"/></p>
+                        <p>الاسم: <span t-esc="doc.employee_id and doc.employee_id.name or 'غير محدد'"/></p>
+                        <p>المهنة: <span t-esc="doc.job_id and doc.job_id.name or 'غير محدد'"/></p>
+                        <p>الرقم الوظيفي: <span t-esc="doc.employee_id and doc.employee_id.employee_no or 'غير محدد'"/></p>
+                        <p>الجنسية: <span t-esc="doc.employee_id and doc.employee_id.country_id and doc.employee_id.country_id.name or 'غير محدد'"/></p>
+                        <p>تاريخ الميلاد: <span t-esc="doc.employee_id and doc.get_arabic_date(doc.employee_id.birthday) or 'غير محدد'"/></p>
+                        <p>رقم الهوية: <span t-esc="doc.employee_id and doc.employee_id.identification_id or 'غير محدد'"/></p>
                         <p>نوع الهوية: إقامة</p>
-                        <p>تاريخ الانتهاء: <span t-esc="object.get_arabic_date(object.date_end) or 'غير محدد'"/></p>
+                        <p>تاريخ الانتهاء: <span t-esc="doc.get_arabic_date(doc.date_end) or 'غير محدد'"/></p>
                         <p>الجنس:
-                            <t t-if="object.employee_id and object.employee_id.gender == 'male'">ذكر</t>
-                            <t t-elif="object.employee_id and object.employee_id.gender == 'female'">أنثى</t>
+                            <t t-if="doc.employee_id and doc.employee_id.gender == 'male'">ذكر</t>
+                            <t t-elif="doc.employee_id and doc.employee_id.gender == 'female'">أنثى</t>
                             <t t-else="">غير محدد</t>
                         </p>
                         <p>الديانة: مسلم</p>
                         <p>الحالة الاجتماعية:
-                            <t t-if="object.employee_id and object.employee_id.marital == 'single'">أعزب</t>
-                            <t t-elif="object.employee_id and object.employee_id.marital == 'married'">متزوج</t>
-                            <t t-elif="object.employee_id and object.employee_id.marital == 'divorced'">مطلق</t>
-                            <t t-elif="object.employee_id and object.employee_id.marital == 'widower'">أرمل</t>
+                            <t t-if="doc.employee_id and doc.employee_id.marital == 'single'">أعزب</t>
+                            <t t-elif="doc.employee_id and doc.employee_id.marital == 'married'">متزوج</t>
+                            <t t-elif="doc.employee_id and doc.employee_id.marital == 'divorced'">مطلق</t>
+                            <t t-elif="doc.employee_id and doc.employee_id.marital == 'widower'">أرمل</t>
                             <t t-else="">غير محدد</t>
                         </p>
-                        <p>المؤهل العلمي: <span t-esc="object.employee_id and object.employee_id.certificate or 'غير محدد'"/></p>
-                        <p>التخصص: <span t-esc="object.employee_id and object.employee_id.study_field or 'غير محدد'"/></p>
-                        <p>البريد الإلكتروني: <span t-esc="object.employee_id and object.employee_id.work_email or 'غير محدد'"/></p>
-                        <p>رقم الجوال: <span t-esc="object.employee_id and object.employee_id.mobile_phone or 'غير محدد'"/></p>
+                        <p>المؤهل العلمي: <span t-esc="doc.employee_id and doc.employee_id.certificate or 'غير محدد'"/></p>
+                        <p>التخصص: <span t-esc="doc.employee_id and doc.employee_id.study_field or 'غير محدد'"/></p>
+                        <p>البريد الإلكتروني: <span t-esc="doc.employee_id and doc.employee_id.work_email or 'غير محدد'"/></p>
+                        <p>رقم الجوال: <span t-esc="doc.employee_id and doc.employee_id.mobile_phone or 'غير محدد'"/></p>
                         <p>ويشار إليه فيما بعد بـ (الطرف الثاني)</p>
                     </div>
 
-                    <!-- باقي بنود العقد -->
                     <div style="margin-bottom: 30px;">
                         <p>اتفق الطرفان على أن يعمل الطرف الثاني لدى الطرف الأول تحت إدارته وإشرافه بوظيفة 
-                            <span t-esc="object.job_id and object.job_id.name or 'غير محدد'"/> ومباشرة الأعمال التي يكلف بها بما يتناسب مع قدراته العملية والعلمية والفنية وفقًا لاحتياجات العمل.
+                            <span t-esc="doc.job_id and doc.job_id.name or 'غير محدد'"/> ومباشرة الأعمال التي يكلف بها بما يتناسب مع قدراته العملية والعلمية والفنية وفقًا لاحتياجات العمل.
                         </p>
 
                         <p>مدة هذا العقد 
-                            <span t-esc="object.get_contract_duration() or 'غير محدد'"/> سنة يبدأ من 
-                            <span t-esc="object.get_arabic_date(object.date_start) or 'غير محدد'"/> وينتهي في 
-                            <span t-esc="object.get_arabic_date(object.date_end) or 'غير محدد'"/>.
+                            <span t-esc="doc.get_contract_duration() or 'غير محدد'"/> سنة يبدأ من 
+                            <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/> وينتهي في 
+                            <span t-esc="doc.get_arabic_date(doc.date_end) or 'غير محدد'"/>.
                             علمًا بأن تاريخ مباشرة الطرف الثاني للعمل هو 
-                            <span t-esc="object.get_arabic_date(object.date_start) or 'غير محدد'"/>.
+                            <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/>.
                         </p>
 
                         <p>وتتجدد لمدة أو لمدد مماثلة ما لم يشعر أحد الطرفين الآخر خطيًا بعدم رغبته في التجديد قبل 
-                            <span t-esc="object.notice_days or 'غير محدد'"/> يومًا من تاريخ انتهاء العقد.
+                            <span t-esc="doc.notice_days or 'غير محدد'"/> يومًا من تاريخ انتهاء العقد.
                         </p>
 
                         <p>يخضع الطرف الثاني لفترة تجربة مدتها 
-                            <span t-esc="object.trial_period or 'غير محدد'"/> يومًا تبدأ من تاريخ مباشرته للعمل، ولا يدخل في حسابها الإجازات، ويحق للطرفين إنهاء العقد خلالها.
+                            <span t-esc="doc.trial_period or 'غير محدد'"/> يومًا تبدأ من تاريخ مباشرته للعمل، ولا يدخل في حسابها الإجازات، ويحق للطرفين إنهاء العقد خلالها.
                         </p>
                     </div>
 
-                    <!-- التذييل -->
                     <div class="text-center" style="margin-top: 50px; border-top: 1px solid #ddd; padding-top: 20px;">
                         <p>تم تصدير هذا العقد إلكترونيًا ويتاح الوصول له لكل من الطرفين عن طريق منصة قوى.</p>
                         <p>والله الموفق ،،، يعتبر هذا العقد معتمدًا من قبل وزارة الموارد البشرية والتنمية الاجتماعية</p>
