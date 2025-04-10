@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="view_hr_contract_employee_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.employee.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="after">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="print_contract" type="object" string="طباعة العقد الوظيفي" class="oe_stat_button" icon="fa-print"/>
+                    </div>
+                </xpath>
+
+                <xpath expr="//field[@name='wage']" position="after">
+                    <field name="notice_days"/>
+                    <field name="trial_period"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
