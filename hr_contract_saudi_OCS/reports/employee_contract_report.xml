@@ -86,15 +86,15 @@
                                         <span t-esc="doc.food_allowance or 'غير محدد'"/>
                                         ريال
                                     </p> -->
-                                    <p>- بدل سكن "كتابة" 
+<!--                                     <p>- بدل سكن "كتابة" 
                                         <span t-esc="doc.house_allowance or 'غير محدد'"/>
                                         ريال
-                                    </p>
-                                    <p>- تأمين سكن عائلي/أعزب</p>
+                                    </p> -->
+<!--                                     <p>- تأمين سكن عائلي/أعزب</p>
                                     <p>- بدل انتقال "كتابة" 
                                         <span t-esc="doc.transport_allowance or 'غير محدد'"/>
                                         ريال
-                                    </p>
+                                    </p> -->
 <!--                                     <p>- تأمين سيارة وسيلة نقل جماعية ويخضع ذلك للنظام الداخلي "لمؤسسة/الشركة"</p>
                                     <p>- مكافأة شهرية "كتابة" 
                                         <span t-esc="doc.monthly_bonus or 'غير محدد'"/>
@@ -131,13 +131,13 @@
 <!--                                     <p>- Food Allowance: SR. 
                                         <span t-esc="doc.food_allowance or 'غير محدد'"/>
                                     </p> -->
-                                    <p>- Housing Allowance: SR. 
+<!--                                     <p>- Housing Allowance: SR. 
                                         <span t-esc="doc.house_allowance or 'غير محدد'"/>
                                     </p>
                                     <p>- Housing: Family/Single</p>
                                     <p>- Transportation Allowance: SR. 
                                         <span t-esc="doc.transport_allowance or 'غير محدد'"/>
-                                    </p>
+                                    </p> -->
 <!--                                     <p>- Transportation: Vehicle/Group Transport as per company policy</p>
                                     <p>- Monthly Bonus: SR. 
                                         <span t-esc="doc.monthly_bonus or 'غير محدد'"/>
