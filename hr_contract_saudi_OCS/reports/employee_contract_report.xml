@@ -122,8 +122,8 @@
                                     </p>
 <!--                                     <p>- درجة الموظف حسب السلم المعتمد "كتابة" 
                                         <span t-esc="doc.employee_grade or 'غير محدد'"/>
-                                    </p>
-                                </td> -->
+                                    </p> -->
+                                </td> 
                                 <td style="width: 50%; padding: 5px; border: 1px solid #ddd; direction: ltr; text-align: left;">
                                     <p>- Basic Salary: SR. 
                                         <span t-esc="doc.wage or 'غير محدد'"/>
