@@ -7,7 +7,7 @@ class HrContract(models.Model):
 
     notice_days = fields.Integer(string="أيام الإشعار", default=30)
     trial_period = fields.Integer(string="فترة التجربة (أيام)", default=90)
-
+    work_location = fields.Char(string="Work Location")
     # def print_contract(self):
     #     return self.env.ref('hr_contract_saudi.report_employee_contract').report_action(self)
     def print_contract(self):
