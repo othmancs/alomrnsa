@@ -2,12 +2,13 @@
 <odoo>
     <data>
 
-        <!-- Report Template inside a record -->
+        <!-- Record to define the view -->
         <record id="custom_purchase_report_template" model="ir.ui.view">
             <field name="name">custom.purchase.report.template</field>
             <field name="model">purchase.order</field>
+            <field name="type">qweb</field>
             <field name="arch" type="xml">
-                <template id="custom_purchase_report_template">
+                <t t-name="purchase_order_report.custom_purchase_report_template">
                     <t t-call="web.html_container">
                         <t t-call="web.external_layout">
                             <!-- Header -->
@@ -131,7 +132,7 @@
                             </div>
                         </t>
                     </t>
-                </template>
+                </t>
             </field>
         </record>
 
