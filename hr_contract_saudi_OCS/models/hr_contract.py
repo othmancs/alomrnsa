@@ -12,13 +12,8 @@ class HrContract(models.Model):
     #     return self.env.ref('hr_contract_saudi.report_employee_contract').report_action(self)
     def print_contract(self):
         self.ensure_one()
-        return {
-            'type': 'ir.actions.report',
-            'report_name': 'hr_contract_saudi_OCS.employee_contract_report',
-            'model': 'hr.contract',
-            'report_type': 'qweb-pdf',
-            'context': {'active_model': 'hr.contract', 'active_id': self.id},
-        }
+        return self.env.ref('hr_contract_saudi_OCS.employee_contract_report').report_action(self)
+
         
     def get_contract_duration(self):
         for contract in self:
