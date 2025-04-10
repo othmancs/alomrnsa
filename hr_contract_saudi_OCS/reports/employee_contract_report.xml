@@ -82,10 +82,10 @@
                                         <span t-esc="doc.wage or 'غير محدد'"/>
                                         ريال
                                     </p>
-                                    <p>- بدل إعاشة "كتابة" 
+<!--                                     <p>- بدل إعاشة "كتابة" 
                                         <span t-esc="doc.food_allowance or 'غير محدد'"/>
                                         ريال
-                                    </p>
+                                    </p> -->
                                     <p>- بدل سكن "كتابة" 
                                         <span t-esc="doc.house_allowance or 'غير محدد'"/>
                                         ريال
@@ -95,23 +95,23 @@
                                         <span t-esc="doc.transport_allowance or 'غير محدد'"/>
                                         ريال
                                     </p>
-                                    <p>- تأمين سيارة وسيلة نقل جماعية ويخضع ذلك للنظام الداخلي "لمؤسسة/الشركة"</p>
+<!--                                     <p>- تأمين سيارة وسيلة نقل جماعية ويخضع ذلك للنظام الداخلي "لمؤسسة/الشركة"</p>
                                     <p>- مكافأة شهرية "كتابة" 
                                         <span t-esc="doc.monthly_bonus or 'غير محدد'"/>
                                         ريال
-                                    </p>
-                                    <p>- راتب إجازة مستحقة "كتابة" 
+                                    </p> -->
+<!--                                     <p>- راتب إجازة مستحقة "كتابة" 
                                         <span t-esc="doc.leave_salary or 'غير محدد'"/>
                                         ريال
-                                    </p>
-                                    <p>- قيمة تذكرة السفر 
+                                    </p> -->
+<!--                                     <p>- قيمة تذكرة السفر 
                                         <span t-esc="doc.ticket_value or 'غير محدد'"/>
                                         ريال
-                                    </p>
-                                    <p>- مكافأة نهاية الخدمة 
+                                    </p> -->
+<!--                                     <p>- مكافأة نهاية الخدمة 
                                         <span t-esc="doc.end_of_service or 'غير محدد'"/>
                                         ريال
-                                    </p>
+                                    </p> -->
                                     <p>- الإجمالي الشهري "رقما" 
                                         <span t-esc="doc.total_salary or 'غير محدد'"/>
                                         ريال
@@ -120,17 +120,17 @@
                                         <span t-esc="doc.total_salary_text or 'غير محدد'"/>
                                         ريال لا غير
                                     </p>
-                                    <p>- درجة الموظف حسب السلم المعتمد "كتابة" 
+<!--                                     <p>- درجة الموظف حسب السلم المعتمد "كتابة" 
                                         <span t-esc="doc.employee_grade or 'غير محدد'"/>
                                     </p>
-                                </td>
+                                </td> -->
                                 <td style="width: 50%; padding: 5px; border: 1px solid #ddd; direction: ltr; text-align: left;">
                                     <p>- Basic Salary: SR. 
                                         <span t-esc="doc.wage or 'غير محدد'"/>
                                     </p>
-                                    <p>- Food Allowance: SR. 
+<!--                                     <p>- Food Allowance: SR. 
                                         <span t-esc="doc.food_allowance or 'غير محدد'"/>
-                                    </p>
+                                    </p> -->
                                     <p>- Housing Allowance: SR. 
                                         <span t-esc="doc.house_allowance or 'غير محدد'"/>
                                     </p>
@@ -138,19 +138,19 @@
                                     <p>- Transportation Allowance: SR. 
                                         <span t-esc="doc.transport_allowance or 'غير محدد'"/>
                                     </p>
-                                    <p>- Transportation: Vehicle/Group Transport as per company policy</p>
+<!--                                     <p>- Transportation: Vehicle/Group Transport as per company policy</p>
                                     <p>- Monthly Bonus: SR. 
                                         <span t-esc="doc.monthly_bonus or 'غير محدد'"/>
-                                    </p>
-                                    <p>- Salary of Accrued Leave: SR. 
+                                    </p> -->
+<!--                                     <p>- Salary of Accrued Leave: SR. 
                                         <span t-esc="doc.leave_salary or 'غير محدد'"/>
-                                    </p>
-                                    <p>- Air Ticket Value: SR. 
+                                    </p> -->
+<!--                                     <p>- Air Ticket Value: SR. 
                                         <span t-esc="doc.ticket_value or 'غير محدد'"/>
                                     </p>
                                     <p>- End of Service Award: SR. 
                                         <span t-esc="doc.end_of_service or 'غير محدد'"/>
-                                    </p>
+                                    </p> -->
                                     <p>- Monthly Net: SR. 
                                         <span t-esc="doc.total_salary or 'غير محدد'"/>
                                         (SR 
