@@ -14,6 +14,240 @@
                 <t t-set="doc" t-value="docs"/>
                 <div class="page" style="font-family: 'Traditional Arabic'; direction: rtl; text-align: right;">
 
+                    <!-- العنوان الرئيسي -->
+                    <div class="text-center" style="margin-bottom: 20px;">
+                        <h2 style="font-size: 24px; font-weight: bold;">عقد عمل</h2>
+                        <p style="font-weight: bold;">EMPLOYMENT CONTRACT</p>
+                        <p>رقم العقد: <span t-esc="doc.name or 'غير محدد'"/></p>
+                    </div>
+
+                    <!-- الطرف الأول - الشركة -->
+                    <div style="margin-bottom: 20px;">
+                        <p style="font-weight: bold;">تم الاتفاق بين مؤسسة/شركة 
+                            <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/>
+                            وتعرف باسم مؤسسة/شركة
+                        </p>
+                        <p style="font-weight: bold;">This employment contract has been made by and between: 
+                            <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/>
+                        </p>
+                    </div>
+
+                    <!-- الطرف الثاني - الموظف -->
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="font-weight: bold;">وبين السيد/ 
+                            <span t-esc="doc.employee_id and doc.employee_id.name or 'غير محدد'"/>
+                            الجنسية 
+                            <span t-esc="doc.employee_id and doc.employee_id.country_id and doc.employee_id.country_id.name or 'غير محدد'"/>
+                            ويعرف فيما بعد بكلمة "الموظف".
+                        </h4>
+                        <p style="font-weight: bold;">MR. 
+                            <span t-esc="doc.employee_id and doc.employee_id.name or 'غير محدد'"/>
+                            National: 
+                            <span t-esc="doc.employee_id and doc.employee_id.country_id and doc.employee_id.country_id.name or 'غير محدد'"/>
+                            , hereinafter referred to as the Employee. Both parties have agreed on the following:
+                        </p>
+                    </div>
+
+                    <!-- البنود الرئيسية -->
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="font-weight: bold;">1- يوافق "الموظف" على أن يعمل لدى"مؤسسة/شركة" في وظيفة 
+                            <span t-esc="doc.job_id and doc.job_id.name or 'غير محدد'"/>
+                            أو أية وظيفة مشابهة لها وذلك في موقع "مؤسسة/شركة" الكائن في 
+                            <span t-esc="doc.work_location or 'الرياض'"/>
+                            أو في أي موقع آخر ينقل إليه.
+                        </h4>
+                        <p>1. The Employee shall work for 
+                            <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/>
+                            in the capacity as 
+                            <span t-esc="doc.job_id and doc.job_id.name or 'غير محدد'"/>
+                            or any other similar job, at the job site of 
+                            <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/>
+                            in 
+                            <span t-esc="doc.work_location or 'الرياض'"/>
+                            or any other site he may be transferred to.
+                        </p>
+                    </div>
+
+                    <!-- الراتب والمزايا -->
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="font-weight: bold;">2- يحصل "الموظف" مقابل عمله على الراتب والمزايا التالية:</h4>
+                        <p>2. The Employee shall receive salary and allowances as under:</p>
+                        
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr>
+                                <td style="width: 50%; padding: 5px; border: 1px solid #ddd;">
+                                    <p>- راتب أساسي "كتابة" 
+                                        <span t-esc="doc.wage or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- بدل إعاشة "كتابة" 
+                                        <span t-esc="doc.food_allowance or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- بدل سكن "كتابة" 
+                                        <span t-esc="doc.house_allowance or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- تأمين سكن عائلي/أعزب</p>
+                                    <p>- بدل انتقال "كتابة" 
+                                        <span t-esc="doc.transport_allowance or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- تأمين سيارة وسيلة نقل جماعية ويخضع ذلك للنظام الداخلي "لمؤسسة/الشركة"</p>
+                                    <p>- مكافأة شهرية "كتابة" 
+                                        <span t-esc="doc.monthly_bonus or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- راتب إجازة مستحقة "كتابة" 
+                                        <span t-esc="doc.leave_salary or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- قيمة تذكرة السفر 
+                                        <span t-esc="doc.ticket_value or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- مكافأة نهاية الخدمة 
+                                        <span t-esc="doc.end_of_service or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>- الإجمالي الشهري "رقما" 
+                                        <span t-esc="doc.total_salary or 'غير محدد'"/>
+                                        ريال
+                                    </p>
+                                    <p>"كتابة" 
+                                        <span t-esc="doc.total_salary_text or 'غير محدد'"/>
+                                        ريال لا غير
+                                    </p>
+                                    <p>- درجة الموظف حسب السلم المعتمد "كتابة" 
+                                        <span t-esc="doc.employee_grade or 'غير محدد'"/>
+                                    </p>
+                                </td>
+                                <td style="width: 50%; padding: 5px; border: 1px solid #ddd; direction: ltr; text-align: left;">
+                                    <p>- Basic Salary: SR. 
+                                        <span t-esc="doc.wage or 'غير محدد'"/>
+                                    </p>
+                                    <p>- Food Allowance: SR. 
+                                        <span t-esc="doc.food_allowance or 'غير محدد'"/>
+                                    </p>
+                                    <p>- Housing Allowance: SR. 
+                                        <span t-esc="doc.house_allowance or 'غير محدد'"/>
+                                    </p>
+                                    <p>- Housing: Family/Single</p>
+                                    <p>- Transportation Allowance: SR. 
+                                        <span t-esc="doc.transport_allowance or 'غير محدد'"/>
+                                    </p>
+                                    <p>- Transportation: Vehicle/Group Transport as per company policy</p>
+                                    <p>- Monthly Bonus: SR. 
+                                        <span t-esc="doc.monthly_bonus or 'غير محدد'"/>
+                                    </p>
+                                    <p>- Salary of Accrued Leave: SR. 
+                                        <span t-esc="doc.leave_salary or 'غير محدد'"/>
+                                    </p>
+                                    <p>- Air Ticket Value: SR. 
+                                        <span t-esc="doc.ticket_value or 'غير محدد'"/>
+                                    </p>
+                                    <p>- End of Service Award: SR. 
+                                        <span t-esc="doc.end_of_service or 'غير محدد'"/>
+                                    </p>
+                                    <p>- Monthly Net: SR. 
+                                        <span t-esc="doc.total_salary or 'غير محدد'"/>
+                                        (SR 
+                                        <span t-esc="doc.total_salary_text or 'غير محدد'"/>
+                                        only)
+                                    </p>
+                                    <p>The employee degree according to the approved scale 
+                                        <span t-esc="doc.employee_grade or 'غير محدد'"/>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- باقي البنود -->
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="font-weight: bold;">3- مدة هذا العقد 
+                            <span t-esc="doc.get_contract_duration() or 'غير محدد'"/>
+                            يبدأ من 
+                            <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/>
+                            وينتهي العقد بانتهاء عقد "مؤسسة/شركة" مع الجهة المالكة للمشروع أو استغناء الجهة المالكة للمشروع عن خدمات "الموظف" أو يمر 
+                            <span t-esc="doc.get_contract_duration() or 'غير محدد'"/>
+                            على تاريخ بداية العقد أيهم يسبق الآخر، ويحق لأي من المتعاقدين إخطار الطرف الآخر برغبته في إنهاء العقد بكتاب مسجل يرسله للطرف الأخر قبل تاريخ الانتهاء بمدة (30) ثلاثون يوماً على الأقل.
+                        </h4>
+                        <p>3. The period of this contract is for 
+                            <span t-esc="doc.get_contract_duration() or 'غير محدد'"/>
+                            starting from 
+                            <span t-esc="doc.date_start or 'غير محدد'"/>.
+                            The end of this contract will be at the end of company contract with the client, or the termination of the employee by the client, or after 
+                            <span t-esc="doc.get_contract_duration() or 'غير محدد'"/>
+                            year from the beginning of this contract, which one comes first. Each party has the right to terminate this contract by serving at least a thirty days' notice.
+                        </p>
+                    </div>
+
+                    <!-- البنود من 4 إلى 19 -->
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="font-weight: bold;">4- تعتبر الثلاثة شهور الأولى فترة اختبار يمكن خلالها لأي طرف إنهاء مفعول هذا العقد دون مكافأة أو سبق إعلان للطرف الآخر.</h4>
+                        <p>4. The first three months is proportional period during which either party shall have the right to terminate this contract without compensation or prior notice.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="font-weight: bold;">5- يجوز "لمؤسسة/شركة" فسخ العقد بدون مكافأة أو سبق إعلام العامل أو تعويضه في حال تقصيره في واجباته الوظيفية أو سوء سلوكه أو بسبب قيامه بأي عمل لا تجيزه قوانين البلاد أو إخلاله بأحد شروط هذا العقد أو في أي حالة من الحالات المنصوص عليها في المادة 83 من نظام العمل والعمال.</h4>
+                        <p>5. The condition of notice period is not applicable to company in the event that the termination of the employee resulted due to default and failure of the employee in performing his duties, or due to misconduct, or committing a deed contrary to the rules and regulations of Saudi Arabia, and/or breach of any of the conditions of this contract or any event that mentioned in part 83 of labor system.</p>
+                    </div>
+
+                    <!-- يمكنك إضافة البنود من 6 إلى 19 بنفس الطريقة -->
+
+                    <!-- توقيعات الأطراف -->
+                    <div style="margin-top: 50px;">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%; text-align: center;">
+                                    <p>"الموظف"</p>
+                                    <p>(التوقيع): _________________________</p>
+                                    <p>(الاسم): <span t-esc="doc.employee_id and doc.employee_id.name or 'غير محدد'"/></p>
+                                    <p>(التاريخ): <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/></p>
+                                </td>
+                                <td style="width: 50%; text-align: center;">
+                                    <p>For <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/></p>
+                                    <p>Signature: _________________________</p>
+                                    <p>Name: _________________________</p>
+                                    <p>Title: _________________________</p>
+                                    <p>Date: <span t-esc="doc.date_start or 'غير محدد'"/></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- ملاحظات ختامية -->
+                    <div style="margin-top: 30px; font-size: 12px;">
+                        <p>ملاحظة: هذا العقد مكون من 19 بنداً باللغتين العربية والإنجليزية، وفي حال وجود أي تعارض بين النصين يعتمد النص العربي.</p>
+                        <p>Note: This contract consists of 19 articles in both Arabic and English languages. In case of any discrepancy between the two texts, the Arabic text shall prevail.</p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
+
+
+
+<!-- <odoo>
+    <record id="action_employee_contract_report" model="ir.actions.report">
+        <field name="name">عقد العمل</field>
+        <field name="model">hr.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_contract_saudi_OCS.employee_contract_report</field>
+        <field name="binding_model_id" ref="model_hr_contract"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="employee_contract_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="docs"/>
+                <div class="page" style="font-family: 'Traditional Arabic'; direction: rtl; text-align: right;">
+
                     <div class="text-center" style="margin-bottom: 20px;">
                         <h2 style="font-size: 24px;">عقد عمل إلكتروني</h2>
                         <p>رقم العقد: <span t-esc="doc.name or 'غير محدد'"/></p>      
@@ -97,3 +331,4 @@
         </t>
     </template>
 </odoo>
+ -->
