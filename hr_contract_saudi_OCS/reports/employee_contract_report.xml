@@ -7,8 +7,8 @@
         <field name="report_file">hr_contract_saudi_OCS.employee_contract_report</field>
         <field name="binding_model_id" ref="model_hr_contract"/>
         <field name="binding_type">report</field>
-<!--         <field name="paperformat_id" ref="report.paperformat_a4"/>
-    </record> -->
+<!--         <field name="paperformat_id" ref="report.paperformat_a4"/> -->
+    </record>
     <template id="employee_contract_report">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
