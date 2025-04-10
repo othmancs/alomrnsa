@@ -132,13 +132,13 @@
         file="purchase_order_report.purchase_order_custom_report"
         attachment_use="False"
     /> -->
-    <report
-        id="action_purchase_custom_report"
-        name="purchase_order_report.custom_purchase_report"
-        model="purchase.order"
-        report_type="qweb-pdf"
-        string="تقرير أمر الشراء المخصص"
-        file="purchase_order_report.custom_purchase_report"
-        attachment_use="False"
-    />
+      <report
+            id="action_custom_purchase_report"
+            name="purchase_order_report.custom_purchase_report"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            string="تقرير أمر الشراء المخصص"
+            template="purchase_order_report.custom_purchase_report_template"
+            attachment_use="False"
+        />
 </odoo>
