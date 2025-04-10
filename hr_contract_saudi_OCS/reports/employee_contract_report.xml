@@ -53,7 +53,8 @@
                         <h4 style="font-weight: bold;">1- يوافق "الموظف" على أن يعمل لدى"مؤسسة/شركة" في وظيفة 
                             <span t-esc="doc.job_id and doc.job_id.name or 'غير محدد'"/>
                             أو أية وظيفة مشابهة لها وذلك في موقع "مؤسسة/شركة" الكائن في 
-                            <span t-esc="doc.work_location or 'الرياض'"/>
+                            <span t-if="doc.work_location"><span t-esc="doc.work_location"/></span>
+                            <span t-if="not doc.work_location">الرياض</span>
                             أو في أي موقع آخر ينقل إليه.
                         </h4>
                         <p>1. The Employee shall work for 
@@ -63,7 +64,8 @@
                             or any other similar job, at the job site of 
                             <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/>
                             in 
-                            <span t-esc="doc.work_location or 'الرياض'"/>
+                            <span t-if="doc.work_location"><span t-esc="doc.work_location"/></span>
+                            <span t-if="not doc.work_location">الرياض</span>
                             or any other site he may be transferred to.
                         </p>
                     </div>
