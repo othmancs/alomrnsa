@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_purchase_report_template" name="Purchase Order Custom Report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="header" style="border-bottom: 1px solid black; padding-bottom: 10px;">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>
+                            <h1 t-field="company.name"/>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <p style="margin-top: 15px;">
+                                <span t-field="company.street"/><br/>
+                                <span t-field="company.city"/><br/>
+                                <span t-field="company.phone"/><br/>
+                                <span t-field="company.email"/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4" dir="rtl">
+                    <h2 t-if="o.state in ['draft', 'sent', 'to approve']" style="font-size:25px;">طلب عرض أسعار#
+                        <span t-field="o.name"/>
+                    </h2>
+                    <h2 t-if="o.state in ['purchase', 'done']" style="font-size:25px;">امر الشراء #
+                        <span t-field="o.name"/>
+                    </h2>
+                    <h2 t-if="o.state == 'cancel'" style="font-size:25px;">طلب الغاء امر الشراء #
+                        <span t-field="o.name"/>
+                    </h2>
+                </div>
+
+                <!-- جدول معلومات أمر الشراء -->
+                <table class="table table-bordered mt-4" style="width: 100%; border-collapse: collapse;">
+                    <!-- محتوى الجدول كما هو في الكود الأصلي -->
+                </table>
+
+                <!-- جدول تفاصيل الأصناف -->
+                <h3 style="margin-top: 20px;">تفاصيل الأصناف</h3>
+                <table class="table table-bordered mt-2" style="width: 100%; border-collapse: collapse;">
+                    <!-- محتوى الجدول كما هو في الكود الأصلي -->
+                </table>
+
+                <!-- جدول الإجماليات -->
+                <table class="table table-bordered mt-4" style="width: 50%; margin-left: auto; border-collapse: collapse;">
+                    <!-- محتوى الجدول كما هو في الكود الأصلي -->
+                </table>
+
+                <!-- تذييل الصفحة -->
+                <div style="margin-top: 50px;">
+                    <div style="width: 30%; float: right; text-align: center;">
+                        <p>توقيع المورد</p>
+                        <p>.................................</p>
+                    </div>
+                    <div style="width: 30%; float: left; text-align: center;">
+                        <p>توقيع المسؤول</p>
+                        <p>.................................</p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
