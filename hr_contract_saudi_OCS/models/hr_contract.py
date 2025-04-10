@@ -8,9 +8,18 @@ class HrContract(models.Model):
     notice_days = fields.Integer(string="أيام الإشعار", default=30)
     trial_period = fields.Integer(string="فترة التجربة (أيام)", default=90)
 
+    # def print_contract(self):
+    #     return self.env.ref('hr_contract_saudi.report_employee_contract').report_action(self)
     def print_contract(self):
-        return self.env.ref('hr_contract_saudi.report_employee_contract').report_action(self)
-
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.report',
+            'report_name': 'hr_contract_saudi_OCS.employee_contract_report',
+            'model': 'hr.contract',
+            'report_type': 'qweb-pdf',
+            'context': {'active_model': 'hr.contract', 'active_id': self.id},
+        }
+        
     def get_contract_duration(self):
         for contract in self:
             if contract.date_start and contract.date_end:
