@@ -1,0 +1,69 @@
+<odoo>
+    <template id="report_customer_statement_template">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <h2>Customer Account Statement</h2>
+                        <div>
+                            <strong>Customer:</strong>
+                            <span t-field="doc.partner_id" t-field-options='{"widget": "contact"}'/>
+                        </div>
+                        <div>
+                            <strong>Period:</strong>
+                            <span t-esc="format_date(doc.date_from)"/> to <span t-esc="format_date(doc.date_to)"/>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <div>
+                            <strong>Statement Date:</strong>
+                            <span t-esc="format_date(context_today())"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Initial Balance -->
+                <div t-if="data.get('show_initial_balance')" class="row mb-2">
+                    <div class="col-12">
+                        <strong>Initial Balance:</strong>
+                        <span t-esc="format_amount(initial_balance, doc.partner_id.currency_id)"/>
+                    </div>
+                </div>
+
+                <!-- Transaction Lines -->
+                <table class="table table-sm table-bordered mt-3">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Reference</th>
+                            <th>Description</th>
+                            <th class="text-right">Debit</th>
+                            <th class="text-right">Credit</th>
+                            <th class="text-right">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="lines" t-as="line">
+                            <tr>
+                                <td><span t-esc="format_date(line['date'])"/></td>
+                                <td><span t-esc="line['reference']"/></td>
+                                <td><span t-esc="line['name']"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['debit'], doc.partner_id.currency_id)"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['credit'], doc.partner_id.currency_id)"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['balance'], doc.partner_id.currency_id)"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <!-- Closing Balance -->
+                <div class="row mt-3">
+                    <div class="col-12 text-right">
+                        <strong>Closing Balance:</strong>
+                        <span t-esc="format_amount(closing_balance, doc.partner_id.currency_id)"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

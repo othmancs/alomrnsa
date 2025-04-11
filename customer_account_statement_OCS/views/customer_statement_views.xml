@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_customer_statement_wizard_form" model="ir.ui.view">
+        <field name="name">customer.statement.wizard.form</field>
+        <field name="model">customer.statement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Customer Statement">
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="show_initial_balance"/>
+                        <field name="show_invoice_details"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_print_statement" string="Print Statement" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_customer_statement_wizard"
+                name="Customer Statement"
+                res_model="customer.statement.wizard"
+                view_mode="form"
+                target="new"
+                context="{'default_partner_id': active_id}"
+                binding_model="res.partner"/>
+</odoo>

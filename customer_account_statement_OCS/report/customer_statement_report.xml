@@ -1,0 +1,17 @@
+<odoo>
+    <template id="template_customer_statement_report" inherit_id="web.html_container">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="customer_statement.report_customer_statement_template" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_customer_statement_report"
+            name="customer_statement.report_customer_statement_template"
+            model="customer.statement.wizard"
+            report_type="qweb-pdf"
+            string="Customer Statement"
+            file="customer_statement.report_customer_statement_template"
+            attachment_use="False"/>
+</odoo>
