@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- تعريف نموذج الواجهة -->
+        <record id="view_account_statement_wizard" model="ir.ui.view">
+            <field name="name">account.statement.wizard.form</field>
+            <field name="model">account.statement.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Account Statement Wizard">
+                    <!-- أضف الحقول والنماذج هنا -->
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <button name="action_generate" string="Generate Statement" type="object" class="oe_highlight"/>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
