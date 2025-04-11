@@ -2,6 +2,7 @@
     <template id="report_customer_statement_template">
         <t t-call="web.external_layout">
             <div class="page">
+                <!-- Header Section -->
                 <div class="row mb-4">
                     <div class="col-6">
                         <h2>Customer Account Statement</h2>
@@ -11,19 +12,19 @@
                         </div>
                         <div>
                             <strong>Period:</strong>
-                            <span t-esc="format_date(doc.date_from)"/> to <span t-esc="format_date(doc.date_to)"/>
+                            <span t-esc="doc.date_from"/> to <span t-esc="doc.date_to"/>
                         </div>
                     </div>
                     <div class="col-6 text-right">
                         <div>
                             <strong>Statement Date:</strong>
-                            <span t-esc="format_date(context_today())"/>
+                            <span t-esc="context_today()"/>
                         </div>
                     </div>
                 </div>
 
                 <!-- Initial Balance -->
-                <div t-if="data.get('show_initial_balance')" class="row mb-2">
+                <div t-if="show_initial_balance" class="row mb-2">
                     <div class="col-12">
                         <strong>Initial Balance:</strong>
                         <span t-esc="format_amount(initial_balance, doc.partner_id.currency_id)"/>
@@ -35,7 +36,7 @@
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Reference</th>
+                            <th>Document</th>
                             <th>Description</th>
                             <th class="text-right">Debit</th>
                             <th class="text-right">Credit</th>
@@ -45,8 +46,8 @@
                     <tbody>
                         <t t-foreach="lines" t-as="line">
                             <tr>
-                                <td><span t-esc="format_date(line['date'])"/></td>
-                                <td><span t-esc="line['reference']"/></td>
+                                <td><span t-esc="line['date']"/></td>
+                                <td><span t-esc="line['move_id'] and line['move_id'].name or ''"/></td>
                                 <td><span t-esc="line['name']"/></td>
                                 <td class="text-right"><span t-esc="format_amount(line['debit'], doc.partner_id.currency_id)"/></td>
                                 <td class="text-right"><span t-esc="format_amount(line['credit'], doc.partner_id.currency_id)"/></td>
@@ -61,6 +62,12 @@
                     <div class="col-12 text-right">
                         <strong>Closing Balance:</strong>
                         <span t-esc="format_amount(closing_balance, doc.partner_id.currency_id)"/>
+                        <t t-if="closing_balance &lt; 0">
+                            (Credit)
+                        </t>
+                        <t t-else="">
+                            (Debit)
+                        </t>
                     </div>
                 </div>
             </div>
