@@ -7,7 +7,7 @@
         </t>
     </template>
 
-    <report id="action_customer_statement_report"
+    <report id="action_customer_statement_report"  <!-- هذا هو المعرف المهم -->
             name="customer_account_statement_OCS.report_customer_statement_template"
             model="customer.statement.wizard"
             report_type="qweb-pdf"
