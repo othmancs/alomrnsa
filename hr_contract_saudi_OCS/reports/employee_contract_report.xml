@@ -11,104 +11,113 @@
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
                 <t t-set="doc" t-value="docs"/>
-                <div class="page" style="font-family: 'Traditional Arabic', Arial, sans-serif; direction: rtl; text-align: right; padding: 20px; line-height: 1.8;">
+                <div class="page" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.8; direction: rtl; text-align: justify; padding: 25px;">
 
-                    <div class="text-center" style="margin-bottom: 25px;">
-                        <h2 style="font-size: 26px; font-weight: bold;">عقد عمل إلكتروني</h2>
-                        <p style="font-size: 16px;">Employment Contract</p>
-                        <p>رقم العقد: <span t-esc="doc.name or 'غير محدد'"/></p>      
-                        <p>
-                            بُرِم هذا العقد إلكترونيًا تحت إشراف وزارة الموارد البشرية والتنمية الاجتماعية، المملكة العربية السعودية<br/>
-                            This contract was issued electronically under the supervision of the Ministry of Human Resources and Social Development, Saudi Arabia
-                        </p>
-                        <p>
-                            بتاريخ <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/> م، بين كل من:<br/>
-                            Dated <span t-esc="doc.get_arabic_date(doc.date_start) or 'N/A'"/> between:
-                        </p>
+                    <!-- Header -->
+                    <div class="text-center" style="margin-bottom: 30px; text-align: center;">
+                        <h2 style="font-weight: bold;">عقد عمل</h2>
+                        <p style="margin: 0;">EMPLOYMENT CONTRACT</p>
+                        <p>رقم العقد: <span t-esc="doc.name or 'غير محدد'"/></p>
+                        <p>Contract No: <span t-esc="doc.name or 'N/A'"/></p>
                     </div>
 
-                    <!-- الطرف الأول -->
-                    <div style="margin-bottom: 30px; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
-                        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">الطرف الأول / First Party:</h3>
-                        <p>شركة/مؤسسة: 
-                            <span t-esc="(doc.department_id and doc.department_id.company_id and doc.department_id.company_id.name) or 'غير محدد'"/>
-                            <br/>Company/Establishment Name
-                        </p>
-                        <p>الرقم الوطني الموحد: 7001385363 <br/> National Unified Number</p>
-                        <p>رقم المنشأة: 1-52378 <br/> Establishment Number</p>
-                        <p>السجل التجاري: 1010143820 <br/> Commercial Registration Number</p>
-                        <p>العنوان: 192 الرياض 305 <br/> Address</p>
-                        <p>مكان العمل: الرياض <br/> Work Location</p>
-                        <p>البريد الإلكتروني: hr@alomran.sa <br/> Email</p>
-                        <p>ويمثلها بالتوقيع: عبدالرحمن العمران بصفته رئيس مجلس الإدارة <br/> Represented by: Abdulrahman Al-Omran, Chairman</p>
-                    </div>
-
-                    <!-- الطرف الثاني -->
-                    <div style="margin-bottom: 30px; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
-                        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">الطرف الثاني / Second Party:</h3>
-                        <p>الاسم / Name: <span t-esc="doc.employee_id and doc.employee_id.name or 'غير محدد'"/></p>
-                        <p>المهنة / Job Title: <span t-esc="doc.job_id and doc.job_id.name or 'غير محدد'"/></p>
-                        <p>الرقم الوظيفي / Employee No.: <span t-esc="doc.employee_id and doc.employee_id.employee_no or 'غير محدد'"/></p>
-                        <p>الجنسية / Nationality: <span t-esc="doc.employee_id and doc.employee_id.country_id and doc.employee_id.country_id.name or 'غير محدد'"/></p>
-                        <p>تاريخ الميلاد / Date of Birth: <span t-esc="doc.employee_id and doc.get_arabic_date(doc.employee_id.birthday) or 'غير محدد'"/></p>
-                        <p>رقم الهوية / ID Number: <span t-esc="doc.employee_id and doc.employee_id.identification_id or 'غير محدد'"/></p>
-                        <p>نوع الهوية / ID Type: إقامة (Iqama)</p>
-                        <p>تاريخ الانتهاء / Expiry Date: <span t-esc="doc.get_arabic_date(doc.date_end) or 'غير محدد'"/></p>
-                        <p>الجنس / Gender:
-                            <t t-if="doc.employee_id and doc.employee_id.gender == 'male'">ذكر / Male</t>
-                            <t t-elif="doc.employee_id and doc.employee_id.gender == 'female'">أنثى / Female</t>
-                            <t t-else="">غير محدد / Unspecified</t>
-                        </p>
-                        <p>الديانة / Religion: مسلم / Muslim</p>
-                        <p>الحالة الاجتماعية / Marital Status:
-                            <t t-if="doc.employee_id and doc.employee_id.marital == 'single'">أعزب / Single</t>
-                            <t t-elif="doc.employee_id and doc.employee_id.marital == 'married'">متزوج / Married</t>
-                            <t t-elif="doc.employee_id and doc.employee_id.marital == 'divorced'">مطلق / Divorced</t>
-                            <t t-elif="doc.employee_id and doc.employee_id.marital == 'widower'">أرمل / Widowed</t>
-                            <t t-else="">غير محدد / Unspecified</t>
-                        </p>
-                        <p>المؤهل العلمي / Qualification: <span t-esc="doc.employee_id and doc.employee_id.certificate or 'غير محدد'"/></p>
-                        <p>التخصص / Major: <span t-esc="doc.employee_id and doc.employee_id.study_field or 'غير محدد'"/></p>
-                        <p>البريد الإلكتروني / Email: <span t-esc="doc.employee_id and doc.employee_id.work_email or 'غير محدد'"/></p>
-                        <p>رقم الجوال / Mobile: <span t-esc="doc.employee_id and doc.employee_id.mobile_phone or 'غير محدد'"/></p>
-                    </div>
-
-                    <!-- بنود العقد -->
+                    <!-- Parties -->
                     <div style="margin-bottom: 30px;">
+                        <p>تم إبرام هذا العقد بين:</p>
+                        <p>This contract has been made between:</p>
+
                         <p>
-                            يعمل الطرف الثاني لدى الطرف الأول بوظيفة <span t-esc="doc.job_id and doc.job_id.name or 'غير محدد'"/>, 
-                            وتحت إشرافه وإدارته بما يتناسب مع قدراته.<br/>
-                            The Second Party shall work under the First Party in the role of 
-                            <span t-esc="doc.job_id and doc.job_id.name or 'N/A'"/>, in accordance with their qualifications.
+                            الطرف الأول: شركة/مؤسسة 
+                            <span t-esc="(doc.department_id.company_id.name) or 'غير محدد'"/>
+                            <br/>
+                            First Party: 
+                            <span t-esc="(doc.department_id.company_id.name) or 'N/A'"/>
                         </p>
 
                         <p>
-                            مدة العقد <span t-esc="doc.get_contract_duration() or 'غير محدد'"/> سنة من 
-                            <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/> حتى 
-                            <span t-esc="doc.get_arabic_date(doc.date_end) or 'غير محدد'"/>.<br/>
-                            Contract duration: <span t-esc="doc.get_contract_duration() or 'N/A'"/> year(s), from 
+                            والطرف الثاني: السيد/ 
+                            <span t-esc="doc.employee_id.name or 'غير محدد'"/>،
+                            الجنسية: <span t-esc="doc.employee_id.country_id.name or 'غير محدد'"/>
+                            <br/>
+                            Second Party: Mr. <span t-esc="doc.employee_id.name or 'N/A'"/>, 
+                            Nationality: <span t-esc="doc.employee_id.country_id.name or 'N/A'"/>
+                        </p>
+                    </div>
+
+                    <!-- Clause 1 -->
+                    <div style="margin-bottom: 20px;">
+                        <p>
+                            1. يوافق الموظف على أن يعمل لدى الطرف الأول بوظيفة 
+                            <span t-esc="doc.job_id.name or 'غير محدد'"/>، أو أي وظيفة مشابهة، 
+                            في مدينة الرياض أو أي موقع يحدد لاحقًا.
+                        </p>
+                        <p>
+                            1. The Employee agrees to work for the First Party as a 
+                            <span t-esc="doc.job_id.name or 'N/A'"/> or similar role in Riyadh or any other location assigned.
+                        </p>
+                    </div>
+
+                    <!-- Clause 2 -->
+                    <div style="margin-bottom: 20px;">
+                        <p>
+                            2. يحصل الموظف على الراتب والمزايا المتفق عليها حسب سياسات الطرف الأول.
+                        </p>
+                        <p>
+                            2. The Employee shall receive salary and benefits according to the First Party's policy.
+                        </p>
+                    </div>
+
+                    <!-- Clause 3 -->
+                    <div style="margin-bottom: 20px;">
+                        <p>
+                            3. مدة العقد هي 
+                            <span t-esc="doc.get_contract_duration() or 'غير محدد'"/> سنة، تبدأ من 
+                            <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/> 
+                            وتنتهي في 
+                            <span t-esc="doc.get_arabic_date(doc.date_end) or 'غير محدد'"/>.
+                        </p>
+                        <p>
+                            3. The duration of this contract is 
+                            <span t-esc="doc.get_contract_duration() or 'N/A'"/> year(s), starting from 
                             <span t-esc="doc.get_arabic_date(doc.date_start) or 'N/A'"/> to 
                             <span t-esc="doc.get_arabic_date(doc.date_end) or 'N/A'"/>.
                         </p>
+                    </div>
 
+                    <!-- Clause 4 -->
+                    <div style="margin-bottom: 20px;">
                         <p>
-                            يتجدد تلقائيًا ما لم يتم الإشعار قبل 
-                            <span t-esc="doc.notice_days or 'غير محدد'"/> يومًا بعدم التجديد.<br/>
-                            The contract will be renewed automatically unless notified 
-                            <span t-esc="doc.notice_days or 'N/A'"/> days before expiry.
+                            4. يخضع الموظف لفترة تجربة مدتها 
+                            <span t-esc="doc.trial_period or 'غير محدد'"/> يومًا، ويجوز خلالها إنهاء العقد دون تعويض.
                         </p>
-
                         <p>
-                            فترة التجربة: <span t-esc="doc.trial_period or 'غير محدد'"/> يومًا من مباشرة العمل.<br/>
-                            Trial period: <span t-esc="doc.trial_period or 'N/A'"/> days from start date.
+                            4. The Employee is under a probation period of 
+                            <span t-esc="doc.trial_period or 'N/A'"/> days during which either party may terminate the contract without compensation.
                         </p>
                     </div>
 
-                    <!-- ختم ختامي -->
-                    <div class="text-center" style="margin-top: 50px; border-top: 1px solid #ccc; padding-top: 20px;">
-                        <p>تم تصدير هذا العقد إلكترونيًا، ويمكن للطرفين الوصول إليه عبر منصة قوى.</p>
-                        <p>This contract was issued electronically and is accessible to both parties through Qiwa platform.</p>
-                        <p>يُعتبر هذا العقد معتمدًا من قبل وزارة الموارد البشرية والتنمية الاجتماعية<br/>This contract is approved by the Ministry of Human Resources and Social Development.</p>
+                    <!-- Clause 5 -->
+                    <div style="margin-bottom: 20px;">
+                        <p>
+                            5. يتجدد هذا العقد تلقائيًا ما لم يخطر أحد الطرفين الآخر بعدم الرغبة في التجديد قبل 
+                            <span t-esc="doc.notice_days or 'غير محدد'"/> يومًا من تاريخ الانتهاء.
+                        </p>
+                        <p>
+                            5. This contract is automatically renewed unless either party notifies the other at least 
+                            <span t-esc="doc.notice_days or 'N/A'"/> days before the expiry date.
+                        </p>
+                    </div>
+
+                    <!-- Footer -->
+                    <div style="margin-top: 50px; text-align: center; border-top: 1px solid #ccc; padding-top: 20px;">
+                        <p>تم توقيع هذا العقد إلكترونيًا ويُتاح للطرفين عبر منصة قوى.</p>
+                        <p>This contract is signed electronically and accessible to both parties via the Qiwa platform.</p>
+                        <br/>
+                        <p>الطرف الأول: ________________________</p>
+                        <p>First Party: ________________________</p>
+                        <br/>
+                        <p>الطرف الثاني: ________________________</p>
+                        <p>Second Party: ________________________</p>
                     </div>
 
                 </div>
