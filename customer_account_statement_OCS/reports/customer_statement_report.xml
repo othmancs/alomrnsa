@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_customer_statement_template">
+    <template id="customer_statement_report">
         <t t-call="web.external_layout">
             <!-- تعيين البيانات من الـ data -->
             <t t-set="partner" t-value="env['res.partner'].browse(data.get('partner_id'))"/>
