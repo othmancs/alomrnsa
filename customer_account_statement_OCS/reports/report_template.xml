@@ -1,96 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_customer_statement_template">
-        <t t-call="web.external_layout">
-            <!-- تعيين المتغيرات من البيانات الممررة -->
-            <t t-set="partner" t-value="env['res.partner'].browse(data.get('partner_id'))"/>
-            <t t-set="date_from" t-value="data.get('date_from')"/>
-            <t t-set="date_to" t-value="data.get('date_to')"/>
-            <t t-set="docs" t-value="data.get('docs', [])"/>
-            <t t-set="initial_balance" t-value="data.get('initial_balance', 0.0)"/>
-            <t t-set="closing_balance" t-value="data.get('closing_balance', 0.0)"/>
-            <t t-set="show_initial_balance" t-value="data.get('show_initial_balance', False)"/>
-            <t t-set="today" t-value="datetime.datetime.now().strftime('%Y-%m-%d')"/>
-            
-            <!-- تعريف دالة تنسيق المبالغ البديلة -->
-            <t t-set="format_currency" t-value="lambda value, currency: '{:,.2f} {}'.format(value, currency.symbol if currency else '')"/>
-        
-            <div class="page">
-                <!-- Header Section -->
-                <div class="row mb-4">
-                    <div class="col-6">
-                        <h2>Customer Account Statement</h2>
-                        <div>
-                            <strong>Customer:</strong>
-                            <span t-field="partner.name" t-field-options='{"widget": "contact"}'/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <main>
+                    <!-- تعيين المتغيرات من البيانات الممررة -->
+                    <t t-set="partner" t-value="env['res.partner'].browse(data.get('partner_id'))"/>
+                    <t t-set="date_from" t-value="data.get('date_from')"/>
+                    <t t-set="date_to" t-value="data.get('date_to')"/>
+                    <t t-set="docs" t-value="data.get('docs', [])"/>
+                    <t t-set="initial_balance" t-value="data.get('initial_balance', 0.0)"/>
+                    <t t-set="closing_balance" t-value="data.get('closing_balance', 0.0)"/>
+                    <t t-set="show_initial_balance" t-value="data.get('show_initial_balance', False)"/>
+                    <t t-set="today" t-value="datetime.datetime.now().strftime('%Y-%m-%d')"/>
+                    
+                    <!-- دالة تنسيق العملة -->
+                    <t t-set="format_currency" t-value="lambda value, currency: '{:,.2f} {}'.format(value or 0.0, currency.symbol if currency else '')"/>
+                    
+                    <div class="page" style="font-family: Arial; padding: 20px;">
+                        <!-- Header Section -->
+                        <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                                    <h2 style="margin: 0;">كشف حساب العميل</h2>
+                                    <h3 style="margin: 5px 0 0 0; font-weight: normal;">Customer Account Statement</h3>
+                                </div>
+                                <div style="text-align: right;">
+                                    <p style="margin: 0;"><strong>تاريخ الكشف:</strong> <span t-esc="today"/></p>
+                                    <p style="margin: 5px 0 0 0;"><strong>Statement Date:</strong> <span t-esc="today"/></p>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <p style="margin: 5px 0;">
+                                    <strong>العميل:</strong> 
+                                    <span t-field="partner.name" t-field-options='{"widget": "contact"}'/>
+                                </p>
+                                <p style="margin: 5px 0;">
+                                    <strong>Customer:</strong> 
+                                    <span t-esc="partner.name or 'N/A'"/>
+                                </p>
+                                <p style="margin: 5px 0;">
+                                    <strong>الفترة من:</strong> 
+                                    <span t-esc="date_from or 'غير محدد'"/> 
+                                    <strong>إلى:</strong> 
+                                    <span t-esc="date_to or 'غير محدد'"/>
+                                </p>
+                                <p style="margin: 5px 0;">
+                                    <strong>Period:</strong> 
+                                    <span t-esc="date_from or 'N/A'"/> 
+                                    to <span t-esc="date_to or 'N/A'"/>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <strong>Period:</strong>
-                            <span t-esc="date_from"/> to <span t-esc="date_to"/>
+
+                        <!-- Initial Balance -->
+                        <div t-if="show_initial_balance" style="margin-bottom: 15px;">
+                            <p style="margin: 5px 0;">
+                                <strong>الرصيد الافتتاحي:</strong>
+                                <span t-esc="format_currency(initial_balance, partner.currency_id)"/>
+                            </p>
+                            <p style="margin: 5px 0;">
+                                <strong>Initial Balance:</strong>
+                                <span t-esc="format_currency(initial_balance, partner.currency_id)"/>
+                            </p>
+                        </div>
+
+                        <!-- Transaction Lines -->
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: right;">التاريخ</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: right;">الوثيقة</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: right;">الوصف</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">مدين</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">دائن</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">الرصيد</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="line">
+                                    <tr>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;"><span t-esc="line.get('date', '')"/></td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;"><span t-esc="line.get('move_name', line.get('reference', ''))"/></td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;"><span t-esc="line.get('name', '')"/></td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: left;"><span t-esc="format_currency(line.get('debit', 0.0), partner.currency_id)"/></td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: left;"><span t-esc="format_currency(line.get('credit', 0.0), partner.currency_id)"/></td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; text-align: left;"><span t-esc="format_currency(line.get('balance', 0.0), partner.currency_id)"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- Closing Balance -->
+                        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                            <p style="margin: 5px 0; text-align: left;">
+                                <strong>الرصيد الختامي:</strong>
+                                <span t-esc="format_currency(closing_balance, partner.currency_id)"/>
+                                <t t-if="closing_balance &lt; 0">(دائن)</t>
+                                <t t-else="">(مدين)</t>
+                            </p>
+                            <p style="margin: 5px 0; text-align: left;">
+                                <strong>Closing Balance:</strong>
+                                <span t-esc="format_currency(closing_balance, partner.currency_id)"/>
+                                <t t-if="closing_balance &lt; 0">(Credit)</t>
+                                <t t-else="">(Debit)</t>
+                            </p>
                         </div>
                     </div>
-                    <div class="col-6 text-right">
-                        <div>
-                            <strong>Statement Date:</strong>
-                            <span t-esc="today"/>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- Initial Balance -->
-                <div t-if="show_initial_balance" class="row mb-2">
-                    <div class="col-12">
-                        <strong>Initial Balance:</strong>
-                        <span t-esc="format_currency(initial_balance, partner.currency_id)"/>
-                    </div>
-                </div>
-        
-                <!-- Transaction Lines -->
-                <table class="table table-sm table-bordered mt-3">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Document</th>
-                            <th>Description</th>
-                            <th class="text-right">Debit</th>
-                            <th class="text-right">Credit</th>
-                            <th class="text-right">Balance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="docs" t-as="line">
-                            <tr>
-                                <td><span t-esc="line.get('date', '')"/></td>
-                                <td><span t-esc="line.get('move_name', line.get('reference', ''))"/></td>
-                                <td><span t-esc="line.get('name', '')"/></td>
-                                <td class="text-right">
-                                    <span t-esc="format_currency(line.get('debit', 0.0), partner.currency_id)"/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="format_currency(line.get('credit', 0.0), partner.currency_id)"/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="format_currency(line.get('balance', 0.0), partner.currency_id)"/>
-                                </td>
-                            </tr>
-                        </t>
-                    </tbody>
-                </table>
-        
-                <!-- Closing Balance -->
-                <div class="row mt-3">
-                    <div class="col-12 text-right">
-                        <strong>Closing Balance:</strong>
-                        <span t-esc="format_currency(closing_balance, partner.currency_id)"/>
-                        <t t-if="closing_balance &lt; 0">
-                            (Credit)
-                        </t>
-                        <t t-else="">
-                            (Debit)
-                        </t>
-                    </div>
-                </div>
-            </div>
+                </main>
+            </t>
         </t>
     </template>
 </odoo>
