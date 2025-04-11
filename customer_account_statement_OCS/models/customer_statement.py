@@ -1,43 +1,49 @@
 from odoo import models, fields, api
+from datetime import datetime
 
-
-class CustomerStatementWizard(models.TransientModel):
-    _name = 'customer.statement.wizard'
-    _description = 'Customer Statement Wizard'
-
-    partner_id = fields.Many2one(
-        'res.partner',
-        string='Customer',
-        required=True,
-        domain=[('customer_rank', '>', 0)]
-    )
-    date_from = fields.Date(string='From Date', required=True)
-    date_to = fields.Date(string='To Date', required=True, default=fields.Date.today)
-    show_initial_balance = fields.Boolean(string='Show Initial Balance', default=True)
-    show_invoice_details = fields.Boolean(string='Show Invoice Details', default=False)
-    def action_print_statement(self):
-        # تأكد من أن self يحتوي على البيانات المطلوبة
-        if not self:
-            raise UserError("No records found to generate statement")
+class PartnerStatementReport(models.AbstractModel):
+    _name = 'report.customer_account_statement_OCS.report_customer_statement_template'
+    
+    def _get_report_values(self, docids, data=None):
+        partner = self.env['res.partner'].browse(docids)
         
-        data = {
-            'doc_ids': self.ids,
-            'doc_model': 'customer.statement.wizard',
-            'data': {
-                'partner_id': self.partner_id.id,
-                'date_from': self.date_from,
-                'date_to': self.date_to,
-                'show_initial_balance': self.show_initial_balance,
-            },
-            'docs': self,  # إضافة هذا السطر لتمرير docs
+        # جلب بيانات الحركات المالية
+        moves = self.env['account.move.line'].search([
+            ('partner_id', '=', partner.id),
+            ('date', '>=', data.get('date_from')),
+            ('date', '<=', data.get('date_to')),
+        ], order='date asc')
+        
+        # حساب الرصيد الافتتاحي والختامي
+        initial_balance = sum(moves.mapped('debit')) - sum(moves.mapped('credit'))
+        closing_balance = initial_balance
+        
+        # تحضير بيانات الحركات
+        lines = []
+        for move in moves:
+            lines.append({
+                'date': move.date,
+                'move_name': move.move_id.name,
+                'name': move.name,
+                'debit': move.debit,
+                'credit': move.credit,
+                'balance': move.balance,
+                'reference': move.ref,
+            })
+            closing_balance += move.balance
+        
+        return {
+            'doc_ids': docids,
+            'doc_model': 'res.partner',
+            'docs': partner,
+            'data': data,
+            'lines': lines,
+            'initial_balance': initial_balance,
+            'closing_balance': closing_balance,
+            'show_initial_balance': True,
+            'format_amount': self._format_amount,
+            'datetime': datetime,
         }
-        return self.env.ref('customer_account_statement_OCS.action_customer_statement_report').report_action(self, data=data)
-    # def action_print_statement(self):
-    #     data = {
-    #         'partner_id': self.partner_id.id,
-    #         'date_from': self.date_from,
-    #         'date_to': self.date_to,
-    #         'show_initial_balance': self.show_initial_balance,
-    #         'show_invoice_details': self.show_invoice_details,
-    #     }
-    #     return self.env.ref('customer_statement.action_customer_statement_report').report_action(self, data=data)
+    
+    def _format_amount(self, amount, currency):
+        return "{:,.2f} {}".format(amount or 0.0, currency.symbol if currency else "")
