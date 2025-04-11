@@ -14,7 +14,7 @@
         # 'security/ir.model.access.csv',
         'views/customer_statement_views.xml',
         'reports/customer_statement_report.xml',
-        'views/report_template.xml',
+        'reports/report_template.xml',
     ],
     'installable': True,
     'application': False,
