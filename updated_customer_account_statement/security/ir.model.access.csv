@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_account_statement_wizard,access_account_statement_wizard,model_account_statement_wizard,,1,0,0,0
+access_account_statement_wizard,access_account_statement_wizard,account_statement_wizard_model,,1,0,0,0
