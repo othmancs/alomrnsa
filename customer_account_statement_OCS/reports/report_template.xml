@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <template id="report_customer_statement_template">
+    <template id="report_customer_statement_template">
         <t t-call="web.external_layout">
             <!-- تعيين المتغيرات من البيانات الممررة -->
             <t t-set="partner" t-value="env['res.partner'].browse(data.get('partner_id'))"/>
@@ -11,6 +11,9 @@
             <t t-set="closing_balance" t-value="data.get('closing_balance', 0.0)"/>
             <t t-set="show_initial_balance" t-value="data.get('show_initial_balance', False)"/>
             <t t-set="today" t-value="datetime.datetime.now().strftime('%Y-%m-%d')"/>
+            
+            <!-- تعريف دالة تنسيق المبالغ البديلة -->
+            <t t-set="format_currency" t-value="lambda value, currency: '{:,.2f} {}'.format(value, currency.symbol if currency else '')"/>
         
             <div class="page">
                 <!-- Header Section -->
@@ -32,12 +35,13 @@
                             <span t-esc="today"/>
                         </div>
                     </div>
-                </div>        
+                </div>
+        
                 <!-- Initial Balance -->
                 <div t-if="show_initial_balance" class="row mb-2">
                     <div class="col-12">
                         <strong>Initial Balance:</strong>
-                        <span t-esc="format_amount(initial_balance, partner.currency_id)"/>
+                        <span t-esc="format_currency(initial_balance, partner.currency_id)"/>
                     </div>
                 </div>
         
@@ -60,13 +64,13 @@
                                 <td><span t-esc="line.get('move_name', line.get('reference', ''))"/></td>
                                 <td><span t-esc="line.get('name', '')"/></td>
                                 <td class="text-right">
-                                    <span t-esc="format_amount(line.get('debit', 0.0), partner.currency_id)"/>
+                                    <span t-esc="format_currency(line.get('debit', 0.0), partner.currency_id)"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="format_amount(line.get('credit', 0.0), partner.currency_id)"/>
+                                    <span t-esc="format_currency(line.get('credit', 0.0), partner.currency_id)"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="format_amount(line.get('balance', 0.0), partner.currency_id)"/>
+                                    <span t-esc="format_currency(line.get('balance', 0.0), partner.currency_id)"/>
                                 </td>
                             </tr>
                         </t>
@@ -77,7 +81,7 @@
                 <div class="row mt-3">
                     <div class="col-12 text-right">
                         <strong>Closing Balance:</strong>
-                        <span t-esc="format_amount(closing_balance, partner.currency_id)"/>
+                        <span t-esc="format_currency(closing_balance, partner.currency_id)"/>
                         <t t-if="closing_balance &lt; 0">
                             (Credit)
                         </t>
