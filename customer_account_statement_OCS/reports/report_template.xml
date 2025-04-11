@@ -2,10 +2,14 @@
 <odoo>
     <template id="report_customer_statement_template">
         <t t-call="web.external_layout">
-            <!-- تعيين البيانات من الـ data -->
+            <!-- تعيين المتغيرات من البيانات الممررة -->
             <t t-set="partner" t-value="env['res.partner'].browse(data.get('partner_id'))"/>
             <t t-set="date_from" t-value="data.get('date_from')"/>
             <t t-set="date_to" t-value="data.get('date_to')"/>
+            <t t-set="docs" t-value="data.get('docs', [])"/>
+            <t t-set="initial_balance" t-value="data.get('initial_balance', 0.0)"/>
+            <t t-set="closing_balance" t-value="data.get('closing_balance', 0.0)"/>
+            <t t-set="show_initial_balance" t-value="data.get('show_initial_balance', False)"/>
         
             <div class="page">
                 <!-- Header Section -->
@@ -14,7 +18,8 @@
                         <h2>Customer Account Statement</h2>
                         <div>
                             <strong>Customer:</strong>
-                            <span t-field="partner" t-field-options='{"widget": "contact"}'/>
+                            <!-- التصحيح: استخدام t-field مع حقل محدد -->
+                            <span t-field="partner.name" t-field-options='{"widget": "contact"}'/>
                         </div>
                         <div>
                             <strong>Period:</strong>
@@ -24,7 +29,7 @@
                     <div class="col-6 text-right">
                         <div>
                             <strong>Statement Date:</strong>
-                            <span t-esc="context_today()"/>
+                            <span t-esc="context_today().strftime('%Y-%m-%d')"/>
                         </div>
                     </div>
                 </div>
@@ -50,14 +55,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="lines" t-as="line">
+                        <t t-foreach="docs" t-as="line">
                             <tr>
-                                <td><span t-esc="line['date']"/></td>
-                                <td><span t-esc="line.get('move_id', {}).name or line.get('reference', '')"/></td>
-                                <td><span t-esc="line['name']"/></td>
-                                <td class="text-right"><span t-esc="format_amount(line['debit'], partner.currency_id)"/></td>
-                                <td class="text-right"><span t-esc="format_amount(line['credit'], partner.currency_id)"/></td>
-                                <td class="text-right"><span t-esc="format_amount(line['balance'], partner.currency_id)"/></td>
+                                <td><span t-esc="line.get('date', '')"/></td>
+                                <td><span t-esc="line.get('move_name', line.get('reference', ''))"/></td>
+                                <td><span t-esc="line.get('name', '')"/></td>
+                                <td class="text-right">
+                                    <span t-esc="format_amount(line.get('debit', 0.0), partner.currency_id)"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="format_amount(line.get('credit', 0.0), partner.currency_id)"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="format_amount(line.get('balance', 0.0), partner.currency_id)"/>
+                                </td>
                             </tr>
                         </t>
                     </tbody>
