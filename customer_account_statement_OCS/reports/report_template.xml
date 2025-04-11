@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_customer_statement_template">
+   <template id="report_customer_statement_template">
         <t t-call="web.external_layout">
             <!-- تعيين المتغيرات من البيانات الممررة -->
             <t t-set="partner" t-value="env['res.partner'].browse(data.get('partner_id'))"/>
@@ -10,6 +10,7 @@
             <t t-set="initial_balance" t-value="data.get('initial_balance', 0.0)"/>
             <t t-set="closing_balance" t-value="data.get('closing_balance', 0.0)"/>
             <t t-set="show_initial_balance" t-value="data.get('show_initial_balance', False)"/>
+            <t t-set="today" t-value="datetime.datetime.now().strftime('%Y-%m-%d')"/>
         
             <div class="page">
                 <!-- Header Section -->
@@ -28,11 +29,10 @@
                     <div class="col-6 text-right">
                         <div>
                             <strong>Statement Date:</strong>
-                            <span t-esc="context_today().strftime('%Y-%m-%d')"/>
+                            <span t-esc="today"/>
                         </div>
                     </div>
-                </div>
-        
+                </div>        
                 <!-- Initial Balance -->
                 <div t-if="show_initial_balance" class="row mb-2">
                     <div class="col-12">
