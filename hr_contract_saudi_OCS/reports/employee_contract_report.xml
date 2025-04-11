@@ -6,111 +6,116 @@
         <field name="report_name">hr_contract_saudi_OCS.employee_contract_report</field>
         <field name="binding_model_id" ref="model_hr_contract"/>
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="report.paperformat_a4"/>
     </record>
+
     <template id="employee_contract_report">
-            <t t-call="web.html_container">
-                <t t-call="web.external_layout">
-                    <t t-set="doc" t-value="docs"/>
-                    <div class="page"
-                         style="font-family: Arial, sans-serif; font-size:11pt; line-height:1.8; direction: rtl; text-align: justify; padding: 30px;">
-    
-                        <!-- Header -->
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <h2 style="font-size: 16pt; margin: 0; font-weight: bold;">عقد عمل</h2>
-                            <p style="margin: 5px 0;">EMPLOYMENT CONTRACT</p>
-                            <p style="margin: 5px 0;">
-                                رقم العقد: <span t-esc="doc.name or 'غير محدد'"/> |
-                                Contract No: <span t-esc="doc.name or 'N/A'"/>
-                            </p>
-                        </div>
-    
-                        <!-- الطرفان -->
-                        <div style="margin-bottom: 25px;">
-                            <p>تم الاتفاق بين:</p>
-                            <p>The contract is made between:</p>
-    
-                            <p>
-                                <strong>الطرف الأول:</strong> شركة/مؤسسة 
-                                <span t-esc="doc.department_id.company_id.name or 'غير محدد'"/> <br/>
-                                <strong>First Party:</strong> 
-                                <span t-esc="doc.department_id.company_id.name or 'N/A'"/>
-                            </p>
-    
-                            <p>
-                                <strong>الطرف الثاني:</strong> السيد/ 
-                                <span t-esc="doc.employee_id.name or 'غير محدد'"/>، الجنسية: 
-                                <span t-esc="doc.employee_id.country_id.name or 'غير محدد'"/> <br/>
-                                <strong>Second Party:</strong> Mr. 
-                                <span t-esc="doc.employee_id.name or 'N/A'"/>, 
-                                Nationality: <span t-esc="doc.employee_id.country_id.name or 'N/A'"/>
-                            </p>
-                        </div>
-    
-                        <!-- البند الأول -->
-                        <div style="margin-bottom: 15px;">
-                            <p><strong>1.</strong> يوافق الموظف على العمل لدى الطرف الأول بوظيفة 
-                                <span t-esc="doc.job_id.name or 'غير محدد'"/> في الرياض أو أي موقع آخر.</p>
-                            <p><strong>1.</strong> The employee agrees to work for the first party as 
-                                <span t-esc="doc.job_id.name or 'N/A'"/> in Riyadh or any other location.</p>
-                        </div>
-    
-                        <!-- البند الثاني -->
-                        <div style="margin-bottom: 15px;">
-                            <p><strong>2.</strong> يحصل الموظف على الراتب والمزايا حسب سياسات الطرف الأول.</p>
-                            <p><strong>2.</strong> The employee shall receive salary and benefits as per the first party’s policies.</p>
-                        </div>
-    
-                        <!-- البند الثالث -->
-                        <div style="margin-bottom: 15px;">
-                            <p><strong>3.</strong> مدة العقد 
-                                <span t-esc="doc.get_contract_duration() or 'غير محدد'"/> سنة تبدأ من 
-                                <span t-esc="doc.get_arabic_date(doc.date_start) or 'غير محدد'"/> وتنتهي في 
-                                <span t-esc="doc.get_arabic_date(doc.date_end) or 'غير محدد'"/>.</p>
-                            <p><strong>3.</strong> Contract duration is 
-                                <span t-esc="doc.get_contract_duration() or 'N/A'"/> year(s) starting from 
-                                <span t-esc="doc.get_arabic_date(doc.date_start) or 'N/A'"/> to 
-                                <span t-esc="doc.get_arabic_date(doc.date_end) or 'N/A'"/>.</p>
-                        </div>
-    
-                        <!-- البند الرابع -->
-                        <div style="margin-bottom: 15px;">
-                            <p><strong>4.</strong> يخضع الموظف لفترة تجربة مدتها 
-                                <span t-esc="doc.trial_period or 'غير محدد'"/> يومًا، يمكن خلالها فسخ العقد دون تعويض.</p>
-                            <p><strong>4.</strong> The employee is under a probation period of 
-                                <span t-esc="doc.trial_period or 'N/A'"/> days, during which the contract may be terminated without compensation.</p>
-                        </div>
-    
-                        <!-- البند الخامس -->
-                        <div style="margin-bottom: 15px;">
-                            <p><strong>5.</strong> يتجدد العقد تلقائيًا ما لم يُخطر أحد الطرفين الآخر بعدم التجديد قبل 
-                                <span t-esc="doc.notice_days or 'غير محدد'"/> يومًا.</p>
-                            <p><strong>5.</strong> The contract is automatically renewed unless either party notifies the other 
-                                <span t-esc="doc.notice_days or 'N/A'"/> days before the expiry date.</p>
-                        </div>
-    
-                        <!-- الخاتمة -->
-                        <div style="margin-top: 40px; text-align: center; border-top: 1px solid #ccc; padding-top: 20px;">
-                            <p>تم توقيع هذا العقد من قبل الطرفين.</p>
-                            <p>This contract is  by both parties via Qiwa platform.</p>
-                            <br/>
-                            <div style="display: flex; justify-content: space-between; margin-top: 30px;">
-                                <div>
-                                    <p><strong>الطرف الأول</strong></p>
-                                    <p>First Party</p>
-                                    <p>______________________</p>
-                                </div>
-                                <div>
-                                    <p><strong>الطرف الثاني</strong></p>
-                                    <p>Second Party</p>
-                                    <p>______________________</p>
-                                </div>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="docs[0] if docs else None"/>
+                <div class="page" style="font-family: 'Arial', sans-serif; font-size:11pt; line-height:1.8; direction: rtl; text-align: justify; padding: 30px;">
+
+                    <!-- Header -->
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="font-size: 16pt; margin: 0; font-weight: bold;">عقد عمل</h2>
+                        <p style="margin: 5px 0;">EMPLOYMENT CONTRACT</p>
+                        <p style="margin: 5px 0;">
+                            رقم العقد: <span t-field="doc.name" t-field-options='{"widget": "char"}'/> |
+                            Contract No: <span t-esc="doc.name or 'N/A'"/>
+                        </p>
+                    </div>
+
+                    <!-- الطرفان -->
+                    <div style="margin-bottom: 25px;">
+                        <p>تم الاتفاق بين:</p>
+                        <p>The contract is made between:</p>
+
+                        <p>
+                            <strong>الطرف الأول:</strong> شركة/مؤسسة 
+                            <span t-field="doc.department_id.company_id.name" t-field-options='{"widget": "char"}'/> <br/>
+                            <strong>First Party:</strong> 
+                            <span t-esc="doc.department_id.company_id.name or 'N/A'"/>
+                        </p>
+
+                        <p>
+                            <strong>الطرف الثاني:</strong> السيد/ 
+                            <span t-field="doc.employee_id.name" t-field-options='{"widget": "char"}'/>، الجنسية: 
+                            <span t-field="doc.employee_id.country_id.name" t-field-options='{"widget": "char"}'/> <br/>
+                            <strong>Second Party:</strong> Mr. 
+                            <span t-esc="doc.employee_id.name or 'N/A'"/>, 
+                            Nationality: <span t-esc="doc.employee_id.country_id.name or 'N/A'"/>
+                        </p>
+                    </div>
+
+                    <!-- البنود -->
+                    <div style="margin-bottom: 15px;">
+                        <p><strong>1.</strong> يوافق الموظف على العمل لدى الطرف الأول بوظيفة 
+                            <span t-field="doc.job_id.name" t-field-options='{"widget": "char"}'/> في الرياض أو أي موقع آخر.</p>
+                        <p><strong>1.</strong> The employee agrees to work for the first party as 
+                            <span t-esc="doc.job_id.name or 'N/A'"/> in Riyadh or any other location.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <p><strong>2.</strong> يحصل الموظف على راتب أساسي قدره 
+                            <span t-esc="format_amount(doc.wage, doc.company_id.currency_id) or 'غير محدد'"/> 
+                            بالإضافة إلى المزايا حسب سياسات الطرف الأول.</p>
+                        <p><strong>2.</strong> The employee shall receive a basic salary of 
+                            <span t-esc="format_amount(doc.wage, doc.company_id.currency_id) or 'N/A'"/> 
+                            plus benefits as per the first party's policies.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <p><strong>3.</strong> مدة العقد 
+                            <span t-esc="doc.get_contract_duration() or 'غير محدد'"/> سنة تبدأ من 
+                            <span t-esc="format_date(doc.date_start) or 'غير محدد'"/> وتنتهي في 
+                            <span t-esc="format_date(doc.date_end) or 'غير محدد'"/>.</p>
+                        <p><strong>3.</strong> Contract duration is 
+                            <span t-esc="doc.get_contract_duration() or 'N/A'"/> year(s) starting from 
+                            <span t-esc="format_date(doc.date_start) or 'N/A'"/> to 
+                            <span t-esc="format_date(doc.date_end) or 'N/A'"/>.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <p><strong>4.</strong> يخضع الموظف لفترة تجربة مدتها 
+                            <span t-esc="doc.trial_period or '90'"/> يومًا، يمكن خلالها فسخ العقد دون تعويض.</p>
+                        <p><strong>4.</strong> The employee is under a probation period of 
+                            <span t-esc="doc.trial_period or '90'"/> days, during which the contract may be terminated without compensation.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <p><strong>5.</strong> يتجدد العقد تلقائيًا ما لم يُخطر أحد الطرفين الآخر بعدم التجديد قبل 
+                            <span t-esc="doc.notice_days or '30'"/> يومًا.</p>
+                        <p><strong>5.</strong> The contract is automatically renewed unless either party notifies the other 
+                            <span t-esc="doc.notice_days or '30'"/> days before the expiry date.</p>
+                    </div>
+
+                    <!-- الخاتمة -->
+                    <div style="margin-top: 40px; text-align: center; border-top: 1px solid #ccc; padding-top: 20px;">
+                        <p>تم توقيع هذا العقد من قبل الطرفين.</p>
+                        <p>This contract is signed by both parties via Qiwa platform.</p>
+                        <br/>
+                        <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                            <div style="width: 45%;">
+                                <p><strong>الطرف الأول</strong></p>
+                                <p>First Party</p>
+                                <p style="margin-top: 50px;">______________________</p>
+                                <p>الاسم: <span t-esc="doc.company_id.representative_id.name or 'غير محدد'"/></p>
+                                <p>التوقيع: ______________________</p>
+                                <p>التاريخ: <span t-esc="format_date(context_today())"/></p>
+                            </div>
+                            <div style="width: 45%;">
+                                <p><strong>الطرف الثاني</strong></p>
+                                <p>Second Party</p>
+                                <p style="margin-top: 50px;">______________________</p>
+                                <p>الاسم: <span t-esc="doc.employee_id.name or 'غير محدد'"/></p>
+                                <p>التوقيع: ______________________</p>
+                                <p>التاريخ: <span t-esc="format_date(context_today())"/></p>
                             </div>
                         </div>
-    
                     </div>
-                </t>
+
+                </div>
             </t>
-        </template>
+        </t>
+    </template>
 </odoo>
-
-
