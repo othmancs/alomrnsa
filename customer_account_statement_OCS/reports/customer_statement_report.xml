@@ -2,8 +2,11 @@
 <odoo>
     <template id="report_customer_statement_template">
         <t t-call="web.external_layout">
-         <t t-set="doc" t-value="docs[0]"/>
-
+            <!-- تعيين البيانات من الـ data -->
+            <t t-set="partner" t-value="env['res.partner'].browse(data.get('partner_id'))"/>
+            <t t-set="date_from" t-value="data.get('date_from')"/>
+            <t t-set="date_to" t-value="data.get('date_to')"/>
+        
             <div class="page">
                 <!-- Header Section -->
                 <div class="row mb-4">
@@ -11,11 +14,11 @@
                         <h2>Customer Account Statement</h2>
                         <div>
                             <strong>Customer:</strong>
-                            <span t-field="doc.partner_id" t-field-options='{"widget": "contact"}'/>
+                            <span t-field="partner" t-field-options='{"widget": "contact"}'/>
                         </div>
                         <div>
                             <strong>Period:</strong>
-                            <span t-esc="doc.date_from"/> to <span t-esc="doc.date_to"/>
+                            <span t-esc="date_from"/> to <span t-esc="date_to"/>
                         </div>
                     </div>
                     <div class="col-6 text-right">
@@ -25,15 +28,15 @@
                         </div>
                     </div>
                 </div>
-
+        
                 <!-- Initial Balance -->
                 <div t-if="show_initial_balance" class="row mb-2">
                     <div class="col-12">
                         <strong>Initial Balance:</strong>
-                        <span t-esc="format_amount(initial_balance, doc.partner_id.currency_id)"/>
+                        <span t-esc="format_amount(initial_balance, partner.currency_id)"/>
                     </div>
                 </div>
-
+        
                 <!-- Transaction Lines -->
                 <table class="table table-sm table-bordered mt-3">
                     <thead>
@@ -52,19 +55,19 @@
                                 <td><span t-esc="line['date']"/></td>
                                 <td><span t-esc="line.get('move_id', {}).name or line.get('reference', '')"/></td>
                                 <td><span t-esc="line['name']"/></td>
-                                <td class="text-right"><span t-esc="format_amount(line['debit'], doc.partner_id.currency_id)"/></td>
-                                <td class="text-right"><span t-esc="format_amount(line['credit'], doc.partner_id.currency_id)"/></td>
-                                <td class="text-right"><span t-esc="format_amount(line['balance'], doc.partner_id.currency_id)"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['debit'], partner.currency_id)"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['credit'], partner.currency_id)"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['balance'], partner.currency_id)"/></td>
                             </tr>
                         </t>
                     </tbody>
                 </table>
-
+        
                 <!-- Closing Balance -->
                 <div class="row mt-3">
                     <div class="col-12 text-right">
                         <strong>Closing Balance:</strong>
-                        <span t-esc="format_amount(closing_balance, doc.partner_id.currency_id)"/>
+                        <span t-esc="format_amount(closing_balance, partner.currency_id)"/>
                         <t t-if="closing_balance &lt; 0">
                             (Credit)
                         </t>
