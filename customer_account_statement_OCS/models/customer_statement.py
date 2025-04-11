@@ -2,23 +2,20 @@ from odoo import models, fields, api
 from datetime import datetime
 
 class PartnerStatementReport(models.AbstractModel):
-    _name = 'report.customer_account_statement_OCS.report_customer_statement_template'
+    _name = 'report.cas_ocs.statement_report'  # اسم أقصر
     
     def _get_report_values(self, docids, data=None):
         partner = self.env['res.partner'].browse(docids)
         
-        # جلب بيانات الحركات المالية
         moves = self.env['account.move.line'].search([
             ('partner_id', '=', partner.id),
             ('date', '>=', data.get('date_from')),
             ('date', '<=', data.get('date_to')),
         ], order='date asc')
         
-        # حساب الرصيد الافتتاحي والختامي
         initial_balance = sum(moves.mapped('debit')) - sum(moves.mapped('credit'))
         closing_balance = initial_balance
         
-        # تحضير بيانات الحركات
         lines = []
         for move in moves:
             lines.append({
