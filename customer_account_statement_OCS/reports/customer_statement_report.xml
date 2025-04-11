@@ -2,6 +2,8 @@
 <odoo>
     <template id="report_customer_statement_template">
         <t t-call="web.external_layout">
+         <t t-set="doc" t-value="docs[0]"/>
+
             <div class="page">
                 <!-- Header Section -->
                 <div class="row mb-4">
