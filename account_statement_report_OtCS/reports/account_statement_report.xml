@@ -1,13 +1,12 @@
 <odoo>
-     <report 
+    <report 
         id="action_account_statement"
-        name="account_statement_report.statement_template"
+        name="account_statement_report.account_statement_template"  <!-- هذا هو التعديل -->
         model="account.statement.wizard"
         string="Customer Account Statement"
         report_type="qweb-html"
-        menu="False"
-    />
-
+        menu="False"/>
+    
     <template id="account_statement_wizard_external_layout">
         <t t-call="web.external_layout">
             <t t-foreach="docs" t-as="doc">
