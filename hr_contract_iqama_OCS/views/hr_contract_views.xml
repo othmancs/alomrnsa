@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_contract_form_inherit_iqama" model="ir.ui.view">
+        <field name="name">hr.contract.form.inherit.iqama</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="after">
+                <field name="iqama_number" export_xml="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- إضافة الحقل إلى عرض الشجرة (القائمة) -->
+    <record id="view_hr_contract_tree_inherit_iqama" model="ir.ui.view">
+        <field name="name">hr.contract.tree.inherit.iqama</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="iqama_number" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
