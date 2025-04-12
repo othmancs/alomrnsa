@@ -6,7 +6,15 @@
         string="Customer Account Statement"
         report_type="qweb-html"
         menu="False"/>
-        
+
+    <!-- هذا هو الـ template الرئيسي اللي ناقص -->
+    <template id="account_statement_template">
+        <t t-call="account_statement_report.account_statement_wizard_external_layout">
+            <t t-set="docs" t-value="docs"/>
+        </t>
+    </template>
+
+    <!-- الـ layout الخارجي -->
     <template id="account_statement_wizard_external_layout">
         <t t-call="web.external_layout">
             <t t-foreach="docs" t-as="doc">
@@ -15,5 +23,11 @@
                 </div>
             </t>
         </t>
+    </template>
+
+    <!-- محتوى التقرير الفعلي -->
+    <template id="account_statement_template_content">
+        <h2>Customer Account Statement</h2>
+        <p>Put your table or content here...</p>
     </template>
 </odoo>
