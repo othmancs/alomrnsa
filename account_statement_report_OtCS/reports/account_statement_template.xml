@@ -1,18 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- القالب الرئيسي -->
-    <template id="statement_template">
-        <t t-call="web.html_container">
-            <t t-call="web.external_layout">
-                <div class="page">
-                    <t t-call="account_statement_report.statement_content"/>
-                </div>
-            </t>
+    <!-- هذا هو القالب الذي يجب أن يتطابق اسمه مع report.name -->
+    <template id="account_statement_template" name="account_statement_report.account_statement_template">
+        <t t-call="account_statement_report.account_statement_wizard_external_layout">
+            <t t-set="doc" t-value="doc"/>
         </t>
     </template>
 
-    <!-- محتوى التقرير -->
-    <template id="statement_content">
+    <template id="account_statement_template_content">
         <div class="account-statement">
             <div class="header">
                 <h2>Customer Account Statement</h2>
@@ -24,9 +18,7 @@
                     </div>
                     <div class="col-6 text-right">
                         <p><strong>Company:</strong> <span t-field="doc.company_id"/></p>
-                        <p><strong>Print Date:</strong> 
-                            <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/>
-                        </p>
+                        <p><strong>Print Date:</strong> <span t-field="datetime.datetime.now()" t-options='{"format": "dd/MM/yyyy"}'/></p>
                     </div>
                 </div>
             </div>
@@ -50,24 +42,16 @@
                             <td><span t-esc="line['date']"/></td>
                             <td><span t-esc="line['name']"/></td>
                             <td><span t-esc="line['ref']"/></td>
-                            <td class="text-right">
-                                <span t-esc="format_amount(line['debit'], doc.company_id.currency_id)"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-esc="format_amount(line['credit'], doc.company_id.currency_id)"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-esc="format_amount(balance, doc.company_id.currency_id)"/>
-                            </td>
+                            <td class="text-right"><span t-esc="format_amount(line['debit'], doc.company_id.currency_id)"/></td>
+                            <td class="text-right"><span t-esc="format_amount(line['credit'], doc.company_id.currency_id)"/></td>
+                            <td class="text-right"><span t-esc="format_amount(balance, doc.company_id.currency_id)"/></td>
                         </tr>
                     </t>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="5" class="text-right"><strong>Ending Balance:</strong></td>
-                        <td class="text-right">
-                            <strong><span t-esc="format_amount(balance, doc.company_id.currency_id)"/></strong>
-                        </td>
+                        <td class="text-right"><strong><span t-esc="format_amount(balance, doc.company_id.currency_id)"/></strong></td>
                     </tr>
                 </tfoot>
             </table>
