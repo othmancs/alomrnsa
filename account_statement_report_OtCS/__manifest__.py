@@ -1,0 +1,20 @@
+{
+    'name': 'Account Statement Report',
+    'version': '16.0.1.0.0',
+    'summary': 'Customer Account Statement Report',
+    'description': 'Generates HTML customer account statement reports',
+    'category': 'Accounting',
+    'author': 'Othmancs',
+    'website': 'https://www.yourcompany.com',
+    'license': 'LGPL-3',
+    'depends': ['account'],
+    'data': [
+        # 'security/ir.model.access.csv',
+        'views/account_statement_views.xml',
+        'reports/account_statement_report.xml',
+        'reports/account_statement_template.xml',
+    ],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

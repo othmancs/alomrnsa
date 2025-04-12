@@ -1,0 +1,19 @@
+<odoo>
+    <report id="action_account_statement"
+             name="account_statement_report.account_statement_template"
+             model="account.statement.wizard"
+             string="Customer Account Statement"
+             report_type="qweb-html"
+             paperformat="a4"
+             menu="False"/>
+
+    <template id="account_statement_wizard_external_layout">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <t t-call="account_statement_report.account_statement_template_content"/>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
