@@ -4,7 +4,7 @@
              model="account.statement.wizard"
              string="Customer Account Statement"
              report_type="qweb-html"
-             paperformat="a4"
+<!--              paperformat="a4" -->
              menu="False"/>
 
     <template id="account_statement_wizard_external_layout">
