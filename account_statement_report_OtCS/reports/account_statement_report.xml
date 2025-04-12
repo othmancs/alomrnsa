@@ -1,11 +1,10 @@
 <odoo>
-    <report 
+     <report 
         id="action_account_statement"
         name="account_statement_report.statement_template"
         model="account.statement.wizard"
         string="Customer Account Statement"
         report_type="qweb-html"
-        paperformat="a4"
         menu="False"
     />
 
