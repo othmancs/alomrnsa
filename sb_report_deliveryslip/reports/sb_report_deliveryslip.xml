@@ -3,6 +3,16 @@
     <data>
         <template id="report_custom_documenttt">
             <t t-call="web.html_container">
+                    <t t-set="arabic_style">
+        <style>
+            body, div, span, table, th, td, p {
+                font-family: 'Noto Kufi Arabic', sans-serif;
+                direction: rtl;
+                text-align: right;
+            }
+        </style>
+    </t>
+
                 <t t-foreach="docs" t-as="o">
                     <!-- Header Section -->
                     <div class="header">
