@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'DroidArabicKufi';
+    src: url('/sb_report_deliveryslip/static/src/fonts/DroidKufi-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, div, span, table, th, td, p {
+    font-family: 'DroidArabicKufi', 'DejaVu Sans', sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
