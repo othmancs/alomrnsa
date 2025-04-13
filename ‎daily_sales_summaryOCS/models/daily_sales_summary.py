@@ -434,6 +434,20 @@ class DailySalesSummary(models.Model):
                 if payment.payment_method_line_id:
                     payment_methods.add(payment.payment_method_line_id.name or 'غير محدد')
     
+        # الحصول على طرق الدفع للتحصيل الآجل
+        credit_payment_methods = set()
+        credit_payments = self.env['account.payment'].search([
+            ('date', '>=', self.date_from),
+            ('date', '<=', self.date_to),
+            ('payment_type', '=', 'inbound'),
+            ('state', '=', 'posted'),
+            ('is_internal_transfer', '=', False),
+            ('company_id', '=', self.company_id.id)
+        ])
+        for payment in credit_payments:
+            if payment.payment_method_line_id:
+                credit_payment_methods.add(payment.payment_method_line_id.name or 'غير محدد')
+    
         # عناوين الأعمدة الجديدة المعدلة
         base_headers = [
             'الفرع',
@@ -443,13 +457,17 @@ class DailySalesSummary(models.Model):
         
         # إضافة أعمدة لطرق الدفع الفريدة (لتحصيل النقدي)
         for method in sorted(payment_methods):
-            base_headers.append(f'{method}')
+            base_headers.append(f'تحصيل نقدي - {method}')
+        
+        # إضافة أعمدة لطرق الدفع للتحصيل الآجل
+        for method in sorted(credit_payment_methods):
+            base_headers.append(f'تحصيل آجل - {method}')
         
         # إضافة الأعمدة المعدلة
         base_headers.extend([
-            'التحصيل النقدي',
-            'التحصيل الآجل',
-            'إجمالي المقبوضات'
+            'إجمالي التحصيل النقدي',
+            'إجمالي التحصيل الآجل',
+            'إجمالي المبيعات'
         ])
     
         # تحديد عرض الأعمدة
@@ -468,12 +486,18 @@ class DailySalesSummary(models.Model):
         totals = {
             'cash_sales': 0,
             'credit': 0,
-            'cash_receipts': 0,
-            'credit_receipts': 0,
-            'total_receipts': 0
+            'total_cash_receipts': 0,
+            'total_credit_receipts': 0,
+            'total_sales': 0
         }
+        
+        # إضافة إجماليات طرق الدفع النقدية
         for method in payment_methods:
-            totals[f'method_{method}'] = 0
+            totals[f'cash_method_{method}'] = 0
+        
+        # إضافة إجماليات طرق الدفع الآجلة
+        for method in credit_payment_methods:
+            totals[f'credit_method_{method}'] = 0
     
         row = 5  # بدء البيانات من الصف 5 بعد العناوين
         for branch in branches:
@@ -488,15 +512,15 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ])
             
-            # حساب المبيعات حسب طريقة الدفع (مجمعة حسب الاسم)
-            method_totals = {method: 0.0 for method in payment_methods}
+            # حساب المبيعات حسب طريقة الدفع النقدية
+            cash_method_totals = {method: 0.0 for method in payment_methods}
             
             for invoice in cash_invoices:
                 for payment in invoice._get_reconciled_payments():
                     if payment.payment_method_line_id:
                         method_name = payment.payment_method_line_id.name or 'غير محدد'
-                        if method_name in method_totals:
-                            method_totals[method_name] += payment.amount
+                        if method_name in cash_method_totals:
+                            cash_method_totals[method_name] += payment.amount
             
             branch_cash_sales = sum(invoice.amount_total for invoice in cash_invoices)  # الإجمالي مع الضريبة
     
@@ -524,7 +548,10 @@ class DailySalesSummary(models.Model):
             ])
             branch_cash_refunds = sum(refund.amount_total for refund in cash_refunds)
     
-            # حساب إجمالي المقبوضات (المدفوعات الواردة)
+            # حساب التحصيل النقدي (إجمالي المبيعات النقدية)
+            branch_cash_receipts = branch_cash_sales
+    
+            # حساب التحصيل الآجل (المدفوعات الواردة)
             payments = self.env['account.payment'].search([
                 ('date', '>=', self.date_from),
                 ('date', '<=', self.date_to),
@@ -534,23 +561,36 @@ class DailySalesSummary(models.Model):
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
             ])
-            branch_total_receipts = sum(payment.amount for payment in payments) - branch_cash_refunds
+            
+            # حساب التحصيل الآجل حسب طريقة الدفع
+            credit_method_totals = {method: 0.0 for method in credit_payment_methods}
+            branch_total_credit_receipts = 0
+            
+            for payment in payments:
+                if payment.payment_method_line_id:
+                    method_name = payment.payment_method_line_id.name or 'غير محدد'
+                    if method_name in credit_method_totals:
+                        credit_method_totals[method_name] += payment.amount
+                        branch_total_credit_receipts += payment.amount
+            
+            # طرح الإرجاعات من التحصيل الآجل
+            branch_total_credit_receipts -= branch_cash_refunds
     
-            # التحصيل النقدي (إجمالي المبيعات النقدية)
-            branch_cash_receipts = branch_cash_sales
-    
-            # التحصيل الآجل (إجمالي المقبوضات - التحصيل النقدي)
-            branch_credit_receipts = branch_total_receipts - branch_cash_receipts
+            # إجمالي المبيعات للفرع
+            branch_total = branch_cash_sales + branch_credit
     
             # تحديث الإجماليات
             totals['cash_sales'] += branch_cash_sales
             totals['credit'] += branch_credit
-            totals['cash_receipts'] += branch_cash_receipts
-            totals['credit_receipts'] += branch_credit_receipts
-            totals['total_receipts'] += branch_total_receipts
+            totals['total_cash_receipts'] += branch_cash_receipts
+            totals['total_credit_receipts'] += branch_total_credit_receipts
+            totals['total_sales'] += branch_total
             
-            for method, amount in method_totals.items():
-                totals[f'method_{method}'] += amount
+            for method, amount in cash_method_totals.items():
+                totals[f'cash_method_{method}'] += amount
+            
+            for method, amount in credit_method_totals.items():
+                totals[f'credit_method_{method}'] += amount
     
             # كتابة بيانات الفرع
             col = 0
@@ -558,14 +598,19 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, branch_cash_sales, currency_format); col += 1
             worksheet.write(row, col, branch_credit, currency_format); col += 1
             
-            # كتابة مبيعات كل طريقة دفع
+            # كتابة تحصيل نقدي لكل طريقة دفع
             for method in sorted(payment_methods):
-                worksheet.write(row, col, method_totals.get(method, 0.0), currency_format)
+                worksheet.write(row, col, cash_method_totals.get(method, 0.0), currency_format)
+                col += 1
+            
+            # كتابة تحصيل آجل لكل طريقة دفع
+            for method in sorted(credit_payment_methods):
+                worksheet.write(row, col, credit_method_totals.get(method, 0.0), currency_format)
                 col += 1
             
             worksheet.write(row, col, branch_cash_receipts, currency_format); col += 1
-            worksheet.write(row, col, branch_credit_receipts, currency_format); col += 1
-            worksheet.write(row, col, branch_total_receipts, currency_format)
+            worksheet.write(row, col, branch_total_credit_receipts, currency_format); col += 1
+            worksheet.write(row, col, branch_total, currency_format)
     
             row += 1
     
@@ -576,13 +621,19 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, totals['cash_sales'], total_format); col += 1
             worksheet.write(row, col, totals['credit'], total_format); col += 1
             
+            # إجمالي تحصيل نقدي لكل طريقة دفع
             for method in sorted(payment_methods):
-                worksheet.write(row, col, totals.get(f'method_{method}', 0.0), total_format)
+                worksheet.write(row, col, totals.get(f'cash_method_{method}', 0.0), total_format)
                 col += 1
             
-            worksheet.write(row, col, totals['cash_receipts'], total_format); col += 1
-            worksheet.write(row, col, totals['credit_receipts'], total_format); col += 1
-            worksheet.write(row, col, totals['total_receipts'], total_format)
+            # إجمالي تحصيل آجل لكل طريقة دفع
+            for method in sorted(credit_payment_methods):
+                worksheet.write(row, col, totals.get(f'credit_method_{method}', 0.0), total_format)
+                col += 1
+            
+            worksheet.write(row, col, totals['total_cash_receipts'], total_format); col += 1
+            worksheet.write(row, col, totals['total_credit_receipts'], total_format); col += 1
+            worksheet.write(row, col, totals['total_sales'], total_format)
     
         # إغلاق الكتاب وحفظه
         workbook.close()
@@ -593,55 +644,6 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
-    
-    def _compute_total_cash_methods(self, summaries):
-        """حساب إجمالي الكاش الوارد باستثناء طرق السداد المحددة"""
-        total = 0.0
-        excluded_methods = ['شبكة', 'حوالة']  # طرق السداد المستثناة
-
-        for summary in summaries:
-            # تحليل محتوى payment_method_totals
-            if not summary.payment_method_totals:
-                continue
-
-            # تحليل HTML للحصول على طرق الدفع والمبالغ
-            soup = BeautifulSoup(summary.payment_method_totals, 'html.parser')
-            lines = soup.get_text().split('\n')
-
-            for line in lines:
-                if ':' in line:
-                    method, amount = line.split(':', 1)
-                    method = method.strip()
-                    amount = amount.strip().split()[0]
-
-                    # استبعاد طرق السداد المحددة
-                    if not any(excluded in method for excluded in excluded_methods):
-                        try:
-                            total += float(amount.replace(',', ''))
-                        except ValueError:
-                            continue
-        return total
-
-    def action_generate_excel_report(self):
-        """إجراء لإنشاء وتنزيل التقرير"""
-        report_data = self.generate_sales_collection_report()
-        
-        # إنشاء مرفق (attachment) للتقرير
-        attachment = self.env['ir.attachment'].create({
-            'name': report_data['file_name'],
-            'datas': base64.b64encode(report_data['file_content']),
-            'res_model': 'daily.sales.summary',
-            'res_id': self.id,
-            'type': 'binary'
-        })
-        
-        # إرجاع إجراء لتنزيل المرفق
-        return {
-            'type': 'ir.actions.act_url',
-            'url': '/web/content/%s?download=true' % attachment.id,
-            'target': 'self',
-        }
-
 # -*- coding: utf-8 -*-
 
 # from odoo import models, fields, api
