@@ -79,39 +79,34 @@
                     <!-- Document Content -->
                     <div class="page" style="direction: rtl; unicode-bidi: embed;">
                         <!-- معلومات الحركة -->
-                        <div class="row" style="margin-bottom: 15px;">
-                            <div class="col-md-6">
-                                <table class="table table-sm table-bordered">
-                                    <tr>
-                                        <th class="arabic-text" width="30%">الموقع المصدر</th>
-                                        <td class="arabic-text"><t t-esc="o.location_id.name"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="arabic-text">الموقع الوجهة</th>
-                                        <td class="arabic-text"><t t-esc="o.location_dest_id.name"/></td>
-                                    </tr>
-                                    <tr t-if="o.picking_type_code!='internal'">
-                                        <th class="arabic-text">العميل/المورد</th>
-                                        <td class="arabic-text"><t t-esc="o.partner_id.name"/></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <table class="table table-sm table-bordered">
-                                    <tr>
-                                        <th class="arabic-text" width="30%">رقم المرجع</th>
-                                        <td class="arabic-text"><t t-esc="o.origin"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="arabic-text">تاريخ التنفيذ</th>
-                                        <td class="arabic-text"><t t-esc="o.date_done"/></td>
-                                    </tr>
-                                    <tr t-if="o.picking_type_code!='internal'">
-                                        <th class="arabic-text">مرجع المورد</th>
-                                        <td class="arabic-text"><t t-esc="o.partner_ref"/></td>
-                                    </tr>
-                                </table>
-                            </div>
+<div class="row" style="margin-bottom: 15px;">
+    <table class="table table-sm table-bordered" style="width: 100%;">
+        <tr>
+            <th class="arabic-text" width="15%">الموقع المصدر</th>
+            <td class="arabic-text" width="35%"><t t-esc="o.location_id.name"/></td>
+            <th class="arabic-text" width="15%">الموقع الوجهة</th>
+            <td class="arabic-text" width="35%"><t t-esc="o.location_dest_id.name"/></td>
+        </tr>
+        <tr t-if="o.picking_type_code!='internal'">
+            <th class="arabic-text">العميل/المورد</th>
+            <td class="arabic-text"><t t-esc="o.partner_id.name"/></td>
+            <th class="arabic-text">رقم المرجع</th>
+            <td class="arabic-text"><t t-esc="o.origin"/></td>
+        </tr>
+        <tr t-if="o.picking_type_code!='internal'">
+            <th class="arabic-text">مرجع المورد</th>
+            <td class="arabic-text"><t t-esc="o.partner_ref"/></td>
+            <th class="arabic-text">تاريخ التنفيذ</th>
+            <td class="arabic-text"><t t-esc="o.date_done"/></td>
+        </tr>
+        <tr t-if="o.picking_type_code=='internal'">
+            <th class="arabic-text">رقم المرجع</th>
+            <td class="arabic-text"><t t-esc="o.origin"/></td>
+            <th class="arabic-text">تاريخ التنفيذ</th>
+            <td class="arabic-text"><t t-esc="o.date_done"/></td>
+        </tr>
+    </table>
+</div>
                         </div>
                         
                         <!-- تفاصيل الأصناف -->
