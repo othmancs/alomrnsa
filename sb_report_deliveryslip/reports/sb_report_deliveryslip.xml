@@ -223,7 +223,7 @@
             <field name="report_name">sb_report_deliveryslip.report_custom_documenttt</field>
             <field name="binding_model_id" ref="model_stock_picking"/>
             <field name="binding_type">report</field>
-            <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/>
+<!--             <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/> -->
         </record>
     </data>
 </odoo>
