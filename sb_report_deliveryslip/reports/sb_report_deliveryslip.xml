@@ -4,228 +4,226 @@
         <template id="report_custom_documenttt">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="web.external_layout">
+                    <!-- Header Section -->
+                    <div class="header">
+                        <table style="border:2pt solid BLACK;width:100%;font-size:12px;" width="100%">
+                            <link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/>
+                            <tr>
+                                <td colspan="2" width="35%">
+                                    <strong><span style="padding-left:5px;" t-field="o.company_id.name"/></strong><br/>
+                                    <t t-if="o.company_id.street">
+                                        <span style="padding-left:5px;" t-field="o.company_id.street"/><br/>
+                                    </t>
+                                    <t t-if="o.company_id.street2">
+                                        <span style="padding-left:5px;" t-field="o.company_id.street2"/><br/>
+                                    </t>
+                                    <t t-if="o.company_id.city">
+                                        <span style="padding-left:5px;" t-field="o.company_id.city"/><br/>
+                                    </t>
+                                    <t t-if="o.company_id.country_id">
+                                        <span style="padding-left:5px;" t-field="o.company_id.country_id.name"/><br/>
+                                    </t>
+                                </td>
 
-                        <div class="page" style="direction: rtl;">
-                            <br/>
-                            <div class="row">
-                                <div class="col-4" style="font-size:20px; color:#8B322C;">
-                                    <t t-esc="o.name"/>
-                                </div>
-                                <div class="col-5">
+                                <td style="border:2pt solid BLACK;" colspan="3" width="30%" class="text-center">
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="height: 100px;width: 100px; " alt="Logo"/><br/>
                                     <t t-if="o.picking_type_code=='incoming'">
-                                        <h5 style="text-align:left;color:#071952;">سند استلام</h5>
+                                        <h5 style="color:#071952;">سند استلام</h5>
                                     </t>
                                     <t t-if="o.picking_type_code=='internal'">
-                                        <h5 style="text-align:left;color:#071952;">نقل داخلى</h5>
+                                        <h5 style="color:#071952;">نقل داخلي</h5>
                                     </t>
                                     <t t-if="o.picking_type_code=='outgoing'">
-                                        <h5 style="text-align:left;color:#071952;">سند تسليم</h5>
+                                        <h5 style="color:#071952;">سند تسليم</h5>
+                                    </t>
+                                    <strong>رقم السند</strong><br/>
+                                    <span t-field="o.name"/><br/>
+                                    <strong>التاريخ</strong><br/>
+                                    <span t-esc="o.date_done"/>
+                                </td>
+
+                                <td style="border:2pt solid BLACK;" colspan="2" width="35%" class="text-right">
+                                    <strong>
+                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_name"/></strong><br/>
+                                    <t t-if="o.company_id.street">
+                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_street"/><br/>
+                                    </t>
+                                    <t t-if="o.company_id.street2">
+                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_street2"/><br/>
+                                    </t>
+                                    <t t-if="o.company_id.city">
+                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_city"/><br/>
+                                    </t>
+                                    <t t-if="o.company_id.arabic_country">
+                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_country"/><br/>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr style="border:2pt solid grey;">
+                                <td width="16%">‫‪ <span class="text-right" style="padding-left:5px;"/>CR No. : </td>
+                                <td width="16%"><span class="text-center arabic" t-field="o.company_id.company_registry"/> ‫‪</td>
+                                <td width="17%"><span class="text-right arabic" style="padding-right:-6px;">رقم السجل التجاري</span>‬</td>
+
+                                <td width="2%" style="border-left:1pt solid black;"/>
+
+                                <td width="16%">‫‪ <span class="text-right" style="padding-left:5px;">VAT‬‬ No.: </span></td>
+                                <td width="16%"><span class="text-center arabic" t-field="o.company_id.vat"/> ‫‪</td>
+                                <td width="17%"><span class="text-right arabic" style="padding-right:-6px;">ضريبة القيمة المضافة</span>‬</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div style="margin: 10px 0;"></div>
+
+                    <!-- Document Content -->
+                    <div class="page" style="direction: rtl;">
+                        <!-- معلومات الحركة -->
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md-6">
+                                <table class="table table-sm table-bordered">
+                                    <tr>
+                                        <th width="30%">الموقع المصدر</th>
+                                        <td><t t-esc="o.location_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>الموقع الوجهة</th>
+                                        <td><t t-esc="o.location_dest_id.name"/></td>
+                                    </tr>
+                                    <tr t-if="o.picking_type_code!='internal'">
+                                        <th>العميل/المورد</th>
+                                        <td><t t-esc="o.partner_id.name"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table table-sm table-bordered">
+                                    <tr>
+                                        <th width="30%">رقم المرجع</th>
+                                        <td><t t-esc="o.origin"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>تاريخ التنفيذ</th>
+                                        <td><t t-esc="o.date_done"/></td>
+                                    </tr>
+                                    <tr t-if="o.picking_type_code!='internal'">
+                                        <th>مرجع المورد</th>
+                                        <td><t t-esc="o.partner_ref"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- تفاصيل الأصناف -->
+                        <div style="margin-bottom: 20px;">
+                            <table class="table table-sm table-bordered" style="width: 100%;">
+                                <thead>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <th class="text-center" width="5%">#</th>
+                                        <th class="text-center" width="15%">كود الصنف</th>
+                                        <th class="text-center" width="40%">الوصف</th>
+                                        <th class="text-center" width="15%">الكمية المطلوبة</th>
+                                        <th class="text-center" width="15%">الكمية المنقولة</th>
+                                        <th class="text-center" width="10%">الوحدة</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="total_product_uom_qty" t-value="0"/>
+                                    <t t-set="total_quantity_done" t-value="0"/>
+                                    <t t-set="counter" t-value="1"/>
+                                    <t t-foreach="o.move_ids_without_package" t-as="line">
+                                        <tr>
+                                            <td class="text-center"><t t-esc="counter"/></td>
+                                            <td class="text-center"><t t-esc="line.product_id.default_code"/></td>
+                                            <td><t t-esc="line.product_id.name"/></td>
+                                            <td class="text-center">
+                                                <t t-esc="line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
+                                                <t t-set="total_product_uom_qty" t-value="total_product_uom_qty + line.product_uom_qty"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-esc="line.quantity_done" t-options='{"widget": "float", "precision": 2}'/>
+                                                <t t-set="total_quantity_done" t-value="total_quantity_done + line.quantity_done"/>
+                                            </td>
+                                            <td class="text-center"><t t-esc="line.product_uom.name"/></td>
+                                        </tr>
+                                        <t t-set="counter" t-value="counter + 1"/>
+                                    </t>
+                                    <tr style="font-weight: bold; background-color: #f8f9fa;">
+                                        <td colspan="3" class="text-left">الإجمالي</td>
+                                        <td class="text-center">
+                                            <t t-esc="total_product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="total_quantity_done" t-options='{"widget": "float", "precision": 2}'/>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- الملاحظات والتوقيعات -->
+                        <div style="margin-bottom: 20px;">
+                            <div style="margin-bottom: 15px;">
+                                <h5>ملاحظات:</h5>
+                                <p style="border: 1px solid #dee2e6; padding: 10px; min-height: 50px;">
+                                    <t t-esc="o.note or 'لا توجد ملاحظات'"/>
+                                </p>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p style="font-weight: bold;">طبع بواسطة: <t t-esc="o.print_by"/></p>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <t t-if="o.picking_type_code=='incoming'">
+                                        <p style="font-weight: bold;">توقيع مأمور المستودع: ...............................</p>
+                                    </t>
+                                    <t t-if="o.picking_type_code=='internal'">
+                                        <p style="font-weight: bold;">توقيع مأمور المستودع: ...............................</p>
+                                    </t>
+                                    <t t-if="o.picking_type_code=='outgoing'">
+                                        <p style="font-weight: bold;">توقيع العميل: ...............................</p>
                                     </t>
                                 </div>
                             </div>
-                            <br/>
-                            <div>
-                                <table style="border:1px white; font-size:13px;">
-                                    <tr style="border:none;">
-                                        <t t-if="o.picking_type_code=='internal'">
-                                        </t>
-                                        <t t-if="o.picking_type_code=='incoming'">
-                                        <td style="border:none; width:321px;font-weight:bold;">موقع العميل</td>
-                                        </t>
-                                        <t t-if="o.picking_type_code=='outgoing'">
-                                        <td style="border:none; width:321px;font-weight:bold;">موقع العميل</td>
-                                        </t>
-                                        <td style="border:none; font-weight:bold;">الموقع المصدري</td>
-                                    </tr>
-                                    <tr style="border:none;">
-                                        <t t-if="o.picking_type_code=='internal'">
-                                        </t>
-                                        <t t-if="o.picking_type_code=='outgoing'">
-                                        <td style="border:none; width:321px;">
-                                            <t t-esc="o.partner_id.name"/>
-                                        </td>
-                                        </t>
-                                        <t t-if="o.picking_type_code=='incoming'">
-                                        <td style="border:none; width:321px;">
-                                            <t t-esc="o.partner_id.name"/>
-                                        </td>
-                                        </t>
-                                        <td style="border:none;">
-                                            <t t-esc="o.location_id.name"/>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br/>
-                                <table style="border:1px white;font-size:13px;">
-                                    <tr style="border:none;">
-                                        <td style="border:none; width:321px; font-weight:bold;">رقم الشراء</td>
-                                        <td style="border:none; font-weight:bold;">الموقع الوجهه</td>
-                                    </tr>
-                                    <tr style="border:none;">
-                                        <td style="border:none; width:321px;">
-                                            <t t-esc="o.origin"/>
-                                        </td>
-                                        <td style="border:none;">
-                                            <t t-esc="o.location_dest_id.name"/>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br/>
-                                <table style="border:1px white; font-size:13px;">
-                                    <tr style="border:none;">
-                                        <td style="border:none; width:321px; font-weight:bold;">تاريخ الشحن</td>
-                                         <t t-if="o.picking_type_code!='internal'">
-                                        <td style="border:none; font-weight:bold; width:100px; ">مرجع المورد</td>
-                                         </t>
-
-                                    </tr>
-                                    <tr style="border:none;">
-                                        <td style="border:none; width:321px;">
-                                            <t t-esc="o.date_done"/>
-                                        </td>
-                                        <t t-if="o.picking_type_code!='internal'">
-                                        <td style="border:none; ">
-                                            <t t-esc="o.partner_ref"/>
-                                        </td>
-                                        </t>
-                                    </tr>
-                                </table>
-                                <br/>
-                                 <t t-if="o.picking_type_code!='internal'">
-                                <table style="border:1px white; font-size:13px;">
-                                    <tr style="border:none;">
-                                        <td style="border:none; font-weight:bold;  width:321px; ">انشا من قبل</td>
-                                        <td style="border:none; font-weight:bold;">الفرع</td>
-                                    </tr>
-                                    <tr style="border:none;">
-                                        <td style="border:none;  width:321px;">
-                                            <t t-esc="o.created_by_id.name"/>
-                                        </td>
-                                        <td style="border:none;  width:100px;">
-                                            <t t-esc="o.branch_id.name"/>
-                                        </td>
-                                    </tr>
-                                </table>
-                                 </t>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div>
-                                <table class="table table-sm table-bordered"
-                                       style="width: 100%; table-layout: fixed; font-size:13px;">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center" style="width: 10%;">-</th>
-                                            <th class="text-center" style="width: 20%;">كود</th>
-                                            <th class="text-center" style="width: 50%;">المنتج</th>
-                                            <th class="text-center" style="width: 20%;">تم طلبه</th>
-                                            <th class="text-center" style="width: 20%;">تم توصيله</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <t t-set="total_product_uom_qty" t-value="0"/>
-                                        <t t-set="total_quantity_done" t-value="0"/>
-                                        <t t-set="counter" t-value="1"/>
-                                        <t t-foreach="o.move_ids_without_package" t-as="line">
-                                            <tr>
-                                                <td class="text-center">
-                                                    <t t-esc="counter"/>
-                                                </td>
-                                                <td class="text-center">
-                                                    <t t-esc="line.product_id.default_code"/>
-                                                </td>
-                                                <td class="text-center">
-                                                    <t t-esc="line.product_id.name"/>
-                                                </td>
-                                                <td class="text-center">
-                                                    <t t-esc="line.product_uom_qty"
-                                                       t-options='{"widget": "float", "precision": 2}'/>
-                                                    <t t-set="total_product_uom_qty"
-                                                       t-value="total_product_uom_qty + line.product_uom_qty"
-                                                       t-options='{"widget": "float", "precision": 2}'/>
-                                                </td>
-                                                <td class="text-center">
-                                                    <t t-esc="line.quantity_done"/>
-                                                    <t t-set="total_quantity_done"
-                                                       t-value="total_quantity_done + line.quantity_done"
-                                                       t-options='{"widget": "float", "precision": 2}'/>
-                                                </td>
-                                            </tr>
-                                            <t t-set="counter" t-value="counter + 1"/>
-                                        </t>
-                                        <tr style="border:1px white;">
-                                            <td class="text-right " style="border:1px white; text-align:left;"></td>
-                                            <td class="text-right " style="border:1px white; text-align:left;"></td>
-                                            <td class="text-right " style="border:1px white; text-align:left;">اجمالى
-                                            </td>
-                                            <td class="text-center" style="border-right:1px white; border:1px white;">
-                                                <t t-esc="total_product_uom_qty"
-                                                   t-options='{"widget": "float", "precision": 2}'/>
-                                            </td>
-                                            <td class="text-center" style="border-right:1px white; border:1px white;">
-                                                <t t-esc="total_quantity_done"
-                                                   t-options='{"widget": "float", "precision": 2}'/>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div style="text-align:right;">
-                                <p style="font-size:13px;">1- تم استلام جميع الاصناف فى حالة سليمة .</p>
-                                <span>
-                                    <t t-esc="o.note"/>
-                                </span>
-                                <br/>
-                                <t t-if="o.picking_type_code=='incoming'">
-                                    <p style="font-size:13px;">2-توقيع مأمور المستودع/
-                                        ..................................
-                                    </p>
-                                </t>
-                                <t t-if="o.picking_type_code=='internal'">
-                                    <p style="font-size:13px;">2-توقيع مأمور المستودع/
-                                        ..................................
-                                    </p>
-                                </t>
-                                <t t-if="o.picking_type_code=='outgoing'">
-                                    <p style="font-size:13px;">2-توقيع العميل/ ..................................
-                                    </p>
-                                </t>
-
-                            </div>
-                            <br/>
-                            <br/>
-                            <div style="float: left;">
-                                <table style="border:1px white;font-size:13px;">
-                                    <tr style="border:none;">
-                                        <td style="border:none; font-weight:bold;width:100px;">طبع بواسطه</td>
-                                    </tr>
-                                    <tr style="border:none;">
-                                        <td style="border:none; width:100px;">
-                                            <t t-esc="o.print_by"/>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
                         </div>
-                    </t>
+                    </div>
+                    
+                    <!-- Footer Section -->
+                    <div class="footer o_background_footer">
+                        <div class="text-center" style="font-size:14px;">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/20/fe97a035-ddb8-440c-b7b7-46c1f065937d'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/12/ff18be9c-0c12-4a7b-b250-ce83c3958b15'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/9/9c36c834-c184-4240-a5ab-6206da2555d2'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/22/450d9eab-3b37-4553-a5ec-c67b439c1f8b'" style="width: 60px; height:30px; "/></li>
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/14/e4ae342e-92dc-405c-bb1a-3cb8c3f31efd'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/15/f6a7b514-6c69-4a36-934c-790abf0a0d9a'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/16/b9fc2865-2e7a-4763-a41c-d45a4e46cac8'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                                <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/18/7dd0d45d-9c61-42b5-9a64-fbcb778199d7'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
+                            </ul>
+                            <div t-field="o.company_id.report_footer"/>
+                            <div class="text-muted">
+                                Page:
+                                <span class="page"/>
+                                of
+                                <span class="topage"/>
+                            </div>
+                        </div>
+                    </div>
                 </t>
             </t>
-
-
         </template>
+
         <record id="action_reportt_stock_picking" model="ir.actions.report">
-            <field name="name">العمران توصيل</field>
+            <field name="name">تقرير حركة المخزون</field>
             <field name="model">stock.picking</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_file">sb_report_deliveryslip.report_custom_documenttt</field>
             <field name="report_name">sb_report_deliveryslip.report_custom_documenttt</field>
             <field name="binding_model_id" ref="model_stock_picking"/>
             <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/>
         </record>
     </data>
 </odoo>
