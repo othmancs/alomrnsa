@@ -3,33 +3,6 @@
     <data>
         <template id="report_custom_documenttt">
             <t t-call="web.html_container">
-<!--                 <t t-set="arabic_style">
-                    <style>
-                        @font-face {
-                            font-family: 'Noto Kufi Arabic';
-                            src: url('/web/static/lib/fonts/NotoKufiArabic/NotoKufiArabic-Regular.ttf') format('truetype');
-                        }
-                        body, div, span, table, th, td, p {
-                            font-family: 'Noto Kufi Arabic', 'Arial', sans-serif;
-                            direction: rtl;
-                            text-align: right;
-                            unicode-bidi: embed;
-                        }
-                        .arabic-text {
-                            font-family: 'Noto Kufi Arabic', 'Arial', sans-serif;
-                            unicode-bidi: embed;
-                        }
-                        .text-right {
-                            text-align: right;
-                        }
-                        .text-center {
-                            text-align: center;
-                        }
-                        .text-left {
-                            text-align: left;
-                        }
-                    </style>
-                </t> -->
 
                 <t t-foreach="docs" t-as="o">
                     <!-- Header Section -->
@@ -241,19 +214,29 @@
                 </t>
             </t>
         </template>
-
-        <record id="action_reportt_stock_picking" model="ir.actions.report">
-            <field name="name">تقرير حركة المخزون</field>
-            <field name="model">stock.picking</field>
-            <field name="report_type">qweb-pdf</field>
-            <field name="report_file">sb_report_deliveryslip.report_custom_documenttt</field>
-            <field name="report_name">sb_report_deliveryslip.report_custom_documenttt</field>
-            <field name="binding_model_id" ref="model_stock_picking"/>
-            <field name="binding_type">report</field>
-            <!-- تأكد من وجود paperformat يدعم العربية -->
-<!--             <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/> -->
-<field name="paperformat_id" ref="base.paperformat_default"/>
-
-        </record>
+<record id="paperformat_arabic_a4" model="report.paperformat">
+    <field name="name">Arabic A4</field>
+    <field name="default" eval="False"/>
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Portrait</field>
+    <field name="margin_top">20</field>
+    <field name="margin_bottom">20</field>
+    <field name="margin_left">15</field>
+    <field name="margin_right">15</field>
+    <field name="header_line" eval="False"/>
+    <field name="dpi">90</field>
+</record>
+<record id="action_reportt_stock_picking" model="ir.actions.report">
+    <field name="name">تقرير حركة المخزون</field>
+    <field name="model">stock.picking</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_file">sb_report_deliveryslip.report_custom_documenttt</field>
+    <field name="report_name">sb_report_deliveryslip.report_custom_documenttt</field>
+    <field name="binding_model_id" ref="model_stock_picking"/>
+    <field name="binding_type">report</field>
+    <field name="paperformat_id" ref="sb_report_deliveryslip.paperformat_arabic_a4"/>
+</record>
     </data>
 </odoo>
