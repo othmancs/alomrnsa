@@ -457,16 +457,24 @@ class DailySalesSummary(models.Model):
             'الفرع',
             'المبيعات النقدية',  # (إجمالي المبيعات مع الضريبة)
             'صافي المبيعات الآجلة',
-            'إجمالي التحصيل النقدي'  # تم نقل هذا العمود ليكون بعد صافي المبيعات الآجلة
+            'إجمالي التحصيل النقدي'
         ]
         
         # إضافة أعمدة لطرق الدفع الفريدة (لتحصيل النقدي)
         for method in sorted(payment_methods):
             base_headers.append(f'تحصيل نقدي - {method}')
         
+        # إضافة عمود تحصيل آجل قبل تحصيل آجل - حوالة
+        base_headers.append('تحصيل آجل')
+        
         # إضافة أعمدة لطرق الدفع للتحصيل الآجل
         for method in sorted(credit_payment_methods):
-            base_headers.append(f'تحصيل آجل - {method}')
+            if method != 'حوالة':  # نتجنب تكرار حوالة إذا كانت موجودة
+                base_headers.append(f'تحصيل آجل - {method}')
+        
+        # إضافة تحصيل آجل - حوالة إذا كانت موجودة
+        if 'حوالة' in credit_payment_methods:
+            base_headers.append('تحصيل آجل - حوالة')
         
         # إضافة الأعمدة المتبقية
         base_headers.extend([
@@ -602,21 +610,31 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, branch.name, text_format); col += 1
             worksheet.write(row, col, branch_cash_sales, currency_format); col += 1
             worksheet.write(row, col, branch_credit, currency_format); col += 1
-            worksheet.write(row, col, branch_cash_receipts, currency_format); col += 1  # إجمالي التحصيل النقدي بعد صافي المبيعات الآجلة
+            worksheet.write(row, col, branch_cash_receipts, currency_format); col += 1
             
             # كتابة تحصيل نقدي لكل طريقة دفع
             for method in sorted(payment_methods):
                 worksheet.write(row, col, cash_method_totals.get(method, 0.0), currency_format)
                 col += 1
             
-            # كتابة تحصيل آجل لكل طريقة دفع
+            # كتابة تحصيل آجل (إجمالي المقبوضات - إجمالي التحصيل النقدي)
+            branch_credit_receipts = branch_total_credit_receipts - branch_cash_receipts
+            worksheet.write(row, col, branch_credit_receipts, currency_format); col += 1
+            
+            # كتابة تحصيل آجل لكل طريقة دفع (ما عدا حوالة)
             for method in sorted(credit_payment_methods):
-                worksheet.write(row, col, credit_method_totals.get(method, 0.0), currency_format)
+                if method != 'حوالة':
+                    worksheet.write(row, col, credit_method_totals.get(method, 0.0), currency_format)
+                    col += 1
+            
+            # كتابة تحصيل آجل - حوالة إذا كانت موجودة
+            if 'حوالة' in credit_payment_methods:
+                worksheet.write(row, col, credit_method_totals.get('حوالة', 0.0), currency_format)
                 col += 1
             
             worksheet.write(row, col, branch_total_credit_receipts, currency_format); col += 1
             worksheet.write(row, col, branch_total, currency_format)
-    
+
             row += 1
     
         # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
@@ -625,21 +643,31 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, 'الإجمالي', header_format); col += 1
             worksheet.write(row, col, totals['cash_sales'], total_format); col += 1
             worksheet.write(row, col, totals['credit'], total_format); col += 1
-            worksheet.write(row, col, totals['total_cash_receipts'], total_format); col += 1  # إجمالي التحصيل النقدي بعد صافي المبيعات الآجلة
+            worksheet.write(row, col, totals['total_cash_receipts'], total_format); col += 1
             
             # إجمالي تحصيل نقدي لكل طريقة دفع
             for method in sorted(payment_methods):
                 worksheet.write(row, col, totals.get(f'cash_method_{method}', 0.0), total_format)
                 col += 1
             
-            # إجمالي تحصيل آجل لكل طريقة دفع
+            # إجمالي تحصيل آجل (إجمالي المقبوضات - إجمالي التحصيل النقدي)
+            total_credit_receipts = totals['total_credit_receipts'] - totals['total_cash_receipts']
+            worksheet.write(row, col, total_credit_receipts, total_format); col += 1
+            
+            # إجمالي تحصيل آجل لكل طريقة دفع (ما عدا حوالة)
             for method in sorted(credit_payment_methods):
-                worksheet.write(row, col, totals.get(f'credit_method_{method}', 0.0), total_format)
+                if method != 'حوالة':
+                    worksheet.write(row, col, totals.get(f'credit_method_{method}', 0.0), total_format)
+                    col += 1
+            
+            # إجمالي تحصيل آجل - حوالة إذا كانت موجودة
+            if 'حوالة' in credit_payment_methods:
+                worksheet.write(row, col, totals.get('credit_method_حوالة', 0.0), total_format)
                 col += 1
             
             worksheet.write(row, col, totals['total_credit_receipts'], total_format); col += 1
             worksheet.write(row, col, totals['total_sales'], total_format)
-    
+
         # إغلاق الكتاب وحفظه
         workbook.close()
         output.seek(0)
