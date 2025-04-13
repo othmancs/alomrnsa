@@ -196,8 +196,8 @@
                                     <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/16/b9fc2865-2e7a-4763-a41c-d45a4e46cac8'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
                                     <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/18/7dd0d45d-9c61-42b5-9a64-fbcb778199d7'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
                                 </ul>
-<div><span t-field="o.company_id.report_footer"/></div>
-
+<!-- <div><span t-field="o.company_id.report_footer"/></div>
+ -->
 
                                 <div class="text-muted">
                                     الصفحة:
