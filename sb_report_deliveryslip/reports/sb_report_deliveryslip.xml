@@ -2,9 +2,9 @@
 <odoo>
     <data>
         <template id="report_custom_documenttt">
-            <t t-call="web.html_container">
-                <t t-foreach="docs" t-as="o" t-options="{'lang': 'ar_001'}">
-                    <div style="direction: rtl; text-align: right;">
+<t t-call="web.html_container" t-lang="'ar_001'">
+    <t t-foreach="docs" t-as="o">
+               <div style="direction: rtl; text-align: right;">
                         <!-- Header Section -->
                         <div class="header">
                             <table style="border:2pt solid BLACK;width:100%;font-size:12px;" width="100%">
