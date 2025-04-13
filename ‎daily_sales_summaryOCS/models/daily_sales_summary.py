@@ -566,6 +566,7 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ])
             
+            
             # حساب التحصيل الآجل حسب طريقة الدفع
             credit_method_totals = {method: 0.0 for method in credit_payment_methods}
             branch_total_credit_receipts = 0
@@ -578,7 +579,7 @@ class DailySalesSummary(models.Model):
                         branch_total_credit_receipts += payment.amount
             
             # طرح الإرجاعات من التحصيل الآجل
-            branch_total_credit_receipts -= branch_cash_refunds
+            branch_total_credit_receipts = branch_total_credit_receipts + branch_cash_receipts - branch_cash_refunds
     
             # إجمالي المبيعات للفرع
             branch_total = branch_cash_sales + branch_credit
