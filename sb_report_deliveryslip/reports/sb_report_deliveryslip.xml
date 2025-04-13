@@ -7,7 +7,7 @@
                     <!-- Header Section -->
                     <div class="header">
                         <table style="border:2pt solid BLACK;width:100%;font-size:12px;" width="100%">
-                            <link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/>
+<!--                             <link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/> -->
                             <tr>
                                 <td colspan="2" width="35%">
                                     <strong><span style="padding-left:5px;" t-field="o.company_id.name"/></strong><br/>
