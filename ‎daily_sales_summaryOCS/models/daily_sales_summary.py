@@ -8,6 +8,9 @@ import xlsxwriter
 import base64
 from bs4 import BeautifulSoup
 from datetime import datetime
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class DailySalesSummary(models.Model):
@@ -377,6 +380,7 @@ class DailySalesSummary(models.Model):
             'create': False
         }
         return action
+
     @api.model
     def generate_sales_collection_report(self):
         """إنشاء تقرير Excel للمبيعات والتحصيل مع تفصيل طرق الدفع"""
@@ -644,6 +648,59 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
+
+    def action_generate_excel_report(self):
+        """إجراء لإنشاء وتنزيل التقرير"""
+        self.ensure_one()
+        try:
+            report_data = self.generate_sales_collection_report()
+            
+            # إنشاء مرفق (attachment) للتقرير
+            attachment = self.env['ir.attachment'].create({
+                'name': report_data['file_name'],
+                'datas': base64.b64encode(report_data['file_content']),
+                'res_model': 'daily.sales.summary',
+                'res_id': self.id,
+                'type': 'binary'
+            })
+            
+            # إرجاع إجراء لتنزيل المرفق
+            return {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/%s?download=true' % attachment.id,
+                'target': 'self',
+            }
+        except Exception as e:
+            _logger.error("Failed to generate sales report: %s", str(e))
+            raise
+
+    def _compute_total_cash_methods(self, summaries):
+        """حساب إجمالي الكاش الوارد باستثناء طرق السداد المحددة"""
+        total = 0.0
+        excluded_methods = ['شبكة', 'حوالة']  # طرق السداد المستثناة
+
+        for summary in summaries:
+            # تحليل محتوى payment_method_totals
+            if not summary.payment_method_totals:
+                continue
+
+            # تحليل HTML للحصول على طرق الدفع والمبالغ
+            soup = BeautifulSoup(summary.payment_method_totals, 'html.parser')
+            lines = soup.get_text().split('\n')
+
+            for line in lines:
+                if ':' in line:
+                    method, amount = line.split(':', 1)
+                    method = method.strip()
+                    amount = amount.strip().split()[0]
+
+                    # استبعاد طرق السداد المحددة
+                    if not any(excluded in method for excluded in excluded_methods):
+                        try:
+                            total += float(amount.replace(',', ''))
+                        except ValueError:
+                            continue
+        return total
 # -*- coding: utf-8 -*-
 
 # from odoo import models, fields, api
