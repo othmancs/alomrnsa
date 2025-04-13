@@ -3,21 +3,38 @@
     <data>
         <template id="report_custom_documenttt">
             <t t-call="web.html_container">
-                    <t t-set="arabic_style">
-        <style>
-            body, div, span, table, th, td, p {
-                font-family: 'Noto Kufi Arabic', sans-serif;
-                direction: rtl;
-                text-align: right;
-            }
-        </style>
-    </t>
+<!--                 <t t-set="arabic_style">
+                    <style>
+                        @font-face {
+                            font-family: 'Noto Kufi Arabic';
+                            src: url('/web/static/lib/fonts/NotoKufiArabic/NotoKufiArabic-Regular.ttf') format('truetype');
+                        }
+                        body, div, span, table, th, td, p {
+                            font-family: 'Noto Kufi Arabic', 'Arial', sans-serif;
+                            direction: rtl;
+                            text-align: right;
+                            unicode-bidi: embed;
+                        }
+                        .arabic-text {
+                            font-family: 'Noto Kufi Arabic', 'Arial', sans-serif;
+                            unicode-bidi: embed;
+                        }
+                        .text-right {
+                            text-align: right;
+                        }
+                        .text-center {
+                            text-align: center;
+                        }
+                        .text-left {
+                            text-align: left;
+                        }
+                    </style>
+                </t> -->
 
                 <t t-foreach="docs" t-as="o">
                     <!-- Header Section -->
                     <div class="header">
                         <table style="border:2pt solid BLACK;width:100%;font-size:12px;" width="100%">
-<!--                             <link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/> -->
                             <tr>
                                 <td colspan="2" width="35%">
                                     <strong><span style="padding-left:5px;" t-field="o.company_id.name"/></strong><br/>
@@ -46,39 +63,39 @@
                                     <t t-if="o.picking_type_code=='outgoing'">
                                         <h5 style="color:#071952;">سند تسليم</h5>
                                     </t>
-                                    <strong>رقم السند</strong><br/>
-                                    <span t-field="o.name"/><br/>
-                                    <strong>التاريخ</strong><br/>
-                                    <span t-esc="o.date_done"/>
+                                    <strong class="arabic-text">رقم السند</strong><br/>
+                                    <span class="arabic-text" t-field="o.name"/><br/>
+                                    <strong class="arabic-text">التاريخ</strong><br/>
+                                    <span class="arabic-text" t-esc="o.date_done"/>
                                 </td>
 
                                 <td style="border:2pt solid BLACK;" colspan="2" width="35%" class="text-right">
                                     <strong>
-                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_name"/></strong><br/>
+                                        <span class="arabic-text" style="padding-right:5px;" t-field="o.company_id.arabic_name"/></strong><br/>
                                     <t t-if="o.company_id.street">
-                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_street"/><br/>
+                                        <span class="arabic-text" style="padding-right:5px;" t-field="o.company_id.arabic_street"/><br/>
                                     </t>
                                     <t t-if="o.company_id.street2">
-                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_street2"/><br/>
+                                        <span class="arabic-text" style="padding-right:5px;" t-field="o.company_id.arabic_street2"/><br/>
                                     </t>
                                     <t t-if="o.company_id.city">
-                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_city"/><br/>
+                                        <span class="arabic-text" style="padding-right:5px;" t-field="o.company_id.arabic_city"/><br/>
                                     </t>
                                     <t t-if="o.company_id.arabic_country">
-                                        <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_country"/><br/>
+                                        <span class="arabic-text" style="padding-right:5px;" t-field="o.company_id.arabic_country"/><br/>
                                     </t>
                                 </td>
                             </tr>
                             <tr style="border:2pt solid grey;">
-                                <td width="16%">‫‪ <span class="text-right" style="padding-left:5px;"/>CR No. : </td>
-                                <td width="16%"><span class="text-center arabic" t-field="o.company_id.company_registry"/> ‫‪</td>
-                                <td width="17%"><span class="text-right arabic" style="padding-right:-6px;">رقم السجل التجاري</span>‬</td>
+                                <td width="16%"><span class="text-right" style="padding-left:5px;"/>CR No. : </td>
+                                <td width="16%"><span class="text-center" t-field="o.company_id.company_registry"/></td>
+                                <td width="17%"><span class="arabic-text" style="padding-right:-6px;">رقم السجل التجاري</span></td>
 
                                 <td width="2%" style="border-left:1pt solid black;"/>
 
-                                <td width="16%">‫‪ <span class="text-right" style="padding-left:5px;">VAT‬‬ No.: </span></td>
-                                <td width="16%"><span class="text-center arabic" t-field="o.company_id.vat"/> ‫‪</td>
-                                <td width="17%"><span class="text-right arabic" style="padding-right:-6px;">ضريبة القيمة المضافة</span>‬</td>
+                                <td width="16%"><span class="text-right" style="padding-left:5px;">VAT No.: </span></td>
+                                <td width="16%"><span class="text-center" t-field="o.company_id.vat"/></td>
+                                <td width="17%"><span class="arabic-text" style="padding-right:-6px;">ضريبة القيمة المضافة</span></td>
                             </tr>
                         </table>
                     </div>
@@ -86,38 +103,38 @@
                     <div style="margin: 10px 0;"></div>
 
                     <!-- Document Content -->
-                    <div class="page" style="direction: rtl;">
+                    <div class="page" style="direction: rtl; unicode-bidi: embed;">
                         <!-- معلومات الحركة -->
                         <div class="row" style="margin-bottom: 15px;">
                             <div class="col-md-6">
                                 <table class="table table-sm table-bordered">
                                     <tr>
-                                        <th width="30%">الموقع المصدر</th>
-                                        <td><t t-esc="o.location_id.name"/></td>
+                                        <th class="arabic-text" width="30%">الموقع المصدر</th>
+                                        <td class="arabic-text"><t t-esc="o.location_id.name"/></td>
                                     </tr>
                                     <tr>
-                                        <th>الموقع الوجهة</th>
-                                        <td><t t-esc="o.location_dest_id.name"/></td>
+                                        <th class="arabic-text">الموقع الوجهة</th>
+                                        <td class="arabic-text"><t t-esc="o.location_dest_id.name"/></td>
                                     </tr>
                                     <tr t-if="o.picking_type_code!='internal'">
-                                        <th>العميل/المورد</th>
-                                        <td><t t-esc="o.partner_id.name"/></td>
+                                        <th class="arabic-text">العميل/المورد</th>
+                                        <td class="arabic-text"><t t-esc="o.partner_id.name"/></td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="col-md-6">
                                 <table class="table table-sm table-bordered">
                                     <tr>
-                                        <th width="30%">رقم المرجع</th>
-                                        <td><t t-esc="o.origin"/></td>
+                                        <th class="arabic-text" width="30%">رقم المرجع</th>
+                                        <td class="arabic-text"><t t-esc="o.origin"/></td>
                                     </tr>
                                     <tr>
-                                        <th>تاريخ التنفيذ</th>
-                                        <td><t t-esc="o.date_done"/></td>
+                                        <th class="arabic-text">تاريخ التنفيذ</th>
+                                        <td class="arabic-text"><t t-esc="o.date_done"/></td>
                                     </tr>
                                     <tr t-if="o.picking_type_code!='internal'">
-                                        <th>مرجع المورد</th>
-                                        <td><t t-esc="o.partner_ref"/></td>
+                                        <th class="arabic-text">مرجع المورد</th>
+                                        <td class="arabic-text"><t t-esc="o.partner_ref"/></td>
                                     </tr>
                                 </table>
                             </div>
@@ -128,12 +145,12 @@
                             <table class="table table-sm table-bordered" style="width: 100%;">
                                 <thead>
                                     <tr style="background-color: #f8f9fa;">
-                                        <th class="text-center" width="5%">#</th>
-                                        <th class="text-center" width="15%">كود الصنف</th>
-                                        <th class="text-center" width="40%">الوصف</th>
-                                        <th class="text-center" width="15%">الكمية المطلوبة</th>
-                                        <th class="text-center" width="15%">الكمية المنقولة</th>
-                                        <th class="text-center" width="10%">الوحدة</th>
+                                        <th class="text-center arabic-text" width="5%">#</th>
+                                        <th class="text-center arabic-text" width="15%">كود الصنف</th>
+                                        <th class="text-center arabic-text" width="40%">الوصف</th>
+                                        <th class="text-center arabic-text" width="15%">الكمية المطلوبة</th>
+                                        <th class="text-center arabic-text" width="15%">الكمية المنقولة</th>
+                                        <th class="text-center arabic-text" width="10%">الوحدة</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,7 +161,7 @@
                                         <tr>
                                             <td class="text-center"><t t-esc="counter"/></td>
                                             <td class="text-center"><t t-esc="line.product_id.default_code"/></td>
-                                            <td><t t-esc="line.product_id.name"/></td>
+                                            <td class="arabic-text"><t t-esc="line.product_id.name"/></td>
                                             <td class="text-center">
                                                 <t t-esc="line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
                                                 <t t-set="total_product_uom_qty" t-value="total_product_uom_qty + line.product_uom_qty"/>
@@ -153,12 +170,12 @@
                                                 <t t-esc="line.quantity_done" t-options='{"widget": "float", "precision": 2}'/>
                                                 <t t-set="total_quantity_done" t-value="total_quantity_done + line.quantity_done"/>
                                             </td>
-                                            <td class="text-center"><t t-esc="line.product_uom.name"/></td>
+                                            <td class="text-center arabic-text"><t t-esc="line.product_uom.name"/></td>
                                         </tr>
                                         <t t-set="counter" t-value="counter + 1"/>
                                     </t>
                                     <tr style="font-weight: bold; background-color: #f8f9fa;">
-                                        <td colspan="3" class="text-left">الإجمالي</td>
+                                        <td colspan="3" class="text-left arabic-text">الإجمالي</td>
                                         <td class="text-center">
                                             <t t-esc="total_product_uom_qty" t-options='{"widget": "float", "precision": 2}'/>
                                         </td>
@@ -174,25 +191,25 @@
                         <!-- الملاحظات والتوقيعات -->
                         <div style="margin-bottom: 20px;">
                             <div style="margin-bottom: 15px;">
-                                <h5>ملاحظات:</h5>
-                                <p style="border: 1px solid #dee2e6; padding: 10px; min-height: 50px;">
+                                <h5 class="arabic-text">ملاحظات:</h5>
+                                <p style="border: 1px solid #dee2e6; padding: 10px; min-height: 50px;" class="arabic-text">
                                     <t t-esc="o.note or 'لا توجد ملاحظات'"/>
                                 </p>
                             </div>
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p style="font-weight: bold;">طبع بواسطة: <t t-esc="o.print_by"/></p>
+                                    <p style="font-weight: bold;" class="arabic-text">طبع بواسطة: <t t-esc="o.print_by"/></p>
                                 </div>
                                 <div class="col-md-6 text-left">
                                     <t t-if="o.picking_type_code=='incoming'">
-                                        <p style="font-weight: bold;">توقيع مأمور المستودع: ...............................</p>
+                                        <p style="font-weight: bold;" class="arabic-text">توقيع مأمور المستودع: ...............................</p>
                                     </t>
                                     <t t-if="o.picking_type_code=='internal'">
-                                        <p style="font-weight: bold;">توقيع مأمور المستودع: ...............................</p>
+                                        <p style="font-weight: bold;" class="arabic-text">توقيع مأمور المستودع: ...............................</p>
                                     </t>
                                     <t t-if="o.picking_type_code=='outgoing'">
-                                        <p style="font-weight: bold;">توقيع العميل: ...............................</p>
+                                        <p style="font-weight: bold;" class="arabic-text">توقيع العميل: ...............................</p>
                                     </t>
                                 </div>
                             </div>
@@ -212,8 +229,8 @@
                                 <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/16/b9fc2865-2e7a-4763-a41c-d45a4e46cac8'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
                                 <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/18/7dd0d45d-9c61-42b5-9a64-fbcb778199d7'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
                             </ul>
-                            <div t-field="o.company_id.report_footer"/>
-                            <div class="text-muted">
+                            <div class="arabic-text" t-field="o.company_id.report_footer"/>
+                            <div class="text-muted arabic-text">
                                 Page:
                                 <span class="page"/>
                                 of
@@ -233,7 +250,8 @@
             <field name="report_name">sb_report_deliveryslip.report_custom_documenttt</field>
             <field name="binding_model_id" ref="model_stock_picking"/>
             <field name="binding_type">report</field>
-<!--             <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/> -->
+            <!-- تأكد من وجود paperformat يدعم العربية -->
+            <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/>
         </record>
     </data>
 </odoo>
