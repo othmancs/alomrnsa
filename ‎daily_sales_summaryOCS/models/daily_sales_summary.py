@@ -377,7 +377,7 @@ class DailySalesSummary(models.Model):
             'create': False
         }
         return action
-
+    @api.model
     def generate_sales_collection_report(self):
         """إنشاء تقرير Excel للمبيعات والتحصيل مع تفصيل طرق الدفع"""
         # إنشاء كتاب Excel
