@@ -251,7 +251,9 @@
             <field name="binding_model_id" ref="model_stock_picking"/>
             <field name="binding_type">report</field>
             <!-- تأكد من وجود paperformat يدعم العربية -->
-            <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/>
+<!--             <field name="paperformat_id" ref="saudi_einvoice_knk.paperformat_seti"/> -->
+<field name="paperformat_id" ref="base.paperformat_default"/>
+
         </record>
     </data>
 </odoo>
