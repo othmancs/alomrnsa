@@ -13,6 +13,25 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+class DailySalesReportWizard(models.TransientModel):
+    _name = 'daily.sales.report.wizard'
+    _description = 'Wizard for Daily Sales Report'
+    
+    date_from = fields.Date(string='من تاريخ', required=True, default=fields.Date.today())
+    date_to = fields.Date(string='إلى تاريخ', required=True, default=fields.Date.today())
+    company_id = fields.Many2one('res.company', string='الشركة', default=lambda self: self.env.company)
+    branch_ids = fields.Many2many('res.branch', string='الفروع')
+
+    def generate_report(self):
+        report = self.env['daily.sales.summary'].create({
+            'date_from': self.date_from,
+            'date_to': self.date_to,
+            'company_id': self.company_id.id,
+            'branch_ids': [(6, 0, self.branch_ids.ids)]
+        })
+        return report.action_generate_excel_report()
+
+
 class DailySalesSummary(models.Model):
     _name = 'daily.sales.summary'
     _description = 'ملخص حركة المبيعات اليومية'
