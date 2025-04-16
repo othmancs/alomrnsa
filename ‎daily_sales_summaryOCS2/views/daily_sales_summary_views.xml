@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Search View -->
+    <record id="view_daily_sales_summary_search" model="ir.ui.view">
+        <field name="name">daily.sales.summary.search</field>
+        <field name="model">daily.sales.summary</field>
+        <field name="arch" type="xml">
+            <search>
+                    <field name="branch_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="date_from" string="من تاريخ"/>
+                <field name="date_to" string="إلى تاريخ"/>
+                <filter string="هذا الشهر" name="current_month"
+                        domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
+                <group expand="0" string="تصفية حسب">
+                    <filter string="اليوم" name="today"
+                            domain="[('date_from','=',context_today()),('date_to','=',context_today())]"/>
+                    <filter string="الأسبوع الحالي" name="this_week"
+                            domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
+                    <filter string="الشهر الحالي" name="this_month"
+                            domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_daily_sales_summary_tree" model="ir.ui.view">
+        <field name="name">daily.sales.summary.tree</field>
+        <field name="model">daily.sales.summary</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_from" string="من تاريخ"/>
+                <field name="date_to" string="إلى تاريخ"/>
+                <field name="branch_ids"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="total_tax" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="credit_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="cash_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="credit_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="cash_box" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="total_cash" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_daily_sales_summary_form" model="ir.ui.view">
+        <field name="name">daily.sales.summary.form</field>
+        <field name="model">daily.sales.summary</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_excel_report"
+                            string="تقرير المبيعات والتحصيل (Excel)"
+                            type="object"
+                            class="oe_highlight"/>
+                    <button name="action_view_cash_sales" string="عرض الفواتير النقدية" type="object"/>
+                    <button name="action_view_partial_sales" string="عرض الفواتير المدفوعة جزئياً" type="object"/>
+                    <button name="action_view_credit_sales" string="عرض الفواتير الآجلة" type="object"/>
+                    <button name="action_view_cash_refunds" string="عرض الإرجاعات المستردة" type="object"/>
+                    <button name="action_view_credit_refunds" string="عرض الإرجاعات غير المستردة" type="object"/>
+                    <button name="action_view_cash_box" string="عرض المقبوضات" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="date_from" string="من تاريخ"/>
+                        <field name="date_to" string="إلى تاريخ"/>
+                        <field name="branch_ids"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+
+                    <notebook>
+                        <page string="المبيعات">
+                            <group>
+                                <group string="المبيعات النقدية">
+                                    <field name="cash_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                    <field name="total_tax" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="المبيعات المدفوعة جزئياً">
+                                    <field name="partial_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="المبيعات الآجلة">
+                                    <field name="credit_sales" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="المرتجعات">
+                            <group>
+                                <group string="إرجاعات مسترد المبلغ">
+                                    <field name="cash_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="إرجاعات غير مسترد المبلغ">
+                                    <field name="credit_refunds" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="الصندوق">
+                            <group>
+                                <group string="المقبوضات">
+                                    <field name="cash_box" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="إجمالي الصندوق">
+                                    <field name="total_cash" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="طرق الدفع">
+                            <group>
+                                <field name="payment_method_totals" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and Menu -->
+    <record id="action_daily_sales_summary" model="ir.actions.act_window">
+        <field name="name">ملخص المبيعات اليومية</field>
+        <field name="res_model">daily.sales.summary</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_daily_sales_summary_tree"/>
+        <field name="search_view_id" ref="view_daily_sales_summary_search"/>
+        <field name="context">{'search_default_group_by_date': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">اضغط على إنشاء لإنشاء ملخص جديد</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sales_reporting_root" name="التقارير" parent="sale.sale_menu_root"/>
+    <menuitem id="menu_daily_sales_summary" name="ملخص المبيعات اليومية" parent="menu_sales_reporting_root" action="action_daily_sales_summary"/>
+</odoo>
