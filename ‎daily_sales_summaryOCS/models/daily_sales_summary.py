@@ -427,13 +427,13 @@ class DailySalesSummary(models.Model):
                 logo_data = base64.b64decode(self.company_id.logo)
                 
                 # تحديد موقع الصورة في منتصف الصف (تقريباً بين العمود D والعمود G)
-                col_logo = 3  # بداية من العمود الرابع
+                col_logo = 5  # بداية من العمود الرابع
                 worksheet.merge_range(row, 2, row, 6, '')
                 # إدراج الصورة مع ضبط الحجم والموقع
                 worksheet.insert_image(row, col_logo, 'company_logo.png', {
                     'image_data': io.BytesIO(logo_data),
-                    'x_scale': 0.1,  # تصغير حجم الصورة إلى 30% من الحجم الأصلي
-                    'y_scale': 0.1,
+                    'x_scale': 0.2,  # تصغير حجم الصورة إلى 20% من الحجم الأصلي
+                    'y_scale': 0.2,
                     'x_offset': 10,
                     'y_offset': 10,
                     'object_position': 1
