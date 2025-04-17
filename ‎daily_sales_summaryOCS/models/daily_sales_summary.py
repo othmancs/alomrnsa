@@ -425,12 +425,12 @@ class DailySalesSummary(models.Model):
             try:
                 logo_data = base64.b64decode(self.company_id.logo)
                 
-                col_logo = 2  # من العمود C
+                col_logo = 5  # من العمود C
                 worksheet.merge_range(row, col_logo, row, col_logo + 4, '')  # من C إلى G
                 worksheet.insert_image(row, col_logo, 'company_logo.png', {
                     'image_data': io.BytesIO(logo_data),
-                    'x_scale': 0.2,
-                    'y_scale': 0.2,
+                    'x_scale': 0.15,
+                    'y_scale': 0.15,
                     'x_offset': 5,
                     'y_offset': 5,
                     'object_position': 1
