@@ -402,12 +402,12 @@ class DailySalesSummary(models.Model):
         })
         header_format = workbook.add_format({
             'bold': True, 'align': 'center', 'valign': 'vcenter',
-            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1, 
+            'bg_color': '#93E262', 'font_color': 'white', 'border': 1, 
             'font_size': 12, 'text_wrap': True
         })
         merged_header_format = workbook.add_format({
             'bold': True, 'align': 'center', 'valign': 'vcenter',
-            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1,
+            'bg_color': '#E2EFDA', 'font_color': 'white', 'border': 1,
             'font_size': 12, 'text_wrap': True
         })
         currency_format = workbook.add_format({
@@ -418,7 +418,30 @@ class DailySalesSummary(models.Model):
             'bold': True, 'num_format': '#,##0.00', 'border': 1,
             'align': 'right', 'bg_color': '#D9E1F2'
         })
-    
+        # إضافة شعار الشركة إذا كان موجوداً
+        row = 0
+        if self.company_id.logo:
+            try:
+                # تحويل صورة الشعار من base64 إلى بيانات ثنائية
+                logo_data = base64.b64decode(self.company_id.logo)
+                
+                # إدراج الصورة في الخلية A1 مع ضبط الحجم
+                worksheet.insert_image(row, 0, 'company_logo.png', {
+                    'image_data': io.BytesIO(logo_data),
+                    'x_scale': 0.5,  # تصغير حجم الصورة إلى 50%
+                    'y_scale': 0.5,
+                    'x_offset': 10,  # إزاحة بسيطة من الحافة
+                    'y_offset': 10,
+                    'object_position': 1  # تحريك الخلايا لأسفل عند إدراج الصورة
+                })
+                
+                # تحديد ارتفاع الصف ليتناسب مع الصورة
+                worksheet.set_row(row, 80)  # ارتفاع الصف 80 نقطة
+                row += 1  # الانتقال إلى الصف التالي بعد الصورة
+            except Exception as e:
+                _logger.error("Failed to insert company logo: %s", str(e))
+                row += 1
+
         # كتابة عنوان التقرير
         worksheet.merge_range('A1:J1', self.company_id.name, title_format)
         worksheet.merge_range('A2:J2', 'تقرير المبيعات والتحصيل', subtitle_format)
