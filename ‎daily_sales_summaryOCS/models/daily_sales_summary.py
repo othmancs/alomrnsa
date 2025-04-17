@@ -434,8 +434,8 @@ class DailySalesSummary(models.Model):
                     'image_data': io.BytesIO(logo_data),
                     'x_scale': 0.2,  # تصغير حجم الصورة إلى 20% من الحجم الأصلي
                     'y_scale': 0.2,
-                    'x_offset': 10,
-                    'y_offset': 10,
+                    'x_offset': 20,
+                    'y_offset': 20,
                     'object_position': 1
                 })
                 
