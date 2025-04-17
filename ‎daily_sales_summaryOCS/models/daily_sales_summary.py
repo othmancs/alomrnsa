@@ -475,7 +475,7 @@ class DailySalesSummary(models.Model):
             ]
             cash_invoices = self.env['account.move'].search(cash_sales_domain)
             branch_cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
-    
+                
             # 2. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير و غير محصلة أو محصلة في تاريخ لاحق)
             credit_sales_domain = [
                 ('invoice_date', '>=', self.date_from),
@@ -488,7 +488,7 @@ class DailySalesSummary(models.Model):
             ]
             credit_invoices = self.env['account.move'].search(credit_sales_domain)
             branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
-    
+            
             # 3. حساب إجمالي الإرجاعات (كل الإرجاعات التي تمت في نفس تاريخ التقرير سواء مسددة أو غير مسددة)
             refunds_domain = [
                 ('invoice_date', '>=', self.date_from),
@@ -500,13 +500,13 @@ class DailySalesSummary(models.Model):
             ]
             refunds = self.env['account.move'].search(refunds_domain)
             branch_total_refunds = sum(abs(refund.amount_untaxed) for refund in refunds)
-    
+            
             # 4. حساب صافي المبيعات (العمود 1 + العمود 2 - العمود 3)
             branch_net_sales = branch_cash_sales + branch_credit_sales - branch_total_refunds
-    
+            
             # 5. حساب صافي المبيعات شامل الضريبة (العمود 4 × 1.15)
             branch_net_sales_with_tax = branch_net_sales * 1.15
-    
+            
             # 6. تحصيل شبكة (عمليات التحصيل بالشبكة في نفس تاريخ التقرير)
             network_payments = self.env['account.payment'].search([
                 ('date', '>=', self.date_from),
@@ -518,7 +518,7 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ])
             branch_network_collection = sum(payment.amount for payment in network_payments)
-    
+            
             # 7. تحصيل حوالات (عمليات التحصيل بحوالة أو شيك في نفس تاريخ التقرير)
             transfer_payments = self.env['account.payment'].search([
                 ('date', '>=', self.date_from),
@@ -530,7 +530,7 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ])
             branch_transfer_collection = sum(payment.amount for payment in transfer_payments)
-    
+            
             # 8. تحصيل نقدي (عمليات التحصيل بالنقد في نفس تاريخ التقرير)
             cash_payments = self.env['account.payment'].search([
                 ('date', '>=', self.date_from),
@@ -542,26 +542,18 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ])
             branch_cash_collection = sum(payment.amount for payment in cash_payments)
-    
-            # 9. إرجاعات مسددة نقدا (عمليات سداد الإرجاعات نقدا في نفس تاريخ التقرير)
-            cash_refunds_payments = self.env['account.payment'].search([
-                ('date', '>=', self.date_from),
-                ('date', '<=', self.date_to),
-                ('payment_type', '=', 'outbound'),
-                ('state', '=', 'posted'),
-                ('payment_method_line_id.name', 'ilike', 'نقدي'),
-                ('is_internal_transfer', '=', False),
-                ('company_id', '=', self.company_id.id),
-                ('branch_id', '=', branch.id)
-            ])
-            branch_cash_refunds = sum(payment.amount for payment in cash_refunds_payments)
-    
+            
+            # 9. إرجاعات مسددة نقدا (يأخذ نفس قيمة cash_refunds)
+            branch_cash_refunds = cash_refunds
+            
             # 10. صافي التحصيل (6 + 7 + 8 - 9)
-            branch_net_collection = (branch_network_collection + 
-                                   branch_transfer_collection + 
-                                   branch_cash_collection - 
-                                   branch_cash_refunds)
-    
+            branch_net_collection = (
+                branch_network_collection +
+                branch_transfer_collection +
+                branch_cash_collection -
+                branch_cash_refunds
+            )
+            
             # تحديث الإجماليات
             totals['cash_sales'] += branch_cash_sales
             totals['credit_sales'] += branch_credit_sales
@@ -573,7 +565,7 @@ class DailySalesSummary(models.Model):
             totals['cash_collection'] += branch_cash_collection
             totals['cash_refunds'] += branch_cash_refunds
             totals['net_collection'] += branch_net_collection
-    
+            
             # كتابة بيانات الفرع
             col = 0
             worksheet.write(row, col, branch.name, text_format); col += 1
@@ -587,33 +579,33 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, branch_cash_collection, currency_format); col += 1
             worksheet.write(row, col, branch_cash_refunds, currency_format); col += 1
             worksheet.write(row, col, branch_net_collection, currency_format)
-    
+            
             row += 1
-    
-        # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
-        if row > 5:
-            col = 0
-            worksheet.write(row, col, 'الإجمالي', header_format); col += 1
-            worksheet.write(row, col, totals['cash_sales'], total_format); col += 1
-            worksheet.write(row, col, totals['credit_sales'], total_format); col += 1
-            worksheet.write(row, col, totals['total_refunds'], total_format); col += 1
-            worksheet.write(row, col, totals['net_sales'], total_format); col += 1
-            worksheet.write(row, col, totals['net_sales_with_tax'], total_format); col += 1
-            worksheet.write(row, col, totals['network_collection'], total_format); col += 1
-            worksheet.write(row, col, totals['transfer_collection'], total_format); col += 1
-            worksheet.write(row, col, totals['cash_collection'], total_format); col += 1
-            worksheet.write(row, col, totals['cash_refunds'], total_format); col += 1
-            worksheet.write(row, col, totals['net_collection'], total_format)
-    
-        # إغلاق الكتاب وحفظه
-        workbook.close()
-        output.seek(0)
-    
-        return {
-            'file_name': f"تقرير_المبيعات_و_التحصيل_{self.date_from}_إلى_{self.date_to}.xlsx",
-            'file_content': output.read(),
-            'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        }
+            
+            # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
+            if row > 5:
+                col = 0
+                worksheet.write(row, col, 'الإجمالي', header_format); col += 1
+                worksheet.write(row, col, totals['cash_sales'], total_format); col += 1
+                worksheet.write(row, col, totals['credit_sales'], total_format); col += 1
+                worksheet.write(row, col, totals['total_refunds'], total_format); col += 1
+                worksheet.write(row, col, totals['net_sales'], total_format); col += 1
+                worksheet.write(row, col, totals['net_sales_with_tax'], total_format); col += 1
+                worksheet.write(row, col, totals['network_collection'], total_format); col += 1
+                worksheet.write(row, col, totals['transfer_collection'], total_format); col += 1
+                worksheet.write(row, col, totals['cash_collection'], total_format); col += 1
+                worksheet.write(row, col, totals['cash_refunds'], total_format); col += 1
+                worksheet.write(row, col, totals['net_collection'], total_format)
+            
+            # إغلاق الكتاب وحفظه
+            workbook.close()
+            output.seek(0)
+            
+            return {
+                'file_name': f"تقرير_المبيعات_و_التحصيل_{self.date_from}_إلى_{self.date_to}.xlsx",
+                'file_content': output.read(),
+                'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            }
     # def generate_sales_collection_report(self):
     #     """إنشاء تقرير Excel للمبيعات والتحصيل مع تفصيل طرق الدفع"""
     #     # إنشاء كتاب Excel
