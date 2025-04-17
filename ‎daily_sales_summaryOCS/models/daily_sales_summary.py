@@ -428,7 +428,7 @@ class DailySalesSummary(models.Model):
                 
                 # تحديد موقع الصورة في منتصف الصف (تقريباً بين العمود D والعمود G)
                 col_logo = 3  # بداية من العمود الرابع
-                
+                worksheet.merge_range(row, 2, row, 6, '')
                 # إدراج الصورة مع ضبط الحجم والموقع
                 worksheet.insert_image(row, col_logo, 'company_logo.png', {
                     'image_data': io.BytesIO(logo_data),
