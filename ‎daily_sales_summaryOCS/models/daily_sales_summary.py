@@ -405,6 +405,11 @@ class DailySalesSummary(models.Model):
             'bg_color': '#4472C4', 'font_color': 'white', 'border': 1, 
             'font_size': 12, 'text_wrap': True
         })
+        merged_header_format = workbook.add_format({
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1,
+            'font_size': 12, 'text_wrap': True
+        })
         currency_format = workbook.add_format({
             'num_format': '#,##0.00', 'border': 1, 'align': 'right'
         })
@@ -420,28 +425,38 @@ class DailySalesSummary(models.Model):
         worksheet.merge_range('A3:J3', f'من {self.date_from} إلى {self.date_to}', date_format)
         worksheet.write(3, 0, '', workbook.add_format())
     
-        # عناوين الأعمدة حسب الصورة المطلوبة
-        headers = [
-            'الفرع',
-            'مبيعات نقدية',  # 1. فواتير بنفس تاريخ التقرير و محصلة أيضا في نفس تاريخها
-            'مبيعات آجلة',   # 2. فواتير بنفس تاريخ التقرير و غير محصلة أو محصلة في تاريخ لاحق
-            'إجمالي إرجاعات', # 3. كل الإرجاعات التي تمت في نفس تاريخ التقرير سواء مسددة أو غير مسددة
-            'صافي المبيعات',  # 4. العمود 1 + العمود 2 - العمود 3
-            'صافي المبيعات شامل الضريبة',  # 5. العمود 4 × 1.15
-            'تحصيل شبكة',     # 6. عمليات التحصيل بالشبكة في نفس تاريخ التقرير
-            'تحصيل حوالات',   # 7. عمليات التحصيل بحوالة أو شيك في نفس تاريخ التقرير
-            'تحصيل نقدي',     # 8. عمليات التحصيل بالنقد في نفس تاريخ التقرير
-            'إرجاعات مسددة نقدا',  # 9. يأخذ نفس قيمة cash_refunds
-            'صافي التحصيل'    # 10. 6 + 7 + 8 - 9
-        ]
+        # إنشاء صف العناوين المدمجة
+        row = 4  # الصف الذي سيبدأ منه العناوين
+        
+        # عمود الفرع
+        worksheet.write(row, 0, 'الفرع', header_format)
+        
+        # عنوان "تقرير المبيعات" المدمج فوق 5 أعمدة
+        worksheet.merge_range(row, 1, row, 5, 'تقرير المبيعات', merged_header_format)
+        
+        # عنوان "تقرير التحصيل" المدمج فوق 5 أعمدة
+        worksheet.merge_range(row, 6, row, 10, 'تقرير التحصيل', merged_header_format)
+        
+        # الصف التالي (صف العناوين الفرعية)
+        row += 1
+        
+        # عناوين الأعمدة الفرعية تحت "تقرير المبيعات"
+        worksheet.write(row, 1, 'مبيعات نقدية', header_format)
+        worksheet.write(row, 2, 'مبيعات آجلة', header_format)
+        worksheet.write(row, 3, 'إجمالي إرجاعات', header_format)
+        worksheet.write(row, 4, 'صافي المبيعات', header_format)
+        worksheet.write(row, 5, 'صافي المبيعات شامل الضريبة', header_format)
+        
+        # عناوين الأعمدة الفرعية تحت "تقرير التحصيل"
+        worksheet.write(row, 6, 'تحصيل شبكة', header_format)
+        worksheet.write(row, 7, 'تحصيل حوالات', header_format)
+        worksheet.write(row, 8, 'تحصيل نقدي', header_format)
+        worksheet.write(row, 9, 'إرجاعات مسددة نقدا', header_format)
+        worksheet.write(row, 10, 'صافي التحصيل', header_format)
     
         # تحديد عرض الأعمدة
         worksheet.set_column(0, 0, 30)  # عمود الفرع
-        worksheet.set_column(1, len(headers)-1, 20)  # الأعمدة الرقمية
-    
-        # كتابة العناوين
-        for col, header in enumerate(headers):
-            worksheet.write(4, col, header, header_format)
+        worksheet.set_column(1, 10, 20)  # الأعمدة الرقمية
     
         # جمع البيانات لكل فرع على حدة
         branch_ids = self.branch_ids.ids if self.branch_ids else self.env['res.branch'].search([]).ids
@@ -461,7 +476,7 @@ class DailySalesSummary(models.Model):
             'net_collection': 0
         }
     
-        row = 5  # بدء البيانات من الصف 5 بعد العناوين
+        row += 1  # بدء البيانات من الصف التالي بعد العناوين
         for branch in branches:
             # 1. حساب المبيعات النقدية (فواتير بنفس تاريخ التقرير و محصلة أيضا في نفس تاريخها)
             cash_sales_domain = [
@@ -591,7 +606,7 @@ class DailySalesSummary(models.Model):
             row += 1
     
         # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
-        if row > 5:
+        if row > 6:  # تم تغيير الشرط لأننا بدأنا من صف أعلى
             col = 0
             worksheet.write(row, col, 'الإجمالي', header_format); col += 1
             worksheet.write(row, col, totals['cash_sales'], total_format); col += 1
@@ -614,7 +629,6 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
-
     def action_generate_excel_report(self):
         """إجراء لإنشاء وتنزيل التقرير"""
         self.ensure_one()
