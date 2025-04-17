@@ -434,16 +434,14 @@ class DailySalesSummary(models.Model):
                     'image_data': io.BytesIO(logo_data),
                     'x_scale': 0.2,  # تصغير حجم الصورة إلى 20% من الحجم الأصلي
                     'y_scale': 0.2,
-                    'x_offset': 20,
-                    'y_offset': 20,
+                    'x_offset': 5,
+                    'y_offset': 5,
                     'object_position': 1
                 })
                 
                 # تحديد ارتفاع الصف ليتناسب مع الصورة المصغرة
                 worksheet.set_row(row, 60)  # ارتفاع الصف 60 نقطة
                 row += 1  # الانتقال إلى الصف التالي بعد الصورة
-                worksheet.set_row(row, 30)  # صف فاصل لزيادة المسافة تحت الصورة
-                row += 1
             except Exception as e:
                 _logger.error("Failed to insert company logo: %s", str(e))
                 row += 1
