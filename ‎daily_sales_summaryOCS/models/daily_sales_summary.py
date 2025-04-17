@@ -423,33 +423,29 @@ class DailySalesSummary(models.Model):
         row = 0
         if self.company_id.logo:
             try:
-                # تحويل صورة الشعار من base64 إلى بيانات ثنائية
                 logo_data = base64.b64decode(self.company_id.logo)
                 
-                # تحديد موقع الصورة في منتصف الصف (تقريباً بين العمود D والعمود G)
-                col_logo = 5  # بداية من العمود الرابع
-                worksheet.merge_range(row, 2, row, 6, '')
-                # إدراج الصورة مع ضبط الحجم والموقع
+                col_logo = 2  # من العمود C
+                worksheet.merge_range(row, col_logo, row, col_logo + 4, '')  # من C إلى G
                 worksheet.insert_image(row, col_logo, 'company_logo.png', {
                     'image_data': io.BytesIO(logo_data),
-                    'x_scale': 0.2,  # تصغير حجم الصورة إلى 20% من الحجم الأصلي
+                    'x_scale': 0.2,
                     'y_scale': 0.2,
                     'x_offset': 5,
                     'y_offset': 5,
                     'object_position': 1
                 })
-                
-                # تحديد ارتفاع الصف ليتناسب مع الصورة المصغرة
-                worksheet.set_row(row, 60)  # ارتفاع الصف 60 نقطة
-                row += 1  # الانتقال إلى الصف التالي بعد الصورة
+        
+                worksheet.set_row(row, 60)  # اجعل الصف مرتفعاً لتتناسب الصورة
+                row += 1  # انتقل إلى الصف التالي لكتابة النص تحته مباشرة
             except Exception as e:
                 _logger.error("Failed to insert company logo: %s", str(e))
                 row += 1
-    
-        # كتابة عنوان الشركة تحت الشعار في منتصف الصفحة
+        
+        # النص سيكون في الصف التالي
         company_name_row = row
         worksheet.merge_range(company_name_row, 0, company_name_row, 10, 
-                             self.company_id.name, title_format)
+                              self.company_id.name, title_format)
         row += 1
         worksheet.merge_range('A3:J3', f'من {self.date_from} إلى {self.date_to}', date_format)
         worksheet.write(3, 0, '', workbook.add_format())
