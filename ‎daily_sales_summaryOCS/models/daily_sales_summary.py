@@ -402,12 +402,12 @@ class DailySalesSummary(models.Model):
         })
         header_format = workbook.add_format({
             'bold': True, 'align': 'center', 'valign': 'vcenter',
-            'bg_color': '#93E262', 'font_color': 'white', 'border': 1, 
+            'bg_color': '#93E262', 'font_color': 'black', 'border': 1, 
             'font_size': 12, 'text_wrap': True
         })
         merged_header_format = workbook.add_format({
             'bold': True, 'align': 'center', 'valign': 'vcenter',
-            'bg_color': '#E2EFDA', 'font_color': 'white', 'border': 1,
+            'bg_color': '#E2EFDA', 'font_color': 'black', 'border': 1,
             'font_size': 12, 'text_wrap': True
         })
         currency_format = workbook.add_format({
@@ -432,8 +432,8 @@ class DailySalesSummary(models.Model):
                 # إدراج الصورة مع ضبط الحجم والموقع
                 worksheet.insert_image(row, col_logo, 'company_logo.png', {
                     'image_data': io.BytesIO(logo_data),
-                    'x_scale': 0.3,  # تصغير حجم الصورة إلى 30% من الحجم الأصلي
-                    'y_scale': 0.3,
+                    'x_scale': 0.1,  # تصغير حجم الصورة إلى 30% من الحجم الأصلي
+                    'y_scale': 0.1,
                     'x_offset': 10,
                     'y_offset': 10,
                     'object_position': 1
