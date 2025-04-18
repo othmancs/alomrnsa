@@ -9,6 +9,15 @@ import base64
 from bs4 import BeautifulSoup
 from datetime import datetime
 import logging
+from reportlab.lib.pagesizes import letter, landscape
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib import colors
+from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+import arabic_reshaper
+from bidi.algorithm import get_display
 
 _logger = logging.getLogger(__name__)
 
@@ -774,6 +783,340 @@ class DailySalesSummary(models.Model):
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
 
+    def generate_pdf_report(self):
+        """إنشاء تقرير PDF للمبيعات والتحصيل"""
+        # إنشاء مستند PDF بالعرض الأفقي
+        output = io.BytesIO()
+        doc = SimpleDocTemplate(output, pagesize=landscape(letter), 
+                              rightMargin=30, leftMargin=30, 
+                              topMargin=30, bottomMargin=30)
+        
+        # تسجيل خط عربي
+        try:
+            pdfmetrics.registerFont(TTFont('Arabic', 'arial.ttf'))
+        except:
+            _logger.warning("Failed to register Arabic font, using default")
+
+        # إعداد الأنماط
+        styles = getSampleStyleSheet()
+        title_style = ParagraphStyle(
+            'Title',
+            parent=styles['Heading1'],
+            fontSize=18,
+            alignment=1,  # 1=center
+            spaceAfter=20,
+            fontName='Arabic'
+        )
+        header_style = ParagraphStyle(
+            'Header',
+            parent=styles['Normal'],
+            fontSize=12,
+            alignment=1,
+            textColor=colors.white,
+            fontName='Arabic'
+        )
+        text_style = ParagraphStyle(
+            'Text',
+            parent=styles['Normal'],
+            fontSize=10,
+            alignment=2,  # 2=right
+            fontName='Arabic'
+        )
+        total_style = ParagraphStyle(
+            'Total',
+            parent=styles['Normal'],
+            fontSize=10,
+            alignment=2,
+            textColor=colors.black,
+            backgroundColor=colors.HexColor('#D9E1F2'),
+            fontName='Arabic'
+        )
+
+        # تحضير البيانات للجدول
+        data = []
+
+        # إضافة عنوان التقرير
+        title = arabic_reshaper.reshape(f"تقرير المبيعات والتحصيل اليومي من {self.date_from} إلى {self.date_to}")
+        data.append([Paragraph(get_display(title), title_style)])
+        data.append([''])  # سطر فارغ
+
+        # عناوين الأعمدة
+        headers = [
+            'الفرع',
+            'إجمالي المبيعات النقدية',
+            'نقدي', 'شبكة', 'حوالة',
+            'إجمالي التحصيل الآجل',
+            'نقدي', 'شبكة', 'حوالة',
+            'نقدي & التحصيل',
+            'صافي الصندوق',
+            'الارجاعات غير المستردة',
+            'الارجاعات المستردة',
+            'إجمالي المبيعات الآجلة',
+            'إجمالي المبيعات'
+        ]
+        
+        # تحويل العناوين إلى نص عربي مع دعم ثنائي الاتجاه
+        arabic_headers = []
+        for header in headers:
+            reshaped = arabic_reshaper.reshape(header)
+            arabic_headers.append(Paragraph(get_display(reshaped), header_style))
+        
+        data.append(arabic_headers)
+
+        # جمع البيانات لكل فرع
+        branch_ids = self.branch_ids.ids if self.branch_ids else self.env['res.branch'].search([]).ids
+        branches = self.env['res.branch'].browse(branch_ids)
+
+        totals = {
+            'cash_sales': 0,
+            'cash_payments': defaultdict(float),
+            'credit_collection': 0,
+            'credit_payments': defaultdict(float),
+            'cash_and_collection': 0,
+            'net_cash': 0,
+            'credit_refunds': 0,
+            'cash_refunds': 0,
+            'credit_sales': 0,
+            'total_sales': 0,
+            'payment_methods': defaultdict(float)
+        }
+
+        for branch in branches:
+            # 1. حساب المبيعات النقدية (فواتير بنفس تاريخ التقرير ومدفوعة بالكامل في نفس التاريخ)
+            cash_sales_domain = [
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ]
+            cash_invoices = self.env['account.move'].search(cash_sales_domain)
+            branch_cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+            
+            # تقسيم المدفوعات للمبيعات النقدية حسب نوع الدفع
+            cash_payments = defaultdict(float)
+            for invoice in cash_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    if payment.payment_method_line_id:
+                        method = payment.payment_method_line_id.name or 'نقدي'
+                        if 'شبكة' in method:
+                            method = 'شبكة'
+                        elif 'حوالة' in method or 'شيك' in method:
+                            method = 'حوالة'
+                        else:
+                            method = 'نقدي'
+                        cash_payments[method] += payment.amount
+                        totals['payment_methods'][method] += payment.amount
+
+            # 2. حساب إجمالي جميع الدفعات (لحساب التحصيل الآجل)
+            all_payments_domain = [
+                ('date', '>=', self.date_from),
+                ('date', '<=', self.date_to),
+                ('payment_type', '=', 'inbound'),
+                ('state', '=', 'posted'),
+                ('is_internal_transfer', '=', False),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ]
+            all_payments = self.env['account.payment'].search(all_payments_domain)
+            branch_total_payments = sum(payment.amount for payment in all_payments)
+            
+            # 3. حساب التحصيل الآجل (إجمالي الدفعات - المبيعات النقدية)
+            branch_credit_collection = branch_total_payments - sum(cash_payments.values())
+
+            # 4. تقسيم مدفوعات التحصيل الآجل حسب نوع الدفع
+            credit_payments_split = defaultdict(float)
+            for payment in all_payments:
+                is_cash_payment = False
+                for invoice in payment.reconciled_invoice_ids:
+                    if invoice.invoice_date and (self.date_from <= invoice.invoice_date <= self.date_to):
+                        is_cash_payment = True
+                        break
+                
+                if not is_cash_payment:
+                    if payment.payment_method_line_id:
+                        method = payment.payment_method_line_id.name or 'نقدي'
+                        if 'شبكة' in method:
+                            method = 'شبكة'
+                        elif 'حوالة' in method or 'شيك' in method:
+                            method = 'حوالة'
+                        else:
+                            method = 'نقدي'
+                        credit_payments_split[method] += payment.amount
+                        totals['payment_methods'][method] += payment.amount
+
+            # 5. حساب نقدي & التحصيل
+            branch_cash_and_collection = branch_cash_sales + branch_credit_collection
+
+            # 6. حساب المرتجعات
+            cash_refunds_domain = [
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_refund'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ]
+            cash_refunds = self.env['account.move'].search(cash_refunds_domain)
+            branch_cash_refunds = sum(abs(refund.amount_untaxed) for refund in cash_refunds)
+
+            credit_refunds_domain = [
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_refund'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'not_paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ]
+            credit_refunds = self.env['account.move'].search(credit_refunds_domain)
+            branch_credit_refunds = sum(abs(refund.amount_untaxed) for refund in credit_refunds)
+
+            # 7. حساب صافي الصندوق
+            branch_net_cash = branch_cash_and_collection - branch_cash_refunds
+
+            # 8. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة)
+            credit_sales_domain = [
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'not_paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ]
+            credit_invoices = self.env['account.move'].search(credit_sales_domain)
+            branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+
+            # 9. إجمالي المبيعات
+            branch_total_sales = branch_cash_sales + branch_credit_sales
+
+            # إعداد بيانات الصف
+            row_data = [
+                Paragraph(get_display(arabic_reshaper.reshape(branch.name or '')), 
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_cash_sales:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{cash_payments.get('نقدي', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{cash_payments.get('شبكة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{cash_payments.get('حوالة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_credit_collection:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{credit_payments_split.get('نقدي', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{credit_payments_split.get('شبكة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{credit_payments_split.get('حوالة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_cash_and_collection:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_net_cash:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_credit_refunds:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_cash_refunds:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_credit_sales:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{branch_total_sales:,.2f}")))
+            ]
+            data.append(row_data)
+
+            # تحديث الإجماليات
+            totals['cash_sales'] += branch_cash_sales
+            for method, amount in cash_payments.items():
+                totals['cash_payments'][method] += amount
+            totals['credit_collection'] += branch_credit_collection
+            for method, amount in credit_payments_split.items():
+                totals['credit_payments'][method] += amount
+            totals['cash_and_collection'] += branch_cash_and_collection
+            totals['net_cash'] += branch_net_cash
+            totals['credit_refunds'] += branch_credit_refunds
+            totals['cash_refunds'] += branch_cash_refunds
+            totals['credit_sales'] += branch_credit_sales
+            totals['total_sales'] += branch_total_sales
+
+        # إضافة الإجمالي الكلي
+        if len(branches) > 1:
+            total_row = [
+                Paragraph(get_display(arabic_reshaper.reshape('الإجمالي'))), 
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['cash_sales']:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['cash_payments'].get('نقدي', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['cash_payments'].get('شبكة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['cash_payments'].get('حوالة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['credit_collection']:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['credit_payments'].get('نقدي', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['credit_payments'].get('شبكة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['credit_payments'].get('حوالة', 0):,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['cash_and_collection']:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['net_cash']:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['credit_refunds']:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['cash_refunds']:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['credit_sales']:,.2f}"))),
+                Paragraph(get_display(arabic_reshaper.reshape(f"{totals['total_sales']:,.2f}")))
+            ]
+            data.append(total_row)
+
+        # إنشاء الجدول
+        col_widths = [1.2*inch] * len(headers)
+        table = Table(data, colWidths=col_widths)
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#4472C4')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+            ('ALIGN', (0, 0), (-1, -1), 'RIGHT'),
+            ('FONTNAME', (0, 0), (-1, -1), 'Arabic'),
+            ('FONTSIZE', (0, 0), (-1, -1), 8),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+            ('BACKGROUND', (0, 1), (-1, 1), colors.HexColor('#4472C4')),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ]))
+
+        # بناء محتوى PDF
+        elements = []
+        
+        # إضافة شعار الشركة إذا موجود
+        if self.company_id.logo:
+            try:
+                logo_data = io.BytesIO(base64.b64decode(self.company_id.logo))
+                logo = Image(logo_data, width=1.5*inch, height=0.5*inch)
+                elements.append(logo)
+                elements.append(Spacer(1, 0.2*inch))
+            except Exception as e:
+                _logger.error(f"Failed to add logo to PDF: {str(e)}")
+
+        elements.append(Paragraph(get_display(arabic_reshaper.reshape(f"تقرير المبيعات والتحصيل اليومي")), title_style))
+        elements.append(Paragraph(get_display(arabic_reshaper.reshape(f"من {self.date_from} إلى {self.date_to}")), styles['Heading2']))
+        elements.append(Spacer(1, 0.3*inch))
+        elements.append(table)
+        
+        # إضافة ملخص طرق الدفع إذا كان هناك بيانات
+        if totals.get('payment_methods'):
+            elements.append(Spacer(1, 0.3*inch))
+            elements.append(Paragraph(get_display(arabic_reshaper.reshape('إجمالي الدفع حسب طريقة الدفع')), styles['Heading2']))
+            
+            payment_data = [[
+                Paragraph(get_display(arabic_reshaper.reshape('طريقة الدفع'))),
+                Paragraph(get_display(arabic_reshaper.reshape('المبلغ')))
+            ]]
+            for method, amount in sorted(totals['payment_methods'].items()):
+                payment_data.append([
+                    Paragraph(get_display(arabic_reshaper.reshape(method))),
+                    Paragraph(get_display(arabic_reshaper.reshape(f"{amount:,.2f}")))
+                ])
+            
+            payment_table = Table(payment_data, colWidths=[2*inch, 1*inch])
+            payment_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#4472C4')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+                ('ALIGN', (0, 0), (-1, -1), 'RIGHT'),
+                ('FONTNAME', (0, 0), (-1, -1), 'Arabic'),
+                ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ]))
+            elements.append(payment_table)
+
+        # إنشاء PDF
+        doc.build(elements)
+        output.seek(0)
+        
+        return {
+            'file_name': f"تقرير_المبيعات_و_التحصيل_{self.date_from}_إلى_{self.date_to}.pdf",
+            'file_content': output.read(),
+            'file_type': 'application/pdf'
+        }
+
     def action_generate_excel_report(self):
         """إجراء لإنشاء وتنزيل التقرير"""
         self.ensure_one()
@@ -797,6 +1140,31 @@ class DailySalesSummary(models.Model):
             }
         except Exception as e:
             _logger.error("Failed to generate sales report: %s", str(e))
+            raise
+
+    def action_generate_pdf_report(self):
+        """إجراء لإنشاء وتنزيل تقرير PDF"""
+        self.ensure_one()
+        try:
+            report_data = self.generate_pdf_report()
+            
+            # إنشاء مرفق (attachment) للتقرير
+            attachment = self.env['ir.attachment'].create({
+                'name': report_data['file_name'],
+                'datas': base64.b64encode(report_data['file_content']),
+                'res_model': 'daily.sales.summary',
+                'res_id': self.id,
+                'type': 'binary'
+            })
+            
+            # إرجاع إجراء لتنزيل المرفق
+            return {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/%s?download=true' % attachment.id,
+                'target': 'self',
+            }
+        except Exception as e:
+            _logger.error("Failed to generate PDF report: %s", str(e))
             raise
 
     def _compute_total_cash_methods(self, summaries):
