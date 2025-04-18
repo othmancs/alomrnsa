@@ -424,8 +424,8 @@ class DailySalesSummary(models.Model):
             try:
                 # إضافة الصورة بحجم مناسب (عرض 200 بكسل مع الحفاظ على النسبة)
                 image_data = io.BytesIO(base64.b64decode(self.company_id.logo))
-               worksheet.merge_range(row, 4, row+1, 4, '')  # دمج الخلايا لإنشاء مساحة للصورة
-               worksheet.insert_image(row, 4, 'logo.png', {
+                worksheet.merge_range(row, 4, row+1, 4, '')  # دمج الخلايا لإنشاء مساحة للصورة
+                worksheet.insert_image(row, 4, 'logo.png', {
                     'image_data': image_data,
                     'x_scale': 0.15, 
                     'y_scale': 0.15,
@@ -433,7 +433,7 @@ class DailySalesSummary(models.Model):
                     'y_offset': 10,
                     'object_position': 3,  # 3 يعني أن الصورة ستتحرك مع الخلايا ولكن يمكن وضعها بحرية
                     'positioning': 1  # 1 يعني تحريك الخلايا لأسفل عند إدراج الصورة
-               })
+                })
                 # تحديد ارتفاع الصف ليتناسب مع الصورة
                 worksheet.set_row(row, 80)  # ارتفاع 80 بكسل
                 row += 1  # الانتقال إلى الصف التالي بعد الصورة
