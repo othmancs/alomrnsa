@@ -782,7 +782,6 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
-
     def generate_pdf_report(self):
         """إنشاء تقرير PDF للمبيعات والتحصيل"""
         # إنشاء مستند PDF بالعرض الأفقي
@@ -796,7 +795,7 @@ class DailySalesSummary(models.Model):
             pdfmetrics.registerFont(TTFont('Arabic', 'arial.ttf'))
         except:
             _logger.warning("Failed to register Arabic font, using default")
-
+    
         # إعداد الأنماط
         styles = getSampleStyleSheet()
         title_style = ParagraphStyle(
@@ -831,15 +830,15 @@ class DailySalesSummary(models.Model):
             backgroundColor=colors.HexColor('#D9E1F2'),
             fontName='Arabic'
         )
-
+    
         # تحضير البيانات للجدول
         data = []
-
+    
         # إضافة عنوان التقرير
         title = arabic_reshaper.reshape(f"تقرير المبيعات والتحصيل اليومي من {self.date_from} إلى {self.date_to}")
         data.append([Paragraph(get_display(title), title_style)])
         data.append([''])  # سطر فارغ
-
+    
         # عناوين الأعمدة
         headers = [
             'الفرع',
@@ -862,11 +861,11 @@ class DailySalesSummary(models.Model):
             arabic_headers.append(Paragraph(get_display(reshaped), header_style))
         
         data.append(arabic_headers)
-
+    
         # جمع البيانات لكل فرع
         branch_ids = self.branch_ids.ids if self.branch_ids else self.env['res.branch'].search([]).ids
         branches = self.env['res.branch'].browse(branch_ids)
-
+    
         totals = {
             'cash_sales': 0,
             'cash_payments': defaultdict(float),
@@ -880,7 +879,7 @@ class DailySalesSummary(models.Model):
             'total_sales': 0,
             'payment_methods': defaultdict(float)
         }
-
+    
         for branch in branches:
             # 1. حساب المبيعات النقدية (فواتير بنفس تاريخ التقرير ومدفوعة بالكامل في نفس التاريخ)
             cash_sales_domain = [
@@ -909,7 +908,7 @@ class DailySalesSummary(models.Model):
                             method = 'نقدي'
                         cash_payments[method] += payment.amount
                         totals['payment_methods'][method] += payment.amount
-
+    
             # 2. حساب إجمالي جميع الدفعات (لحساب التحصيل الآجل)
             all_payments_domain = [
                 ('date', '>=', self.date_from),
@@ -925,7 +924,7 @@ class DailySalesSummary(models.Model):
             
             # 3. حساب التحصيل الآجل (إجمالي الدفعات - المبيعات النقدية)
             branch_credit_collection = branch_total_payments - sum(cash_payments.values())
-
+    
             # 4. تقسيم مدفوعات التحصيل الآجل حسب نوع الدفع
             credit_payments_split = defaultdict(float)
             for payment in all_payments:
@@ -946,10 +945,10 @@ class DailySalesSummary(models.Model):
                             method = 'نقدي'
                         credit_payments_split[method] += payment.amount
                         totals['payment_methods'][method] += payment.amount
-
+    
             # 5. حساب نقدي & التحصيل
             branch_cash_and_collection = branch_cash_sales + branch_credit_collection
-
+    
             # 6. حساب المرتجعات
             cash_refunds_domain = [
                 ('invoice_date', '>=', self.date_from),
@@ -962,7 +961,7 @@ class DailySalesSummary(models.Model):
             ]
             cash_refunds = self.env['account.move'].search(cash_refunds_domain)
             branch_cash_refunds = sum(abs(refund.amount_untaxed) for refund in cash_refunds)
-
+    
             credit_refunds_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
@@ -974,10 +973,10 @@ class DailySalesSummary(models.Model):
             ]
             credit_refunds = self.env['account.move'].search(credit_refunds_domain)
             branch_credit_refunds = sum(abs(refund.amount_untaxed) for refund in credit_refunds)
-
+    
             # 7. حساب صافي الصندوق
             branch_net_cash = branch_cash_and_collection - branch_cash_refunds
-
+    
             # 8. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة)
             credit_sales_domain = [
                 ('invoice_date', '>=', self.date_from),
@@ -990,13 +989,13 @@ class DailySalesSummary(models.Model):
             ]
             credit_invoices = self.env['account.move'].search(credit_sales_domain)
             branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
-
+    
             # 9. إجمالي المبيعات
             branch_total_sales = branch_cash_sales + branch_credit_sales
-
+    
             # إعداد بيانات الصف
             row_data = [
-                Paragraph(get_display(arabic_reshaper.reshape(branch.name or '')), 
+                Paragraph(get_display(arabic_reshaper.reshape(branch.name or ''))), 
                 Paragraph(get_display(arabic_reshaper.reshape(f"{branch_cash_sales:,.2f}"))),
                 Paragraph(get_display(arabic_reshaper.reshape(f"{cash_payments.get('نقدي', 0):,.2f}"))),
                 Paragraph(get_display(arabic_reshaper.reshape(f"{cash_payments.get('شبكة', 0):,.2f}"))),
@@ -1013,7 +1012,7 @@ class DailySalesSummary(models.Model):
                 Paragraph(get_display(arabic_reshaper.reshape(f"{branch_total_sales:,.2f}")))
             ]
             data.append(row_data)
-
+    
             # تحديث الإجماليات
             totals['cash_sales'] += branch_cash_sales
             for method, amount in cash_payments.items():
@@ -1027,7 +1026,7 @@ class DailySalesSummary(models.Model):
             totals['cash_refunds'] += branch_cash_refunds
             totals['credit_sales'] += branch_credit_sales
             totals['total_sales'] += branch_total_sales
-
+    
         # إضافة الإجمالي الكلي
         if len(branches) > 1:
             total_row = [
@@ -1048,7 +1047,7 @@ class DailySalesSummary(models.Model):
                 Paragraph(get_display(arabic_reshaper.reshape(f"{totals['total_sales']:,.2f}")))
             ]
             data.append(total_row)
-
+    
         # إنشاء الجدول
         col_widths = [1.2*inch] * len(headers)
         table = Table(data, colWidths=col_widths)
@@ -1063,7 +1062,7 @@ class DailySalesSummary(models.Model):
             ('GRID', (0, 0), (-1, -1), 1, colors.black),
             ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ]))
-
+    
         # بناء محتوى PDF
         elements = []
         
@@ -1076,7 +1075,7 @@ class DailySalesSummary(models.Model):
                 elements.append(Spacer(1, 0.2*inch))
             except Exception as e:
                 _logger.error(f"Failed to add logo to PDF: {str(e)}")
-
+    
         elements.append(Paragraph(get_display(arabic_reshaper.reshape(f"تقرير المبيعات والتحصيل اليومي")), title_style))
         elements.append(Paragraph(get_display(arabic_reshaper.reshape(f"من {self.date_from} إلى {self.date_to}")), styles['Heading2']))
         elements.append(Spacer(1, 0.3*inch))
@@ -1106,7 +1105,7 @@ class DailySalesSummary(models.Model):
                 ('GRID', (0, 0), (-1, -1), 1, colors.black),
             ]))
             elements.append(payment_table)
-
+    
         # إنشاء PDF
         doc.build(elements)
         output.seek(0)
