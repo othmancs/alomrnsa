@@ -643,6 +643,31 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
+    def action_generate_excel_report(self):
+        """إجراء لإنشاء وتنزيل التقرير"""
+        self.ensure_one()
+        try:
+            report_data = self.generate_sales_collection_report()
+            
+            # إنشاء مرفق (attachment) للتقرير
+            attachment = self.env['ir.attachment'].create({
+                'name': report_data['file_name'],
+                'datas': base64.b64encode(report_data['file_content']),
+                'res_model': 'daily.sales.summary',
+                'res_id': self.id,
+                'type': 'binary'
+            })
+            
+            # إرجاع إجراء لتنزيل المرفق
+            return {
+                'type': 'ir.actions.act_url',
+                'url': '/web/content/%s?download=true' % attachment.id,
+                'target': 'self',
+            }
+        except Exception as e:
+            _logger.error("Failed to generate sales report: %s", str(e))
+            raise
+
     def _compute_total_cash_methods(self, summaries):
         """حساب إجمالي الكاش الوارد باستثناء طرق السداد المحددة"""
         total = 0.0
