@@ -1116,7 +1116,6 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/pdf'
         }
-
     def action_generate_excel_report(self):
         """إجراء لإنشاء وتنزيل التقرير"""
         self.ensure_one()
