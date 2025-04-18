@@ -415,23 +415,23 @@ class DailySalesSummary(models.Model):
     
         # إضافة عنوان التقرير
         row = 0
-        worksheet.merge_range(row, 0, row, 12, 'تقرير المبيعات والتحصيل اليومي', title_format)
+        worksheet.merge_range(row, 0, row, 11, 'تقرير المبيعات والتحصيل اليومي', title_format)
         row += 1
-        worksheet.merge_range(row, 0, row, 12, f'من {self.date_from} إلى {self.date_to}', 
+        worksheet.merge_range(row, 0, row, 11, f'من {self.date_from} إلى {self.date_to}', 
                              workbook.add_format({'align': 'center', 'font_size': 12}))
         row += 2
     
         # تحديد عرض الأعمدة
         worksheet.set_column(0, 0, 25)  # عمود الفرع
-        worksheet.set_column(1, 12, 15)  # الأعمدة الرقمية
+        worksheet.set_column(1, 11, 15)  # الأعمدة الرقمية
     
         # إنشاء صف العناوين الرئيسية
         headers = [
             'الفرع',
             'إجمالي المبيعات النقدية',
-            'نقدي', 'شبكة', 'حوالة', # تقسيم المدفوعات للمبيعات النقدية
+            'نقدي', 'شبكة', 'حوالة',  # تقسيم المدفوعات للمبيعات النقدية
             'إجمالي التحصيل الآجل',
-            'نقدي', 'شبكة', 'حوالة', # تقسيم المدفوعات للتحصيل الآجل
+            'نقدي', 'شبكة', 'حوالة',  # تقسيم المدفوعات للتحصيل الآجل
             'نقدي & التحصيل',
             'صافي الصندوق',
             'الارجاعات غير المستردة',
@@ -459,7 +459,8 @@ class DailySalesSummary(models.Model):
             'credit_refunds': 0,
             'cash_refunds': 0,
             'credit_sales': 0,
-            'total_sales': 0
+            'total_sales': 0,
+            'total_payments': 0  # إجمالي جميع الدفعات
         }
     
         for branch in branches:
@@ -481,36 +482,58 @@ class DailySalesSummary(models.Model):
             for invoice in cash_invoices:
                 for payment in invoice._get_reconciled_payments():
                     if payment.payment_method_line_id:
-                        method = payment.payment_method_line_id.name or 'طرق أخرى'
+                        method = payment.payment_method_line_id.name or 'نقدي'
+                        # نحدد فقط الأنواع المطلوبة (نقدي، شبكة، حوالة)
+                        if 'شبكة' in method:
+                            method = 'شبكة'
+                        elif 'حوالة' in method or 'شيك' in method:
+                            method = 'حوالة'
+                        else:
+                            method = 'نقدي'
                         cash_payments[method] += payment.amount
     
-            # 2. حساب التحصيل الآجل (مدفوعات لفواتير قديمة)
-            credit_payments_domain = [
+            # 2. حساب إجمالي جميع الدفعات (لحساب التحصيل الآجل)
+            all_payments_domain = [
                 ('date', '>=', self.date_from),
                 ('date', '<=', self.date_to),
                 ('payment_type', '=', 'inbound'),
                 ('state', '=', 'posted'),
                 ('is_internal_transfer', '=', False),
                 ('company_id', '=', self.company_id.id),
-                ('branch_id', '=', branch.id),
-                ('reconciled_bill_ids', '!=', False)
+                ('branch_id', '=', branch.id)
             ]
-            credit_payments = self.env['account.payment'].search(credit_payments_domain)
+            all_payments = self.env['account.payment'].search(all_payments_domain)
+            branch_total_payments = sum(payment.amount for payment in all_payments)
             
-            # فلترة المدفوعات التي ليست للمبيعات النقدية
-            branch_credit_collection = 0
-            credit_payments_split = defaultdict(float)
-            for payment in credit_payments:
-                invoice_date = payment.reconciled_invoice_ids[0].invoice_date if payment.reconciled_invoice_ids else None
-                if invoice_date and (invoice_date < self.date_from or invoice_date > self.date_to):
-                    branch_credit_collection += payment.amount
-                    method = payment.payment_method_line_id.name or 'طرق أخرى'
-                    credit_payments_split[method] += payment.amount
+            # 3. حساب التحصيل الآجل (إجمالي الدفعات - المبيعات النقدية)
+            branch_credit_collection = branch_total_payments - sum(cash_payments.values())
     
-            # 3. حساب نقدي & التحصيل
+            # 4. تقسيم مدفوعات التحصيل الآجل حسب نوع الدفع
+            credit_payments_split = defaultdict(float)
+            for payment in all_payments:
+                # نتأكد أن هذه الدفعة ليست من المبيعات النقدية
+                is_cash_payment = False
+                for invoice in payment.reconciled_invoice_ids:
+                    if invoice.invoice_date and (self.date_from <= invoice.invoice_date <= self.date_to):
+                        is_cash_payment = True
+                        break
+                
+                if not is_cash_payment:
+                    if payment.payment_method_line_id:
+                        method = payment.payment_method_line_id.name or 'نقدي'
+                        # نحدد فقط الأنواع المطلوبة (نقدي، شبكة، حوالة)
+                        if 'شبكة' in method:
+                            method = 'شبكة'
+                        elif 'حوالة' in method or 'شيك' in method:
+                            method = 'حوالة'
+                        else:
+                            method = 'نقدي'
+                        credit_payments_split[method] += payment.amount
+    
+            # 5. حساب نقدي & التحصيل
             branch_cash_and_collection = branch_cash_sales + branch_credit_collection
     
-            # 4. حساب المرتجعات
+            # 6. حساب المرتجعات
             cash_refunds_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
@@ -535,10 +558,10 @@ class DailySalesSummary(models.Model):
             credit_refunds = self.env['account.move'].search(credit_refunds_domain)
             branch_credit_refunds = sum(abs(refund.amount_untaxed) for refund in credit_refunds)
     
-            # 5. حساب صافي الصندوق
+            # 7. حساب صافي الصندوق
             branch_net_cash = branch_cash_and_collection - branch_cash_refunds
     
-            # 6. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة)
+            # 8. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة)
             credit_sales_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
@@ -551,7 +574,7 @@ class DailySalesSummary(models.Model):
             credit_invoices = self.env['account.move'].search(credit_sales_domain)
             branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
     
-            # 7. إجمالي المبيعات
+            # 9. إجمالي المبيعات
             branch_total_sales = branch_cash_sales + branch_credit_sales
     
             # كتابة بيانات الفرع
@@ -561,20 +584,18 @@ class DailySalesSummary(models.Model):
             # إجمالي المبيعات النقدية
             worksheet.write(row, col, branch_cash_sales, currency_format); col += 1
             
-            # تقسيم المدفوعات للمبيعات النقدية
+            # تقسيم المدفوعات للمبيعات النقدية (بدون عمود طرق أخرى)
             worksheet.write(row, col, cash_payments.get('نقدي', 0), currency_format); col += 1
             worksheet.write(row, col, cash_payments.get('شبكة', 0), currency_format); col += 1
             worksheet.write(row, col, cash_payments.get('حوالة', 0), currency_format); col += 1
-            worksheet.write(row, col, branch_cash_sales - sum(cash_payments.values()), currency_format); col += 1
             
-            # إجمالي التحصيل الآجل
+            # إجمالي التحصيل الآجل (مجموع الدفعات - المبيعات النقدية)
             worksheet.write(row, col, branch_credit_collection, currency_format); col += 1
             
-            # تقسيم المدفوعات للتحصيل الآجل
+            # تقسيم المدفوعات للتحصيل الآجل (بدون عمود طرق أخرى)
             worksheet.write(row, col, credit_payments_split.get('نقدي', 0), currency_format); col += 1
             worksheet.write(row, col, credit_payments_split.get('شبكة', 0), currency_format); col += 1
             worksheet.write(row, col, credit_payments_split.get('حوالة', 0), currency_format); col += 1
-            worksheet.write(row, col, branch_credit_collection - sum(credit_payments_split.values()), currency_format); col += 1
             
             # نقدي & التحصيل
             worksheet.write(row, col, branch_cash_and_collection, currency_format); col += 1
@@ -607,6 +628,7 @@ class DailySalesSummary(models.Model):
             totals['cash_refunds'] += branch_cash_refunds
             totals['credit_sales'] += branch_credit_sales
             totals['total_sales'] += branch_total_sales
+            totals['total_payments'] += branch_total_payments
     
             row += 1
     
@@ -619,13 +641,11 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, totals['cash_payments'].get('نقدي', 0), total_format); col += 1
             worksheet.write(row, col, totals['cash_payments'].get('شبكة', 0), total_format); col += 1
             worksheet.write(row, col, totals['cash_payments'].get('حوالة', 0), total_format); col += 1
-            worksheet.write(row, col, totals['cash_sales'] - sum(totals['cash_payments'].values()), total_format); col += 1
             
             worksheet.write(row, col, totals['credit_collection'], total_format); col += 1
             worksheet.write(row, col, totals['credit_payments'].get('نقدي', 0), total_format); col += 1
             worksheet.write(row, col, totals['credit_payments'].get('شبكة', 0), total_format); col += 1
             worksheet.write(row, col, totals['credit_payments'].get('حوالة', 0), total_format); col += 1
-            worksheet.write(row, col, totals['credit_collection'] - sum(totals['credit_payments'].values()), total_format); col += 1
             
             worksheet.write(row, col, totals['cash_and_collection'], total_format); col += 1
             worksheet.write(row, col, totals['net_cash'], total_format); col += 1
