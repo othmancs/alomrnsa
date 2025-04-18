@@ -56,6 +56,7 @@
                             string="تقرير المبيعات والتحصيل (Excel)"
                             type="object"
                             class="oe_highlight"/>
+                    <button name="action_generate_pdf_report" string="تقرير المبيعات والتحصيل (PDF)" type="object" class="oe_highlight"/>
                     <button name="action_view_cash_sales" string="عرض الفواتير النقدية" type="object"/>
                     <button name="action_view_partial_sales" string="عرض الفواتير المدفوعة جزئياً" type="object"/>
                     <button name="action_view_credit_sales" string="عرض الفواتير الآجلة" type="object"/>
