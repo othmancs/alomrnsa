@@ -418,17 +418,36 @@ class DailySalesSummary(models.Model):
             'font_size': 12
         })
     
-        # إضافة عنوان التقرير
+        # إضافة شعار الشركة
         row = 0
+        if self.company_id.logo:
+            try:
+                # إضافة الصورة بحجم مناسب (عرض 200 بكسل مع الحفاظ على النسبة)
+                image_data = io.BytesIO(base64.b64decode(self.company_id.logo))
+                worksheet.insert_image(row, 0, 'logo.png', {
+                    'image_data': image_data,
+                    'x_scale': 0.5, 'y_scale': 0.5,
+                    'x_offset': 10, 'y_offset': 10,
+                    'positioning': 1  # 1 يعني تحريك الخلايا لأسفل عند إدراج الصورة
+                })
+                # تحديد ارتفاع الصف ليتناسب مع الصورة
+                worksheet.set_row(row, 80)  # ارتفاع 80 بكسل
+                row += 1  # الانتقال إلى الصف التالي بعد الصورة
+                
+                # إضافة سطر فارغ لمنع تداخل الشعار مع النص
+                worksheet.set_row(row, 15)  # سطر فارغ بارتفاع 15 بكسل
+                row += 1
+            except Exception as e:
+                _logger.error(f"Failed to insert company logo: {str(e)}")
+                # في حالة حدوث خطأ، نتابع بدون الصورة
+                pass
+    
+        # إضافة عنوان التقرير
         worksheet.merge_range(row, 0, row, 11, 'تقرير المبيعات والتحصيل اليومي', title_format)
         row += 1
         worksheet.merge_range(row, 0, row, 11, f'من {self.date_from} إلى {self.date_to}', 
                              workbook.add_format({'align': 'center', 'font_size': 12}))
         row += 2
-    
-        # تحديد عرض الأعمدة
-        worksheet.set_column(0, 0, 25)  # عمود الفرع
-        worksheet.set_column(1, 11, 15)  # الأعمدة الرقمية
     
         # إنشاء صف العناوين الرئيسية
         headers = [
@@ -479,6 +498,9 @@ class DailySalesSummary(models.Model):
             'payment_methods': defaultdict(float)  # لتخزين طرق الدفع
         }
     
+        # قائمة لتخزين أطوال المحتوى في كل عمود
+        col_widths = [0] * len(headers)
+        
         for branch in branches:
             # 1. حساب المبيعات النقدية (فواتير بنفس تاريخ التقرير ومدفوعة بالكامل في نفس التاريخ)
             cash_sales_domain = [
@@ -597,41 +619,73 @@ class DailySalesSummary(models.Model):
     
             # كتابة بيانات الفرع
             col = 0
-            worksheet.write(row, col, branch.name, branch_header_format); col += 1
+            branch_name = branch.name or ''
+            worksheet.write(row, col, branch_name, branch_header_format)
+            col_widths[col] = max(col_widths[col], len(branch_name.encode('utf-8')))
+            col += 1
             
             # إجمالي المبيعات النقدية
-            worksheet.write(row, col, branch_cash_sales, currency_format); col += 1
+            cash_sales_str = f"{branch_cash_sales:,.2f}"
+            worksheet.write(row, col, branch_cash_sales, currency_format)
+            col_widths[col] = max(col_widths[col], len(cash_sales_str))
+            col += 1
             
             # تقسيم المدفوعات للمبيعات النقدية (بدون عمود طرق أخرى)
-            worksheet.write(row, col, cash_payments.get('نقدي', 0), currency_format); col += 1
-            worksheet.write(row, col, cash_payments.get('شبكة', 0), currency_format); col += 1
-            worksheet.write(row, col, cash_payments.get('حوالة', 0), currency_format); col += 1
+            for method in ['نقدي', 'شبكة', 'حوالة']:
+                amount = cash_payments.get(method, 0)
+                amount_str = f"{amount:,.2f}"
+                worksheet.write(row, col, amount, currency_format)
+                col_widths[col] = max(col_widths[col], len(amount_str))
+                col += 1
             
             # إجمالي التحصيل الآجل (مجموع الدفعات - المبيعات النقدية)
-            worksheet.write(row, col, branch_credit_collection, currency_format); col += 1
+            credit_collection_str = f"{branch_credit_collection:,.2f}"
+            worksheet.write(row, col, branch_credit_collection, currency_format)
+            col_widths[col] = max(col_widths[col], len(credit_collection_str))
+            col += 1
             
             # تقسيم المدفوعات للتحصيل الآجل (بدون عمود طرق أخرى)
-            worksheet.write(row, col, credit_payments_split.get('نقدي', 0), currency_format); col += 1
-            worksheet.write(row, col, credit_payments_split.get('شبكة', 0), currency_format); col += 1
-            worksheet.write(row, col, credit_payments_split.get('حوالة', 0), currency_format); col += 1
+            for method in ['نقدي', 'شبكة', 'حوالة']:
+                amount = credit_payments_split.get(method, 0)
+                amount_str = f"{amount:,.2f}"
+                worksheet.write(row, col, amount, currency_format)
+                col_widths[col] = max(col_widths[col], len(amount_str))
+                col += 1
             
             # نقدي & التحصيل
-            worksheet.write(row, col, branch_cash_and_collection, currency_format); col += 1
+            cash_collection_str = f"{branch_cash_and_collection:,.2f}"
+            worksheet.write(row, col, branch_cash_and_collection, currency_format)
+            col_widths[col] = max(col_widths[col], len(cash_collection_str))
+            col += 1
             
             # صافي الصندوق
-            worksheet.write(row, col, branch_net_cash, currency_format); col += 1
+            net_cash_str = f"{branch_net_cash:,.2f}"
+            worksheet.write(row, col, branch_net_cash, currency_format)
+            col_widths[col] = max(col_widths[col], len(net_cash_str))
+            col += 1
             
             # الإرجاعات غير المستردة
-            worksheet.write(row, col, branch_credit_refunds, currency_format); col += 1
+            credit_refunds_str = f"{branch_credit_refunds:,.2f}"
+            worksheet.write(row, col, branch_credit_refunds, currency_format)
+            col_widths[col] = max(col_widths[col], len(credit_refunds_str))
+            col += 1
             
             # الإرجاعات المستردة
-            worksheet.write(row, col, branch_cash_refunds, currency_format); col += 1
+            cash_refunds_str = f"{branch_cash_refunds:,.2f}"
+            worksheet.write(row, col, branch_cash_refunds, currency_format)
+            col_widths[col] = max(col_widths[col], len(cash_refunds_str))
+            col += 1
             
             # إجمالي المبيعات الآجلة
-            worksheet.write(row, col, branch_credit_sales, currency_format); col += 1
+            credit_sales_str = f"{branch_credit_sales:,.2f}"
+            worksheet.write(row, col, branch_credit_sales, currency_format)
+            col_widths[col] = max(col_widths[col], len(credit_sales_str))
+            col += 1
             
             # إجمالي المبيعات
+            total_sales_str = f"{branch_total_sales:,.2f}"
             worksheet.write(row, col, branch_total_sales, currency_format)
+            col_widths[col] = max(col_widths[col], len(total_sales_str))
     
             # تحديث الإجماليات
             totals['cash_sales'] += branch_cash_sales
@@ -649,6 +703,16 @@ class DailySalesSummary(models.Model):
             totals['total_payments'] += branch_total_payments
     
             row += 1
+    
+        # ضبط عرض الأعمدة حسب المحتوى
+        for col, width in enumerate(col_widths):
+            # تحويل طول المحتوى إلى عرض العمود (تقريبياً)
+            # نضيف 2 للهامش ونضرب في 1.2 لتحويل الأحرف إلى وحدات عرض
+            adjusted_width = (width + 2) * 1.2
+            # نحدد حداً أدنى وأقصى لعرض العمود
+            adjusted_width = max(adjusted_width, 10)  # حد أدنى 10
+            adjusted_width = min(adjusted_width, 30)  # حد أقصى 30
+            worksheet.set_column(col, col, adjusted_width)
     
         # إضافة المجموع الكلي
         if len(branches) > 1:
@@ -705,6 +769,7 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
+
     def action_generate_excel_report(self):
         """إجراء لإنشاء وتنزيل التقرير"""
         self.ensure_one()
