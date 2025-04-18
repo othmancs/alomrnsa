@@ -412,6 +412,11 @@ class DailySalesSummary(models.Model):
             'bg_color': '#E2EFDA', 'font_color': 'black', 'border': 1,
             'font_size': 12
         })
+        merged_header_format = workbook.add_format({
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'bg_color': '#FFE699', 'font_color': 'black', 'border': 1,
+            'font_size': 12
+        })
     
         # إضافة عنوان التقرير
         row = 0
@@ -440,6 +445,16 @@ class DailySalesSummary(models.Model):
             'إجمالي المبيعات'
         ]
         
+        # إضافة صفوف العناوين المدمجة
+        # الصف الأول: العناوين المدمجة
+        worksheet.merge_range(row, 1, row, 4, 'المبيعات النقدية ونوع سدادها', merged_header_format)
+        worksheet.merge_range(row, 5, row, 8, 'اجمالي التحصيل الآجل ونوع سدادها', merged_header_format)
+        worksheet.merge_range(row, 9, row, 10, 'اجمالي المقبوضات', merged_header_format)
+        worksheet.merge_range(row, 11, row, 12, 'الارجاعات', merged_header_format)
+        worksheet.merge_range(row, 13, row, 14, 'الاجماليات', merged_header_format)
+        row += 1
+        
+        # الصف الثاني: العناوين التفصيلية
         for col, header in enumerate(headers):
             worksheet.write(row, col, header, header_format)
         row += 1
@@ -460,7 +475,8 @@ class DailySalesSummary(models.Model):
             'cash_refunds': 0,
             'credit_sales': 0,
             'total_sales': 0,
-            'total_payments': 0  # إجمالي جميع الدفعات
+            'total_payments': 0,  # إجمالي جميع الدفعات
+            'payment_methods': defaultdict(float)  # لتخزين طرق الدفع
         }
     
         for branch in branches:
@@ -491,6 +507,7 @@ class DailySalesSummary(models.Model):
                         else:
                             method = 'نقدي'
                         cash_payments[method] += payment.amount
+                        totals['payment_methods'][method] += payment.amount
     
             # 2. حساب إجمالي جميع الدفعات (لحساب التحصيل الآجل)
             all_payments_domain = [
@@ -529,6 +546,7 @@ class DailySalesSummary(models.Model):
                         else:
                             method = 'نقدي'
                         credit_payments_split[method] += payment.amount
+                        totals['payment_methods'][method] += payment.amount
     
             # 5. حساب نقدي & التحصيل
             branch_cash_and_collection = branch_cash_sales + branch_credit_collection
@@ -653,6 +671,30 @@ class DailySalesSummary(models.Model):
             worksheet.write(row, col, totals['cash_refunds'], total_format); col += 1
             worksheet.write(row, col, totals['credit_sales'], total_format); col += 1
             worksheet.write(row, col, totals['total_sales'], total_format)
+            
+            row += 2
+    
+        # إضافة جدول طرق الدفع
+        if totals['payment_methods']:
+            # عنوان جدول طرق الدفع
+            worksheet.merge_range(row, 0, row, 4, 'إجمالي الدفع حسب طريقة الدفع', merged_header_format)
+            row += 1
+            
+            # عناوين الأعمدة
+            worksheet.write(row, 0, 'طريقة الدفع', header_format)
+            worksheet.write(row, 1, 'المبلغ', header_format)
+            row += 1
+            
+            # بيانات طرق الدفع
+            for method, amount in sorted(totals['payment_methods'].items()):
+                worksheet.write(row, 0, method, text_format)
+                worksheet.write(row, 1, amount, currency_format)
+                row += 1
+            
+            # المجموع الكلي لطرق الدفع
+            worksheet.write(row, 0, 'الإجمالي', header_format)
+            worksheet.write(row, 1, sum(totals['payment_methods'].values()), total_format)
+            row += 1
     
         # إغلاق الكتاب وحفظه
         workbook.close()
