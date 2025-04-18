@@ -35,352 +35,6 @@ class DailySalesSummary(models.Model):
         related='company_id.currency_id', store=True
     )
 
-    # الحقول المحسوبة
-    cash_sales = fields.Monetary(
-        string='مبيعات نقدية مدفوعة بتاريخه قبل الضريبة',
-        currency_field='company_currency_id',
-        compute='_compute_sales_totals', store=True
-    )
-    total_tax = fields.Monetary(
-        string='مجموع الضريبة فقط',
-        currency_field='company_currency_id',
-        compute='_compute_sales_totals', store=True
-    )
-    partial_sales = fields.Monetary(
-        string='مبيعات مدفوع جزئي',
-        currency_field='company_currency_id',
-        compute='_compute_sales_totals', store=True
-    )
-    credit_sales = fields.Monetary(
-        string='مبيعات آجلة غير مدفوعة',
-        currency_field='company_currency_id',
-        compute='_compute_sales_totals', store=True
-    )
-    cash_refunds = fields.Monetary(
-        string='إرجاعات مسترد المبلغ',
-        currency_field='company_currency_id',
-        compute='_compute_refund_totals', store=True
-    )
-    credit_refunds = fields.Monetary(
-        string='إرجاعات غير مسترد المبلغ',
-        currency_field='company_currency_id',
-        compute='_compute_refund_totals', store=True
-    )
-    cash_box = fields.Monetary(
-        string='المقبوضات',
-        currency_field='company_currency_id',
-        compute='_compute_cash_box', store=True
-    )
-    total_cash = fields.Monetary(
-        string='إجمالي الصندوق',
-        currency_field='company_currency_id',
-        compute='_compute_total_cash', store=True
-    )
-    payment_method_totals = fields.Html(
-        string='المجاميع حسب طريقة الدفع',
-        compute='_compute_payment_method_totals',
-        sanitize=False
-    )
-
-    @api.depends('date_from', 'date_to', 'company_id', 'branch_ids')
-    def _compute_payment_method_totals(self):
-        for record in self:
-            payment_method_data = defaultdict(float)
-
-            cash_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'paid'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                cash_domain.append(('branch_id', 'in', record.branch_ids.ids))
-
-            cash_invoices = self.env['account.move'].search(cash_domain)
-            for invoice in cash_invoices:
-                for payment in invoice._get_reconciled_payments():
-                    if payment.payment_method_line_id:
-                        method_name = payment.payment_method_line_id.name or 'غير محدد'
-                        payment_method_data[method_name] += payment.amount
-
-            # حساب المبيعات المدفوعة جزئياً حسب طريقة الدفع
-            partial_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'partial'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                partial_domain.append(('branch_id', 'in', record.branch_ids.ids))
-
-            partial_invoices = self.env['account.move'].search(partial_domain)
-            for invoice in partial_invoices:
-                for payment in invoice._get_reconciled_payments():
-                    if payment.payment_method_line_id:
-                        method_name = payment.payment_method_line_id.name or 'غير محدد'
-                        payment_method_data[method_name] += payment.amount
-
-            # حساب المقبوضات حسب طريقة الدفع
-            payment_domain = [
-                ('date', '>=', record.date_from),
-                ('date', '<=', record.date_to),
-                ('payment_type', '=', 'inbound'),
-                ('state', '=', 'posted'),
-                ('is_internal_transfer', '=', False),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                payment_domain.append(('branch_id', 'in', record.branch_ids.ids))
-
-            payments = self.env['account.payment'].search(payment_domain)
-            for payment in payments:
-                if payment.payment_method_line_id:
-                    method_name = payment.payment_method_line_id.name or 'غير محدد'
-                    payment_method_data[method_name] += payment.amount
-
-            # تحويل البيانات إلى نص لعرضها
-            result = []
-            for method, amount in sorted(payment_method_data.items()):
-                if amount:
-                    formatted_amount = format(amount, '.2f')
-                    result.append(f"{method}: {formatted_amount} {record.company_currency_id.symbol}")
-
-            record.payment_method_totals = "\n".join(result) if result else "لا توجد مدفوعات"
-
-    @api.depends('date_from', 'date_to', 'company_id', 'branch_ids')
-    def _compute_sales_totals(self):
-        for record in self:
-            # حساب المبيعات النقدية (مدفوع بالكامل في نفس التاريخ)
-            cash_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'paid'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                cash_domain.append(('branch_id', 'in', record.branch_ids.ids))
-            cash_invoices = self.env['account.move'].search(cash_domain)
-            record.cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
-            record.total_tax = sum(invoice.amount_tax for invoice in cash_invoices)
-
-            # حساب المبيعات المدفوعة جزئياً (نعرض المبلغ المدفوع فقط)
-            partial_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'partial'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                partial_domain.append(('branch_id', 'in', record.branch_ids.ids))
-            partial_invoices = self.env['account.move'].search(partial_domain)
-            record.partial_sales = sum(invoice.amount_total - invoice.amount_residual for invoice in partial_invoices)
-
-            # حساب المبيعات الآجلة (غير مدفوع)
-            credit_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'not_paid'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                credit_domain.append(('branch_id', 'in', record.branch_ids.ids))
-            credit_invoices = self.env['account.move'].search(credit_domain)
-            record.credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
-
-    @api.depends('date_from', 'date_to', 'company_id', 'branch_ids')
-    def _compute_refund_totals(self):
-        for record in self:
-            # حساب المرتجعات النقدية (مدفوع)
-            cash_refund_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_refund'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'paid'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                cash_refund_domain.append(('branch_id', 'in', record.branch_ids.ids))
-            cash_refunds = self.env['account.move'].search(cash_refund_domain)
-            record.cash_refunds = sum(refund.amount_untaxed for refund in cash_refunds)
-
-            # حساب مرتجعات الآجل (غير مدفوع)
-            credit_refund_domain = [
-                ('invoice_date', '>=', record.date_from),
-                ('invoice_date', '<=', record.date_to),
-                ('move_type', '=', 'out_refund'),
-                ('state', '=', 'posted'),
-                ('payment_state', '=', 'not_paid'),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                credit_refund_domain.append(('branch_id', 'in', record.branch_ids.ids))
-            credit_refunds = self.env['account.move'].search(credit_refund_domain)
-            record.credit_refunds = sum(refund.amount_untaxed for refund in credit_refunds)
-
-    @api.depends('date_from', 'date_to', 'company_id', 'branch_ids')
-    def _compute_cash_box(self):
-        for record in self:
-            # حساب المقبوضات (الدفعات)
-            payment_domain = [
-                ('date', '>=', record.date_from),
-                ('date', '<=', record.date_to),
-                ('payment_type', '=', 'inbound'),
-                ('state', '=', 'posted'),
-                ('is_internal_transfer', '=', False),
-                ('company_id', '=', record.company_id.id)
-            ]
-            if record.branch_ids:
-                payment_domain.append(('branch_id', 'in', record.branch_ids.ids))
-            payments = self.env['account.payment'].search(payment_domain)
-            record.cash_box = sum(payment.amount for payment in payments)
-
-    @api.depends('cash_sales', 'partial_sales', 'cash_refunds', 'cash_box')
-    def _compute_total_cash(self):
-        for record in self:
-            record.total_cash = record.cash_box - record.cash_refunds
-
-    @api.onchange('date_from')
-    def _onchange_date_from(self):
-        if self.date_from and not self.date_to:
-            self.date_to = self.date_from
-
-    @api.constrains('date_from', 'date_to')
-    def _check_dates(self):
-        for record in self:
-            if record.date_from and record.date_to and record.date_from > record.date_to:
-                raise models.ValidationError("تاريخ البداية يجب أن يكون قبل تاريخ النهاية")
-
-    def action_view_cash_sales(self):
-        self.ensure_one()
-        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
-        domain = [
-            ('invoice_date', '>=', self.date_from),
-            ('invoice_date', '<=', self.date_to),
-            ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'paid'),
-            ('company_id', '=', self.company_id.id)
-        ]
-        if self.branch_ids:
-            domain.append(('branch_id', 'in', self.branch_ids.ids))
-        action['domain'] = domain
-        action['context'] = {
-            'search_default_invoice': 1,
-            'create': False
-        }
-        return action
-
-    def action_view_partial_sales(self):
-        self.ensure_one()
-        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
-        domain = [
-            ('invoice_date', '>=', self.date_from),
-            ('invoice_date', '<=', self.date_to),
-            ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'partial'),
-            ('company_id', '=', self.company_id.id)
-        ]
-        if self.branch_ids:
-            domain.append(('branch_id', 'in', self.branch_ids.ids))
-        action['domain'] = domain
-        action['context'] = {
-            'search_default_invoice': 1,
-            'create': False
-        }
-        return action
-
-    def action_view_credit_sales(self):
-        self.ensure_one()
-        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
-        domain = [
-            ('invoice_date', '>=', self.date_from),
-            ('invoice_date', '<=', self.date_to),
-            ('move_type', '=', 'out_invoice'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'not_paid'),
-            ('company_id', '=', self.company_id.id)
-        ]
-        if self.branch_ids:
-            domain.append(('branch_id', 'in', self.branch_ids.ids))
-        action['domain'] = domain
-        action['context'] = {
-            'search_default_invoice': 1,
-            'create': False
-        }
-        return action
-
-    def action_view_cash_refunds(self):
-        self.ensure_one()
-        action = self.env.ref('account.action_move_out_refund_type').read()[0]
-        domain = [
-            ('invoice_date', '>=', self.date_from),
-            ('invoice_date', '<=', self.date_to),
-            ('move_type', '=', 'out_refund'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'paid'),
-            ('company_id', '=', self.company_id.id)
-        ]
-        if self.branch_ids:
-            domain.append(('branch_id', 'in', self.branch_ids.ids))
-        action['domain'] = domain
-        action['context'] = {
-            'search_default_refund': 1,
-            'create': False
-        }
-        return action
-
-    def action_view_credit_refunds(self):
-        self.ensure_one()
-        action = self.env.ref('account.action_move_out_refund_type').read()[0]
-        domain = [
-            ('invoice_date', '>=', self.date_from),
-            ('invoice_date', '<=', self.date_to),
-            ('move_type', '=', 'out_refund'),
-            ('state', '=', 'posted'),
-            ('payment_state', '=', 'not_paid'),
-            ('company_id', '=', self.company_id.id)
-        ]
-        if self.branch_ids:
-            domain.append(('branch_id', 'in', self.branch_ids.ids))
-        action['domain'] = domain
-        action['context'] = {
-            'search_default_refund': 1,
-            'create': False
-        }
-        return action
-
-    def action_view_cash_box(self):
-        self.ensure_one()
-        action = self.env.ref('account.action_account_payments').read()[0]
-        domain = [
-            ('date', '>=', self.date_from),
-            ('date', '<=', self.date_to),
-            ('payment_type', '=', 'inbound'),
-            ('state', '=', 'posted'),
-            ('is_internal_transfer', '=', False),
-            ('company_id', '=', self.company_id.id)
-        ]
-        if self.branch_ids:
-            domain.append(('branch_id', 'in', self.branch_ids.ids))
-        action['domain'] = domain
-        action['context'] = {
-            'default_payment_type': 'inbound',
-            'create': False
-        }
-        return action
-
     @api.model
     def generate_sales_collection_report(self):
         """إنشاء تقرير Excel للمبيعات والتحصيل حسب الهيكل المطلوب"""
@@ -456,32 +110,68 @@ class DailySalesSummary(models.Model):
         # عمود الفرع
         worksheet.write(row, 0, 'الفرع', header_format)
         
-        # عنوان "تقرير المبيعات" المدمج فوق 5 أعمدة
-        worksheet.merge_range(row, 1, row, 5, 'تقرير المبيعات', merged_header_format)
+        # عنوان "إجمالي المبيعات النقدية" والمدفوعات
+        worksheet.merge_range(row, 1, row, 1, 'إجمالي المبيعات النقدية', merged_header_format)
         
-        # عنوان "تقرير التحصيل" المدمج فوق 5 أعمدة
-        worksheet.merge_range(row, 6, row, 10, 'تقرير التحصيل', merged_header_format)
+        # عناوين طرق الدفع للمبيعات النقدية
+        payment_methods = self._get_payment_methods('inbound')
+        num_payment_methods = len(payment_methods)
+        if num_payment_methods > 0:
+            worksheet.merge_range(row, 2, row, 1 + num_payment_methods, 
+                                 'تقسيم المدفوعات للمبيعات النقدية', merged_header_format)
         
-        # الصف التالي (صف العناوين الفرعية)
+        # عنوان "إجمالي التحصيل الآجل"
+        next_col = 2 + num_payment_methods
+        worksheet.merge_range(row, next_col, row, next_col, 
+                             'إجمالي التحصيل الآجل', merged_header_format)
+        next_col += 1
+        
+        # عناوين طرق الدفع للتحصيل الآجل
+        if num_payment_methods > 0:
+            worksheet.merge_range(row, next_col, row, next_col + num_payment_methods - 1, 
+                                 'تقسيم المدفوعات للتحصيل الآجل', merged_header_format)
+            next_col += num_payment_methods
+        
+        # العناوين المتبقية
+        titles = [
+            'نقدي & التحصيل',
+            'صافي الصندوق',
+            'الارجاعات غير المستردة',
+            'الارجاعات المستردة',
+            'إجمالي المبيعات الآجلة',
+            'إجمالي المبيعات'
+        ]
+        
+        for idx, title in enumerate(titles):
+            worksheet.write(row, next_col + idx, title, header_format)
+    
+        # الصف التالي (صف العناوين الفرعية لطرق الدفع)
         row += 1
         
-        # عناوين الأعمدة الفرعية تحت "تقرير المبيعات"
-        worksheet.write(row, 1, 'مبيعات نقدية', header_format)
-        worksheet.write(row, 2, 'مبيعات آجلة', header_format)
-        worksheet.write(row, 3, 'إجمالي إرجاعات', header_format)
-        worksheet.write(row, 4, 'صافي المبيعات', header_format)
-        worksheet.write(row, 5, 'صافي المبيعات شامل الضريبة', header_format)
+        # كتابة أسماء طرق الدفع في الصف الثاني
+        worksheet.write(row, 0, '', header_format)  # عمود الفرع فارغ
+        worksheet.write(row, 1, '', header_format)  # تحت إجمالي المبيعات النقدية
         
-        # عناوين الأعمدة الفرعية تحت "تقرير التحصيل"
-        worksheet.write(row, 6, 'تحصيل شبكة', header_format)
-        worksheet.write(row, 7, 'تحصيل حوالات', header_format)
-        worksheet.write(row, 8, 'تحصيل نقدي', header_format)
-        worksheet.write(row, 9, 'إرجاعات مسددة نقدا', header_format)
-        worksheet.write(row, 10, 'صافي التحصيل', header_format)
+        # كتابة أسماء طرق الدفع للمبيعات النقدية
+        for idx, method in enumerate(payment_methods):
+            worksheet.write(row, 2 + idx, method, header_format)
+        
+        # كتابة أسماء طرق الدفع للتحصيل الآجل
+        next_col = 2 + num_payment_methods
+        worksheet.write(row, next_col, '', header_format)  # تحت إجمالي التحصيل الآجل
+        next_col += 1
+        
+        for idx, method in enumerate(payment_methods):
+            worksheet.write(row, next_col + idx, method, header_format)
+        
+        # العناوين المتبقية تبقى فارغة في الصف الثاني
+        remaining_cols = next_col + num_payment_methods
+        for col in range(remaining_cols, remaining_cols + len(titles)):
+            worksheet.write(row, col, '', header_format)
     
         # تحديد عرض الأعمدة
         worksheet.set_column(0, 0, 30)  # عمود الفرع
-        worksheet.set_column(1, 10, 20)  # الأعمدة الرقمية
+        worksheet.set_column(1, 20, 20)  # الأعمدة الرقمية
     
         # جمع البيانات لكل فرع على حدة
         branch_ids = self.branch_ids.ids if self.branch_ids else self.env['res.branch'].search([]).ids
@@ -490,15 +180,15 @@ class DailySalesSummary(models.Model):
         # متغيرات لتخزين الإجماليات
         totals = {
             'cash_sales': 0,
+            'payment_methods_cash': {method: 0 for method in payment_methods},
+            'credit_collection': 0,
+            'payment_methods_credit': {method: 0 for method in payment_methods},
+            'cash_and_collection': 0,
+            'net_cash': 0,
+            'non_refunded_returns': 0,
+            'refunded_returns': 0,
             'credit_sales': 0,
-            'total_refunds': 0,
-            'net_sales': 0,
-            'net_sales_with_tax': 0,
-            'network_collection': 0,
-            'transfer_collection': 0,
-            'cash_collection': 0,
-            'cash_refunds': 0,
-            'net_collection': 0
+            'total_sales': 0
         }
     
         row += 1  # بدء البيانات من الصف التالي بعد العناوين
@@ -515,76 +205,43 @@ class DailySalesSummary(models.Model):
             ]
             cash_invoices = self.env['account.move'].search(cash_sales_domain)
             branch_cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+            
+            # حساب المدفوعات لكل طريقة دفع للمبيعات النقدية
+            payment_methods_cash = {method: 0 for method in payment_methods}
+            for invoice in cash_invoices:
+                for payment in invoice._get_reconciled_payments():
+                    if payment.payment_method_line_id:
+                        method_name = payment.payment_method_line_id.name or 'غير محدد'
+                        if method_name in payment_methods_cash:
+                            payment_methods_cash[method_name] += payment.amount
     
-            # 2. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير و غير محصلة أو محصلة في تاريخ لاحق)
-            credit_sales_domain = [
-                ('invoice_date', '>=', self.date_from),
-                ('invoice_date', '<=', self.date_to),
-                ('move_type', '=', 'out_invoice'),
+            # 2. حساب التحصيل الآجل (مدفوعات لفواتير قديمة)
+            credit_collection_domain = [
+                ('date', '>=', self.date_from),
+                ('date', '<=', self.date_to),
+                ('payment_type', '=', 'inbound'),
                 ('state', '=', 'posted'),
-                ('payment_state', 'in', ['not_paid', 'partial']),
+                ('is_internal_transfer', '=', False),
                 ('company_id', '=', self.company_id.id),
-                ('branch_id', '=', branch.id)
+                ('branch_id', '=', branch.id),
+                ('invoice_ids.invoice_date', '<', self.date_from)  # فواتير من تاريخ سابق
             ]
-            credit_invoices = self.env['account.move'].search(credit_sales_domain)
-            branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+            credit_payments = self.env['account.payment'].search(credit_collection_domain)
+            branch_credit_collection = sum(payment.amount for payment in credit_payments)
+            
+            # حساب المدفوعات لكل طريقة دفع للتحصيل الآجل
+            payment_methods_credit = {method: 0 for method in payment_methods}
+            for payment in credit_payments:
+                if payment.payment_method_line_id:
+                    method_name = payment.payment_method_line_id.name or 'غير محدد'
+                    if method_name in payment_methods_credit:
+                        payment_methods_credit[method_name] += payment.amount
     
-            # 3. حساب إجمالي الإرجاعات (كل الإرجاعات التي تمت في نفس تاريخ التقرير سواء مسددة أو غير مسددة)
-            refunds_domain = [
-                ('invoice_date', '>=', self.date_from),
-                ('invoice_date', '<=', self.date_to),
-                ('move_type', '=', 'out_refund'),
-                ('state', '=', 'posted'),
-                ('company_id', '=', self.company_id.id),
-                ('branch_id', '=', branch.id)
-            ]
-            refunds = self.env['account.move'].search(refunds_domain)
-            branch_total_refunds = sum(abs(refund.amount_untaxed) for refund in refunds)
+            # 3. حساب نقدي & التحصيل (المبيعات النقدية + التحصيل الآجل)
+            branch_cash_and_collection = branch_cash_sales + branch_credit_collection
     
-            # 4. حساب صافي المبيعات (العمود 1 + العمود 2 - العمود 3)
-            branch_net_sales = branch_cash_sales + branch_credit_sales - branch_total_refunds
-    
-            # 5. حساب صافي المبيعات شامل الضريبة (العمود 4 × 1.15)
-            branch_net_sales_with_tax = branch_net_sales * 1.15
-    
-            # 6. تحصيل شبكة (عمليات التحصيل بالشبكة في نفس تاريخ التقرير)
-            network_payments = self.env['account.payment'].search([
-                ('date', '>=', self.date_from),
-                ('date', '<=', self.date_to),
-                ('payment_type', '=', 'inbound'),
-                ('state', '=', 'posted'),
-                ('payment_method_line_id.name', 'ilike', 'شبكة'),
-                ('company_id', '=', self.company_id.id),
-                ('branch_id', '=', branch.id)
-            ])
-            branch_network_collection = sum(payment.amount for payment in network_payments)
-    
-            # 7. تحصيل حوالات (عمليات التحصيل بحوالة أو شيك في نفس تاريخ التقرير)
-            transfer_payments = self.env['account.payment'].search([
-                ('date', '>=', self.date_from),
-                ('date', '<=', self.date_to),
-                ('payment_type', '=', 'inbound'),
-                ('state', '=', 'posted'),
-                ('payment_method_line_id.name', 'ilike', 'حوالة'),
-                ('company_id', '=', self.company_id.id),
-                ('branch_id', '=', branch.id)
-            ])
-            branch_transfer_collection = sum(payment.amount for payment in transfer_payments)
-    
-            # 8. تحصيل نقدي (عمليات التحصيل بالنقد في نفس تاريخ التقرير)
-            cash_payments = self.env['account.payment'].search([
-                ('date', '>=', self.date_from),
-                ('date', '<=', self.date_to),
-                ('payment_type', '=', 'inbound'),
-                ('state', '=', 'posted'),
-                ('payment_method_line_id.name', 'ilike', 'نقدي'),
-                ('company_id', '=', self.company_id.id),
-                ('branch_id', '=', branch.id)
-            ])
-            branch_cash_collection = sum(payment.amount for payment in cash_payments)
-    
-            # 9. إرجاعات مسددة نقدا (تأخذ نفس قيمة cash_refunds)
-            cash_refunds_domain = [
+            # 4. حساب الارجاعات المستردة (مدفوعة)
+            refunded_returns_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_refund'),
@@ -593,57 +250,112 @@ class DailySalesSummary(models.Model):
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
             ]
-            cash_refunds = self.env['account.move'].search(cash_refunds_domain)
-            branch_cash_refunds = sum(abs(refund.amount_untaxed) for refund in cash_refunds)
+            refunded_returns = self.env['account.move'].search(refunded_returns_domain)
+            branch_refunded_returns = sum(abs(refund.amount_untaxed) for refund in refunded_returns)
     
-            # 10. صافي التحصيل (6 + 7 + 8 - 9)
-            branch_net_collection = (branch_network_collection + 
-                                   branch_transfer_collection + 
-                                   branch_cash_collection - 
-                                   branch_cash_refunds)
+            # 5. حساب الارجاعات غير المستردة (غير مدفوعة)
+            non_refunded_returns_domain = [
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_refund'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'not_paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ]
+            non_refunded_returns = self.env['account.move'].search(non_refunded_returns_domain)
+            branch_non_refunded_returns = sum(abs(refund.amount_untaxed) for refund in non_refunded_returns)
+    
+            # 6. حساب صافي الصندوق (نقدي & التحصيل - الارجاعات المستردة)
+            branch_net_cash = branch_cash_and_collection - branch_refunded_returns
+    
+            # 7. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة)
+            credit_sales_domain = [
+                ('invoice_date', '>=', self.date_from),
+                ('invoice_date', '<=', self.date_to),
+                ('move_type', '=', 'out_invoice'),
+                ('state', '=', 'posted'),
+                ('payment_state', '=', 'not_paid'),
+                ('company_id', '=', self.company_id.id),
+                ('branch_id', '=', branch.id)
+            ]
+            credit_invoices = self.env['account.move'].search(credit_sales_domain)
+            branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+    
+            # 8. حساب إجمالي المبيعات (النقدية + الآجلة)
+            branch_total_sales = branch_cash_sales + branch_credit_sales
     
             # تحديث الإجماليات
             totals['cash_sales'] += branch_cash_sales
+            for method in payment_methods:
+                totals['payment_methods_cash'][method] += payment_methods_cash.get(method, 0)
+                totals['payment_methods_credit'][method] += payment_methods_credit.get(method, 0)
+            totals['credit_collection'] += branch_credit_collection
+            totals['cash_and_collection'] += branch_cash_and_collection
+            totals['net_cash'] += branch_net_cash
+            totals['non_refunded_returns'] += branch_non_refunded_returns
+            totals['refunded_returns'] += branch_refunded_returns
             totals['credit_sales'] += branch_credit_sales
-            totals['total_refunds'] += branch_total_refunds
-            totals['net_sales'] += branch_net_sales
-            totals['net_sales_with_tax'] += branch_net_sales_with_tax
-            totals['network_collection'] += branch_network_collection
-            totals['transfer_collection'] += branch_transfer_collection
-            totals['cash_collection'] += branch_cash_collection
-            totals['cash_refunds'] += branch_cash_refunds
-            totals['net_collection'] += branch_net_collection
+            totals['total_sales'] += branch_total_sales
     
             # كتابة بيانات الفرع
             col = 0
             worksheet.write(row, col, branch.name, text_format); col += 1
+            
+            # إجمالي المبيعات النقدية
             worksheet.write(row, col, branch_cash_sales, currency_format); col += 1
+            
+            # طرق الدفع للمبيعات النقدية
+            for method in payment_methods:
+                worksheet.write(row, col, payment_methods_cash.get(method, 0), currency_format)
+                col += 1
+            
+            # إجمالي التحصيل الآجل
+            worksheet.write(row, col, branch_credit_collection, currency_format); col += 1
+            
+            # طرق الدفع للتحصيل الآجل
+            for method in payment_methods:
+                worksheet.write(row, col, payment_methods_credit.get(method, 0), currency_format)
+                col += 1
+            
+            # بقية الأعمدة
+            worksheet.write(row, col, branch_cash_and_collection, currency_format); col += 1
+            worksheet.write(row, col, branch_net_cash, currency_format); col += 1
+            worksheet.write(row, col, branch_non_refunded_returns, currency_format); col += 1
+            worksheet.write(row, col, branch_refunded_returns, currency_format); col += 1
             worksheet.write(row, col, branch_credit_sales, currency_format); col += 1
-            worksheet.write(row, col, branch_total_refunds, currency_format); col += 1
-            worksheet.write(row, col, branch_net_sales, currency_format); col += 1
-            worksheet.write(row, col, branch_net_sales_with_tax, currency_format); col += 1
-            worksheet.write(row, col, branch_network_collection, currency_format); col += 1
-            worksheet.write(row, col, branch_transfer_collection, currency_format); col += 1
-            worksheet.write(row, col, branch_cash_collection, currency_format); col += 1
-            worksheet.write(row, col, branch_cash_refunds, currency_format); col += 1
-            worksheet.write(row, col, branch_net_collection, currency_format)
+            worksheet.write(row, col, branch_total_sales, currency_format)
     
             row += 1
     
         # إضافة المجموع الكلي إذا كان هناك أكثر من فرع
-        if row > 6:  # تم تغيير الشرط لأننا بدأنا من صف أعلى
+        if len(branches) > 1:
             col = 0
             worksheet.write(row, col, 'الإجمالي', header_format); col += 1
+            
+            # إجمالي المبيعات النقدية
             worksheet.write(row, col, totals['cash_sales'], total_format); col += 1
+            
+            # طرق الدفع للمبيعات النقدية
+            for method in payment_methods:
+                worksheet.write(row, col, totals['payment_methods_cash'].get(method, 0), total_format)
+                col += 1
+            
+            # إجمالي التحصيل الآجل
+            worksheet.write(row, col, totals['credit_collection'], total_format); col += 1
+            
+            # طرق الدفع للتحصيل الآجل
+            for method in payment_methods:
+                worksheet.write(row, col, totals['payment_methods_credit'].get(method, 0), total_format)
+                col += 1
+            
+            # بقية الأعمدة
+            worksheet.write(row, col, totals['cash_and_collection'], total_format); col += 1
+            worksheet.write(row, col, totals['net_cash'], total_format); col += 1
+            worksheet.write(row, col, totals['non_refunded_returns'], total_format); col += 1
+            worksheet.write(row, col, totals['refunded_returns'], total_format); col += 1
             worksheet.write(row, col, totals['credit_sales'], total_format); col += 1
-            worksheet.write(row, col, totals['total_refunds'], total_format); col += 1
-            worksheet.write(row, col, totals['net_sales'], total_format); col += 1
-            worksheet.write(row, col, totals['net_sales_with_tax'], total_format); col += 1
-            worksheet.write(row, col, totals['network_collection'], total_format); col += 1
-            worksheet.write(row, col, totals['transfer_collection'], total_format); col += 1
-            worksheet.write(row, col, totals['cash_collection'], total_format); col += 1
-            worksheet.write(row, col, totals['cash_refunds'], total_format); col += 1
-            worksheet.write(row, col, totals['net_collection'], total_format)
+            worksheet.write(row, col, totals['total_sales'], total_format)
     
         # إغلاق الكتاب وحفظه
         workbook.close()
@@ -654,6 +366,15 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
+
+    def _get_payment_methods(self, payment_type):
+        """الحصول على طرق الدفع المحددة في الشركة"""
+        payment_methods = self.env['account.payment.method.line'].search([
+            ('payment_type', '=', payment_type),
+            ('company_id', '=', self.company_id.id)
+        ])
+        return [method.name for method in payment_methods]
+
     def action_generate_excel_report(self):
         """إجراء لإنشاء وتنزيل التقرير"""
         self.ensure_one()
@@ -678,31 +399,3 @@ class DailySalesSummary(models.Model):
         except Exception as e:
             _logger.error("Failed to generate sales report: %s", str(e))
             raise
-
-    def _compute_total_cash_methods(self, summaries):
-        """حساب إجمالي الكاش الوارد باستثناء طرق السداد المحددة"""
-        total = 0.0
-        excluded_methods = ['شبكة', 'حوالة']  # طرق السداد المستثناة
-
-        for summary in summaries:
-            # تحليل محتوى payment_method_totals
-            if not summary.payment_method_totals:
-                continue
-
-            # تحليل HTML للحصول على طرق الدفع والمبالغ
-            soup = BeautifulSoup(summary.payment_method_totals, 'html.parser')
-            lines = soup.get_text().split('\n')
-
-            for line in lines:
-                if ':' in line:
-                    method, amount = line.split(':', 1)
-                    method = method.strip()
-                    amount = amount.strip().split()[0]
-
-                    # استبعاد طرق السداد المحددة
-                    if not any(excluded in method for excluded in excluded_methods):
-                        try:
-                            total += float(amount.replace(',', ''))
-                        except ValueError:
-                            continue
-        return total
