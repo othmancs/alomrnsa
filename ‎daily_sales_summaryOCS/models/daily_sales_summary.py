@@ -424,8 +424,8 @@ class DailySalesSummary(models.Model):
             try:
                 # إضافة الصورة بحجم مناسب (عرض 200 بكسل مع الحفاظ على النسبة)
                 image_data = io.BytesIO(base64.b64decode(self.company_id.logo))
-                worksheet.merge_range(row, 4, row+1, 4, '')  # دمج الخلايا لإنشاء مساحة للصورة
-                worksheet.insert_image(row, 4, 'logo.png', {
+                worksheet.merge_range(row, 5, row+1, 5, '')  # دمج الخلايا لإنشاء مساحة للصورة
+                worksheet.insert_image(row, 5, 'logo.png', {
                     'image_data': image_data,
                     'x_scale': 0.15, 
                     'y_scale': 0.15,
