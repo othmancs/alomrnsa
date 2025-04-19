@@ -101,7 +101,7 @@ class DailySalesSummary(models.Model):
                 ('invoice_date', '<=', record.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
+                ('payment_state', 'in', ['paid', 'in_payment']),
                 ('company_id', '=', record.company_id.id)
             ]
             if record.branch_ids:
@@ -169,7 +169,7 @@ class DailySalesSummary(models.Model):
                 ('invoice_date', '<=', record.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
+                ('payment_state', 'in', ['paid', 'in_payment']),
                 ('company_id', '=', record.company_id.id)
             ]
             if record.branch_ids:
@@ -192,19 +192,20 @@ class DailySalesSummary(models.Model):
             partial_invoices = self.env['account.move'].search(partial_domain)
             record.partial_sales = sum(invoice.amount_total - invoice.amount_residual for invoice in partial_invoices)
 
-            # حساب المبيعات الآجلة (غير مدفوع)
+            # حساب المبيعات الآجلة (غير مدفوع + المتبقي من المدفوع جزئياً)
             credit_domain = [
                 ('invoice_date', '>=', record.date_from),
                 ('invoice_date', '<=', record.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', '=', 'not_paid'),
+                ('payment_state', 'in', ['not_paid', 'partial']),  # تعديل ليشمل partial
                 ('company_id', '=', record.company_id.id)
             ]
             if record.branch_ids:
                 credit_domain.append(('branch_id', 'in', record.branch_ids.ids))
             credit_invoices = self.env['account.move'].search(credit_domain)
-            record.credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+            # جمع المبلغ المتبقي للفواتير غير المدفوعة والمدفوعة جزئياً
+            record.credit_sales = sum(invoice.amount_residual for invoice in credit_invoices)
 
     @api.depends('date_from', 'date_to', 'company_id', 'branch_ids')
     def _compute_refund_totals(self):
@@ -278,7 +279,7 @@ class DailySalesSummary(models.Model):
             ('invoice_date', '<=', self.date_to),
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
-            ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
+            ('payment_state', 'in', ['paid', 'in_payment']),
             ('company_id', '=', self.company_id.id)
         ]
         if self.branch_ids:
@@ -318,7 +319,7 @@ class DailySalesSummary(models.Model):
             ('invoice_date', '<=', self.date_to),
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
-            ('payment_state', '=', 'not_paid'),
+            ('payment_state', 'in', ['not_paid', 'partial']),  # تعديل ليشمل partial
             ('company_id', '=', self.company_id.id)
         ]
         if self.branch_ids:
@@ -526,12 +527,11 @@ class DailySalesSummary(models.Model):
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
+                ('payment_state', 'in', ['paid', 'in_payment']),
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
             ]
             cash_invoices = self.env['account.move'].search(cash_sales_domain)
-            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
             branch_cash_sales = sum(invoice.amount_total for invoice in cash_invoices)
             branch_cash_sales_tax = sum(invoice.amount_tax for invoice in cash_invoices)
             
@@ -541,7 +541,6 @@ class DailySalesSummary(models.Model):
                 for payment in invoice._get_reconciled_payments():
                     if payment.payment_method_line_id:
                         method = payment.payment_method_line_id.name or 'نقدي'
-                        # نحدد فقط الأنواع المطلوبة (نقدي، شبكة، حوالة)
                         if 'شبكة' in method:
                             method = 'شبكة'
                         elif 'حوالة' in method or 'شيك' in method:
@@ -580,7 +579,6 @@ class DailySalesSummary(models.Model):
                 if not is_cash_payment:
                     if payment.payment_method_line_id:
                         method = payment.payment_method_line_id.name or 'نقدي'
-                        # نحدد فقط الأنواع المطلوبة (نقدي، شبكة، حوالة)
                         if 'شبكة' in method:
                             method = 'شبكة'
                         elif 'حوالة' in method or 'شيك' in method:
@@ -604,7 +602,6 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ]
             cash_refunds = self.env['account.move'].search(cash_refunds_domain)
-            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
             branch_cash_refunds = sum(abs(refund.amount_total) for refund in cash_refunds)
             branch_cash_refunds_tax = sum(abs(refund.amount_tax) for refund in cash_refunds)
     
@@ -618,25 +615,24 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ]
             credit_refunds = self.env['account.move'].search(credit_refunds_domain)
-            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
             branch_credit_refunds = sum(abs(refund.amount_total) for refund in credit_refunds)
     
             # 7. حساب صافي الصندوق
             branch_net_cash = branch_cash_and_collection - branch_cash_refunds
     
-            # 8. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة)
+            # 8. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة أو مدفوعة جزئياً)
             credit_sales_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', '=', 'not_paid'),
+                ('payment_state', 'in', ['not_paid', 'partial']),  # تعديل ليشمل partial
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
             ]
             credit_invoices = self.env['account.move'].search(credit_sales_domain)
-            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
-            branch_credit_sales = sum(invoice.amount_total for invoice in credit_invoices)
+            # جمع المبلغ المتبقي للفواتير غير المدفوعة والمدفوعة جزئياً
+            branch_credit_sales = sum(invoice.amount_residual for invoice in credit_invoices)
             branch_credit_sales_tax = sum(invoice.amount_tax for invoice in credit_invoices)
     
             # 9. إجمالي المبيعات
@@ -649,13 +645,13 @@ class DailySalesSummary(models.Model):
             col_widths[col] = max(col_widths[col], len(branch_name.encode('utf-8')))
             col += 1
             
-            # إجمالي المبيعات النقدية (الآن تشمل الضريبة)
+            # إجمالي المبيعات النقدية (تشمل الضريبة)
             cash_sales_str = f"{branch_cash_sales:,.2f}"
             worksheet.write(row, col, branch_cash_sales, currency_format)
             col_widths[col] = max(col_widths[col], len(cash_sales_str))
             col += 1
             
-            # تقسيم المدفوعات للمبيعات النقدية (بدون عمود طرق أخرى)
+            # تقسيم المدفوعات للمبيعات النقدية
             for method in ['نقدي', 'شبكة', 'حوالة']:
                 amount = cash_payments.get(method, 0)
                 amount_str = f"{amount:,.2f}"
@@ -669,7 +665,7 @@ class DailySalesSummary(models.Model):
             col_widths[col] = max(col_widths[col], len(credit_collection_str))
             col += 1
             
-            # تقسيم المدفوعات للتحصيل الآجل (بدون عمود طرق أخرى)
+            # تقسيم المدفوعات للتحصيل الآجل
             for method in ['نقدي', 'شبكة', 'حوالة']:
                 amount = credit_payments_split.get(method, 0)
                 amount_str = f"{amount:,.2f}"
@@ -695,13 +691,13 @@ class DailySalesSummary(models.Model):
             col_widths[col] = max(col_widths[col], len(credit_refunds_str))
             col += 1
             
-            # الإرجاعات المستردة (الآن تشمل الضريبة)
+            # الإرجاعات المستردة
             cash_refunds_str = f"{branch_cash_refunds:,.2f}"
             worksheet.write(row, col, branch_cash_refunds, currency_format)
             col_widths[col] = max(col_widths[col], len(cash_refunds_str))
             col += 1
             
-            # إجمالي المبيعات الآجلة (الآن تشمل الضريبة)
+            # إجمالي المبيعات الآجلة (المبلغ المتبقي)
             credit_sales_str = f"{branch_credit_sales:,.2f}"
             worksheet.write(row, col, branch_credit_sales, currency_format)
             col_widths[col] = max(col_widths[col], len(credit_sales_str))
@@ -736,12 +732,9 @@ class DailySalesSummary(models.Model):
     
         # ضبط عرض الأعمدة حسب المحتوى
         for col, width in enumerate(col_widths):
-            # تحويل طول المحتوى إلى عرض العمود (تقريبياً)
-            # نضيف 2 للهامش ونضرب في 1.2 لتحويل الأحرف إلى وحدات عرض
             adjusted_width = (width + 2) * 1.2
-            # نحدد حداً أدنى وأقصى لعرض العمود
-            adjusted_width = max(adjusted_width, 10)  # حد أدنى 10
-            adjusted_width = min(adjusted_width, 30)  # حد أقصى 30
+            adjusted_width = max(adjusted_width, 10)
+            adjusted_width = min(adjusted_width, 30)
             worksheet.set_column(col, col, adjusted_width)
     
         # إضافة المجموع الكلي
@@ -770,37 +763,30 @@ class DailySalesSummary(models.Model):
     
         # إضافة جدول طرق الدفع
         if totals['payment_methods']:
-            # عنوان جدول طرق الدفع
             worksheet.merge_range(row, 0, row, 1, 'إجمالي الدفع حسب طريقة الدفع', merged_header_format)
             row += 1
             
-            # عناوين الأعمدة
             worksheet.write(row, 0, 'طريقة الدفع', header_format)
             worksheet.write(row, 1, 'المبلغ', header_format)
             row += 1
             
-            # بيانات طرق الدفع
             for method, amount in sorted(totals['payment_methods'].items()):
                 worksheet.write(row, 0, method, text_format)
                 worksheet.write(row, 1, amount, currency_format)
                 row += 1
             
-            # المجموع الكلي لطرق الدفع
             worksheet.write(row, 0, 'الإجمالي', header_format)
             worksheet.write(row, 1, sum(totals['payment_methods'].values()), total_format)
             row += 2
         
         # إضافة جدول الضرائب
-        # عنوان جدول الضرائب
         worksheet.merge_range(row, 0, row, 1, 'الضرائب', merged_header_format)
         row += 1
         
-        # عناوين الأعمدة
         worksheet.write(row, 0, 'البند', header_format)
         worksheet.write(row, 1, 'مبلغ الضريبة', header_format)
         row += 1
         
-        # بيانات الضرائب
         worksheet.write(row, 0, 'إجمالي الضرائب للمبيعات النقدية', text_format)
         worksheet.write(row, 1, totals['taxes']['cash_sales_tax'], currency_format)
         row += 1
@@ -813,7 +799,6 @@ class DailySalesSummary(models.Model):
         worksheet.write(row, 1, totals['taxes']['credit_sales_tax'], currency_format)
         row += 1
         
-        # المجموع الكلي للضرائب
         total_tax = totals['taxes']['cash_sales_tax'] - totals['taxes']['cash_refunds_tax'] + totals['taxes']['credit_sales_tax']
         worksheet.write(row, 0, 'إجمالي الضرائب', header_format)
         worksheet.write(row, 1, total_tax, total_format)
@@ -878,31 +863,3 @@ class DailySalesSummary(models.Model):
         except Exception as e:
             _logger.error("Failed to generate PDF report: %s", str(e))
             raise
-
-    def _compute_total_cash_methods(self, summaries):
-        """حساب إجمالي الكاش الوارد باستثناء طرق السداد المحددة"""
-        total = 0.0
-        excluded_methods = ['شبكة', 'حوالة']  # طرق السداد المستثناة
-
-        for summary in summaries:
-            # تحليل محتوى payment_method_totals
-            if not summary.payment_method_totals:
-                continue
-
-            # تحليل HTML للحصول على طرق الدفع والمبالغ
-            soup = BeautifulSoup(summary.payment_method_totals, 'html.parser')
-            lines = soup.get_text().split('\n')
-
-            for line in lines:
-                if ':' in line:
-                    method, amount = line.split(':', 1)
-                    method = method.strip()
-                    amount = amount.strip().split()[0]
-
-                    # استبعاد طرق السداد المحددة
-                    if not any(excluded in method for excluded in excluded_methods):
-                        try:
-                            total += float(amount.replace(',', ''))
-                        except ValueError:
-                            continue
-        return total
