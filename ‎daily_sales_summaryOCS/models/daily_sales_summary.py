@@ -46,7 +46,7 @@ class DailySalesSummary(models.Model):
 
     # الحقول المحسوبة
     cash_sales = fields.Monetary(
-        string='مبيعات نقدية مدفوعة بتاريخه قبل الضريبة',
+        string='مبيعات نقدية مدفوعة بتاريخه قبل الضريبة (بما في ذلك بانتظار التسوية)',
         currency_field='company_currency_id',
         compute='_compute_sales_totals', store=True
     )
@@ -101,7 +101,7 @@ class DailySalesSummary(models.Model):
                 ('invoice_date', '<=', record.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', '=', 'paid'),
+                ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
                 ('company_id', '=', record.company_id.id)
             ]
             if record.branch_ids:
@@ -163,13 +163,13 @@ class DailySalesSummary(models.Model):
     @api.depends('date_from', 'date_to', 'company_id', 'branch_ids')
     def _compute_sales_totals(self):
         for record in self:
-            # حساب المبيعات النقدية (مدفوع بالكامل في نفس التاريخ)
+            # حساب المبيعات النقدية (مدفوع بالكامل أو بانتظار التسوية)
             cash_domain = [
                 ('invoice_date', '>=', record.date_from),
                 ('invoice_date', '<=', record.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', '=', 'paid'),
+                ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
                 ('company_id', '=', record.company_id.id)
             ]
             if record.branch_ids:
@@ -278,7 +278,7 @@ class DailySalesSummary(models.Model):
             ('invoice_date', '<=', self.date_to),
             ('move_type', '=', 'out_invoice'),
             ('state', '=', 'posted'),
-            ('payment_state', '=', 'paid'),
+            ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
             ('company_id', '=', self.company_id.id)
         ]
         if self.branch_ids:
@@ -520,13 +520,13 @@ class DailySalesSummary(models.Model):
         col_widths = [0] * len(headers)
         
         for branch in branches:
-            # 1. حساب المبيعات النقدية (فواتير بنفس تاريخ التقرير ومدفوعة بالكامل في نفس التاريخ)
+            # 1. حساب المبيعات النقدية (فواتير بنفس تاريخ التقرير ومدفوعة بالكامل أو بانتظار التسوية)
             cash_sales_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_invoice'),
                 ('state', '=', 'posted'),
-                ('payment_state', '=', 'paid'),
+                ('payment_state', 'in', ['paid', 'in_payment']),  # تعديل ليشمل in_payment
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
             ]
@@ -828,6 +828,7 @@ class DailySalesSummary(models.Model):
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
+
     def action_generate_excel_report(self):
         """إجراء لإنشاء وتنزيل التقرير"""
         self.ensure_one()
