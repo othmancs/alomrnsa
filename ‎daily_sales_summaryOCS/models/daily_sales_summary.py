@@ -508,7 +508,12 @@ class DailySalesSummary(models.Model):
             'credit_sales': 0,
             'total_sales': 0,
             'total_payments': 0,  # إجمالي جميع الدفعات
-            'payment_methods': defaultdict(float)  # لتخزين طرق الدفع
+            'payment_methods': defaultdict(float),  # لتخزين طرق الدفع
+            'taxes': {  # لتخزين الضرائب
+                'cash_sales_tax': 0,
+                'cash_refunds_tax': 0,
+                'credit_sales_tax': 0
+            }
         }
     
         # قائمة لتخزين أطوال المحتوى في كل عمود
@@ -526,7 +531,9 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ]
             cash_invoices = self.env['account.move'].search(cash_sales_domain)
-            branch_cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
+            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
+            branch_cash_sales = sum(invoice.amount_total for invoice in cash_invoices)
+            branch_cash_sales_tax = sum(invoice.amount_tax for invoice in cash_invoices)
             
             # تقسيم المدفوعات للمبيعات النقدية حسب نوع الدفع
             cash_payments = defaultdict(float)
@@ -597,7 +604,9 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ]
             cash_refunds = self.env['account.move'].search(cash_refunds_domain)
-            branch_cash_refunds = sum(abs(refund.amount_untaxed) for refund in cash_refunds)
+            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
+            branch_cash_refunds = sum(abs(refund.amount_total) for refund in cash_refunds)
+            branch_cash_refunds_tax = sum(abs(refund.amount_tax) for refund in cash_refunds)
     
             credit_refunds_domain = [
                 ('invoice_date', '>=', self.date_from),
@@ -609,7 +618,8 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ]
             credit_refunds = self.env['account.move'].search(credit_refunds_domain)
-            branch_credit_refunds = sum(abs(refund.amount_untaxed) for refund in credit_refunds)
+            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
+            branch_credit_refunds = sum(abs(refund.amount_total) for refund in credit_refunds)
     
             # 7. حساب صافي الصندوق
             branch_net_cash = branch_cash_and_collection - branch_cash_refunds
@@ -625,7 +635,9 @@ class DailySalesSummary(models.Model):
                 ('branch_id', '=', branch.id)
             ]
             credit_invoices = self.env['account.move'].search(credit_sales_domain)
-            branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+            # التعديل هنا لاستخدام amount_total بدلاً من amount_untaxed
+            branch_credit_sales = sum(invoice.amount_total for invoice in credit_invoices)
+            branch_credit_sales_tax = sum(invoice.amount_tax for invoice in credit_invoices)
     
             # 9. إجمالي المبيعات
             branch_total_sales = branch_cash_sales + branch_credit_sales
@@ -637,7 +649,7 @@ class DailySalesSummary(models.Model):
             col_widths[col] = max(col_widths[col], len(branch_name.encode('utf-8')))
             col += 1
             
-            # إجمالي المبيعات النقدية
+            # إجمالي المبيعات النقدية (الآن تشمل الضريبة)
             cash_sales_str = f"{branch_cash_sales:,.2f}"
             worksheet.write(row, col, branch_cash_sales, currency_format)
             col_widths[col] = max(col_widths[col], len(cash_sales_str))
@@ -683,13 +695,13 @@ class DailySalesSummary(models.Model):
             col_widths[col] = max(col_widths[col], len(credit_refunds_str))
             col += 1
             
-            # الإرجاعات المستردة
+            # الإرجاعات المستردة (الآن تشمل الضريبة)
             cash_refunds_str = f"{branch_cash_refunds:,.2f}"
             worksheet.write(row, col, branch_cash_refunds, currency_format)
             col_widths[col] = max(col_widths[col], len(cash_refunds_str))
             col += 1
             
-            # إجمالي المبيعات الآجلة
+            # إجمالي المبيعات الآجلة (الآن تشمل الضريبة)
             credit_sales_str = f"{branch_credit_sales:,.2f}"
             worksheet.write(row, col, branch_credit_sales, currency_format)
             col_widths[col] = max(col_widths[col], len(credit_sales_str))
@@ -714,6 +726,11 @@ class DailySalesSummary(models.Model):
             totals['credit_sales'] += branch_credit_sales
             totals['total_sales'] += branch_total_sales
             totals['total_payments'] += branch_total_payments
+            
+            # تحديث إجماليات الضرائب
+            totals['taxes']['cash_sales_tax'] += branch_cash_sales_tax
+            totals['taxes']['cash_refunds_tax'] += branch_cash_refunds_tax
+            totals['taxes']['credit_sales_tax'] += branch_credit_sales_tax
     
             row += 1
     
@@ -771,7 +788,36 @@ class DailySalesSummary(models.Model):
             # المجموع الكلي لطرق الدفع
             worksheet.write(row, 0, 'الإجمالي', header_format)
             worksheet.write(row, 1, sum(totals['payment_methods'].values()), total_format)
-            row += 1
+            row += 2
+        
+        # إضافة جدول الضرائب
+        # عنوان جدول الضرائب
+        worksheet.merge_range(row, 0, row, 1, 'الضرائب', merged_header_format)
+        row += 1
+        
+        # عناوين الأعمدة
+        worksheet.write(row, 0, 'البند', header_format)
+        worksheet.write(row, 1, 'مبلغ الضريبة', header_format)
+        row += 1
+        
+        # بيانات الضرائب
+        worksheet.write(row, 0, 'إجمالي الضرائب للمبيعات النقدية', text_format)
+        worksheet.write(row, 1, totals['taxes']['cash_sales_tax'], currency_format)
+        row += 1
+        
+        worksheet.write(row, 0, 'إجمالي الضرائب للإرجاعات المستردة', text_format)
+        worksheet.write(row, 1, totals['taxes']['cash_refunds_tax'], currency_format)
+        row += 1
+        
+        worksheet.write(row, 0, 'إجمالي الضرائب للمبيعات الآجلة', text_format)
+        worksheet.write(row, 1, totals['taxes']['credit_sales_tax'], currency_format)
+        row += 1
+        
+        # المجموع الكلي للضرائب
+        total_tax = totals['taxes']['cash_sales_tax'] - totals['taxes']['cash_refunds_tax'] + totals['taxes']['credit_sales_tax']
+        worksheet.write(row, 0, 'إجمالي الضرائب', header_format)
+        worksheet.write(row, 1, total_tax, total_format)
+        row += 1
     
         # إغلاق الكتاب وحفظه
         workbook.close()
