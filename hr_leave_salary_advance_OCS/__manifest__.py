@@ -10,8 +10,8 @@
     'website': 'https://www.yourcompany.com',
     'depends': ['hr', 'hr_holidays', 'account'],
     'data': [
-        'security/ir.model.access.csv',
-        'security/security.xml',
+        # 'security/ir.model.access.csv',
+        # 'security/security.xml',
         'data/hr_leave_type_data.xml',
         'views/hr_employee_views.xml',
         'views/hr_leave_salary_advance_views.xml',
