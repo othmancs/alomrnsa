@@ -392,116 +392,83 @@ class DailySalesSummary(models.Model):
 
     @api.model
     def generate_sales_collection_report(self):
-        """إنشاء تقرير Excel للمبيعات والتحصيل بالاتجاه من اليمين لليسار"""
-        # إنشاء كتاب Excel مع تفعيل RTL
+        """إنشاء تقرير Excel للمبيعات والتحصيل حسب الهيكل المطلوب"""
+        # إنشاء كتاب Excel
         output = io.BytesIO()
-        workbook = xlsxwriter.Workbook(output, {
-            'in_memory': True,
-            'right_to_left': True  # تفعيل الوضع من اليمين لليسار
-        })
+        workbook = xlsxwriter.Workbook(output, {'in_memory': True,'right_to_left': False})
         worksheet = workbook.add_worksheet('المبيعات والتحصيل')
     
-        # تنسيقات الخلايا المعدلة للغة العربية
+        # تنسيقات الخلايا
         title_format = workbook.add_format({
-            'bold': True, 
-            'align': 'center', 
-            'valign': 'vcenter',
-            'font_size': 16, 
-            'font_color': '#4472C4',
-            'font_name': 'Arial'
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'font_size': 16, 'font_color': '#4472C4'
         })
-        
         header_format = workbook.add_format({
-            'bold': True, 
-            'align': 'center', 
-            'valign': 'vcenter',
-            'bg_color': '#4472C4', 
-            'font_color': 'white', 
-            'border': 1,
-            'font_size': 12, 
-            'text_wrap': True,
-            'font_name': 'Arial'
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1,
+            'font_size': 12, 'text_wrap': True
         })
-        
         currency_format = workbook.add_format({
-            'num_format': '#,##0.00', 
-            'border': 1, 
-            'align': 'right',
-            'font_name': 'Arial'
+            'num_format': '#,##0.00', 'border': 1, 'align': 'right'
         })
-        
-        text_format = workbook.add_format({
-            'border': 1, 
-            'align': 'right',
-            'font_name': 'Arial'
-        })
-        
+        text_format = workbook.add_format({'border': 1, 'align': 'right'})
         total_format = workbook.add_format({
-            'bold': True, 
-            'num_format': '#,##0.00', 
-            'border': 1,
-            'align': 'right', 
-            'bg_color': '#D9E1F2',
-            'font_name': 'Arial'
+            'bold': True, 'num_format': '#,##0.00', 'border': 1,
+            'align': 'right', 'bg_color': '#D9E1F2'
         })
-        
         branch_header_format = workbook.add_format({
-            'bold': True, 
-            'align': 'right', 
-            'valign': 'vcenter',
-            'bg_color': '#E2EFDA', 
-            'font_color': 'black', 
-            'border': 1,
-            'font_size': 12,
-            'font_name': 'Arial'
+            'bold': True, 'align': 'right', 'valign': 'vcenter',
+            'bg_color': '#E2EFDA', 'font_color': 'black', 'border': 1,
+            'font_size': 12
         })
-        
         merged_header_format = workbook.add_format({
-            'bold': True, 
-            'align': 'center', 
-            'valign': 'vcenter',
-            'bg_color': '#FFE699', 
-            'font_color': 'black', 
-            'border': 1,
-            'font_size': 12,
-            'font_name': 'Arial'
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'bg_color': '#FFE699', 'font_color': 'black', 'border': 1,
+            'font_size': 12
         })
     
-        # إضافة شعار الشركة في الجانب الأيمن
+        # إضافة شعار الشركة
         row = 0
         if self.company_id.logo:
             try:
+                # إضافة الصورة بحجم مناسب (عرض 200 بكسل مع الحفاظ على النسبة)
                 image_data = io.BytesIO(base64.b64decode(self.company_id.logo))
-                worksheet.merge_range(row, 0, row+1, 0, '')  # دمج الخلايا للصورة
-                worksheet.insert_image(row, 0, 'logo.png', {
+                worksheet.merge_range(row, 5, row+1, 5, '')  # دمج الخلايا لإنشاء مساحة للصورة
+                worksheet.insert_image(row, 5, 'logo.png', {
                     'image_data': image_data,
                     'x_scale': 0.15, 
                     'y_scale': 0.15,
-                    'object_position': 3
+                    'x_offset': 10, 
+                    'y_offset': 10,
+                    'object_position': 3,  # 3 يعني أن الصورة ستتحرك مع الخلايا ولكن يمكن وضعها بحرية
+                    'positioning': 1  # 1 يعني تحريك الخلايا لأسفل عند إدراج الصورة
                 })
-                worksheet.set_row(row, 80)
-                row += 2
+                # تحديد ارتفاع الصف ليتناسب مع الصورة
+                worksheet.set_row(row, 80)  # ارتفاع 80 بكسل
+                row += 1  # الانتقال إلى الصف التالي بعد الصورة
+                
+                # إضافة سطر فارغ لمنع تداخل الشعار مع النص
+                worksheet.set_row(row, 15)  # سطر فارغ بارتفاع 15 بكسل
+                row += 1
             except Exception as e:
-                _logger.error(f"فشل إدراج شعار الشركة: {str(e)}")
+                _logger.error(f"Failed to insert company logo: {str(e)}")
+                # في حالة حدوث خطأ، نتابع بدون الصورة
+                pass
     
         # إضافة عنوان التقرير
-        worksheet.merge_range(row, 0, row, 14, 'تقرير المبيعات والتحصيل اليومي', title_format)
+        worksheet.merge_range(row, 0, row, 11, 'تقرير المبيعات والتحصيل اليومي', title_format)
         row += 1
-        worksheet.merge_range(row, 0, row, 14, f'من {self.date_from} إلى {self.date_to}', 
-                             workbook.add_format({
-                                 'align': 'center', 
-                                 'font_size': 12,
-                                 'font_name': 'Arial'
-                             }))
+        worksheet.merge_range(row, 0, row, 11, f'من {self.date_from} إلى {self.date_to}', 
+                             workbook.add_format({'align': 'center', 'font_size': 12}))
         row += 2
     
-        # تعريف العناوين بالترتيب من اليمين لليسار
+        # إنشاء صف العناوين الرئيسية
         headers = [
             'الفرع',
             'إجمالي المبيعات النقدية',
-            'نقدي', 'شبكة', 'حوالة',
+            'نقدي', 'شبكة', 'حوالة',  # تقسيم المدفوعات للمبيعات النقدية
             'إجمالي التحصيل الآجل',
-            'نقدي', 'شبكة', 'حوالة',
+            'نقدي', 'شبكة', 'حوالة',  # تقسيم المدفوعات للتحصيل الآجل
             'نقدي & التحصيل',
             'صافي الصندوق',
             'الارجاعات غير المستردة',
@@ -510,7 +477,8 @@ class DailySalesSummary(models.Model):
             'إجمالي المبيعات'
         ]
         
-        # إضافة العناوين المدمجة
+        # إضافة صفوف العناوين المدمجة
+        # الصف الأول: العناوين المدمجة
         worksheet.merge_range(row, 1, row, 4, 'المبيعات النقدية ونوع سدادها', merged_header_format)
         worksheet.merge_range(row, 5, row, 8, 'اجمالي التحصيل الآجل ونوع سدادها', merged_header_format)
         worksheet.merge_range(row, 9, row, 10, 'اجمالي المقبوضات', merged_header_format)
@@ -518,13 +486,16 @@ class DailySalesSummary(models.Model):
         worksheet.merge_range(row, 13, row, 14, 'الاجماليات', merged_header_format)
         row += 1
         
-        # إضافة العناوين التفصيلية
+        # الصف الثاني: العناوين التفصيلية
         for col, header in enumerate(headers):
             worksheet.write(row, col, header, header_format)
         row += 1
     
-        # جمع البيانات لكل فرع
-        branches = self.branch_ids or self.env['res.branch'].search([])
+        # جمع البيانات لكل فرع على حدة
+        branch_ids = self.branch_ids.ids if self.branch_ids else self.env['res.branch'].search([]).ids
+        branches = self.env['res.branch'].browse(branch_ids)
+    
+        # متغيرات لتخزين الإجماليات
         totals = {
             'cash_sales': 0,
             'cash_payments': defaultdict(float),
@@ -536,14 +507,16 @@ class DailySalesSummary(models.Model):
             'cash_refunds': 0,
             'credit_sales': 0,
             'total_sales': 0,
-            'payment_methods': defaultdict(float)
+            'total_payments': 0,  # إجمالي جميع الدفعات
+            'payment_methods': defaultdict(float)  # لتخزين طرق الدفع
         }
-        
+    
+        # قائمة لتخزين أطوال المحتوى في كل عمود
         col_widths = [0] * len(headers)
         
         for branch in branches:
-            # حساب المبيعات النقدية
-            cash_invoices = self.env['account.move'].search([
+            # 1. حساب المبيعات النقدية (فواتير بنفس تاريخ التقرير ومدفوعة بالكامل في نفس التاريخ)
+            cash_sales_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_invoice'),
@@ -551,25 +524,28 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'paid'),
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
-            ])
+            ]
+            cash_invoices = self.env['account.move'].search(cash_sales_domain)
             branch_cash_sales = sum(invoice.amount_untaxed for invoice in cash_invoices)
             
-            # تقسيم المدفوعات
+            # تقسيم المدفوعات للمبيعات النقدية حسب نوع الدفع
             cash_payments = defaultdict(float)
             for invoice in cash_invoices:
                 for payment in invoice._get_reconciled_payments():
-                    method = payment.payment_method_line_id.name or 'نقدي'
-                    if 'شبكة' in method:
-                        method = 'شبكة'
-                    elif 'حوالة' in method or 'شيك' in method:
-                        method = 'حوالة'
-                    else:
-                        method = 'نقدي'
-                    cash_payments[method] += payment.amount
-                    totals['payment_methods'][method] += payment.amount
+                    if payment.payment_method_line_id:
+                        method = payment.payment_method_line_id.name or 'نقدي'
+                        # نحدد فقط الأنواع المطلوبة (نقدي، شبكة، حوالة)
+                        if 'شبكة' in method:
+                            method = 'شبكة'
+                        elif 'حوالة' in method or 'شيك' in method:
+                            method = 'حوالة'
+                        else:
+                            method = 'نقدي'
+                        cash_payments[method] += payment.amount
+                        totals['payment_methods'][method] += payment.amount
     
-            # حساب التحصيل الآجل
-            all_payments = self.env['account.payment'].search([
+            # 2. حساب إجمالي جميع الدفعات (لحساب التحصيل الآجل)
+            all_payments_domain = [
                 ('date', '>=', self.date_from),
                 ('date', '<=', self.date_to),
                 ('payment_type', '=', 'inbound'),
@@ -577,32 +553,41 @@ class DailySalesSummary(models.Model):
                 ('is_internal_transfer', '=', False),
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
-            ])
+            ]
+            all_payments = self.env['account.payment'].search(all_payments_domain)
             branch_total_payments = sum(payment.amount for payment in all_payments)
+            
+            # 3. حساب التحصيل الآجل (إجمالي الدفعات - المبيعات النقدية)
             branch_credit_collection = branch_total_payments - sum(cash_payments.values())
     
-            # تقسيم مدفوعات التحصيل الآجل
-            credit_payments = defaultdict(float)
+            # 4. تقسيم مدفوعات التحصيل الآجل حسب نوع الدفع
+            credit_payments_split = defaultdict(float)
             for payment in all_payments:
-                is_cash_payment = any(
-                    self.date_from <= inv.invoice_date <= self.date_to
-                    for inv in payment.reconciled_invoice_ids
-                )
+                # نتأكد أن هذه الدفعة ليست من المبيعات النقدية
+                is_cash_payment = False
+                for invoice in payment.reconciled_invoice_ids:
+                    if invoice.invoice_date and (self.date_from <= invoice.invoice_date <= self.date_to):
+                        is_cash_payment = True
+                        break
+                
                 if not is_cash_payment:
-                    method = payment.payment_method_line_id.name or 'نقدي'
-                    if 'شبكة' in method:
-                        method = 'شبكة'
-                    elif 'حوالة' in method or 'شيك' in method:
-                        method = 'حوالة'
-                    else:
-                        method = 'نقدي'
-                    credit_payments[method] += payment.amount
-                    totals['payment_methods'][method] += payment.amount
+                    if payment.payment_method_line_id:
+                        method = payment.payment_method_line_id.name or 'نقدي'
+                        # نحدد فقط الأنواع المطلوبة (نقدي، شبكة، حوالة)
+                        if 'شبكة' in method:
+                            method = 'شبكة'
+                        elif 'حوالة' in method or 'شيك' in method:
+                            method = 'حوالة'
+                        else:
+                            method = 'نقدي'
+                        credit_payments_split[method] += payment.amount
+                        totals['payment_methods'][method] += payment.amount
     
-            # حساب باقي القيم
+            # 5. حساب نقدي & التحصيل
             branch_cash_and_collection = branch_cash_sales + branch_credit_collection
-            
-            cash_refunds = self.env['account.move'].search([
+    
+            # 6. حساب المرتجعات
+            cash_refunds_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_refund'),
@@ -610,10 +595,11 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'paid'),
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
-            ])
+            ]
+            cash_refunds = self.env['account.move'].search(cash_refunds_domain)
             branch_cash_refunds = sum(abs(refund.amount_untaxed) for refund in cash_refunds)
-            
-            credit_refunds = self.env['account.move'].search([
+    
+            credit_refunds_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_refund'),
@@ -621,12 +607,15 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'not_paid'),
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
-            ])
+            ]
+            credit_refunds = self.env['account.move'].search(credit_refunds_domain)
             branch_credit_refunds = sum(abs(refund.amount_untaxed) for refund in credit_refunds)
-            
+    
+            # 7. حساب صافي الصندوق
             branch_net_cash = branch_cash_and_collection - branch_cash_refunds
-            
-            credit_sales = self.env['account.move'].search([
+    
+            # 8. حساب المبيعات الآجلة (فواتير بنفس تاريخ التقرير وغير مدفوعة)
+            credit_sales_domain = [
                 ('invoice_date', '>=', self.date_from),
                 ('invoice_date', '<=', self.date_to),
                 ('move_type', '=', 'out_invoice'),
@@ -634,8 +623,11 @@ class DailySalesSummary(models.Model):
                 ('payment_state', '=', 'not_paid'),
                 ('company_id', '=', self.company_id.id),
                 ('branch_id', '=', branch.id)
-            ])
-            branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_sales)
+            ]
+            credit_invoices = self.env['account.move'].search(credit_sales_domain)
+            branch_credit_sales = sum(invoice.amount_untaxed for invoice in credit_invoices)
+    
+            # 9. إجمالي المبيعات
             branch_total_sales = branch_cash_sales + branch_credit_sales
     
             # كتابة بيانات الفرع
@@ -645,38 +637,75 @@ class DailySalesSummary(models.Model):
             col_widths[col] = max(col_widths[col], len(branch_name.encode('utf-8')))
             col += 1
             
+            # إجمالي المبيعات النقدية
+            cash_sales_str = f"{branch_cash_sales:,.2f}"
             worksheet.write(row, col, branch_cash_sales, currency_format)
+            col_widths[col] = max(col_widths[col], len(cash_sales_str))
             col += 1
             
+            # تقسيم المدفوعات للمبيعات النقدية (بدون عمود طرق أخرى)
             for method in ['نقدي', 'شبكة', 'حوالة']:
-                worksheet.write(row, col, cash_payments.get(method, 0), currency_format)
+                amount = cash_payments.get(method, 0)
+                amount_str = f"{amount:,.2f}"
+                worksheet.write(row, col, amount, currency_format)
+                col_widths[col] = max(col_widths[col], len(amount_str))
                 col += 1
             
+            # إجمالي التحصيل الآجل (مجموع الدفعات - المبيعات النقدية)
+            credit_collection_str = f"{branch_credit_collection:,.2f}"
             worksheet.write(row, col, branch_credit_collection, currency_format)
+            col_widths[col] = max(col_widths[col], len(credit_collection_str))
             col += 1
             
+            # تقسيم المدفوعات للتحصيل الآجل (بدون عمود طرق أخرى)
             for method in ['نقدي', 'شبكة', 'حوالة']:
-                worksheet.write(row, col, credit_payments.get(method, 0), currency_format)
+                amount = credit_payments_split.get(method, 0)
+                amount_str = f"{amount:,.2f}"
+                worksheet.write(row, col, amount, currency_format)
+                col_widths[col] = max(col_widths[col], len(amount_str))
                 col += 1
             
+            # نقدي & التحصيل
+            cash_collection_str = f"{branch_cash_and_collection:,.2f}"
             worksheet.write(row, col, branch_cash_and_collection, currency_format)
+            col_widths[col] = max(col_widths[col], len(cash_collection_str))
             col += 1
+            
+            # صافي الصندوق
+            net_cash_str = f"{branch_net_cash:,.2f}"
             worksheet.write(row, col, branch_net_cash, currency_format)
+            col_widths[col] = max(col_widths[col], len(net_cash_str))
             col += 1
+            
+            # الإرجاعات غير المستردة
+            credit_refunds_str = f"{branch_credit_refunds:,.2f}"
             worksheet.write(row, col, branch_credit_refunds, currency_format)
+            col_widths[col] = max(col_widths[col], len(credit_refunds_str))
             col += 1
+            
+            # الإرجاعات المستردة
+            cash_refunds_str = f"{branch_cash_refunds:,.2f}"
             worksheet.write(row, col, branch_cash_refunds, currency_format)
+            col_widths[col] = max(col_widths[col], len(cash_refunds_str))
             col += 1
+            
+            # إجمالي المبيعات الآجلة
+            credit_sales_str = f"{branch_credit_sales:,.2f}"
             worksheet.write(row, col, branch_credit_sales, currency_format)
+            col_widths[col] = max(col_widths[col], len(credit_sales_str))
             col += 1
+            
+            # إجمالي المبيعات
+            total_sales_str = f"{branch_total_sales:,.2f}"
             worksheet.write(row, col, branch_total_sales, currency_format)
+            col_widths[col] = max(col_widths[col], len(total_sales_str))
     
             # تحديث الإجماليات
             totals['cash_sales'] += branch_cash_sales
             for method, amount in cash_payments.items():
                 totals['cash_payments'][method] += amount
             totals['credit_collection'] += branch_credit_collection
-            for method, amount in credit_payments.items():
+            for method, amount in credit_payments_split.items():
                 totals['credit_payments'][method] += amount
             totals['cash_and_collection'] += branch_cash_and_collection
             totals['net_cash'] += branch_net_cash
@@ -684,16 +713,21 @@ class DailySalesSummary(models.Model):
             totals['cash_refunds'] += branch_cash_refunds
             totals['credit_sales'] += branch_credit_sales
             totals['total_sales'] += branch_total_sales
+            totals['total_payments'] += branch_total_payments
     
             row += 1
     
-        # ضبط عرض الأعمدة
+        # ضبط عرض الأعمدة حسب المحتوى
         for col, width in enumerate(col_widths):
-            adjusted_width = max((width + 2) * 1.2, 10)
-            adjusted_width = min(adjusted_width, 30)
+            # تحويل طول المحتوى إلى عرض العمود (تقريبياً)
+            # نضيف 2 للهامش ونضرب في 1.2 لتحويل الأحرف إلى وحدات عرض
+            adjusted_width = (width + 2) * 1.2
+            # نحدد حداً أدنى وأقصى لعرض العمود
+            adjusted_width = max(adjusted_width, 10)  # حد أدنى 10
+            adjusted_width = min(adjusted_width, 30)  # حد أقصى 30
             worksheet.set_column(col, col, adjusted_width)
     
-        # إضافة الإجمالي الكلي
+        # إضافة المجموع الكلي
         if len(branches) > 1:
             col = 0
             worksheet.write(row, col, 'الإجمالي', header_format); col += 1
@@ -719,21 +753,27 @@ class DailySalesSummary(models.Model):
     
         # إضافة جدول طرق الدفع
         if totals['payment_methods']:
+            # عنوان جدول طرق الدفع
             worksheet.merge_range(row, 0, row, 1, 'إجمالي الدفع حسب طريقة الدفع', merged_header_format)
             row += 1
             
+            # عناوين الأعمدة
             worksheet.write(row, 0, 'طريقة الدفع', header_format)
             worksheet.write(row, 1, 'المبلغ', header_format)
             row += 1
             
+            # بيانات طرق الدفع
             for method, amount in sorted(totals['payment_methods'].items()):
                 worksheet.write(row, 0, method, text_format)
                 worksheet.write(row, 1, amount, currency_format)
                 row += 1
             
+            # المجموع الكلي لطرق الدفع
             worksheet.write(row, 0, 'الإجمالي', header_format)
             worksheet.write(row, 1, sum(totals['payment_methods'].values()), total_format)
+            row += 1
     
+        # إغلاق الكتاب وحفظه
         workbook.close()
         output.seek(0)
     
