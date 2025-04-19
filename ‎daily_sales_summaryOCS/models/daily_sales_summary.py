@@ -395,7 +395,7 @@ class DailySalesSummary(models.Model):
         """إنشاء تقرير Excel للمبيعات والتحصيل حسب الهيكل المطلوب"""
         # إنشاء كتاب Excel
         output = io.BytesIO()
-        workbook = xlsxwriter.Workbook(output, {'in_memory': True,'right_to_left': True})
+        workbook = xlsxwriter.Workbook(output, {'in_memory': True,'right_to_left': False})
         worksheet = workbook.add_worksheet('المبيعات والتحصيل')
     
         # تنسيقات الخلايا
