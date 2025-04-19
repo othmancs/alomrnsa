@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_hr_leave_salary_advance" model="ir.actions.report">
+        <field name="name">تقرير مخالصة الإجازة</field>
+        <field name="model">hr.leave.salary.advance</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_leave_salary_advance.report_leave_salary_advance</field>
+        <field name="binding_model_id" ref="model_hr_leave_salary_advance"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="report.paperformat_a4"/>
+    </record>
+</odoo>

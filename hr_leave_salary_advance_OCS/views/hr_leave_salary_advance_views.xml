@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_leave_salary_advance_tree" model="ir.ui.view">
+        <field name="name">hr.leave.salary.advance.tree</field>
+        <field name="model">hr.leave.salary.advance</field>
+        <field name="arch" type="xml">
+            <tree string="طلبات مخالصة الإجازة">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="requested_days"/>
+                <field name="amount"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="date"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_leave_salary_advance_form" model="ir.ui.view">
+        <field name="name">hr.leave.salary.advance.form</field>
+        <field name="model">hr.leave.salary.advance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_approve" string="اعتماد" type="object" class="oe_highlight" states="draft"/>
+                    <button name="action_pay" string="دفع" type="object" class="oe_highlight" states="approved"/>
+                    <button name="action_refuse" string="رفض" type="object" states="draft"/>
+                    <button name="action_draft" string="إعادة إلى المسودة" type="object" states="refused"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>مخالصة الإجازة السنوية كراتب</h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="job_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="leave_type_id"/>
+                            <field name="available_leaves" readonly="1"/>
+                            <field name="requested_days"/>
+                            <field name="amount" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="المدفوعات">
+                            <field name="payment_id" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_leave_salary_advance" model="ir.actions.act_window">
+        <field name="name">مخالصات الإجازة كراتب</field>
+        <field name="res_model">hr.leave.salary.advance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hr_leave_salary_advance_root" name="مخالصات الإجازة" sequence="10"/>
+    <menuitem id="menu_hr_leave_salary_advance" name="مخالصات الإجازة كراتب" parent="menu_hr_leave_salary_advance_root" action="action_hr_leave_salary_advance"/>
+</odoo>

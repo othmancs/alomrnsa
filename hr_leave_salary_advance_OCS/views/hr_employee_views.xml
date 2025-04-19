@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_inherit_leave_salary_advance" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.leave.salary.advance</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='private']" position="after">
+                <page string="مخالصات الإجازة">
+                    <field name="id" invisible="1"/>
+                    <field name="leave_salary_advance_ids" context="{'default_employee_id': id}">
+                        <tree>
+                            <field name="date"/>
+                            <field name="leave_type_id"/>
+                            <field name="requested_days"/>
+                            <field name="amount"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

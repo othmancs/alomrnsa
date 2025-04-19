@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="annual_leave_type" model="hr.leave.type">
+        <field name="name">الإجازة السنوية</field>
+        <field name="request_unit">day</field>
+        <field name="allocation_type">fixed</field>
+        <field name="validation_type">both</field>
+        <field name="requires_allocation">yes</field>
+        <field name="employee_requests">yes</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

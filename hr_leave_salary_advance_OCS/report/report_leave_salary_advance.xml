@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_leave_salary_advance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <div class="header" style="text-align: center; margin-bottom: 20px;">
+                        <h1 style="font-size: 24px; font-weight: bold;">مخالصة الإجازة السنوية كراتب</h1>
+                        <h2 t-field="doc.company_id.name" style="font-size: 18px;"/>
+                        <hr style="border-top: 1px solid #000;"/>
+                    </div>
+                    <div class="content" style="margin: 20px;">
+                        <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                            <tr style="border: 1px solid #ddd;">
+                                <th style="padding: 8px; text-align: right; width: 30%; border: 1px solid #ddd;">الموظف:</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;" t-field="doc.employee_id"/>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">القسم:</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;" t-field="doc.department_id"/>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">المسمى الوظيفي:</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;" t-field="doc.job_id"/>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">رصيد الإجازة:</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;" t-field="doc.available_leaves"/>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">الأيام المحولة:</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;" t-field="doc.requested_days"/>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">المبلغ:</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;">
+                                    <span t-field="doc.amount"/>
+                                    <span t-field="doc.currency_id.symbol"/>
+                                </td>
+                            </tr>
+                            <tr style="border: 1px solid #ddd;">
+                                <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">التاريخ:</th>
+                                <td style="padding: 8px; border: 1px solid #ddd;" t-field="doc.date"/>
+                            </tr>
+                        </table>
+                        <div style="margin-top: 50px;">
+                            <div style="float: right; width: 40%; text-align: center;">
+                                <p>توقيع الموظف: _________________</p>
+                                <p>الاسم: <span t-field="doc.employee_id.name"/></p>
+                                <p>التاريخ: _________________</p>
+                            </div>
+                            <div style="float: left; width: 40%; text-align: center;">
+                                <p>توقيع المدير: _________________</p>
+                                <p>الاسم: _________________</p>
+                                <p>التاريخ: _________________</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
