@@ -10,6 +10,10 @@
                 <xpath expr="//page[@name='sales_purchases']" position="after">
                     <page name="customer_statement_page"
                           string="Customer Statement">
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
                         <button name="action_print_pdf" type="object"
                                 class="btn-secondary">
                             Print PDF
@@ -30,7 +34,6 @@
                         <br/>
                         <field name="customer_report_ids">
                             <tree create='false' delete="false">
-<!--                                <field name="currency_id" invisible="1"/>-->
                                 <field name="currency_id"/>
                                 <field name="invoice_date"
                                        string="Invoice Date"/>
@@ -51,6 +54,10 @@
                     </page>
                     <page name="supplier_statement"
                           string="Supplier Statement">
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
                         <button name="action_vendor_print_pdf" type="object"
                                 class="btn-secondary">
                             Print PDF
