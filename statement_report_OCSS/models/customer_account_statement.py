@@ -78,7 +78,7 @@ class CustomerAccountStatement(models.Model):
     @api.depends('date_from', 'date_to', 'partner_id', 'company_id', 'branch_ids')
     def _compute_balances(self):
         for record in self:
-            # حساب الرصيد الافتتاحي
+            # حساب الرصيد الافتتاحي (جميع الحركات قبل تاريخ البدء)
             initial_domain = [
                 ('date', '<', record.date_from),
                 ('partner_id', '=', record.partner_id.id),
@@ -87,11 +87,11 @@ class CustomerAccountStatement(models.Model):
             ]
             if record.branch_ids:
                 initial_domain.append(('branch_id', 'in', record.branch_ids.ids))
-    
+
             initial_lines = self.env['account.move.line'].search(initial_domain)
             record.initial_balance = sum(line.balance for line in initial_lines)
-    
-            # حساب حركات الفترة
+
+            # حساب الحركات خلال الفترة
             period_domain = [
                 ('date', '>=', record.date_from),
                 ('date', '<=', record.date_to),
@@ -101,31 +101,19 @@ class CustomerAccountStatement(models.Model):
             ]
             if record.branch_ids:
                 period_domain.append(('branch_id', 'in', record.branch_ids.ids))
-    
+
             period_lines = self.env['account.move.line'].search(period_domain)
-            
-            # حساب الإجماليات
             record.total_debit = sum(line.debit for line in period_lines)
             record.total_credit = sum(line.credit for line in period_lines)
+
+            # حساب الرصيد الختامي
             record.final_balance = record.initial_balance + sum(line.balance for line in period_lines)
+
     @api.depends('date_from', 'date_to', 'partner_id', 'company_id', 'branch_ids')
     def _compute_transaction_lines(self):
         for record in self:
-            # حساب الرصيد الافتتاحي
-            initial_domain = [
-                ('date', '<', record.date_from),
-                ('partner_id', '=', record.partner_id.id),
-                ('company_id', '=', record.company_id.id),
-                ('move_id.state', '=', 'posted')
-            ]
-            if record.branch_ids:
-                initial_domain.append(('branch_id', 'in', record.branch_ids.ids))
-            
-            initial_lines = self.env['account.move.line'].search(initial_domain)
-            initial_balance = sum(line.balance for line in initial_lines)
-            
-            # حساب حركات الفترة
-            period_domain = [
+            # البحث عن حركات الحساب
+            domain = [
                 ('date', '>=', record.date_from),
                 ('date', '<=', record.date_to),
                 ('partner_id', '=', record.partner_id.id),
@@ -133,27 +121,13 @@ class CustomerAccountStatement(models.Model):
                 ('move_id.state', '=', 'posted')
             ]
             if record.branch_ids:
-                period_domain.append(('branch_id', 'in', record.branch_ids.ids))
-    
-            lines = self.env['account.move.line'].search(period_domain, order='date, move_id')
-            
-            # تجميع بنود الفاتورة
-            grouped_lines = {}
-            for line in lines:
-                if line.move_id.id not in grouped_lines:
-                    grouped_lines[line.move_id.id] = {
-                        'date': line.date,
-                        'move_name': line.move_id.name,
-                        'description': f"فاتورة رقم {line.move_id.name}" if line.move_id.name else "فاتورة",
-                        'branch': line.branch_id.name or '',
-                        'debit': 0.0,
-                        'credit': 0.0
-                    }
-                grouped_lines[line.move_id.id]['debit'] += line.debit
-                grouped_lines[line.move_id.id]['credit'] += line.credit
-    
-            # بناء HTML
-            html_lines = ["""
+                domain.append(('branch_id', 'in', record.branch_ids.ids))
+
+            lines = self.env['account.move.line'].search(domain, order='date, move_id')
+
+            # إنشاء جدول HTML لعرض الحركات
+            html_lines = []
+            html_lines.append("""
                 <table class="table table-bordered" style="width:100%; border-collapse: collapse;">
                     <thead>
                         <tr style="background-color: #4472C4; color: white;">
@@ -167,8 +141,8 @@ class CustomerAccountStatement(models.Model):
                         </tr>
                     </thead>
                     <tbody>
-            """]
-    
+            """)
+
             # إضافة الرصيد الافتتاحي
             html_lines.append(f"""
                 <tr style="background-color: #f2f2f2;">
@@ -176,32 +150,34 @@ class CustomerAccountStatement(models.Model):
                     <td style="padding: 8px; border: 1px solid #ddd;"></td>
                     <td style="padding: 8px; border: 1px solid #ddd;">رصيد افتتاحي</td>
                     <td style="padding: 8px; border: 1px solid #ddd;"></td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{initial_balance if initial_balance > 0 else ''}</td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{-initial_balance if initial_balance < 0 else ''}</td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{initial_balance}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{record.initial_balance if record.initial_balance > 0 else ''}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{-record.initial_balance if record.initial_balance < 0 else ''}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{record.initial_balance}</td>
                 </tr>
             """)
-    
-            # حساب الرصيد الجاري
-            running_balance = initial_balance
-            for move_data in grouped_lines.values():
-                balance_change = move_data['debit'] - move_data['credit']
-                running_balance += balance_change
-                
+
+            running_balance = record.initial_balance
+            for line in lines:
+                running_balance += line.balance
                 html_lines.append(f"""
                     <tr>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_data['date']}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_data['move_name'] or ''}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_data['description']}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_data['branch']}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(move_data['debit'], '.2f')}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(move_data['credit'], '.2f')}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(running_balance, '.2f')}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.date}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.move_id.name or ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.name or ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.branch_id.name or ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{line.debit}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{line.credit}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{running_balance}</td>
                     </tr>
                 """)
-    
-            html_lines.append("</tbody></table>")
+
+            html_lines.append("""
+                    </tbody>
+                </table>
+            """)
+
             record.transaction_lines = '\n'.join(html_lines)
+
     @api.onchange('date_from')
     def _onchange_date_from(self):
         if self.date_from and not self.date_to:
@@ -234,82 +210,57 @@ class CustomerAccountStatement(models.Model):
 
     def generate_account_statement_report(self):
         """إنشاء تقرير Excel لكشف حساب العميل"""
-        self.ensure_one()
+        # إنشاء كتاب Excel
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True, 'right_to_left': False})
         worksheet = workbook.add_worksheet('كشف حساب العميل')
     
         # تنسيقات الخلايا
         title_format = workbook.add_format({
-            'bold': True, 
-            'align': 'center', 
-            'valign': 'vcenter',
-            'font_size': 16, 
-            'font_color': '#4472C4'
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'font_size': 16, 'font_color': '#4472C4'
         })
-        
         header_format = workbook.add_format({
-            'bold': True,
-            'align': 'center',
-            'valign': 'vcenter',
-            'bg_color': '#4472C4',
-            'font_color': 'white',
-            'border': 1,
-            'font_size': 12,
-            'text_wrap': True
+            'bold': True, 'align': 'center', 'valign': 'vcenter',
+            'bg_color': '#4472C4', 'font_color': 'white', 'border': 1,
+            'font_size': 12, 'text_wrap': True
         })
-        
         currency_format = workbook.add_format({
-            'num_format': '#,##0.00',
-            'border': 1,
-            'align': 'right'
+            'num_format': '#,##0.00', 'border': 1, 'align': 'right'
         })
-        
-        text_format = workbook.add_format({
-            'border': 1,
-            'align': 'right'
-        })
-        
+        text_format = workbook.add_format({'border': 1, 'align': 'right'})
         total_format = workbook.add_format({
-            'bold': True,
-            'num_format': '#,##0.00',
-            'border': 1,
-            'align': 'right',
-            'bg_color': '#D9E1F2'
+            'bold': True, 'num_format': '#,##0.00', 'border': 1,
+            'align': 'right', 'bg_color': '#D9E1F2'
         })
-        
         label_format = workbook.add_format({
-            'bold': True,
-            'align': 'right',
-            'border': 1
+            'bold': True, 'align': 'right', 'border': 1
         })
-    
-        # إعداد الصفحة
-        worksheet.set_landscape()
-        worksheet.fit_to_pages(1, 0)
-        worksheet.set_column(0, 0, 12)  # عمود التاريخ
-        worksheet.set_column(1, 1, 15)  # عمود الرقم
-        worksheet.set_column(2, 2, 30)  # عمود البيان
-        worksheet.set_column(3, 3, 15)  # عمود الفرع
-        worksheet.set_column(4, 6, 15)  # الأعمدة الرقمية
     
         # إضافة شعار الشركة
         row = 0
         if self.company_id.logo:
             try:
                 image_data = io.BytesIO(base64.b64decode(self.company_id.logo))
+                worksheet.merge_range(row, 5, row+1, 5, '')
                 worksheet.insert_image(row, 5, 'logo.png', {
                     'image_data': image_data,
-                    'x_scale': 0.15,
+                    'x_scale': 0.15, 
                     'y_scale': 0.15,
-                    'x_offset': 10,
-                    'y_offset': 10
+                    'x_offset': 10, 
+                    'y_offset': 10,
+                    'object_position': 3,
+                    'positioning': 1
                 })
-                row += 2
+                worksheet.set_row(row, 80)
+                row += 1
+                worksheet.set_row(row, 15)
+                row += 1
             except Exception as e:
-                _logger.error(f"فشل تحميل الشعار: {str(e)}")
+                _logger.error(f"Failed to insert company logo: {str(e)}")
+                pass
     
-        # عنوان التقرير
+        # إضافة عنوان التقرير
         worksheet.merge_range(row, 0, row, 6, 'كشف حساب العميل', title_format)
         row += 1
         worksheet.merge_range(row, 0, row, 6, f'العميل: {self.partner_id.name}', 
@@ -319,68 +270,24 @@ class CustomerAccountStatement(models.Model):
                              workbook.add_format({'align': 'center', 'font_size': 12}))
         row += 2
     
-        # حساب الرصيد الافتتاحي
-        initial_domain = [
-            ('date', '<', self.date_from),
-            ('partner_id', '=', self.partner_id.id),
-            ('company_id', '=', self.company_id.id),
-            ('move_id.state', '=', 'posted')
-        ]
-        if self.branch_ids:
-            initial_domain.append(('branch_id', 'in', self.branch_ids.ids))
-        
-        initial_lines = self.env['account.move.line'].search(initial_domain)
-        initial_balance = sum(line.balance for line in initial_lines)
-    
-        # حساب حركات الفترة
-        period_domain = [
-            ('date', '>=', self.date_from),
-            ('date', '<=', self.date_to),
-            ('partner_id', '=', self.partner_id.id),
-            ('company_id', '=', self.company_id.id),
-            ('move_id.state', '=', 'posted')
-        ]
-        if self.branch_ids:
-            period_domain.append(('branch_id', 'in', self.branch_ids.ids))
-    
-        lines = self.env['account.move.line'].search(period_domain, order='date, move_id')
-        
-        # تجميع بنود الفاتورة
-        grouped_lines = {}
-        for line in lines:
-            if line.move_id.id not in grouped_lines:
-                grouped_lines[line.move_id.id] = {
-                    'date': line.date,
-                    'move_name': line.move_id.name,
-                    'description': f"فاتورة رقم {line.move_id.name}" if line.move_id.name else "فاتورة",
-                    'branch': line.branch_id.name or '',
-                    'debit': 0.0,
-                    'credit': 0.0
-                }
-            grouped_lines[line.move_id.id]['debit'] += line.debit
-            grouped_lines[line.move_id.id]['credit'] += line.credit
-    
-        # إضافة ملخص الرصيد
+        # إضافة معلومات الرصيد
         worksheet.write(row, 0, 'الرصيد الافتتاحي', label_format)
-        worksheet.write(row, 1, initial_balance, currency_format)
+        worksheet.write(row, 1, self.initial_balance, currency_format)
         row += 1
         
-        total_debit = sum(line.debit for line in lines)
         worksheet.write(row, 0, 'إجمالي المدين', label_format)
-        worksheet.write(row, 1, total_debit, currency_format)
+        worksheet.write(row, 1, self.total_debit, currency_format)
         row += 1
         
-        total_credit = sum(line.credit for line in lines)
         worksheet.write(row, 0, 'إجمالي الدائن', label_format)
-        worksheet.write(row, 1, total_credit, currency_format)
+        worksheet.write(row, 1, self.total_credit, currency_format)
         row += 1
         
-        final_balance = initial_balance + (total_debit - total_credit)
         worksheet.write(row, 0, 'الرصيد الختامي', label_format)
-        worksheet.write(row, 1, final_balance, total_format)
+        worksheet.write(row, 1, self.final_balance, total_format)
         row += 2
     
-        # عناوين الجدول
+        # إنشاء صف العناوين
         headers = [
             'التاريخ',
             'الرقم',
@@ -400,35 +307,54 @@ class CustomerAccountStatement(models.Model):
         worksheet.write(row, 1, '', text_format)
         worksheet.write(row, 2, 'رصيد افتتاحي', text_format)
         worksheet.write(row, 3, '', text_format)
-        worksheet.write(row, 4, initial_balance if initial_balance > 0 else '', currency_format)
-        worksheet.write(row, 5, -initial_balance if initial_balance < 0 else '', currency_format)
-        worksheet.write(row, 6, initial_balance, currency_format)
+        worksheet.write(row, 4, self.initial_balance if self.initial_balance > 0 else '', currency_format)
+        worksheet.write(row, 5, -self.initial_balance if self.initial_balance < 0 else '', currency_format)
+        worksheet.write(row, 6, self.initial_balance, currency_format)
         row += 1
     
-        # إضافة الحركات المالية
-        running_balance = initial_balance
-        for move_data in grouped_lines.values():
-            balance_change = move_data['debit'] - move_data['credit']
-            running_balance += balance_change
+        # جمع بيانات الحركات
+        domain = [
+            ('date', '>=', self.date_from),
+            ('date', '<=', self.date_to),
+            ('partner_id', '=', self.partner_id.id),
+            ('company_id', '=', self.company_id.id),
+            ('move_id.state', '=', 'posted')
+        ]
+        if self.branch_ids:
+            domain.append(('branch_id', 'in', self.branch_ids.ids))
+
+        lines = self.env['account.move.line'].search(domain, order='date, move_id')
+        
+        running_balance = self.initial_balance
+        for line in lines:
+            running_balance += line.balance
             
-            worksheet.write(row, 0, move_data['date'], text_format)
-            worksheet.write(row, 1, move_data['move_name'] or '', text_format)
-            worksheet.write(row, 2, move_data['description'], text_format)
-            worksheet.write(row, 3, move_data['branch'], text_format)
-            worksheet.write(row, 4, move_data['debit'], currency_format)
-            worksheet.write(row, 5, move_data['credit'], currency_format)
+            worksheet.write(row, 0, line.date, text_format)
+            worksheet.write(row, 1, line.move_id.name or '', text_format)
+            worksheet.write(row, 2, line.name or '', text_format)
+            worksheet.write(row, 3, line.branch_id.name or '', text_format)
+            worksheet.write(row, 4, line.debit, currency_format)
+            worksheet.write(row, 5, line.credit, currency_format)
             worksheet.write(row, 6, running_balance, currency_format)
             row += 1
     
-        # إغلاق الكتاب
+        # ضبط عرض الأعمدة
+        worksheet.set_column(0, 0, 12)  # التاريخ
+        worksheet.set_column(1, 1, 15)  # الرقم
+        worksheet.set_column(2, 2, 30)  # البيان
+        worksheet.set_column(3, 3, 15)  # الفرع
+        worksheet.set_column(4, 6, 15)  # الأرقام
+    
+        # إغلاق الكتاب وحفظه
         workbook.close()
         output.seek(0)
-        
+    
         return {
             'file_name': f"كشف_حساب_{self.partner_id.name}_{self.date_from}_إلى_{self.date_to}.xlsx",
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
+
     def action_generate_excel_report(self):
         """إجراء لإنشاء وتنزيل التقرير"""
         self.ensure_one()
@@ -582,32 +508,17 @@ class CustomerAccountStatement(models.Model):
 
             lines = self.env['account.move.line'].search(domain, order='date, move_id')
             
-            # تجميع بنود الفاتورة الواحدة
-            grouped_lines = {}
-            for line in lines:
-                if line.move_id.id not in grouped_lines:
-                    grouped_lines[line.move_id.id] = {
-                        'date': line.date.strftime('%Y-%m-%d'),
-                        'move_name': line.move_id.name,
-                        'description': "فاتورة رقم " + (line.move_id.name or ''),
-                        'branch': line.branch_id.name,
-                        'debit': 0.0,
-                        'credit': 0.0
-                    }
-                grouped_lines[line.move_id.id]['debit'] += line.debit
-                grouped_lines[line.move_id.id]['credit'] += line.credit
-
             running_balance = self.initial_balance
-            for move_id, line_data in grouped_lines.items():
-                running_balance += (line_data['debit'] - line_data['credit'])
+            for line in lines:
+                running_balance += line.balance
                 
                 transaction_data.append([
-                    line_data['date'],
-                    line_data['move_name'] or '',
-                    line_data['description'],
-                    line_data['branch'] or '',
-                    format(line_data['debit'], ',.2f'),
-                    format(line_data['credit'], ',.2f'),
+                    line.date.strftime('%Y-%m-%d'),
+                    line.move_id.name or '',
+                    line.name or '',
+                    line.branch_id.name or '',
+                    format(line.debit, ',.2f'),
+                    format(line.credit, ',.2f'),
                     format(running_balance, ',.2f')
                 ])
             
