@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <report 
         id="action_customer_statement_report"
         string="Customer Statement"
         model="customer.statement.wizard"
         report_type="qweb-pdf"
-        name="customer_statement.customer_statement_template"
-        file="customer_statement.customer_statement_template"
+        name="customer_statement.customer_statement_report"
+        file="customer_statement.customer_statement_report"
         attachment_use="False"
     />
 </odoo>
