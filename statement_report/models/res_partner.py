@@ -29,7 +29,7 @@ from odoo.tools import date_utils
 
 
 class Partner(models.Model):
-    """ class for adding report options  in 'res.partner' """
+    """ class for adding report options in 'res.partner' """
     _inherit = 'res.partner'
 
     customer_report_ids = fields.Many2many(
@@ -59,7 +59,7 @@ class Partner(models.Model):
         """ for computing 'bills' of partner """
         bill_ids = self.env['account.move'].search(
             [('partner_id', '=', self.id),
-             ('move_type', '=', ['in_invoice', 'in_refund']),
+             ('move_type', 'in', ['in_invoice', 'in_refund']),
              ('payment_state', '!=', 'paid'),
              ('state', '=', 'posted')]).ids
         self.vendor_statement_ids = bill_ids
@@ -170,7 +170,7 @@ class Partner(models.Model):
                 'currency': self.currency_id.symbol,
             }
             return self.env.ref('statement_report.res_partner_action'
-                                ).report_action(self, data=data)
+                              ).report_action(self, data=data)
         else:
             raise ValidationError('There is no statement to print')
 
@@ -203,9 +203,10 @@ class Partner(models.Model):
                 'data': {
                     'model': 'res.partner',
                     'options': json.dumps(data,
-                                          default=date_utils.json_default),
+                                         default=date_utils.json_default),
                     'output_format': 'xlsx',
-                    'report_name': 'Payment Statement Report'
+                    'report_name': 'statement_report.payment_statement_report_xlsx',
+                    'report_file': 'statement_report.payment_statement_report_xlsx',
                 },
                 'report_type': 'xlsx',
             }
@@ -224,7 +225,7 @@ class Partner(models.Model):
         txt = workbook.add_format({'font_size': '13px'})
         txt_border = workbook.add_format({'font_size': '13px', 'border': 1})
         head = workbook.add_format({'align': 'center', 'bold': True,
-                                    'font_size': '22px'})
+                                  'font_size': '22px'})
         sheet.merge_range('B2:Q4', 'Payment Statement Report', head)
 
         if data['customer']:
@@ -244,7 +245,7 @@ class Partner(models.Model):
 
         sheet.merge_range('B15:C15', 'Date', cell_format_with_color)
         sheet.merge_range('D15:G15', 'Invoice/Bill Number',
-                          cell_format_with_color)
+                         cell_format_with_color)
         sheet.merge_range('H15:I15', 'Due Date', cell_format_with_color)
         sheet.merge_range('J15:L15', 'Invoices/Debit', cell_format_with_color)
         sheet.merge_range('M15:O15', 'Amount Due', cell_format_with_color)
@@ -259,24 +260,24 @@ class Partner(models.Model):
             total = data['currency'] + str(data['total'])
             remain_balance = data['currency'] + str(data['balance'])
             sheet.merge_range(row, column + 1, row, column + 2,
-                              record['invoice_date'], txt_border)
+                             record['invoice_date'], txt_border)
             sheet.merge_range(row, column + 3, row, column + 6,
-                              record['name'], txt_border)
+                             record['name'], txt_border)
             sheet.merge_range(row, column + 7, row, column + 8,
-                              record['invoice_date_due'], txt_border)
+                             record['invoice_date_due'], txt_border)
             sheet.merge_range(row, column + 9, row, column + 11,
-                              sub_total, txt_border)
+                             sub_total, txt_border)
             sheet.merge_range(row, column + 12, row, column + 14,
-                              amount_due, txt_border)
+                             amount_due, txt_border)
             sheet.merge_range(row, column + 15, row, column + 17,
-                              balance, txt_border)
+                             balance, txt_border)
             row = row + 1
         sheet.write(row + 2, column + 1, 'Total Amount: ', cell_format)
         sheet.merge_range(row + 2, column + 3, row + 2, column + 4,
-                          total, txt)
+                         total, txt)
         sheet.write(row + 4, column + 1, 'Balance Due: ', cell_format)
         sheet.merge_range(row + 4, column + 3, row + 4, column + 4,
-                          remain_balance, txt)
+                         remain_balance, txt)
         workbook.close()
         output.seek(0)
         response.stream.write(output.read())
@@ -349,24 +350,24 @@ class Partner(models.Model):
                 remain_balance = data['currency'] + str(data['balance'])
 
                 sheet.merge_range(row, column + 1, row, column + 2,
-                                  record['invoice_date'], date_style)
+                                 record['invoice_date'], date_style)
                 sheet.merge_range(row, column + 3, row, column + 5,
-                                  record['name'], txt)
+                                 record['name'], txt)
                 sheet.merge_range(row, column + 7, row, column + 8,
-                                  record['invoice_date_due'], date_style)
+                                 record['invoice_date_due'], date_style)
                 sheet.merge_range(row, column + 9, row, column + 10,
-                                  sub_total, txt)
+                                 sub_total, txt)
                 sheet.merge_range(row, column + 12, row, column + 13,
-                                  amount_due, txt)
+                                 amount_due, txt)
                 sheet.merge_range(row, column + 15, row, column + 16,
-                                  balance, txt)
+                                 balance, txt)
                 row = row + 1
             sheet.write(row + 2, column + 1, 'Total Amount : ', cell_format)
             sheet.merge_range(row + 2, column + 4, row + 2, column + 5,
-                              total, txt)
+                             total, txt)
             sheet.write(row + 4, column + 1, 'Balance Due : ', cell_format)
             sheet.merge_range(row + 4, column + 4, row + 4, column + 5,
-                              remain_balance, txt)
+                             remain_balance, txt)
             workbook.close()
             output.seek(0)
             xlsx = base64.b64encode(output.read())
@@ -417,7 +418,7 @@ class Partner(models.Model):
 
         for rec in partner:
             if rec.id:
-                main_query = """ SELECT name , invoice_date, invoice_date_due,
+                main_query = """SELECT name , invoice_date, invoice_date_due,
                             amount_total_signed AS sub_total,
                             amount_residual_signed AS amount_due ,
                             amount_residual AS balance
@@ -495,17 +496,17 @@ class Partner(models.Model):
 
                 for record in data['my_data']:
                     sheet.merge_range(row, column + 1, row, column + 2,
-                                      record['invoice_date'], date_style)
+                                     record['invoice_date'], date_style)
                     sheet.merge_range(row, column + 3, row, column + 5,
-                                      record['name'], txt)
+                                     record['name'], txt)
                     sheet.merge_range(row, column + 7, row, column + 8,
-                                      record['invoice_date_due'], date_style)
+                                     record['invoice_date_due'], date_style)
                     sheet.merge_range(row, column + 9, row, column + 10,
-                                      record['sub_total'], txt)
+                                     record['sub_total'], txt)
                     sheet.merge_range(row, column + 12, row, column + 13,
-                                      record['amount_due'], txt)
+                                     record['amount_due'], txt)
                     sheet.merge_range(row, column + 15, row, column + 16,
-                                      record['balance'], txt)
+                                     record['balance'], txt)
                     row = row + 1
                 workbook.close()
                 output.seek(0)
@@ -626,17 +627,17 @@ class Partner(models.Model):
 
                 for record in data['my_data']:
                     sheet.merge_range(row, column + 1, row, column + 2,
-                                      record['invoice_date'], date_style)
+                                     record['invoice_date'], date_style)
                     sheet.merge_range(row, column + 3, row, column + 5,
-                                      record['name'], txt)
+                                     record['name'], txt)
                     sheet.merge_range(row, column + 7, row, column + 8,
-                                      record['invoice_date_due'], date_style)
+                                     record['invoice_date_due'], date_style)
                     sheet.merge_range(row, column + 9, row, column + 10,
-                                      record['sub_total'], txt)
+                                     record['sub_total'], txt)
                     sheet.merge_range(row, column + 12, row, column + 13,
-                                      record['amount_due'], txt)
+                                     record['amount_due'], txt)
                     sheet.merge_range(row, column + 15, row, column + 16,
-                                      record['balance'], txt)
+                                     record['balance'], txt)
                     row = row + 1
                 workbook.close()
                 output.seek(0)
@@ -782,9 +783,10 @@ class Partner(models.Model):
                 'data': {
                     'model': 'res.partner',
                     'options': json.dumps(data,
-                                          default=date_utils.json_default),
+                                        default=date_utils.json_default),
                     'output_format': 'xlsx',
-                    'report_name': 'Payment Statement Report'
+                    'report_name': 'statement_report.payment_statement_report_xlsx',
+                    'report_file': 'statement_report.payment_statement_report_xlsx',
                 },
                 'report_type': 'xlsx',
             }
@@ -858,25 +860,25 @@ class Partner(models.Model):
                 remain_balance = data['currency'] + str(data['balance'])
 
                 sheet.merge_range(row, column + 1, row, column + 2,
-                                  record['invoice_date'], date_style)
+                                 record['invoice_date'], date_style)
                 sheet.merge_range(row, column + 3, row, column + 5,
-                                  record['name'], txt)
+                                 record['name'], txt)
                 sheet.merge_range(row, column + 7, row, column + 8,
-                                  record['invoice_date_due'], date_style)
+                                 record['invoice_date_due'], date_style)
                 sheet.merge_range(row, column + 9, row, column + 10,
-                                  sub_total, txt)
+                                 sub_total, txt)
                 sheet.merge_range(row, column + 12, row, column + 13,
-                                  amount_due, txt)
+                                 amount_due, txt)
                 sheet.merge_range(row, column + 15, row, column + 16,
-                                  balance, txt)
+                                 balance, txt)
                 row = row + 1
 
             sheet.write(row + 2, column + 1, 'Total Amount : ', cell_format)
             sheet.merge_range(row + 2, column + 4, row + 2, column + 5,
-                              total, txt)
+                             total, txt)
             sheet.write(row + 4, column + 1, 'Balance Due : ', cell_format)
             sheet.merge_range(row + 4, column + 4, row + 4, column + 5,
-                              remain_balance, txt)
+                             remain_balance, txt)
 
             workbook.close()
             output.seek(0)
