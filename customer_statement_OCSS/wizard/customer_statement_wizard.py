@@ -8,7 +8,13 @@ class CustomerStatementWizard(models.TransientModel):
     date_from = fields.Date(string='From Date', required=True)
     date_to = fields.Date(string='To Date', required=True)
     branch_id = fields.Many2one('multi.branch', string='Branch')
-    
+
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        # تأكد أن branch_id صالح فعليًا
+        if self.branch_id and self.branch_id._name != 'multi.branch':
+            self.branch_id = False
+
     def action_print_report(self):
         self.ensure_one()
         data = {
