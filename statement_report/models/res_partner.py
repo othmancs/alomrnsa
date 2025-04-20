@@ -23,7 +23,7 @@ import base64
 import io
 import json
 import xlsxwriter
-from odoo import fields, models, api
+from odoo import fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import date_utils
 
@@ -45,46 +45,24 @@ class Partner(models.Model):
         default=lambda self: self.env.company.currency_id.id,
         help="currency"
     )
-    date_from = fields.Date(string="From Date")
-    date_to = fields.Date(string="To Date")
-
-    @api.constrains('date_from', 'date_to')
-    def _check_dates(self):
-        for record in self:
-            if record.date_from and record.date_to and record.date_from > record.date_to:
-                raise ValidationError("تاريخ البداية يجب أن يكون قبل تاريخ النهاية أو يساويه")
 
     def _compute_customer_report_ids(self):
         """ for computing 'invoices' of partner"""
-        for rec in self:
-            domain = [
-                ('partner_id', '=', rec.id),
-                ('move_type', 'in', ['out_invoice', 'out_refund']),
-                ('payment_state', '!=', 'paid'),
-                ('state', '=', 'posted')
-            ]
-            if rec.date_from:
-                domain.append(('invoice_date', '>=', rec.date_from))
-            if rec.date_to:
-                domain.append(('invoice_date', '<=', rec.date_to))
-            
-            rec.customer_report_ids = self.env['account.move'].search(domain)
+        inv_ids = self.env['account.move'].search(
+            [('partner_id', '=', self.id),
+             ('move_type', 'in', ['out_invoice', 'out_refund']),
+             ('payment_state', '!=', 'paid'),
+             ('state', '=', 'posted')]).ids
+        self.customer_report_ids = inv_ids
 
     def _compute_vendor_statement_ids(self):
         """ for computing 'bills' of partner """
-        for rec in self:
-            domain = [
-                ('partner_id', '=', rec.id),
-                ('move_type', 'in', ['in_invoice', 'in_refund']),
-                ('payment_state', '!=', 'paid'),
-                ('state', '=', 'posted')
-            ]
-            if rec.date_from:
-                domain.append(('invoice_date', '>=', rec.date_from))
-            if rec.date_to:
-                domain.append(('invoice_date', '<=', rec.date_to))
-            
-            rec.vendor_statement_ids = self.env['account.move'].search(domain)
+        bill_ids = self.env['account.move'].search(
+            [('partner_id', '=', self.id),
+             ('move_type', 'in', ['in_invoice', 'in_refund']),
+             ('payment_state', '!=', 'paid'),
+             ('state', '=', 'posted')]).ids
+        self.vendor_statement_ids = bill_ids
 
     def main_query(self):
         """return select query"""
@@ -95,12 +73,6 @@ class Partner(models.Model):
             FROM account_move WHERE payment_state != 'paid'
             AND state ='posted' AND partner_id= '%s'
             AND company_id = '%s' """ % (self.id, self.env.company.id)
-        
-        if self.date_from:
-            query += " AND invoice_date >= '%s'" % self.date_from
-        if self.date_to:
-            query += " AND invoice_date <= '%s'" % self.date_to
-        
         return query
 
     def amount_query(self):
@@ -110,14 +82,7 @@ class Partner(models.Model):
                 FROM account_move WHERE payment_state != 'paid' 
                 AND state ='posted' AND partner_id= '%s'
                 AND company_id = '%s' """ % (self.id, self.env.company.id)
-        
-        if self.date_from:
-            amount_query += " AND invoice_date >= '%s'" % self.date_from
-        if self.date_to:
-            amount_query += " AND invoice_date <= '%s'" % self.date_to
-        
         return amount_query
-
 
     def action_share_pdf(self):
         """ action for sharing customer pdf report"""
