@@ -5,7 +5,8 @@ from datetime import datetime
 class CustomerStatementReport(models.AbstractModel):
     _name = 'report.customer_statement.customer_statement_template'
     _description = 'Customer Statement Report'
-
+    
+    @api.model
     def _get_report_values(self, docids, data=None):
         if not data.get('partner_id'):
             raise UserError(_("Please select a customer."))
