@@ -4,7 +4,7 @@
 #    Cybrosys Technologies Pvt. Ltd.
 #
 #    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author:Ayisha Sumayya K (odoo@cybrosys.com)
+#    Author: Ayisha Sumayya K (odoo@cybrosys.com)
 #
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
@@ -45,27 +45,45 @@ class Partner(models.Model):
         default=lambda self: self.env.company.currency_id.id,
         help="currency"
     )
+    date_from = fields.Date(string='From Date', help="Start date for filtering")
+    date_to = fields.Date(string='To Date', help="End date for filtering")
 
     def _compute_customer_report_ids(self):
         """ for computing 'invoices' of partner"""
-        inv_ids = self.env['account.move'].search(
-            [('partner_id', '=', self.id),
-             ('move_type', 'in', ['out_invoice', 'out_refund']),
-             ('payment_state', '!=', 'paid'),
-             ('state', '=', 'posted')]).ids
+        domain = [
+            ('partner_id', '=', self.id),
+            ('move_type', 'in', ['out_invoice', 'out_refund']),
+            ('payment_state', '!=', 'paid'),
+            ('state', '=', 'posted')
+        ]
+        
+        if self.date_from:
+            domain.append(('invoice_date', '>=', self.date_from))
+        if self.date_to:
+            domain.append(('invoice_date', '<=', self.date_to))
+            
+        inv_ids = self.env['account.move'].search(domain).ids
         self.customer_report_ids = inv_ids
 
     def _compute_vendor_statement_ids(self):
         """ for computing 'bills' of partner """
-        bill_ids = self.env['account.move'].search(
-            [('partner_id', '=', self.id),
-             ('move_type', 'in', ['in_invoice', 'in_refund']),
-             ('payment_state', '!=', 'paid'),
-             ('state', '=', 'posted')]).ids
+        domain = [
+            ('partner_id', '=', self.id),
+            ('move_type', 'in', ['in_invoice', 'in_refund']),
+            ('payment_state', '!=', 'paid'),
+            ('state', '=', 'posted')
+        ]
+        
+        if self.date_from:
+            domain.append(('invoice_date', '>=', self.date_from))
+        if self.date_to:
+            domain.append(('invoice_date', '<=', self.date_to))
+            
+        bill_ids = self.env['account.move'].search(domain).ids
         self.vendor_statement_ids = bill_ids
 
     def main_query(self):
-        """return select query"""
+        """return select query with date filters"""
         query = """SELECT name , invoice_date, invoice_date_due,
                     amount_total_signed AS sub_total,
                     amount_residual_signed AS amount_due ,
@@ -73,19 +91,31 @@ class Partner(models.Model):
             FROM account_move WHERE payment_state != 'paid'
             AND state ='posted' AND partner_id= '%s'
             AND company_id = '%s' """ % (self.id, self.env.company.id)
+            
+        if self.date_from:
+            query += " AND invoice_date >= '%s'" % self.date_from
+        if self.date_to:
+            query += " AND invoice_date <= '%s'" % self.date_to
+            
         return query
 
     def amount_query(self):
-        """return query for calculating total amount"""
+        """return query for calculating total amount with date filters"""
         amount_query = """ SELECT SUM(amount_total_signed) AS total, 
                     SUM(amount_residual) AS balance
                 FROM account_move WHERE payment_state != 'paid' 
                 AND state ='posted' AND partner_id= '%s'
                 AND company_id = '%s' """ % (self.id, self.env.company.id)
+                
+        if self.date_from:
+            amount_query += " AND invoice_date >= '%s'" % self.date_from
+        if self.date_to:
+            amount_query += " AND invoice_date <= '%s'" % self.date_to
+            
         return amount_query
 
     def action_share_pdf(self):
-        """ action for sharing customer pdf report"""
+        """ action for sharing customer pdf report with date filters"""
         if self.customer_report_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('out_invoice')"""
@@ -107,6 +137,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             report = self.env[
                 'ir.actions.report'
@@ -146,7 +178,7 @@ class Partner(models.Model):
             raise ValidationError('There is no statement to send')
 
     def action_print_pdf(self):
-        """ action for printing pdf report"""
+        """ action for printing pdf report with date filters"""
         if self.customer_report_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('out_invoice')"""
@@ -168,6 +200,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             return self.env.ref('statement_report.res_partner_action'
                               ).report_action(self, data=data)
@@ -175,7 +209,7 @@ class Partner(models.Model):
             raise ValidationError('There is no statement to print')
 
     def action_print_xlsx(self):
-        """ action for printing xlsx report of customer """
+        """ action for printing xlsx report of customer with date filters"""
         if self.customer_report_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('out_invoice')"""
@@ -197,6 +231,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             return {
                 'type': 'ir.actions.report',
@@ -214,7 +250,7 @@ class Partner(models.Model):
             raise ValidationError('There is no statement to print')
 
     def get_xlsx_report(self, data, response):
-        """ get xlsx report data """
+        """ get xlsx report data with date filters """
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True})
         sheet = workbook.add_worksheet()
@@ -227,6 +263,15 @@ class Partner(models.Model):
         head = workbook.add_format({'align': 'center', 'bold': True,
                                   'font_size': '22px'})
         sheet.merge_range('B2:Q4', 'Payment Statement Report', head)
+
+        # Add date range in report header if exists
+        if data.get('date_from') or data.get('date_to'):
+            date_range = "Date Range: "
+            if data.get('date_from'):
+                date_range += f"From {data['date_from']} "
+            if data.get('date_to'):
+                date_range += f"To {data['date_to']}"
+            sheet.merge_range('B5:Q5', date_range, cell_format)
 
         if data['customer']:
             sheet.merge_range('B7:D7', 'Customer/Supplier : ', cell_format)
@@ -284,7 +329,7 @@ class Partner(models.Model):
         output.close()
 
     def action_share_xlsx(self):
-        """ action for sharing xlsx report via email"""
+        """ action for sharing xlsx report via email with date filters"""
         if self.customer_report_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('out_invoice')"""
@@ -306,6 +351,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             output = io.BytesIO()
             workbook = xlsxwriter.Workbook(output, {'in_memory': True})
@@ -319,6 +366,15 @@ class Partner(models.Model):
             date_style = workbook.add_format(
                 {'text_wrap': True, 'align': 'center',
                  'num_format': 'yyyy-mm-dd'})
+
+            # Add date range in report header if exists
+            if data.get('date_from') or data.get('date_to'):
+                date_range = "Date Range: "
+                if data.get('date_from'):
+                    date_range += f"From {data['date_from']} "
+                if data.get('date_to'):
+                    date_range += f"To {data['date_to']}"
+                sheet.merge_range('B5:P5', date_range, cell_format)
 
             if data['customer']:
                 sheet.write('B7:C7', 'Customer : ', cell_format)
@@ -404,13 +460,22 @@ class Partner(models.Model):
 
     def auto_week_statement_report(self):
         """ action for sending automatic weekly statement
-            of both pdf and xlsx report """
+            of both pdf and xlsx report with date filters """
 
         partner = []
-        invoice = self.env['account.move'].search(
-            [('move_type', 'in', ['out_invoice', 'in_invoice']),
-             ('payment_state', '!=', 'paid'),
-             ('state', '=', 'posted')])
+        domain = [
+            ('move_type', 'in', ['out_invoice', 'in_invoice']),
+            ('payment_state', '!=', 'paid'),
+            ('state', '=', 'posted')
+        ]
+        
+        # Add date filter if dates are set in context
+        if self.env.context.get('date_from'):
+            domain.append(('invoice_date', '>=', self.env.context.get('date_from')))
+        if self.env.context.get('date_to'):
+            domain.append(('invoice_date', '<=', self.env.context.get('date_to')))
+            
+        invoice = self.env['account.move'].search(domain)
 
         for inv in invoice:
             if inv.partner_id not in partner:
@@ -425,11 +490,18 @@ class Partner(models.Model):
                     FROM account_move WHERE move_type
                         IN ('out_invoice', 'in_invoice') 
                        AND state ='posted' AND payment_state != 'paid'
-                       AND company_id = '%s' AND partner_id = '%s'
-                    GROUP BY name, invoice_date, invoice_date_due, 
+                       AND company_id = '%s' AND partner_id = '%s'""" % (self.env.company.id, rec.id)
+                
+                # Add date filters if exists in context
+                if self.env.context.get('date_from'):
+                    main_query += " AND invoice_date >= '%s'" % self.env.context.get('date_from')
+                if self.env.context.get('date_to'):
+                    main_query += " AND invoice_date <= '%s'" % self.env.context.get('date_to')
+                    
+                main_query += """ GROUP BY name, invoice_date, invoice_date_due, 
                     amount_total_signed, amount_residual_signed, 
                     amount_residual
-                    ORDER by name DESC""" % (self.env.company.id, rec.id)
+                    ORDER by name DESC"""
 
                 self.env.cr.execute(main_query)
                 main = self.env.cr.dictfetchall()
@@ -441,6 +513,8 @@ class Partner(models.Model):
                     'state': rec.state_id.name,
                     'zip': rec.zip,
                     'my_data': main,
+                    'date_from': self.env.context.get('date_from'),
+                    'date_to': self.env.context.get('date_to'),
                 }
                 report = self.env['ir.actions.report']._render_qweb_pdf(
                     'statement_report.res_partner_action',
@@ -468,6 +542,15 @@ class Partner(models.Model):
                 date_style = workbook.add_format(
                     {'text_wrap': True, 'align': 'center',
                      'num_format': 'yyyy-mm-dd'})
+
+                # Add date range in report header if exists
+                if data.get('date_from') or data.get('date_to'):
+                    date_range = "Date Range: "
+                    if data.get('date_from'):
+                        date_range += f"From {data['date_from']} "
+                    if data.get('date_to'):
+                        date_range += f"To {data['date_to']}"
+                    sheet.merge_range('B5:P5', date_range, cell_format)
 
                 if data['customer']:
                     sheet.write('B7:D7', 'Customer/Supplier : ', cell_format)
@@ -534,13 +617,22 @@ class Partner(models.Model):
 
     def auto_month_statement_report(self):
         """ action for sending automatic monthly statement report
-            of both pdf and xlsx report"""
+            of both pdf and xlsx report with date filters"""
 
         partner = []
-        invoice = self.env['account.move'].search(
-            [('move_type', 'in', ['out_invoice', 'in_invoice']),
-             ('payment_state', '!=', 'paid'),
-             ('state', '=', 'posted')])
+        domain = [
+            ('move_type', 'in', ['out_invoice', 'in_invoice']),
+            ('payment_state', '!=', 'paid'),
+            ('state', '=', 'posted')
+        ]
+        
+        # Add date filter if dates are set in context
+        if self.env.context.get('date_from'):
+            domain.append(('invoice_date', '>=', self.env.context.get('date_from')))
+        if self.env.context.get('date_to'):
+            domain.append(('invoice_date', '<=', self.env.context.get('date_to')))
+            
+        invoice = self.env['account.move'].search(domain)
 
         for inv in invoice:
             if inv.partner_id not in partner:
@@ -556,11 +648,18 @@ class Partner(models.Model):
                         IN ('out_invoice', 'in_invoice') 
                         AND state ='posted' 
                         AND payment_state != 'paid' 
-                        AND company_id = '%s' AND partner_id = '%s'
-                   GROUP BY name, invoice_date, invoice_date_due,
+                        AND company_id = '%s' AND partner_id = '%s'""" % (self.env.company.id, rec.id)
+                
+                # Add date filters if exists in context
+                if self.env.context.get('date_from'):
+                    main_query += " AND invoice_date >= '%s'" % self.env.context.get('date_from')
+                if self.env.context.get('date_to'):
+                    main_query += " AND invoice_date <= '%s'" % self.env.context.get('date_to')
+                    
+                main_query += """ GROUP BY name, invoice_date, invoice_date_due,
                     amount_total_signed, amount_residual_signed,
                     amount_residual
-                    ORDER by name DESC""" % (self.env.company.id, rec.id)
+                    ORDER by name DESC"""
 
                 self.env.cr.execute(main_query)
                 main = self.env.cr.dictfetchall()
@@ -572,6 +671,8 @@ class Partner(models.Model):
                     'state': rec.state_id.name,
                     'zip': rec.zip,
                     'my_data': main,
+                    'date_from': self.env.context.get('date_from'),
+                    'date_to': self.env.context.get('date_to'),
                 }
                 report = self.env['ir.actions.report']._render_qweb_pdf(
                     'statement_report.res_partner_action',
@@ -599,6 +700,15 @@ class Partner(models.Model):
                 date_style = workbook.add_format(
                     {'text_wrap': True, 'align': 'center',
                      'num_format': 'yyyy-mm-dd'})
+
+                # Add date range in report header if exists
+                if data.get('date_from') or data.get('date_to'):
+                    date_range = "Date Range: "
+                    if data.get('date_from'):
+                        date_range += f"From {data['date_from']} "
+                    if data.get('date_to'):
+                        date_range += f"To {data['date_to']}"
+                    sheet.merge_range('B5:P5', date_range, cell_format)
 
                 if data['customer']:
                     sheet.write('B7:D7', 'Customer/Supplier : ', cell_format)
@@ -665,7 +775,7 @@ class Partner(models.Model):
                 mail.send()
 
     def action_vendor_print_pdf(self):
-        """ action for printing vendor pdf report """
+        """ action for printing vendor pdf report with date filters """
         if self.vendor_statement_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('in_invoice')"""
@@ -687,6 +797,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             return self.env.ref(
                 'statement_report.res_partner_action').report_action(
@@ -695,7 +807,7 @@ class Partner(models.Model):
             raise ValidationError('There is no statement to print')
 
     def action_vendor_share_pdf(self):
-        """ action for sharing pdf report of vendor via email """
+        """ action for sharing pdf report of vendor via email with date filters """
         if self.vendor_statement_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('in_invoice')"""
@@ -717,6 +829,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             report = self.env['ir.actions.report'].sudo()._render_qweb_pdf(
                 'statement_report.res_partner_action', self, data=data)
@@ -754,7 +868,7 @@ class Partner(models.Model):
             raise ValidationError('There is no statement to send')
 
     def action_vendor_print_xlsx(self):
-        """ action for printing xlsx report of vendor """
+        """ action for printing xlsx report of vendor with date filters """
         if self.vendor_statement_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('in_invoice')"""
@@ -777,6 +891,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             return {
                 'type': 'ir.actions.report',
@@ -794,7 +910,7 @@ class Partner(models.Model):
             raise ValidationError('There is no statement to print')
 
     def action_vendor_share_xlsx(self):
-        """ action for sharing vendor xlsx report via email """
+        """ action for sharing vendor xlsx report via email with date filters """
         if self.vendor_statement_ids:
             main_query = self.main_query()
             main_query += """ AND move_type IN ('in_invoice')"""
@@ -816,6 +932,8 @@ class Partner(models.Model):
                 'total': amount[0]['total'],
                 'balance': amount[0]['balance'],
                 'currency': self.currency_id.symbol,
+                'date_from': self.date_from,
+                'date_to': self.date_to,
             }
             output = io.BytesIO()
             workbook = xlsxwriter.Workbook(output, {'in_memory': True})
@@ -829,6 +947,16 @@ class Partner(models.Model):
             date_style = workbook.add_format({
                 'text_wrap': True, 'align': 'center',
                 'num_format': 'yyyy-mm-dd'})
+            
+            # Add date range in report header if exists
+            if data.get('date_from') or data.get('date_to'):
+                date_range = "Date Range: "
+                if data.get('date_from'):
+                    date_range += f"From {data['date_from']} "
+                if data.get('date_to'):
+                    date_range += f"To {data['date_to']}"
+                sheet.merge_range('B5:P5', date_range, cell_format)
+
             if data['customer']:
                 sheet.write('B7:C7', 'Supplier : ', cell_format)
                 sheet.merge_range('D7:G7', data['customer'], txt)
