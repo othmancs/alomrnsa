@@ -1,0 +1,12 @@
+<odoo>
+    <report 
+        id="action_customer_statement_report"
+        string="Customer Statement"
+        model="customer.statement.wizard"
+        report_type="qweb-pdf"
+        name="customer_statement.customer_statement_template"
+        file="customer_statement.customer_statement_template"
+        attachment_use="False"
+        paperformat="custom.paperformat_custom"
+    />
+</odoo>

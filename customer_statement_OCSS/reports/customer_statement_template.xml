@@ -1,0 +1,73 @@
+<odoo>
+    <template id="customer_statement_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h2>Customer Account Statement</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col">
+                            <strong>Customer:</strong> <span t-esc="partner.name"/>
+                        </div>
+                        <div class="col">
+                            <strong>From:</strong> <span t-esc="date_from"/>
+                        </div>
+                        <div class="col">
+                            <strong>To:</strong> <span t-esc="date_to"/>
+                        </div>
+                        <t t-if="branch">
+                            <div class="col">
+                                <strong>Branch:</strong> <span t-esc="branch.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col">
+                            <strong>Opening Balance:</strong> <span t-esc="opening_balance"/>
+                        </div>
+                    </div>
+                    
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Move</th>
+                                <th>Reference</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="lines" t-as="line">
+                                <td><span t-esc="line['date']"/></td>
+                                <td><span t-esc="line['move_name']"/></td>
+                                <td><span t-esc="line['ref']"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['debit'])"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['credit'])"/></td>
+                                <td class="text-right"><span t-esc="format_amount(line['balance'])"/></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"><strong>Period Total</strong></td>
+                                <td class="text-right"><strong><span t-esc="format_amount(period_debit)"/></strong></td>
+                                <td class="text-right"><strong><span t-esc="format_amount(period_credit)"/></strong></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"><strong>Closing Balance</strong></td>
+                                <td class="text-right"><strong><span t-esc="format_amount(closing_balance)"/></strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
