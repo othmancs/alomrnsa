@@ -150,9 +150,9 @@ class CustomerAccountStatement(models.Model):
                     <td style="padding: 8px; border: 1px solid #ddd;"></td>
                     <td style="padding: 8px; border: 1px solid #ddd;">رصيد افتتاحي</td>
                     <td style="padding: 8px; border: 1px solid #ddd;"></td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{record.initial_balance if record.initial_balance > 0 else ''}</td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{-record.initial_balance if record.initial_balance < 0 else ''}</td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{record.initial_balance}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(record.initial_balance, '.2f') if record.initial_balance > 0 else ''}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(-record.initial_balance, '.2f') if record.initial_balance < 0 else ''}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(record.initial_balance, '.2f')}</td>
                 </tr>
             """)
 
@@ -165,9 +165,9 @@ class CustomerAccountStatement(models.Model):
                         <td style="padding: 8px; border: 1px solid #ddd;">{line.move_id.name or ''}</td>
                         <td style="padding: 8px; border: 1px solid #ddd;">{line.name or ''}</td>
                         <td style="padding: 8px; border: 1px solid #ddd;">{line.branch_id.name or ''}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{line.debit}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{line.credit}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{running_balance}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(line.debit, '.2f')}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(line.credit, '.2f')}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(running_balance, '.2f')}</td>
                     </tr>
                 """)
 
@@ -272,19 +272,19 @@ class CustomerAccountStatement(models.Model):
     
         # إضافة معلومات الرصيد
         worksheet.write(row, 0, 'الرصيد الافتتاحي', label_format)
-        worksheet.write(row, 1, self.initial_balance, currency_format)
+        worksheet.write(row, 1, round(self.initial_balance, 2), currency_format)
         row += 1
         
         worksheet.write(row, 0, 'إجمالي المدين', label_format)
-        worksheet.write(row, 1, self.total_debit, currency_format)
+        worksheet.write(row, 1, round(self.total_debit, 2), currency_format)
         row += 1
         
         worksheet.write(row, 0, 'إجمالي الدائن', label_format)
-        worksheet.write(row, 1, self.total_credit, currency_format)
+        worksheet.write(row, 1, round(self.total_credit, 2), currency_format)
         row += 1
         
         worksheet.write(row, 0, 'الرصيد الختامي', label_format)
-        worksheet.write(row, 1, self.final_balance, total_format)
+        worksheet.write(row, 1, round(self.final_balance, 2), total_format)
         row += 2
     
         # إنشاء صف العناوين
@@ -307,9 +307,9 @@ class CustomerAccountStatement(models.Model):
         worksheet.write(row, 1, '', text_format)
         worksheet.write(row, 2, 'رصيد افتتاحي', text_format)
         worksheet.write(row, 3, '', text_format)
-        worksheet.write(row, 4, self.initial_balance if self.initial_balance > 0 else '', currency_format)
-        worksheet.write(row, 5, -self.initial_balance if self.initial_balance < 0 else '', currency_format)
-        worksheet.write(row, 6, self.initial_balance, currency_format)
+        worksheet.write(row, 4, round(self.initial_balance, 2) if self.initial_balance > 0 else '', currency_format)
+        worksheet.write(row, 5, round(-self.initial_balance, 2) if self.initial_balance < 0 else '', currency_format)
+        worksheet.write(row, 6, round(self.initial_balance, 2), currency_format)
         row += 1
     
         # جمع بيانات الحركات
@@ -333,9 +333,9 @@ class CustomerAccountStatement(models.Model):
             worksheet.write(row, 1, line.move_id.name or '', text_format)
             worksheet.write(row, 2, line.name or '', text_format)
             worksheet.write(row, 3, line.branch_id.name or '', text_format)
-            worksheet.write(row, 4, line.debit, currency_format)
-            worksheet.write(row, 5, line.credit, currency_format)
-            worksheet.write(row, 6, running_balance, currency_format)
+            worksheet.write(row, 4, round(line.debit, 2), currency_format)
+            worksheet.write(row, 5, round(line.credit, 2), currency_format)
+            worksheet.write(row, 6, round(running_balance, 2), currency_format)
             row += 1
     
         # ضبط عرض الأعمدة
@@ -448,10 +448,10 @@ class CustomerAccountStatement(models.Model):
             
             # إضافة ملخص الرصيد
             balance_data = [
-                ['الرصيد الافتتاحي', format(self.initial_balance, ',.2f')],
-                ['إجمالي المدين', format(self.total_debit, ',.2f')],
-                ['إجمالي الدائن', format(self.total_credit, ',.2f')],
-                ['الرصيد الختامي', format(self.final_balance, ',.2f')]
+                ['الرصيد الافتتاحي', format(round(self.initial_balance, 2), ',.2f')],
+                ['إجمالي المدين', format(round(self.total_debit, 2), ',.2f')],
+                ['إجمالي الدائن', format(round(self.total_credit, 2), ',.2f')],
+                ['الرصيد الختامي', format(round(self.final_balance, 2), ',.2f')]
             ]
             
             balance_table = Table(balance_data, colWidths=[200, 100])
@@ -490,9 +490,9 @@ class CustomerAccountStatement(models.Model):
                 '',
                 'رصيد افتتاحي',
                 '',
-                format(self.initial_balance, ',.2f') if self.initial_balance > 0 else '',
-                format(-self.initial_balance, ',.2f') if self.initial_balance < 0 else '',
-                format(self.initial_balance, ',.2f')
+                format(round(self.initial_balance, 2), ',.2f') if self.initial_balance > 0 else '',
+                format(round(-self.initial_balance, 2), ',.2f') if self.initial_balance < 0 else '',
+                format(round(self.initial_balance, 2), ',.2f')
             ])
             
             # إضافة الحركات
@@ -517,9 +517,9 @@ class CustomerAccountStatement(models.Model):
                     line.move_id.name or '',
                     line.name or '',
                     line.branch_id.name or '',
-                    format(line.debit, ',.2f'),
-                    format(line.credit, ',.2f'),
-                    format(running_balance, ',.2f')
+                    format(round(line.debit, 2), ',.2f'),
+                    format(round(line.credit, 2), ',.2f'),
+                    format(round(running_balance, 2), ',.2f')
                 ])
             
             # إنشاء جدول الحركات
