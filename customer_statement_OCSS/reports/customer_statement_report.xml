@@ -8,5 +8,6 @@
         name="customer_statement.customer_statement_report"
         file="customer_statement.customer_statement_report"
         attachment_use="False"
+        paperformat="base.paperformat_euro"
     />
 </odoo>
