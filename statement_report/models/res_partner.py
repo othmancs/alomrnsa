@@ -1,24 +1,3 @@
-# -*- coding: utf-8 -*-
-#############################################################################
-#
-#    Cybrosys Technologies Pvt. Ltd.
-#
-#    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author:Ayisha Sumayya K (odoo@cybrosys.com)
-#
-#    You can modify it under the terms of the GNU LESSER
-#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU LESSER GENERAL PUBLIC LICENSE (LGPL v3) for more details.
-#
-#    You should have received a copy of the GNU LESSER GENERAL PUBLIC LICENSE
-#    (LGPL v3) along with this program.
-#    If not, see <http://www.gnu.org/licenses/>.
-#
-#############################################################################
 import base64
 import io
 import json
@@ -45,24 +24,42 @@ class Partner(models.Model):
         default=lambda self: self.env.company.currency_id.id,
         help="currency"
     )
+    date_from = fields.Date(string="From Date")
+    date_to = fields.Date(string="To Date")
 
     def _compute_customer_report_ids(self):
         """ for computing 'invoices' of partner"""
-        inv_ids = self.env['account.move'].search(
-            [('partner_id', '=', self.id),
-             ('move_type', 'in', ['out_invoice', 'out_refund']),
-             ('payment_state', '!=', 'paid'),
-             ('state', '=', 'posted')]).ids
-        self.customer_report_ids = inv_ids
+        for rec in self:
+            domain = [
+                ('partner_id', '=', rec.id),
+                ('move_type', 'in', ['out_invoice', 'out_refund']),
+                ('payment_state', '!=', 'paid'),
+                ('state', '=', 'posted')
+            ]
+            if rec.date_from:
+                domain.append(('invoice_date', '>=', rec.date_from))
+            if rec.date_to:
+                domain.append(('invoice_date', '<=', rec.date_to))
+            
+            inv_ids = self.env['account.move'].search(domain).ids
+            rec.customer_report_ids = inv_ids
 
     def _compute_vendor_statement_ids(self):
         """ for computing 'bills' of partner """
-        bill_ids = self.env['account.move'].search(
-            [('partner_id', '=', self.id),
-             ('move_type', 'in', ['in_invoice', 'in_refund']),
-             ('payment_state', '!=', 'paid'),
-             ('state', '=', 'posted')]).ids
-        self.vendor_statement_ids = bill_ids
+        for rec in self:
+            domain = [
+                ('partner_id', '=', rec.id),
+                ('move_type', 'in', ['in_invoice', 'in_refund']),
+                ('payment_state', '!=', 'paid'),
+                ('state', '=', 'posted')
+            ]
+            if rec.date_from:
+                domain.append(('invoice_date', '>=', rec.date_from))
+            if rec.date_to:
+                domain.append(('invoice_date', '<=', rec.date_to))
+            
+            bill_ids = self.env['account.move'].search(domain).ids
+            rec.vendor_statement_ids = bill_ids
 
     def main_query(self):
         """return select query"""
@@ -73,6 +70,12 @@ class Partner(models.Model):
             FROM account_move WHERE payment_state != 'paid'
             AND state ='posted' AND partner_id= '%s'
             AND company_id = '%s' """ % (self.id, self.env.company.id)
+        
+        if self.date_from:
+            query += " AND invoice_date >= '%s'" % self.date_from
+        if self.date_to:
+            query += " AND invoice_date <= '%s'" % self.date_to
+        
         return query
 
     def amount_query(self):
@@ -82,7 +85,14 @@ class Partner(models.Model):
                 FROM account_move WHERE payment_state != 'paid' 
                 AND state ='posted' AND partner_id= '%s'
                 AND company_id = '%s' """ % (self.id, self.env.company.id)
+        
+        if self.date_from:
+            amount_query += " AND invoice_date >= '%s'" % self.date_from
+        if self.date_to:
+            amount_query += " AND invoice_date <= '%s'" % self.date_to
+        
         return amount_query
+
 
     def action_share_pdf(self):
         """ action for sharing customer pdf report"""
