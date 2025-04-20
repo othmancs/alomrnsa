@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Security -->
+    <record id="customer_account_statement_group_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="base.module_category_accounting_accounting"/>
+    </record>
+
+    <record id="customer_account_statement_group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="base.module_category_accounting_accounting"/>
+        <field name="implied_ids" eval="[(4, ref('customer_account_statement_group_user'))]"/>
+    </record>
+
+    <record id="customer_account_statement_access" model="ir.model.access">
+        <field name="name">customer.account.statement access</field>
+        <field name="model_id" ref="model_customer_account_statement"/>
+        <field name="group_id" ref="customer_account_statement_group_user"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">0</field>
+    </record>
+
+    <record id="customer_account_statement_manager_access" model="ir.model.access">
+        <field name="name">customer.account.statement manager access</field>
+        <field name="model_id" ref="model_customer_account_statement"/>
+        <field name="group_id" ref="customer_account_statement_group_manager"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">1</field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_customer_account_statement_search" model="ir.ui.view">
+        <field name="name">customer.account.statement.search</field>
+        <field name="model">customer.account.statement</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" string="العميل"/>
+                <field name="branch_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                <field name="date_from" string="من تاريخ"/>
+                <field name="date_to" string="إلى تاريخ"/>
+                <filter string="هذا الشهر" name="current_month"
+                        domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
+                <group expand="0" string="تصفية حسب">
+                    <filter string="اليوم" name="today"
+                            domain="[('date_from','=',context_today()),('date_to','=',context_today())]"/>
+                    <filter string="الأسبوع الحالي" name="this_week"
+                            domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
+                    <filter string="الشهر الحالي" name="this_month"
+                            domain="[('date_from','&lt;=',context_today()),('date_to','&gt;=',context_today())]"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_customer_account_statement_tree" model="ir.ui.view">
+        <field name="name">customer.account.statement.tree</field>
+        <field name="model">customer.account.statement</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" string="العميل"/>
+                <field name="date_from" string="من تاريخ"/>
+                <field name="date_to" string="إلى تاريخ"/>
+                <field name="branch_ids"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="initial_balance" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="final_balance" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_customer_account_statement_form" model="ir.ui.view">
+        <field name="name">customer.account.statement.form</field>
+        <field name="model">customer.account.statement</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_excel_report"
+                            string="كشف حساب العميل (Excel)"
+                            type="object"
+                            class="oe_highlight"/>
+                    <button name="action_generate_pdf_report" 
+                            string="كشف حساب العميل (PDF)" 
+                            type="object" 
+                            class="oe_highlight"/>
+                    <button name="action_view_transactions" 
+                            string="عرض حركات الحساب" 
+                            type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="partner_id" string="العميل"/>
+                        <field name="date_from" string="من تاريخ"/>
+                        <field name="date_to" string="إلى تاريخ"/>
+                        <field name="branch_ids"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+
+                    <notebook>
+                        <page string="الرصيد">
+                            <group>
+                                <group string="الرصيد الافتتاحي">
+                                    <field name="initial_balance" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="إجمالي المدين">
+                                    <field name="total_debit" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="إجمالي الدائن">
+                                    <field name="total_credit" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                                <group string="الرصيد الختامي">
+                                    <field name="final_balance" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="حركات الحساب">
+                            <field name="transaction_lines" widget="html" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and Menu -->
+    <record id="action_customer_account_statement" model="ir.actions.act_window">
+        <field name="name">كشوفات حسابات العملاء</field>
+        <field name="res_model">customer.account.statement</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_customer_account_statement_tree"/>
+        <field name="search_view_id" ref="view_customer_account_statement_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">اضغط على إنشاء لإنشاء كشف حساب جديد</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_accounting_reports_root" name="التقارير" parent="account.menu_finance"/>
+    <menuitem id="menu_customer_account_statement" name="كشوفات حسابات العملاء" parent="menu_accounting_reports_root" action="action_customer_account_statement"/>
+</odoo>
