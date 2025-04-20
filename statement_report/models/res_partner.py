@@ -1,8 +1,29 @@
+# -*- coding: utf-8 -*-
+#############################################################################
+#
+#    Cybrosys Technologies Pvt. Ltd.
+#
+#    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Author:Ayisha Sumayya K (odoo@cybrosys.com)
+#
+#    You can modify it under the terms of the GNU LESSER
+#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU LESSER GENERAL PUBLIC LICENSE (LGPL v3) for more details.
+#
+#    You should have received a copy of the GNU LESSER GENERAL PUBLIC LICENSE
+#    (LGPL v3) along with this program.
+#    If not, see <http://www.gnu.org/licenses/>.
+#
+#############################################################################
 import base64
 import io
 import json
 import xlsxwriter
-from odoo import fields, models
+from odoo import fields, models, api
 from odoo.exceptions import ValidationError
 from odoo.tools import date_utils
 
@@ -27,6 +48,12 @@ class Partner(models.Model):
     date_from = fields.Date(string="From Date")
     date_to = fields.Date(string="To Date")
 
+    @api.constrains('date_from', 'date_to')
+    def _check_dates(self):
+        for record in self:
+            if record.date_from and record.date_to and record.date_from > record.date_to:
+                raise ValidationError("تاريخ البداية يجب أن يكون قبل تاريخ النهاية أو يساويه")
+
     def _compute_customer_report_ids(self):
         """ for computing 'invoices' of partner"""
         for rec in self:
@@ -41,8 +68,7 @@ class Partner(models.Model):
             if rec.date_to:
                 domain.append(('invoice_date', '<=', rec.date_to))
             
-            inv_ids = self.env['account.move'].search(domain).ids
-            rec.customer_report_ids = inv_ids
+            rec.customer_report_ids = self.env['account.move'].search(domain)
 
     def _compute_vendor_statement_ids(self):
         """ for computing 'bills' of partner """
@@ -58,8 +84,7 @@ class Partner(models.Model):
             if rec.date_to:
                 domain.append(('invoice_date', '<=', rec.date_to))
             
-            bill_ids = self.env['account.move'].search(domain).ids
-            rec.vendor_statement_ids = bill_ids
+            rec.vendor_statement_ids = self.env['account.move'].search(domain)
 
     def main_query(self):
         """return select query"""
