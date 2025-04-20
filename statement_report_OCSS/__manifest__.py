@@ -12,7 +12,7 @@
     'company': "Your Company",
     'website': "https://www.yourcompany.com",
     'category': 'Accounting',
-    'depends': ['account', 'branch'],
+    'depends': ['account', 'multi_branch_base'],
     'data': [
         # 'security/ir.model.access.csv',
         'views/customer_account_statement_views.xml',
