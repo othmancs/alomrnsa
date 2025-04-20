@@ -10,6 +10,7 @@ class CustomerStatementWizard(models.TransientModel):
     branch_id = fields.Many2one('multi.branch', string='Branch')
     
     def action_print_report(self):
+        self.ensure_one()
         data = {
             'partner_id': self.partner_id.id,
             'date_from': self.date_from,
