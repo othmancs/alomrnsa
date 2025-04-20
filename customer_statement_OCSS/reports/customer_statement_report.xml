@@ -7,6 +7,5 @@
         name="customer_statement.customer_statement_template"
         file="customer_statement.customer_statement_template"
         attachment_use="False"
-<!--         paperformat="custom.paperformat_custom" -->
     />
 </odoo>
