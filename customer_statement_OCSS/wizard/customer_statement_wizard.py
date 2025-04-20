@@ -17,4 +17,4 @@ class CustomerStatementWizard(models.TransientModel):
             'date_to': self.date_to,
             'branch_id': self.branch_id.id if self.branch_id else False,
         }
-        return self.env.ref('customer_statement.action_customer_statement_report').report_action(self, data=data)
+        return self.env.ref('customer_statement_OCSS.action_customer_statement_report').report_action(self, data=data)
