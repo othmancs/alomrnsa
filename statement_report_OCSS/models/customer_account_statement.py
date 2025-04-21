@@ -158,21 +158,34 @@ class CustomerAccountStatement(models.Model):
 
             lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
             
+            # تجميع الحركات حسب الفاتورة
+            move_dict = defaultdict(lambda: {'debit': 0.0, 'credit': 0.0, 'name': '', 'date': False, 'branch': ''})
+            
             for line in lines:
-                # حساب الرصيد الجديد
-                if line.debit > 0:
-                    running_balance += line.debit
+                move_dict[line.move_id]['debit'] += line.debit
+                move_dict[line.move_id]['credit'] += line.credit
+                if not move_dict[line.move_id]['name']:
+                    move_dict[line.move_id]['name'] = line.name or ''
+                if not move_dict[line.move_id]['date']:
+                    move_dict[line.move_id]['date'] = line.date
+                if not move_dict[line.move_id]['branch']:
+                    move_dict[line.move_id]['branch'] = line.branch_id.name or ''
+            
+            # عرض الحركات المجمعة
+            for move, vals in move_dict.items():
+                if vals['debit'] > 0:
+                    running_balance += vals['debit']
                 else:
-                    running_balance -= line.credit
+                    running_balance -= vals['credit']
                     
                 html_lines.append(f"""
                     <tr>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{line.date}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{line.move_id.name or ''}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{line.name or ''}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{line.branch_id.name or ''}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(line.debit, '.2f') if line.debit > 0 else ''}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(line.credit, '.2f') if line.credit > 0 else ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{vals['date']}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{move.name or ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{vals['name']}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{vals['branch']}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(vals['debit'], '.2f') if vals['debit'] > 0 else ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(vals['credit'], '.2f') if vals['credit'] > 0 else ''}</td>
                         <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(running_balance, '.2f')}</td>
                     </tr>
                 """)
@@ -333,19 +346,32 @@ class CustomerAccountStatement(models.Model):
 
         lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
         
+        # تجميع الحركات حسب الفاتورة
+        move_dict = defaultdict(lambda: {'debit': 0.0, 'credit': 0.0, 'name': '', 'date': False, 'branch': ''})
+        
         for line in lines:
-            # حساب الرصيد الجديد
-            if line.debit > 0:
-                running_balance += line.debit
+            move_dict[line.move_id]['debit'] += line.debit
+            move_dict[line.move_id]['credit'] += line.credit
+            if not move_dict[line.move_id]['name']:
+                move_dict[line.move_id]['name'] = line.name or ''
+            if not move_dict[line.move_id]['date']:
+                move_dict[line.move_id]['date'] = line.date
+            if not move_dict[line.move_id]['branch']:
+                move_dict[line.move_id]['branch'] = line.branch_id.name or ''
+        
+        # عرض الحركات المجمعة
+        for move, vals in move_dict.items():
+            if vals['debit'] > 0:
+                running_balance += vals['debit']
             else:
-                running_balance -= line.credit
+                running_balance -= vals['credit']
                 
-            worksheet.write(row, 0, line.date, text_format)
-            worksheet.write(row, 1, line.move_id.name or '', text_format)
-            worksheet.write(row, 2, line.name or '', text_format)
-            worksheet.write(row, 3, line.branch_id.name or '', text_format)
-            worksheet.write(row, 4, round(line.debit, 2) if line.debit > 0 else '', currency_format)
-            worksheet.write(row, 5, round(line.credit, 2) if line.credit > 0 else '', currency_format)
+            worksheet.write(row, 0, vals['date'], text_format)
+            worksheet.write(row, 1, move.name or '', text_format)
+            worksheet.write(row, 2, vals['name'], text_format)
+            worksheet.write(row, 3, vals['branch'], text_format)
+            worksheet.write(row, 4, round(vals['debit'], 2) if vals['debit'] > 0 else '', currency_format)
+            worksheet.write(row, 5, round(vals['credit'], 2) if vals['credit'] > 0 else '', currency_format)
             worksheet.write(row, 6, round(running_balance, 2), currency_format)
             row += 1
     
@@ -519,20 +545,33 @@ class CustomerAccountStatement(models.Model):
 
             lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
             
+            # تجميع الحركات حسب الفاتورة
+            move_dict = defaultdict(lambda: {'debit': 0.0, 'credit': 0.0, 'name': '', 'date': False, 'branch': ''})
+            
             for line in lines:
-                # حساب الرصيد الجديد
-                if line.debit > 0:
-                    running_balance += line.debit
+                move_dict[line.move_id]['debit'] += line.debit
+                move_dict[line.move_id]['credit'] += line.credit
+                if not move_dict[line.move_id]['name']:
+                    move_dict[line.move_id]['name'] = line.name or ''
+                if not move_dict[line.move_id]['date']:
+                    move_dict[line.move_id]['date'] = line.date
+                if not move_dict[line.move_id]['branch']:
+                    move_dict[line.move_id]['branch'] = line.branch_id.name or ''
+            
+            # عرض الحركات المجمعة
+            for move, vals in move_dict.items():
+                if vals['debit'] > 0:
+                    running_balance += vals['debit']
                 else:
-                    running_balance -= line.credit
+                    running_balance -= vals['credit']
                     
                 transaction_data.append([
-                    line.date.strftime('%Y-%m-%d'),
-                    line.move_id.name or '',
-                    line.name or '',
-                    line.branch_id.name or '',
-                    format(round(line.debit, 2), ',.2f') if line.debit > 0 else '',
-                    format(round(line.credit, 2), ',.2f') if line.credit > 0 else '',
+                    vals['date'].strftime('%Y-%m-%d'),
+                    move.name or '',
+                    vals['name'],
+                    vals['branch'],
+                    format(round(vals['debit'], 2), ',.2f') if vals['debit'] > 0 else '',
+                    format(round(vals['credit'], 2), ',.2f') if vals['credit'] > 0 else '',
                     format(round(running_balance, 2), ',.2f')
                 ])
             
