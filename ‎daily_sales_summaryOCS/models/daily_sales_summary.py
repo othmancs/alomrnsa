@@ -398,7 +398,7 @@ class DailySalesSummary(models.Model):
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True,'right_to_left': False})
         worksheet = workbook.add_worksheet('المبيعات والتحصيل')
-    
+        worksheet.right_to_left()
         # تنسيقات الخلايا
         title_format = workbook.add_format({
             'bold': True, 'align': 'center', 'valign': 'vcenter',
