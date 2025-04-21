@@ -118,10 +118,10 @@ class CustomerAccountStatement(models.Model):
 
             period_lines = self.env['account.move.line'].search(period_domain)
             
-            # حساب إجمالي الفواتير (فواتير بيع)
+          # حساب إجمالي الفواتير (فواتير بيع)
             invoice_domain = period_domain + [
                 ('move_id.move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt']),
-                ('account_id.internal_type', '=', 'receivable')
+                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
             ]
             invoice_lines = self.env['account.move.line'].search(invoice_domain)
             record.total_invoices = sum(line.balance for line in invoice_lines if line.move_id.move_type == 'out_invoice')
@@ -130,7 +130,7 @@ class CustomerAccountStatement(models.Model):
             # حساب إجمالي المقبوضات
             payment_domain = period_domain + [
                 ('payment_id', '!=', False),
-                ('account_id.internal_type', '=', 'receivable')
+                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
             ]
             payment_lines = self.env['account.move.line'].search(payment_domain)
             record.total_payments = sum(line.balance for line in payment_lines)
@@ -195,7 +195,7 @@ class CustomerAccountStatement(models.Model):
                 ('partner_id', '=', record.partner_id.id),
                 ('company_id', '=', record.company_id.id),
                 ('move_id.state', '=', 'posted'),
-                ('account_id.internal_type', '=', 'receivable')
+                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
             ]
             if record.branch_ids:
                 domain.append(('branch_id', 'in', record.branch_ids.ids))
@@ -952,7 +952,7 @@ class CustomerAccountStatement(models.Model):
                 ('partner_id', '=', self.partner_id.id),
                 ('company_id', '=', self.company_id.id),
                 ('move_id.state', '=', 'posted'),
-                ('account_id.internal_type', '=', 'receivable')
+                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
             ]
             if self.branch_ids:
                 domain.append(('branch_id', 'in', self.branch_ids.ids))
