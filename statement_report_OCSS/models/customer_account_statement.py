@@ -417,7 +417,7 @@ class CustomerAccountStatement(models.Model):
         output = io.BytesIO()
         workbook = xlsxwriter.Workbook(output, {'in_memory': True, 'right_to_left': True})
         worksheet = workbook.add_worksheet('كشف حساب العميل')
-    
+        worksheet.right_to_left()
         # تنسيقات الخلايا
         title_format = workbook.add_format({
             'bold': True, 'align': 'center', 'valign': 'vcenter',
@@ -443,14 +443,18 @@ class CustomerAccountStatement(models.Model):
             'bold': True, 'align': 'right', 'border': 1,
             'bg_color': '#E6F2FF'
         })
-    
+        date_format = workbook.add_format({
+        'num_format': 'yyyy-mm-dd',
+        'border': 1,
+        'align': 'right'
+        })
         # إضافة شعار الشركة
         row = 0
         if self.company_id.logo:
             try:
                 image_data = io.BytesIO(base64.b64decode(self.company_id.logo))
-                worksheet.merge_range(row, 5, row+1, 5, '')
-                worksheet.insert_image(row, 5, 'logo.png', {
+                worksheet.merge_range(row, 3, row+1, 3, '')
+                worksheet.insert_image(row, 3, 'logo.png', {
                     'image_data': image_data,
                     'x_scale': 0.15, 
                     'y_scale': 0.15,
@@ -602,7 +606,7 @@ class CustomerAccountStatement(models.Model):
                 else:
                     running_balance -= vals['credit']
                     
-                worksheet.write(row, 0, vals['date'], text_format)
+                worksheet.write(row, 0, vals['date'], date_format)
                 worksheet.write(row, 1, vals['doc_number'], text_format)
                 worksheet.write(row, 2, vals['name'], text_format)
                 worksheet.write(row, 3, vals['branch'], text_format)
