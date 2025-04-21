@@ -1,4 +1,4 @@
-# -- coding: utf-8 --
+# -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
 from datetime import timedelta
@@ -47,41 +47,41 @@ class CustomerAccountStatement(models.Model):
         related='company_id.currency_id', store=True
     )
 
-    # الحقول المحسوبة
+    # الحقول المحسوبة (تمت إزالة store=True)
     initial_balance = fields.Monetary(
         string='الرصيد الافتتاحي',
         currency_field='company_currency_id',
-        compute='_compute_balances', store=True
+        compute='_compute_balances'
     )
     total_invoices = fields.Monetary(
         string='إجمالي الفواتير',
         currency_field='company_currency_id',
-        compute='_compute_balances', store=True
+        compute='_compute_balances'
     )
     total_refunds = fields.Monetary(
         string='إجمالي الإشعارات الدائنة',
         currency_field='company_currency_id',
-        compute='_compute_balances', store=True
+        compute='_compute_balances'
     )
     total_payments = fields.Monetary(
         string='إجمالي المقبوضات',
         currency_field='company_currency_id',
-        compute='_compute_balances', store=True
+        compute='_compute_balances'
     )
     total_debit = fields.Monetary(
         string='إجمالي المدين',
         currency_field='company_currency_id',
-        compute='_compute_balances', store=True
+        compute='_compute_balances'
     )
     total_credit = fields.Monetary(
         string='إجمالي الدائن',
         currency_field='company_currency_id',
-        compute='_compute_balances', store=True
+        compute='_compute_balances'
     )
     final_balance = fields.Monetary(
         string='الرصيد الختامي',
         currency_field='company_currency_id',
-        compute='_compute_balances', store=True
+        compute='_compute_balances'
     )
     transaction_lines = fields.Html(
         string='حركات الحساب',
@@ -118,10 +118,10 @@ class CustomerAccountStatement(models.Model):
 
             period_lines = self.env['account.move.line'].search(period_domain)
             
-          # حساب إجمالي الفواتير (فواتير بيع)
+            # حساب إجمالي الفواتير (فواتير بيع)
             invoice_domain = period_domain + [
                 ('move_id.move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt']),
-                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
+                ('account_id.account_type', '=', 'asset_receivable')
             ]
             invoice_lines = self.env['account.move.line'].search(invoice_domain)
             record.total_invoices = sum(line.balance for line in invoice_lines if line.move_id.move_type == 'out_invoice')
@@ -130,7 +130,7 @@ class CustomerAccountStatement(models.Model):
             # حساب إجمالي المقبوضات
             payment_domain = period_domain + [
                 ('payment_id', '!=', False),
-                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
+                ('account_id.account_type', '=', 'asset_receivable')
             ]
             payment_lines = self.env['account.move.line'].search(payment_domain)
             record.total_payments = sum(line.balance for line in payment_lines)
@@ -195,7 +195,7 @@ class CustomerAccountStatement(models.Model):
                 ('partner_id', '=', record.partner_id.id),
                 ('company_id', '=', record.company_id.id),
                 ('move_id.state', '=', 'posted'),
-                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
+                ('account_id.account_type', '=', 'asset_receivable')
             ]
             if record.branch_ids:
                 domain.append(('branch_id', 'in', record.branch_ids.ids))
@@ -749,7 +749,6 @@ class CustomerAccountStatement(models.Model):
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
 
-    # باقي الدوال تبقى كما هي بدون تغيير
     @api.onchange('date_from')
     def _onchange_date_from(self):
         if self.date_from and not self.date_to:
@@ -952,7 +951,7 @@ class CustomerAccountStatement(models.Model):
                 ('partner_id', '=', self.partner_id.id),
                 ('company_id', '=', self.company_id.id),
                 ('move_id.state', '=', 'posted'),
-                ('account_id.account_type', '=', 'asset_receivable')  # تغيير هنا
+                ('account_id.account_type', '=', 'asset_receivable')
             ]
             if self.branch_ids:
                 domain.append(('branch_id', 'in', self.branch_ids.ids))
