@@ -195,7 +195,7 @@ class CustomerAccountStatement(models.Model):
                 ('partner_id', '=', record.partner_id.id),
                 ('company_id', '=', record.company_id.id),
                 ('move_id.state', '=', 'posted'),
-                ('account_id.account_type', '=', 'asset_receivable')
+                ('account_id.account_type', '=', 'asset_receivable')  # التغيير هنا
             ]
             if record.branch_ids:
                 domain.append(('branch_id', 'in', record.branch_ids.ids))
@@ -542,13 +542,12 @@ class CustomerAccountStatement(models.Model):
             ('partner_id', '=', self.partner_id.id),
             ('company_id', '=', self.company_id.id),
             ('move_id.state', '=', 'posted'),
-            ('account_id.internal_type', '=', 'receivable')
+            ('account_id.account_type', '=', 'asset_receivable')  # التغيير هنا
         ]
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
-
-        lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
-        
+    
+        lines = self.env['account.move.line'].search(domain, order='date, move_id, id')        
         # تجميع الحركات حسب المستند
         move_dict = defaultdict(lambda: {
             'debit': 0.0, 
