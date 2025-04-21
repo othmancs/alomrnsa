@@ -112,25 +112,7 @@ class CustomerAccountStatement(models.Model):
     @api.depends('date_from', 'date_to', 'partner_id', 'company_id', 'branch_ids')
     def _compute_transaction_lines(self):
         for record in self:
-            # البحث عن حركات الحساب وتجميعها حسب الفاتورة/الحركة
-            domain = [
-                ('date', '>=', record.date_from),
-                ('date', '<=', record.date_to),
-                ('partner_id', '=', record.partner_id.id),
-                ('company_id', '=', record.company_id.id),
-                ('move_id.state', '=', 'posted')
-            ]
-            if record.branch_ids:
-                domain.append(('branch_id', 'in', record.branch_ids.ids))
-
-            lines = self.env['account.move.line'].search(domain, order='date, move_id')
-            
-            # تجميع الحركات حسب move_id
-            grouped_moves = defaultdict(list)
-            for line in lines:
-                grouped_moves[line.move_id].append(line)
-            
-            # إنشاء جدول HTML لعرض الحركات المجمعة
+            # إنشاء جدول HTML لعرض الحركات
             html_lines = []
             html_lines.append("""
                 <table class="table table-bordered" style="width:100%; border-collapse: collapse;">
@@ -155,40 +137,42 @@ class CustomerAccountStatement(models.Model):
                     <td style="padding: 8px; border: 1px solid #ddd;"></td>
                     <td style="padding: 8px; border: 1px solid #ddd;">رصيد افتتاحي</td>
                     <td style="padding: 8px; border: 1px solid #ddd;"></td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(record.initial_balance, '.2f') if record.initial_balance > 0 else ''}</td>
-                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(-record.initial_balance, '.2f') if record.initial_balance < 0 else ''}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;"></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; text-align: right;"></td>
                     <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(record.initial_balance, '.2f')}</td>
                 </tr>
             """)
 
             running_balance = record.initial_balance
-            for move, move_lines in grouped_moves.items():
-                # حساب إجمالي المدين والدائن للحركة المجمعة
-                total_debit = sum(line.debit for line in move_lines)
-                total_credit = sum(line.credit for line in move_lines)
-                total_balance = sum(line.balance for line in move_lines)
-                running_balance += total_balance
-                
-                # استخدام تاريخ أول بند في الحركة
-                move_date = move_lines[0].date if move_lines else move.date
-                
-                # استخدام اسم الفاتورة أو رقم الحركة
-                move_name = move.name or 'حركة بدون رقم'
-                
-                # استخدام بيان أول بند أو اسم الحركة
-                move_description = move_lines[0].name if move_lines and move_lines[0].name else move_name
-                
-                # استخدام الفرع من أول بند (يفترض أن كل بنود الحركة لنفس الفرع)
-                move_branch = move_lines[0].branch_id.name if move_lines and move_lines[0].branch_id else ''
-                
+            
+            # البحث عن جميع حركات الحساب
+            domain = [
+                ('date', '>=', record.date_from),
+                ('date', '<=', record.date_to),
+                ('partner_id', '=', record.partner_id.id),
+                ('company_id', '=', record.company_id.id),
+                ('move_id.state', '=', 'posted')
+            ]
+            if record.branch_ids:
+                domain.append(('branch_id', 'in', record.branch_ids.ids))
+
+            lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
+            
+            for line in lines:
+                # حساب الرصيد الجديد
+                if line.debit > 0:
+                    running_balance += line.debit
+                else:
+                    running_balance -= line.credit
+                    
                 html_lines.append(f"""
                     <tr>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_date}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_name}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_description}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">{move_branch}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(total_debit, '.2f')}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(total_credit, '.2f')}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.date}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.move_id.name or ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.name or ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{line.branch_id.name or ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(line.debit, '.2f') if line.debit > 0 else ''}</td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(line.credit, '.2f') if line.credit > 0 else ''}</td>
                         <td style="padding: 8px; border: 1px solid #ddd; text-align: right;">{format(running_balance, '.2f')}</td>
                     </tr>
                 """)
@@ -329,12 +313,14 @@ class CustomerAccountStatement(models.Model):
         worksheet.write(row, 1, '', text_format)
         worksheet.write(row, 2, 'رصيد افتتاحي', text_format)
         worksheet.write(row, 3, '', text_format)
-        worksheet.write(row, 4, round(self.initial_balance, 2) if self.initial_balance > 0 else '', currency_format)
-        worksheet.write(row, 5, round(-self.initial_balance, 2) if self.initial_balance < 0 else '', currency_format)
+        worksheet.write(row, 4, '', currency_format)
+        worksheet.write(row, 5, '', currency_format)
         worksheet.write(row, 6, round(self.initial_balance, 2), currency_format)
         row += 1
     
-        # جمع بيانات الحركات وتجميعها حسب الفاتورة/الحركة
+        running_balance = self.initial_balance
+        
+        # البحث عن جميع حركات الحساب
         domain = [
             ('date', '>=', self.date_from),
             ('date', '<=', self.date_to),
@@ -345,39 +331,21 @@ class CustomerAccountStatement(models.Model):
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
 
-        lines = self.env['account.move.line'].search(domain, order='date, move_id')
+        lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
         
-        # تجميع الحركات حسب move_id
-        grouped_moves = defaultdict(list)
         for line in lines:
-            grouped_moves[line.move_id].append(line)
-        
-        running_balance = self.initial_balance
-        for move, move_lines in grouped_moves.items():
-            # حساب إجمالي المدين والدائن للحركة المجمعة
-            total_debit = sum(line.debit for line in move_lines)
-            total_credit = sum(line.credit for line in move_lines)
-            total_balance = sum(line.balance for line in move_lines)
-            running_balance += total_balance
-            
-            # استخدام تاريخ أول بند في الحركة
-            move_date = move_lines[0].date if move_lines else move.date
-            
-            # استخدام اسم الفاتورة أو رقم الحركة
-            move_name = move.name or 'حركة بدون رقم'
-            
-            # استخدام بيان أول بند أو اسم الحركة
-            move_description = move_lines[0].name if move_lines and move_lines[0].name else move_name
-            
-            # استخدام الفرع من أول بند (يفترض أن كل بنود الحركة لنفس الفرع)
-            move_branch = move_lines[0].branch_id.name if move_lines and move_lines[0].branch_id else ''
-            
-            worksheet.write(row, 0, move_date, text_format)
-            worksheet.write(row, 1, move_name, text_format)
-            worksheet.write(row, 2, move_description, text_format)
-            worksheet.write(row, 3, move_branch, text_format)
-            worksheet.write(row, 4, round(total_debit, 2), currency_format)
-            worksheet.write(row, 5, round(total_credit, 2), currency_format)
+            # حساب الرصيد الجديد
+            if line.debit > 0:
+                running_balance += line.debit
+            else:
+                running_balance -= line.credit
+                
+            worksheet.write(row, 0, line.date, text_format)
+            worksheet.write(row, 1, line.move_id.name or '', text_format)
+            worksheet.write(row, 2, line.name or '', text_format)
+            worksheet.write(row, 3, line.branch_id.name or '', text_format)
+            worksheet.write(row, 4, round(line.debit, 2) if line.debit > 0 else '', currency_format)
+            worksheet.write(row, 5, round(line.credit, 2) if line.credit > 0 else '', currency_format)
             worksheet.write(row, 6, round(running_balance, 2), currency_format)
             row += 1
     
@@ -512,8 +480,7 @@ class CustomerAccountStatement(models.Model):
             elements.append(balance_table)
             elements.append(Spacer(1, 20))
             
-            # إضافة حركات الحساب المجمعة
-            # رأس الجدول
+            # إضافة حركات الحساب
             transaction_header = [
                 'التاريخ',
                 'الرقم',
@@ -524,7 +491,6 @@ class CustomerAccountStatement(models.Model):
                 'الرصيد'
             ]
             
-            # بيانات الجدول
             transaction_data = [transaction_header]
             
             # إضافة الرصيد الافتتاحي
@@ -533,12 +499,14 @@ class CustomerAccountStatement(models.Model):
                 '',
                 'رصيد افتتاحي',
                 '',
-                format(round(self.initial_balance, 2), ',.2f') if self.initial_balance > 0 else '',
-                format(round(-self.initial_balance, 2), ',.2f') if self.initial_balance < 0 else '',
+                '',
+                '',
                 format(round(self.initial_balance, 2), ',.2f')
             ])
             
-            # إضافة الحركات المجمعة
+            running_balance = self.initial_balance
+            
+            # البحث عن جميع حركات الحساب
             domain = [
                 ('date', '>=', self.date_from),
                 ('date', '<=', self.date_to),
@@ -549,40 +517,22 @@ class CustomerAccountStatement(models.Model):
             if self.branch_ids:
                 domain.append(('branch_id', 'in', self.branch_ids.ids))
 
-            lines = self.env['account.move.line'].search(domain, order='date, move_id')
+            lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
             
-            # تجميع الحركات حسب move_id
-            grouped_moves = defaultdict(list)
             for line in lines:
-                grouped_moves[line.move_id].append(line)
-            
-            running_balance = self.initial_balance
-            for move, move_lines in grouped_moves.items():
-                # حساب إجمالي المدين والدائن للحركة المجمعة
-                total_debit = sum(line.debit for line in move_lines)
-                total_credit = sum(line.credit for line in move_lines)
-                total_balance = sum(line.balance for line in move_lines)
-                running_balance += total_balance
-                
-                # استخدام تاريخ أول بند في الحركة
-                move_date = move_lines[0].date.strftime('%Y-%m-%d') if move_lines else move.date.strftime('%Y-%m-%d')
-                
-                # استخدام اسم الفاتورة أو رقم الحركة
-                move_name = move.name or 'حركة بدون رقم'
-                
-                # استخدام بيان أول بند أو اسم الحركة
-                move_description = move_lines[0].name if move_lines and move_lines[0].name else move_name
-                
-                # استخدام الفرع من أول بند (يفترض أن كل بنود الحركة لنفس الفرع)
-                move_branch = move_lines[0].branch_id.name if move_lines and move_lines[0].branch_id else ''
-                
+                # حساب الرصيد الجديد
+                if line.debit > 0:
+                    running_balance += line.debit
+                else:
+                    running_balance -= line.credit
+                    
                 transaction_data.append([
-                    move_date,
-                    move_name,
-                    move_description,
-                    move_branch,
-                    format(round(total_debit, 2), ',.2f'),
-                    format(round(total_credit, 2), ',.2f'),
+                    line.date.strftime('%Y-%m-%d'),
+                    line.move_id.name or '',
+                    line.name or '',
+                    line.branch_id.name or '',
+                    format(round(line.debit, 2), ',.2f') if line.debit > 0 else '',
+                    format(round(line.credit, 2), ',.2f') if line.credit > 0 else '',
                     format(round(running_balance, 2), ',.2f')
                 ])
             
