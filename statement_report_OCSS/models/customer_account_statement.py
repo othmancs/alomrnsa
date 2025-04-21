@@ -1,4 +1,4 @@
-# -- coding: utf-8 --
+# -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
 from datetime import timedelta
@@ -19,7 +19,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 import arabic_reshaper
 from bidi.algorithm import get_display
 
-logger = logging.getLogger(name_)
+_logger = logging.getLogger(__name__)
 
 
 class CustomerAccountStatement(models.Model):
@@ -387,7 +387,7 @@ class CustomerAccountStatement(models.Model):
         output.seek(0)
     
         return {
-            'file_name': f"كشف_حساب_{self.partner_id.name}{self.date_from}_إلى{self.date_to}.xlsx",
+            'file_name': f"كشف_حساب_{self.partner_id.name}_{self.date_from}_إلى_{self.date_to}.xlsx",
             'file_content': output.read(),
             'file_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         }
@@ -596,7 +596,7 @@ class CustomerAccountStatement(models.Model):
             output.seek(0)
             
             return {
-                'file_name': f"كشف_حساب_{self.partner_id.name}{self.date_from}_إلى{self.date_to}.pdf",
+                'file_name': f"كشف_حساب_{self.partner_id.name}_{self.date_from}_إلى_{self.date_to}.pdf",
                 'file_content': output.read(),
                 'file_type': 'application/pdf'
             }
@@ -626,5 +626,3 @@ class CustomerAccountStatement(models.Model):
         except Exception as e:
             _logger.error("Failed to generate PDF report: %s", str(e))
             raise
-
-
