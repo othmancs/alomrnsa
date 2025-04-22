@@ -271,12 +271,17 @@ class CustomerAccountStatement(models.Model):
                             <td class="text-right">{format(running_balance, '.2f')}</td>
                         </tr>
                     """)
-                        payment_lines = self.env['account.payment'].search([
-            ('reconciled_invoice_ids', 'in', move.id),
-            ('state', '=', 'posted')
-        ])
-        
-                    
+                
+                # إجمالي الفواتير
+                html_lines.append(f"""
+                    <tr class="total-row">
+                        <td colspan="5">إجمالي الفواتير</td>
+                        <td class="text-right">{format(sum(v['debit'] for v in invoices.values()), '.2f')}</td>
+                        <td class="text-right">{format(sum(v['credit'] for v in invoices.values()), '.2f')}</td>
+                        <td></td>
+                    </tr>
+                """)
+            
             # عرض الإشعارات الدائنة
             if refunds:
                 html_lines.append(f"""
