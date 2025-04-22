@@ -276,36 +276,36 @@ class CustomerAccountStatement(models.Model):
             ('state', '=', 'posted')
         ])
         
-            # البحث عن سداد لهذه الفاتورة
-            payment_lines = self.env['account.payment'].search([
-                ('reconciled_invoice_ids', 'in', move.id),
-                ('state', '=', 'posted')
-            ])
-            
-            if payment_lines:
-                html_lines.append(f"""
-                    <tr class="section-row">
-                        <td colspan="8">سداد الفاتورة {vals['doc_number']}</td>
-                    </tr>
-                """)
-                
-                for payment in payment_lines:
-                    payment_amount = payment.amount
-                    running_balance -= payment_amount
+                    # البحث عن سداد لهذه الفاتورة
+                    payment_lines = self.env['account.payment'].search([
+                        ('reconciled_invoice_ids', 'in', move.id),
+                        ('state', '=', 'posted')
+                    ])
                     
-                    html_lines.append(f"""
-                        <tr>
-                            <td>{payment.payment_date}</td>
-                            <td>{payment.name}</td>
-                            <td>سداد للفاتورة {vals['doc_number']}</td>
-                            <td>{payment.branch_id.name or ''}</td>
-                            <td>سداد</td>
-                            <td class="text-right"></td>
-                            <td class="text-right">{format(payment_amount, '.2f')}</td>
-                            <td class="text-right">{format(running_balance, '.2f')}</td>
-                        </tr>
-                    """)
-            
+                    if payment_lines:
+                        html_lines.append(f"""
+                            <tr class="section-row">
+                                <td colspan="8">سداد الفاتورة {vals['doc_number']}</td>
+                            </tr>
+                        """)
+                        
+                        for payment in payment_lines:
+                            payment_amount = payment.amount
+                            running_balance -= payment_amount
+                            
+                            html_lines.append(f"""
+                                <tr>
+                                    <td>{payment.payment_date}</td>
+                                    <td>{payment.name}</td>
+                                    <td>سداد للفاتورة {vals['doc_number']}</td>
+                                    <td>{payment.branch_id.name or ''}</td>
+                                    <td>سداد</td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right">{format(payment_amount, '.2f')}</td>
+                                    <td class="text-right">{format(running_balance, '.2f')}</td>
+                                </tr>
+                            """)
+                    
             # عرض الإشعارات الدائنة
             if refunds:
                 html_lines.append(f"""
