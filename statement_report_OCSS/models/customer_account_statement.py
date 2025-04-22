@@ -162,8 +162,7 @@ class CustomerAccountStatement(models.Model):
                             <th>التاريخ</th>
                             <th>الرقم</th>
                             <th>البيان</th>
-                            <th>الفرع</th>
-                            <th>النوع</th>
+                            <th>نوع الحركة</th>
                             <th>مدين</th>
                             <th>دائن</th>
                             <th>الرصيد</th>
@@ -179,7 +178,6 @@ class CustomerAccountStatement(models.Model):
                     <td></td>
                     <td>رصيد افتتاحي</td>
                     <td></td>
-                    <td></td>
                     <td class="text-right"></td>
                     <td class="text-right"></td>
                     <td class="text-right">{format(record.initial_balance, '.2f')}</td>
@@ -188,14 +186,14 @@ class CustomerAccountStatement(models.Model):
 
             running_balance = record.initial_balance
             
-            # البحث عن جميع حركات الحساب
+            # البحث عن جميع حركات الحساب وترتيبها حسب التاريخ تصاعدياً
             domain = [
                 ('date', '>=', record.date_from),
                 ('date', '<=', record.date_to),
                 ('partner_id', '=', record.partner_id.id),
                 ('company_id', '=', record.company_id.id),
                 ('move_id.state', '=', 'posted'),
-                ('account_id.account_type', '=', 'asset_receivable')  # التغيير هنا
+                ('account_id.account_type', '=', 'asset_receivable')
             ]
             if record.branch_ids:
                 domain.append(('branch_id', 'in', record.branch_ids.ids))
@@ -239,164 +237,44 @@ class CustomerAccountStatement(models.Model):
                 if not move_dict[move]['doc_number']:
                     move_dict[move]['doc_number'] = move.name or ''
             
-            # تصنيف الحركات حسب النوع
-            invoices = {k:v for k,v in move_dict.items() if v['doc_type'] == 'فاتورة بيع'}
-            refunds = {k:v for k,v in move_dict.items() if v['doc_type'] == 'إشعار دائن'}
-            payments = {k:v for k,v in move_dict.items() if v['doc_type'] == 'مقبوضات'}
-            others = {k:v for k,v in move_dict.items() if v['doc_type'] == 'حركة أخرى'}
+            # دمج جميع الحركات في قائمة واحدة وترتيبها حسب التاريخ
+            all_moves = []
+            for move, vals in move_dict.items():
+                all_moves.append({
+                    'date': vals['date'],
+                    'doc_number': vals['doc_number'],
+                    'name': vals['name'],
+                    'doc_type': vals['doc_type'],
+                    'debit': vals['debit'],
+                    'credit': vals['credit']
+                })
             
-            # عرض الفواتير
-            if invoices:
-                html_lines.append(f"""
-                    <tr class="section-row">
-                        <td colspan="8">الفواتير</td>
-                    </tr>
-                """)
-                
-                for move, vals in invoices.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    html_lines.append(f"""
-                        <tr>
-                            <td>{vals['date']}</td>
-                            <td>{vals['doc_number']}</td>
-                            <td>{vals['name']}</td>
-                            <td>{vals['branch']}</td>
-                            <td>{vals['doc_type']}</td>
-                            <td class="text-right">{format(vals['debit'], '.2f') if vals['debit'] > 0 else ''}</td>
-                            <td class="text-right">{format(vals['credit'], '.2f') if vals['credit'] > 0 else ''}</td>
-                            <td class="text-right">{format(running_balance, '.2f')}</td>
-                        </tr>
-                    """)
-                
-                # إجمالي الفواتير
-                html_lines.append(f"""
-                    <tr class="total-row">
-                        <td colspan="5">إجمالي الفواتير</td>
-                        <td class="text-right">{format(sum(v['debit'] for v in invoices.values()), '.2f')}</td>
-                        <td class="text-right">{format(sum(v['credit'] for v in invoices.values()), '.2f')}</td>
-                        <td></td>
-                    </tr>
-                """)
+            # ترتيب الحركات حسب التاريخ تصاعدياً
+            all_moves.sort(key=lambda x: x['date'])
             
-            # عرض الإشعارات الدائنة
-            if refunds:
+            # عرض جميع الحركات معاً بعد الترتيب
+            for move in all_moves:
+                if move['debit'] > 0:
+                    running_balance += move['debit']
+                else:
+                    running_balance -= move['credit']
+                    
                 html_lines.append(f"""
-                    <tr class="section-row">
-                        <td colspan="8">الإشعارات الدائنة</td>
-                    </tr>
-                """)
-                
-                for move, vals in refunds.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    html_lines.append(f"""
-                        <tr>
-                            <td>{vals['date']}</td>
-                            <td>{vals['doc_number']}</td>
-                            <td>{vals['name']}</td>
-                            <td>{vals['branch']}</td>
-                            <td>{vals['doc_type']}</td>
-                            <td class="text-right">{format(vals['debit'], '.2f') if vals['debit'] > 0 else ''}</td>
-                            <td class="text-right">{format(vals['credit'], '.2f') if vals['credit'] > 0 else ''}</td>
-                            <td class="text-right">{format(running_balance, '.2f')}</td>
-                        </tr>
-                    """)
-                
-                # إجمالي الإشعارات الدائنة
-                html_lines.append(f"""
-                    <tr class="total-row">
-                        <td colspan="5">إجمالي الإشعارات الدائنة</td>
-                        <td class="text-right">{format(sum(v['debit'] for v in refunds.values()), '.2f')}</td>
-                        <td class="text-right">{format(sum(v['credit'] for v in refunds.values()), '.2f')}</td>
-                        <td></td>
-                    </tr>
-                """)
-            
-            # عرض المقبوضات
-            if payments:
-                html_lines.append(f"""
-                    <tr class="section-row">
-                        <td colspan="8">المقبوضات</td>
-                    </tr>
-                """)
-                
-                for move, vals in payments.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    html_lines.append(f"""
-                        <tr>
-                            <td>{vals['date']}</td>
-                            <td>{vals['doc_number']}</td>
-                            <td>{vals['name']}</td>
-                            <td>{vals['branch']}</td>
-                            <td>{vals['doc_type']}</td>
-                            <td class="text-right">{format(vals['debit'], '.2f') if vals['debit'] > 0 else ''}</td>
-                            <td class="text-right">{format(vals['credit'], '.2f') if vals['credit'] > 0 else ''}</td>
-                            <td class="text-right">{format(running_balance, '.2f')}</td>
-                        </tr>
-                    """)
-                
-                # إجمالي المقبوضات
-                html_lines.append(f"""
-                    <tr class="total-row">
-                        <td colspan="5">إجمالي المقبوضات</td>
-                        <td class="text-right">{format(sum(v['debit'] for v in payments.values()), '.2f')}</td>
-                        <td class="text-right">{format(sum(v['credit'] for v in payments.values()), '.2f')}</td>
-                        <td></td>
-                    </tr>
-                """)
-            
-            # عرض الحركات الأخرى
-            if others:
-                html_lines.append(f"""
-                    <tr class="section-row">
-                        <td colspan="8">حركات أخرى</td>
-                    </tr>
-                """)
-                
-                for move, vals in others.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    html_lines.append(f"""
-                        <tr>
-                            <td>{vals['date']}</td>
-                            <td>{vals['doc_number']}</td>
-                            <td>{vals['name']}</td>
-                            <td>{vals['branch']}</td>
-                            <td>{vals['doc_type']}</td>
-                            <td class="text-right">{format(vals['debit'], '.2f') if vals['debit'] > 0 else ''}</td>
-                            <td class="text-right">{format(vals['credit'], '.2f') if vals['credit'] > 0 else ''}</td>
-                            <td class="text-right">{format(running_balance, '.2f')}</td>
-                        </tr>
-                    """)
-                
-                # إجمالي الحركات الأخرى
-                html_lines.append(f"""
-                    <tr class="total-row">
-                        <td colspan="5">إجمالي الحركات الأخرى</td>
-                        <td class="text-right">{format(sum(v['debit'] for v in others.values()), '.2f')}</td>
-                        <td class="text-right">{format(sum(v['credit'] for v in others.values()), '.2f')}</td>
-                        <td></td>
+                    <tr>
+                        <td>{move['date']}</td>
+                        <td>{move['doc_number']}</td>
+                        <td>{move['name']}</td>
+                        <td>{move['doc_type']}</td>
+                        <td class="text-right">{format(move['debit'], '.2f') if move['debit'] > 0 else ''}</td>
+                        <td class="text-right">{format(move['credit'], '.2f') if move['credit'] > 0 else ''}</td>
+                        <td class="text-right">{format(running_balance, '.2f')}</td>
                     </tr>
                 """)
             
             # إجمالي عام
             html_lines.append(f"""
                 <tr class="total-row">
-                    <td colspan="5">الإجمالي العام للفترة</td>
+                    <td colspan="4">الإجمالي العام للفترة</td>
                     <td class="text-right">{format(record.total_debit, '.2f')}</td>
                     <td class="text-right">{format(record.total_credit, '.2f')}</td>
                     <td class="text-right">{format(record.final_balance, '.2f')}</td>
@@ -444,9 +322,9 @@ class CustomerAccountStatement(models.Model):
             'bg_color': '#E6F2FF'
         })
         date_format = workbook.add_format({
-        'num_format': 'yyyy-mm-dd',
-        'border': 1,
-        'align': 'right'
+            'num_format': 'yyyy-mm-dd',
+            'border': 1,
+            'align': 'right'
         })
         # إضافة شعار الشركة
         row = 0
@@ -472,12 +350,12 @@ class CustomerAccountStatement(models.Model):
                 pass
     
         # إضافة عنوان التقرير
-        worksheet.merge_range(row, 0, row, 7, 'كشف حساب العميل', title_format)
+        worksheet.merge_range(row, 0, row, 6, 'كشف حساب العميل', title_format)
         row += 1
-        worksheet.merge_range(row, 0, row, 7, f'العميل: {self.partner_id.name}', 
+        worksheet.merge_range(row, 0, row, 6, f'العميل: {self.partner_id.name}', 
                              workbook.add_format({'align': 'center', 'font_size': 12}))
         row += 1
-        worksheet.merge_range(row, 0, row, 7, f'من {self.date_from} إلى {self.date_to}', 
+        worksheet.merge_range(row, 0, row, 6, f'من {self.date_from} إلى {self.date_to}', 
                              workbook.add_format({'align': 'center', 'font_size': 12}))
         row += 2
     
@@ -515,8 +393,7 @@ class CustomerAccountStatement(models.Model):
             'التاريخ',
             'الرقم',
             'البيان',
-            'الفرع',
-            'النوع',
+            'نوع الحركة',
             'مدين',
             'دائن',
             'الرصيد'
@@ -527,31 +404,31 @@ class CustomerAccountStatement(models.Model):
         row += 1
     
         # إضافة الرصيد الافتتاحي
-        worksheet.write(row, 0, self.date_from, text_format)
+        worksheet.write(row, 0, self.date_from, date_format)
         worksheet.write(row, 1, '', text_format)
         worksheet.write(row, 2, 'رصيد افتتاحي', text_format)
         worksheet.write(row, 3, '', text_format)
-        worksheet.write(row, 4, '', text_format)
+        worksheet.write(row, 4, '', currency_format)
         worksheet.write(row, 5, '', currency_format)
-        worksheet.write(row, 6, '', currency_format)
-        worksheet.write(row, 7, round(self.initial_balance, 2), currency_format)
+        worksheet.write(row, 6, round(self.initial_balance, 2), currency_format)
         row += 1
     
         running_balance = self.initial_balance
         
-        # البحث عن جميع حركات الحساب
+        # البحث عن جميع حركات الحساب وترتيبها حسب التاريخ تصاعدياً
         domain = [
             ('date', '>=', self.date_from),
             ('date', '<=', self.date_to),
             ('partner_id', '=', self.partner_id.id),
             ('company_id', '=', self.company_id.id),
             ('move_id.state', '=', 'posted'),
-            ('account_id.account_type', '=', 'asset_receivable')  # التغيير هنا
+            ('account_id.account_type', '=', 'asset_receivable')
         ]
         if self.branch_ids:
             domain.append(('branch_id', 'in', self.branch_ids.ids))
     
-        lines = self.env['account.move.line'].search(domain, order='date, move_id, id')        
+        lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
+        
         # تجميع الحركات حسب المستند
         move_dict = defaultdict(lambda: {
             'debit': 0.0, 
@@ -589,138 +466,35 @@ class CustomerAccountStatement(models.Model):
             if not move_dict[move]['doc_number']:
                 move_dict[move]['doc_number'] = move.name or ''
         
-        # تصنيف الحركات حسب النوع
-        invoices = {k:v for k,v in move_dict.items() if v['doc_type'] == 'فاتورة بيع'}
-        refunds = {k:v for k,v in move_dict.items() if v['doc_type'] == 'إشعار دائن'}
-        payments = {k:v for k,v in move_dict.items() if v['doc_type'] == 'مقبوضات'}
-        others = {k:v for k,v in move_dict.items() if v['doc_type'] == 'حركة أخرى'}
+        # دمج جميع الحركات في قائمة واحدة وترتيبها حسب التاريخ
+        all_moves = []
+        for move, vals in move_dict.items():
+            all_moves.append({
+                'date': vals['date'],
+                'doc_number': vals['doc_number'],
+                'name': vals['name'],
+                'doc_type': vals['doc_type'],
+                'debit': vals['debit'],
+                'credit': vals['credit']
+            })
         
-        # عرض الفواتير
-        if invoices:
-            worksheet.merge_range(row, 0, row, 7, 'الفواتير', section_format)
-            row += 1
-            
-            for move, vals in invoices.items():
-                if vals['debit'] > 0:
-                    running_balance += vals['debit']
-                else:
-                    running_balance -= vals['credit']
-                    
-                worksheet.write(row, 0, vals['date'], date_format)
-                worksheet.write(row, 1, vals['doc_number'], text_format)
-                worksheet.write(row, 2, vals['name'], text_format)
-                worksheet.write(row, 3, vals['branch'], text_format)
-                worksheet.write(row, 4, vals['doc_type'], text_format)
-                worksheet.write(row, 5, round(vals['debit'], 2) if vals['debit'] > 0 else '', currency_format)
-                worksheet.write(row, 6, round(vals['credit'], 2) if vals['credit'] > 0 else '', currency_format)
-                worksheet.write(row, 7, round(running_balance, 2), currency_format)
-                row += 1
-            
-            # إجمالي الفواتير
-            worksheet.write(row, 0, 'إجمالي الفواتير', total_format)
-            worksheet.write(row, 1, '', total_format)
-            worksheet.write(row, 2, '', total_format)
-            worksheet.write(row, 3, '', total_format)
-            worksheet.write(row, 4, '', total_format)
-            worksheet.write(row, 5, round(sum(v['debit'] for v in invoices.values()), 2), total_format)
-            worksheet.write(row, 6, round(sum(v['credit'] for v in invoices.values()), 2), total_format)
-            worksheet.write(row, 7, '', total_format)
-            row += 1
+        # ترتيب الحركات حسب التاريخ تصاعدياً
+        all_moves.sort(key=lambda x: x['date'])
         
-        # عرض الإشعارات الدائنة
-        if refunds:
-            worksheet.merge_range(row, 0, row, 7, 'الإشعارات الدائنة', section_format)
-            row += 1
-            
-            for move, vals in refunds.items():
-                if vals['debit'] > 0:
-                    running_balance += vals['debit']
-                else:
-                    running_balance -= vals['credit']
-                    
-                worksheet.write(row, 0, vals['date'], text_format)
-                worksheet.write(row, 1, vals['doc_number'], text_format)
-                worksheet.write(row, 2, vals['name'], text_format)
-                worksheet.write(row, 3, vals['branch'], text_format)
-                worksheet.write(row, 4, vals['doc_type'], text_format)
-                worksheet.write(row, 5, round(vals['debit'], 2) if vals['debit'] > 0 else '', currency_format)
-                worksheet.write(row, 6, round(vals['credit'], 2) if vals['credit'] > 0 else '', currency_format)
-                worksheet.write(row, 7, round(running_balance, 2), currency_format)
-                row += 1
-            
-            # إجمالي الإشعارات الدائنة
-            worksheet.write(row, 0, 'إجمالي الإشعارات الدائنة', total_format)
-            worksheet.write(row, 1, '', total_format)
-            worksheet.write(row, 2, '', total_format)
-            worksheet.write(row, 3, '', total_format)
-            worksheet.write(row, 4, '', total_format)
-            worksheet.write(row, 5, round(sum(v['debit'] for v in refunds.values()), 2), total_format)
-            worksheet.write(row, 6, round(sum(v['credit'] for v in refunds.values()), 2), total_format)
-            worksheet.write(row, 7, '', total_format)
-            row += 1
-        
-        # عرض المقبوضات
-        if payments:
-            worksheet.merge_range(row, 0, row, 7, 'المقبوضات', section_format)
-            row += 1
-            
-            for move, vals in payments.items():
-                if vals['debit'] > 0:
-                    running_balance += vals['debit']
-                else:
-                    running_balance -= vals['credit']
-                    
-                worksheet.write(row, 0, vals['date'], text_format)
-                worksheet.write(row, 1, vals['doc_number'], text_format)
-                worksheet.write(row, 2, vals['name'], text_format)
-                worksheet.write(row, 3, vals['branch'], text_format)
-                worksheet.write(row, 4, vals['doc_type'], text_format)
-                worksheet.write(row, 5, round(vals['debit'], 2) if vals['debit'] > 0 else '', currency_format)
-                worksheet.write(row, 6, round(vals['credit'], 2) if vals['credit'] > 0 else '', currency_format)
-                worksheet.write(row, 7, round(running_balance, 2), currency_format)
-                row += 1
-            
-            # إجمالي المقبوضات
-            worksheet.write(row, 0, 'إجمالي المقبوضات', total_format)
-            worksheet.write(row, 1, '', total_format)
-            worksheet.write(row, 2, '', total_format)
-            worksheet.write(row, 3, '', total_format)
-            worksheet.write(row, 4, '', total_format)
-            worksheet.write(row, 5, round(sum(v['debit'] for v in payments.values()), 2), total_format)
-            worksheet.write(row, 6, round(sum(v['credit'] for v in payments.values()), 2), total_format)
-            worksheet.write(row, 7, '', total_format)
-            row += 1
-        
-        # عرض الحركات الأخرى
-        if others:
-            worksheet.merge_range(row, 0, row, 7, 'حركات أخرى', section_format)
-            row += 1
-            
-            for move, vals in others.items():
-                if vals['debit'] > 0:
-                    running_balance += vals['debit']
-                else:
-                    running_balance -= vals['credit']
-                    
-                worksheet.write(row, 0, vals['date'], text_format)
-                worksheet.write(row, 1, vals['doc_number'], text_format)
-                worksheet.write(row, 2, vals['name'], text_format)
-                worksheet.write(row, 3, vals['branch'], text_format)
-                worksheet.write(row, 4, vals['doc_type'], text_format)
-                worksheet.write(row, 5, round(vals['debit'], 2) if vals['debit'] > 0 else '', currency_format)
-                worksheet.write(row, 6, round(vals['credit'], 2) if vals['credit'] > 0 else '', currency_format)
-                worksheet.write(row, 7, round(running_balance, 2), currency_format)
-                row += 1
-            
-            # إجمالي الحركات الأخرى
-            worksheet.write(row, 0, 'إجمالي الحركات الأخرى', total_format)
-            worksheet.write(row, 1, '', total_format)
-            worksheet.write(row, 2, '', total_format)
-            worksheet.write(row, 3, '', total_format)
-            worksheet.write(row, 4, '', total_format)
-            worksheet.write(row, 5, round(sum(v['debit'] for v in others.values()), 2), total_format)
-            worksheet.write(row, 6, round(sum(v['credit'] for v in others.values()), 2), total_format)
-            worksheet.write(row, 7, '', total_format)
+        # عرض جميع الحركات معاً بعد الترتيب
+        for move in all_moves:
+            if move['debit'] > 0:
+                running_balance += move['debit']
+            else:
+                running_balance -= move['credit']
+                
+            worksheet.write(row, 0, move['date'], date_format)
+            worksheet.write(row, 1, move['doc_number'], text_format)
+            worksheet.write(row, 2, move['name'], text_format)
+            worksheet.write(row, 3, move['doc_type'], text_format)
+            worksheet.write(row, 4, round(move['debit'], 2) if move['debit'] > 0 else '', currency_format)
+            worksheet.write(row, 5, round(move['credit'], 2) if move['credit'] > 0 else '', currency_format)
+            worksheet.write(row, 6, round(running_balance, 2), currency_format)
             row += 1
         
         # إجمالي عام
@@ -728,19 +502,17 @@ class CustomerAccountStatement(models.Model):
         worksheet.write(row, 1, '', total_format)
         worksheet.write(row, 2, '', total_format)
         worksheet.write(row, 3, '', total_format)
-        worksheet.write(row, 4, '', total_format)
-        worksheet.write(row, 5, round(self.total_debit, 2), total_format)
-        worksheet.write(row, 6, round(self.total_credit, 2), total_format)
-        worksheet.write(row, 7, round(self.final_balance, 2), total_format)
+        worksheet.write(row, 4, round(self.total_debit, 2), total_format)
+        worksheet.write(row, 5, round(self.total_credit, 2), total_format)
+        worksheet.write(row, 6, round(self.final_balance, 2), total_format)
         row += 1
     
         # ضبط عرض الأعمدة
         worksheet.set_column(0, 0, 12)  # التاريخ
         worksheet.set_column(1, 1, 15)  # الرقم
         worksheet.set_column(2, 2, 30)  # البيان
-        worksheet.set_column(3, 3, 15)  # الفرع
-        worksheet.set_column(4, 4, 15)  # النوع
-        worksheet.set_column(5, 7, 15)  # الأرقام
+        worksheet.set_column(3, 3, 15)  # نوع الحركة
+        worksheet.set_column(4, 6, 15)  # الأرقام
     
         # إغلاق الكتاب وحفظه
         workbook.close()
@@ -924,8 +696,7 @@ class CustomerAccountStatement(models.Model):
                 'التاريخ',
                 'الرقم',
                 'البيان',
-                'الفرع',
-                'النوع',
+                'نوع الحركة',
                 'مدين',
                 'دائن',
                 'الرصيد'
@@ -941,13 +712,12 @@ class CustomerAccountStatement(models.Model):
                 '',
                 '',
                 '',
-                '',
                 format(round(self.initial_balance, 2), ',.2f')
             ])
             
             running_balance = self.initial_balance
             
-            # البحث عن جميع حركات الحساب
+            # البحث عن جميع حركات الحساب وترتيبها حسب التاريخ تصاعدياً
             domain = [
                 ('date', '>=', self.date_from),
                 ('date', '<=', self.date_to),
@@ -998,146 +768,48 @@ class CustomerAccountStatement(models.Model):
                 if not move_dict[move]['doc_number']:
                     move_dict[move]['doc_number'] = move.name or ''
             
-            # تصنيف الحركات حسب النوع
-            invoices = {k:v for k,v in move_dict.items() if v['doc_type'] == 'فاتورة بيع'}
-            refunds = {k:v for k,v in move_dict.items() if v['doc_type'] == 'إشعار دائن'}
-            payments = {k:v for k,v in move_dict.items() if v['doc_type'] == 'مقبوضات'}
-            others = {k:v for k,v in move_dict.items() if v['doc_type'] == 'حركة أخرى'}
+            # دمج جميع الحركات في قائمة واحدة وترتيبها حسب التاريخ
+            all_moves = []
+            for move, vals in move_dict.items():
+                all_moves.append({
+                    'date': vals['date'],
+                    'doc_number': vals['doc_number'],
+                    'name': vals['name'],
+                    'doc_type': vals['doc_type'],
+                    'debit': vals['debit'],
+                    'credit': vals['credit']
+                })
             
-            # عرض الفواتير
-            if invoices:
-                transaction_data.append([
-                    'الفواتير', '', '', '', '', '', '', ''
-                ])
-                
-                for move, vals in invoices.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    transaction_data.append([
-                        vals['date'].strftime('%Y-%m-%d'),
-                        vals['doc_number'],
-                        vals['name'],
-                        vals['branch'],
-                        vals['doc_type'],
-                        format(round(vals['debit'], 2), ',.2f') if vals['debit'] > 0 else '',
-                        format(round(vals['credit'], 2), ',.2f') if vals['credit'] > 0 else '',
-                        format(round(running_balance, 2), ',.2f')
-                    ])
-                
-                # إجمالي الفواتير
-                transaction_data.append([
-                    'إجمالي الفواتير', '', '', '', '',
-                    format(round(sum(v['debit'] for v in invoices.values()), 2), ',.2f'),
-                    format(round(sum(v['credit'] for v in invoices.values()), 2), ',.2f'),
-                    ''
-                ])
+            # ترتيب الحركات حسب التاريخ تصاعدياً
+            all_moves.sort(key=lambda x: x['date'])
             
-            # عرض الإشعارات الدائنة
-            if refunds:
+            # عرض جميع الحركات معاً بعد الترتيب
+            for move in all_moves:
+                if move['debit'] > 0:
+                    running_balance += move['debit']
+                else:
+                    running_balance -= move['credit']
+                    
                 transaction_data.append([
-                    'الإشعارات الدائنة', '', '', '', '', '', '', ''
-                ])
-                
-                for move, vals in refunds.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    transaction_data.append([
-                        vals['date'].strftime('%Y-%m-%d'),
-                        vals['doc_number'],
-                        vals['name'],
-                        vals['branch'],
-                        vals['doc_type'],
-                        format(round(vals['debit'], 2), ',.2f') if vals['debit'] > 0 else '',
-                        format(round(vals['credit'], 2), ',.2f') if vals['credit'] > 0 else '',
-                        format(round(running_balance, 2), ',.2f')
-                    ])
-                
-                # إجمالي الإشعارات الدائنة
-                transaction_data.append([
-                    'إجمالي الإشعارات الدائنة', '', '', '', '',
-                    format(round(sum(v['debit'] for v in refunds.values()), 2), ',.2f'),
-                    format(round(sum(v['credit'] for v in refunds.values()), 2), ',.2f'),
-                    ''
-                ])
-            
-            # عرض المقبوضات
-            if payments:
-                transaction_data.append([
-                    'المقبوضات', '', '', '', '', '', '', ''
-                ])
-                
-                for move, vals in payments.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    transaction_data.append([
-                        vals['date'].strftime('%Y-%m-%d'),
-                        vals['doc_number'],
-                        vals['name'],
-                        vals['branch'],
-                        vals['doc_type'],
-                        format(round(vals['debit'], 2), ',.2f') if vals['debit'] > 0 else '',
-                        format(round(vals['credit'], 2), ',.2f') if vals['credit'] > 0 else '',
-                        format(round(running_balance, 2), ',.2f')
-                    ])
-                
-                # إجمالي المقبوضات
-                transaction_data.append([
-                    'إجمالي المقبوضات', '', '', '', '',
-                    format(round(sum(v['debit'] for v in payments.values()), 2), ',.2f'),
-                    format(round(sum(v['credit'] for v in payments.values()), 2), ',.2f'),
-                    ''
-                ])
-            
-            # عرض الحركات الأخرى
-            if others:
-                transaction_data.append([
-                    'حركات أخرى', '', '', '', '', '', '', ''
-                ])
-                
-                for move, vals in others.items():
-                    if vals['debit'] > 0:
-                        running_balance += vals['debit']
-                    else:
-                        running_balance -= vals['credit']
-                        
-                    transaction_data.append([
-                        vals['date'].strftime('%Y-%m-%d'),
-                        vals['doc_number'],
-                        vals['name'],
-                        vals['branch'],
-                        vals['doc_type'],
-                        format(round(vals['debit'], 2), ',.2f') if vals['debit'] > 0 else '',
-                        format(round(vals['credit'], 2), ',.2f') if vals['credit'] > 0 else '',
-                        format(round(running_balance, 2), ',.2f')
-                    ])
-                
-                # إجمالي الحركات الأخرى
-                transaction_data.append([
-                    'إجمالي الحركات الأخرى', '', '', '', '',
-                    format(round(sum(v['debit'] for v in others.values()), 2), ',.2f'),
-                    format(round(sum(v['credit'] for v in others.values()), 2), ',.2f'),
-                    ''
+                    move['date'].strftime('%Y-%m-%d'),
+                    move['doc_number'],
+                    move['name'],
+                    move['doc_type'],
+                    format(round(move['debit'], 2), ',.2f') if move['debit'] > 0 else '',
+                    format(round(move['credit'], 2), ',.2f') if move['credit'] > 0 else '',
+                    format(round(running_balance, 2), ',.2f')
                 ])
             
             # إجمالي عام
             transaction_data.append([
-                'الإجمالي العام للفترة', '', '', '', '',
+                'الإجمالي العام للفترة', '', '', '',
                 format(round(self.total_debit, 2), ',.2f'),
                 format(round(self.total_credit, 2), ',.2f'),
                 format(round(self.final_balance, 2), ',.2f')
             ])
             
             # إنشاء جدول الحركات
-            transaction_table = Table(transaction_data, colWidths=[70, 70, 100, 70, 70, 70, 70, 70])
+            transaction_table = Table(transaction_data, colWidths=[70, 70, 100, 70, 70, 70, 70])
             transaction_table.setStyle(TableStyle([
                 ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#4472C4')),
                 ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
@@ -1149,13 +821,7 @@ class CustomerAccountStatement(models.Model):
                 ('BACKGROUND', (0, 1), (-1, -1), colors.white),
                 ('GRID', (0, 0), (-1, -1), 1, colors.black),
                 ('BACKGROUND', (0, -1), (-1, -1), colors.HexColor('#D9E1F2')),
-                ('FONTWEIGHT', (0, -1), (-1, -1), 'BOLD'),
-                ('BACKGROUND', (lambda r: r in [1] + [i for i in range(2, len(transaction_data)) if transaction_data[i][0] in ['الفواتير', 'الإشعارات الدائنة', 'المقبوضات', 'حركات أخرى']], 0), 
-                 (lambda r: r in [1] + [i for i in range(2, len(transaction_data)) if transaction_data[i][0] in ['الفواتير', 'الإشعارات الدائنة', 'المقبوضات', 'حركات أخرى']], -1), 
-                 colors.HexColor('#E6F2FF')),
-                ('FONTWEIGHT', (lambda r: r in [1] + [i for i in range(2, len(transaction_data)) if transaction_data[i][0] in ['الفواتير', 'الإشعارات الدائنة', 'المقبوضات', 'حركات أخرى']], 0), 
-                 (lambda r: r in [1] + [i for i in range(2, len(transaction_data)) if transaction_data[i][0] in ['الفواتير', 'الإشعارات الدائنة', 'المقبوضات', 'حركات أخرى']], -1), 
-                 'BOLD')
+                ('FONTWEIGHT', (0, -1), (-1, -1), 'BOLD')
             ]))
             
             elements.append(transaction_table)
