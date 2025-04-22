@@ -97,31 +97,32 @@ class CustomerAccountStatement(models.Model):
                 ('date', '<', record.date_from),
                 ('partner_id', '=', record.partner_id.id),
                 ('company_id', '=', record.company_id.id),
-                ('move_id.state', '=', 'posted')
+                ('move_id.state', '=', 'posted'),
+                ('account_id.account_type', '=', 'asset_receivable')
             ]
             if record.branch_ids:
                 initial_domain.append(('branch_id', 'in', record.branch_ids.ids))
-
+    
             initial_lines = self.env['account.move.line'].search(initial_domain)
             record.initial_balance = sum(line.balance for line in initial_lines)
-
+    
             # حساب الحركات خلال الفترة
             period_domain = [
                 ('date', '>=', record.date_from),
                 ('date', '<=', record.date_to),
                 ('partner_id', '=', record.partner_id.id),
                 ('company_id', '=', record.company_id.id),
-                ('move_id.state', '=', 'posted')
+                ('move_id.state', '=', 'posted'),
+                ('account_id.account_type', '=', 'asset_receivable')
             ]
             if record.branch_ids:
                 period_domain.append(('branch_id', 'in', record.branch_ids.ids))
-
+    
             period_lines = self.env['account.move.line'].search(period_domain)
             
             # حساب إجمالي الفواتير (فواتير بيع)
             invoice_domain = period_domain + [
-                ('move_id.move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt']),
-                ('account_id.account_type', '=', 'asset_receivable')
+                ('move_id.move_type', 'in', ['out_invoice', 'out_refund', 'out_receipt'])
             ]
             invoice_lines = self.env['account.move.line'].search(invoice_domain)
             record.total_invoices = sum(line.balance for line in invoice_lines if line.move_id.move_type == 'out_invoice')
@@ -129,18 +130,17 @@ class CustomerAccountStatement(models.Model):
             
             # حساب إجمالي المقبوضات
             payment_domain = period_domain + [
-                ('payment_id', '!=', False),
-                ('account_id.account_type', '=', 'asset_receivable')
+                ('payment_id', '!=', False)
             ]
             payment_lines = self.env['account.move.line'].search(payment_domain)
             record.total_payments = sum(line.balance for line in payment_lines)
             
+            # حساب المدين والدائن بشكل صحيح
             record.total_debit = sum(line.debit for line in period_lines)
             record.total_credit = sum(line.credit for line in period_lines)
-
-            # حساب الرصيد الختامي
+    
+            # حساب الرصيد الختامي بشكل صحيح
             record.final_balance = record.initial_balance + sum(line.balance for line in period_lines)
-
     @api.depends('date_from', 'date_to', 'partner_id', 'company_id', 'branch_ids')
     def _compute_transaction_lines(self):
         for record in self:
@@ -197,7 +197,7 @@ class CustomerAccountStatement(models.Model):
             ]
             if record.branch_ids:
                 domain.append(('branch_id', 'in', record.branch_ids.ids))
-
+    
             lines = self.env['account.move.line'].search(domain, order='date, move_id, id')
             
             # تجميع الحركات حسب المستند
@@ -246,7 +246,8 @@ class CustomerAccountStatement(models.Model):
                     'name': vals['name'],
                     'doc_type': vals['doc_type'],
                     'debit': vals['debit'],
-                    'credit': vals['credit']
+                    'credit': vals['credit'],
+                    'balance': vals['debit'] - vals['credit']  # إضافة حساب الرصيد لكل حركة
                 })
             
             # ترتيب الحركات حسب التاريخ تصاعدياً
@@ -254,10 +255,7 @@ class CustomerAccountStatement(models.Model):
             
             # عرض جميع الحركات معاً بعد الترتيب
             for move in all_moves:
-                if move['debit'] > 0:
-                    running_balance += move['debit']
-                else:
-                    running_balance -= move['credit']
+                running_balance += move['balance']  # تحديث الرصيد المتراكم بشكل صحيح
                     
                 html_lines.append(f"""
                     <tr>
@@ -270,6 +268,7 @@ class CustomerAccountStatement(models.Model):
                         <td class="text-right">{format(running_balance, '.2f')}</td>
                     </tr>
                 """)
+
             
             # إجمالي عام
             html_lines.append(f"""
