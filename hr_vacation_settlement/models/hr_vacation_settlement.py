@@ -150,18 +150,18 @@ class HrVacationSettlement(models.Model):
                 record.used_vacation_days = 0
                 record.remaining_vacation_days = 0
                 continue
-
+    
             # حساب إجمالي أيام الإجازة المستحقة حسب سياسة الشركة
             total_days = 30  # مثال: 30 يوم إجازة سنوية حسب نظام العمل السعودي
             
             # حساب أيام الإجازة المستخدمة في الفترة
-            # التعديل: استخدام allocation_type بدلاً من is_vacation
+            # التعديل النهائي: استخدام معايير بحث أكثر مرونة
             leaves = self.env['hr.leave'].search([
                 ('employee_id', '=', record.employee_id.id),
                 ('state', '=', 'validate'),
-                ('holiday_status_id.allocation_type', '=', 'fixed'),  # التعديل هنا
-                ('date_from', '>=', record.date_from),
-                ('date_to', '<=', record.date_to)
+                ('request_date_from', '>=', record.date_from),
+                ('request_date_to', '<=', record.date_to),
+                ('holiday_status_id.requires_allocation', '=', 'yes')  # تعديل نهائي
             ])
             
             used_days = sum(leave.number_of_days for leave in leaves)
@@ -169,7 +169,6 @@ class HrVacationSettlement(models.Model):
             record.total_vacation_days = total_days
             record.used_vacation_days = used_days
             record.remaining_vacation_days = total_days - used_days
-
     @api.depends('employee_id', 'daily_wage', 'remaining_vacation_days')
     def _compute_vacation_amount(self):
         for record in self:
