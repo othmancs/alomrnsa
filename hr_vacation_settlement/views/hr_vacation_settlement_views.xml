@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_vacation_settlement_tree" model="ir.ui.view">
+        <field name="name">hr.vacation.settlement.tree</field>
+        <field name="model">hr.vacation.settlement</field>
+        <field name="arch" type="xml">
+            <tree string="تصفية الإجازات">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="remaining_vacation_days"/>
+                <field name="vacation_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_vacation_settlement_form" model="ir.ui.view">
+        <field name="name">hr.vacation.settlement.form</field>
+        <field name="model">hr.vacation.settlement</field>
+        <field name="arch" type="xml">
+            <form string="تصفية الإجازة السنوية">
+                <header>
+                    <button name="action_confirm" string="تأكيد" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','!=','draft')]}"/>
+                    <button name="action_approve" string="اعتماد" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','!=','confirmed')]}"/>
+                    <button name="action_done" string="إنهاء" type="object" class="btn-primary"
+                            attrs="{'invisible': [('state','!=','approved')]}"/>
+                    <button name="action_cancel" string="إلغاء" type="object" class="btn-secondary"
+                            attrs="{'invisible': [('state','in',['done','canceled'])]}"/>
+                    <button name="action_draft" string="إعادة إلى المسودة" type="object" class="btn-secondary"
+                            attrs="{'invisible': [('state','!=','canceled')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,approved,done,canceled"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" required="1"/>
+                            <field name="department_id"/>
+                            <field name="job_id"/>
+                        </group>
+                        <group>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                            <field name="company_id" options="{'no_open': True}"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="تفاصيل الإجازة">
+                            <group>
+                                <group>
+                                    <field name="total_vacation_days" readonly="1"/>
+                                    <field name="used_vacation_days" readonly="1"/>
+                                    <field name="remaining_vacation_days" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="daily_wage" readonly="1"/>
+                                    <field name="vacation_amount" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <page string="سلف الإجازة">
+                            <field name="advance_ids" context="{'default_settlement_id': active_id}">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="name"/>
+                                    <field name="amount"/>
+                                    <field name="notes"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="amount"/>
+                                        <field name="notes"/>
+                                    </group>
+                                </form>
+                            </field>
+                            <group>
+                                <group>
+                                    <field name="total_advances" readonly="1"/>
+                                    <field name="net_amount" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <page string="ملاحظات">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- قائمة التصفية -->
+    <menuitem id="menu_hr_vacation_settlement_root" name="تصفية الإجازات" sequence="10"/>
+    <menuitem id="menu_hr_vacation_settlement" name="تصفية الإجازات" parent="menu_hr_vacation_settlement_root"/>
+    
+    <!-- إجراءات القائمة -->
+    <record id="action_hr_vacation_settlement" model="ir.actions.act_window">
+        <field name="name">تصفية الإجازات</field>
+        <field name="res_model">hr.vacation.settlement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem id="menu_hr_vacation_settlement_action" name="تصفية الإجازات" 
+              parent="menu_hr_vacation_settlement" action="action_hr_vacation_settlement"/>
+</odoo>

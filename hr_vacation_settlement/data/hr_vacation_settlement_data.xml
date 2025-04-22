@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- تسلسل الأرقام المرجعية -->
+        <record id="seq_hr_vacation_settlement" model="ir.sequence">
+            <field name="name">تصفية الإجازة السنوية</field>
+            <field name="code">hr.vacation.settlement</field>
+            <field name="prefix">VAC-SET/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <!-- إجراءات التقارير -->
+        <record id="action_report_vacation_settlement" model="ir.actions.report">
+            <field name="name">تقرير تصفية الإجازة</field>
+            <field name="model">hr.vacation.settlement</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_vacation_settlement.report_vacation_settlement</field>
+            <field name="report_file">hr_vacation_settlement.report_vacation_settlement</field>
+            <field name="print_report_name">'تصفية الإجازة - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_hr_vacation_settlement"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
