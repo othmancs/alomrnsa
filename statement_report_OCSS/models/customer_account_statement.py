@@ -141,6 +141,7 @@ class CustomerAccountStatement(models.Model):
     
             # حساب الرصيد الختامي بشكل صحيح
             record.final_balance = record.initial_balance + sum(line.balance for line in period_lines)
+
     @api.depends('date_from', 'date_to', 'partner_id', 'company_id', 'branch_ids')
     def _compute_transaction_lines(self):
         for record in self:
@@ -150,22 +151,23 @@ class CustomerAccountStatement(models.Model):
                 <style>
                     .total-row { background-color: #f2f2f2; font-weight: bold; }
                     .section-row { background-color: #e6f2ff; font-weight: bold; }
-                    .table { width: 100%; border-collapse: collapse; }
+                    .table { width: 100%; border-collapse: collapse; direction: rtl; }
                     .table th { padding: 8px; border: 1px solid #ddd; background-color: #4472C4; color: white; }
                     .table td { padding: 8px; border: 1px solid #ddd; }
                     .text-right { text-align: right; }
                     .text-center { text-align: center; }
+                    .document-link { color: #4472C4; text-decoration: none; }
+                    .document-link:hover { text-decoration: underline; }
                 </style>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>التاريخ</th>
-                            <th>الرقم</th>
-                            <th>البيان</th>
-                            <th>نوع الحركة</th>
-                            <th>مدين</th>
-                            <th>دائن</th>
                             <th>الرصيد</th>
+                            <th>دائن</th>
+                            <th>مدين</th>
+                            <th>نوع الحركة</th>
+                            <th>الرقم</th>
+                            <th>التاريخ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -174,13 +176,12 @@ class CustomerAccountStatement(models.Model):
             # إضافة الرصيد الافتتاحي
             html_lines.append(f"""
                 <tr class="total-row">
-                    <td>{record.date_from}</td>
-                    <td></td>
-                    <td>رصيد افتتاحي</td>
-                    <td></td>
-                    <td class="text-right"></td>
-                    <td class="text-right"></td>
                     <td class="text-right">{format(record.initial_balance, '.2f')}</td>
+                    <td class="text-right"></td>
+                    <td class="text-right"></td>
+                    <td></td>
+                    <td></td>
+                    <td>{record.date_from}</td>
                 </tr>
             """)
 
@@ -209,7 +210,8 @@ class CustomerAccountStatement(models.Model):
                 'branch': '',
                 'move_type': '',
                 'doc_number': '',
-                'doc_type': ''
+                'doc_type': '',
+                'move_id': False
             })
             
             for line in lines:
@@ -236,6 +238,8 @@ class CustomerAccountStatement(models.Model):
                     move_dict[move]['doc_type'] = doc_type
                 if not move_dict[move]['doc_number']:
                     move_dict[move]['doc_number'] = move.name or ''
+                if not move_dict[move]['move_id']:
+                    move_dict[move]['move_id'] = move.id
             
             # دمج جميع الحركات في قائمة واحدة وترتيبها حسب التاريخ
             all_moves = []
@@ -247,7 +251,8 @@ class CustomerAccountStatement(models.Model):
                     'doc_type': vals['doc_type'],
                     'debit': vals['debit'],
                     'credit': vals['credit'],
-                    'balance': vals['debit'] - vals['credit']  # إضافة حساب الرصيد لكل حركة
+                    'balance': vals['debit'] - vals['credit'],
+                    'move_id': vals['move_id']
                 })
             
             # ترتيب الحركات حسب التاريخ تصاعدياً
@@ -256,16 +261,18 @@ class CustomerAccountStatement(models.Model):
             # عرض جميع الحركات معاً بعد الترتيب
             for move in all_moves:
                 running_balance += move['balance']  # تحديث الرصيد المتراكم بشكل صحيح
-                    
+                
+                # إنشاء رابط للمستند
+                doc_link = f"/web#id={move['move_id']}&model=account.move&view_type=form"
+                
                 html_lines.append(f"""
                     <tr>
-                        <td>{move['date']}</td>
-                        <td>{move['doc_number']}</td>
-                        <td>{move['name']}</td>
-                        <td>{move['doc_type']}</td>
-                        <td class="text-right">{format(move['debit'], '.2f') if move['debit'] > 0 else ''}</td>
-                        <td class="text-right">{format(move['credit'], '.2f') if move['credit'] > 0 else ''}</td>
                         <td class="text-right">{format(running_balance, '.2f')}</td>
+                        <td class="text-right">{format(move['credit'], '.2f') if move['credit'] > 0 else ''}</td>
+                        <td class="text-right">{format(move['debit'], '.2f') if move['debit'] > 0 else ''}</td>
+                        <td>{move['doc_type']}</td>
+                        <td><a href="{doc_link}" class="document-link">{move['doc_number']}</a></td>
+                        <td>{move['date']}</td>
                     </tr>
                 """)
 
@@ -273,10 +280,10 @@ class CustomerAccountStatement(models.Model):
             # إجمالي عام
             html_lines.append(f"""
                 <tr class="total-row">
-                    <td colspan="4">الإجمالي العام للفترة</td>
-                    <td class="text-right">{format(record.total_debit, '.2f')}</td>
-                    <td class="text-right">{format(record.total_credit, '.2f')}</td>
                     <td class="text-right">{format(record.final_balance, '.2f')}</td>
+                    <td class="text-right">{format(record.total_credit, '.2f')}</td>
+                    <td class="text-right">{format(record.total_debit, '.2f')}</td>
+                    <td colspan="3">الإجمالي العام للفترة</td>
                 </tr>
             """)
 
@@ -391,7 +398,6 @@ class CustomerAccountStatement(models.Model):
         headers = [
             'التاريخ',
             'الرقم',
-            'البيان',
             'نوع الحركة',
             'مدين',
             'دائن',
@@ -405,11 +411,10 @@ class CustomerAccountStatement(models.Model):
         # إضافة الرصيد الافتتاحي
         worksheet.write(row, 0, self.date_from, date_format)
         worksheet.write(row, 1, '', text_format)
-        worksheet.write(row, 2, 'رصيد افتتاحي', text_format)
-        worksheet.write(row, 3, '', text_format)
+        worksheet.write(row, 2, '', text_format)
+        worksheet.write(row, 3, '', currency_format)
         worksheet.write(row, 4, '', currency_format)
-        worksheet.write(row, 5, '', currency_format)
-        worksheet.write(row, 6, round(self.initial_balance, 2), currency_format)
+        worksheet.write(row, 5, round(self.initial_balance, 2), currency_format)
         row += 1
     
         running_balance = self.initial_balance
@@ -489,29 +494,26 @@ class CustomerAccountStatement(models.Model):
                 
             worksheet.write(row, 0, move['date'], date_format)
             worksheet.write(row, 1, move['doc_number'], text_format)
-            worksheet.write(row, 2, move['name'], text_format)
-            worksheet.write(row, 3, move['doc_type'], text_format)
-            worksheet.write(row, 4, round(move['debit'], 2) if move['debit'] > 0 else '', currency_format)
-            worksheet.write(row, 5, round(move['credit'], 2) if move['credit'] > 0 else '', currency_format)
-            worksheet.write(row, 6, round(running_balance, 2), currency_format)
+            worksheet.write(row, 2, move['doc_type'], text_format)
+            worksheet.write(row, 3, round(move['debit'], 2) if move['debit'] > 0 else '', currency_format)
+            worksheet.write(row, 4, round(move['credit'], 2) if move['credit'] > 0 else '', currency_format)
+            worksheet.write(row, 5, round(running_balance, 2), currency_format)
             row += 1
         
         # إجمالي عام
         worksheet.write(row, 0, 'الإجمالي العام للفترة', total_format)
         worksheet.write(row, 1, '', total_format)
         worksheet.write(row, 2, '', total_format)
-        worksheet.write(row, 3, '', total_format)
-        worksheet.write(row, 4, round(self.total_debit, 2), total_format)
-        worksheet.write(row, 5, round(self.total_credit, 2), total_format)
-        worksheet.write(row, 6, round(self.final_balance, 2), total_format)
+        worksheet.write(row, 3, round(self.total_debit, 2), total_format)
+        worksheet.write(row, 4, round(self.total_credit, 2), total_format)
+        worksheet.write(row, 5, round(self.final_balance, 2), total_format)
         row += 1
     
         # ضبط عرض الأعمدة
         worksheet.set_column(0, 0, 12)  # التاريخ
         worksheet.set_column(1, 1, 15)  # الرقم
-        worksheet.set_column(2, 2, 30)  # البيان
-        worksheet.set_column(3, 3, 15)  # نوع الحركة
-        worksheet.set_column(4, 6, 15)  # الأرقام
+        worksheet.set_column(2, 2, 15)  # نوع الحركة
+        worksheet.set_column(3, 5, 15)  # الأرقام
     
         # إغلاق الكتاب وحفظه
         workbook.close()
@@ -694,7 +696,6 @@ class CustomerAccountStatement(models.Model):
             transaction_header = [
                 'التاريخ',
                 'الرقم',
-                'البيان',
                 'نوع الحركة',
                 'مدين',
                 'دائن',
@@ -707,7 +708,6 @@ class CustomerAccountStatement(models.Model):
             transaction_data.append([
                 self.date_from.strftime('%Y-%m-%d'),
                 '',
-                'رصيد افتتاحي',
                 '',
                 '',
                 '',
@@ -792,7 +792,6 @@ class CustomerAccountStatement(models.Model):
                 transaction_data.append([
                     move['date'].strftime('%Y-%m-%d'),
                     move['doc_number'],
-                    move['name'],
                     move['doc_type'],
                     format(round(move['debit'], 2), ',.2f') if move['debit'] > 0 else '',
                     format(round(move['credit'], 2), ',.2f') if move['credit'] > 0 else '',
@@ -801,14 +800,14 @@ class CustomerAccountStatement(models.Model):
             
             # إجمالي عام
             transaction_data.append([
-                'الإجمالي العام للفترة', '', '', '',
+                'الإجمالي العام للفترة', '', '',
                 format(round(self.total_debit, 2), ',.2f'),
                 format(round(self.total_credit, 2), ',.2f'),
                 format(round(self.final_balance, 2), ',.2f')
             ])
             
             # إنشاء جدول الحركات
-            transaction_table = Table(transaction_data, colWidths=[70, 70, 100, 70, 70, 70, 70])
+            transaction_table = Table(transaction_data, colWidths=[70, 70, 70, 70, 70, 70])
             transaction_table.setStyle(TableStyle([
                 ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#4472C4')),
                 ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
