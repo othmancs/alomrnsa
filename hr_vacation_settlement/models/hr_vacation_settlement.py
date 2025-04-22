@@ -155,10 +155,11 @@ class HrVacationSettlement(models.Model):
             total_days = 30  # مثال: 30 يوم إجازة سنوية حسب نظام العمل السعودي
             
             # حساب أيام الإجازة المستخدمة في الفترة
+            # التعديل: استخدام allocation_type بدلاً من is_vacation
             leaves = self.env['hr.leave'].search([
                 ('employee_id', '=', record.employee_id.id),
                 ('state', '=', 'validate'),
-                ('holiday_status_id.is_vacation', '=', True),
+                ('holiday_status_id.allocation_type', '=', 'fixed'),  # التعديل هنا
                 ('date_from', '>=', record.date_from),
                 ('date_to', '<=', record.date_to)
             ])
