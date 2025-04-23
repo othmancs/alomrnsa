@@ -1,15 +1,16 @@
 <!-- views/purchase_order_views.xml -->
-
 <odoo>
     <record id="view_purchase_order_form_inherit" model="ir.ui.view">
         <field name="name">purchase.order.form.inherit</field>
         <field name="model">purchase.order</field>
         <field name="inherit_id" ref="purchase.purchase_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet" position="before">
-                <div class="oe_title">
-                    <field name="landed_cost_total"/>
-                </div>
+            <!-- وضع الحقول الجديدة تحت total_in_sar -->
+            <xpath expr="//field[@name='total_in_sar']" position="after">
+                <field name="landed_cost_total" string="صافي التكلفة"/>
+                <field name="total_supplier_cost" string="إجمالي المورد" 
+                       compute="_compute_total_supplier_cost" 
+                       store="True"/>
             </xpath>
         </field>
     </record>
