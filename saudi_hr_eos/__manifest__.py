@@ -33,6 +33,8 @@ EOS amount
         "saudi_hr_it_operations",
         "hr_contract", 
         "hr_payroll",
+        "l10n_sa_hr_payroll",
+
     ],
     "data": [
         "security/ir.model.access.csv",
