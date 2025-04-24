@@ -64,7 +64,7 @@ class PurchaseOrder(models.Model):
                     order.amount_total, company_currency,
                     order.company_id, order.date_order or fields.Date.today()
                 )
-            else:
-                amount_in_sar = order.amount_total
+            # else:
+            #     amount_in_sar = order.amount_total
 
             order.total_supplier_cost = amount_in_sar + order.landed_cost_total
