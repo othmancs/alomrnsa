@@ -30,7 +30,7 @@ class PurchaseOrder(models.Model):
     @api.depends('amount_total', 'landed_cost_total', 'currency_id', 'total_in_sar')
     def _compute_total_supplier_cost(self):
         for order in self:
-            if order.currency_id.name == 'US':
+            if order.currency_id.symbol == '$':
                 # إذا كانت العملة دولار أمريكي، نجمع landed_cost_total مع total_in_sar
                 order.total_supplier_cost = order.total_in_sar + order.landed_cost_total
             else:
