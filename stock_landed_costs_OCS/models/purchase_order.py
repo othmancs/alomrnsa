@@ -46,6 +46,7 @@ class PurchaseOrder(models.Model):
     @api.depends('amount_total', 'landed_cost_total', 'currency_id', 'total_in_sar')
     def _compute_total_supplier_cost(self):
         for order in self:
+            company_currency = order.company_currency_id
             if order.currency_id != company_currency:
                 order.total_supplier_cost = order.total_in_sar + order.landed_cost_total
             else:
