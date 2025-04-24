@@ -16,6 +16,13 @@ class PurchaseOrder(models.Model):
         store=True,
         currency_field='currency_id'
     )
+    total_in_sar = fields.Monetary(
+    string="Total in SAR",
+    compute='_compute_total_in_sar',
+    currency_field='company_currency_id',
+    readonly=True,
+    store=True
+    )
         
     @api.depends('invoice_ids')
     def _compute_landed_cost_total(self):
