@@ -6,6 +6,8 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tax_totals']" position="after">
                 <field name="total_in_sar" readonly="1"/>
+                <field name="landed_cost_total" readonly="1"/>
+                <field name="total_supplier_cost" readonly="1"/>
             </xpath>
         </field>
     </record>
