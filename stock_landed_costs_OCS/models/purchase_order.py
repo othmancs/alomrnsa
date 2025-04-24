@@ -1,14 +1,10 @@
+
+# models/purchase_order.py
+
 from odoo import models, fields, api
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
-
-    company_currency_id = fields.Many2one(
-        'res.currency',
-        string="Company Currency",
-        related='company_id.currency_id',
-        readonly=True
-    )
 
     landed_cost_total = fields.Float(
         string='صافي التكلفة',
@@ -16,21 +12,12 @@ class PurchaseOrder(models.Model):
         store=True
     )
 
-    total_in_sar = fields.Monetary(
-        string="الإجمالي بالريال",
-        compute='_compute_total_in_sar',
-        currency_field='company_currency_id',
-        readonly=True,
+    total_supplier_cost = fields.Float(
+        string='إجمالي المورد',
+        compute='_compute_total_supplier_cost',
         store=True
     )
-
-    total_supplier_cost = fields.Monetary(
-        string="إجمالي المورد",
-        compute="_compute_total_supplier_cost",
-        store=True,
-        currency_field='company_currency_id'  # ← نعرض الناتج بالريال
-    )
-
+    
     @api.depends('invoice_ids')
     def _compute_landed_cost_total(self):
         for order in self:
@@ -42,3 +29,8 @@ class PurchaseOrder(models.Model):
                     ])
                     total += sum(landed_costs.mapped('amount_total'))
             order.landed_cost_total = total
+    
+    @api.depends('amount_total', 'landed_cost_total')
+    def _compute_total_supplier_cost(self):
+        for order in self:
+            order.total_supplier_cost = order.amount_total + order.landed_cost_total
