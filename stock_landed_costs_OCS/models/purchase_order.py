@@ -16,13 +16,13 @@ class PurchaseOrder(models.Model):
         store=True
     )
 
-    total_in_sar = fields.Monetary(
-        string="Total in SAR",
-        compute='_compute_total_in_sar',
-        currency_field='company_currency_id',
-        readonly=True,
-        store=True
-    )
+    # total_in_sar = fields.Monetary(
+    #     string="Total in SAR",
+    #     compute='_compute_total_in_sar',
+    #     currency_field='company_currency_id',
+    #     readonly=True,
+    #     store=True
+    # )
 
     total_supplier_cost = fields.Monetary(
         string="Total Supplier Cost",
