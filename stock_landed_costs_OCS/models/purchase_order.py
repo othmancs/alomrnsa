@@ -67,4 +67,4 @@ class PurchaseOrder(models.Model):
             # else:
             #     amount_in_sar = order.amount_total
 
-            order.total_supplier_cost = amount_in_sar + order.landed_cost_total
+            order.total_supplier_cost = total_in_sar + order.landed_cost_total
