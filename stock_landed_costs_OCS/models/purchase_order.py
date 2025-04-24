@@ -52,8 +52,8 @@ class PurchaseOrder(models.Model):
                     order.amount_total, company_currency,
                     order.company_id, order.date_order or fields.Date.today()
                 )
-            else:
-                order.total_in_sar = order.amount_total
+            # else:
+            #     order.total_in_sar = order.amount_total
 
     @api.depends('amount_total', 'landed_cost_total', 'currency_id')
     def _compute_total_supplier_cost(self):
