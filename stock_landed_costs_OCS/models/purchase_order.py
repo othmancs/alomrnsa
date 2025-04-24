@@ -16,11 +16,19 @@ class PurchaseOrder(models.Model):
         store=True
     )
 
+    total_in_sar = fields.Monetary(
+        string="الإجمالي بالريال",
+        compute='_compute_total_in_sar',
+        currency_field='company_currency_id',
+        readonly=True,
+        store=True
+    )
+
     total_supplier_cost = fields.Monetary(
-        string="Total Supplier Cost",
+        string="إجمالي المورد",
         compute="_compute_total_supplier_cost",
         store=True,
-        currency_field='currency_id'
+        currency_field='company_currency_id'  # ← نعرض الناتج بالريال
     )
 
     @api.depends('invoice_ids')
@@ -35,13 +43,28 @@ class PurchaseOrder(models.Model):
                     total += sum(landed_costs.mapped('amount_total'))
             order.landed_cost_total = total
 
+    @api.depends('amount_total', 'currency_id')
+    def _compute_total_in_sar(self):
+        for order in self:
+            company_currency = order.company_currency_id
+            if order.currency_id != company_currency:
+                order.total_in_sar = order.currency_id._convert(
+                    order.amount_total, company_currency,
+                    order.company_id, order.date_order or fields.Date.today()
+                )
+            else:
+                order.total_in_sar = order.amount_total
+
     @api.depends('amount_total', 'landed_cost_total', 'currency_id')
     def _compute_total_supplier_cost(self):
         for order in self:
             company_currency = order.company_currency_id
             if order.currency_id != company_currency:
                 amount_in_sar = order.currency_id._convert(
-                    order.amount_total, company_currency, order.company_id, order.date_order or fields.Date.today())
-                order.total_supplier_cost = amount_in_sar + order.landed_cost_total
+                    order.amount_total, company_currency,
+                    order.company_id, order.date_order or fields.Date.today()
+                )
             else:
-                order.total_supplier_cost = order.amount_total + order.landed_cost_total
+                amount_in_sar = order.amount_total
+
+            order.total_supplier_cost = amount_in_sar + order.landed_cost_total
