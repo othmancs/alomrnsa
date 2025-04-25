@@ -42,21 +42,21 @@ class PurchaseOrder(models.Model):
                 )
                 
                 if vendor_bills:
-                    # البحث باستخدام الحقول المعروفة فقط
+                    # بناء شرط البحث بشكل صحيح
                     domain = ['|',
                              ('vendor_bill_id', 'in', vendor_bills.ids),
                              ('invoice_id', 'in', vendor_bills.ids)]
                     
-                    # إضافة شرط pickings فقط إذا كان الحقل موجوداً
-                    if 'picking_ids' in self.env['stock.landed.cost']._fields:
-                        domain.append('|')
-                        domain.append(('picking_ids', 'in', order.picking_ids.ids))
+                    # إضافة شرط pickings فقط إذا كان هناك pickings
+                    if order.picking_ids and 'picking_ids' in self.env['stock.landed.cost']._fields:
+                        domain = ['|'] + domain + [('picking_ids', 'in', order.picking_ids.ids)]
                     
                     landed_costs = self.env['stock.landed.cost'].search(domain)
                     
                     total = sum(landed_costs.mapped('amount_total'))
             
-            order.landed_cost_total = total      
+            order.landed_cost_total = total
+    
     @api.depends('amount_total', 'currency_id')
     def _compute_total_in_sar(self):
         for order in self:
