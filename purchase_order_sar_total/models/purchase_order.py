@@ -42,7 +42,7 @@ class PurchaseOrder(models.Model):
                 if vendor_bills:
                     # استخدام الحقل الصحيح (invoice_id بدلاً من vendor_bill_id)
                     landed_costs = self.env['stock.landed.cost'].search([
-                        ('invoice_id', 'in', vendor_bills.ids)
+                        ('invoice_id', 'in', vendor_bills.id)
                     ])
                     total = sum(landed_costs.mapped('amount_total'))
             
