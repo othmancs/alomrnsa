@@ -31,43 +31,22 @@ class PurchaseOrder(models.Model):
         currency_field='company_currency_id'
     )
 
-    # @api.depends('invoice_ids')
-    # def _compute_landed_cost_total(self):
-    #     for order in self:
-    #         total = 0.0
-    #         if 'stock.landed.cost' in self.env:
-    #             for invoice in order.invoice_ids:
-    #                 landed_costs = self.env['stock.landed.cost'].search([
-    #                     ('vendor_bill_id', '=', invoice.id)
-    #                 ])
-    #                 total += sum(landed_costs.mapped('amount_total'))
-    #         order.landed_cost_total = total
-    # @api.depends('invoice_ids')
-    # def _compute_landed_cost_total(self):
-    #     for order in self:
-    #         total = 0.0
-    #         if 'stock.landed.cost' in self.env:
-    #             # تحديد فقط فواتير المورد
-    #             vendor_bills = order.invoice_ids.filtered(lambda inv: inv.move_type == 'in_invoice')
-    #             if vendor_bills:
-    #                 # استخدام الاسم الصحيح للحقل: invoice_vendor_bill_id
-    #                 landed_costs = self.env['stock.landed.cost'].search([
-    #                     ('invoice_vendor_bill_id', 'in', vendor_bills.ids)
-    #                 ])
-    #                 total = sum(landed_costs.mapped('amount_total'))
-    #         order.landed_cost_total = total
     @api.depends('invoice_ids')
     def _compute_landed_cost_total(self):
         for order in self:
-                total = 0.0
-                if 'stock.landed.cost' in self.env:  # التحقق من وجود النموذج
-                    for invoice in order.invoice_ids:
-                        landed_costs = self.env['stock.landed.cost'].search([
-                            ('vendor_bill_id', '=', invoice.id)
-                        ])
-                        total += sum(landed_costs.mapped('amount_total'))
-                order.landed_cost_total = total
-    
+            total = 0.0
+            if 'stock.landed.cost' in self.env:
+                # تصفية فقط فواتير المورد (in_invoice)
+                vendor_bills = order.invoice_ids.filtered(lambda inv: inv.move_type == 'in_invoice')
+                
+                if vendor_bills:
+                    # استخدام الحقل الصحيح (invoice_id بدلاً من vendor_bill_id)
+                    landed_costs = self.env['stock.landed.cost'].search([
+                        ('invoice_id', 'in', vendor_bills.ids)
+                    ])
+                    total = sum(landed_costs.mapped('amount_total'))
+            
+            order.landed_cost_total = total
     
     @api.depends('amount_total', 'currency_id')
     def _compute_total_in_sar(self):
