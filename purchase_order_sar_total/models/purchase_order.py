@@ -41,9 +41,9 @@ class PurchaseOrder(models.Model):
                 total = 0.0
                 if 'stock.landed.cost' in self.env:
                     # تصفية فواتير المورد المعتمدة فقط
-                    vendor_bills = order.invoice_ids.filtered(
-                        lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
-                    )
+                    # vendor_bills = order.invoice_ids.filtered(
+                    #     lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
+                    # )
                     
                     if vendor_bills:
                         # بناء شرط البحث الآمن
