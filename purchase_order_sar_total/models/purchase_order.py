@@ -37,12 +37,14 @@ class PurchaseOrder(models.Model):
             total = 0.0
             if 'stock.landed.cost' in self.env:
                 # تصفية فقط فواتير المورد (in_invoice)
-                vendor_bills = order.invoice_ids.filtered(lambda inv: inv.move_type == 'in_invoice')
+                vendor_bills = order.invoice_ids.filtered(
+                    lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
+                )
                 
                 if vendor_bills:
-                    # استخدام الحقل الصحيح (invoice_id بدلاً من vendor_bill_id)
+                    # استخدام الحقل الصحيح مع ids (للقائمة)
                     landed_costs = self.env['stock.landed.cost'].search([
-                        ('invoice_id', 'in', vendor_bills.id)
+                        ('invoice_id', 'in', vendor_bills.ids)
                     ])
                     total = sum(landed_costs.mapped('amount_total'))
             
