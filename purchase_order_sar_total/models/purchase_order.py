@@ -1,4 +1,7 @@
 from odoo import models, fields, api
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
@@ -34,41 +37,36 @@ class PurchaseOrder(models.Model):
     @api.depends('invoice_ids')
     def _compute_landed_cost_total(self):
         for order in self:
-            total = 0.0
-            if 'stock.landed.cost' in self.env:
-                # تصفية فواتير المورد المعتمدة فقط
-                vendor_bills = order.invoice_ids.filtered(
-                    lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
-                )
+            try:
+                total = 0.0
+                if 'stock.landed.cost' in self.env:
+                    # تصفية فواتير المورد المعتمدة فقط
+                    vendor_bills = order.invoice_ids.filtered(
+                        lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
+                    )
+                    
+                    if vendor_bills:
+                        # بناء شرط البحث الآمن
+                        domain = []
+                        if 'vendor_bill_id' in self.env['stock.landed.cost']._fields:
+                            domain.append(('vendor_bill_id', 'in', vendor_bills.ids))
+                        
+                        if domain:
+                            landed_costs = self.env['stock.landed.cost'].search(domain)
+                            total = sum(landed_costs.mapped('amount_total'))
+                            
+                            _logger.debug(
+                                "Order %s: Found %d landed costs totaling %f",
+                                order.name,
+                                len(landed_costs),
+                                total
+                            )
                 
-                if vendor_bills:
-                    # بناء شرط البحث بشكل آمن
-                    domain = []
-                    model = self.env['stock.landed.cost']
-                    
-                    # التحقق من وجود الحقول قبل استخدامها
-                    if 'vendor_bill_id' in model._fields:
-                        domain.append(('vendor_bill_id', 'in', vendor_bills.ids))
-                    
-                    # إذا كان هناك حقول أخرى متاحة للبحث
-                    if 'picking_ids' in model._fields and order.picking_ids:
-                        if domain:  # إذا كان هناك شروط سابقة
-                            domain.insert(0, '|')
-                        domain.append(('picking_ids', 'in', order.picking_ids.ids))
-                    
-                    # البحث فقط إذا كان هناك شروط
-                    if domain:
-                        landed_costs = model.search(domain)
-                        total = sum(landed_costs.mapped('amount_total'))
-                    
-                    # تسجيل معلومات التصحيح
-                    _logger.info("Order: %s, Bills: %s, Costs found: %s, Total: %s",
-                               order.name, 
-                               vendor_bills.mapped('name'),
-                               len(landed_costs),
-                               total)
-            
-            order.landed_cost_total = total    
+                order.landed_cost_total = total
+            except Exception as e:
+                _logger.error("Error computing landed cost for order %s: %s", order.name, str(e))
+                order.landed_cost_total = 0.0
+    
     @api.depends('amount_total', 'currency_id')
     def _compute_total_in_sar(self):
         for order in self:
