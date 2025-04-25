@@ -42,21 +42,33 @@ class PurchaseOrder(models.Model):
                 )
                 
                 if vendor_bills:
-                    # بناء شرط البحث بشكل صحيح
-                    domain = ['|',
-                             ('vendor_bill_id', 'in', vendor_bills.ids),
-                             ('invoice_id', 'in', vendor_bills.ids)]
+                    # بناء شرط البحث بشكل آمن
+                    domain = []
+                    model = self.env['stock.landed.cost']
                     
-                    # إضافة شرط pickings فقط إذا كان هناك pickings
-                    if order.picking_ids and 'picking_ids' in self.env['stock.landed.cost']._fields:
-                        domain = ['|'] + domain + [('picking_ids', 'in', order.picking_ids.ids)]
+                    # التحقق من وجود الحقول قبل استخدامها
+                    if 'vendor_bill_id' in model._fields:
+                        domain.append(('vendor_bill_id', 'in', vendor_bills.ids))
                     
-                    landed_costs = self.env['stock.landed.cost'].search(domain)
+                    # إذا كان هناك حقول أخرى متاحة للبحث
+                    if 'picking_ids' in model._fields and order.picking_ids:
+                        if domain:  # إذا كان هناك شروط سابقة
+                            domain.insert(0, '|')
+                        domain.append(('picking_ids', 'in', order.picking_ids.ids))
                     
-                    total = sum(landed_costs.mapped('amount_total'))
+                    # البحث فقط إذا كان هناك شروط
+                    if domain:
+                        landed_costs = model.search(domain)
+                        total = sum(landed_costs.mapped('amount_total'))
+                    
+                    # تسجيل معلومات التصحيح
+                    _logger.info("Order: %s, Bills: %s, Costs found: %s, Total: %s",
+                               order.name, 
+                               vendor_bills.mapped('name'),
+                               len(landed_costs),
+                               total)
             
-            order.landed_cost_total = total
-    
+            order.landed_cost_total = total    
     @api.depends('amount_total', 'currency_id')
     def _compute_total_in_sar(self):
         for order in self:
