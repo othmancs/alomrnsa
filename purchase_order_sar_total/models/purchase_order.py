@@ -42,12 +42,30 @@ class PurchaseOrder(models.Model):
     def _compute_landed_cost_total(self):
         for order in self:
             total = 0.0
-            # فلترة فواتير المورد المرتبطة
-            vendor_bills = order.invoice_ids.filtered(lambda inv: inv.move_type == 'in_invoice' and inv.state != 'cancel')
-            for bill in vendor_bills:
-                total += bill.landed_cost_total or 0.0
-            order.landed_cost_total = total
-
+            try:
+                if 'stock.landed.cost' in self.env:
+                    # فقط فواتير المورد المعتمدة
+                    vendor_bills = order.invoice_ids.filtered(
+                        lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
+                    )
+    
+                    if vendor_bills:
+                        domain = [('vendor_bill_id', 'in', vendor_bills.ids)]
+                        landed_costs = self.env['stock.landed.cost'].search(domain)
+    
+                        total = sum(landed_costs.mapped('amount_total'))
+    
+                        _logger.debug(
+                            "Purchase Order %s: Found %d Landed Costs totaling %f",
+                            order.name,
+                            len(landed_costs),
+                            total
+                        )
+    
+                order.landed_cost_total = total
+            except Exception as e:
+                _logger.error("Error computing Landed Cost for Purchase Order %s: %s", order.name, str(e))
+                order.landed_cost_total = 0.0
     # @api.depends('invoice_ids')
     # def _compute_landed_cost_total(self):
     #     for order in self:
