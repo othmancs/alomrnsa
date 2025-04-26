@@ -13,12 +13,17 @@ class PurchaseOrder(models.Model):
         readonly=True
     )
 
-    landed_cost_total = fields.Float(
-        string='صافي التكلفة',
-        compute='_compute_landed_cost_total',
-        store=True
+    # landed_cost_total = fields.Float(
+    #     string='صافي التكلفة',
+    #     compute='_compute_landed_cost_total',
+    #     store=True
+    # )
+    landed_cost_total = fields.Monetary(
+        string="Landed Cost Total",
+        compute="_compute_landed_cost_total",
+        store=True,
+        currency_field='currency_id'
     )
-
     total_in_sar = fields.Monetary(
         string="الإجمالي بالريال",
         compute='_compute_total_in_sar',
@@ -33,39 +38,48 @@ class PurchaseOrder(models.Model):
         store=True,
         currency_field='company_currency_id'
     )
-
     @api.depends('invoice_ids')
     def _compute_landed_cost_total(self):
         for order in self:
-            try:
-                total = 0.0
-                if 'stock.landed.cost' in self.env:
-                    # تصفية فواتير المورد المعتمدة فقط
-                    vendor_bills = order.invoice_ids.filtered(
-                        lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
-                    )
+            total = 0.0
+            # فلترة فواتير المورد المرتبطة
+            vendor_bills = order.invoice_ids.filtered(lambda inv: inv.move_type == 'in_invoice' and inv.state != 'cancel')
+            for bill in vendor_bills:
+                total += bill.landed_cost_total or 0.0
+            order.landed_cost_total = total
+
+    # @api.depends('invoice_ids')
+    # def _compute_landed_cost_total(self):
+    #     for order in self:
+    #         try:
+    #             total = 0.0
+    #             if 'stock.landed.cost' in self.env:
+    #                 # تصفية فواتير المورد المعتمدة فقط
+    #                 vendor_bills = order.invoice_ids.filtered(
+    #                     lambda inv: inv.move_type == 'in_invoice' and inv.state == 'posted'
+    #                 )
                     
-                    if vendor_bills:
-                        # بناء شرط البحث الآمن
-                        domain = []
-                        if 'vendor_bill_id' in self.env['stock.landed.cost']._fields:
-                            domain.append(('vendor_bill_id', 'in', vendor_bills.ids))
+    #                 if vendor_bills:
+    #                     # بناء شرط البحث الآمن
+    #                     domain = []
+    #                     if 'vendor_bill_id' in self.env['stock.landed.cost']._fields:
+    #                         domain.append(('vendor_bill_id', 'in', vendor_bills.ids))
                         
-                        if domain:
-                            landed_costs = self.env['stock.landed.cost'].search(domain)
-                            total = sum(landed_costs.mapped('amount_total'))
+    #                     if domain:
+    #                         landed_costs = self.env['stock.landed.cost'].search(domain)
+    #                         total = sum(landed_costs.mapped('amount_total'))
                             
-                            _logger.debug(
-                                "Order %s: Found %d landed costs totaling %f",
-                                order.name,
-                                len(landed_costs),
-                                total
-                            )
+    #                         _logger.debug(
+    #                             "Order %s: Found %d landed costs totaling %f",
+    #                             order.name,
+    #                             len(landed_costs),
+    #                             total
+    #                         )
                 
-                order.landed_cost_total = total
-            except Exception as e:
-                _logger.error("Error computing landed cost for order %s: %s", order.name, str(e))
-                order.landed_cost_total = 0.0
+    #             order.landed_cost_total = total
+    #         except Exception as e:
+    #             _logger.error("Error computing landed cost for order %s: %s", order.name, str(e))
+    #             order.landed_cost_total = 0.0
     
     @api.depends('amount_total', 'currency_id')
     def _compute_total_in_sar(self):
