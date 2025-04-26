@@ -19,7 +19,7 @@ class PurchaseOrder(models.Model):
     #     store=True
     # )
     landed_cost_total = fields.Monetary(
-        string="Landed Cost Total",
+        string="اجمالي التكلفة",
         compute="_compute_landed_cost_total",
         store=True,
     )
