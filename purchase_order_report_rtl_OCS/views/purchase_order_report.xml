@@ -1,0 +1,132 @@
+<odoo>
+    <data>
+
+        <!-- Inherit the purchase order report -->
+        <template id="report_purchaseorder_document_inherit" inherit_id="purchase.report_purchaseorder_document">
+
+            <!-- Replace the heading with Arabic content and RTL direction -->
+            <xpath expr="//div[@class='mt-4']" position="replace">
+                <div class="mt-4" dir="rtl">
+                    <br/>
+                    <h2 t-if="o.state in ['draft', 'sent', 'to approve']" style="font-size:25px;">طلب عرض أسعار#
+                        <span t-field="o.name"/>
+                    </h2>
+                    <h2 t-if="o.state in ['purchase', 'done']" style="font-size:25px;">امر الشراء #
+                        <span t-field="o.name"/>
+                    </h2>
+                    <h2 t-if="o.state == 'cancel'" style="font-size:25px;">طلب الغاء امر الشراء #
+                        <span t-field="o.name"/>
+                    </h2>
+                </div>
+            </xpath>
+
+            <!-- Change main table direction to RTL -->
+            <xpath expr="//table[@class='table table-sm o_main_table table-borderless mt-4']" position="attributes">
+                <attribute name="dir">rtl</attribute>
+            </xpath>
+
+            <!-- Replace and add supplier information section -->
+            <xpath expr="//div//div[@id='informations']" position="replace">
+                <div id="informations" class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+                    <div t-if="o.user_id" class="col-3 bm-2">
+                        <strong>مندوب الشراء:</strong>
+                        <p t-field="o.user_id" class="m-0"/>
+                    </div>
+                    <div t-if="o.partner_ref" class="col-3 bm-2">
+                        <strong>مرجع طلبك:</strong>
+                        <p t-field="o.partner_ref" class="m-0"/>
+                    </div>
+                    <div t-if="o.state in ['purchase','done'] and o.date_approve" class="col-3 bm-2">
+                        <strong>تاريخ الطلب:</strong>
+                        <p t-field="o.date_approve" class="m-0"/>
+                    </div>
+                    <div t-elif="o.date_order" class="col-3 bm-2">
+                        <strong>الموعد النهائي للطلب:</strong>
+                        <p t-field="o.date_order" class="m-0"/>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//div//div[@id='informations']" position="after">
+                <div class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+                    <div class="col-3 bm-2">
+                        <strong>التوصيل الى:</strong>
+                        <p t-field="o.picking_type_id" class="m-0"/>
+                    </div>
+                    <div class="col-3 bm-2">
+                        <strong>الفرع:</strong>
+                        <p t-field="o.branch_id" class="m-0"/>
+                    </div>
+                    <div class="col-3 bm-2">
+                        <strong>المورد:</strong>
+                        <p t-field="o.partner_id" class="m-0"/>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- Update table headers -->
+            <xpath expr="//table[1]/thead/tr//th[@name='th_description']" position="replace">
+                <th name="th_description" style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap;">
+                    <strong>اسم المنتج</strong>
+                </th>
+            </xpath>
+
+            <xpath expr="//table[1]/thead/tr//th[@name='th_date_req']" position="replace"/>
+
+            <xpath expr="//table[1]/thead/tr//th[@name='th_quantity']" position="replace">
+                <th name="th_quantity" style="border: 1px solid black; padding: 5px; text-align: center; font-size:15px;">
+                    <strong>الكمية</strong>
+                </th>
+            </xpath>
+
+            <xpath expr="//table[1]/thead/tr//th[@name='th_quantity']" position="after">
+                <th name="th_quantity_on_hand" style="border: 1px solid black; padding: 5px; text-align: center; font-size:15px;">
+                    <strong>الكمية المتاحة</strong>
+                </th>
+            </xpath>
+
+            <!-- Add available quantity in lines -->
+            <xpath expr="//td[span[@t-field='line.product_qty']]" position="after">
+                <td style="border: 1px solid black; padding: 5px; text-align: center; font-size:15px;">
+                    <t t-if="line.qty_on_hand % 1 == 0">
+                        <span t-esc="int(line.qty_on_hand)"/>
+                    </t>
+                    <t t-else="">
+                        <span t-esc="line.qty_on_hand"/>
+                    </t>
+                </td>
+            </xpath>
+
+            <!-- Remove unwanted columns -->
+            <xpath expr="//td[span[@t-field='line.date_planned']]" position="replace"/>
+            <xpath expr="//td[@name='td_taxes']" position="replace"/>
+
+            <!-- Update price columns -->
+            <xpath expr="//table[1]/thead/tr//th[@name='th_price_unit']" position="replace">
+                <th name="th_price_unit" style="border: 1px solid black; padding: 5px; text-align: center; font-size:15px;">
+                    <strong>التكلفة</strong>
+                </th>
+            </xpath>
+            <xpath expr="//table[1]/thead/tr//th[@name='th_amount']" position="replace">
+                <th name="th_amount" style="border: 1px solid black; padding: 5px; text-align: center; font-size:15px;">
+                    <strong>إجمالي التكلفة</strong>
+                </th>
+            </xpath>
+
+            <!-- Add Printed by and Payment Terms after total -->
+            <xpath expr="//div[@id='total']" position="after">
+                <br/>
+                <br/>
+                <div class="col-3 bm-2" style="font-size:11px;">
+                    <strong>:طبع بواسطة</strong>
+                    <p t-field="o.printed_by" class="m-0"/>
+                    <br/>
+                    <strong>:شروط السداد</strong>
+                    <p t-field="o.payment_term_id" class="m-0"/>
+                </div>
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>
