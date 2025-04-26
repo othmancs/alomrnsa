@@ -22,7 +22,6 @@ class PurchaseOrder(models.Model):
         string="Landed Cost Total",
         compute="_compute_landed_cost_total",
         store=True,
-        currency_field='currency_id'
     )
     total_in_sar = fields.Monetary(
         string="الإجمالي بالريال",
