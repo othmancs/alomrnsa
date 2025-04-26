@@ -1,6 +1,5 @@
 <odoo>
     <data>
-
         <!-- Inherit the purchase order report -->
         <template id="report_purchaseorder_document_inherit" inherit_id="purchase.report_purchaseorder_document">
 
@@ -71,7 +70,7 @@
                 </th>
             </xpath>
 
-            <xpath expr="//table[1]/thead/tr//th[@name='th_date_req']" position="replace"/>
+            <!-- تم إزالة تعديل th_date_req لأنه غير موجود في القالب الأصلي -->
 
             <xpath expr="//table[1]/thead/tr//th[@name='th_quantity']" position="replace">
                 <th name="th_quantity" style="border: 1px solid black; padding: 5px; text-align: center; font-size:15px;">
@@ -127,6 +126,5 @@
             </xpath>
 
         </template>
-
     </data>
 </odoo>
