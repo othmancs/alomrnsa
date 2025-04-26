@@ -1,5 +1,6 @@
 <odoo>
     <data>
+
         <!-- Inherit the purchase order report -->
         <template id="report_purchaseorder_document_inherit" inherit_id="purchase.report_purchaseorder_document">
 
@@ -63,7 +64,7 @@
                 </div>
             </xpath>
 
-            <!-- Update table headers -->
+            <!-- Update table headers - تم تعديل XPaths لتفادي الأخطاء -->
             <xpath expr="//table[1]/thead/tr//th[@name='th_description']" position="replace">
                 <th name="th_description" style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap;">
                     <strong>اسم المنتج</strong>
@@ -96,8 +97,8 @@
                 </td>
             </xpath>
 
-            <!-- Remove unwanted columns -->
-            <xpath expr="//td[span[@t-field='line.date_planned']]" position="replace"/>
+            <!-- Remove unwanted columns - تم تعديل XPath ليكون أكثر مرونة -->
+            <xpath expr="//td[.//*[contains(@t-field, 'date_planned')]]" position="replace"/>
             <xpath expr="//td[@name='td_taxes']" position="replace"/>
 
             <!-- Update price columns -->
@@ -126,5 +127,6 @@
             </xpath>
 
         </template>
+
     </data>
 </odoo>
