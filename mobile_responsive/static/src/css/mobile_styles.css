@@ -1,0 +1,44 @@
+/* تعديلات عامة للجوال */
+@media (max-width: 768px) {
+    body, .o_form_view .oe_title, .o_form_view .o_group .o_td_label {
+        font-size: 14px !important;
+    }
+    .o_form_view .o_field_widget {
+        font-size: 14px !important;
+    }
+    .btn, .o_form_button_save, .o_form_button_cancel {
+        padding: 8px 12px !important;
+        font-size: 14px !important;
+    }
+    .o_list_view .o_list_renderer table td {
+        padding: 8px 4px !important;
+    }
+    .o_searchview_input {
+        font-size: 14px !important;
+        height: 32px !important;
+    }
+    .o_main_navbar .o_menu_brand, .o_main_navbar .o_nav_entry {
+        font-size: 14px !important;
+        padding: 8px 12px !important;
+    }
+    .o_dashboard .o_kanban_view {
+        zoom: 0.85;
+    }
+}
+@media (max-width: 480px) {
+    body {
+        zoom: 0.9;
+    }
+    .o_form_view .o_group .o_td_label {
+        width: 40% !important;
+    }
+    .o_form_view .o_group .o_td_value {
+        width: 60% !important;
+    }
+    .o_form_view .o_form_sheet {
+        padding: 8px !important;
+    }
+    .o_control_panel .o_cp_top_left, .o_control_panel .o_cp_top_right {
+        flex-wrap: wrap;
+    }
+}
