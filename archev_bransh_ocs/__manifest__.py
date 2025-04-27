@@ -5,7 +5,7 @@
     'category' 'Custom',
     'author' 'Othmancs',
     'depends' ['multi_branch_base'],
-    'data' [],
+    'data': [],
     'installable' True,
     'application' False,
 }
