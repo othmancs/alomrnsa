@@ -1,6 +1,6 @@
-from odoo import models, fields
-
 class MultiBranch(models.Model):
-    _inherit = 'multi.branch'
-
-    active = fields.Boolean(default=True)
+    _name = 'multi.branch'
+    _description = 'Branch'
+    
+    name = fields.Char('Branch Name')
+    active = fields.Boolean('Active', default=True)
