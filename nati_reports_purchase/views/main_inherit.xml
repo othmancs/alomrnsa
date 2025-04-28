@@ -11,7 +11,7 @@
           paperformat="nati_reports_base_style.paperformat_NatiA4"
           name="nati_reports_purchase.report_purchaseorder"
           file="nati_reports_purchase.report_purchaseorder"
-          print_report_name="(object.state in ('draft', 'sent') and 'Request for Quotation - %s' % (object.name) or 'Purchase Order - %s' % (object.name))"
+          print_report_name="(object.state in ('draft', 'sent', 'to approve') and 'طلب عرض أسعار - %s' % (object.name) or 'أمر الشراء - %s' % (object.name)"
         />
 
     <template id="report_purchaseorder" inherit_id="purchase.report_purchaseorder_document">
@@ -34,8 +34,7 @@
         paperformat="nati_reports_base_style.paperformat_NatiA4"
         name="nati_reports_purchase.report_purchasequotation"
         file="nati_reports_purchase.report_purchasequotation"
-        print_report_name="'Request for Quotation - %s' % (object.name)"
-        
+        print_report_name="'طلب عرض أسعار - %s' % (object.name)"
         />
 
 
