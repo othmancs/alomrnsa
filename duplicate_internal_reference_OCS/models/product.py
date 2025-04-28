@@ -10,15 +10,31 @@ class ProductProduct(models.Model):
     )
 
     def _compute_has_duplicate_reference(self):
-        for product in self:
-            if product.default_code:
+        # نفس الكود السابق...
+
+    def _search_has_duplicate_reference(self, operator, value):
+        # نفس الكود السابق...
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    has_duplicate_reference = fields.Boolean(
+        string='Has Duplicate Internal Reference',
+        compute='_compute_has_duplicate_reference',
+        search='_search_has_duplicate_reference'
+    )
+
+    def _compute_has_duplicate_reference(self):
+        for template in self:
+            if template.default_code:
                 same_code_count = self.search_count([
-                    ('default_code', '=', product.default_code),
-                    ('id', '!=', product.id)
+                    ('default_code', '=', template.default_code),
+                    ('id', '!=', template.id)
                 ])
-                product.has_duplicate_reference = same_code_count > 0
+                template.has_duplicate_reference = same_code_count > 0
             else:
-                product.has_duplicate_reference = False
+                template.has_duplicate_reference = False
 
     def _search_has_duplicate_reference(self, operator, value):
         if operator not in ('=', '!=') or not isinstance(value, bool):
@@ -26,7 +42,7 @@ class ProductProduct(models.Model):
         
         self.env.cr.execute("""
             SELECT default_code
-            FROM product_product
+            FROM product_template
             WHERE default_code IS NOT NULL
             GROUP BY default_code
             HAVING COUNT(id) > 1
