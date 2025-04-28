@@ -3,244 +3,314 @@
   <template id="modern_report_purchaseorder_document">
     <t t-call="web.external_layout">
       <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
-      <div  class="page natifont">
-        <h2 t-if="o.state == 'draft'">
-          Request for Quotation #<span class="natifont24" t-field="o.name"/>
-          <t t-if="'picking_type_id' in o.fields_get()">
-          <p class="natifont14" t-field="o.picking_type_id"/>
-          </t>
-        </h2>
-        <h2 t-if="o.state in ['sent', 'to approve']">
-          Purchase Order #<span class="natifont24" t-field="o.name"/>
-                    <t t-if="'picking_type_id' in o.fields_get()">
-          <p class="natifont14" t-field="o.picking_type_id"/>
-                    </t>
-        </h2>
-        <h2 t-if="o.state in ['purchase', 'done']">
-          Purchase Order #<span class="natifont24" t-field="o.name"/>
-                    <t t-if="'picking_type_id' in o.fields_get()">
+      <div class="page" dir="rtl">
+        <!-- Header Section -->
+        <div class="header">
+            <table style="border:2pt solid BLACK;width:100%;font-size:12px;" width="100%">
+                <link rel="stylesheet" href="/saudi_einvoice_knk/static/src/css/style.css"/>
+                <tr>
+                    <td colspan="2" width="35%">
+                        <strong><span style="padding-left:5px;" t-field="o.company_id.name"/></strong><br/>
+                        <t t-if="o.company_id.street">
+                            <span style="padding-left:5px;" t-field="o.company_id.street"/><br/>
+                        </t>
+                        <t t-if="o.company_id.street2">
+                            <span style="padding-left:5px;" t-field="o.company_id.street2"/><br/>
+                        </t>
+                        <t t-if="o.company_id.city">
+                            <span style="padding-left:5px;" t-field="o.company_id.city"/><br/>
+                        </t>
+                        <t t-if="o.company_id.country_id">
+                            <span style="padding-left:5px;" t-field="o.company_id.country_id.name"/><br/>
+                        </t>
+                    </td>
 
-          <p class="natifont14" t-field="o.picking_type_id"/>
-                    </t>
-        </h2>
-        <h2 t-if="o.state == 'cancel'">
-          Cancelled Purchase Order #<span class="natifont24" t-field="o.name"/>
-                    <t t-if="'picking_type_id' in o.fields_get()">
+                    <td style="border:2pt solid BLACK;" colspan="3" width="30%" class="text-center">
+                        <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="height: 100px;width: 100px; " alt="Logo"/><br/>
+                        <span t-field="o.display_name"/><br/>
+                        <strong> رقم الفاتورة</strong><br/>
+                        <span t-field="o.name"/><br/>
+                        <strong>تاريخه</strong><br/>
+                        <span t-esc="o.date_order"/>
+                    </td>
 
-          <p class="natifont14" t-field="o.picking_type_id"/>
-                    </t>
-        </h2>
-        <div class="row natifont" >
-          <div class="col-5">
-            <div id="informations" class="row mt32 mb32">
-
-              <div   class="ml-2"  t-if="o.partner_ref">
-                <span class="fa fa-bookmark"/>
-                <sp>&#032;</sp>
-                <strong>Reference:</strong>
-                <p class="m-0 borderB">ReferenceEn</p>
-                <p class="m-0 naticenter" t-field="o.partner_ref"/>
-              </div>
-
-              <div  class="ml-2" t-if="o.date_order">
-                <span class="fa fa-calendar"/>
-                <sp>&#032;</sp>
-                <strong>Order Date:</strong>
-                <p class="m-0 borderB">Order DateEn</p>
-                <p class="m-0 naticenter" t-field="o.date_order"/>
-              </div>
-
-              <div t-if="o.user_id" class="col-auto mw-100 mb-2">
-                <span class="fa fa-user"/>
-                <sp>&#032;</sp>
-                <strong>PurchasePerson:</strong>
-                <p class="m-0 borderB">PurchasePersonEn</p>
-                <p class="m-0 naticenter" t-field="o.user_id"/>
-              </div>
-
-            </div>
-          </div>
-
-          <t  t-if="'partner_longitude' in o.partner_id.fields_get()">
-            <t t-if="o.partner_id.partner_longitude">
-              <div class="col-2">
-                <t t-set="QRmap" t-value="'http://maps.google.com/maps?q=%s,%s' % (o.partner_id.partner_latitude,o.partner_id.partner_longitude)"/>
-                <img class="m-0"  t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR',QRmap, 120, 120)"/>
-              </div>
-            </t>
-          </t>
-          <div class="col-5 natifont" >
-            <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
-            <t t-if="partner" name="partner_header">
-              <div  dir="ltr" t-esc="partner"
-              t-options='{"widget": "contact", "fields": ["address", "name", "mobile","email"], "no_marker": False}'/>
-            </t>
-          </div>
-        </div>
-        <br/>
-        <table class="table table-sm o_main_table">
-          <thead>
-            <tr  class="natiinvoice_header" >
-              <th class="natiinvoice_header" >
-                <span class="fa fa-list-ol natiinvoice_header"/>
-                <sp>&#032;</sp>
-              </th>
-              <th class="text-left">
-                <span >Description</span>
-                <p>DescriptionEn</p>
-              </th>
-
-              <th class="text-center">
-                <span>Date Req.</span>
-                <p>Date Req.En</p>
-              </th>
-              <th class="text-right">
-                <span>Qty</span>
-                <p>QtyEn</p>
-              </th>
-              <th class="text-right">
-                <span>Unit Price</span>
-                <p>UnitPriceEn</p>
-
-              </th>
-              <th t-if="o.amount_tax" class="text-right">
-                <span >Taxes</span>
-                <p>TaxesEn</p>
-              </th>
-              <th class="text-right">
-                <span>Amount</span>
-                <p>AmountEn</p>
-
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <t t-set="current_subtotal" t-value="0"/>
-            <t t-set="counter" t-value="0"/>
-
-            <t t-foreach="o.order_line" t-as="line">
-              <t  t-set="counter" t-value="counter + 1"/>
-
-              <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-              <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
-
-              <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
-
-                <t t-if="not line.display_type">
-                  <td  >
-                    <span t-esc="counter"/>
-                  </td>
-                  <td id="product">
-                    <span t-field="line.name"/>
-                  </td>
-
-                  <td class="text-center">
-                    <span t-field="line.date_planned"/>
-                  </td>
-                  <td class="text-right">
-                    <span t-field="line.product_qty"/>
-                    <span t-field="line.product_uom.name" groups="uom.group_uom"/>
-                  </td>
-                  <td class="text-right">
-                    <span t-field="line.price_unit"/>
-                  </td>
-                   <td t-if="o.amount_tax" class="text-right">
-                    <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
-                  </td>
-                  <td class="text-right">
-                    <span t-field="line.price_subtotal"
-                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                  </td>
-                </t>
-                <t t-if="line.display_type == 'line_section'">
-                  <t t-set="counter" t-value="0"/>
-
-                  <td colspan="99" id="section">
-                    <span t-field="line.name"/>
-                  </td>
-                  <t t-set="current_section" t-value="line"/>
-                  <t t-set="current_subtotal" t-value="0"/>
-                </t>
-                <t t-if="line.display_type == 'line_note'">
-                  <td colspan="99" id="note">
-                    <span t-field="line.name"/>
-                  </td>
-                </t>
-              </tr>
-              <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
-                <tr class="is-subtotal text-right">
-                  <td colspan="99" id="subtotal">
-                    <strong class="mr16">Subtotal</strong>
-                    <sp>&#032;</sp>
-                    <strong>SubtotalEN</strong>
-                    <span
-                        t-esc="current_subtotal"
-                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                                    />
-                  </td>
+                    <td style="border:2pt solid BLACK;" colspan="2" width="35%" class="text-right">
+                        <strong>
+                            <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_name"/></strong><br/>
+                        <t t-if="o.company_id.street">
+                            <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_street"/><br/>
+                        </t>
+                        <t t-if="o.company_id.street2">
+                            <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_street2"/><br/>
+                        </t>
+                        <t t-if="o.company_id.city">
+                            <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_city"/><br/>
+                        </t>
+                        <t t-if="o.company_id.arabic_country">
+                            <span class="text-right arabic" style="padding-right:5px;" t-field="o.company_id.arabic_country"/><br/>
+                        </t>
+                    </td>
                 </tr>
-              </t>
-            </t>
-          </tbody>
+                <tr style="border:2pt solid grey;">
+                    <td width="16%">‫‪ <span class="text-right" style="padding-left:5px;"/>CR No. : </td>
+                    <td width="16%"><span class="text-center arabic" t-field="o.company_id.company_registry"/> ‫‪</td>
+                    <td width="17%"><span class="text-right arabic" style="padding-right:-6px;">رقم السجل التجاري</span>‬</td>
+
+                    <td width="2%" style="border-left:1pt solid black;"/>
+
+                    <td width="16%">‫‪ <span class="text-right" style="padding-left:5px;">VAT‬‬ No.: </span></td>
+                    <td width="16%"><span class="text-center arabic" t-field="o.company_id.vat"/> ‫‪</td>
+                    <td width="17%"><span class="text-right arabic" style="padding-right:-6px;">ضريبة القيمة المضافة</span>‬</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="mt-4" dir="rtl">
+            <br/>
+            <h2 t-if="o.state in ['draft', 'sent', 'to approve']" style="font-size:25px;">طلب عرض أسعار#
+                <span t-field="o.name"/>
+            </h2>
+            <h2 t-if="o.state in ['purchase', 'done']" style="font-size:25px;">امر الشراء #
+                <span t-field="o.name"/>
+            </h2>
+            <h2 t-if="o.state == 'cancel'" style="font-size:25px;">طلب الغاء امر الشراء #
+                <span t-field="o.name"/>
+            </h2>
+        </div>
+
+        <!-- Information Sections -->
+        <div id="informations" class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+            <div t-if="o.user_id" class="col-3 bm-2" style="font-size:11px;">
+                <strong>مندوب الشراء:</strong>
+                <p t-field="o.user_id" class="m-0"/>
+            </div>
+            <div t-if="o.partner_ref" class="col-3 bm-2">
+                <strong>مرجع طلبك:</strong>
+                <p t-field="o.partner_ref" class="m-0"/>
+            </div>
+            <div t-if="o.state in ['purchase','done'] and o.date_approve" class="col-3 bm-2">
+                <strong>تاريخ الطلب:</strong>
+                <p t-field="o.date_approve" class="m-0"/>
+            </div>
+            <div t-elif="o.date_order" class="col-3 bm-2">
+                <strong>الموعد النهائي للطلب:</strong>
+                <p t-field="o.date_order" class="m-0"/>
+            </div>
+        </div>
+
+        <div id="informations" class="row mt-4 mb32" dir="rtl" style="font-size:11px;">
+            <div class="col-3 bm-2" style="font-size:11px;">
+                <strong>التوصيل الى:</strong>
+                <p t-field="o.picking_type_id" class="m-0"/>
+            </div>
+
+            <div class="col-3 bm-2">
+                <strong>الفرع:</strong>
+                <p t-field="o.branch_id" class="m-0"/>
+            </div>
+
+            <div class="col-3 bm-2">
+                <strong>المورد:</strong>
+                <p t-field="o.partner_id" class="m-0"/>
+            </div>
+        </div>
+
+        <!-- Main Table -->
+        <table class="table table-sm o_main_table" dir="rtl" style="border: 1px solid black;">
+            <thead>
+                <tr class="natiinvoice_header">
+                    <th style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                        <strong>رقم الصنف</strong>
+                    </th>
+                    <th style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap;">
+                        <strong>اسم المنتج</strong>
+                    </th>
+                    <th style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                        <strong>الكميه</strong>
+                    </th>
+                    <th style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                        <strong>الكميه المتاحه</strong>
+                    </th>
+                    <th style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                        <strong>التكلفه</strong>
+                    </th>
+                    <th style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                        <strong>اجمالى التكلفه</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-set="current_subtotal" t-value="0"/>
+                <t t-set="counter" t-value="0"/>
+                <t t-set="total_qty" t-value="0"/>
+
+                <t t-foreach="o.order_line" t-as="line">
+                    <t t-set="counter" t-value="counter + 1"/>
+                    <t t-set="total_qty" t-value="total_qty + line.product_qty"/>
+                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+                    <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                        <t t-if="not line.display_type">
+                            <td style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                                <span t-field="line.product_id.default_code"/>
+                            </td>
+                            <td style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap;">
+                                <span t-esc="line.product_id.with_context(lang='ar_001').name"/>
+                            </td>
+                            <td style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                                <t t-if="line.product_qty % 1 == 0">
+                                    <span t-esc="int(line.product_qty)"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="line.product_qty"/>
+                                </t>
+                            </td>
+                            <td style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                                <t t-if="line.qty_on_hand % 1 == 0">
+                                    <span t-esc="int(line.qty_on_hand)"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="line.qty_on_hand"/>
+                                </t>         
+                            </td>
+                            <td style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                                <span t-field="line.price_unit"/>
+                            </td>
+                            <td style="border: 1px solid black; padding: 5px; text-align: center; white-space: nowrap; font-size:15px;">
+                                <t t-if="line.price_subtotal % 1 == 0">
+                                    <span t-esc="int(line.price_subtotal)"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="line.price_subtotal"/>
+                                </t>
+                            </td>
+                        </t>
+                        <t t-if="line.display_type == 'line_section'">
+                            <t t-set="counter" t-value="0"/>
+                            <td colspan="99" id="section" style="border: 1px solid black; padding: 5px; text-align: center;">
+                                <span t-field="line.name"/>
+                            </td>
+                            <t t-set="current_section" t-value="line"/>
+                            <t t-set="current_subtotal" t-value="0"/>
+                        </t>
+                        <t t-if="line.display_type == 'line_note'">
+                            <td colspan="99" id="note" style="border: 1px solid black; padding: 5px; text-align: center;">
+                                <span t-field="line.name"/>
+                            </td>
+                        </t>
+                    </tr>
+                </t>
+            </tbody>
         </table>
 
-        <div id="total" class="row justify-content-end">
-          <div class="col-12">
-            <table class="table table-sm">
-              <tr t-if="o.amount_tax" class="border-black">
-                <td>
-                  <strong>Subtotal</strong>
-                </td>
-                <td class="text-right">
-                  <strong>SubtotalEn</strong>
-                </td>
-                <td class="text-right">
-                  <span t-field="o.amount_untaxed"
-                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                </td>
-              </tr>
-              <tr t-if="o.amount_tax">
+        <!-- Totals Section -->
+        <div id="total" class="row justify-content-end" dir="rtl">
+            <div class="col-4">
+                <table class="table table-sm table-borderless">
+                    <t t-set="tax_totals" t-value="o.tax_totals"/>
+                    <t t-call="account.document_tax_totals"/>
+                    
+                    <div style="text-align: right; font-weight: bold;">
+                        إجمالي الكمية:
+                        <t t-if="total_qty % 1 == 0">
+                            <span t-esc="int(total_qty)"/>
+                        </t>
+                        <t t-else="">
+                            <span t-esc="total_qty"/>
+                        </t>
+                    </div>
+                </table>
+            </div>
+        </div>
 
-                <td>
-                  <sp>&#032;</sp> Taxes
-                </td>
-                <td class="text-right">
-                  <strong>TaxesEn</strong>
-                </td>
-                <td class="text-right">
-                  <span t-field="o.amount_tax"
-                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                </td>
-              </tr>
-              <tr class="border-black o_total">
-                <td class="text-left borderB">
-                  <strong>Total</strong>
-                </td>
-                <td class="text-right borderB">
-                  <strong>TotalEn</strong>
-                </td>
-                <td class="text-right borderB">
-                  <span t-field="o.amount_total"
-                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                </td>
-              </tr>
-              <t t-if="'num_word' in o.fields_get()">
-
-              <tr>
-                <td colspan="3" class="text-left borderB">
-                  <strong  t-field="o.num_word"/>
-                </td>
-              </tr>
-              </t>
-            </table>
-          </div>
+        <!-- Additional Information -->
+        <div dir="rtl">
+            <br/>
+            <br/>
+            <div class="col-3 bm-2" style="font-size:11px;">
+                <strong>:طبع بواسطه</strong>
+                <p t-field="o.printed_by" class="m-0"/>
+                <br/>
+                <strong>:شروط السداد</strong> 
+                <p t-field="o.payment_term_id" class="m-0"/>
+            </div>
         </div>
 
         <p t-field="o.notes"/>
         <div class="oe_structure"/>
-      </div>
 
+        <!-- Footer Section -->
+        <div class="footer o_background_footer">
+            <div class="text-center" style="font-size:14px;">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/20/fe97a035-ddb8-440c-b7b7-46c1f065937d'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/12/ff18be9c-0c12-4a7b-b250-ce83c3958b15'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/9/9c36c834-c184-4240-a5ab-6206da2555d2'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/22/450d9eab-3b37-4553-a5ec-c67b439c1f8b'" style="width: 60px; height:30px; "/></li>
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/14/e4ae342e-92dc-405c-bb1a-3cb8c3f31efd'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/15/f6a7b514-6c69-4a36-934c-790abf0a0d9a'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/16/b9fc2865-2e7a-4763-a41c-d45a4e46cac8'" style="width: 40px; height: 40px; object-fit: contain;"/></li>
+                    <li class="list-inline-item"><img t-att-src="'https://alomransa.odoo.com/document/share/18/7dd0d45d-9c61-42b5-9a64-fbcb778199d7'" style="width: 50px; height: 50px; object-fit: contain;"/></li>
+                </ul>
+                <div t-field="o.company_id.report_footer"/>
+                <div t-if="report_type == 'pdf'" class="text-muted">
+                    Page:
+                    <span class="page"/>
+                    of
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+      </div>
     </t>
   </template>
 
+  <template id="account.document_tax_totals">
+    <t t-foreach="tax_totals['subtotals']" t-as="subtotal">
+        <tr class="border-black o_subtotal">
+            <td><strong t-esc="subtotal['name']"/></td>
+            <td class="text-end">
+                <span t-att-class="oe_subtotal_footer_separator" t-esc="subtotal['formatted_amount']"/>
+            </td>
+        </tr>
+        <t t-set="subtotal_to_show" t-value="subtotal['name']"/>
+        <t t-call="account.tax_groups_totals"/>
+    </t>
+
+    <t t-if="'formatted_rounding_amount' in tax_totals and tax_totals['rounding_amount'] != 0">
+        <td>Rounding</td>
+        <td class="text-end">
+            <span t-esc="tax_totals['formatted_rounding_amount']"/>
+        </td>
+    </t>
+    
+    <!--Total amount with all taxes-->
+    <tr class="border-black o_total">
+        <td><strong>الاجمالي</strong></td> 
+        <td class="text-end">
+            <span t-esc="tax_totals['formatted_amount_total_rounded']" t-if="'formatted_amount_total_rounded' in tax_totals"/>
+            <span t-esc="tax_totals['formatted_amount_total']" t-else=""/>
+        </td>
+    </tr>
+
+    <tr class="border-black o_total" t-if="o.currency_id.name != 'SAR'">
+        <td><strong>ألأجمالي بالريال</strong></td>
+        <td class="text-end">
+            <span t-esc="o.total_in_sar"/> 
+        </td>
+    </tr>
+    <tr>
+        <td><strong>التكاليف</strong></td>
+        <td>
+            <span t-esc="o.landed_cost_total"/> 
+        </td>
+    </tr>
+    <tr>
+        <td><strong>إجمالي المورد</strong></td>
+        <td>
+            <span t-esc="o.total_supplier_cost"/> 
+        </td>
+    </tr>
+  </template>
 </odoo>
