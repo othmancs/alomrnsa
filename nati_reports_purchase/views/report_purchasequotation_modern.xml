@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="modern_report_purchasequotation_document">
+    <t t-call="web.external_layout">
+      <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+
+      <!--   
+       <t t-if="o.dest_address_id">
+            <t t-set="information_block">
+                <strong>Shipping address:</strong>
+                <div t-field="o.dest_address_id"
+                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}' name="purchase_shipping_address"/>
+            </t>
+        </t> 
+        -->
+      <div class="page natifont">
+        <h2>
+          Request for Quotation <span class="natifont24" t-field="o.name"/>
+                    <t t-if="'picking_type_id' in o.fields_get()">
+
+          <p class="natifont14" t-field="o.picking_type_id"/>
+                    </t>
+        </h2>
+        <div class="row natifont" >
+          <div class="col-5">
+            <div class="row mt32 mb32">
+
+              <div  class="ml-2" t-if="o.date_order">
+                <span class="fa fa-calendar"/>
+                <sp>&#032;</sp>
+                <strong>Order Date :</strong>
+                <p class="m-0 borderB">Order DateEn</p>
+                <p class="m-0 naticenter" t-field="o.date_order"/>
+              </div>
+
+              <div  class="ml-2"  t-if="o.partner_ref">
+                <span class="fa fa-bookmark"/>
+                <sp>&#032;</sp>
+                <strong>Reference:</strong>
+                <p class="m-0 borderB">ReferenceEn</p>
+                <p class="m-0 naticenter" t-field="o.partner_ref"/>
+              </div>
+
+              <div t-if="o.user_id" class="col-auto mw-100 mb-2">
+                <span class="fa fa-user"/>
+                <sp>&#032;</sp>
+                <strong>PurchasePerson:</strong>
+                <p class="m-0 borderB">PurchasePersonEn</p>
+                <p class="m-0 naticenter" t-field="o.user_id"/>
+              </div>
+
+            </div>
+          </div>
+          <t  t-if="'partner_latitude' in o.partner_id.fields_get()">
+            <t t-if="o.partner_id.partner_latitude">
+              <div class="col-2">
+                <t t-set="QRmap" t-value="'http://maps.google.com/maps?q=%s,%s' % (o.partner_id.partner_latitude,o.partner_id.partner_longitude)"/>
+                <img class="m-0"  t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR',QRmap, 120, 120)"/>
+              </div>
+            </t>
+          </t>
+          <div class="col-5 natifont" >
+            <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
+            <t t-if="partner" name="partner_header">
+              <div  dir="ltr" t-esc="partner"
+              t-options='{"widget": "contact", "fields": ["address", "name", "mobile","email"], "no_marker": False}'/>
+            </t>
+          </div>
+
+        </div>
+        <br/>
+        <table class="table table-sm">
+          <thead>
+            <tr class="natiinvoice_header">
+              <th class="natiinvoice_header" >
+                <span class="fa fa-list-ol natiinvoice_header"/>
+                <sp>&#032;</sp>
+              </th>
+              <th class="text-left">
+                <span>Description</span>
+                <p>DescriptionEn</p>
+              </th>
+              <th class="text-center">
+                <span>Expected Date</span>
+                <p>Expected DateEn</p>
+
+              </th>
+              <th class="text-right">
+                <span>Qty</span>
+                <p>QtyEn</p>
+
+              </th>
+            </tr>
+          </thead>
+          <tbody class="invoice_tbody">
+            <t t-set="counter" t-value="0"/>
+
+            <t t-foreach="o.order_line" t-as="order_line">
+              <tr t-att-class="'bg-200 font-weight-bold o_line_section' if order_line.display_type == 'line_section' else 'font-italic o_line_note' if order_line.display_type == 'line_note' else ''">
+                <t  t-set="counter" t-value="counter + 1"/>
+
+                <t t-if="not order_line.display_type">
+                  <td>
+                    <span t-esc="counter"/>
+                  </td>
+                  <td id="product">
+                    <span t-field="order_line.name"/>
+                  </td>
+                  <td class="text-center">
+                    <span t-field="order_line.date_planned"/>
+                  </td>
+                  <td class="text-right">
+                    <span t-field="order_line.product_qty"/>
+                    <span t-field="order_line.product_uom" groups="uom.group_uom"/>
+                  </td>
+                </t>
+                <t t-else="">
+                  <td colspan="99" id="section">
+                    <t t-set="counter" t-value="0"/>
+                    <span t-field="order_line.name"/>
+                  </td>
+                </t>
+              </tr>
+            </t>
+          </tbody>
+        </table>
+
+        <p t-field="o.notes"/>
+
+        <div class="oe_structure"/>
+      </div>
+    </t>
+  </template>
+
+</odoo>

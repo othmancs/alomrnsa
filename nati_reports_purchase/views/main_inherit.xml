@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <report
+          string="Purchase Order modern"
+          menu="False"
+          id="custom_action_report_purchase_order"
+          model="purchase.order"
+          report_type="qweb-pdf"
+          paperformat="nati_reports_base_style.paperformat_NatiA4"
+          name="nati_reports_purchase.report_purchaseorder"
+          file="nati_reports_purchase.report_purchaseorder"
+          print_report_name="(object.state in ('draft', 'sent') and 'Request for Quotation - %s' % (object.name) or 'Purchase Order - %s' % (object.name))"
+        />
+
+    <template id="report_purchaseorder" inherit_id="purchase.report_purchaseorder_document">
+
+      <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+        <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="o">
+            <t t-call="nati_reports_purchase.modern_report_purchaseorder_document" t-lang="o.partner_id.lang"/>
+          </t>
+        </t>
+      </xpath>
+    </template>
+
+    <report
+        string="Request for Quotation modern"
+        menu="False"
+        id="custom_report_purchase_quotation"
+        model="purchase.order"
+        report_type="qweb-pdf"
+        paperformat="nati_reports_base_style.paperformat_NatiA4"
+        name="nati_reports_purchase.report_purchasequotation"
+        file="nati_reports_purchase.report_purchasequotation"
+        print_report_name="'Request for Quotation - %s' % (object.name)"
+        
+        />
+
+
+    <template id="report_purchasequotation" inherit_id="purchase.report_purchasequotation">
+      <xpath expr="//t[@t-call='purchase.report_purchasequotation_document']" position="replace">
+        <t t-call="web.html_container">
+          <t t-foreach="docs" t-as="o">
+            <t t-call="nati_reports_purchase.modern_report_purchasequotation_document" t-lang="o.partner_id.lang"/>
+          </t>
+        </t>
+      </xpath>
+    </template>
+
+  </data>
+</odoo>

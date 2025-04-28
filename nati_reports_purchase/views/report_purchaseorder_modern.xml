@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="modern_report_purchaseorder_document">
+    <t t-call="web.external_layout">
+      <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+      <div  class="page natifont">
+        <h2 t-if="o.state == 'draft'">
+          Request for Quotation #<span class="natifont24" t-field="o.name"/>
+          <t t-if="'picking_type_id' in o.fields_get()">
+          <p class="natifont14" t-field="o.picking_type_id"/>
+          </t>
+        </h2>
+        <h2 t-if="o.state in ['sent', 'to approve']">
+          Purchase Order #<span class="natifont24" t-field="o.name"/>
+                    <t t-if="'picking_type_id' in o.fields_get()">
+          <p class="natifont14" t-field="o.picking_type_id"/>
+                    </t>
+        </h2>
+        <h2 t-if="o.state in ['purchase', 'done']">
+          Purchase Order #<span class="natifont24" t-field="o.name"/>
+                    <t t-if="'picking_type_id' in o.fields_get()">
+
+          <p class="natifont14" t-field="o.picking_type_id"/>
+                    </t>
+        </h2>
+        <h2 t-if="o.state == 'cancel'">
+          Cancelled Purchase Order #<span class="natifont24" t-field="o.name"/>
+                    <t t-if="'picking_type_id' in o.fields_get()">
+
+          <p class="natifont14" t-field="o.picking_type_id"/>
+                    </t>
+        </h2>
+        <div class="row natifont" >
+          <div class="col-5">
+            <div id="informations" class="row mt32 mb32">
+
+              <div   class="ml-2"  t-if="o.partner_ref">
+                <span class="fa fa-bookmark"/>
+                <sp>&#032;</sp>
+                <strong>Reference:</strong>
+                <p class="m-0 borderB">ReferenceEn</p>
+                <p class="m-0 naticenter" t-field="o.partner_ref"/>
+              </div>
+
+              <div  class="ml-2" t-if="o.date_order">
+                <span class="fa fa-calendar"/>
+                <sp>&#032;</sp>
+                <strong>Order Date:</strong>
+                <p class="m-0 borderB">Order DateEn</p>
+                <p class="m-0 naticenter" t-field="o.date_order"/>
+              </div>
+
+              <div t-if="o.user_id" class="col-auto mw-100 mb-2">
+                <span class="fa fa-user"/>
+                <sp>&#032;</sp>
+                <strong>PurchasePerson:</strong>
+                <p class="m-0 borderB">PurchasePersonEn</p>
+                <p class="m-0 naticenter" t-field="o.user_id"/>
+              </div>
+
+            </div>
+          </div>
+
+          <t  t-if="'partner_longitude' in o.partner_id.fields_get()">
+            <t t-if="o.partner_id.partner_longitude">
+              <div class="col-2">
+                <t t-set="QRmap" t-value="'http://maps.google.com/maps?q=%s,%s' % (o.partner_id.partner_latitude,o.partner_id.partner_longitude)"/>
+                <img class="m-0"  t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR',QRmap, 120, 120)"/>
+              </div>
+            </t>
+          </t>
+          <div class="col-5 natifont" >
+            <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
+            <t t-if="partner" name="partner_header">
+              <div  dir="ltr" t-esc="partner"
+              t-options='{"widget": "contact", "fields": ["address", "name", "mobile","email"], "no_marker": False}'/>
+            </t>
+          </div>
+        </div>
+        <br/>
+        <table class="table table-sm o_main_table">
+          <thead>
+            <tr  class="natiinvoice_header" >
+              <th class="natiinvoice_header" >
+                <span class="fa fa-list-ol natiinvoice_header"/>
+                <sp>&#032;</sp>
+              </th>
+              <th class="text-left">
+                <span >Description</span>
+                <p>DescriptionEn</p>
+              </th>
+
+              <th class="text-center">
+                <span>Date Req.</span>
+                <p>Date Req.En</p>
+              </th>
+              <th class="text-right">
+                <span>Qty</span>
+                <p>QtyEn</p>
+              </th>
+              <th class="text-right">
+                <span>Unit Price</span>
+                <p>UnitPriceEn</p>
+
+              </th>
+              <th t-if="o.amount_tax" class="text-right">
+                <span >Taxes</span>
+                <p>TaxesEn</p>
+              </th>
+              <th class="text-right">
+                <span>Amount</span>
+                <p>AmountEn</p>
+
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <t t-set="current_subtotal" t-value="0"/>
+            <t t-set="counter" t-value="0"/>
+
+            <t t-foreach="o.order_line" t-as="line">
+              <t  t-set="counter" t-value="counter + 1"/>
+
+              <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+              <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+              <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+
+                <t t-if="not line.display_type">
+                  <td  >
+                    <span t-esc="counter"/>
+                  </td>
+                  <td id="product">
+                    <span t-field="line.name"/>
+                  </td>
+
+                  <td class="text-center">
+                    <span t-field="line.date_planned"/>
+                  </td>
+                  <td class="text-right">
+                    <span t-field="line.product_qty"/>
+                    <span t-field="line.product_uom.name" groups="uom.group_uom"/>
+                  </td>
+                  <td class="text-right">
+                    <span t-field="line.price_unit"/>
+                  </td>
+                   <td t-if="o.amount_tax" class="text-right">
+                    <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
+                  </td>
+                  <td class="text-right">
+                    <span t-field="line.price_subtotal"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                  </td>
+                </t>
+                <t t-if="line.display_type == 'line_section'">
+                  <t t-set="counter" t-value="0"/>
+
+                  <td colspan="99" id="section">
+                    <span t-field="line.name"/>
+                  </td>
+                  <t t-set="current_section" t-value="line"/>
+                  <t t-set="current_subtotal" t-value="0"/>
+                </t>
+                <t t-if="line.display_type == 'line_note'">
+                  <td colspan="99" id="note">
+                    <span t-field="line.name"/>
+                  </td>
+                </t>
+              </tr>
+              <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
+                <tr class="is-subtotal text-right">
+                  <td colspan="99" id="subtotal">
+                    <strong class="mr16">Subtotal</strong>
+                    <sp>&#032;</sp>
+                    <strong>SubtotalEN</strong>
+                    <span
+                        t-esc="current_subtotal"
+                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                    />
+                  </td>
+                </tr>
+              </t>
+            </t>
+          </tbody>
+        </table>
+
+        <div id="total" class="row justify-content-end">
+          <div class="col-12">
+            <table class="table table-sm">
+              <tr t-if="o.amount_tax" class="border-black">
+                <td>
+                  <strong>Subtotal</strong>
+                </td>
+                <td class="text-right">
+                  <strong>SubtotalEn</strong>
+                </td>
+                <td class="text-right">
+                  <span t-field="o.amount_untaxed"
+                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+              </tr>
+              <tr t-if="o.amount_tax">
+
+                <td>
+                  <sp>&#032;</sp> Taxes
+                </td>
+                <td class="text-right">
+                  <strong>TaxesEn</strong>
+                </td>
+                <td class="text-right">
+                  <span t-field="o.amount_tax"
+                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+              </tr>
+              <tr class="border-black o_total">
+                <td class="text-left borderB">
+                  <strong>Total</strong>
+                </td>
+                <td class="text-right borderB">
+                  <strong>TotalEn</strong>
+                </td>
+                <td class="text-right borderB">
+                  <span t-field="o.amount_total"
+                      t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+              </tr>
+              <t t-if="'num_word' in o.fields_get()">
+
+              <tr>
+                <td colspan="3" class="text-left borderB">
+                  <strong  t-field="o.num_word"/>
+                </td>
+              </tr>
+              </t>
+            </table>
+          </div>
+        </div>
+
+        <p t-field="o.notes"/>
+        <div class="oe_structure"/>
+      </div>
+
+    </t>
+  </template>
+
+</odoo>

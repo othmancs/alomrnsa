@@ -1,0 +1,216 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* nati_reports_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20201112\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-18 04:04+0000\n"
+"PO-Revision-Date: 2020-11-18 07:06+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ar\n"
+"X-Generator: Poedit 1.8\n"
+
+#. module: nati_reports_purchase
+#: model:ir.actions.report,print_report_name:nati_reports_purchase.custom_report_purchase_quotation
+msgid "'Request for Quotation - %s' % (object.name)"
+msgstr "'طلب عرض الأسعار - %s' % (object.name)"
+
+#. module: nati_reports_purchase
+#: model:ir.actions.report,print_report_name:nati_reports_purchase.custom_action_report_purchase_order
+msgid ""
+"(object.state in ('draft', 'sent') and 'Request for Quotation - %s' % "
+"(object.name) or 'Purchase Order - %s' % (object.name))"
+msgstr ""
+"(object.state في ('مسودة'، 'إرسال') و'طلب عرض أسعار - %s' % (object."
+"name) أو 'أمر الشراء - %s' % (object.name))"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<span>Amount</span>"
+msgstr "<span>المبـلــــــغ</span>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<span>Date Req.</span>"
+msgstr "<span>تاريخ الطلب</span>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "<span>Description</span>"
+msgstr "<span>الوصف</span>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "<span>Expected Date</span>"
+msgstr "<span>التاريــخ المتوقــع</span>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "<span>Qty</span>"
+msgstr "<span>الكمية</span>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<span>Taxes</span>"
+msgstr "<span>الضرائب</span>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<span>Unit Price</span>"
+msgstr "<span>سعر الوحدة</span>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">الإجمالي الفرعي</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "<strong>Order Date :</strong>"
+msgstr "<strong>تاريخ الأمر :</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong>Order Date:</strong>"
+msgstr "<strong>تاريخ الأمر:</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "<strong>PurchasePerson:</strong>"
+msgstr "<strong>موظف المشتريات:</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>رقم الإشارة:</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>الإجمالي الفرعي</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong>SubtotalEN</strong>"
+msgstr "<strong>Subtotal</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong>SubtotalEn</strong>"
+msgstr "<strong>Subtotal</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong>TaxesEn</strong>"
+msgstr "<strong>Taxes  </strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>الإجمالي</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "<strong>TotalEn</strong>"
+msgstr "<strong>Total</strong>"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "AmountEn"
+msgstr "Amount"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "Cancelled Purchase Order #"
+msgstr "أمر شراء ملغي #"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "Date Req.En"
+msgstr "Date Req."
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "DescriptionEn"
+msgstr "Description"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "Expected DateEn"
+msgstr "Expected Date"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "Order DateEn"
+msgstr "Order Date"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "Purchase Order #"
+msgstr "أمر شراء #"
+
+#. module: nati_reports_purchase
+#: model:ir.actions.report,name:nati_reports_purchase.custom_action_report_purchase_order
+msgid "Purchase Order modern"
+msgstr "امر شراء حديث"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "PurchasePersonEn"
+msgstr "PurchasePerson"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "QtyEn"
+msgstr "Qty"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "ReferenceEn"
+msgstr "Reference"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchasequotation_document
+msgid "Request for Quotation"
+msgstr "طلب عرض السعر"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "Request for Quotation #"
+msgstr "طلب عرض سعر #"
+
+#. module: nati_reports_purchase
+#: model:ir.actions.report,name:nati_reports_purchase.custom_report_purchase_quotation
+msgid "Request for Quotation modern"
+msgstr "طلب عرض سعر حديث"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "Taxes"
+msgstr "الضرائب"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "TaxesEn"
+msgstr "Taxes"
+
+#. module: nati_reports_purchase
+#: model_terms:ir.ui.view,arch_db:nati_reports_purchase.modern_report_purchaseorder_document
+msgid "UnitPriceEn"
+msgstr "Unit Price"
