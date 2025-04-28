@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_product_product_search" model="ir.ui.view">
-        <field name="name">product.product.search</field>
+    <!-- For product.product -->
+    <record id="view_product_product_filter_duplicate_reference" model="ir.ui.view">
+        <field name="name">product.product.filter.duplicate.reference</field>
         <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.view_product_product_filter"/>
         <field name="arch" type="xml">
-            <search>
-                <field name="default_code"/>
+            <xpath expr="//filter[@name='active']" position="after">
                 <filter string="Duplicate Internal Reference" 
                        name="duplicate_reference" 
                        domain="[]"
                        context="{'group_by':'default_code'}"/>
+                <separator/>
                 <filter string="Has Duplicate Reference" 
                        name="has_duplicate_reference_filter" 
                        domain="[('has_duplicate_reference','=',True)]"/>
-            </search>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- For product.template -->
+    <record id="view_product_template_filter_duplicate_reference" model="ir.ui.view">
+        <field name="name">product.template.filter.duplicate.reference</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.view_template_product_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='active']" position="after">
+                <filter string="Duplicate Internal Reference" 
+                       name="duplicate_reference" 
+                       domain="[]"
+                       context="{'group_by':'default_code'}"/>
+                <separator/>
+                <filter string="Has Duplicate Reference" 
+                       name="has_duplicate_reference_filter" 
+                       domain="[('has_duplicate_reference','=',True)]"/>
+            </xpath>
         </field>
     </record>
 </odoo>
