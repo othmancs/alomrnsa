@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
+from collections import defaultdict
 
 from openupgradelib import openupgrade_merge_records
 
@@ -25,26 +26,36 @@ class BaseProductMerge(models.Model):
         
         if ptype == "product.product":
             products = self.env[active_model].browse(active_ids)
-            # Filter products with same default_code (internal reference)
-            if products:
-                default_code = products[0].default_code
-                if default_code:
-                    same_code_products = products.filtered(lambda p: p.default_code == default_code)
-                    rec.update({"product_ids": [(6, 0, same_code_products.ids)]})
-                else:
-                    rec.update({"product_ids": [(6, 0, products.ids)]})
+            # Group products by default_code
+            code_groups = defaultdict(list)
+            for product in products:
+                code_groups[product.default_code].append(product.id)
+            
+            # Select first product from each group as destination
+            product_ids = []
+            for code, ids in code_groups.items():
+                product_ids.extend(ids)
+            
+            rec.update({
+                "product_ids": [(6, 0, product_ids)],
+                "auto_merge": len(code_groups) > 0,
+            })
         else:
             product_templates = self.env[active_model].browse(active_ids)
-            # Filter templates with same default_code (internal reference)
-            if product_templates:
-                default_code = product_templates[0].default_code
-                if default_code:
-                    same_code_templates = product_templates.filtered(
-                        lambda t: t.default_code == default_code
-                    )
-                    rec.update({"product_tmpl_ids": [(6, 0, same_code_templates.ids)]})
-                else:
-                    rec.update({"product_tmpl_ids": [(6, 0, product_templates.ids)]})
+            # Group templates by default_code
+            code_groups = defaultdict(list)
+            for template in product_templates:
+                code_groups[template.default_code].append(template.id)
+            
+            # Select first template from each group as destination
+            product_tmpl_ids = []
+            for code, ids in code_groups.items():
+                product_tmpl_ids.extend(ids)
+            
+            rec.update({
+                "product_tmpl_ids": [(6, 0, product_tmpl_ids)],
+                "auto_merge": len(code_groups) > 0,
+            })
         return rec
 
     dst_product_id = fields.Many2one(
@@ -75,20 +86,18 @@ class BaseProductMerge(models.Model):
         string="Products Template to merge",
     )
     merge_method = fields.Selection([("sql", "SQL"), ("orm", "ORM")], default="sql")
+    auto_merge = fields.Boolean("Auto Merge by Reference", default=False)
 
     def action_merge(self):
+        if self.auto_merge:
+            return self.action_auto_merge()
+        
         if self.ptype == "product.product":
             dst_product = self.dst_product_id
             products_to_merge = self.product_ids - dst_product
-            # Ensure all products have same default_code
-            if products_to_merge and any(p.default_code != dst_product.default_code for p in products_to_merge):
-                raise UserError(_("You can only merge products with the same internal reference."))
         else:
             dst_product = self.dst_product_tmpl_id
             products_to_merge = self.product_tmpl_ids - dst_product
-            # Ensure all templates have same default_code
-            if products_to_merge and any(t.default_code != dst_product.default_code for t in products_to_merge):
-                raise UserError(_("You can only merge product templates with the same internal reference."))
             # merge product first when there is template with single product
             if not any(
                 products_to_merge.product_variant_ids.mapped("combination_indices")
@@ -99,18 +108,60 @@ class BaseProductMerge(models.Model):
                 )
                 if not product_product_to_merge:
                     raise UserError(_("You cannot merge product to it self."))
-                # Ensure all variant products have same default_code
-                if any(p.default_code != dst_product_product.default_code for p in product_product_to_merge):
-                    raise UserError(_("You can only merge product variants with the same internal reference."))
                 self.merge_products(
                     "product.product", product_product_to_merge, dst_product_product
                 )
         self.merge_products(self.ptype, products_to_merge, dst_product)
 
+    def action_auto_merge(self):
+        if self.ptype == "product.product":
+            # Group products by default_code
+            code_groups = defaultdict(list)
+            for product in self.product_ids:
+                code_groups[product.default_code].append(product.id)
+            
+            # Merge each group
+            for code, product_ids in code_groups.items():
+                if len(product_ids) > 1:
+                    dst_product = self.env["product.product"].browse(product_ids[0])
+                    products_to_merge = self.env["product.product"].browse(product_ids[1:])
+                    self.merge_products("product.product", products_to_merge, dst_product)
+        else:
+            # Group templates by default_code
+            code_groups = defaultdict(list)
+            for template in self.product_tmpl_ids:
+                code_groups[template.default_code].append(template.id)
+            
+            # Merge each group
+            for code, template_ids in code_groups.items():
+                if len(template_ids) > 1:
+                    dst_template = self.env["product.template"].browse(template_ids[0])
+                    templates_to_merge = self.env["product.template"].browse(template_ids[1:])
+                    
+                    # merge product variants first if single variant templates
+                    if not any(templates_to_merge.product_variant_ids.mapped("combination_indices")):
+                        dst_product = dst_template.product_variant_id
+                        products_to_merge = templates_to_merge.product_variant_ids - dst_product
+                        if products_to_merge:
+                            self.merge_products("product.product", products_to_merge, dst_product)
+                    
+                    self.merge_products("product.template", templates_to_merge, dst_template)
+        
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Success"),
+                "message": _("Products merged successfully by internal reference."),
+                "sticky": False,
+                "next": {"type": "ir.actions.act_window_close"},
+            }
+        }
+
     def merge_products(self, model, products_to_merge, dst_product):
         try:
             if not products_to_merge:
-                raise UserError(_("You cannot merge product to it self."))
+                return
             openupgrade_merge_records.merge_records(
                 self.env,
                 model,
