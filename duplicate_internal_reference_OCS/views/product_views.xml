@@ -3,7 +3,7 @@
     <record id="view_product_product_filter_duplicate_reference" model="ir.ui.view">
         <field name="name">product.product.filter.duplicate.reference</field>
         <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_product_search_view"/>
+        <field name="inherit_id" ref="product.view_product_product_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='active']" position="after">
                 <filter string="Duplicate Internal Reference" 
