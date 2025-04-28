@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_product_product_filter_duplicate_reference" model="ir.ui.view">
-        <field name="name">product.product.filter.duplicate.reference</field>
+    <record id="view_product_product_search" model="ir.ui.view">
+        <field name="name">product.product.search</field>
         <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.view_product_product_filter"/>
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='active']" position="after">
+            <search>
+                <field name="default_code"/>
                 <filter string="Duplicate Internal Reference" 
                        name="duplicate_reference" 
                        domain="[]"
                        context="{'group_by':'default_code'}"/>
-                <separator/>
                 <filter string="Has Duplicate Reference" 
                        name="has_duplicate_reference_filter" 
                        domain="[('has_duplicate_reference','=',True)]"/>
-            </xpath>
+            </search>
         </field>
     </record>
 </odoo>
