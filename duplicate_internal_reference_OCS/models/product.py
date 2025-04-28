@@ -41,9 +41,9 @@ class ProductProduct(models.Model):
         """)
         duplicate_codes = [r[0] for r in self.env.cr.fetchall()]
         
-        if (operator in ('=', '==') and value:
+        if operator in ('=', '==') and value:
             return [('default_code', 'in', duplicate_codes)]
-        elif (operator in ('!=', '<>')) or not value:
+        elif operator in ('!=', '<>') or not value:
             return [('default_code', 'not in', duplicate_codes)]
         return []
 
@@ -87,8 +87,8 @@ class ProductTemplate(models.Model):
         """)
         duplicate_codes = [r[0] for r in self.env.cr.fetchall()]
         
-        if (operator in ('=', '==') and value:
+        if operator in ('=', '==') and value:
             return [('default_code', 'in', duplicate_codes)]
-        elif (operator in ('!=', '<>')) or not value:
+        elif operator in ('!=', '<>') or not value:
             return [('default_code', 'not in', duplicate_codes)]
         return []
