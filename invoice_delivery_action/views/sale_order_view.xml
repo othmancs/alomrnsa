@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_view_delivery']" position="attributes">
                 <attribute name="invisible">0</attribute>
-            </xpath>
+            </xpath> 
         </field>
     </record>
 </odoo>
