@@ -7,7 +7,8 @@ class AccountMove(models.Model):
     allowed_discount = fields.Float(
         string='الخصم المسموح به',
         digits='Product Price',
-        help='خصم لا يتجاوز 1 ريال للكسور العشرية'
+        help='خصم لا يتجاوز 1 ريال للكسور العشرية',
+        default=0.0
     )
     
     @api.constrains('allowed_discount')
@@ -20,7 +21,12 @@ class AccountMove(models.Model):
         res = super(AccountMove, self)._recompute_tax_lines(recompute_tax_base_amount)
         for move in self:
             if move.allowed_discount:
-                total_without_discount = sum(line.price_subtotal for line in move.invoice_line_ids)
-                discount_amount = min(move.allowed_discount, 1)  # التأكد من عدم تجاوز 1 ريال
-                move.amount_total = total_without_discount - discount_amount
+                # حساب الخصم مع التأكد من عدم تجاوز 1 ريال
+                discount_amount = min(move.allowed_discount, 1)
+                # تحديث إجمالي الضرائب مع الخصم
+                if move.tax_totals:
+                    move.tax_totals['amount_total'] -= discount_amount
+                    move.tax_totals['amount_untaxed'] -= discount_amount
+                # تحديث إجمالي الفاتورة
+                move.amount_total = move.amount_untaxed + move.amount_tax - discount_amount
         return res
