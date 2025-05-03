@@ -1,4 +1,4 @@
-from odoo import models, api, fields, _
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 class StockPicking(models.Model):
@@ -6,38 +6,29 @@ class StockPicking(models.Model):
 
     def button_validate(self):
         for picking in self:
-            if picking.sale_id:  # إذا كان هناك أمر بيع مرتبط بنقل المخزون
-                # جلب نوع الدفع (كاش أو آجل)
-                payment_type = picking.sale_id.payment_term_id.payment_type if picking.sale_id.payment_term_id else False
+            if picking.sale_id:  # إذا كان هناك أمر بيع مرتبط
+                payment_type = picking.sale_id.payment_type  # جلب نوع الدفع من أمر البيع
                 
                 if payment_type == 'cash':
-                    # في حالة الدفع كاش - نتحقق من وجود سداد مدفوع
-                    invoices = picking.sale_id.invoice_ids.filtered(
-                        lambda inv: inv.state == 'posted' and inv.payment_state in ('paid', 'in_payment')
+                    # التحقق من الفواتير المدفوعة بالكامل
+                    paid_invoices = picking.sale_id.invoice_ids.filtered(
+                        lambda inv: inv.state == 'posted' and inv.payment_state == 'paid'
                     )
-                    if not invoices:
+                    if not paid_invoices:
                         raise UserError(_(
-                            "لا يمكن تأكيد نقل المخزون لأنه لم يتم تسجيل الدفع لأي فاتورة مرتبطة بأمر البيع %s."
+                            "لا يمكن تأكيد نقل المخزون للطلب %s\n"
+                            "السبب: العميل نقدي ولم يتم تسجيل السداد الكامل للفاتورة"
                         ) % picking.sale_id.name)
                 
                 elif payment_type == 'credit':
-                    # في حالة الدفع آجل - نتحقق فقط من وجود فاتورة مؤكدة
-                    invoices = picking.sale_id.invoice_ids.filtered(
+                    # التحقق من وجود فاتورة مؤكدة (حتى لو غير مدفوعة)
+                    confirmed_invoices = picking.sale_id.invoice_ids.filtered(
                         lambda inv: inv.state == 'posted'
                     )
-                    if not invoices:
+                    if not confirmed_invoices:
                         raise UserError(_(
-                            "لا يمكن تأكيد نقل المخزون لأنه لم يتم تأكيد أي فاتورة مرتبطة بأمر البيع %s."
-                        ) % picking.sale_id.name)
-                
-                else:
-                    # الحالة الافتراضية إذا لم يتم تحديد نوع الدفع
-                    invoices = picking.sale_id.invoice_ids.filtered(
-                        lambda inv: inv.state == 'posted'
-                    )
-                    if not invoices:
-                        raise UserError(_(
-                            "لا يمكن تأكيد نقل المخزون لأنه لم يتم تأكيد أي فاتورة مرتبطة بأمر البيع %s."
+                            "لا يمكن تأكيد نقل المخزون للطلب %s\n"
+                            "السبب: العميل آجل ولم يتم إنشاء فاتورة مؤكدة"
                         ) % picking.sale_id.name)
                         
         return super(StockPicking, self).button_validate()
