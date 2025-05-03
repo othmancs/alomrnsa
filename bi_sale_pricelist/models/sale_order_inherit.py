@@ -8,13 +8,18 @@ class SaleOrderLine(models.Model):
     pricelist_item_id = fields.Many2one(
         'product.pricelist.item',
         string="عنصر قائمة الأسعار",
-        store=True  # إضافة هذا لجعل الحقل مخزن
+        store=True
     )
+    
     def pricelist_apply(self):
         return {
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'sale.order.pricelist.wizard',
-                'type': 'ir.actions.act_window',
-                'target': 'new',
+            'name': _("Pricelist Wizard"),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'sale.order.pricelist.wizard',
+            'target': 'new',
+            'context': {
+                'default_line_id': self.id,
+                'active_ids': [self.id],
             }
+        }
