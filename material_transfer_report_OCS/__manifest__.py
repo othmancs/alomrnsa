@@ -16,7 +16,7 @@
     'website': "http://www.yourcompany.com",
     'category': 'Inventory',
     'version': '15.0.1.0.0',
-    'depends': ['base', 'stock', 'material_request'],
+    'depends': ['base', 'stock', 'ak_material_request'],
     'data': [
         # 'security/ir.model.access.csv',
         'views/material_transfer_report_views.xml',
