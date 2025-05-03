@@ -31,10 +31,25 @@
                         <field name="branch_from_id"/>
                         <field name="branch_to_id"/>
                     </group>
-                    <footer>
+<!--                     <footer>
                         <button name="action_generate_excel_report" string="إنشاء تقرير Excel" type="object" class="btn-primary"/>
                         <button name="action_generate_pdf_report" string="إنشاء تقرير PDF" type="object" class="btn-primary"/>
+                    </footer> -->
+                    <footer>
+                        <!-- تعديل الأزرار كما يلي -->
+                        <button name="action_generate_excel_report" 
+                                string="إنشاء تقرير Excel" 
+                                type="object" 
+                                class="oe_highlight" 
+                                attrs="{'invisible': [('id', '=', False)]}"/>
+                        <button name="action_generate_pdf_report" 
+                                string="إنشاء تقرير PDF" 
+                                type="object" 
+                                class="oe_highlight" 
+                                attrs="{'invisible': [('id', '=', False)]}"/>
                     </footer>
+                </sheet>
+
                 </sheet>
             </form>
         </field>
