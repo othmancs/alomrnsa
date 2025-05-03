@@ -11,17 +11,21 @@ class SaleOrderPricelistWizard(models.Model):
 
     bi_wizard_pricelist_id = fields.Many2one('product.pricelist', string="Pricelist")
     pricelist_line = fields.One2many('sale.order.pricelist.wizard.line', 'pricelist_id', string='Pricelist Line Id')
+    line_id = fields.Many2one('sale.order.line', string="Sale Order Line")
 
     @api.model
     def default_get(self, fields):
         res = super(SaleOrderPricelistWizard, self).default_get(fields)
-        res_ids = self._context.get('active_ids')
-        if res_ids and res_ids[0]:
-            so_line = res_ids[0]
-            so_line_obj = self.env['sale.order.line'].browse(so_line)
+        active_ids = self._context.get('active_ids', [])
+        line_id = self._context.get('default_line_id')
+        
+        if not line_id and active_ids:
+            line_id = active_ids[0]
+            
+        if line_id:
+            so_line_obj = self.env['sale.order.line'].browse(line_id)
             pricelist_list = []
             
-            # البحث فقط عن قوائم الأسعار التي تحتوي على المنتج المحدد
             pricelists = self.env['product.pricelist'].sudo().search([
                 ('item_ids.product_tmpl_id', '=', so_line_obj.product_id.product_tmpl_id.id)
             ])
@@ -46,12 +50,13 @@ class SaleOrderPricelistWizard(models.Model):
                             'bi_unit_cost': so_line_obj.product_id.standard_price,
                             'bi_margin': margin,
                             'bi_margin_per': margin_per,
-                            'line_id': so_line,
+                            'line_id': line_id,
                         })
                         pricelist_list.append(wz_line_id.id)
 
             res.update({
                 'pricelist_line': [(6, 0, pricelist_list)],
+                'line_id': line_id,
             })
         return res
 
