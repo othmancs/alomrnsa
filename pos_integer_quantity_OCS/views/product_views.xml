@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <field name="uom_id" position="attributes">
                 <attribute name="domain">
-                    [('category_id.measure_type', '=', 'unit'), '|', ('name', '=', 'حبة'), ('name', '!=', 'حبة')]
+                    [('category_id', '=', ref('uom.product_uom_categ_unit')), '|', ('name', '=', 'حبة'), ('name', '!=', 'حبة')]
                 </attribute>
             </field>
         </field>
