@@ -17,29 +17,23 @@ class AccountMove(models.Model):
             if move.move_type == 'out_invoice' and (move.allowed_discount < 0 or move.allowed_discount > 1):
                 raise ValidationError(_('الخصم المسموح به يجب أن يكون بين 0 و 1 ريال فقط!'))
     
-    def _recompute_tax_lines(self, recompute_tax_base_amount=False):
-        res = super()._recompute_tax_lines(recompute_tax_base_amount)
+    def _recompute_dynamic_lines(self, recompute_all_taxes=False, recompute_tax_base_amount=False):
+        res = super(AccountMove, self)._recompute_dynamic_lines(
+            recompute_all_taxes=recompute_all_taxes,
+            recompute_tax_base_amount=recompute_tax_base_amount
+        )
+        
         for move in self:
             if move.move_type == 'out_invoice' and move.allowed_discount:
-                # حساب الخصم مع التأكد من عدم تجاوز 1 ريال
                 discount_amount = min(move.allowed_discount, 1)
-                
-                # تحديث إجمالي الفاتورة
                 move.amount_total = move.amount_untaxed + move.amount_tax - discount_amount
                 
-                # تحديث tax_totals إذا كان موجوداً
                 if hasattr(move, 'tax_totals') and move.tax_totals:
-                    tax_totals = move.tax_totals
-                    tax_totals['amount_total'] = move.amount_total
-                    tax_totals['formatted_amount_total'] = move.currency_id.format(move.amount_total)
-                    
-                    # تحديث المبلغ الإجمالي قبل الضريبة إذا لزم الأمر
-                    if 'amount_untaxed' in tax_totals:
-                        tax_totals['amount_untaxed'] = move.amount_untaxed
-                        tax_totals['formatted_amount_untaxed'] = move.currency_id.format(move.amount_untaxed)
+                    move.tax_totals['amount_total'] = move.amount_total
+                    move.tax_totals['formatted_amount_total'] = move.currency_id.format(move.amount_total)
         return res
     
     @api.onchange('allowed_discount')
     def _onchange_allowed_discount(self):
         if self.move_type == 'out_invoice':
-            self._recompute_tax_lines()
+            self._recompute_dynamic_lines()
