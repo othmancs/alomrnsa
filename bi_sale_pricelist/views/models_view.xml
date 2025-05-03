@@ -5,14 +5,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <!-- استخدام مسار أبسط وأكثر موثوقية -->
-            <xpath expr="//field[@name='order_line']/tree" position="inside">
-                <button 
-                    name="pricelist_apply" 
-                    type="object" 
-                    string="مشاهدة" 
-                    class="oe_highlight"
-                    help="=object.get_pricelist_tooltip_info()"/>
+            <xpath expr="//field[@name='order_line']//tree" position="inside">
+                <button name="pricelist_apply" type="object" string="مشاهدة" class="oe_highlight"/>
             </xpath>
         </field>
     </record>
