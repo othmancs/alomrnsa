@@ -7,5 +7,7 @@ class ProductTemplate(models.Model):
     @api.constrains('uom_id')
     def _check_uom_category(self):
         for product in self:
-            if product.uom_id.name == 'حبة' and product.uom_id.category_id != self.env.ref('uom.product_uom_categ_unit'):
-                raise ValidationError("وحدة القياس 'حبة' يجب أن تكون من فئة الوحدات (Unit)")
+            if product.uom_id.name == 'حبة':
+                unit_category = self.env.ref('uom.product_uom_categ_unit', raise_if_not_found=False)
+                if not unit_category or product.uom_id.category_id != unit_category:
+                    raise ValidationError("وحدة القياس 'حبة' يجب أن تكون من فئة الوحدات (Unit)")
