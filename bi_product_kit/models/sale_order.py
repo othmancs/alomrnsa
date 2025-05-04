@@ -162,4 +162,5 @@ class StockMoveLine(models.Model):
     pack_id = fields.Many2one(
         'product.kit',
         string="Kit Component",
-       
+        help="Indicates which kit component this move line corresponds to"
+    )
