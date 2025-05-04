@@ -2,15 +2,21 @@
 # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 
 from odoo import api, fields, models, _
+from odoo.tools import float_round
 
 class SaleReport(models.Model):
     _inherit = 'sale.report'
 
-    product_kit = fields.Many2one('product.product', string='Product Kit', readonly=True)
+    product_kit = fields.Many2one(
+        'product.product', 
+        string='Product Kit', 
+        readonly=True,
+        help="Kit product associated with this sale line"
+    )
 
     def _select_additional_fields(self):
         res = super()._select_additional_fields()
-        res['product_kit'] = 'l.product_id'
+        res['product_kit'] = 'l.product_id as product_kit'
         return res
 
     def _group_by_sale(self):
@@ -21,6 +27,7 @@ class SaleReport(models.Model):
 
     @api.model
     def _query(self):
+        """Build the SQL query with proper column alignment for UNION operations"""
         with_ = """
             WITH currency_table AS (
                 SELECT r.id, r.rate AS currency_rate
@@ -128,10 +135,11 @@ class SaleReport(models.Model):
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
-        """ Override to ensure consistent columns in UNION queries """
+        """Ensure consistent columns in GROUP BY queries"""
         if 'product_kit' not in fields:
             fields.append('product_kit')
-        return super(SaleReport, self).read_group(
-            domain, fields, groupby, 
-            offset=offset, limit=limit, 
-            orderby=orderby, lazy=lazy)
+        return super().read_group(
+            domain, fields, groupby,
+            offset=offset, limit=limit,
+            orderby=orderby, lazy=lazy
+        )
