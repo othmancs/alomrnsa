@@ -3,28 +3,33 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import float_is_zero, float_compare
+from odoo.tools import float_is_zero, float_compare, float_round
 
 class ProductKit(models.Model):
     _name = 'product.kit'
     _description = "Product Kit"
+    _order = "sequence, id"
     
+    sequence = fields.Integer(string="Sequence", default=1)
     product_id = fields.Many2one(
         'product.product', 
         string='Product', 
         required=True,
-        domain="[('id', '!=', parent.product_id)]"
+        domain="[('id', '!=', parent.product_id)]",
+        help="Product component of the kit"
     )
     qty_uom = fields.Float(
         string='Quantity', 
         required=True, 
         default=1.0,
-        digits='Product Unit of Measure'
+        digits='Product Unit of Measure',
+        help="Quantity needed for this component"
     )
     bi_product_template = fields.Many2one(
         'product.template', 
         string='Product Pack',
-        ondelete='cascade'
+        ondelete='cascade',
+        help="Parent kit product"
     )
     bi_cost = fields.Float(
         related='product_id.standard_price', 
@@ -75,75 +80,78 @@ class ProductTemplate(models.Model):
         'product.kit', 
         'bi_product_template', 
         string='Kit Components',
-        copy=True
+        copy=True,
+        help="List of products included in this kit"
     )
 
     @api.constrains('is_kit', 'kit_ids')
     def _check_kit_components(self):
+        """Validate kit configuration"""
         for product in self:
             if product.is_kit and not product.kit_ids:
                 raise ValidationError(_("A kit product must have at least one component."))
+            if product.is_kit and product in product.kit_ids.product_id.product_tmpl_id:
+                raise ValidationError(_("A kit cannot contain itself as a component."))
 
     @api.model_create_multi
     def create(self, vals_list):
-        records = super(ProductTemplate, self).create(vals_list)
-        for record in records:
-            if record.cal_kit_price:
-                record._compute_kit_price()
+        """Handle kit price calculation on creation"""
+        records = super().create(vals_list)
+        records.filtered(lambda r: r.cal_kit_price)._compute_kit_price()
         return records
 
     def write(self, vals):
-        res = super(ProductTemplate, self).write(vals)
+        """Handle kit price calculation on update"""
+        res = super().write(vals)
         if 'kit_ids' in vals or 'cal_kit_price' in vals:
-            for product in self:
-                if product.cal_kit_price:
-                    product._compute_kit_price()
+            self.filtered(lambda p: p.cal_kit_price)._compute_kit_price()
         return res
 
     def _compute_kit_price(self):
-        self.ensure_one()
-        total = 0.0
-        for kit_line in self.kit_ids:
-            total += kit_line.qty_uom * kit_line.product_id.list_price
-        if total > 0:
-            self.list_price = total
+        """Calculate kit price based on components"""
+        for product in self:
+            if not product.cal_kit_price:
+                continue
+                
+            total = 0.0
+            for kit_line in product.kit_ids:
+                total += kit_line.qty_uom * kit_line.product_id.list_price
+            
+            if total > 0:
+                product.list_price = total
 
     def _compute_sales_count(self):
-        """ Override to handle kit products properly """
-        for product in self:
-            if product.is_kit:
-                # For kit products, sum sales of all variants
+        """Custom sales count computation for kits"""
+        kit_products = self.filtered(lambda p: p.is_kit)
+        
+        # Handle regular products first
+        super(ProductTemplate, self - kit_products)._compute_sales_count()
+        
+        # Handle kit products
+        for product in kit_products:
+            try:
                 product.sales_count = float_round(
                     sum(p.sales_count for p in product.with_context(
                         active_test=False).product_variant_ids),
                     precision_rounding=product.uom_id.rounding
                 )
-            else:
-                # Default computation for regular products
-                super(ProductTemplate, product)._compute_sales_count()
+            except Exception as e:
+                product.sales_count = 0.0
+                _logger.error("Error computing sales count for kit %s: %s", product.id, str(e))
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     def _compute_sales_count(self):
-        """ Override to handle kit products properly """
+        """Custom sales count computation for kit variants"""
         kit_products = self.filtered(lambda p: p.is_kit)
-        for product in kit_products:
-            product.sales_count = 0.0  # Kit products get count from template
         
-        # Default computation for regular products
+        # Kit variants get count from template
+        kit_products.update({'sales_count': 0.0})
+        
+        # Handle regular products
         super(ProductProduct, self - kit_products)._compute_sales_count()
-
-
-class SaleReport(models.Model):
-    _inherit = 'sale.report'
-
-    def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-        """ Fix UNION query by ensuring consistent columns """
-        fields['product_kit'] = ", l.product_id as product_kit"
-        groupby += ', l.product_id'
-        return super(SaleReport, self)._query(with_clause, fields, groupby, from_clause)
 
 
 class StockMove(models.Model):
