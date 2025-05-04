@@ -1,0 +1,93 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sound_alert_form">
+            <field name="name">Sound Alert Form View</field>
+            <field name="model">sound_alert.alerts</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="generate_alert" string="Test Alert" type="object" class="oe_highlight" icon="fa-play"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="alert_type"/>
+                            </group>
+                            <group attrs="{'invisible': [('alert_type', '!=', 'sound')]}">
+                                <field name="sound_alert_binary" attrs="{'required': [('alert_type', '=', 'sound')]}"/>
+                            </group>
+                            <group attrs="{'invisible': [('alert_type', '!=', 'voice')]}">
+                                <field name="voice_alert_text" attrs="{'required': [('alert_type', '=', 'voice')]}"/>
+                            </group>
+                        </group>
+                        <group string="Technical Help" attrs="{'invisible': [('id', '=', False)]}"/>
+                        <div string="Technical Help" attrs="{'invisible': [('id', '=', False)]}">
+                            <p>The alert sound can be generated based on any business requirement. Technically, users can utilize the sound in the following ways:</p>
+                            <ul>
+                                <li><b>Triggering sound via a button click:</b> <br/>
+                                    Users can activate the sound by clicking a button—similar to the <b>"Test Alert"</b> action button above. To achieve this, the Python model function (sample provided below) should be invoked on the button action call. </li>
+                                    <div class="sa_line_block">
+                                        <span class="sa_type_block">Python</span>
+                                        <span> <field name="python_model_text"/></span>
+                                    </div>
+                                <li><b>Generating alert to other users browser window:</b> <br/>
+                                    This method allows users to trigger a sound alert in another user’s active window by passing the user’s partner ID(s) in the function parameter.
+                                    It can also create custom text message sound alert. Few samples implementation is provided below. </li>
+                                    <div>
+                                        <div class="sa_line_block">
+                                            <span>
+                                                <span class="sa_type_block">Python: For Admin User</span>
+                                                <span> <field name="api_admin_user_demo_text"/></span>
+                                            </span><br/><br/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="sa_line_block">
+                                            <span>
+                                                <span class="sa_type_block">Python: For Admin and Demo User</span>
+                                                <span> <field name="api_admin_demo_user_demo_text"/></span>
+                                            </span><br/><br/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="sa_line_block">
+                                            <span>
+                                                <span class="sa_type_block">Python: For Admin User with Custom Text Message</span>
+                                                <span> <field name="api_admin_custom_text_demo_text"/></span>
+                                            </span><br/><br/>
+                                        </div>
+                                    </div>
+                            </ul>
+                            </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sound_alert_tree">
+            <field name="name">Sound Alert Tree View</field>
+            <field name="model">sound_alert.alerts</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="alert_type"/>
+                    <field name="voice_alert_text" attrs="{'required': [('alert_type', '=', 'voice')]}"/>
+                    <button name="generate_alert" string="Test Alert" type="object" class="oe_highlight" icon="fa-play"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="alert_action" model="ir.actions.act_window">
+            <field name="name">Alerts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sound_alert.alerts</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="sound_alert.root_menu" name="Sound Alert" web_icon="sound_alert,static/description/icon.png"/>
+
+        <menuitem id="sound_alert.alerts" name="Alerts" action="alert_action" parent="sound_alert.root_menu" sequence="25"/>
+    </data>
+</odoo>

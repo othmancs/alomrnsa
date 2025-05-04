@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record id="sound_alert.voice_alert_1" model="sound_alert.alerts">
+            <field name="name">Voice: Sample 1</field>
+            <field name="alert_type">voice</field>
+            <field name="voice_alert_text">Something Big Going to Happen!</field>
+        </record>
+
+        <record id="sound_alert.voice_alert_2" model="sound_alert.alerts">
+            <field name="name">Voice: Sample 2</field>
+            <field name="alert_type">voice</field>
+            <field name="voice_alert_text">This is Alert Voice Sound!</field>
+        </record>
+
+        <record id="sound_alert.sound_alert1" model="sound_alert.alerts">
+            <field name="name">Sound: Sample 1</field>
+            <field name="alert_type">sound</field>
+            <field name="sound_alert_binary" file="sound_alert/demo/notif2.mp3" type="base64"/>
+        </record>
+
+        <record id="sound_alert.sound_alert2" model="sound_alert.alerts">
+            <field name="name">Sound: Sample 2</field>
+            <field name="alert_type">sound</field>
+            <field name="sound_alert_binary" file="sound_alert/demo/notif1.wav" type="base64"/>
+        </record>
+
+        <record id="sound_alert.sound_alert3" model="sound_alert.alerts">
+            <field name="name">Sound: Sample 3</field>
+            <field name="alert_type">sound</field>
+            <field name="sound_alert_binary" file="sound_alert/demo/bell.wav" type="base64"/>
+        </record>
+    </data>
+</odoo>

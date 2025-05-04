@@ -1,0 +1,22 @@
+.sa_line_block {
+    border: solid;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    font-size: 0.8125rem;
+    font-family: var(--font-monospace);
+    margin-bottom: 10px;
+    border-width: 1px;
+    padding: 5px;
+    padding-top: 5px;
+    padding-top: 10px;
+}
+
+.sa_type_block {
+    margin-left: 10px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 9px;
+    background-color: #d6e8d6;
+    padding: 4px;
+}
