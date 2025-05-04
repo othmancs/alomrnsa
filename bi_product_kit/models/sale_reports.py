@@ -10,7 +10,7 @@ class SaleReport(models.Model):
 
     def _select_additional_fields(self):
         res = super(SaleReport, self)._select_additional_fields()
-        res['product_kit'] = "l.product_id"
+        res['product_kit'] = "l.product_id as product_kit"
         return res
 
     def _group_by_sale(self):
@@ -18,7 +18,6 @@ class SaleReport(models.Model):
         if 'l.product_id' not in group_by:
             group_by += ', l.product_id'
         return group_by
-
 
     @api.model
     def _query(self):
@@ -45,17 +44,17 @@ class SaleReport(models.Model):
                 CASE WHEN l.product_id IS NOT NULL THEN SUM((l.product_uom_qty - l.qty_delivered) / u.factor * u2.factor) ELSE 0 END AS qty_to_deliver,
                 CASE WHEN l.product_id IS NOT NULL THEN SUM(l.qty_invoiced / u.factor * u2.factor) ELSE 0 END AS qty_invoiced,
                 CASE WHEN l.product_id IS NOT NULL THEN SUM(l.qty_to_invoice / u.factor * u2.factor) ELSE 0 END AS qty_to_invoice,
-                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.price_total / CASE WHEN s.currency_rate = 0 THEN 1 ELSE s.currency_rate END)
-                    * CASE WHEN currency_table.currency_rate = 0 THEN 1 ELSE currency_table.currency_rate END ELSE 0
+                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.price_total / NULLIF(s.currency_rate, 0))
+                    * NULLIF(currency_table.currency_rate, 0) ELSE 0
                 END AS price_total,
-                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.price_subtotal * CASE WHEN s.currency_rate = 0 THEN 1 ELSE s.currency_rate END)
-                    * CASE WHEN currency_table.currency_rate = 0 THEN 1 ELSE currency_table.currency_rate END ELSE 0
+                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.price_subtotal * NULLIF(s.currency_rate, 0))
+                    * NULLIF(currency_table.currency_rate, 0) ELSE 0
                 END AS price_subtotal,
-                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.untaxed_amount_to_invoice * CASE WHEN s.currency_rate = 0 THEN 1 ELSE s.currency_rate END)
-                    * CASE WHEN currency_table.currency_rate = 0 THEN 1 ELSE currency_table.currency_rate END ELSE 0
+                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.untaxed_amount_to_invoice * NULLIF(s.currency_rate, 0))
+                    * NULLIF(currency_table.currency_rate, 0) ELSE 0
                 END AS untaxed_amount_to_invoice,
-                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.untaxed_amount_invoiced * CASE WHEN s.currency_rate = 0 THEN 1 ELSE s.currency_rate END)
-                    * CASE WHEN currency_table.currency_rate = 0 THEN 1 ELSE currency_table.currency_rate END ELSE 0
+                CASE WHEN l.product_id IS NOT NULL THEN SUM(l.untaxed_amount_invoiced * NULLIF(s.currency_rate, 0))
+                    * NULLIF(currency_table.currency_rate, 0) ELSE 0
                 END AS untaxed_amount_invoiced,
                 COUNT(*) AS nbr,
                 s.name AS name,
@@ -79,8 +78,8 @@ class SaleReport(models.Model):
                 CASE WHEN l.product_id IS NOT NULL THEN SUM(p.volume * l.product_uom_qty / u.factor * u2.factor) ELSE 0 END AS volume,
                 l.discount AS discount,
                 CASE WHEN l.product_id IS NOT NULL THEN SUM(l.price_unit * l.product_uom_qty * l.discount / 100.0
-                    * CASE WHEN s.currency_rate = 0 THEN 1 ELSE s.currency_rate END
-                    * CASE WHEN currency_table.currency_rate = 0 THEN 1 ELSE currency_table.currency_rate END
+                    * NULLIF(s.currency_rate, 0)
+                    * NULLIF(currency_table.currency_rate, 0)
                     ) ELSE 0
                 END AS discount_amount,
                 s.id AS order_id
@@ -126,3 +125,13 @@ class SaleReport(models.Model):
         """
         
         return f"{with_}{select_}{from_}{group_by_}"
+
+    @api.model
+    def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
+        """ Override to ensure consistent columns in UNION queries """
+        if 'product_kit' not in fields:
+            fields.append('product_kit')
+        return super(SaleReport, self).read_group(
+            domain, fields, groupby, 
+            offset=offset, limit=limit, 
+            orderby=orderby, lazy=lazy)
