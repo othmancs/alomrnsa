@@ -7,7 +7,7 @@ class StockMove(models.Model):
     @api.constrains('product_uom', 'product_uom_qty')
     def _check_integer_quantity(self):
         for move in self:
-            if move.product_id.uom_id.name == 'حبة' and not move.product_uom_qty.is_integer():
+            if move.product_id.uom_id.name == 'حبة' and float(move.product_uom_qty) % 1 != 0:
                 raise ValidationError("كمية المنتج يجب أن تكون عددًا صحيحًا عندما تكون الوحدة 'حبة'")
 
 class StockMoveLine(models.Model):
@@ -16,7 +16,7 @@ class StockMoveLine(models.Model):
     @api.constrains('product_uom_id', 'qty_done')
     def _check_integer_quantity(self):
         for line in self:
-            if line.product_id.uom_id.name == 'حبة' and not line.qty_done.is_integer():
+            if line.product_id.uom_id.name == 'حبة' and float(line.qty_done) % 1 != 0:
                 raise ValidationError("كمية المنتج يجب أن تكون عددًا صحيحًا عندما تكون الوحدة 'حبة'")
 
 class SaleOrderLine(models.Model):
@@ -25,7 +25,7 @@ class SaleOrderLine(models.Model):
     @api.constrains('product_uom', 'product_uom_qty')
     def _check_integer_quantity(self):
         for line in self:
-            if line.product_id.uom_id.name == 'حبة' and not line.product_uom_qty.is_integer():
+            if line.product_id.uom_id.name == 'حبة' and float(line.product_uom_qty) % 1 != 0:
                 raise ValidationError("كمية المنتج يجب أن تكون عددًا صحيحًا عندما تكون الوحدة 'حبة'")
 
 class PurchaseOrderLine(models.Model):
@@ -34,5 +34,5 @@ class PurchaseOrderLine(models.Model):
     @api.constrains('product_uom', 'product_qty')
     def _check_integer_quantity(self):
         for line in self:
-            if line.product_id.uom_id.name == 'حبة' and not line.product_qty.is_integer():
+            if line.product_id.uom_id.name == 'حبة' and float(line.product_qty) % 1 != 0:
                 raise ValidationError("كمية المنتج يجب أن تكون عددًا صحيحًا عندما تكون الوحدة 'حبة'")
