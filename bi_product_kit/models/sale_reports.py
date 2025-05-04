@@ -6,15 +6,15 @@ from odoo import api, fields, models, _
 class SaleReport(models.Model):
     _inherit = 'sale.report'
 
-    product_kit = fields.Many2one('product.product', 'Product Kit', readonly=True)
+    product_kit = fields.Many2one('product.product', string='Product Kit', readonly=True)
 
     def _select_additional_fields(self):
-        res = super(SaleReport, self)._select_additional_fields()
-        res['product_kit'] = "l.product_id as product_kit"
+        res = super()._select_additional_fields()
+        res['product_kit'] = 'l.product_id'
         return res
 
     def _group_by_sale(self):
-        group_by = super(SaleReport, self)._group_by_sale()
+        group_by = super()._group_by_sale()
         if 'l.product_id' not in group_by:
             group_by += ', l.product_id'
         return group_by
