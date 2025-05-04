@@ -17,16 +17,18 @@ class StockPicking(models.Model):
                     ) % picking.sale_id.name)
                 
                 if payment_type == 'cash':
-                    # التحقق من الفواتير المدفوعة بالكامل للعملاء النقديين
+                    # التحقق من الفواتير المدفوعة بالكامل أو شبكة للعملاء النقديين
                     paid_invoices = picking.sale_id.invoice_ids.filtered(
-                        lambda inv: inv.state == 'posted' and inv.payment_state == 'paid'
+                        lambda inv: inv.state == 'posted' and 
+                        (inv.payment_state == 'paid' or inv.payment_state == 'in_payment')
                     )
                     if not paid_invoices:
                         raise UserError(_(
                             "لا يمكن تأكيد نقل المخزون للطلب %s\n"
-                            "السبب: العميل نقدي ولم يتم تسديد الفاتورة بالكامل\n"
+                            "السبب: العميل نقدي ولم يتم تسديد الفاتورة\n"
+                            "حالة الدفع الحالية: %s\n"
                             "يرجى تأكيد دفع الفاتورة قبل متابعة عملية النقل"
-                        ) % picking.sale_id.name)
+                        ) % (picking.sale_id.name, picking.sale_id.invoice_ids[0].payment_state))
                 
                 elif payment_type == 'credit':
                     # التحقق من وجود فاتورة مؤكدة للعملاء الآجلين
