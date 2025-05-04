@@ -5,8 +5,11 @@
         <field name="model">ir.model.data</field>
         <field name="inherit_id" ref="base.view_model_data_list"/>
         <field name="arch" type="xml">
+            <field name="complete_name" position="before">
+                <field name="id" optional="hide"/>
+            </field>
             <field name="res_id" position="after">
-                <field name="noupdate"/>
+                <field name="noupdate" widget="boolean_toggle" optional="show"/>
             </field>
         </field>
     </record>

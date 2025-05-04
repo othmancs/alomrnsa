@@ -42,7 +42,7 @@ odoo.define("web_environment_ribbon.ribbon", function (require) {
             method: "get_environment_ribbon",
         }).then(function (ribbon_data) {
             // Ribbon name
-            if (ribbon_data.name && ribbon_data.name !== "False") {
+            if (ribbon_data.name && (ribbon_data.name !== "False" && ribbon_data.name !== "0")) {
                 ribbon.html(ribbon_data.name);
                 ribbon.show();
             }

@@ -38,10 +38,10 @@
 ##############################################################################
 
 {
-    'name': "odooAi Common Util and Tools,欧度智能基础核心优化",
-    'version': '16.24.04.18',
+    'name': "odooAi Common Util and Tools,欧度智能基础功能及面板",
+    'version': '16.0.25.03.10',
     'author': 'odooai.cn',
-    'category': 'Base',
+    'category': 'Extra tools',
     'website': 'https://www.odooai.cn',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
@@ -51,7 +51,7 @@
     'images': ['static/description/banner.png'],
     'summary': '''
     Core for common use for odooai.cn apps.
-    基础核心，必须没有要被依赖字段及视图等，实现auto_install
+    基础核心及云面板，必须没有要被依赖字段及视图等，实现auto_install
     ''',
     'description': '''
     need to setup odoo.conf, add follow:
@@ -66,8 +66,8 @@
     8. Boost for less no use mail
     9. Customize .rng file
     10. Misc like get distance between two points
-    11. Multi-language Support. Multi-Company Support
-    12. Support Odoo 17,16,15,14,13,12, Enterprise and Community and odoo.sh Edition.
+    11. Multi-language Support. Multi-Company Support.
+    12. Support Odoo 18,17,16,15,14,13,12, Enterprise and Community and odoo.sh Edition.
     13. Full Open Source.
     ==========
     1. 
@@ -78,9 +78,11 @@
     ''',
     'depends': [
         'mail',
+        'base_setup',
         'web',
     ],
     'data': [
+        'views/res_config_settings_views.xml',
         'views/ir_cron_views.xml',
         # 'report/.xml',
     ],

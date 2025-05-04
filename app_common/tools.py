@@ -70,6 +70,9 @@ def get_ua_type(self):
 
     # web 表示普通浏览器，后续更深入处理
     utype = 'web'
+    if not ua:
+        return utype
+    
     # todo: 引入现成 py lib，处理企业微信
     if 'MicroMessenger' in ua and 'webdebugger' not in ua \
         and ('miniProgram' in ua or 'MiniProgram' in ua or 'MiniProgramEnv' in ua or 'wechatdevtools' in ua):

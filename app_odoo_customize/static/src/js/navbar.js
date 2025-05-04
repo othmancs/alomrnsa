@@ -1,19 +1,20 @@
 /** @odoo-module **/
 
+import { browser } from "@web/core/browser/browser";
 import {NavBar} from '@web/webclient/navbar/navbar';
 import {useEffect, useRef} from '@odoo/owl';
 import {patch} from 'web.utils';
-import config from 'web.config';
 import {qweb} from 'web.core';
 
 patch(NavBar.components.MenuDropdown.prototype, 'app_odoo_customize/static/src/js/menu_dropdown.js', {
     setup() {
         this._super();
         //todo:  鼠标移开要不显示，当前太妨碍
-        // useEffect(() => this.addDebugTooltip());
+        useEffect(() => this.addDebugTooltip());
     },
     addDebugTooltip() {
-        if (config.isDebug()) {
+        let is_asset = browser.location.search.includes('?debug=assets');
+        if (is_asset) {
             let dropdownDebugData = this.getDebugData()
             $(this.rootRef.el).find('.dropdown-toggle')
                 .removeAttr('title')
@@ -55,10 +56,11 @@ patch(NavBar.components.DropdownItem.prototype, 'app_odoo_customize/static/src/j
     setup() {
         this._super();
         //todo:  鼠标移开要不显示，当前太妨碍
-        // useEffect(() => this.addDebugTooltip());
+        useEffect(() => this.addDebugTooltip());
     },
     addDebugTooltip() {
-        if (config.isDebug()) {
+        let is_asset = browser.location.search.includes('?debug=assets');
+        if (is_asset) {
             let menuDebugData = this.getDebugData();
             if (!menuDebugData) {
                 return;

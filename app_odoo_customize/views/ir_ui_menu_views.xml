@@ -13,9 +13,13 @@
                 <xpath expr="//tree"  position="attributes">
                     <attribute name="multi_edit">1</attribute>
                 </xpath>
+                <field name="sequence" position="after">
+                    <field name="id" optional="hide"/>
+                </field>
                 <field name="complete_name" position="after">
-                    <field name="name"/>
-                    <field name="parent_id"/>
+                    <field name="name" optional="show"/>
+                    <field name="parent_id" optional="show"/>
+                    <field name="active" widget="boolean_toggle" optional="show"/>
                 </field>
             </field>
         </record>
@@ -45,7 +49,7 @@
                 id="menu_app_theme_config"
                 parent="menu_app_group"
                 sequence="1"
-                action="action_app_theme_config"
+                action="app_common.action_odooai_cloud_config"
                 groups="base.group_system"/>
         <menuitem
                 id="menu_ir_cron"

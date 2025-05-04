@@ -22,8 +22,8 @@
 # description:
 
 {
-    'name': 'odoo17 Tweak,Ai Employee,Boost,Customize All in One. Customize,UI,Boost,Security,Data',
-    'version': '16.24.04.03',
+    'name': 'odoo Tweak OEM Development Enhance.Boost,Customize,Ai Employee,UI,Security,Remove Data All in One-优化提速51+项大全',
+    'version': '16.0.25.04.30',
     'author': 'odooai.cn',
     'category': 'Extra Tools',
     'website': 'https://www.odooai.cn',
@@ -32,13 +32,14 @@
     'sequence': 2,
     'images': ['static/description/banner.gif'],
     'summary': """
-    Ai as employee.1 click Tweak odoo. 48 Functions odoo enhancement. for Customize,UI,Boost Security,Development.
+    50+ Odoo Enhance in 1 click Tweak odoo. all in one odoo enhancement. for Customize,UI,Boost Security,Development.
     Easy reset data, clear data, reset account chart, reset Demo data.
     For quick debug. Set brand,Language Switcher all in one.
     """,
     'depends': [
         'app_common',
         'base_setup',
+        'base_import',
         'portal',
         'mail',
         # 'digest',
@@ -82,6 +83,7 @@
             'app_odoo_customize/static/src/webclient/user_menu.xml',
             'app_odoo_customize/static/src/xml/res_config_edition.xml',
             'app_odoo_customize/static/src/xml/debug_templates.xml',
+            'app_odoo_customize/static/src/xml/base_import.xml',
         ],
     },
     'pre_init_hook': 'pre_init_hook',
@@ -92,10 +94,8 @@
     'description': """
     App Customize Odoo (Change Title,Language,Documentation,Quick Debug)
     ============
-    For Odoo17. Please get from the follow github. Done for 85%.
-    https://github.com/guohuadeng/app-odoo/tree/17.0
     White label odoo. UI and Development Enhance.
-    Support odoo 17,16,15,14,13,12,11,10,9.
+    Support Odoo 18,17,16,15,14,13,12,11,10,9.
     You can config odoo, make it look like your own platform.
     ============
     1. Deletes Odoo label in footer
@@ -145,14 +145,17 @@
     45. Add addons path info to module.
     46. Add Help documentation anywhere.  easy get help for any odoo operation or action.
     47. Add ai robot app integration. Use Ai as your employee.
-    48. Add menu debug information of action and xml id.
+    48. Add configurable Test Label, Demo Ribbon on top menu.
+    49. Add SaaS client switch for online Translate sync(18 only).
+    50. Quick Menu manager. de-active / active menu.
+    51. Show menu xml_id in debug asset mode.  easy for menu and action development.
 
     This module can help to white label the Odoo.
     Also helpful for training and support for your odoo end-user.
     The user can get the help document just by one click.
     ## 在符合odoo开源协议的前提下，自定义你的odoo系统
     可完全自行设置下列选项，将 odoo 整合进自有软件产品
-    支持odoo 17,16,15,14,13,12, 11, 10, 9 版本，社区版企业版通用
+    支持Odoo 18,17,16,15,14,13,12, 11, 10, 9 版本，社区版企业版通用
     ============
     1. 删除菜单导航页脚的 Odoo 标签
     2. 将弹出窗口中 "Odoo" 设置为自定义名称
@@ -164,7 +167,7 @@
     8. 在用户菜单中增加开发者手册，含python教程，jquery参考，Jinja2模板，PostgresSQL参考
     9. 在用户菜单中自定义"My odoo.com account"
     10. 单独设置面板，每个选项都可以自定义
-    11. 提供236个国家的国旗文件（部份需要自行设置文件名）
+    11. 提供236个国家/地区的国旗文件（部份需要自行设置文件名）
     12. 多语言版本
     13. 自定义登陆界面中的 Powered by Odoo
     14. 快速删除测试数据，支持模块包括：销售/POS门店/采购/生产/库存/会计/项目/消息与工作流等.
@@ -201,6 +204,9 @@
     45. 为应用模块增加模块路径信息
     46. 增加快速帮助文档，可以在任意操作中获取相关的 odoo 帮助.
     47. 增加Ai模块相关信息，可以快速访问ai模块，使用ai员工.
-    48. 增加菜单Debug，可以快速查看每个菜单的调试信息如 action 及 xml id.
+    48. 增加可配置的系统调试标签，用于系统测试期提示.
+    49. 增加 SaaS 客户端开头，可让用户安装在线翻译同步模块及在线更新(仅odoo18).
+    50. 快速菜单管理，快速禁用/启用菜单.
+    51. 在开发者Assets模式中，快速查看菜单Menu 的 xml_id .
     """,
 }

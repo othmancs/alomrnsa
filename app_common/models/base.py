@@ -13,6 +13,8 @@ import logging
 from odoo import models, fields, api, _
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.http import request
+from ..models.app_import import app_quick_import
+from ..lib.user_agents import parse
 
 _logger = logging.getLogger(__name__)
 
@@ -76,7 +78,10 @@ class Base(models.AbstractModel):
             else:
                 if not domain:
                     domain = self._fields[fieldname].domain or []
-                rec = self.env[self._fields[fieldname].comodel_name].sudo().search(domain, limit=1)
+                try:
+                    rec = self.env[self._fields[fieldname].comodel_name].search(domain, limit=1)
+                except Exception as e:
+                    rec = self.env[self._fields[fieldname].comodel_name].search([], limit=1)
                 return rec.id if rec else False
         return False
 
@@ -160,7 +165,7 @@ class Base(models.AbstractModel):
                 return False
         else:
             return False
-        
+
     @api.model
     def _get_video_url2attachment(self, url):
         if not self._app_check_sys_op():
@@ -183,6 +188,10 @@ class Base(models.AbstractModel):
                 return False
         else:
             return False
+
+    @api.model
+    def quick_import(self, content_path):
+        return app_quick_import(self, content_path, model_name=self._name)
 
     def get_ua_type(self):
         return get_ua_type()
@@ -228,7 +237,7 @@ def get_image_base642attachment(data):
         return jpeg_base64, file_name
     except Exception as e:
         return None, None
-    
+
 def get_video_url2attachment(url):
     if not url:
         return None
@@ -246,6 +255,8 @@ def get_video_url2attachment(url):
 
 def get_ua_type():
     ua = request.httprequest.headers.get('User-Agent')
+    ua_parse = str(parse(ua))
+    
     # 临时用 agent 处理，后续要前端中正确处理或者都从后台来
     # 微信浏览器
     #  MicroMessenger: Mozilla/5.0 (Linux; Android 10; ELE-AL00 Build/HUAWEIELE-AL00; wv)
@@ -272,6 +283,10 @@ def get_ua_type():
 
     # web 表示普通浏览器，后续更深入处理
     utype = 'web'
+    
+    if not ua:
+        return utype
+
     # todo: 引入现成 py lib，处理企业微信
     if 'MicroMessenger' in ua and 'webdebugger' not in ua \
         and ('miniProgram' in ua or 'MiniProgram' in ua or 'MiniProgramEnv' in ua or 'wechatdevtools' in ua):
@@ -287,5 +302,10 @@ def get_ua_type():
         utype = 'native_android'
     elif 'BytedanceWebview' in ua:
         utype = 'dyweb'
+    elif 'BytedanceWebview' in ua:
+        utype = 'dyweb'
+    elif 'Chrome Mobile' in ua_parse or 'Mobile Safari' in ua_parse:
+    #     增加移动端 web
+        utype = 'mweb'
     # _logger.warning('=========get ua %s,%s' % (utype, ua))
     return utype
