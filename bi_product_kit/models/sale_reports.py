@@ -10,7 +10,7 @@ class SaleReport(models.Model):
 
     def _select_additional_fields(self):
         res = super(SaleReport, self)._select_additional_fields()
-        res['product_kit'] = "l.product_id as product_kit"
+        res['product_kit'] = "l.product_id"
         return res
 
     def _group_by_sale(self):
@@ -18,6 +18,7 @@ class SaleReport(models.Model):
         if 'l.product_id' not in group_by:
             group_by += ', l.product_id'
         return group_by
+
 
     @api.model
     def _query(self):
