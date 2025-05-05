@@ -6,7 +6,7 @@ class LandedCostLine(models.Model):
     split_method = fields.Selection(
         selection_add=[('construction_costs', 'تكاليف العمران')],
         ondelete={'construction_costs': 'set default'},
-        default='by_quantity'  # أو أي قيمة افتراضية مناسبة من الخيارات الموجودة
+        default='by_quantity'
     )
     
     @api.depends('price_unit', 'split_method', 'cost_id')
