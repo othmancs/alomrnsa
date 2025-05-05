@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.tools.float_utils import float_round
 
 class LandedCostLine(models.Model):
     _inherit = 'stock.landed.cost.lines'
@@ -16,20 +17,32 @@ class LandedCostLine(models.Model):
             if line.split_method == 'construction_costs':
                 total_cost = line.cost_id.amount_total
                 pickings = line.cost_id.picking_ids
+                
                 if pickings:
-                    moves = pickings.mapped('move_lines')
-                    purchase_lines = moves.mapped('purchase_line_id')
+                    # حساب إجمالي تكلفة الشراء لجميع المنتجات
+                    all_moves = pickings.mapped('move_lines')
+                    purchase_lines = all_moves.mapped('purchase_line_id')
+                    
                     if purchase_lines:
-                        # حساب إجمالي تكلفة الشراء لكل المنتجات
-                        total_purchase_cost = sum(purchase_lines.mapped(lambda pl: pl.price_unit * pl.product_qty))
+                        total_purchase_cost = sum(
+                            pl.price_unit * pl.product_qty 
+                            for pl in purchase_lines
+                            if pl.price_unit and pl.product_qty
+                        )
                         
                         if total_purchase_cost != 0:
-                            # حساب النسبة المئوية
                             percentage = total_cost / total_purchase_cost
                             
-                            # الحصول على سعر شراء المنتج الحالي
+                            # الحصول على حركة المخزن المرتبطة بالخط الحالي
                             current_move = line.move_id
                             if current_move and current_move.purchase_line_id:
-                                product_purchase_price = current_move.purchase_line_id.price_unit
-                                # حساب التكلفة الجديدة
-                                line.price_unit = product_purchase_price * percentage
+                                # سعر الشراء للصنف الحالي
+                                product_price = current_move.purchase_line_id.price_unit
+                                # كمية الصنف الحالي
+                                product_qty = current_move.product_qty or 1
+                                
+                                # حساب التكلفة الجديدة مع التقريب إلى منزلتين عشريتين
+                                line.price_unit = float_round(
+                                    product_price * percentage,
+                                    precision_digits=2
+                                )
