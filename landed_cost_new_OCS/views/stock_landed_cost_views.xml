@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_landed_cost_lines_form_inherit" model="ir.ui.view">
+        <field name="name">stock.landed.cost.lines.form.inherit</field>
+        <field name="model">stock.landed.cost.lines</field>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_lines_form"/>
+        <field name="arch" type="xml">
+            <field name="split_method" position="attributes">
+                <attribute name="selection_add">
+                    <item key="construction_costs">تكاليف العمران</item>
+                </attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
