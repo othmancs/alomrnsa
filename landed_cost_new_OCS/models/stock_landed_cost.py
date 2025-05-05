@@ -20,7 +20,16 @@ class LandedCostLine(models.Model):
                     moves = pickings.mapped('move_lines')
                     purchase_lines = moves.mapped('purchase_line_id')
                     if purchase_lines:
-                        total_purchase_cost = sum(purchase_lines.mapped('price_unit'))
+                        # حساب إجمالي تكلفة الشراء لكل المنتجات
+                        total_purchase_cost = sum(purchase_lines.mapped(lambda pl: pl.price_unit * pl.product_qty))
+                        
                         if total_purchase_cost != 0:
+                            # حساب النسبة المئوية
                             percentage = total_cost / total_purchase_cost
-                            line.price_unit = line.product_id.standard_price * percentage
+                            
+                            # الحصول على سعر شراء المنتج الحالي
+                            current_move = line.move_id
+                            if current_move and current_move.purchase_line_id:
+                                product_purchase_price = current_move.purchase_line_id.price_unit
+                                # حساب التكلفة الجديدة
+                                line.price_unit = product_purchase_price * percentage
