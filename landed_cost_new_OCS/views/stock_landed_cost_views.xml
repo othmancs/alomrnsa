@@ -3,14 +3,14 @@
     <record id="view_stock_landed_cost_lines_form_inherit" model="ir.ui.view">
         <field name="name">stock.landed.cost.lines.form.inherit</field>
         <field name="model">stock.landed.cost.lines</field>
-<!--         <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_lines_form"/> -->
-        <field name="inherit_id" ref="stock_landed_cost.view_stock_landed_cost_lines_form"/>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
         <field name="arch" type="xml">
-            <field name="split_method" position="attributes">
+            <!-- تأكد من أن المسار الصحيح للعنصر -->
+            <xpath expr="//field[@name='split_method']" position="attributes">
                 <attribute name="selection_add">
                     <item key="construction_costs">تكاليف العمران</item>
                 </attribute>
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
