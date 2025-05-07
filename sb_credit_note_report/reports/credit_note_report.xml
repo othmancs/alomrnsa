@@ -1,138 +1,162 @@
-<template id="credit_note_report_template">
-    <t t-call="web.html_container">
-        <t t-call="web.external_layout">
-            <style>
-                /* تحديد حجم الصفحة A4 عمودي */
-                @page {
-                    size: A4 portrait;
-                    margin: 1.5cm 1cm 1.5cm 1cm;
-                }
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="credit_note_report_template" inherit_id="web.html_container" name="Credit Note Report Template">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc"/>
+                <style>
+                    /* تحديد حجم A4 عمودي */
+                    @page {
+                        size: A4 portrait;
+                        margin: 15mm 10mm 15mm 10mm;
+                    }
+                    
+                    body {
+                        font-family: 'DejaVu Sans', Arial, sans-serif;
+                        font-size: 12pt;
+                        direction: rtl;
+                        line-height: 1.4;
+                    }
+                    
+                    .header {
+                        text-align: center;
+                        margin-bottom: 20px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #eee;
+                    }
+                    
+                    .company-name {
+                        font-size: 16pt;
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                    }
+                    
+                    .report-title {
+                        font-size: 14pt;
+                        font-weight: bold;
+                        margin: 15px 0;
+                        color: #2c3e50;
+                    }
+                    
+                    .report-info {
+                        margin-bottom: 20px;
+                        padding: 10px;
+                        background-color: #f9f9f9;
+                        border-radius: 5px;
+                    }
+                    
+                    .report-info p {
+                        margin: 5px 0;
+                        font-size: 11pt;
+                    }
+                    
+                    .table-container {
+                        margin-top: 15px;
+                        page-break-inside: avoid;
+                    }
+                    
+                    .table {
+                        width: 100%;
+                        font-size: 10pt;
+                        border-collapse: collapse;
+                        margin-bottom: 15px;
+                    }
+                    
+                    .table th {
+                        background-color: #3498db;
+                        color: white;
+                        font-weight: bold;
+                        text-align: center;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                    }
+                    
+                    .table td {
+                        padding: 6px;
+                        border: 1px solid #ddd;
+                        text-align: center;
+                    }
+                    
+                    .table tr:nth-child(even) {
+                        background-color: #f2f2f2;
+                    }
+                    
+                    .footer {
+                        margin-top: 20px;
+                        padding-top: 10px;
+                        border-top: 1px solid #eee;
+                        font-size: 10pt;
+                        text-align: center;
+                    }
+                </style>
                 
-                /* تحسين الخطوط والعناصر */
-                body {
-                    font-family: 'Arial', sans-serif;
-                    font-size: 12px;
-                    line-height: 1.4;
-                }
-                
-                .company-name {
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin-bottom: 10px;
-                }
-                
-                .report-title {
-                    font-size: 14px;
-                    font-weight: bold;
-                    text-align: center;
-                    margin: 15px 0;
-                }
-                
-                .info-section p {
-                    margin: 5px 0;
-                    font-size: 12px;
-                }
-                
-                .table {
-                    width: 100%;
-                    margin-top: 15px;
-                    font-size: 11px;
-                    border-collapse: collapse;
-                }
-                
-                .table th {
-                    background-color: #f2f2f2;
-                    font-weight: bold;
-                    text-align: center;
-                    padding: 5px;
-                    border: 1px solid #ddd;
-                }
-                
-                .table td {
-                    padding: 5px;
-                    border: 1px solid #ddd;
-                    text-align: center;
-                }
-                
-                /* مسافة إضافية بعد الهيدر */
-                .header-space {
-                    height: 30px;
-                }
-            </style>
-            
-            <div class="page" dir="rtl">
-                <div class="header-space"></div>
-                
-                <div class="company-name">
-                    <t t-esc="form['company_id'][1]"/>
-                </div>
-                
-                <div class="report-title">ارجـاعــات المبيـــعات</div>
-                
-                <div class="row info-section">
-                    <div class="col-auto col-3 mw-100 mb-2">
-                        <p>
-                            <strong>
-                                <t t-if="form['branch_names'] and len(form['branch_names'].split(',')) == 1">
-                                    الفــرع: <span t-esc="form['branch_names']"/>
+                <div class="page">
+                    <!-- رأس التقرير -->
+                    <div class="header">
+                        <div class="company-name">
+                            <t t-esc="doc.company_id.name"/>
+                        </div>
+                        <div class="report-title">تقرير مرتجعات المبيعات</div>
+                    </div>
+                    
+                    <!-- معلومات التقرير -->
+                    <div class="report-info">
+                        <t t-if="doc.branch_names and len(doc.branch_names.split(',')) == 1">
+                            <p><strong>الفرع:</strong> <t t-esc="doc.branch_names"/></p>
+                        </t>
+                        <p><strong>الفترة من:</strong> <t t-esc="doc.date_from"/> <strong>إلى:</strong> <t t-esc="doc.date_to"/></p>
+                        <p><strong>طباعة بواسطة:</strong> <t t-esc="doc.printed_by"/> | <strong>تاريخ الطباعة:</strong> <t t-esc="doc.print_date"/></p>
+                    </div>
+                    
+                    <!-- جدول البيانات -->
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:15%">الفرع</th>
+                                    <th style="width:12%">رقم الإرجاع</th>
+                                    <th style="width:18%">البائع</th>
+                                    <th style="width:18%">العميل</th>
+                                    <th style="width:15%">تاريخ الإرجاع</th>
+                                    <th style="width:10%">الإجمالي</th>
+                                    <th style="width:12%">التكلفة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.invoice_ids" t-as="invoice">
+                                    <tr>
+                                        <td><t t-esc="invoice.branch_id.name if invoice.branch_id else ''"/></td>
+                                        <td><t t-esc="invoice.name"/></td>
+                                        <td><t t-esc="invoice.user_id.name if invoice.user_id else ''"/></td>
+                                        <td><t t-esc="invoice.partner_id.name if invoice.partner_id else ''"/></td>
+                                        <td><t t-esc="invoice.invoice_date"/></td>
+                                        <td><t t-esc="format_amount(invoice.amount_untaxed, doc.company_id.currency_id)"/></td>
+                                        <td><t t-esc="format_amount(invoice.total_purchase_price, doc.company_id.currency_id)"/></td>
+                                    </tr>
                                 </t>
-                            </strong>
-                        </p>
-                        <p>
-                            <strong>مــن تـاريـخ: <span t-esc="form['date_from']"/></strong>
-                        </p>
-                        <p>
-                            <strong>الــي تـاريـخ: <span t-esc="form['date_to']"/></strong>
-                        </p>
-                        <p>
-                            <strong>طبـع بواسطـة: <span t-esc="form['printed_by']"/></strong>
-                        </p>
-                        <p>
-                            <strong>تـاريخ الطبـاعـة: <span t-esc="form['print_date']"/></strong>
-                        </p>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- تذييل الصفحة -->
+                    <div class="footer">
+                        تم إنشاء التقرير بواسطة نظام Odoo - <t t-esc="doc.company_id.name"/>
                     </div>
                 </div>
-                
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="width: 15%;">اسم الفرع</th>
-                            <th style="width: 12%;">رقم الارجاع</th>
-                            <th style="width: 18%;">اسم البائع</th>
-                            <th style="width: 18%;">اسم العميل</th>
-                            <th style="width: 15%;">تاريح الارجاع</th>
-                            <th style="width: 12%;">اجمالى الارجاعات</th>
-                            <th style="width: 10%;">تكلفة الارجاعات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <t t-foreach="invoice" t-as="component">
-                            <tr>
-                                <td>
-                                    <t t-if="component['branch_id'] and isinstance(component['branch_id'], list) and len(component['branch_id']) > 1">
-                                        <t t-esc="component['branch_id'][1]"/>
-                                    </t>
-                                </td>
-                                <td><t t-esc="component['name']"/></td>
-                                <td>
-                                    <t t-if="component['created_by_id'] and isinstance(component['created_by_id'], list) and len(component['created_by_id']) > 1">
-                                        <t t-esc="component['created_by_id'][1]"/>
-                                    </t>
-                                </td>
-                                <td>
-                                    <t t-if="component['partner_id'] and isinstance(component['partner_id'], list) and len(component['partner_id']) > 1">
-                                        <span t-esc="component['partner_id'][1]"/>
-                                    </t>
-                                </td>
-                                <td><t t-esc="component['invoice_date']"/></td>
-                                <td><t t-esc="component['amount_untaxed']"/></td>
-                                <td><t t-esc="component['total_purchase_price']"/></td>
-                            </tr>
-                        </t>
-                    </tbody>
-                </table>
-            </div>
-        </t>
-    </t>
-</template>
+            </t>
+        </template>
+
+        <!-- تعريف التقرير -->
+        <record id="credit_note_report" model="ir.actions.report">
+            <field name="name">تقرير مرتجعات المبيعات</field>
+            <field name="model">credit.note.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sb_credit_note_report.credit_note_report_template</field>
+            <field name="paperformat_id" ref="report.paperformat_a4"/>
+            <field name="binding_model_id" ref="model_credit_note_wizard"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'تقرير مرتجعات - %s' % (object.name or '')</field>
+            <field name="display_name">تقرير المرتجعات</field>
+        </record>
+    </data>
+</odoo>
