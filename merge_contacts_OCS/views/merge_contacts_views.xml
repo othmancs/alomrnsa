@@ -1,4 +1,22 @@
 <odoo>
+    <!-- تعريف الإجراء أولاً -->
+    <record id="action_merge_contacts" model="ir.actions.act_window">
+        <field name="name">الجهات المكررة</field>
+        <field name="res_model">merge.contacts</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_by_type': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                اضغط على زر "البحث عن التكرارات" للعثور على جهات اتصال مكررة
+            </p>
+        </field>
+    </record>
+
+    <!-- ثم تعريف القوائم -->
+    <menuitem id="menu_merge_contacts_root" name="دمج جهات الاتصال" sequence="10"/>
+    <menuitem id="menu_merge_contacts" name="الجهات المكررة" parent="menu_merge_contacts_root" action="action_merge_contacts"/>
+
+    <!-- بقية الملف كما هو -->
     <record id="view_merge_contacts_tree" model="ir.ui.view">
         <field name="name">merge.contacts.tree</field>
         <field name="model">merge.contacts</field>
@@ -26,21 +44,6 @@
                     </group>
                 </sheet>
             </form>
-        </field>
-    </record>
-
-    <menuitem id="menu_merge_contacts_root" name="دمج جهات الاتصال" sequence="10"/>
-    <menuitem id="menu_merge_contacts" name="الجهات المكررة" parent="menu_merge_contacts_root" action="action_merge_contacts"/>
-
-    <record id="action_merge_contacts" model="ir.actions.act_window">
-        <field name="name">الجهات المكررة</field>
-        <field name="res_model">merge.contacts</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{'search_default_group_by_type': True}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                اضغط على زر "البحث عن التكرارات" للعثور على جهات اتصال مكررة
-            </p>
         </field>
     </record>
 
