@@ -1,0 +1,71 @@
+<odoo>
+    <record id="view_merge_contacts_tree" model="ir.ui.view">
+        <field name="name">merge.contacts.tree</field>
+        <field name="model">merge.contacts</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="type"/>
+                <field name="key"/>
+                <field name="count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_merge_contacts_form" model="ir.ui.view">
+        <field name="name">merge.contacts.form</field>
+        <field name="model">merge.contacts</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="type"/>
+                        <field name="key"/>
+                        <field name="count"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_merge_contacts_root" name="دمج جهات الاتصال" sequence="10"/>
+    <menuitem id="menu_merge_contacts" name="الجهات المكررة" parent="menu_merge_contacts_root" action="action_merge_contacts"/>
+
+    <record id="action_merge_contacts" model="ir.actions.act_window">
+        <field name="name">الجهات المكررة</field>
+        <field name="res_model">merge.contacts</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                اضغط على زر إنشاء للبحث عن جهات اتصال مكررة
+            </p>
+        </field>
+    </record>
+
+    <!-- ويزارد دمج جهات الاتصال -->
+    <record id="view_merge_contacts_wizard_form" model="ir.ui.view">
+        <field name="name">merge.contacts.wizard.form</field>
+        <field name="model">merge.contacts.wizard</field>
+        <field name="arch" type="xml">
+            <form string="دمج جهات الاتصال">
+                <sheet>
+                    <group>
+                        <field name="contact_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="master_contact_id" domain="[('id', 'in', contact_ids)]"/>
+                        <field name="merge_options"/>
+                    </group>
+                    <footer>
+                        <button name="action_merge_contacts" string="دمج" type="object" class="btn-primary"/>
+                        <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_merge_contacts_wizard"
+                name="دمج جهات الاتصال"
+                res_model="merge.contacts.wizard"
+                view_mode="form"
+                target="new"
+                context="{'active_ids': active_ids}"/>
+</odoo>
