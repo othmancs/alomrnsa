@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_merge_contacts_wizard_form" model="ir.ui.view">
+        <field name="name">merge.contacts.wizard.form</field>
+        <field name="model">merge.contacts.wizard</field>
+        <field name="arch" type="xml">
+            <form string="دمج جهات الاتصال">
+                <sheet>
+                    <group>
+                        <field name="contact_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="master_contact_id" domain="[('id', 'in', contact_ids)]"/>
+                        <field name="merge_options"/>
+                    </group>
+                    <footer>
+                        <button name="action_merge_contacts" string="دمج" type="object" class="btn-primary"/>
+                        <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_merge_contacts_wizard"
+                name="دمج جهات الاتصال"
+                res_model="merge.contacts.wizard"
+                view_mode="form"
+                target="new"
+                context="{'active_ids': active_ids}"/>
+</odoo>
