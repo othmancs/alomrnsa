@@ -12,7 +12,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/merge_contacts_views.xml',
-        'wizards/merge_contacts_wizard.py',
+        'wizards/merge_contacts_wizard_views.xml',
     ],
     'installable': True,
     'application': False,
