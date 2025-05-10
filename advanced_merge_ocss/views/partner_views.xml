@@ -5,13 +5,18 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <!-- الحل البديل للعثور على منطقة الزر الرئيسية -->
-            <xpath expr="//div[hasclass('o_form_button_box')]" position="inside">
-                <button name="action_open_merge_wizard" 
-                        string="دمج متقدم" 
-                        type="object" 
-                        class="oe_stat_button"
-                        icon="fa-group"/>
+            <xpath expr="//sheet" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_open_merge_wizard"
+                            string="دمج متقدم"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-group"/>
+                </div>
             </xpath>
+
+
+
         </field>
     </record>
 </odoo>
