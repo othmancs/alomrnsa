@@ -1,17 +1,16 @@
 <odoo>
-    <!-- استخدام مسار أكثر دقة للعثور على منطقة الheader -->
     <record id="view_partner_form_merge_button" model="ir.ui.view">
         <field name="name">partner.form.merge.button</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <!-- المسار المعدل للعثور على header في الإصدار 16 -->
-            <xpath expr="//form//header" position="inside">
+            <!-- الحل البديل للعثور على منطقة الزر الرئيسية -->
+            <xpath expr="//div[hasclass('o_form_button_box')]" position="inside">
                 <button name="action_open_merge_wizard" 
                         string="دمج متقدم" 
                         type="object" 
-                        class="btn-primary"
-                        groups="base.group_user"/>
+                        class="oe_stat_button"
+                        icon="fa-group"/>
             </xpath>
         </field>
     </record>
