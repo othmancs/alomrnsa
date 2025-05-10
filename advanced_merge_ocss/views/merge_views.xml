@@ -4,15 +4,25 @@
         <field name="model">advanced.merge</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <field name="contact_ids" widget="many2many_tags"/>
-                    <field name="master_id" widget="many2one"/>
-                </group>
+                <sheet>
+                    <group>
+                        <field name="contact_ids" widget="many2many_tags"/>
+                        <field name="master_id" widget="many2one"/>
+                    </group>
+                </sheet>
                 <footer>
-                    <button name="merge_contacts" string="دمج" type="object" class="btn-primary"/>
+                    <button name="merge_records" string="دمج" type="object" class="btn-primary"/>
+                    <button string="إلغاء" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
+    </record>
+
+    <record id="action_merge_contacts" model="ir.actions.act_window">
+        <field name="name">دمج متقدم</field>
+        <field name="res_model">advanced.merge</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
     </record>
 
     <menuitem id="menu_advanced_merge" name="دمج متقدم" action="action_merge_contacts"/>
