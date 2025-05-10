@@ -6,6 +6,9 @@ class AdvancedMerge(models.Model):
     _name = 'advanced.merge'
     _description = 'أداة الدمج المتقدم'
 
+    contact_ids = fields.Many2many('res.partner', string='جهات الاتصال المطلوب دمجها')
+    master_id = fields.Many2one('res.partner', string='جهة الاتصال الرئيسية')
+    
     def merge_records(self, model_name, record_ids, master_id, fields_to_merge):
         """
         نسخة محسنة مع معالجة الأخطاء والعلاقات
