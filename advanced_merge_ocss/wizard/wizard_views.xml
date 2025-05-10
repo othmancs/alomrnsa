@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_merge_wizard_form" model="ir.ui.view">
+        <field name="name">merge.wizard.form</field>
+        <field name="model">merge.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="model_name" invisible="1"/>
+                    <field name="record_ids" widget="many2many_tags" string="السجلات المكررة"/>
+                    <field name="master_id" string="السجل الرئيسي" required="1"/>
+                    <field name="fields_to_merge" widget="many2many_tags" string="الحقول المراد دمجها"/>
+                </group>
+                <footer>
+                    <button name="action_merge" string="دمج" type="object" class="btn-primary"/>
+                    <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_merge_wizard"
+        name="دمج متقدم"
+        res_model="merge.wizard"
+        view_mode="form"
+        target="new"/>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_partner_form_merge_button" model="ir.ui.view">
+        <field name="name">partner.form.merge.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_merge_wizard" 
+                    string="دمج متقدم" 
+                    type="object" 
+                    class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
