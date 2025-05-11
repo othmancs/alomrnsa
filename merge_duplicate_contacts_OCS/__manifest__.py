@@ -14,7 +14,6 @@
         'views/res_partner_views.xml',
         'views/duplicate_contacts_views.xml',
     ],
-    'images': ['static/description/icon.png'],
     'installable': True,
     'application': True,
     'license': 'LGPL-3',
