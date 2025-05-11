@@ -1,25 +1,25 @@
 from odoo import models, fields, api
 from odoo.tools.float_utils import float_round
+from collections import defaultdict
 
 class LandedCostLine(models.Model):
     _inherit = 'stock.landed.cost.lines'
     
+    percentage = fields.Float(string="النسبة المئوية", compute='_compute_percentage', store=True)
     split_method = fields.Selection(
         selection_add=[('construction_costs', 'تكاليف العمران')],
         ondelete={'construction_costs': 'set default'},
         default='by_quantity'
     )
     
-    @api.depends('price_unit', 'split_method', 'cost_id')
-    def _compute_cost_lines(self):
-        super(LandedCostLine, self)._compute_cost_lines()
+    @api.depends('cost_id.amount_total', 'cost_id.picking_ids')
+    def _compute_percentage(self):
         for line in self:
             if line.split_method == 'construction_costs':
-                total_costs = line.cost_id.amount_total  # إجمالي التكاليف (18,613.83 في المثال)
+                total_costs = line.cost_id.amount_total
                 pickings = line.cost_id.picking_ids
                 
                 if pickings:
-                    # حساب إجمالي تكلفة الشراء لجميع المنتجات (82,761.57 في المثال)
                     all_moves = pickings.mapped('move_lines')
                     purchase_lines = all_moves.mapped('purchase_line_id')
                     
@@ -31,26 +31,57 @@ class LandedCostLine(models.Model):
                         )
                         
                         if total_purchase_cost != 0:
-                            # حساب النسبة المئوية (22% في المثال)
-                            percentage = total_costs / total_purchase_cost
-                            
-                            # الحصول على حركة المخزن المرتبطة بالخط الحالي
-                            current_move = line.move_id
-                            if current_move and current_move.purchase_line_id:
-                                purchase_line = current_move.purchase_line_id
-                                
-                                # تحويل سعر الشراء للعملة الأساسية إذا كان مختلفاً
-                                product_price = purchase_line.price_unit
-                                if purchase_line.currency_id != purchase_line.company_id.currency_id:
-                                    product_price = purchase_line.price_unit * purchase_line.currency_id.rate
-                                
-                                # كمية الصنف الحالي
-                                product_qty = current_move.product_qty or 1
-                                
-                                # حساب التكلفة الجديدة (النسبة × سعر الوحدة بعد التحويل)
-                                cost_per_unit = float_round(
-                                    (percentage * product_price),
-                                    precision_digits=2
-                                )
-                                
-                                line.price_unit = cost_per_unit
+                            line.percentage = (total_costs / total_purchase_cost) * 100
+                        else:
+                            line.percentage = 0.0
+                    else:
+                        line.percentage = 0.0
+                else:
+                    line.percentage = 0.0
+            else:
+                line.percentage = 0.0
+    
+    @api.depends('price_unit', 'split_method', 'cost_id', 'percentage')
+    def _compute_cost_lines(self):
+        super(LandedCostLine, self)._compute_cost_lines()
+        
+        # تجميع البنود لكل منتج
+        product_lines = defaultdict(list)
+        for line in self.filtered(lambda l: l.split_method == 'construction_costs'):
+            if line.move_id:
+                product_lines[line.move_id.id].append(line)
+        
+        # معالجة البنود المجمعة
+        for move_id, lines in product_lines.items():
+            if len(lines) > 1:
+                # الاحتفاظ بالبند الأول وحذف البقية
+                main_line = lines[0]
+                for extra_line in lines[1:]:
+                    extra_line.unlink()
+                
+                # إعادة حساب البند المتبقي
+                move = main_line.move_id
+                if move and move.purchase_line_id:
+                    purchase_line = move.purchase_line_id
+                    product_price = purchase_line.price_unit
+                    if purchase_line.currency_id != purchase_line.company_id.currency_id:
+                        product_price = purchase_line.price_unit * purchase_line.currency_id.rate
+                    
+                    main_line.price_unit = float_round(
+                        (main_line.percentage / 100) * product_price,
+                        precision_digits=2
+                    )
+            else:
+                # معالجة البند الوحيد
+                line = lines[0]
+                move = line.move_id
+                if move and move.purchase_line_id:
+                    purchase_line = move.purchase_line_id
+                    product_price = purchase_line.price_unit
+                    if purchase_line.currency_id != purchase_line.company_id.currency_id:
+                        product_price = purchase_line.price_unit * purchase_line.currency_id.rate
+                    
+                    line.price_unit = float_round(
+                        (line.percentage / 100) * product_price,
+                        precision_digits=2
+                    )
