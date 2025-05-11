@@ -1,13 +1,16 @@
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, api, _
 
 class PartnerMergeAutomatic(models.TransientModel):
     _inherit = 'base.partner.merge.automatic.wizard'
 
-    def _merge(self, partner_ids, dst_partner=None):
-        """ Override the merge function to remove the 3-partner limit """
+    def _merge(self, partner_ids, dst_partner=None, extra_checks=True):
+        """ Override merge function to remove 3-partner limit and handle new parameters """
         if len(partner_ids) < 2:
             raise ValidationError(_("يجب اختيار شريكين على الأقل للدمج."))
         
-        # تجاوز التحقق من "أكثر من 3 جهات اتصال"
-        return super(PartnerMergeAutomatic, self)._merge(partner_ids, dst_partner)
+        # استدعاء الدالة الأصلية مع جميع المعاملات المطلوبة
+        return super(PartnerMergeAutomatic, self)._merge(
+            partner_ids,
+            dst_partner=dst_partner,
+            extra_checks=extra_checks
+        )
