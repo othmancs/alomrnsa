@@ -2,7 +2,9 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-from odoo.tools import float_compare
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -52,6 +54,10 @@ class ResPartner(models.Model):
         """
         Merge source partners into destination partner
         """
+        # Convert source_partners to recordset if it's a list
+        if isinstance(source_partners, list):
+            source_partners = self.browse([p.id for p in source_partners if hasattr(p, 'id')])
+        
         # Get all models that have partner_id field
         partner_fields = self.env['ir.model.fields'].search([
             ('relation', '=', 'res.partner'),
@@ -59,8 +65,8 @@ class ResPartner(models.Model):
         ])
         
         for field in partner_fields:
-            model = self.env[field.model_id.model]
-            if not model._auto:
+            model = self.env.get(field.model_id.model)
+            if not model or not model._auto:
                 continue
             
             try:
@@ -70,7 +76,7 @@ class ResPartner(models.Model):
                     records.write({field.name: destination_partner.id})
             except Exception as e:
                 _logger.warning("Could not merge partner field %s in model %s: %s", 
-                               field.name, field.model_id.model, str(e))
+                             field.name, field.model_id.model, str(e))
         
         # Handle special cases
         self._merge_special_cases(destination_partner, source_partners)
