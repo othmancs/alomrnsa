@@ -15,7 +15,7 @@ class LandedCostLine(models.Model):
         super(LandedCostLine, self)._compute_cost_lines()
         for line in self:
             if line.split_method == 'construction_costs':
-                total_cost = line.cost_id.amount_total
+                total_costs = line.cost_id.amount_total
                 pickings = line.cost_id.picking_ids
                 
                 if pickings:
@@ -31,7 +31,8 @@ class LandedCostLine(models.Model):
                         )
                         
                         if total_purchase_cost != 0:
-                            percentage = total_cost / total_purchase_cost
+                            # حساب النسبة المئوية للتكاليف من إجمالي الشراء
+                            percentage = total_costs / total_purchase_cost
                             
                             # الحصول على حركة المخزن المرتبطة بالخط الحالي
                             current_move = line.move_id
@@ -41,8 +42,8 @@ class LandedCostLine(models.Model):
                                 # كمية الصنف الحالي
                                 product_qty = current_move.product_qty or 1
                                 
-                                # حساب التكلفة الجديدة مع التقريب إلى منزلتين عشريتين
+                                # حساب التكلفة الجديدة (النسبة المئوية × إجمالي تكلفة الشراء للمنتج)
                                 line.price_unit = float_round(
-                                    product_price * percentage,
+                                    (percentage * (product_price * product_qty)),
                                     precision_digits=2
                                 )
