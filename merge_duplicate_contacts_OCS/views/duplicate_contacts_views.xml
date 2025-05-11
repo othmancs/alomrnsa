@@ -1,0 +1,32 @@
+<odoo>
+    <menuitem id="menu_duplicate_contacts" name="Duplicate Contacts" 
+              parent="contacts.menu_contacts" sequence="20"
+              action="action_duplicate_contacts"/>
+
+    <record id="action_duplicate_contacts" model="ir.actions.act_window">
+        <field name="name">Duplicate Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('duplicate_count','>',0)]</field>
+        <field name="context">{'search_default_duplicates': True}</field>
+        <field name="search_view_id" ref="contacts.view_res_partner_filter"/>
+    </record>
+
+    <record id="view_duplicate_contacts_tree" model="ir.ui.view">
+        <field name="name">duplicate.contacts.tree</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree string="Duplicate Contacts">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="is_company"/>
+                <field name="duplicate_count" string="Duplicate Count"/>
+                <field name="duplicate_ids" invisible="1"/>
+                <button name="action_view_duplicates" type="object" 
+                        string="Details" class="oe_link"/>
+                <button name="action_merge_duplicates" type="object" 
+                        string="Merge" class="oe_highlight"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
