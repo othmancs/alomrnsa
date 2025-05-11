@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="view_partner_merge_button" model="ir.ui.view">
-            <field name="name">res.partner.merge.button</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//header" position="inside">
-                    <button name="action_merge_by_vat" 
-                            type="object" 
-                            string="Merge by VAT" 
-                            class="btn-primary"
-                            groups="base.group_system"/>
-                </xpath>
-            </field>
-        </record>
+    <!-- Add merge button to partner form -->
+    <record id="view_partner_merge_button" model="ir.ui.view">
+        <field name="name">res.partner.merge.button</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_merge_by_vat" 
+                        type="object" 
+                        string="Merge by VAT" 
+                        class="btn-primary"
+                        groups="base.group_system"/>
+            </xpath>
+        </field>
+    </record>
 
-        <act_window id="action_merge_by_vat"
-                    name="Merge Partners by VAT"
-                    res_model="res.partner"
-                    src_model="res.partner"
-                    view_mode="form"
-                    key2="client_action_multi"
-                    target="current"
-                    multi="False"/>
-    </data>
+    <!-- Action for merging partners -->
+    <record id="action_merge_by_vat" model="ir.actions.server">
+        <field name="name">Merge Partners by VAT</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">
+            model.action_merge_by_vat()
+        </field>
+    </record>
 </odoo>
