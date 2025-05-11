@@ -1,0 +1,11 @@
+<odoo>
+    <record id="view_partner_merge_wizard" model="ir.ui.view">
+        <field name="name">partner.merge.wizard.form</field>
+        <field name="model">base.partner.merge.automatic.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="partner_ids" context="{'default_max_merge': 9999}"/>
+            </form>
+        </field>
+    </record>
+</odoo>

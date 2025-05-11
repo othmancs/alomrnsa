@@ -7,7 +7,9 @@
     'website': 'https://yourwebsite.com',
     'category': 'Tools',
     'depends': ['base'],
-    'data': [],
+    'data': [
+        'views/partner_merge_views.xml',
+    ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
