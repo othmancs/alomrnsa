@@ -1,14 +1,13 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
+class PartnerMergeAutomatic(models.TransientModel):
+    _inherit = 'base.partner.merge.automatic.wizard'
 
-    @api.model
-    def merge(self, partner_ids):
-        """ Override the default merge function to remove the 3-partner limit """
+    def _merge(self, partner_ids, dst_partner=None):
+        """ Override the merge function to remove the 3-partner limit """
         if len(partner_ids) < 2:
-            raise ValidationError(_("Please select at least 2 partners to merge."))
+            raise ValidationError(_("يجب اختيار شريكين على الأقل للدمج."))
         
-        # Continue with the original merge logic (without the 3-partner check)
-        return super(ResPartner, self).merge(partner_ids)
+        # تجاوز التحقق من "أكثر من 3 جهات اتصال"
+        return super(PartnerMergeAutomatic, self)._merge(partner_ids, dst_partner)
