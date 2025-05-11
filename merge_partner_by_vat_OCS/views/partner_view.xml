@@ -6,7 +6,8 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
+            <!-- For Odoo 16 - new form view structure -->
+            <xpath expr="//div[hasclass('o_form_button_box')]" position="inside">
                 <button name="action_merge_by_vat" 
                         type="object" 
                         string="Merge by VAT" 
