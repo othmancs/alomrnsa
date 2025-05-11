@@ -11,37 +11,45 @@ class ResPartner(models.Model):
     
     def action_merge_by_vat(self):
         """
-        Merge partners with the same VAT number
+        Merge partners with the same VAT number (Memory optimized version)
         """
         if not self.env.user.has_group('base.group_system'):
             raise UserError(_('You need administrator rights to merge partners!'))
         
-        # Find all active partners with VAT numbers
-        partners_with_vat = self.search([
-            ('vat', '!=', False),
-            ('active', 'in', [True, False])  # Include inactive partners
-        ], order='id asc')
-        
-        # Group partners by normalized VAT number
-        vat_groups = {}
-        for partner in partners_with_vat:
-            normalized_vat = (partner.vat or '').upper().replace(' ', '')
-            if normalized_vat in vat_groups:
-                vat_groups[normalized_vat].append(partner)
-            else:
-                vat_groups[normalized_vat] = [partner]
-        
-        # Process groups with more than one partner
+        # Process in batches to avoid memory issues
+        batch_size = 1000
         merged_count = 0
-        for vat, partners in vat_groups.items():
-            if len(partners) > 1:
-                # Select the oldest active partner as the destination, or oldest inactive if none active
-                destination_partner = next((p for p in partners if p.active), partners[0])
-                source_partners = [p for p in partners if p != destination_partner]
+        
+        # Find all VAT numbers with duplicates
+        self.env.cr.execute("""
+            SELECT vat, COUNT(id) 
+            FROM res_partner 
+            WHERE vat IS NOT NULL AND vat != ''
+            GROUP BY vat 
+            HAVING COUNT(id) > 1
+            ORDER BY vat
+        """)
+        
+        for vat, count in self.env.cr.fetchall():
+            # Get partners for this VAT in batches
+            offset = 0
+            while True:
+                partners = self.search([
+                    ('vat', '=', vat)
+                ], offset=offset, limit=batch_size, order='id asc')
                 
-                # Merge source partners into destination partner
-                self._merge_partners(destination_partner, source_partners)
-                merged_count += len(source_partners)
+                if not partners:
+                    break
+                
+                # Process this batch
+                if len(partners) > 1:
+                    destination = partners[0]
+                    sources = partners[1:]
+                    self._merge_partners(destination, sources)
+                    merged_count += len(sources)
+                    self.env.cr.commit()  # Commit after each batch
+                
+                offset += batch_size
         
         return {
             'type': 'ir.actions.client',
@@ -54,17 +62,37 @@ class ResPartner(models.Model):
             }
         }
     
-    def _merge_partners(self, destination_partner, source_partners):
+    def _merge_partners(self, destination, sources):
         """
-        Merge source partners into destination partner
+        Memory-optimized merge of partners
         """
-        if not source_partners:
+        if not sources:
             return
+
+        # Process in smaller chunks
+        chunk_size = 100
+        for i in range(0, len(sources), chunk_size):
+            chunk = sources[i:i+chunk_size]
             
-        # Ensure source_partners is a recordset
-        source_partners = self.browse([p.id for p in source_partners])
-        
-        # Get all models that have partner_id field
+            # 1. Handle related records
+            self._merge_related_records(destination, chunk)
+            
+            # 2. Merge contact info
+            self._merge_contact_info(destination, chunk)
+            
+            # 3. Archive sources
+            chunk.write({
+                'active': False,
+                'parent_id': destination.id,
+                'vat': False,
+            })
+            self.env.cr.commit()  # Commit after each chunk
+    
+    def _merge_related_records(self, destination, sources):
+        """
+        Merge related records in memory-efficient way
+        """
+        # Get all models with partner_id field
         partner_fields = self.env['ir.model.fields'].search([
             ('relation', '=', 'res.partner'),
             ('ttype', '=', 'many2one'),
@@ -74,43 +102,43 @@ class ResPartner(models.Model):
             try:
                 model = self.env[field.model_id.model]
                 if model._auto:
-                    # Find all records pointing to source partners
-                    records = model.search([(field.name, 'in', source_partners.ids)])
-                    if records:
-                        records.write({field.name: destination_partner.id})
+                    # Process records in batches
+                    offset = 0
+                    while True:
+                        records = model.search([
+                            (field.name, 'in', sources.ids)
+                        ], offset=offset, limit=100)
+                        
+                        if not records:
+                            break
+                            
+                        records.write({field.name: destination.id})
+                        offset += 100
+                        self.env.cr.commit()
+                        
             except Exception as e:
-                _logger.error("Failed to merge partner field %s in model %s: %s", 
-                           field.name, field.model_id.model, str(e))
+                _logger.error("Merge failed for model %s: %s", field.model_id.model, str(e))
                 continue
-        
-        # Handle special cases
-        self._merge_special_cases(destination_partner, source_partners)
-        
-        # Archive and clean up source partners
-        source_partners.write({
-            'active': False,
-            'parent_id': destination_partner.id,
-            'vat': False,  # Clear VAT to avoid future conflicts
-        })
-
-    def _merge_special_cases(self, destination_partner, source_partners):
+    
+    def _merge_contact_info(self, destination, sources):
         """
-        Handle special cases that need custom merging logic
+        Merge contact information efficiently
         """
-        # Merge contact information
-        contact_info = {
-            'email': ', '.join(filter(None, {destination_partner.email} | {p.email for p in source_partners if p.email})),
-            'phone': ', '.join(filter(None, {destination_partner.phone} | {p.phone for p in source_partners if p.phone})),
-            'mobile': ', '.join(filter(None, {destination_partner.mobile} | {p.mobile for p in source_partners if p.mobile})),
-        }
-        destination_partner.write(contact_info)
+        # Collect unique values
+        emails = {destination.email}
+        phones = {destination.phone}
+        mobiles = {destination.mobile}
         
-        # Merge addresses and contacts
-        for source in source_partners:
-            # Move child contacts
-            if source.child_ids:
-                source.child_ids.write({'parent_id': destination_partner.id})
-            
-            # Move bank accounts
-            if source.bank_ids:
-                source.bank_ids.write({'partner_id': destination_partner.id})
+        for partner in sources:
+            if partner.email: emails.add(partner.email)
+            if partner.phone: phones.add(partner.phone)
+            if partner.mobile: mobiles.add(partner.mobile)
+        
+        # Update destination
+        update_vals = {}
+        if emails: update_vals['email'] = ', '.join(filter(None, emails))
+        if phones: update_vals['phone'] = ', '.join(filter(None, phones))
+        if mobiles: update_vals['mobile'] = ', '.join(filter(None, mobiles))
+        
+        if update_vals:
+            destination.write(update_vals)
