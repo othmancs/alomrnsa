@@ -6,13 +6,16 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <!-- For Odoo 16 - new form view structure -->
-            <xpath expr="//div[hasclass('o_form_button_box')]" position="inside">
-                <button name="action_merge_by_vat" 
-                        type="object" 
-                        string="Merge by VAT" 
-                        class="btn-primary"
-                        groups="base.group_system"/>
+            <!-- Alternative XPath for Odoo 16 -->
+            <xpath expr="//sheet" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_merge_by_vat" 
+                            type="object" 
+                            string="Merge by VAT" 
+                            class="oe_stat_button btn-primary"
+                            icon="fa-compress"
+                            groups="base.group_system"/>
+                </div>
             </xpath>
         </field>
     </record>
