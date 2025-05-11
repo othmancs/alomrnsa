@@ -5,7 +5,7 @@ from collections import defaultdict
 class LandedCostLine(models.Model):
     _inherit = 'stock.landed.cost.lines'
     
-    percentage = fields.Float(string="النسبة المئوية", compute='_compute_percentage', store=True)
+    percentage = fields.Float(string="النسبة المئوية", compute='_compute_percentage', store=True, digits=(16, 2))
     split_method = fields.Selection(
         selection_add=[('construction_costs', 'تكاليف العمران')],
         ondelete={'construction_costs': 'set default'},
@@ -30,10 +30,7 @@ class LandedCostLine(models.Model):
                             if pl.price_unit and pl.product_qty
                         )
                         
-                        if total_purchase_cost != 0:
-                            line.percentage = (total_costs / total_purchase_cost) * 100
-                        else:
-                            line.percentage = 0.0
+                        line.percentage = (total_costs / total_purchase_cost) * 100 if total_purchase_cost != 0 else 0.0
                     else:
                         line.percentage = 0.0
                 else:
@@ -46,42 +43,35 @@ class LandedCostLine(models.Model):
         super(LandedCostLine, self)._compute_cost_lines()
         
         # تجميع البنود لكل منتج
+        lines_to_process = self.filtered(lambda l: l.split_method == 'construction_costs' and l.move_id)
         product_lines = defaultdict(list)
-        for line in self.filtered(lambda l: l.split_method == 'construction_costs'):
-            if line.move_id:
-                product_lines[line.move_id.id].append(line)
+        
+        for line in lines_to_process:
+            product_lines[line.move_id.id].append(line)
         
         # معالجة البنود المجمعة
         for move_id, lines in product_lines.items():
-            if len(lines) > 1:
-                # الاحتفاظ بالبند الأول وحذف البقية
+            if lines:
                 main_line = lines[0]
-                for extra_line in lines[1:]:
-                    extra_line.unlink()
-                
-                # إعادة حساب البند المتبقي
                 move = main_line.move_id
+                
                 if move and move.purchase_line_id:
                     purchase_line = move.purchase_line_id
                     product_price = purchase_line.price_unit
+                    
                     if purchase_line.currency_id != purchase_line.company_id.currency_id:
                         product_price = purchase_line.price_unit * purchase_line.currency_id.rate
                     
-                    main_line.price_unit = float_round(
+                    # حساب التكلفة لكل وحدة
+                    cost_per_unit = float_round(
                         (main_line.percentage / 100) * product_price,
                         precision_digits=2
                     )
-            else:
-                # معالجة البند الوحيد
-                line = lines[0]
-                move = line.move_id
-                if move and move.purchase_line_id:
-                    purchase_line = move.purchase_line_id
-                    product_price = purchase_line.price_unit
-                    if purchase_line.currency_id != purchase_line.company_id.currency_id:
-                        product_price = purchase_line.price_unit * purchase_line.currency_id.rate
                     
-                    line.price_unit = float_round(
-                        (line.percentage / 100) * product_price,
-                        precision_digits=2
-                    )
+                    # تحديث البند الرئيسي
+                    main_line.price_unit = cost_per_unit
+                    
+                    # حذف البنود الإضافية إن وجدت
+                    if len(lines) > 1:
+                        for extra_line in lines[1:]:
+                            extra_line.unlink()
