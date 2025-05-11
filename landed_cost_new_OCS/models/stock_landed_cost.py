@@ -20,8 +20,9 @@ class LandedCostLine(models.Model):
                 pickings = line.cost_id.picking_ids
                 
                 if pickings:
-                    all_moves = pickings.mapped('move_lines')
-                    purchase_lines = all_moves.mapped('purchase_line_id')
+                    # استخدام move_ids بدلاً من move_lines للإصدارات الحديثة من أودو
+                    all_moves = pickings.move_ids
+                    purchase_lines = all_moves.purchase_line_id
                     
                     if purchase_lines:
                         total_purchase_cost = sum(
