@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- تغيير المعرفات إلى ما يناسب الإصدار 16 -->
+    <!-- تعديل عرض stock.landed.cost الرئيسي -->
     <record id="view_stock_landed_cost_form_inherit" model="ir.ui.view">
         <field name="name">stock.landed.cost.form.inherit</field>
         <field name="model">stock.landed.cost</field>
@@ -14,10 +14,11 @@
         </field>
     </record>
 
+    <!-- تعديل عرض stock.landed.cost.lines -->
     <record id="view_stock_landed_cost_lines_form_inherit" model="ir.ui.view">
         <field name="name">stock.landed.cost.lines.form.inherit</field>
         <field name="model">stock.landed.cost.lines</field>
-        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_lines_form"/>
         <field name="arch" type="xml">
             <field name="split_method" position="after">
                 <field name="percentage" string="النسبة المئوية (%)" readonly="1"/>
