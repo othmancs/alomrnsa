@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_account_account_tree" model="ir.ui.view">
+        <field name="name">account.account.tree</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_account_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="level" invisible="1"/>
+                <field name="custom_parent_id" string="الحساب الأب"/>
+            </xpath>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="default_order">code</attribute>
+                <attribute name="hierarchy">custom_parent_id</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_account_form" model="ir.ui.view">
+        <field name="name">account.account.form</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="custom_parent_id" string="الحساب الأب"/>
+                <field name="level" readonly="1"/>
+            </xpath>
+            <xpath expr="//page[@name='general_information']" position="inside">
+                <group string="التسلسل الهرمي المخصص">
+                    <field name="custom_child_ids" context="{'tree_view_ref': 'account.view_account_account_tree'}">
+                        <tree>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="level"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
