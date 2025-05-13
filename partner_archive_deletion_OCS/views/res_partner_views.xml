@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_deletion" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.deletion</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="unlink"
+                            string="Delete"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-trash"
+                            confirm="هل أنت متأكد أنك تريد حذف هذا الشريك؟"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
