@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Author: Damien Crier
 # Author: Julien Coux
 # Author: Jordi Ballester
@@ -5,7 +6,6 @@
 # Copyright 2017 Akretion - Alexis de Lattre
 # Copyright 2017 ForgeFlow, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
 
 import time
 from ast import literal_eval
@@ -56,7 +56,10 @@ class GeneralLedgerReportWizard(models.TransientModel):
     cost_center_ids = fields.Many2many(
         comodel_name="account.analytic.account", string="Filter cost centers"
     )
-
+    analytic_distribution = fields.Char(
+        string="Analytic Distribution Filter",
+        help="Filter journal items by analytic distribution in JSON format"
+    )
     not_only_one_unaffected_earnings_account = fields.Boolean(readonly=True)
     foreign_currency = fields.Boolean(
         string="Show foreign currency",
@@ -84,7 +87,7 @@ class GeneralLedgerReportWizard(models.TransientModel):
     domain = fields.Char(
         string="Journal Items Domain",
         default=[],
-        help="This domain will be used to select specific domain for Journal " "Items",
+        help="This domain will be used to select specific domain for Journal Items",
     )
 
     def _get_account_move_lines_domain(self):
@@ -296,6 +299,7 @@ class GeneralLedgerReportWizard(models.TransientModel):
             "partner_ids": self.partner_ids.ids,
             "grouped_by": self.grouped_by,
             "cost_center_ids": self.cost_center_ids.ids,
+            "analytic_distribution": self.analytic_distribution,
             "show_cost_center": self.show_cost_center,
             "journal_ids": self.account_journal_ids.ids,
             "centralize": self.centralize,
