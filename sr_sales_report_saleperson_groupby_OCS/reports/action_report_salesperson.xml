@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_by_salesperson" model="ir.actions.report">
+            <field name="name">Salesperson Report</field>
+            <field name="model">sale.salesperson.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">sr_sales_report_saleperson_groupby.sale_report_view</field>
+            <field name="report_file">sr_sales_report_saleperson_groupby.sale_report_view</field>
+            <field name="print_report_name">'Sales Report - %s' % (object.id)</field>
+            <field name="attachment"/>
+            <field name="binding_model_id" eval="False"/>
+        </record>
+</odoo>

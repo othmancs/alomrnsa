@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_report_wizard" model="ir.ui.view">
+        <field name="name">Sales Order Report</field>
+        <field name="model">sale.salesperson.report</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Sales Report By Salesperson">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="salesperson_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="print_sale_report_by_salesperson" string="Print" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_report_wizard" model="ir.actions.act_window">
+        <field name="name">Sales Report By Salesperson</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.salesperson.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_report_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem action="action_sale_report_wizard"
+              id="menu_sale_report_wizard"
+              parent="sale.menu_sale_report"/>
+</odoo>
