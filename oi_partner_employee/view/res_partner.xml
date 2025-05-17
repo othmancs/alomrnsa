@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="res_partner_view_search" model="ir.ui.view">
+		<field name="name">res.partner.search</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="account.res_partner_view_search" />
+		<field name="arch" type="xml">
+			<filter name="supplier" position="after">
+				<filter string="Employees" name="employee" domain="[('employee', '=', True)]"/>
+			</filter>
+		</field>
+	</record>
+
+</odoo>
