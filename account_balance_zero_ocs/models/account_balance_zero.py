@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 class AccountBalanceZero(models.TransientModel):
     _name = 'account.balance.zero'
@@ -66,8 +66,19 @@ class AccountBalanceZero(models.TransientModel):
             warning_msg = _("""
                 تم استبعاد الحسابات التالية لأنها غير مسموح بها في دفتر اليومية المحدد:
                 %s
+                سيتم المتابعة مع الحسابات المسموح بها.
             """) % '\n'.join(restricted_accounts)
-            self.env.user.notify_warning(message=warning_msg, title=_('تحذير'))
+            
+            self.env['bus.bus']._sendone(
+                self.env.user.partner_id,
+                'display_notification',
+                {
+                    'title': _('تحذير'),
+                    'message': warning_msg,
+                    'type': 'warning',
+                    'sticky': False,
+                }
+            )
         
         if move_vals['line_ids']:
             move = Move.create(move_vals)
