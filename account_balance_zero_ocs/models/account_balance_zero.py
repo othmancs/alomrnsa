@@ -13,19 +13,6 @@ class AccountBalanceZero(models.TransientModel):
         domain=[('type', '=', 'general')]
     )
     ref = fields.Char(string='المرجع', default='تصفير أرصدة الإغلاق')
-    
-    # هذه الحقول يجب أن تكون غير مخزنة (transient) لأنها للاستخدام المؤقت فقط
-    show_warning = fields.Boolean(compute='_compute_warning_fields', store=False)
-    warning_message = fields.Text(compute='_compute_warning_fields', store=False)
-    restricted_accounts = fields.Text(compute='_compute_warning_fields', store=False)
-
-    @api.depends('date', 'journal_id')
-    def _compute_warning_fields(self):
-        """حساب الحقول المحسوبة بشكل ديناميكي"""
-        for record in self:
-            record.show_warning = False
-            record.warning_message = ''
-            record.restricted_accounts = ''
 
     def _compute_account_balance(self, account_id):
         """حساب الرصيد بطريقة آمنة"""
@@ -60,54 +47,18 @@ class AccountBalanceZero(models.TransientModel):
                     'name': _('تصفير رصيد الإغلاق'),
                 }))
 
-        # تخزين بيانات التحذير في الحقول المحسوبة
+        warning_message = ''
         if restricted_accounts:
-            self.update({
-                'show_warning': True,
-                'warning_message': _("""
-                    تم استبعاد الحسابات التالية لأنها غير مسموح بها في دفتر اليومية المحدد:
-                    %s
-                    سيتم المتابعة مع الحسابات المسموح بها.
-                """) % '\n'.join(restricted_accounts),
-                'restricted_accounts': '\n'.join(restricted_accounts)
-            })
+            warning_message = _("""
+                تم استبعاد الحسابات التالية لأنها غير مسموح بها في دفتر اليومية المحدد:
+                %s
+                سيتم المتابعة مع الحسابات المسموح بها.
+            """) % '\n'.join(restricted_accounts)
 
         return {
-            'date': self.date,
-            'journal_id': self.journal_id.id,
-            'ref': self.ref,
-            'line_ids': move_lines,
-        }
-
-    def action_show_warning(self):
-        """عرض التحذير ثم المتابعة"""
-        return {
-            'type': 'ir.actions.act_window',
-            'name': _('تحذير'),
-            'res_model': self._name,
-            'res_id': self.id,
-            'view_mode': 'form',
-            'target': 'new',
-            'views': [(False, 'form')],
-        }
-
-    def action_create_move(self):
-        """إنشاء القيد المحاسبي"""
-        move_data = self._prepare_move_data()
-
-        if not move_data['line_ids']:
-            raise UserError(_("لا توجد أرصدة لتصفيرها في التاريخ المحدد"))
-
-        move = self.env['account.move'].create(move_data)
-        move.action_post()
-
-        return {
-            'name': _('قيد تصفير الأرصدة'),
-            'type': 'ir.actions.act_window',
-            'view_mode': 'form',
-            'res_model': 'account.move',
-            'res_id': move.id,
-            'context': {'create': False},
+            'move_lines': move_lines,
+            'warning_message': warning_message,
+            'has_warning': bool(restricted_accounts)
         }
 
     def action_zero_balances(self):
@@ -115,6 +66,41 @@ class AccountBalanceZero(models.TransientModel):
         self.ensure_one()
         move_data = self._prepare_move_data()
 
-        if self.show_warning:
-            return self.action_show_warning()
-        return self.action_create_move()
+        if not move_data['move_lines']:
+            raise UserError(_("لا توجد أرصدة لتصفيرها في التاريخ المحدد"))
+
+        if move_data['has_warning']:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('تحذير'),
+                    'message': move_data['warning_message'],
+                    'type': 'warning',
+                    'sticky': False,
+                    'next': {
+                        'type': 'ir.actions.act_window',
+                        'res_model': 'account.move',
+                        'view_mode': 'form',
+                        'res_id': self._create_move(move_data['move_lines']).id,
+                    }
+                }
+            }
+        else:
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'account.move',
+                'view_mode': 'form',
+                'res_id': self._create_move(move_data['move_lines']).id,
+            }
+
+    def _create_move(self, move_lines):
+        """إنشاء القيد المحاسبي"""
+        move = self.env['account.move'].create({
+            'date': self.date,
+            'journal_id': self.journal_id.id,
+            'ref': self.ref,
+            'line_ids': move_lines,
+        })
+        move.action_post()
+        return move
