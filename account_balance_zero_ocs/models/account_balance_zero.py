@@ -18,7 +18,6 @@ class AccountBalanceZero(models.TransientModel):
     def action_zero_balances(self):
         self.ensure_one()
         
-        # الحصول على جميع الحسابات التي لها رصيد
         Account = self.env['account.account']
         Move = self.env['account.move']
         MoveLine = self.env['account.move.line']
@@ -28,7 +27,6 @@ class AccountBalanceZero(models.TransientModel):
         if not accounts:
             raise UserError(_("لا توجد حسابات متاحة لتصفير الأرصدة"))
         
-        # إنشاء قيد اليومية
         move_vals = {
             'date': self.date,
             'journal_id': self.journal_id.id,
@@ -36,17 +34,22 @@ class AccountBalanceZero(models.TransientModel):
             'line_ids': [],
         }
         
-        # إعداد بنود القيد
         for account in accounts:
-            balance = account._compute_balance({'date_to': self.date})
+            # حساب الرصيد باستخدام account_move_line
+            domain = [
+                ('account_id', '=', account.id),
+                ('date', '<=', self.date),
+                ('parent_state', '=', 'posted')
+            ]
+            
+            lines = MoveLine.search(domain)
+            balance = sum(lines.mapped('balance'))
             
             if balance:
-                # حساب الرصيد
                 amount = abs(balance)
                 debit = balance > 0 and amount or 0.0
                 credit = balance < 0 and amount or 0.0
                 
-                # إضافة بند القيد
                 move_vals['line_ids'].append((0, 0, {
                     'account_id': account.id,
                     'debit': debit,
@@ -54,7 +57,6 @@ class AccountBalanceZero(models.TransientModel):
                     'name': _('تصفير رصيد الإغلاق'),
                 }))
         
-        # إنشاء القيد فقط إذا كان هناك أرصدة لتصفيرها
         if move_vals['line_ids']:
             move = Move.create(move_vals)
             move.action_post()
