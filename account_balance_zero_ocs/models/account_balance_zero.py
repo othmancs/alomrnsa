@@ -1,6 +1,5 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-from datetime import datetime
 
 class AccountBalanceZero(models.TransientModel):
     _name = 'account.balance.zero'
@@ -34,8 +33,14 @@ class AccountBalanceZero(models.TransientModel):
             'line_ids': [],
         }
         
+        restricted_accounts = []
+        
         for account in accounts:
-            # حساب الرصيد باستخدام account_move_line
+            # التحقق من أن الحساب مسموح به في دفتر اليومية المحدد
+            if account.allowed_journal_ids and self.journal_id not in account.allowed_journal_ids:
+                restricted_accounts.append(account.name)
+                continue
+            
             domain = [
                 ('account_id', '=', account.id),
                 ('date', '<=', self.date),
@@ -56,6 +61,13 @@ class AccountBalanceZero(models.TransientModel):
                     'credit': credit,
                     'name': _('تصفير رصيد الإغلاق'),
                 }))
+        
+        if restricted_accounts:
+            warning_msg = _("""
+                تم استبعاد الحسابات التالية لأنها غير مسموح بها في دفتر اليومية المحدد:
+                %s
+            """) % '\n'.join(restricted_accounts)
+            self.env.user.notify_warning(message=warning_msg, title=_('تحذير'))
         
         if move_vals['line_ids']:
             move = Move.create(move_vals)
