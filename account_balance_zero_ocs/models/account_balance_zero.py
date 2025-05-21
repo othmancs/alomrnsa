@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
 class AccountBalanceZero(models.TransientModel):
     _name = 'account.balance.zero'
@@ -14,12 +14,23 @@ class AccountBalanceZero(models.TransientModel):
     )
     ref = fields.Char(string='المرجع', default='تصفير أرصدة الإغلاق')
 
+    def _compute_account_balance(self, account_id):
+        """حساب الرصيد بطريقة آمنة تتجنب مشاكل المؤقت"""
+        self.env.cr.execute("""
+            SELECT SUM(balance) as balance
+            FROM account_move_line
+            WHERE account_id = %s
+              AND date <= %s
+              AND parent_state = 'posted'
+        """, (account_id, self.date))
+        result = self.env.cr.fetchone()
+        return result[0] or 0.0
+
     def action_zero_balances(self):
         self.ensure_one()
         
         Account = self.env['account.account']
         Move = self.env['account.move']
-        MoveLine = self.env['account.move.line']
         
         accounts = Account.search([('deprecated', '=', False)])
         
@@ -41,14 +52,7 @@ class AccountBalanceZero(models.TransientModel):
                 restricted_accounts.append(account.name)
                 continue
             
-            domain = [
-                ('account_id', '=', account.id),
-                ('date', '<=', self.date),
-                ('parent_state', '=', 'posted')
-            ]
-            
-            lines = MoveLine.search(domain)
-            balance = sum(lines.mapped('balance'))
+            balance = self._compute_account_balance(account.id)
             
             if balance:
                 amount = abs(balance)
@@ -66,19 +70,18 @@ class AccountBalanceZero(models.TransientModel):
             warning_msg = _("""
                 تم استبعاد الحسابات التالية لأنها غير مسموح بها في دفتر اليومية المحدد:
                 %s
-                سيتم المتابعة مع الحسابات المسموح بها.
             """) % '\n'.join(restricted_accounts)
             
-            self.env['bus.bus']._sendone(
-                self.env.user.partner_id,
-                'display_notification',
-                {
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
                     'title': _('تحذير'),
                     'message': warning_msg,
                     'type': 'warning',
                     'sticky': False,
                 }
-            )
+            }
         
         if move_vals['line_ids']:
             move = Move.create(move_vals)
