@@ -1,0 +1,35 @@
+<odoo>
+    <record id="view_account_balance_zero_form" model="ir.ui.view">
+        <field name="name">account.balance.zero.form</field>
+        <field name="model">account.balance.zero</field>
+        <field name="arch" type="xml">
+            <form string="تصفير أرصدة الإغلاق">
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="journal_id"/>
+                        <field name="ref"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_zero_balances" string="إنشاء القيد" type="object" class="btn-primary"/>
+                    <button string="إلغاء" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_balance_zero" model="ir.actions.act_window">
+        <field name="name">تصفير أرصدة الإغلاق</field>
+        <field name="res_model">account.balance.zero</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_account_balance_zero_form"/>
+    </record>
+
+    <menuitem id="menu_account_balance_zero" 
+              name="تصفير أرصدة الإغلاق" 
+              parent="account.menu_finance"
+              action="action_account_balance_zero"
+              sequence="100"/>
+</odoo>
