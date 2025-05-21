@@ -16,69 +16,77 @@ class AccountBalanceZero(models.TransientModel):
     branch_id = fields.Many2one(
         'res.branch',
         string='الفرع',
-        required=True,
-        default=lambda self: self.env.user.branch_id
+        required=True
     )
+
+    @api.model
+    def default_get(self, fields):
+        res = super(AccountBalanceZero, self).default_get(fields)
+        # الحصول على فرع المستخدم إذا كان الحقل موجوداً
+        if hasattr(self.env.user, 'branch_id'):
+            res['branch_id'] = self.env.user.branch_id.id
+        return res
 
     def _compute_account_balance(self, account_id):
         """حساب الرصيد بطريقة آمنة مع مراعاة الفرع"""
-        self.env.cr.execute("""
+        query = """
             SELECT SUM(balance) as balance
             FROM account_move_line
             WHERE account_id = %s
               AND date <= %s
               AND parent_state = 'posted'
-              AND branch_id = %s
-        """, (account_id, self.date, self.branch_id.id))
+        """
+        params = [account_id, self.date]
+        
+        if hasattr(self.env['account.move.line'], 'branch_id'):
+            query += " AND branch_id = %s"
+            params.append(self.branch_id.id)
+        
+        self.env.cr.execute(query, params)
         result = self.env.cr.fetchone()
         return result[0] or 0.0
 
     def _prepare_move_data(self):
-        """إعداد بيانات القيد مع التحقق من الفروع والحسابات المسموح بها"""
+        """إعداد بيانات القيد مع التحقق من الفروع"""
         accounts = self.env['account.account'].search([('deprecated', '=', False)])
         move_lines = []
-        restricted_accounts = []
-        wrong_branch_accounts = []
+        excluded_accounts = []
 
         for account in accounts:
             # التحقق من أن الحساب مسموح به في دفتر اليومية المحدد
             if account.allowed_journal_ids and self.journal_id not in account.allowed_journal_ids:
-                restricted_accounts.append(account.name)
+                excluded_accounts.append(f"{account.name} (غير مسموح في دفتر اليومية)")
                 continue
-            
-            # التحقق من أن الحساب ينتمي للفرع المحدد
-            if account.branch_id and account.branch_id != self.branch_id:
-                wrong_branch_accounts.append(account.name)
+
+            # التحقق من أن الحساب ينتمي للفرع المحدد إذا كان الحقل موجوداً
+            if hasattr(account, 'branch_id') and account.branch_id and account.branch_id != self.branch_id:
+                excluded_accounts.append(f"{account.name} (فرع {account.branch_id.name})")
                 continue
 
             balance = self._compute_account_balance(account.id)
             if balance:
                 amount = abs(balance)
-                move_lines.append((0, 0, {
+                line_vals = {
                     'account_id': account.id,
                     'debit': balance > 0 and amount or 0.0,
                     'credit': balance < 0 and amount or 0.0,
                     'name': _('تصفير رصيد الإغلاق'),
-                    'branch_id': self.branch_id.id,
-                }))
+                }
+                if hasattr(self.env['account.move.line'], 'branch_id'):
+                    line_vals['branch_id'] = self.branch_id.id
+                move_lines.append((0, 0, line_vals))
 
-        warning_messages = []
-        if restricted_accounts:
-            warning_messages.append(_("""
-                تم استبعاد الحسابات التالية لأنها غير مسموح بها في دفتر اليومية المحدد:
+        warning_msg = ''
+        if excluded_accounts:
+            warning_msg = _("""
+                تم استبعاد الحسابات التالية:
                 %s
-            """) % '\n'.join(restricted_accounts))
-
-        if wrong_branch_accounts:
-            warning_messages.append(_("""
-                تم استبعاد الحسابات التالية لأنها لا تنتمي للفرع المحدد (%s):
-                %s
-            """) % (self.branch_id.name, '\n'.join(wrong_branch_accounts)))
+            """) % '\n'.join(excluded_accounts)
 
         return {
             'move_lines': move_lines,
-            'warning_message': '\n'.join(warning_messages),
-            'has_warning': bool(restricted_accounts or wrong_branch_accounts)
+            'warning_message': warning_msg,
+            'has_warning': bool(excluded_accounts)
         }
 
     def action_zero_balances(self):
@@ -89,13 +97,16 @@ class AccountBalanceZero(models.TransientModel):
         if not move_data['move_lines']:
             raise UserError(_("لا توجد أرصدة لتصفيرها في التاريخ المحدد للفرع %s") % self.branch_id.name)
 
-        move = self.env['account.move'].create({
+        move_vals = {
             'date': self.date,
             'journal_id': self.journal_id.id,
             'ref': self.ref,
-            'branch_id': self.branch_id.id,
             'line_ids': move_data['move_lines'],
-        })
+        }
+        if hasattr(self.env['account.move'], 'branch_id'):
+            move_vals['branch_id'] = self.branch_id.id
+
+        move = self.env['account.move'].create(move_vals)
         move.action_post()
 
         if move_data['has_warning']:
@@ -115,10 +126,9 @@ class AccountBalanceZero(models.TransientModel):
                     }
                 }
             }
-        else:
-            return {
-                'type': 'ir.actions.act_window',
-                'res_model': 'account.move',
-                'view_mode': 'form',
-                'res_id': move.id,
-            }
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'account.move',
+            'view_mode': 'form',
+            'res_id': move.id,
+        }
