@@ -8,7 +8,7 @@
                 <sheet>
                     <group>
                         <field name="date"/>
-                        <field name="branch_id"/>
+                        <field name="branch_id" domain="[]"/>
                         <field name="journal_id"/>
                         <field name="ref"/>
                     </group>
