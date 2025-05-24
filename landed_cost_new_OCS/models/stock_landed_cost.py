@@ -56,3 +56,24 @@ class LandedCostLine(models.Model):
                     precision_digits=2
                 )
                 line.price_unit = cost_per_unit
+
+
+class StockLandedCost(models.Model):
+    _inherit = 'stock.landed.cost'
+
+    def button_validate(self):
+        res = super(StockLandedCost, self).button_validate()
+        
+        # تحديث تكلفة المنتج بعد تأكيد التكاليف
+        for cost in self:
+            for line in cost.cost_lines:
+                if line.split_method == 'construction_costs' and line.product_id:
+                    # حساب التكلفة الجديدة
+                    new_cost = line.product_id.standard_price + line.price_unit
+                    
+                    # تحديث تكلفة المنتج
+                    line.product_id.sudo().write({
+                        'standard_price': new_cost
+                    })
+        
+        return res
