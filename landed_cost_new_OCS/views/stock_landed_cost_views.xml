@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- الإضافة الأصلية -->
+    <!-- تعديل طريقة التقسيم في تكاليف الأراضي -->
     <record id="view_stock_landed_cost_lines_form_inherit_custom" model="ir.ui.view">
         <field name="name">stock.landed.cost.lines.form.inherit.custom</field>
         <field name="model">stock.landed.cost</field>
@@ -25,15 +25,25 @@
         </field>
     </record>
     
-    <!-- إضافة الحقول الجديدة في شاشة المنتج -->
+    <!-- إضافة حقول التكلفة في شاشة المنتج -->
     <record id="view_product_product_form_inherit_landed_cost" model="ir.ui.view">
         <field name="name">product.product.form.inherit.landed.cost</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='standard_price']" position="after">
-                <field name="last_landed_cost" attrs="{'readonly': True}"/>
-                <field name="construction_cost" attrs="{'readonly': True}"/>
+                <field name="last_landed_cost" 
+                       string="آخر تكاليف محتسبة" 
+                       widget="monetary" 
+                       options="{'currency_field': 'currency_id'}"
+                       attrs="{'readonly': True}"
+                       help="آخر تكاليف أرض محتسبة لهذا المنتج"/>
+                <field name="construction_cost" 
+                       string="التكلفة بعد تكاليف العمران" 
+                       widget="monetary" 
+                       options="{'currency_field': 'currency_id'}"
+                       attrs="{'readonly': True}"
+                       help="التكلفة الإجمالية للمنتج بعد إضافة تكاليف العمران"/>
             </xpath>
         </field>
     </record>
