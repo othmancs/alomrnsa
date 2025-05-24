@@ -2,6 +2,28 @@ from odoo import models, fields, api
 from odoo.tools.float_utils import float_round
 from collections import defaultdict
 
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+    
+    construction_cost = fields.Float(
+        string="التكلفة بعد تكاليف العمران",
+        compute='_compute_construction_cost',
+        store=True,
+        digits='Product Price',
+        help="التكلفة الإجمالية للمنتج بعد إضافة تكاليف العمران"
+    )
+    
+    last_landed_cost = fields.Float(
+        string="آخر تكاليف محتسبة",
+        digits='Product Price',
+        help="آخر تكاليف أرض محتسبة لهذا المنتج"
+    )
+    
+    @api.depends('standard_price', 'last_landed_cost')
+    def _compute_construction_cost(self):
+        for product in self:
+            product.construction_cost = product.standard_price + product.last_landed_cost
+
 class LandedCostLine(models.Model):
     _inherit = 'stock.landed.cost.lines'
 
@@ -64,16 +86,20 @@ class StockLandedCost(models.Model):
     def button_validate(self):
         res = super(StockLandedCost, self).button_validate()
         
-        # تحديث تكلفة المنتج بعد تأكيد التكاليف
+        # تجميع التكاليف لكل منتج
+        product_costs = defaultdict(float)
         for cost in self:
             for line in cost.cost_lines:
                 if line.split_method == 'construction_costs' and line.product_id:
-                    # حساب التكلفة الجديدة
-                    new_cost = line.product_id.standard_price + line.price_unit
-                    
-                    # تحديث تكلفة المنتج
-                    line.product_id.sudo().write({
-                        'standard_price': new_cost
-                    })
+                    product_id = line.product_id.id
+                    product_costs[product_id] += line.price_unit
+        
+        # تحديث تكلفة المنتج
+        if product_costs:
+            products = self.env['product.product'].browse(product_costs.keys())
+            for product in products:
+                product.sudo().write({
+                    'last_landed_cost': product_costs[product.id]
+                })
         
         return res
