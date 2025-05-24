@@ -8,7 +8,7 @@
     """,
     'author': 'OTHMANCS',
     'website': 'https://www.yourwebsite.com',
-    'depends': ['stock_landed_costs'],
+    'depends': ['stock_landed_costs', 'product'],
     'category': 'Inventory',
     'data': [
         'views/stock_landed_cost_views.xml',
