@@ -1,9 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_stock_landed_cost_lines_form_inherit_2" model="ir.ui.view">
-        <field name="name">stock.landed.cost.lines.form.inherit.2</field>
+    <record id="view_stock_landed_cost_lines_form_inherit_custom" model="ir.ui.view">
+        <field name="name">stock.landed.cost.lines.form.inherit.custom</field>
         <field name="model">stock.landed.cost</field>
         <field name="inherit_id" ref="stock_landed_cost.view_stock_landed_cost_lines_inherit"/>
         <field name="arch" type="xml">
+
             <!-- تعديل حقل طريقة التقسيم -->
             <field name="split_method" position="attributes">
                 <attribute name="options">{
@@ -14,13 +16,13 @@
                     ]
                 }</attribute>
             </field>
-            
+
             <!-- إظهار حقل النسبة المئوية -->
             <field name="percentage" position="attributes">
                 <attribute name="attrs">{'invisible': [('split_method', '!=', 'construction_costs')]}</attribute>
                 <attribute name="readonly">1</attribute>
             </field>
-            
+
             <!-- إضافة تعليمات -->
             <xpath expr="//field[@name='split_method']" position="after">
                 <div class="alert alert-info" attrs="{'invisible': [('split_method', '!=', 'construction_costs')]}">
@@ -29,6 +31,7 @@
                     2. تطبيق النسبة على تكلفة المنتج
                 </div>
             </xpath>
+
         </field>
     </record>
 </odoo>
