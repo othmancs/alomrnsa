@@ -17,12 +17,6 @@
                 }</attribute>
             </field>
 
-            <!-- إظهار حقل النسبة المئوية -->
-            <field name="percentage" position="attributes">
-                <attribute name="attrs">{'invisible': [('split_method', '!=', 'construction_costs')]}</attribute>
-                <attribute name="readonly">1</attribute>
-            </field>
-
             <!-- إضافة تعليمات -->
             <xpath expr="//field[@name='split_method']" position="after">
                 <div class="alert alert-info" attrs="{'invisible': [('split_method', '!=', 'construction_costs')]}">
