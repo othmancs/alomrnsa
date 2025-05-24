@@ -26,19 +26,16 @@ class LandedCostLine(models.Model):
                 pickings = line.cost_id.picking_ids
 
                 if pickings:
-                    all_moves = pickings.move_ids
-                    purchase_lines = all_moves.purchase_line_id
+                    # حساب إجمالي تكلفة الشراء بالريال (total_in_sar)
+                    total_purchase_cost = sum(
+                        move.purchase_line_id.price_unit * move.purchase_line_id.product_qty 
+                        * (move.purchase_line_id.currency_id.rate if move.purchase_line_id.currency_id != move.purchase_line_id.company_id.currency_id else 1)
+                        for move in pickings.move_ids
+                        if move.purchase_line_id and move.purchase_line_id.price_unit and move.purchase_line_id.product_qty
+                    )
 
-                    if purchase_lines:
-                        total_purchase_cost = sum(
-                            pl.price_unit * pl.product_qty * (pl.currency_id.rate if pl.currency_id != pl.company_id.currency_id else 1)
-                            for pl in purchase_lines
-                            if pl.price_unit and pl.product_qty
-                        )
-
-                        line.percentage = (total_costs / total_purchase_cost) * 100 if total_purchase_cost != 0 else 0.0
-                    else:
-                        line.percentage = 0.0
+                    # حساب النسبة المئوية (إجمالي التكاليف / إجمالي تكلفة الشراء)
+                    line.percentage = (total_costs / total_purchase_cost) * 100 if total_purchase_cost != 0 else 0.0
                 else:
                     line.percentage = 0.0
             else:
@@ -48,31 +45,21 @@ class LandedCostLine(models.Model):
     def _compute_cost_lines(self):
         super(LandedCostLine, self)._compute_cost_lines()
 
-        lines_to_process = self.filtered(lambda l: l.split_method == 'construction_costs' and l.move_id)
-        product_lines = defaultdict(list)
-
-        for line in lines_to_process:
-            product_lines[line.move_id.id].append(line)
-
-        for move_id, lines in product_lines.items():
-            if lines:
-                main_line = lines[0]
-                move = main_line.move_id
-
-                if move and move.purchase_line_id:
-                    purchase_line = move.purchase_line_id
-                    product_price = purchase_line.price_unit
-
-                    if purchase_line.currency_id != purchase_line.company_id.currency_id:
-                        product_price *= purchase_line.currency_id.rate
-
-                    cost_per_unit = float_round(
-                        (main_line.percentage / 100) * product_price,
-                        precision_digits=2
-                    )
-
-                    main_line.price_unit = cost_per_unit
-
-                    if len(lines) > 1:
-                        for extra_line in lines[1:]:
-                            extra_line.unlink()
+        # معالجة خطوط تكاليف العمران فقط
+        for line in self.filtered(lambda l: l.split_method == 'construction_costs' and l.move_id):
+            move = line.move_id
+            if move and move.purchase_line_id:
+                purchase_line = move.purchase_line_id
+                
+                # حساب تكلفة شراء الحبة المنتج بالريال
+                product_price = purchase_line.price_unit
+                if purchase_line.currency_id != purchase_line.company_id.currency_id:
+                    product_price *= purchase_line.currency_id.rate
+                
+                # حساب التكلفة الإضافية للمنتج (النسبة المئوية * تكلفة شراء الحبة)
+                cost_per_unit = float_round(
+                    (line.percentage / 100) * product_price,
+                    precision_digits=2
+                )
+                
+                line.price_unit = cost_per_unit
