@@ -1,11 +1,11 @@
 <odoo>
-    <!-- استخدام XPath بدلاً من المرجع المباشر -->
-    <record id="view_stock_landed_cost_lines_form_inherit" model="ir.ui.view">
-        <field name="name">stock.landed.cost.lines.form.inherit</field>
-        <field name="model">stock.landed.cost.lines</field>
-        <field name="inherit_id" ref="stock_landed_cost.view_stock_landed_cost_form"/>
+    <record id="view_stock_landed_cost_lines_form_inherit_2" model="ir.ui.view">
+        <field name="name">stock.landed.cost.lines.form.inherit.2</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id" ref="stock_landed_cost.view_stock_landed_cost_lines_inherit"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='split_method']" position="attributes">
+            <!-- تعديل حقل طريقة التقسيم -->
+            <field name="split_method" position="attributes">
                 <attribute name="options">{
                     "no_open": True,
                     "no_create": True,
@@ -13,17 +13,19 @@
                         ["construction_costs", "تكاليف العمران"]
                     ]
                 }</attribute>
-            </xpath>
+            </field>
             
+            <!-- إظهار حقل النسبة المئوية -->
             <field name="percentage" position="attributes">
                 <attribute name="attrs">{'invisible': [('split_method', '!=', 'construction_costs')]}</attribute>
                 <attribute name="readonly">1</attribute>
             </field>
             
+            <!-- إضافة تعليمات -->
             <xpath expr="//field[@name='split_method']" position="after">
                 <div class="alert alert-info" attrs="{'invisible': [('split_method', '!=', 'construction_costs')]}">
                     <strong>طريقة حساب تكاليف العمران:</strong><br/>
-                    1. حساب النسبة المئوية (إجمالي التكاليف/إجمالي الشراء)<br/>
+                    1. حساب النسبة المئوية (إجمالي التكاليف / إجمالي الشراء)<br/>
                     2. تطبيق النسبة على تكلفة المنتج
                 </div>
             </xpath>
