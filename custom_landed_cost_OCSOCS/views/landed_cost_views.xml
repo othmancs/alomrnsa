@@ -3,14 +3,14 @@
     <record id="view_stock_landed_cost_form_inherit" model="ir.ui.view">
         <field name="name">stock.landed.cost.form.inherit</field>
         <field name="model">stock.landed.cost</field>
-        <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="inherit_id" ref="stock.view_stock_landed_cost_lines_form"/>
         <field name="arch" type="xml">
-            <!-- تعديل حقل split_method لإظهار خيار تكاليف العمران -->
-            <field name="split_method" position="attributes">
+            <!-- التعديل الجديد باستخدام xpath للوصول الدقيق لحقل split_method في شجرة cost_lines -->
+            <xpath expr="//field[@name='cost_lines']/tree/field[@name='split_method']" position="attributes">
                 <attribute name="selection_add">
-                    <item key="urbanization">تكاليف العمران (حسب القيمة)</item>
+                    <item key="construction_costs">تكاليف العمران</item>
                 </attribute>
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
