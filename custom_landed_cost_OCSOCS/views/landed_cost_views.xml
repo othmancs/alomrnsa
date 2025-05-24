@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- التعديل الصحيح مع استخدام المرجع الصحيح للوراثة -->
     <record id="view_stock_landed_cost_lines_inherit" model="ir.ui.view">
         <field name="name">stock.landed.cost.lines.inherit</field>
         <field name="model">stock.landed.cost</field>
         <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
         <field name="arch" type="xml">
-            <!-- استخدام XPath للوصول الدقيق للحقل -->
+            <!-- إضافة خيار تكاليف العمران -->
             <xpath expr="//field[@name='cost_lines']/tree/field[@name='split_method']" position="attributes">
                 <attribute name="selection_add">
                     <item key="construction_costs">تكاليف العمران</item>
                 </attribute>
+            </xpath>
+            
+            <!-- تعديل شجرة valuation_adjustment_lines للتجميع -->
+            <xpath expr="//field[@name='valuation_adjustment_lines']/tree" position="replace">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="quantity" sum="الكمية الإجمالية"/>
+                    <field name="former_cost" sum="التكلفة السابقة"/>
+                    <field name="additional_landed_cost" sum="التكلفة الإضافية"/>
+                    <field name="cost_line_id" invisible="1"/>
+                </tree>
             </xpath>
         </field>
     </record>
