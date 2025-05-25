@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Extend Sale Order Form View -->
+        <record id="view_order_form_inherit_customer_balance" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.customer.balance</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Add balance after partner_invoice_id -->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="partner_balance" 
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                           decoration-danger="partner_balance &lt; 0"
+                           groups="account.group_account_readonly"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Extend Sale Order Tree View -->
+        <record id="view_order_tree_inherit_customer_balance" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit.customer.balance</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="partner_balance" 
+                           optional="show"
+                           decoration-danger="partner_balance &lt; 0"
+                           widget="monetary"
+                           groups="account.group_account_readonly"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

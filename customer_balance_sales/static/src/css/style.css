@@ -1,0 +1,7 @@
+.o_form_view .o_field_monetary.o_field_number.text-danger {
+    color: #dc3545 !important;
+}
+
+.o_list_view .o_data_cell.o_field_monetary.text-danger {
+    color: #dc3545 !important;
+}

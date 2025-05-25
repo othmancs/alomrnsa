@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_balance" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@t-if='doc.user_id.name']" position="after">
+            <div t-if="doc.partner_balance != 0" class="col-auto mw-100 mb-2" groups="account.group_account_readonly">
+                <strong>Current Balance:</strong>
+                <p class="m-0" t-field="doc.partner_balance" 
+                   t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                   t-attf-class="{{ 'text-danger' if doc.partner_balance &lt; 0 else '' }}"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
